@@ -800,12 +800,11 @@
 /* ============================================================
    EVENT ROW LOGO
    ============================================================
-   48×48 opposing team logo for buy-flow event rows.
-   Logos are SVGs from content/assets/crests/ (opponent.logo asset id)
-   with internal padding — always use object-fit: contain.
+   48×48 mark for an event row. Logos are usually SVGs with internal padding —
+   always use object-fit: contain, never cover.
 
    Usage:
-     <img class="event-row-logo" src="{opponent.logoUrl}" alt="{opponent.name}">
+     <img class="event-row-logo" src="{item.logoUrl}" alt="{item.name}">
    ============================================================ */
 
 .event-row-logo {

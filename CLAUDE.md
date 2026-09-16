@@ -88,9 +88,11 @@ npm run build:docs     # regenerates css-api.md and the CSS bundle
 
 `npm run check:themes` asserts every `[data-theme]` supplies the whole token
 contract in both modes and clears 4.5:1 on its button and accent pairs.
-`npm run check:demo` asserts the demo sheets still cover every class and token —
-it fails both ways, on a class in the CSS that no sheet shows and on a class a
-sheet uses that the CSS does not have.
+`npm run check:assets` asserts every shipped SVG parses — a malformed one still
+serves with the right content-type and still reports `complete` on an `<img>`,
+it just paints nothing. `npm run check:demo` asserts the demo sheets still cover
+every class and token — it fails both ways, on a class in the CSS that no sheet
+shows and on a class a sheet uses that the CSS does not have.
 
 ### Load order
 

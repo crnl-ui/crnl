@@ -198,9 +198,8 @@ Before writing any CSS, walk this list. Stop at the first match.
 8. Switch → `.switch > input + label`
 9. Card → `.card-closed`, or a surface token
 10. Recurring product layout → `product-patterns.css` (`.context-header`,
-    `.game-summary`, `.event-card`, `.action-row`, `.action-tile`,
-    `.heading-select`, `.disclosure-toggle`, `.section-heading`, `.link`,
-    `.crest-placeholder`, `.circle-icon`)
+    `.event-card`, `.action-row`, `.action-tile`, `.heading-select`,
+    `.disclosure-toggle`, `.section-heading`, `.link`, `.circle-icon`)
 11. Reproducing OS chrome (Apple Wallet, store badges) → `system-ui.css`
 12. Type → a text class
 13. Spacing → a token or utility

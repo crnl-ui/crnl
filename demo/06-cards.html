@@ -23,7 +23,7 @@
   <header class="sheet-head">
     <div class="card-text-pair">
       <h1 class="display500">Cards &amp; Tiles</h1>
-      <p class="labelRegular40 text-secondary">Closed cards, open cards, grids, logo blocks, matchups and the tile — with its one interactivity rule.</p>
+      <p class="labelRegular40 text-secondary">Closed cards, open cards, grids, logo blocks and the tile — with its one interactivity rule.</p>
     </div>
   </header>
 
@@ -166,10 +166,10 @@
 
   <section class="sheet-section" id="logo-block">
     <div class="sheet-section-head">
-      <h2 class="display300">Logo block and matchup</h2>
-      <span class="labelRegular10 text-secondary mono">.logo-block · .matchup</span>
+      <h2 class="display300">Logo block</h2>
+      <span class="labelRegular10 text-secondary mono">.logo-block</span>
     </div>
-    <p class="sheet-note bodyRegular30">Both are fluid — the parent sets the dimensions. The size modifier controls the <em>logo image</em>, not the container. The away panel takes <span class="mono">--badge-bg</span> from the opponent's colour; the home panel inherits <span class="mono">--brand-core</span>. Every logo here comes from the loader, never a path (<span class="mono">RULES §6</span>).</p>
+    <p class="sheet-note bodyRegular30">Fluid — the parent sets the dimensions. The size modifier controls the <em>logo image</em>, not the container, which takes <span class="mono">--badge-bg</span> and falls back to <span class="mono">--brand-core</span>. Every logo here comes from the content layer, never a path (<span class="mono">RULES §6</span>).</p>
     <div class="sheet-grid">
       <div class="spec">
         <div class="spec-stage is-center"><div style="width: var(--spacing-1000); height: var(--spacing-1000);"><div class="logo-block logo-block-sm"><img data-content="brand.assets.logo" alt=""></div></div></div>
@@ -182,17 +182,6 @@
       <div class="spec">
         <div class="spec-stage is-center"><div style="width: calc(var(--spacing-1000) * 1.6); height: calc(var(--spacing-1000) * 1.6);"><div class="logo-block logo-block-lg"><img data-content="brand.assets.logo" alt=""></div></div></div>
         <div class="spec-label"><span class="labelRegular10 mono spec-code">.logo-block .logo-block-lg</span><span class="labelRegular10 spec-meta">104px logo</span></div>
-      </div>
-      <div class="spec">
-        <div class="spec-stage is-plain">
-          <div class="card-media rounded-100">
-            <div class="matchup">
-              <div class="matchup-panel" data-opponent-panel><img data-opponent-logo alt=""></div>
-              <div class="matchup-panel"><img data-content="brand.assets.logo" alt=""></div>
-            </div>
-          </div>
-        </div>
-        <div class="spec-label"><span class="labelRegular10 mono spec-code">.matchup &gt; .matchup-panel × 2</span><span class="labelRegular10 spec-meta">away left, home right — the matchup takes its height from the slot, so the slot is a <span class="mono">.card-media</span></span></div>
       </div>
     </div>
   </section>
@@ -220,15 +209,10 @@
     <div class="card-grid grid-cols-2-desktop grid-cols-1-mobile">
 
       <div class="tile surface-card scale-700">
-        <div class="card-media">
-          <div class="matchup">
-            <div class="matchup-panel" data-opponent-panel><img data-opponent-logo alt=""></div>
-            <div class="matchup-panel"><img data-content="brand.assets.logo" alt=""></div>
-          </div>
-        </div>
+        <div class="card-media" data-demo-image></div>
         <div class="tile-info">
           <div class="card-text-pair">
-            <span class="labelBold30" data-opponent-name>Opponent</span>
+            <span class="labelBold30" data-opponent-name>Counterparty</span>
             <span class="labelRegular10 text-secondary" data-game-date>Date</span>
           </div>
           <span class="labelBold20 text-success">From $19</span>
@@ -252,36 +236,26 @@
     <div class="card-grid grid-cols-2-desktop grid-cols-1-mobile">
 
       <div class="tile">
-        <div class="card-media">
-          <div class="matchup">
-            <div class="matchup-panel" data-opponent-panel><img data-opponent-logo alt=""></div>
-            <div class="matchup-panel"><img data-content="brand.assets.logo" alt=""></div>
-          </div>
-        </div>
+        <div class="card-media" data-demo-image></div>
         <div class="tile-info">
           <div class="card-text-pair">
             <span class="labelBold30">Button is the CTA</span>
             <span class="labelRegular10 text-secondary">So the tile takes no surface</span>
           </div>
           <span class="labelBold20 text-success">From $45</span>
-          <button class="btn btn-primary btn-100">Buy Tickets</button>
+          <button class="btn btn-primary btn-100">Get Tickets</button>
         </div>
       </div>
 
       <div class="tile">
-        <div class="card-media">
-          <div class="matchup">
-            <div class="matchup-panel" data-opponent-panel><img data-opponent-logo alt=""></div>
-            <div class="matchup-panel"><img data-content="brand.assets.logo" alt=""></div>
-          </div>
-        </div>
+        <div class="card-media" data-demo-image></div>
         <div class="tile-info">
           <div class="card-text-pair">
             <span class="labelBold30">Matched sibling</span>
             <span class="labelRegular10 text-secondary">So the tile takes no surface</span>
           </div>
           <span class="labelBold20 text-success">From $28</span>
-          <button class="btn btn-primary btn-100">Buy Tickets</button>
+          <button class="btn btn-primary btn-100">Get Tickets</button>
         </div>
       </div>
 
@@ -289,18 +263,14 @@
   </section>
 
   <script>
-    /* The opponent on this page is a real reference resolved by the loader —
-       never a name, colour or crest typed into the file (RULES §6). */
+    /* The counterparty on this page is a reference resolved by the content
+       layer — never a name or colour typed into the file (RULES §6). */
     document.addEventListener('content-loaded', e => {
       const game = ContentLoader.featuredGame(e.detail.schedule);
       const opp = game && game.opponent;
       if (!opp) return;
-      document.querySelectorAll('[data-opponent-logo]').forEach(el => { el.src = opp.logo || ''; });
-      document.querySelectorAll('[data-opponent-panel]').forEach(el => {
-        el.style.setProperty('--badge-bg', opp.color || 'var(--neutral-200)');
-      });
       document.querySelectorAll('[data-opponent-name]').forEach(el => {
-        el.textContent = 'vs. ' + (opp.short || opp.name);
+        el.textContent = opp.short || opp.name;
       });
       document.querySelectorAll('[data-game-date]').forEach(el => {
         el.textContent = ContentLoader.formatters.fmtShortDate(new Date(game.date + 'T00:00:00')) +

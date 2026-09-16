@@ -1,5 +1,5 @@
 export interface TileProps {
-  /** Visual header content (image, matchup, logo block, etc.) */
+  /** Visual header content (image, logo block, coloured block, etc.) */
   visual: React.ReactNode
   /** Info section content (text pair, price, button, etc.) */
   info: React.ReactNode

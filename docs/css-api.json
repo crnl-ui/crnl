@@ -3035,7 +3035,7 @@
     },
     {
       "file": "card-components.css",
-      "covers": "Card layouts and the small blocks that go inside them: closed and open cards, tiles, logo blocks and matchups.",
+      "covers": "Card layouts and the small blocks that go inside them: closed and open cards, tiles and logo blocks.",
       "classes": [
         {
           "name": "card-closed",
@@ -3252,23 +3252,6 @@
           "section": "LOGO BLOCK",
           "declares": null,
           "tokens": [],
-          "alsoStyledIn": []
-        },
-        {
-          "name": "matchup",
-          "section": "MATCHUP",
-          "declares": "height: 100%; width: 100%; display: flex; overflow: hidden",
-          "tokens": [],
-          "alsoStyledIn": []
-        },
-        {
-          "name": "matchup-panel",
-          "section": "MATCHUP",
-          "declares": "background: var(--badge-bg, var(--brand-core)); height: 100%; flex: 1 0 0; position: relative; overflow: hidden",
-          "tokens": [
-            "--badge-bg",
-            "--brand-core"
-          ],
           "alsoStyledIn": []
         },
         {
@@ -5652,214 +5635,6 @@
           "alsoStyledIn": []
         },
         {
-          "name": "game-summary",
-          "section": "ACTION ROW",
-          "declares": "gap: var(--spacing-150); width: 100%; display: flex; --game-summary-logo-size: 48px; align-items: center",
-          "tokens": [
-            "--spacing-150",
-            "--text-disabled",
-            "--white-1000",
-            "--white-700",
-            "--white-500"
-          ],
-          "alsoStyledIn": []
-        },
-        {
-          "name": "is-live",
-          "section": "ACTION ROW",
-          "declares": null,
-          "tokens": [],
-          "alsoStyledIn": []
-        },
-        {
-          "name": "is-final",
-          "section": "ACTION ROW",
-          "declares": null,
-          "tokens": [
-            "--text-disabled",
-            "--white-500"
-          ],
-          "alsoStyledIn": []
-        },
-        {
-          "name": "game-summary-team",
-          "section": "ACTION ROW",
-          "declares": "gap: var(--spacing-150); display: flex; flex: 1; align-items: center; min-width: 0",
-          "tokens": [
-            "--spacing-150"
-          ],
-          "alsoStyledIn": []
-        },
-        {
-          "name": "away",
-          "section": "ACTION ROW",
-          "declares": null,
-          "tokens": [],
-          "alsoStyledIn": []
-        },
-        {
-          "name": "home",
-          "section": "ACTION ROW",
-          "declares": null,
-          "tokens": [],
-          "alsoStyledIn": []
-        },
-        {
-          "name": "game-summary-stack",
-          "section": "ACTION ROW",
-          "declares": "gap: var(--spacing-25); display: flex; flex-direction: column; align-items: center; flex-shrink: 0; +1 more",
-          "tokens": [
-            "--spacing-25",
-            "--spacing-150"
-          ],
-          "alsoStyledIn": []
-        },
-        {
-          "name": "is-scheduled",
-          "section": "ACTION ROW",
-          "declares": null,
-          "tokens": [
-            "--spacing-150"
-          ],
-          "alsoStyledIn": []
-        },
-        {
-          "name": "game-summary-logo",
-          "section": "ACTION ROW",
-          "declares": "height: var(--game-summary-logo-size); width: var(--game-summary-logo-size); object-fit: contain; flex-shrink: 0",
-          "tokens": [
-            "--game-summary-logo-size"
-          ],
-          "alsoStyledIn": []
-        },
-        {
-          "name": "game-summary-team-info",
-          "section": "ACTION ROW",
-          "declares": "gap: 1px; display: flex; flex-direction: column; min-width: 0; text-align: center",
-          "tokens": [],
-          "alsoStyledIn": []
-        },
-        {
-          "name": "game-summary-rank",
-          "section": "ACTION ROW",
-          "declares": "font-size: 10px; font-weight: 400; line-height: normal; letter-spacing: -0.01em; color: var(--text-secondary); +2 more",
-          "tokens": [
-            "--text-secondary",
-            "--spacing-25",
-            "--white-700"
-          ],
-          "alsoStyledIn": []
-        },
-        {
-          "name": "game-summary-abbr",
-          "section": "ACTION ROW",
-          "declares": "font-size: 12px; font-weight: 600; line-height: normal; letter-spacing: -0.02em; color: var(--text-primary); +2 more",
-          "tokens": [
-            "--text-primary",
-            "--white-1000"
-          ],
-          "alsoStyledIn": []
-        },
-        {
-          "name": "game-summary-record",
-          "section": "ACTION ROW",
-          "declares": "font-size: 10px; font-weight: 400; line-height: normal; letter-spacing: -0.01em; color: var(--text-secondary); +2 more",
-          "tokens": [
-            "--text-secondary",
-            "--white-700"
-          ],
-          "alsoStyledIn": []
-        },
-        {
-          "name": "game-summary-score",
-          "section": "ACTION ROW",
-          "declares": "color: var(--text-primary); flex: 1; min-width: 0; text-align: center",
-          "tokens": [
-            "--text-primary",
-            "--text-disabled",
-            "--white-1000",
-            "--white-500"
-          ],
-          "alsoStyledIn": []
-        },
-        {
-          "name": "is-loser",
-          "section": "ACTION ROW",
-          "declares": null,
-          "tokens": [
-            "--text-disabled",
-            "--white-500"
-          ],
-          "alsoStyledIn": []
-        },
-        {
-          "name": "game-summary-center",
-          "section": "ACTION ROW",
-          "declares": "gap: 1px; display: flex; flex-direction: column; align-items: center; flex-shrink: 0; +1 more",
-          "tokens": [],
-          "alsoStyledIn": []
-        },
-        {
-          "name": "game-summary-status",
-          "section": "ACTION ROW",
-          "declares": "font-size: 12px; font-weight: 600; line-height: normal; letter-spacing: -0.02em; color: var(--text-primary); +2 more",
-          "tokens": [
-            "--text-primary",
-            "--white-1000"
-          ],
-          "alsoStyledIn": []
-        },
-        {
-          "name": "game-summary-detail",
-          "section": "ACTION ROW",
-          "declares": "font-size: 12px; font-weight: 400; line-height: normal; letter-spacing: -0.02em; color: var(--text-secondary); +2 more",
-          "tokens": [
-            "--text-secondary",
-            "--white-700"
-          ],
-          "alsoStyledIn": []
-        },
-        {
-          "name": "game-summary-live-dot",
-          "section": "ACTION ROW",
-          "declares": "color: var(--status-success)",
-          "tokens": [
-            "--status-success"
-          ],
-          "alsoStyledIn": []
-        },
-        {
-          "name": "on-scrim",
-          "section": "ACTION ROW",
-          "declares": null,
-          "tokens": [
-            "--white-1000",
-            "--white-700",
-            "--white-500"
-          ],
-          "alsoStyledIn": []
-        },
-        {
-          "name": "game-summary-card",
-          "section": "ACTION ROW",
-          "declares": "background: var(--bg-surface); gap: var(--spacing-200); padding: var(--spacing-200); border-radius: var(--border-radius-200); display: flex; +1 more",
-          "tokens": [
-            "--bg-surface",
-            "--border-radius-200",
-            "--spacing-200"
-          ],
-          "alsoStyledIn": []
-        },
-        {
-          "name": "game-summary-actions",
-          "section": "ACTION ROW",
-          "declares": "gap: var(--spacing-100); width: 100%; display: flex",
-          "tokens": [
-            "--spacing-100"
-          ],
-          "alsoStyledIn": []
-        },
-        {
           "name": "event-card",
           "section": "EVENT CARD",
           "declares": "background: var(--bg-surface); padding: var(--spacing-300); border-radius: var(--border-radius-200); cursor: pointer; overflow: hidden; +1 more",
@@ -5953,28 +5728,9 @@
             "--color-interactive"
           ],
           "alsoStyledIn": []
-        },
-        {
-          "name": "crest-placeholder",
-          "section": "CREST PLACEHOLDER",
-          "declares": "font-size: 0.8125rem; font-weight: 700; letter-spacing: -0.02em; color: var(--white-1000); background: var(--neutral-300); +8 more",
-          "tokens": [
-            "--spacing-600",
-            "--neutral-300",
-            "--white-1000"
-          ],
-          "alsoStyledIn": []
         }
       ],
-      "tokens": [
-        {
-          "name": "--game-summary-logo-size",
-          "scopes": [
-            "component-scoped"
-          ],
-          "example": "48px"
-        }
-      ]
+      "tokens": []
     },
     {
       "file": "boilerplate.css",

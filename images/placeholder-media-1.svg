@@ -1,0 +1,7 @@
+<svg width="800" height="450" viewBox="0 0 800 450" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder image">
+  <!-- A deliberately abstract stand-in for photography, in mid tones that read
+       on both a light and a dark surface. Swap for real art in a project. -->
+  <rect width="800" height="450" fill="#3F4A5C"/>
+  <circle cx="620" cy="120" r="62" fill="#6B7E99" opacity="0.5"/>
+  <path d="M0 300 L200 140 L360 260 L560 90 L800 220 L800 450 L0 450 Z" fill="#6B7E99" opacity="0.45"/>
+</svg>

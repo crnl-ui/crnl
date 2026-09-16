@@ -201,47 +201,6 @@
     </div>
     <div class="spec-label mt-200"><span class="labelRegular10 mono spec-code">.context-header</span><span class="labelRegular10 mono spec-code">.header-inner</span></div>
 
-    <div class="sheet-sub"><span class="title50">Game summary</span><span class="labelRegular10 text-secondary">"Scoreboard" — away leads, home trails, always</span></div>
-    <p class="sheet-note bodyRegular30">Three states off one fixture. <strong>Scheduled</strong> shows the date; <strong>live</strong> swaps to a running score and clock and shrinks the crest so the number has room; <strong>final</strong> greys the side that lost. The away/home sides are decided by <span class="mono">game.isHome</span>, never by which club is ours. Every value below is real fixture data — records, scores and the live clock all come from <span class="mono">content/schedules/</span>.</p>
-    <div class="sheet-grid sheet-grid-wide" id="gs-states"></div>
-    <div class="spec-label mt-200">
-      <span class="labelRegular10 mono spec-code">.game-summary.is-scheduled</span>
-      <span class="labelRegular10 mono spec-code">.is-live</span>
-      <span class="labelRegular10 mono spec-code">.is-final</span>
-      <span class="labelRegular10 mono spec-code">.game-summary-team.away</span>
-      <span class="labelRegular10 mono spec-code">.home</span>
-      <span class="labelRegular10 mono spec-code">.game-summary-stack</span>
-      <span class="labelRegular10 mono spec-code">.game-summary-team-info</span>
-      <span class="labelRegular10 mono spec-code">.game-summary-abbr</span>
-      <span class="labelRegular10 mono spec-code">.game-summary-record</span>
-      <span class="labelRegular10 mono spec-code">.game-summary-rank</span>
-      <span class="labelRegular10 mono spec-code">.game-summary-score</span>
-      <span class="labelRegular10 mono spec-code">.is-loser</span>
-      <span class="labelRegular10 mono spec-code">.game-summary-center</span>
-      <span class="labelRegular10 mono spec-code">.game-summary-status</span>
-      <span class="labelRegular10 mono spec-code">.game-summary-detail</span>
-      <span class="labelRegular10 mono spec-code">.game-summary-live-dot</span>
-      <span class="labelRegular10 mono spec-code">.game-summary-logo</span>
-    </div>
-
-    <div class="sheet-sub"><span class="title50">On a scrim</span><span class="labelRegular10 text-secondary">Figma&rsquo;s &ldquo;Mode Agnostic&rdquo; — white text over photography, whatever the mode</span></div>
-    <div class="spec-stage is-plain is-block">
-      <div class="demo-image rounded-200" data-demo-image style="padding: var(--spacing-300); position: relative;">
-        <div class="scrim-image rounded-200" style="position: absolute; inset: 0;"></div>
-        <div style="position: relative;" id="gs-scrim"></div>
-      </div>
-    </div>
-    <div class="spec-label mt-200"><span class="labelRegular10 mono spec-code">.game-summary.on-scrim</span><span class="labelRegular10 spec-meta">crests keep their colour; every text line goes white</span></div>
-
-    <div class="sheet-sub"><span class="title50">Game summary card</span><span class="labelRegular10 text-secondary">the row plus the actions its state calls for</span></div>
-    <div class="sheet-grid sheet-grid-wide" id="gs-cards"></div>
-    <div class="spec-label mt-200">
-      <span class="labelRegular10 mono spec-code">.game-summary-card</span>
-      <span class="labelRegular10 mono spec-code">.game-summary-actions</span>
-      <span class="labelRegular10 spec-meta">before: Buy Tickets + Game Info · during: View Tickets + Game Info · after: Game Info alone</span>
-    </div>
-
-
     <div class="sheet-sub"><span class="title50">Event card</span></div>
     <div class="sheet-grid sheet-grid-wide">
       <div class="spec">
@@ -299,10 +258,6 @@
         <div class="spec-label"><span class="labelRegular10 mono spec-code">.link</span><span class="labelRegular10 spec-meta">emphasised inline link · .section-header is page CSS</span></div>
       </div>
       <div class="spec">
-        <div class="spec-stage is-center"><div class="crest-placeholder">OPP</div></div>
-        <div class="spec-label"><span class="labelRegular10 mono spec-code">.crest-placeholder</span><span class="labelRegular10 spec-meta">stands in for a missing brand mark</span></div>
-      </div>
-      <div class="spec">
         <div class="spec-stage is-block"><div class="action-row"><button class="btn btn-secondary btn-300">Back</button><button class="btn btn-primary btn-300">Continue</button></div></div>
         <div class="spec-label"><span class="labelRegular10 mono spec-code">.action-row</span></div>
       </div>
@@ -356,124 +311,12 @@
   </section>
 
   <script>
-    /* ── Game Summary ─────────────────────────────────────────────────────
-       One renderer, three states, driven by the fixture's own status. Away
-       leads and home trails — decided by game.isHome, not by which club is
-       ours (("Away side is always leading, home side is always
-       trailing"). */
-    function gsTeam(side, club, record, score, loser) {
-      const stack =
-        '<div class="game-summary-stack">' +
-          '<img class="game-summary-logo" src="' + (club.logo || '') + '" alt="">' +
-          '<div class="game-summary-team-info">' +
-            '<span class="game-summary-abbr">' + club.abbr + '</span>' +
-            '<span class="game-summary-record">' + (record || '') + '</span>' +
-          '</div>' +
-        '</div>';
-      const num = score == null ? '' :
-        '<span class="game-summary-score display400' + (loser ? ' is-loser' : '') + '">' + score + '</span>';
-      /* Away puts the crest outermost, so the stack comes first; home mirrors it. */
-      return '<div class="game-summary-team ' + side + '">' +
-        (side === 'away' ? stack + num : num + stack) + '</div>';
-    }
-
-    function gameSummary(game, brand, opts) {
-      opts = opts || {};
-      const org = { abbr: brand.identity.abbreviated, logo: ContentLoader.asset(brand.assets.logo) };
-      const opp = { abbr: game.opponent.abbr, logo: game.opponent.logo };
-      const orgRec = (game.record || {}).team, oppRec = (game.record || {}).opponent;
-
-      /* isHome decides the sides, and carries the records and scores with it. */
-      const away = game.isHome ? opp : org, home = game.isHome ? org : opp;
-      const awayRec = game.isHome ? oppRec : orgRec, homeRec = game.isHome ? orgRec : oppRec;
-
-      let state, centre, awayScore = null, homeScore = null;
-      if (game.status === 'final') {
-        state = 'is-final';
-        const s = game.score || {};
-        awayScore = game.isHome ? s.opponent : s.team;
-        homeScore = game.isHome ? s.team : s.opponent;
-        centre = '<span class="game-summary-status">Final</span>' +
-                 '<span class="game-summary-detail">' + fmtDate(game.date) + '</span>';
-      } else if (game.status === 'live') {
-        state = 'is-live';
-        const l = game.live || {};
-        awayScore = game.isHome ? l.opponent : l.team;
-        homeScore = game.isHome ? l.team : l.opponent;
-        centre = '<span class="game-summary-status">' + (l.clock || '') + '</span>' +
-                 '<span class="game-summary-detail"><span class="game-summary-live-dot">&bull;</span> Live</span>';
-      } else {
-        state = 'is-scheduled';
-        centre = '<span class="game-summary-status">' + fmtDate(game.date) + '</span>' +
-                 '<span class="game-summary-detail">' + (game.time || '') + '</span>';
-      }
-
-      const lowAway = awayScore != null && homeScore != null && awayScore < homeScore;
-      const lowHome = awayScore != null && homeScore != null && homeScore < awayScore;
-
-      return '<div class="game-summary ' + state + (opts.onScrim ? ' on-scrim' : '') + '">' +
-        gsTeam('away', away, awayRec, awayScore, lowAway) +
-        '<div class="game-summary-center">' + centre + '</div>' +
-        gsTeam('home', home, homeRec, homeScore, lowHome) +
-      '</div>';
-    }
-
-    function fmtDate(d) {
-      return ContentLoader.formatters.fmtShortDate(new Date(d + 'T00:00:00'));
-    }
-
-    /* The actions the card shows are a function of the same state. */
-    const GS_ACTIONS = {
-      'is-scheduled': '<button class="btn btn-transactional btn-300 btn-icon-leading">' +
-          '<span class="btn-icon material-symbols-rounded">sell</span><span>Buy Tickets</span></button>' +
-        '<button class="btn btn-secondary btn-300">Game Info</button>',
-      'is-live': '<button class="btn btn-neutral btn-300 btn-icon-leading">' +
-          '<span class="btn-icon material-symbols-rounded">confirmation_number</span><span>View Tickets</span></button>' +
-        '<button class="btn btn-secondary btn-300 btn-icon-leading">' +
-          '<span class="btn-icon material-symbols-rounded">bar_chart</span><span>Game Info</span></button>',
-      'is-final': '<button class="btn btn-secondary btn-300 btn-icon-leading">' +
-          '<span class="btn-icon material-symbols-rounded">bar_chart</span><span>Game Info</span></button>',
-    };
-
-    document.addEventListener('content-loaded', e => {
-      const { schedule, brand } = e.detail;
-      const pick = st => (schedule.games || []).find(g => g.status === st);
-      const shown = [
-        ['scheduled', pick('upcoming')],
-        ['live', pick('live')],
-        ['final', pick('final')],
-      ].filter(([, g]) => g);
-
-      const states = document.getElementById('gs-states');
-      if (states) states.innerHTML = shown.map(([label, g]) =>
-        '<div class="spec"><div class="spec-stage is-base is-block">' + gameSummary(g, brand) + '</div>' +
-        '<div class="spec-label"><span class="labelRegular10 mono spec-code">.is-' + label + '</span>' +
-        '<span class="labelRegular10 spec-meta">' + (g.isHome ? 'home fixture — we trail' : 'away fixture — we lead') +
-        '</span></div></div>').join('');
-
-      const scrim = document.getElementById('gs-scrim');
-      if (scrim && shown.length) scrim.innerHTML = gameSummary(shown[shown.length - 1][1], brand, { onScrim: true });
-
-      const cards = document.getElementById('gs-cards');
-      if (cards) cards.innerHTML = shown.map(([label, g]) => {
-        const state = label === 'scheduled' ? 'is-scheduled' : label === 'live' ? 'is-live' : 'is-final';
-        return '<div class="spec"><div class="spec-stage is-base is-block">' +
-          '<div class="game-summary-card">' + gameSummary(g, brand) +
-          '<div class="game-summary-actions">' + GS_ACTIONS[state] + '</div></div></div>' +
-          '<div class="spec-label"><span class="labelRegular10 spec-meta">card state: ' +
-          (label === 'scheduled' ? 'before' : label === 'live' ? 'during' : 'after') +
-          '</span></div></div>';
-      }).join('');
-    });
-
     document.addEventListener('content-loaded', e => {
       const game = ContentLoader.featuredGame(e.detail.schedule);
       const opp = game && game.opponent;
       if (!opp) return;
       document.querySelectorAll('[data-opponent-logo]').forEach(el => { el.src = opp.logo || ''; });
       document.querySelectorAll('[data-opponent-name]').forEach(el => { el.textContent = opp.name; });
-      document.querySelectorAll('[data-opponent-abbr]').forEach(el => { el.textContent = opp.abbr || opp.short || ''; });
-      document.querySelectorAll('[data-game-time]').forEach(el => { el.textContent = game.time || ''; });
       document.querySelectorAll('[data-game-date]').forEach(el => {
         el.textContent = ContentLoader.formatters.fmtShortDate(new Date(game.date + 'T00:00:00'));
       });

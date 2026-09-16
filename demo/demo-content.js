@@ -33,6 +33,9 @@
     'pay.generic':       BASE + 'pay-generic.svg',
     'wallet.apple':      BASE + 'wallet-apple.svg',
     'wallet.google':     BASE + 'wallet-google.svg',
+    'media.1':           BASE + 'placeholder-media-1.svg',
+    'media.2':           BASE + 'placeholder-media-2.svg',
+    'media.3':           BASE + 'placeholder-media-3.svg',
     'pay.applepay':      BASE + 'pay-applepay.svg',
     'pay.googlepay':     BASE + 'pay-googlepay.svg',
   };
@@ -43,7 +46,7 @@
     identity: { full: 'Acme Athletic Club', short: 'Acme', abbreviated: 'ACM' },
     venue: { name: 'Example Field', city: 'Springfield' },
     assets: { logo: 'logo.brand' },
-    media: { actionPhotos: [] },
+    media: { actionPhotos: ['media.1', 'media.2', 'media.3'] },
   };
 
   /* ---------- Platform-level chrome -------------------------------------- */
@@ -74,7 +77,8 @@
   /* ---------- A fixture list -------------------------------------------
      Shaped the way the sheets consume it: a `games` array whose records carry
      their own status, sides and — where the status calls for them — scores.
-     One of each state, so every state of .game-summary has something to draw. */
+     One of each state, so date, time and status handling all have something
+     to render. */
   function iso(daysFromNow) {
     var d = new Date();
     d.setDate(d.getDate() + daysFromNow);

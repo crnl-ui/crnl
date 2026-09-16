@@ -8,7 +8,7 @@
 > compose; this file is the exhaustive list of what exists. If a class or token
 > is not here, it is not in the design system.
 
-**764 classes and 227 custom properties across 23 stylesheets.** 0 internal classes (documentation chrome) are intentionally omitted. Each class is listed once, under the stylesheet that defines it.
+**739 classes and 226 custom properties across 23 stylesheets.** 0 internal classes (documentation chrome) are intentionally omitted. Each class is listed once, under the stylesheet that defines it.
 
 ## Load order
 
@@ -55,7 +55,7 @@ In-repo pages use `<script src="ds-loader.js"></script>` instead of individual t
 | [`display-fonts.css`](#display-fontscss) | 0 · 12 tokens | A ready-tuned display ramp for each shipped face. |
 | [`text-styles-system.css`](#text-styles-systemcss) | 59 | The type scale: display, title, label and body text classes, plus colour and text utilities. |
 | [`icons.css`](#iconscss) | 10 · 8 tokens | The Material Symbols (Rounded) icon system: size tokens, the base icon class and its variants. |
-| [`card-components.css`](#card-componentscss) | 29 | Card layouts and the small blocks that go inside them: closed and open cards, tiles, logo blocks and matchups. |
+| [`card-components.css`](#card-componentscss) | 27 | Card layouts and the small blocks that go inside them: closed and open cards, tiles and logo blocks. |
 | [`interactive-tokens.css`](#interactive-tokenscss) | 16 | Surface and scale classes that give any element its hover and pressed states. |
 | [`button-components.css`](#button-componentscss) | 36 | The button system: every button type, three sizes, icon placement, fill width and circle icon buttons. |
 | [`system-ui.css`](#system-uicss) | 4 | Vendor chrome: controls specified by Apple or Google that a prototype reproduces rather than designs. |
@@ -66,7 +66,7 @@ In-repo pages use `<script src="ds-loader.js"></script>` instead of individual t
 | [`nav-components.css`](#nav-componentscss) | 26 | Web navigation and page-structure components: top bar, tabs, steps and page header. |
 | [`ios-nav-components.css`](#ios-nav-componentscss) | 33 · 2 tokens | iOS navigation chrome for app-mode prototypes: nav bars, tab bar, modal sheet and glass surface. |
 | [`web-footer-components.css`](#web-footer-componentscss) | 15 | The responsive site footer. |
-| [`product-patterns.css`](#product-patternscss) | 37 · 1 tokens | Composite layouts that recur across product screens and sit above the component layer. |
+| [`product-patterns.css`](#product-patternscss) | 14 | Composite layouts that recur across product screens and sit above the component layer. |
 | [`boilerplate.css`](#boilerplatecss) | 318 | The base layer: CSS reset, element defaults, and the spacing, layout, grid and responsive utilities. |
 | [`platform-tokens.css`](#platform-tokenscss) | 11 · 3 tokens | The web/app platform switch: phone frame, iOS system chrome, safe-area tokens and review chrome. |
 
@@ -782,7 +782,7 @@ RULES §4.
 
 ```
 card-components.css
-Card layouts and the small blocks that go inside them: closed and open cards, tiles, logo blocks and matchups.
+Card layouts and the small blocks that go inside them: closed and open cards, tiles and logo blocks.
 
 What's inside
 - .card-closed (+ -header/-body/-footer) — full card with background and divided
@@ -794,7 +794,6 @@ sections; the header is a row (text pair + optional trailing action)
 - .card-media (+ -tall, -square) — the photo band at the top of a card or
 tile, sized by ratio and never by height
 - .logo-block — brand-coloured tile with a centred logo
-- .matchup — two-panel away/home strip
 - .tile (+ .tile-info, .tile-tag) — the small card shown alongside others
 
 Notes
@@ -865,13 +864,6 @@ band's hover wash follows the 16px radius with no extra CSS. Do not add
 | `.logo-block-lg` | *contextual — styled via a parent* | — |
 | `.logo-block-md` | *contextual — styled via a parent* | — |
 | `.logo-block-sm` | *contextual — styled via a parent* | — |
-
-### MATCHUP
-
-| Class | Declares | Tokens |
-|---|---|---|
-| `.matchup` | height: 100%; width: 100%; display: flex; overflow: hidden | — |
-| `.matchup-panel` | background: var(--badge-bg, var(--brand-core)); height: 100%; flex: 1 0 0; position: relative; overflow: hidden | --badge-bg, --brand-core |
 
 ### TILE
 
@@ -1938,16 +1930,12 @@ What's inside
 - .context-header — the band under the top nav with a page title and optional tabs
 - .circle-icon — large decorative icon disc for auth flows and empty states
 - .action-row — a row of equally weighted buttons
-- .game-summary (+ -team, -stack, -logo, -team-info, -abbr, -record, -rank,
--score, -center, -status, -detail, -live-dot, -actions, -card) — the
-scoreboard: away leads, home trails, in a scheduled / live / final state
 - .event-card (+ .event-card-media, .event-card-list) — a tappable card for one event
 - .action-tile-row, .action-tile (+ -circle) — a row of icon-above-label actions
 - .heading-select — a heading that is also a picker
 - .disclosure-toggle — a label plus chevron that expands detail in place
 - .section-heading — title plus supporting line for a section within a page
 - .link — an emphasised inline link
-- .crest-placeholder — stands in for a missing team crest
 
 Notes
 - These arrange components rather than being one. A pattern earns a place
@@ -1955,13 +1943,6 @@ here once it recurs across several templates and has one agreed
 definition; until then it stays product CSS in the template.
 - Reach for one of these before writing layout CSS. See RULES §3.
 ```
-
-### Tokens
-
-
-| Token | Scope | Example value |
-|---|---|---|
-| `--game-summary-logo-size` | component-scoped | 48px |
 
 ### CONTEXT HEADER
 
@@ -1981,28 +1962,6 @@ definition; until then it stays product CSS in the template.
 | Class | Declares | Tokens |
 |---|---|---|
 | `.action-row` | gap: var(--spacing-200); display: flex; align-items: center | --spacing-200 |
-| `.away` | *contextual — styled via a parent* | — |
-| `.game-summary` | gap: var(--spacing-150); width: 100%; display: flex; --game-summary-logo-size: 48px; align-items: center | --spacing-150, --text-disabled, --white-1000, --white-700, … |
-| `.game-summary-abbr` | font-size: 12px; font-weight: 600; line-height: normal; letter-spacing: -0.02em; color: var(--text-primary); +2 more | --text-primary, --white-1000 |
-| `.game-summary-actions` | gap: var(--spacing-100); width: 100%; display: flex | --spacing-100 |
-| `.game-summary-card` | background: var(--bg-surface); gap: var(--spacing-200); padding: var(--spacing-200); border-radius: var(--border-radius-200); display: flex; +1 more | --bg-surface, --border-radius-200, --spacing-200 |
-| `.game-summary-center` | gap: 1px; display: flex; flex-direction: column; align-items: center; flex-shrink: 0; +1 more | — |
-| `.game-summary-detail` | font-size: 12px; font-weight: 400; line-height: normal; letter-spacing: -0.02em; color: var(--text-secondary); +2 more | --text-secondary, --white-700 |
-| `.game-summary-live-dot` | color: var(--status-success) | --status-success |
-| `.game-summary-logo` | height: var(--game-summary-logo-size); width: var(--game-summary-logo-size); object-fit: contain; flex-shrink: 0 | --game-summary-logo-size |
-| `.game-summary-rank` | font-size: 10px; font-weight: 400; line-height: normal; letter-spacing: -0.01em; color: var(--text-secondary); +2 more | --text-secondary, --spacing-25, --white-700 |
-| `.game-summary-record` | font-size: 10px; font-weight: 400; line-height: normal; letter-spacing: -0.01em; color: var(--text-secondary); +2 more | --text-secondary, --white-700 |
-| `.game-summary-score` | color: var(--text-primary); flex: 1; min-width: 0; text-align: center | --text-primary, --text-disabled, --white-1000, --white-500 |
-| `.game-summary-stack` | gap: var(--spacing-25); display: flex; flex-direction: column; align-items: center; flex-shrink: 0; +1 more | --spacing-25, --spacing-150 |
-| `.game-summary-status` | font-size: 12px; font-weight: 600; line-height: normal; letter-spacing: -0.02em; color: var(--text-primary); +2 more | --text-primary, --white-1000 |
-| `.game-summary-team` | gap: var(--spacing-150); display: flex; flex: 1; align-items: center; min-width: 0 | --spacing-150 |
-| `.game-summary-team-info` | gap: 1px; display: flex; flex-direction: column; min-width: 0; text-align: center | — |
-| `.home` | *contextual — styled via a parent* | — |
-| `.is-final` | *contextual — styled via a parent* | --text-disabled, --white-500 |
-| `.is-live` | *contextual — styled via a parent* | — |
-| `.is-loser` | *contextual — styled via a parent* | --text-disabled, --white-500 |
-| `.is-scheduled` | *contextual — styled via a parent* | --spacing-150 |
-| `.on-scrim` | *contextual — styled via a parent* | --white-1000, --white-700, --white-500 |
 
 ### EVENT CARD
 
@@ -2043,12 +2002,6 @@ definition; until then it stays product CSS in the template.
 | Class | Declares | Tokens |
 |---|---|---|
 | `.link` | font-weight: 600; color: var(--color-interactive); text-decoration: none; cursor: pointer | --color-interactive |
-
-### CREST PLACEHOLDER
-
-| Class | Declares | Tokens |
-|---|---|---|
-| `.crest-placeholder` | font-size: 0.8125rem; font-weight: 700; letter-spacing: -0.02em; color: var(--white-1000); background: var(--neutral-300); +8 more | --spacing-600, --neutral-300, --white-1000 |
 
 ---
 

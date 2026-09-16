@@ -47,7 +47,7 @@ is the most common failure mode (`RULES §2`).
 
 When copying from a sheet: keep the composite class structure
 (`.event-row-top`, `.surface-section`, the `.list-row` three slots,
-`.card-text-pair`, `.matchup-panel`, `.tile-info`, `.leading-logo`); swap only
+`.card-text-pair`, `.card-media`, `.tile-info`, `.leading-logo`); swap only
 content; keep `data-theme` / `data-mode` / `data-platform` on `<html>` and the
 `../css/` loader path. When nothing in the system covers the pattern, build it
 from the sections below and say so (`RULES §2`).
@@ -662,20 +662,13 @@ sub-sections inside a `.card-open`.
 <!-- Tile is the tap target -->
 <div class="tile surface-card scale-700">
   <div class="tile-visual">           <!-- your fixed-height block; the tile does not size it -->
-    <div class="matchup">
-      <div class="matchup-panel" style="--badge-bg: var(--opponent-color, var(--neutral-200))">
-        <img src="{opponent.logo}" alt="{opponent.name}">
-      </div>
-      <div class="matchup-panel">
-        <div class="leading-logo" role="img" aria-label="Home side"></div>
-      </div>
-    </div>
+    <img class="card-media" src="{item.image}" alt="">
   </div>
   <div class="tile-tag">Home</div>    <!-- optional frosted label, top-left -->
   <div class="tile-info">
     <div class="card-text-pair">
-      <span class="labelBold30">vs. {opponent.short}</span>
-      <span class="labelRegular10 text-secondary">{game.date, formatted}</span>
+      <span class="labelBold30">{item.title}</span>
+      <span class="labelRegular10 text-secondary">{item.date, formatted}</span>
     </div>
     <span class="labelBold20 text-success">From $45</span>   <!-- optional -->
   </div>
@@ -803,7 +796,7 @@ per-scale files. This is the working subset.
 |---|---|---|
 | `--color-interactive` | per theme **and mode** | links, active states, focus rings, icon accents |
 | `--color-inverted` | per theme **and mode** | the complementary accent |
-| `--brand-core` | per theme | the brand colour itself — panels, crests, brand blocks |
+| `--brand-core` | per theme | the brand colour itself — panels, marks, brand blocks |
 | `--brand-light` | per theme | secondary brand colour |
 | `--brand-dark` | per theme | dark brand colour — the tail of `.scrim-brand` |
 | `--brand-dark-surface` | per theme | neutral dark **surface** for branded cards and scrims; not the navy `--brand-dark` |
@@ -926,7 +919,7 @@ What the components expect of it is worth stating, because the shapes recur:
   markup. Resolution is also where derived fields are computed — an abbreviation
   derived at resolution time is absent if you hydrate a record by hand, and every
   three-letter slot on the screen quietly falls back to the full name.
-- **A resolved entity for the scoreboard and row patterns carries** an id, a
+- **A resolved entity for the row patterns carries** an id, a
   full name, a short name, an abbreviation, a brand colour, a logo and a
   grouping label. `color` may be absent — fall back to `var(--neutral-200)`.
 - **Set an entity's colour inline** from its record (`--badge-bg`), never in a
@@ -983,11 +976,11 @@ start from a frozen reference screen, which has the measured value baked in.
 
 ## Complete Component Examples
 
-Placeholders in braces (`{opponent.logo}`) are data the loader supplies
-(`RULES §6`) — the field names are the real ones, listed under
-[Data in Prototypes](#data-in-prototypes). A fixture's `date` is an ISO string,
-so a rendered date is formatted at render rather than stored as a field of its own. Prices and seat blocks are prototype fixtures,
-and `{event.*}` in the ticket-row example is page-local data, not the loader's.
+Placeholders in braces (`{item.logo}`) are data a project's content layer
+supplies (`RULES §6`); the shapes are described under
+[Data in Prototypes](#data-in-prototypes). A `date` is an ISO string, so a
+rendered date is formatted at render rather than stored as a field of its own.
+Prices and seat blocks are fixtures.
 
 ### Tile grid (3-up, tile is the tap target)
 
@@ -995,19 +988,12 @@ and `{event.*}` in the ticket-row example is page-local data, not the loader's.
 <div class="card-grid grid-cols-3-desktop grid-cols-2-tablet grid-cols-1-mobile">
   <div class="tile surface-card scale-700">
     <div class="tile-visual">
-      <div class="matchup">
-        <div class="matchup-panel" style="--badge-bg: var(--opponent-color, var(--neutral-200))">
-          <img src="{opponent.logo}" alt="{opponent.name}">
-        </div>
-        <div class="matchup-panel">
-          <div class="leading-logo" role="img" aria-label="Home side"></div>
-        </div>
-      </div>
+      <img class="card-media" src="{item.image}" alt="">
     </div>
     <div class="tile-info">
       <div class="card-text-pair">
-        <span class="labelBold30">vs. {opponent.short}</span>
-        <span class="labelRegular10 text-secondary">{game.date, formatted}</span>
+        <span class="labelBold30">{item.title}</span>
+        <span class="labelRegular10 text-secondary">{item.date, formatted}</span>
       </div>
       <span class="labelBold20 text-success">From $19</span>
     </div>
@@ -1067,7 +1053,7 @@ and `{event.*}` in the ticket-row example is page-local data, not the loader's.
     <div class="list-row-content">
       <div class="list-row-text-pair">
         <span class="labelBold30">{home.short} vs {away.short}</span>
-        <span class="labelRegular10 text-secondary">{game.date, formatted}</span>
+        <span class="labelRegular10 text-secondary">{item.date, formatted}</span>
       </div>
       <div class="tag-group">
         <div class="tag tag-brand-color"><span class="labelBold20">Floor</span></div>
@@ -1164,22 +1150,21 @@ static asset.
 **Figma:** `Inventory - List Row` · variants `Entity ID`, `Option`
 (A/B/C — example data only), `Mobile/Desktop`, `Far/Close`.
 
-### Schedule row (opponent logo)
+### Entity row (leading logo)
 
-Game schedules, matchup lists, upcoming-event cards. The opponent crest goes in
-the leading slot; the logo, name and short name come from the resolved
-opponent reference.
+Schedules, listings, upcoming-event rows. The mark goes in the leading slot;
+the logo, name and short name come from the resolved reference.
 
 ```html
 <div class="row-wrap">
   <div class="list-row">
     <div class="leading leading-gap-md">
-      <img class="event-row-logo" src="{opponent.logo}" alt="{opponent.name}">
+      <img class="event-row-logo" src="{item.logo}" alt="{item.name}">
     </div>
     <div class="list-row-content">
       <div class="list-row-text-pair">
-        <span class="labelBold30">vs {opponent.short}</span>
-        <span class="labelRegular10 text-secondary">{game.date, formatted}</span>
+        <span class="labelBold30">{item.short}</span>
+        <span class="labelRegular10 text-secondary">{item.date, formatted}</span>
       </div>
       <div class="tag-group">
         <div class="tag"><span class="labelBold20">Home</span></div>
@@ -1196,9 +1181,9 @@ opponent reference.
 - No logo → omit `.leading`; `.list-row-content` becomes the first child
 - Crests are SVG; `.event-row-logo` already applies `object-fit: contain`
 
-### Event row (buy flow, single game)
+### Event row (buy flow, single event)
 
-Buy-flow card for one game: opponent crest, event info, offer state. Background
+Buy-flow card for one event: mark, event info, offer state. Background
 is `--bg-surface` with a 16px radius; padding and text scale are responsive.
 
 | Offer state | Top trailing | Bottom section |
@@ -1230,12 +1215,12 @@ section** only:
   <div class="event-row-top surface-section">
     <div class="list-row">
       <div class="leading leading-gap-sm">
-        <img class="event-row-logo" src="{opponent.logo}" alt="{opponent.name}">
+        <img class="event-row-logo" src="{item.logo}" alt="{item.name}">
       </div>
       <div class="list-row-content">
         <div class="list-row-text-pair">
-          <span class="event-row-label">{opponent.name}</span>
-          <span class="event-row-sublabel text-secondary">{game.date, formatted}</span>
+          <span class="event-row-label">{item.name}</span>
+          <span class="event-row-sublabel text-secondary">{item.date, formatted}</span>
         </div>
       </div>
       <div class="trailing trailing-gap-lg">
@@ -1269,12 +1254,12 @@ section** only:
   <div class="event-row-top">
     <div class="list-row not-tappable">
       <div class="leading leading-gap-sm">
-        <img class="event-row-logo" src="{opponent.logo}" alt="{opponent.name}">
+        <img class="event-row-logo" src="{item.logo}" alt="{item.name}">
       </div>
       <div class="list-row-content">
         <div class="list-row-text-pair">
-          <span class="event-row-label">{opponent.name}</span>
-          <span class="event-row-sublabel text-secondary">{game.date, formatted}</span>
+          <span class="event-row-label">{item.name}</span>
+          <span class="event-row-sublabel text-secondary">{item.date, formatted}</span>
         </div>
       </div>
     </div>
@@ -1298,12 +1283,12 @@ section** only:
   <div class="event-row-top">
     <div class="list-row not-tappable">
       <div class="leading leading-gap-sm">
-        <img class="event-row-logo" src="{opponent.logo}" alt="{opponent.name}">
+        <img class="event-row-logo" src="{item.logo}" alt="{item.name}">
       </div>
       <div class="list-row-content">
         <div class="list-row-text-pair">
-          <span class="event-row-label">{opponent.name}</span>
-          <span class="event-row-sublabel text-secondary">{game.date, formatted}</span>
+          <span class="event-row-label">{item.name}</span>
+          <span class="event-row-sublabel text-secondary">{item.date, formatted}</span>
         </div>
       </div>
       <div class="trailing trailing-gap-sm">

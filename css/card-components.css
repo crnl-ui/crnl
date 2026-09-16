@@ -1,7 +1,7 @@
 /* ============================================================
    card-components.css
    ============================================================
-   Card layouts and the small blocks that go inside them: closed and open cards, tiles, logo blocks and matchups.
+   Card layouts and the small blocks that go inside them: closed and open cards, tiles and logo blocks.
 
    What's inside
    - .card-closed (+ -header/-body/-footer) — full card with background and divided
@@ -13,7 +13,6 @@
    - .card-media (+ -tall, -square) — the photo band at the top of a card or
      tile, sized by ratio and never by height
    - .logo-block — brand-coloured tile with a centred logo
-   - .matchup — two-panel away/home strip
    - .tile (+ .tile-info, .tile-tag) — the small card shown alongside others
 
    Notes
@@ -38,7 +37,7 @@
    with a background of its own — a .surface-section hover or press wash, a
    full-bleed image in the first band — paints square corners over the card's
    radius. Every other rounded container in the system already clips
-   (.event-row, .event-card, .tile, .logo-block, .matchup); these two did not,
+   (.event-row, .event-card, .tile, .logo-block); these two did not,
    and four files had been patching it with an inline `style="overflow: hidden"`
    instead. */
 .card-closed {
@@ -269,12 +268,12 @@
    nested at the corners. If you can see a notch where the image meets the
    card, something has given the media a radius.
 
-   Works as an <img> or as a wrapper around a .matchup or a background image:
+   Works as an <img> or as a wrapper around any block that should fill the slot:
 
      <img class="card-media" src="{photo}" alt="">
 
      <div class="card-media">
-       <div class="matchup">…</div>
+       <div class="logo-block">…</div>
      </div>
 
    Ratios: the default 16/9, `.card-media-tall` 4/3, `.card-media-square` 1/1.
@@ -287,7 +286,7 @@
   width: 100%;
   aspect-ratio: 16 / 9;
   object-fit: cover;             /* when it is the <img> itself */
-  overflow: hidden;              /* when it wraps a matchup or a background */
+  overflow: hidden;              /* when it wraps a child or a background */
   background-color: var(--image-placeholder-bg);
   border-radius: 0;              /* the card clips — see the note above */
 }
@@ -345,60 +344,6 @@
 .logo-block-lg img { width: 104px; height: 104px; }
 
 /* ============================================================
-   MATCHUP
-   ============================================================
-   Two-panel split rectangle — one panel per theme.
-   Away team on the left, home team on the right.
-   Each panel fills 50% width, full height.
-   Always uses the smallest (64px) logo.
-
-   The matchup is fluid — height comes from the parent.
-   Wrap in a parent element that sets the height:
-   <div style="height: 120px;">
-     <div class="matchup">...</div>
-   </div>
-
-   Home panel: no --badge-bg needed — inherits --brand-core
-   Away panel: set --badge-bg inline from the opponent's `color`
-
-   Structure:
-   <div style="height: 120px;">
-     <div class="matchup">
-       <div class="matchup-panel" style="--badge-bg: {away.primaryColor ?? 'var(--neutral-200)'};">
-         <img src="{away.logoUrl}" alt="{away.name}">
-       </div>
-       <div class="matchup-panel">
-         <img src="{home.logoUrl}" alt="{home.name}">
-       </div>
-     </div>
-   </div>
-   ============================================================ */
-
-.matchup {
-  display: flex;
-  width: 100%;
-  height: 100%; /* fills parent — parent is responsible for height */
-  overflow: hidden;
-}
-
-.matchup-panel {
-  flex: 1 0 0;
-  height: 100%;
-  position: relative;
-  overflow: hidden;
-  background: var(--badge-bg, var(--brand-core));
-}
-
-.matchup-panel img {
-  position: absolute;
-  width: 64px; /* smallest logo — panel height is parent-controlled */
-  height: 64px;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-
-/* ============================================================
    TILE
    ============================================================
    The recommended pattern for any small card
@@ -416,7 +361,7 @@
      open-layout card (card-open-content as flex row)
 
    Structure: a fixed-height visual header block
-   (matchup, image, logo-block, or colored block)
+   (image, logo-block, or colored block)
    followed by .tile-info for text and actions.
    .tile-tag is an optional frosted label overlaid
    top-left of the visual header.
@@ -449,7 +394,7 @@
    <div class="tile surface-card scale-700">        no button — tile is tap target
    <div class="tile">                               has button — button is CTA
      <div style="height: 120px;">                  visual header (any fixed-height block)
-       <div class="matchup">...</div>
+       <img class="card-media" src="{photo}" alt="">
      </div>
      <div class="tile-tag">Home</div>              optional — frosted label top-left
      <div class="tile-info">
@@ -478,7 +423,7 @@
   margin-top: var(--spacing-100); /* +8px = 16px total — price → button */
 }
 
-/* Frosted glass label — absolutely positioned over the matchup image */
+/* Frosted glass label — absolutely positioned over the visual header */
 .tile-tag {
   position: absolute;
   top: var(--spacing-100);   /* 8px */
@@ -551,18 +496,11 @@ TILE GRID (recommended for small side-by-side cards):
   <!-- No button — tile is the tap target -->
   <div class="tile surface-card scale-700">
     <div style="height: 120px;">
-      <div class="matchup">
-        <div class="matchup-panel" style="--badge-bg: ${away.primaryColor ?? 'var(--neutral-200)'};">
-          <img src="${away.logoUrl}" alt="${away.name}">
-        </div>
-        <div class="matchup-panel">
-          <img src="home-logo.svg" alt="Home Team">
-        </div>
-      </div>
+      <img class="card-media" src="${item.image}" alt="">
     </div>
     <div class="tile-info">
       <div class="card-text-pair">
-        <span class="labelBold30">vs. Away Team</span>
+        <span class="labelBold30">${item.title}</span>
         <span class="labelRegular10 text-secondary">Sat, Mar 15 · 7:00 PM</span>
       </div>
       <span class="labelBold20 text-success">From $45</span>
@@ -572,11 +510,11 @@ TILE GRID (recommended for small side-by-side cards):
   <!-- Has button — button is the CTA, no surface/scale on wrapper -->
   <div class="tile">
     <div style="height: 120px;">
-      <div class="matchup">...</div>
+      <img class="card-media" src="${item.image}" alt="">
     </div>
     <div class="tile-info">
       <div class="card-text-pair">
-        <span class="labelBold30">vs. Away Team</span>
+        <span class="labelBold30">${item.title}</span>
         <span class="labelRegular10 text-secondary">Tue, Mar 18 · 7:30 PM</span>
       </div>
       <span class="labelBold20 text-success">From $89</span>
