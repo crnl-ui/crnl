@@ -62,6 +62,12 @@ Two views only, both from the v1 tool:
 
 **Every family carries a display token name** — the identifier a theme puts in `--display-font`, which is a real `font-family`, not a label. It is the first field in the tool and **saving is blocked until it is filled in**. Display families arrive pre-filled from the existing style library (Big Shoulders → `Horsecollar`, with any trailing "Caps" dropped from the base name). The 95 sans and serif families were named fresh: **built environment and stadium operations for the sans** (Grandstand, Turnstile, Marquee, Pylon, Bleacher, Broadcast) and **heritage and record-keeping for the serifs** (Founders, Chronicle, Almanac, Dynasty, Yearbook). Width and case variants of one lineage share a base name and take a structural modifier, matching the existing `Caps` convention — Sofia Sans is `Grandstand` / `Grandstand Condensed` / `Grandstand Extra Condensed`.
 
+The naming system is **deliberately kept**, sports-adjacent origin and all. It is
+coherent, the names are distinctive, and nothing about them is a brand reference.
+Renaming a family is not a find-and-replace: the name is `nameID 1` inside every
+built font file, so it means re-running `_build/build_fonts.py` (and
+`build_italics.py`) and regenerating the web set with `npm run build:fonts`.
+
 Exports carry both identities: the token name and the source Google family, with the CSS block opening on a comment naming the pair.
 
 **What gets saved, per family:** the display token name, the 9 display size tokens, letter spacing, case (`as drawn` / `all caps` / `both`), weight, the vertical **nudge** and the **needs-metrics-work** flag and note, and — on families that have them — **width** (`wdth`) and **tilt** (`slnt`). Optical size is deliberately excluded: it has no place in the display spec. 16 confirmed families carry a width axis, 6 carry tilt, and Roboto Flex and TikTok Sans carry both.
