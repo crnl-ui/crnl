@@ -1,0 +1,1324 @@
+/* ============================================================
+   fonts.css
+   ============================================================
+   Every shipped display face, plus the UI face.
+
+   What's inside
+   - One @font-face per display family, served from fonts/
+   - Families are OFL / Apache cuts of open fonts, renamed and re-metricated;
+     the source family and licence for each is in fonts/catalog.json and the
+     full licence text in fonts/licenses/
+   - A `Caps` family remaps lowercase codepoints to the uppercase glyphs, so
+     title-case copy renders as caps with uppercase kerning intact
+
+   Notes
+   - Declaring a face does not download it. The browser fetches only the one
+     the active theme names in --display-font.
+   - Inter (the UI face) comes from the Google Fonts <link> in the page head.
+   - Which face a theme uses is bound through --display-font, not here.
+   ============================================================ */
+
+/* A-Game Caps — from Phudu (OFL) */
+@font-face {
+  font-family: 'A-Game Caps';
+  src: url('../fonts/a-game.woff2') format('woff2');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Almanac — from Bitter (OFL) */
+@font-face {
+  font-family: 'Almanac';
+  src: url('../fonts/almanac.woff2') format('woff2');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Angular — from Oxanium (OFL) */
+@font-face {
+  font-family: 'Angular';
+  src: url('../fonts/angular.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Annals — from Epunda Slab (OFL) */
+@font-face {
+  font-family: 'Annals';
+  src: url('../fonts/annals.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Anthem — from Inter (OFL) */
+@font-face {
+  font-family: 'Anthem';
+  src: url('../fonts/anthem.woff2') format('woff2');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Anvil — from BBH Hegarty (OFL) */
+@font-face {
+  font-family: 'Anvil';
+  src: url('../fonts/anvil.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Archive — from Aleo (OFL) */
+@font-face {
+  font-family: 'Archive';
+  src: url('../fonts/archive.woff2') format('woff2');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Atrium — from DM Sans (OFL) */
+@font-face {
+  font-family: 'Atrium';
+  src: url('../fonts/atrium.woff2') format('woff2');
+  font-weight: 1000;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Ballast — from Work Sans (OFL) */
+@font-face {
+  font-family: 'Ballast';
+  src: url('../fonts/ballast.woff2') format('woff2');
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Banner — from Stack Sans Headline (OFL) */
+@font-face {
+  font-family: 'Banner';
+  src: url('../fonts/banner.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Barrel — from Caprasimo (OFL) */
+@font-face {
+  font-family: 'Barrel';
+  src: url('../fonts/barrel.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Beacon — from Afacad Flux (OFL) */
+@font-face {
+  font-family: 'Beacon';
+  src: url('../fonts/beacon.woff2') format('woff2');
+  font-weight: 1000;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Big Game — from Bungee (OFL) */
+@font-face {
+  font-family: 'Big Game';
+  src: url('../fonts/big-game.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Big Impact Caps — from Coda (OFL) */
+@font-face {
+  font-family: 'Big Impact Caps';
+  src: url('../fonts/big-impact.woff2') format('woff2');
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Bleacher — from Oswald (OFL) */
+@font-face {
+  font-family: 'Bleacher';
+  src: url('../fonts/bleacher.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Blimp — from DynaPuff (OFL) */
+@font-face {
+  font-family: 'Blimp';
+  src: url('../fonts/blimp.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Bollard — from Golos Text (OFL) */
+@font-face {
+  font-family: 'Bollard';
+  src: url('../fonts/bollard.woff2') format('woff2');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Boulevard — from Montserrat (OFL) */
+@font-face {
+  font-family: 'Boulevard';
+  src: url('../fonts/boulevard.woff2') format('woff2');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Box — from Poller One (OFL) */
+@font-face {
+  font-family: 'Box';
+  src: url('../fonts/box.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Brash — from Protest Revolution (OFL) */
+@font-face {
+  font-family: 'Brash';
+  src: url('../fonts/brash.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Brats — from Germania One (OFL) */
+@font-face {
+  font-family: 'Brats';
+  src: url('../fonts/brats.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Broadcast — from TikTok Sans (OFL) */
+@font-face {
+  font-family: 'Broadcast';
+  src: url('../fonts/broadcast.woff2') format('woff2');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Buddy — from Bowlby One SC (OFL) */
+@font-face {
+  font-family: 'Buddy';
+  src: url('../fonts/buddy.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Bulletin — from Libre Franklin (OFL) */
+@font-face {
+  font-family: 'Bulletin';
+  src: url('../fonts/bulletin.woff2') format('woff2');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Bulwark — from Science Gothic (OFL) */
+@font-face {
+  font-family: 'Bulwark';
+  src: url('../fonts/bulwark.woff2') format('woff2');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Bunker — from Russo One (OFL) */
+@font-face {
+  font-family: 'Bunker';
+  src: url('../fonts/bunker.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Cadence — from Changa (OFL) */
+@font-face {
+  font-family: 'Cadence';
+  src: url('../fonts/cadence.woff2') format('woff2');
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Chassis — from Roboto Flex (OFL) */
+@font-face {
+  font-family: 'Chassis';
+  src: url('../fonts/chassis.woff2') format('woff2');
+  font-weight: 1000;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Chewy — from Changa One (OFL) */
+@font-face {
+  font-family: 'Chewy';
+  src: url('../fonts/chewy.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Chisel — from Finlandica (OFL) */
+@font-face {
+  font-family: 'Chisel';
+  src: url('../fonts/chisel.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Chorus — from Mitr (OFL) */
+@font-face {
+  font-family: 'Chorus';
+  src: url('../fonts/chorus.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Chronicle — from Playfair Display (OFL) */
+@font-face {
+  font-family: 'Chronicle';
+  src: url('../fonts/chronicle.woff2') format('woff2');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Circle — from Boldonse (OFL) */
+@font-face {
+  font-family: 'Circle';
+  src: url('../fonts/circle.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Circuit — from Exo (OFL) */
+@font-face {
+  font-family: 'Circuit';
+  src: url('../fonts/circuit.woff2') format('woff2');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Citadel — from Cairo (OFL) */
+@font-face {
+  font-family: 'Citadel';
+  src: url('../fonts/citadel.woff2') format('woff2');
+  font-weight: 1000;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Citrus — from Lemon (OFL) */
+@font-face {
+  font-family: 'Citrus';
+  src: url('../fonts/citrus.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Coach — from Vina Sans (OFL) */
+@font-face {
+  font-family: 'Coach';
+  src: url('../fonts/coach.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Collegiate Slab — from Alfa Slab One (OFL) */
+@font-face {
+  font-family: 'Collegiate Slab';
+  src: url('../fonts/collegiate-slab.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Commentator Caps — from Knewave (OFL) */
+@font-face {
+  font-family: 'Commentator Caps';
+  src: url('../fonts/commentator.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Cornerstone — from Coustard (OFL) */
+@font-face {
+  font-family: 'Cornerstone';
+  src: url('../fonts/cornerstone.woff2') format('woff2');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Corridor — from Reddit Sans Condensed (OFL) */
+@font-face {
+  font-family: 'Corridor';
+  src: url('../fonts/corridor.woff2') format('woff2');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Depot — from Funnel Sans (OFL) */
+@font-face {
+  font-family: 'Depot';
+  src: url('../fonts/depot.woff2') format('woff2');
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Diamond — from Tourney (OFL) */
+@font-face {
+  font-family: 'Diamond';
+  src: url('../fonts/diamond.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Dust — from Rubik Bubbles (OFL) */
+@font-face {
+  font-family: 'Dust';
+  src: url('../fonts/dust.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Dynamite — from Rowdies (OFL) */
+@font-face {
+  font-family: 'Dynamite';
+  src: url('../fonts/dynamite.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Dynamo — from Genos (OFL) */
+@font-face {
+  font-family: 'Dynamo';
+  src: url('../fonts/dynamo.woff2') format('woff2');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Dynasty — from Fraunces (OFL) */
+@font-face {
+  font-family: 'Dynasty';
+  src: url('../fonts/dynasty.woff2') format('woff2');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Esteemed — from Calistoga (OFL) */
+@font-face {
+  font-family: 'Esteemed';
+  src: url('../fonts/esteemed.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Fastback — from Tac One (OFL) */
+@font-face {
+  font-family: 'Fastback';
+  src: url('../fonts/fastback.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Flag — from Carter One (OFL) */
+@font-face {
+  font-family: 'Flag';
+  src: url('../fonts/flag.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Floodlight — from Tomorrow (OFL) */
+@font-face {
+  font-family: 'Floodlight';
+  src: url('../fonts/floodlight.woff2') format('woff2');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Flow — from Poetsen One (OFL) */
+@font-face {
+  font-family: 'Flow';
+  src: url('../fonts/flow.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Forge — from Fira Sans (OFL) */
+@font-face {
+  font-family: 'Forge';
+  src: url('../fonts/forge.woff2') format('woff2');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Forge Condensed — from Fira Sans Condensed (OFL) */
+@font-face {
+  font-family: 'Forge Condensed';
+  src: url('../fonts/forge-condensed.woff2') format('woff2');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Forge Extra Condensed — from Fira Sans Extra Condensed (OFL) */
+@font-face {
+  font-family: 'Forge Extra Condensed';
+  src: url('../fonts/forge-extra-condensed.woff2') format('woff2');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Founders — from Young Serif (OFL) */
+@font-face {
+  font-family: 'Founders';
+  src: url('../fonts/founders.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Foundry — from Mona Sans (OFL) */
+@font-face {
+  font-family: 'Foundry';
+  src: url('../fonts/foundry.woff2') format('woff2');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Gantry — from Anton (OFL) */
+@font-face {
+  font-family: 'Gantry';
+  src: url('../fonts/gantry.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Gantry SC — from Anton SC (OFL) */
+@font-face {
+  font-family: 'Gantry SC';
+  src: url('../fonts/gantry-sc.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Gateway Condensed — from Encode Sans Condensed (OFL) */
+@font-face {
+  font-family: 'Gateway Condensed';
+  src: url('../fonts/gateway-condensed.woff2') format('woff2');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Gateway Semi Expanded — from Encode Sans Semi Expanded (OFL) */
+@font-face {
+  font-family: 'Gateway Semi Expanded';
+  src: url('../fonts/gateway-semi-expanded.woff2') format('woff2');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Gazette — from Spectral (OFL) */
+@font-face {
+  font-family: 'Gazette';
+  src: url('../fonts/gazette.woff2') format('woff2');
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Grandstand — from Sofia Sans (OFL) */
+@font-face {
+  font-family: 'Grandstand';
+  src: url('../fonts/grandstand.woff2') format('woff2');
+  font-weight: 1000;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Grandstand Condensed — from Sofia Sans Condensed (OFL) */
+@font-face {
+  font-family: 'Grandstand Condensed';
+  src: url('../fonts/grandstand-condensed.woff2') format('woff2');
+  font-weight: 1000;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Grandstand Extra Condensed — from Sofia Sans Extra Condensed (OFL) */
+@font-face {
+  font-family: 'Grandstand Extra Condensed';
+  src: url('../fonts/grandstand-extra-condensed.woff2') format('woff2');
+  font-weight: 1000;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Gridiron — from Saira (OFL) */
+@font-face {
+  font-family: 'Gridiron';
+  src: url('../fonts/gridiron.woff2') format('woff2');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Gridiron Condensed — from Saira Condensed (OFL) */
+@font-face {
+  font-family: 'Gridiron Condensed';
+  src: url('../fonts/gridiron-condensed.woff2') format('woff2');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Gridiron Semi Condensed — from Saira Semi Condensed (OFL) */
+@font-face {
+  font-family: 'Gridiron Semi Condensed';
+  src: url('../fonts/gridiron-semi-condensed.woff2') format('woff2');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Guard — from Ranchers (OFL) */
+@font-face {
+  font-family: 'Guard';
+  src: url('../fonts/guard.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Herald — from Eczar (OFL) */
+@font-face {
+  font-family: 'Herald';
+  src: url('../fonts/herald.woff2') format('woff2');
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Heritage — from Grenze (OFL) */
+@font-face {
+  font-family: 'Heritage';
+  src: url('../fonts/heritage.woff2') format('woff2');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Horsecollar — from Big Shoulders (OFL) */
+@font-face {
+  font-family: 'Horsecollar';
+  src: url('../fonts/horsecollar.woff2') format('woff2');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Huddle — from Baloo 2 (OFL) */
+@font-face {
+  font-family: 'Huddle';
+  src: url('../fonts/huddle.woff2') format('woff2');
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Human — from Passion One (OFL) */
+@font-face {
+  font-family: 'Human';
+  src: url('../fonts/human.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Hustle — from Jaro (OFL) */
+@font-face {
+  font-family: 'Hustle';
+  src: url('../fonts/hustle.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Jumbo — from Rammetto One (OFL) */
+@font-face {
+  font-family: 'Jumbo';
+  src: url('../fonts/jumbo.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Jumbotron — from Tektur (OFL) */
+@font-face {
+  font-family: 'Jumbotron';
+  src: url('../fonts/jumbotron.woff2') format('woff2');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Keystone SC — from Holtwood One SC (OFL) */
+@font-face {
+  font-family: 'Keystone SC';
+  src: url('../fonts/keystone-sc.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Landmark — from League Spartan (OFL) */
+@font-face {
+  font-family: 'Landmark';
+  src: url('../fonts/landmark.woff2') format('woff2');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Lantern — from Alegreya Sans (OFL) */
+@font-face {
+  font-family: 'Lantern';
+  src: url('../fonts/lantern.woff2') format('woff2');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Laurel — from Cinzel (OFL) */
+@font-face {
+  font-family: 'Laurel';
+  src: url('../fonts/laurel.woff2') format('woff2');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Ledger — from Roboto Serif (OFL) */
+@font-face {
+  font-family: 'Ledger';
+  src: url('../fonts/ledger.woff2') format('woff2');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Legacy — from Rasa (OFL) */
+@font-face {
+  font-family: 'Legacy';
+  src: url('../fonts/legacy.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Lights — from Limelight (OFL) */
+@font-face {
+  font-family: 'Lights';
+  src: url('../fonts/lights.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Map — from Pirata One (OFL) */
+@font-face {
+  font-family: 'Map';
+  src: url('../fonts/map.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Marker — from Protest Riot (OFL) */
+@font-face {
+  font-family: 'Marker';
+  src: url('../fonts/marker.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Marquee — from Archivo Black (OFL) */
+@font-face {
+  font-family: 'Marquee';
+  src: url('../fonts/marquee.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Meister — from Grenze Gotisch (OFL) */
+@font-face {
+  font-family: 'Meister';
+  src: url('../fonts/meister.woff2') format('woff2');
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Mod — from Dela Gothic One (OFL) */
+@font-face {
+  font-family: 'Mod';
+  src: url('../fonts/mod.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Monolith — from Black Han Sans (OFL) */
+@font-face {
+  font-family: 'Monolith';
+  src: url('../fonts/monolith.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Montana — from Anybody (OFL) */
+@font-face {
+  font-family: 'Montana';
+  src: url('../fonts/montana.woff2') format('woff2');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Noise Caps — from Koulen (OFL) */
+@font-face {
+  font-family: 'Noise Caps';
+  src: url('../fonts/noise.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Overspray — from Rubik Spray Paint (OFL) */
+@font-face {
+  font-family: 'Overspray';
+  src: url('../fonts/overspray.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Panorama — from Georama (OFL) */
+@font-face {
+  font-family: 'Panorama';
+  src: url('../fonts/panorama.woff2') format('woff2');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Pennant — from Roboto Condensed (OFL) */
+@font-face {
+  font-family: 'Pennant';
+  src: url('../fonts/pennant.woff2') format('woff2');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Piston — from SUSE (OFL) */
+@font-face {
+  font-family: 'Piston';
+  src: url('../fonts/piston.woff2') format('woff2');
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Placard — from Special Gothic (OFL) */
+@font-face {
+  font-family: 'Placard';
+  src: url('../fonts/placard.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Playbill — from Bevan (OFL) */
+@font-face {
+  font-family: 'Playbill';
+  src: url('../fonts/playbill.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Precinct — from Geist (OFL) */
+@font-face {
+  font-family: 'Precinct';
+  src: url('../fonts/precinct.woff2') format('woff2');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Pylon — from League Gothic (OFL) */
+@font-face {
+  font-family: 'Pylon';
+  src: url('../fonts/pylon.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Quarry — from Farro (OFL) */
+@font-face {
+  font-family: 'Quarry';
+  src: url('../fonts/quarry.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Rampart — from BBH Bartle (OFL) */
+@font-face {
+  font-family: 'Rampart';
+  src: url('../fonts/rampart.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Record — from Noto Serif (OFL) */
+@font-face {
+  font-family: 'Record';
+  src: url('../fonts/record.woff2') format('woff2');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Redshirt — from Grandstander (OFL) */
+@font-face {
+  font-family: 'Redshirt';
+  src: url('../fonts/redshirt.woff2') format('woff2');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Regent SC — from Ysabeau SC (OFL) */
+@font-face {
+  font-family: 'Regent SC';
+  src: url('../fonts/regent-sc.woff2') format('woff2');
+  font-weight: 1000;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Register — from Roboto Slab (APACHE) */
+@font-face {
+  font-family: 'Register';
+  src: url('../fonts/register.woff2') format('woff2');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Relay — from Gemunu Libre (OFL) */
+@font-face {
+  font-family: 'Relay';
+  src: url('../fonts/relay.woff2') format('woff2');
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Riff — from Recursive (OFL) */
+@font-face {
+  font-family: 'Riff';
+  src: url('../fonts/riff.woff2') format('woff2');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Rookie — from Tilt Warp (OFL) */
+@font-face {
+  font-family: 'Rookie';
+  src: url('../fonts/rookie.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Roundhouse — from Nunito Sans (OFL) */
+@font-face {
+  font-family: 'Roundhouse';
+  src: url('../fonts/roundhouse.woff2') format('woff2');
+  font-weight: 1000;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Score — from Konkhmer Sleokchher (OFL) */
+@font-face {
+  font-family: 'Score';
+  src: url('../fonts/score.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Scoreline — from Teko (OFL) */
+@font-face {
+  font-family: 'Scoreline';
+  src: url('../fonts/scoreline.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Scribe — from Oleo Script (OFL) */
+@font-face {
+  font-family: 'Scribe';
+  src: url('../fonts/scribe.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Signbrush Caps — from Lilita One (OFL) */
+@font-face {
+  font-family: 'Signbrush Caps';
+  src: url('../fonts/signbrush.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Skyline — from Zalando Sans Expanded (OFL) */
+@font-face {
+  font-family: 'Skyline';
+  src: url('../fonts/skyline.woff2') format('woff2');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Spire — from Antonio (OFL) */
+@font-face {
+  font-family: 'Spire';
+  src: url('../fonts/spire.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Sprint — from Asap Condensed (OFL) */
+@font-face {
+  font-family: 'Sprint';
+  src: url('../fonts/sprint.woff2') format('woff2');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Stanchion — from BBH Bogle (OFL) */
+@font-face {
+  font-family: 'Stanchion';
+  src: url('../fonts/stanchion.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Standard — from Noto Sans Display (OFL) */
+@font-face {
+  font-family: 'Standard';
+  src: url('../fonts/standard.woff2') format('woff2');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Steward — from Commissioner (OFL) */
+@font-face {
+  font-family: 'Steward';
+  src: url('../fonts/steward.woff2') format('woff2');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Strike — from Protest Strike (OFL) */
+@font-face {
+  font-family: 'Strike';
+  src: url('../fonts/strike.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Super — from Bangers (OFL) */
+@font-face {
+  font-family: 'Super';
+  src: url('../fonts/super.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Tally — from Khand (OFL) */
+@font-face {
+  font-family: 'Tally';
+  src: url('../fonts/tally.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Telemetry — from Orbitron (OFL) */
+@font-face {
+  font-family: 'Telemetry';
+  src: url('../fonts/telemetry.woff2') format('woff2');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Ticker — from Akshar (OFL) */
+@font-face {
+  font-family: 'Ticker';
+  src: url('../fonts/ticker.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Torque — from Hubot Sans (OFL) */
+@font-face {
+  font-family: 'Torque';
+  src: url('../fonts/torque.woff2') format('woff2');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Transit — from Barlow (OFL) */
+@font-face {
+  font-family: 'Transit';
+  src: url('../fonts/transit.woff2') format('woff2');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Transit Condensed — from Barlow Condensed (OFL) */
+@font-face {
+  font-family: 'Transit Condensed';
+  src: url('../fonts/transit-condensed.woff2') format('woff2');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Transit Semi Condensed — from Barlow Semi Condensed (OFL) */
+@font-face {
+  font-family: 'Transit Semi Condensed';
+  src: url('../fonts/transit-semi-condensed.woff2') format('woff2');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Trestle — from Moderustic (OFL) */
+@font-face {
+  font-family: 'Trestle';
+  src: url('../fonts/trestle.woff2') format('woff2');
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Triple Caps — from Staatliches (OFL) */
+@font-face {
+  font-family: 'Triple Caps';
+  src: url('../fonts/triple.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Trophy — from Ultra (APACHE) */
+@font-face {
+  font-family: 'Trophy';
+  src: url('../fonts/trophy.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Tunnel — from Kanit (OFL) */
+@font-face {
+  font-family: 'Tunnel';
+  src: url('../fonts/tunnel.woff2') format('woff2');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Turf — from Tillana (OFL) */
+@font-face {
+  font-family: 'Turf';
+  src: url('../fonts/turf.woff2') format('woff2');
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Turnstile — from Bebas Neue (OFL) */
+@font-face {
+  font-family: 'Turnstile';
+  src: url('../fonts/turnstile.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Varsity Caps — from Alumni Sans (OFL) */
+@font-face {
+  font-family: 'Varsity Caps';
+  src: url('../fonts/varsity.woff2') format('woff2');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Varsity SC Caps — from Alumni Sans SC (OFL) */
+@font-face {
+  font-family: 'Varsity SC Caps';
+  src: url('../fonts/varsity-sc.woff2') format('woff2');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Vector — from Red Hat Display (OFL) */
+@font-face {
+  font-family: 'Vector';
+  src: url('../fonts/vector.woff2') format('woff2');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Voltage — from Exo 2 (OFL) */
+@font-face {
+  font-family: 'Voltage';
+  src: url('../fonts/voltage.woff2') format('woff2');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Weightshift — from Shrikhand (OFL) */
+@font-face {
+  font-family: 'Weightshift';
+  src: url('../fonts/weightshift.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Wideout — from Goldman (OFL) */
+@font-face {
+  font-family: 'Wideout';
+  src: url('../fonts/wideout.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Woah — from Sigmar One (OFL) */
+@font-face {
+  font-family: 'Woah';
+  src: url('../fonts/woah.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Woolie — from Chango (OFL) */
+@font-face {
+  font-family: 'Woolie';
+  src: url('../fonts/woolie.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Wrap — from Ceviche One (OFL) */
+@font-face {
+  font-family: 'Wrap';
+  src: url('../fonts/wrap.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Yearbook — from Rokkitt (OFL) */
+@font-face {
+  font-family: 'Yearbook';
+  src: url('../fonts/yearbook.woff2') format('woff2');
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}

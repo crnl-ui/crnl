@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="signal" data-mode="light" data-platform="web">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Surfaces — Design System Sticker Sheet</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap" rel="stylesheet">
+
+  <script src="../css/ds-loader.js"></script>
+  <script src="demo-content.js"></script>
+  <script src="../css/prototype-harness.js"></script>
+  <link rel="stylesheet" href="sheet.css">
+</head>
+<body>
+
+<nav data-sheet-nav></nav>
+
+<main class="container-extra-wide">
+
+  <header class="sheet-head">
+    <div class="card-text-pair">
+      <h1 class="display500">Interactive Surfaces</h1>
+      <p class="labelRegular40 text-secondary">All 13 surfaces and 3 scale tiers — the hover and press mechanism, live. Hover and press everything on this page.</p>
+    </div>
+  </header>
+
+  <div class="sheet-callout">
+    <p class="bodyRegular30">Anything tappable that is not a <span class="mono">.btn</span>, <span class="mono">.list-row</span> or <span class="mono">.input-field</span> takes a <span class="mono">.surface-*</span> and a <span class="mono">.scale-*</span> <strong>on the same element</strong>. The surface carries the themed fill and border across default, hover and pressed; the scale carries the transform. Hover and press each one below — nothing here has a hand-written <span class="mono">:hover</span> (<span class="mono">RULES §2</span>, <span class="mono">§3</span>).</p>
+  </div>
+
+  <div class="sheet-callout">
+    <p class="bodyRegular30">The scale number is the <strong>size of the object, not the size of the movement</strong> — small things move more so the motion reads the same at every size. <span class="mono">.scale-700</span> for cards and rows (±1%), <span class="mono">.scale-500</span> for buttons and selectors (±2.5%), <span class="mono">.scale-300</span> for chips and circle buttons (±3.5%).</p>
+  </div>
+
+  <section class="sheet-section" id="fill">
+    <div class="sheet-section-head">
+      <h2 class="display300">Fill</h2>
+      <span class="labelRegular10 text-secondary mono">solid fill that darkens on hover and press</span>
+    </div>
+    <div class="sheet-grid sheet-grid-wide">
+      <div class="spec">
+        <div class="spec-stage  is-block">
+          <div class="surface-fillNeutral scale-500 p-200 rounded-200"><span class="labelBold20">Hover me · press me</span></div>
+        </div>
+        <div class="spec-label"><span class="labelRegular10 mono spec-code">.surface-fillNeutral .scale-500</span><span class="labelRegular10 spec-meta">solid neutral</span></div>
+      </div>
+      <div class="spec">
+        <div class="spec-stage  is-block">
+          <div class="surface-fillColor scale-500 p-200 rounded-200"><span class="labelBold20">Hover me · press me</span></div>
+        </div>
+        <div class="spec-label"><span class="labelRegular10 mono spec-code">.surface-fillColor .scale-500</span><span class="labelRegular10 spec-meta">the theme's interactive colour</span></div>
+      </div>
+      <div class="spec">
+        <div class="spec-stage  is-block">
+          <div class="surface-fillInverted scale-500 p-200 rounded-200"><span class="labelBold20">Hover me · press me</span></div>
+        </div>
+        <div class="spec-label"><span class="labelRegular10 mono spec-code">.surface-fillInverted .scale-500</span><span class="labelRegular10 spec-meta">the complementary accent</span></div>
+      </div>
+      <div class="spec">
+        <div class="spec-stage  is-block">
+          <div class="surface-fillBlack scale-500 p-200 rounded-200"><span class="labelBold20">Hover me · press me</span></div>
+        </div>
+        <div class="spec-label"><span class="labelRegular10 mono spec-code">.surface-fillBlack .scale-500</span><span class="labelRegular10 spec-meta">absolute black — same in both modes</span></div>
+      </div>
+      <div class="spec">
+        <div class="spec-stage is-brand is-block">
+          <div class="surface-fillWhite scale-500 p-200 rounded-200"><span class="labelBold20">Hover me · press me</span></div>
+        </div>
+        <div class="spec-label"><span class="labelRegular10 mono spec-code">.surface-fillWhite .scale-500</span><span class="labelRegular10 spec-meta">absolute white — same in both modes</span></div>
+      </div>
+    </div>
+    <div class="sheet-callout is-warn mt-300">
+      <p class="bodyRegular30">Fill surfaces set their own <span class="mono">color</span>, and a text class sets <span class="mono">--text-primary</span> and wins — which makes the text vanish. Every page using a fill surface needs one rule: <span class="mono">.surface-fillNeutral *, … { color: inherit; }</span>. <span class="mono">.btn</span> and <span class="mono">.tag.tag-brand-color</span> already include it; this sheet carries it in <span class="mono">sheet.css</span>.</p>
+    </div>
+  </section>
+
+  <section class="sheet-section" id="border">
+    <div class="sheet-section-head">
+      <h2 class="display300">Border</h2>
+      <span class="labelRegular10 text-secondary mono">outlined, fills lightly on hover</span>
+    </div>
+    <div class="sheet-grid sheet-grid-wide">
+      <div class="spec">
+        <div class="spec-stage  is-block">
+          <div class="surface-borderNeutral scale-500 p-200 rounded-200"><span class="labelBold20">Hover me · press me</span></div>
+        </div>
+        <div class="spec-label"><span class="labelRegular10 mono spec-code">.surface-borderNeutral .scale-500</span><span class="labelRegular10 spec-meta">outlined neutral</span></div>
+      </div>
+      <div class="spec">
+        <div class="spec-stage  is-block">
+          <div class="surface-borderInverted scale-500 p-200 rounded-200"><span class="labelBold20">Hover me · press me</span></div>
+        </div>
+        <div class="spec-label"><span class="labelRegular10 mono spec-code">.surface-borderInverted .scale-500</span><span class="labelRegular10 spec-meta">outlined, inverted ring</span></div>
+      </div>
+      <div class="spec">
+        <div class="spec-stage  is-block">
+          <div class="surface-borderBlack scale-500 p-200 rounded-200"><span class="labelBold20">Hover me · press me</span></div>
+        </div>
+        <div class="spec-label"><span class="labelRegular10 mono spec-code">.surface-borderBlack .scale-500</span><span class="labelRegular10 spec-meta">absolute black ring</span></div>
+      </div>
+      <div class="spec">
+        <div class="spec-stage is-brand is-block">
+          <div class="surface-borderWhite scale-500 p-200 rounded-200"><span class="labelBold20">Hover me · press me</span></div>
+        </div>
+        <div class="spec-label"><span class="labelRegular10 mono spec-code">.surface-borderWhite .scale-500</span><span class="labelRegular10 spec-meta">absolute white ring</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sheet-section" id="subtle">
+    <div class="sheet-section-head">
+      <h2 class="display300">Subtle</h2>
+      <span class="labelRegular10 text-secondary mono">transparent or --bg-surface at rest</span>
+    </div>
+    <p class="sheet-note bodyRegular30">These are the ones the elevation rule pushes you toward: on top of a card, a wash instead of a second <span class="mono">--bg-surface</span>. Each is shown twice — on the page background, then on a card — because that is the choice you are actually making.</p>
+
+    <div class="sheet-sub"><span class="title50">On --bg-base</span></div>
+    <div class="sheet-grid sheet-grid-wide">
+      <div class="spec">
+        <div class="spec-stage is-base is-block">
+          <div class="surface-washNeutral scale-500 p-200 rounded-200"><span class="labelBold20">Hover me · press me</span></div>
+        </div>
+        <div class="spec-label"><span class="labelRegular10 mono spec-code">.surface-washNeutral .scale-500</span><span class="labelRegular10 spec-meta">near-transparent at rest</span></div>
+      </div>
+      <div class="spec">
+        <div class="spec-stage is-base is-block">
+          <div class="surface-ghost scale-500 p-200 rounded-200"><span class="labelBold20">Hover me · press me</span></div>
+        </div>
+        <div class="spec-label"><span class="labelRegular10 mono spec-code">.surface-ghost .scale-500</span><span class="labelRegular10 spec-meta">nothing at rest, wash on hover</span></div>
+      </div>
+      <div class="spec">
+        <div class="spec-stage is-base is-block">
+          <div class="surface-card scale-700 p-200 rounded-200"><span class="labelBold20">Hover me · press me</span></div>
+        </div>
+        <div class="spec-label"><span class="labelRegular10 mono spec-code">.surface-card .scale-700</span><span class="labelRegular10 spec-meta">reads as a card at rest</span></div>
+      </div>
+    </div>
+
+    <div class="sheet-sub"><span class="title50">On --bg-surface</span></div>
+    <div class="sheet-grid sheet-grid-wide">
+      <div class="spec">
+        <div class="spec-stage  is-block">
+          <div class="surface-washNeutral scale-500 p-200 rounded-200"><span class="labelBold20">Hover me · press me</span></div>
+        </div>
+        <div class="spec-label"><span class="labelRegular10 mono spec-code">.surface-washNeutral .scale-500</span><span class="labelRegular10 spec-meta">the correct choice inside a card</span></div>
+      </div>
+      <div class="spec">
+        <div class="spec-stage  is-block">
+          <div class="surface-ghost scale-500 p-200 rounded-200"><span class="labelBold20">Hover me · press me</span></div>
+        </div>
+        <div class="spec-label"><span class="labelRegular10 mono spec-code">.surface-ghost .scale-500</span><span class="labelRegular10 spec-meta">menu items, quiet controls</span></div>
+      </div>
+      <div class="spec" data-surface-on-surface="deliberate — the counter-example the rule is about">
+        <div class="spec-stage  is-block">
+          <div class="surface-card scale-700 p-200 rounded-200"><span class="labelBold20">Hover me · press me</span></div>
+        </div>
+        <div class="spec-label"><span class="labelRegular10 mono spec-code">.surface-card .scale-700</span><span class="labelRegular10 spec-meta"><strong>Wrong here</strong> — surface on surface reads as one slab, and the box is invisible until you touch it (<span class="mono">RULES §2</span>). The harness flags this at load; it carries <span class="mono">data-surface-on-surface</span> so it stays a teaching example rather than a standing warning.</span></div>
+      </div>
+    </div>
+
+    <div class="sheet-sub"><span class="title50">Section</span><span class="labelRegular10 text-secondary">one band of a card already divided by hairlines</span></div>
+    <p class="sheet-note bodyRegular30">This surface describes <em>where a thing sits</em>, not how it looks. It is transparent at rest <strong>because it inherits the card's <span class="mono">--bg-surface</span></strong> — so it must span a real card's full width, with its neighbours divided by a <span class="mono">--neutral-200</span> hairline. Hover the bottom band below: the wash reaches both edges, which reads as "this row of the card is tappable" rather than "there is a button in here". Drawn as a floating box inside a padded container it would look like nothing at rest — that is a mocking-up mistake, not a missing state.</p>
+    <div class="sheet-grid sheet-grid-wide">
+      <div class="spec">
+        <div class="spec-stage is-base is-block">
+          <div class="card-closed">
+            <div class="card-closed-header">
+              <div class="card-text-pair">
+                <h3 class="title50">Section 114, Row C</h3>
+                <p class="labelRegular20 text-secondary">4 tickets · not interactive, so no surface</p>
+              </div>
+            </div>
+            <div class="card-closed-body surface-section">
+              <div class="list-row">
+                <div class="list-row-content">
+                  <div class="list-row-text-pair">
+                    <span class="labelBold30 text-interactive-tertiary">3 Additional Offers</span>
+                  </div>
+                </div>
+                <div class="trailing trailing-gap-xs">
+                  <span class="icon text-interactive-tertiary">arrow_drop_down</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="spec-label"><span class="labelRegular10 mono spec-code">.card-closed-body.surface-section</span><span class="labelRegular10 spec-meta">only the interactive band takes the class — the header takes no surface at all</span></div>
+      </div>
+      <div class="spec">
+        <div class="spec-stage is-base is-block">
+          <div class="card-closed">
+            <div class="list-divided">
+              <div class="list-row surface-section">
+                <div class="list-row-content"><div class="list-row-text-pair"><span class="labelBold30">Section 313</span><span class="labelRegular10 text-secondary">Row F (Seats 9&ndash;14)</span></div></div>
+                <div class="trailing trailing-gap-sm"><div class="trailing-text-pair"><span class="labelBold20">$21/ea</span><span class="labelRegular10 text-secondary">Avg. Price</span></div></div>
+              </div>
+              <div class="list-row surface-section">
+                <div class="list-row-content"><div class="list-row-text-pair"><span class="labelBold30">Section 207</span><span class="labelRegular10 text-secondary">Row A (Seats 1&ndash;4)</span></div></div>
+                <div class="trailing trailing-gap-sm"><div class="trailing-text-pair"><span class="labelBold20">$34/ea</span><span class="labelRegular10 text-secondary">Avg. Price</span></div></div>
+              </div>
+              <div class="list-row surface-section">
+                <div class="list-row-content"><div class="list-row-text-pair"><span class="labelBold30">Section 101</span><span class="labelRegular10 text-secondary">Row 2 (Seats 5&ndash;8)</span></div></div>
+                <div class="trailing trailing-gap-sm"><div class="trailing-text-pair"><span class="labelBold20">$189/ea</span><span class="labelRegular10 text-secondary">Avg. Price</span></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="spec-label"><span class="labelRegular10 mono spec-code">.list-row.surface-section</span><span class="labelRegular10 spec-meta">every row is a band of one card — the rows carry the padding so dividers bleed full width</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sheet-section" id="scales">
+    <div class="sheet-section-head">
+      <h2 class="display300">Scale tiers</h2>
+      <span class="labelRegular10 text-secondary mono">interactive-tokens.css</span>
+    </div>
+    <p class="sheet-note bodyRegular30">The same surface at all three tiers, so the difference in movement is visible. Press and hold each one.</p>
+    <div class="sheet-grid sheet-grid-wide">
+      <div class="spec">
+        <div class="spec-stage is-base is-block"><div class="surface-card scale-700 p-300 rounded-200"><span class="labelBold30">Large — a card or tile</span></div></div>
+        <div class="spec-label"><span class="labelRegular10 mono spec-code">.scale-700</span><span class="labelRegular10 spec-meta">1.01 hover / 0.99 press</span></div>
+      </div>
+      <div class="spec">
+        <div class="spec-stage is-base is-block"><div class="surface-card scale-500 p-200 rounded-100"><span class="labelBold20">Medium — a selector or button-sized block</span></div></div>
+        <div class="spec-label"><span class="labelRegular10 mono spec-code">.scale-500</span><span class="labelRegular10 spec-meta">1.025 / 0.975</span></div>
+      </div>
+      <div class="spec">
+        <div class="spec-stage"><div class="surface-borderNeutral scale-300 px-200 py-100 rounded-50"><span class="labelBold20">Small — a chip</span></div></div>
+        <div class="spec-label"><span class="labelRegular10 mono spec-code">.scale-300</span><span class="labelRegular10 spec-meta">1.035 / 0.965</span></div>
+      </div>
+      <div class="spec">
+        <div class="spec-stage is-block">
+          <div class="list-gap-tight">
+            <div class="list-row surface-section p-200 rounded-100"><div class="list-row-content"><div class="list-row-text-pair"><span class="labelBold30">A row in a stack</span><span class="labelRegular10 text-secondary">surface, no scale</span></div></div></div>
+            <div class="list-row surface-section p-200 rounded-100"><div class="list-row-content"><div class="list-row-text-pair"><span class="labelBold30">A row in a stack</span><span class="labelRegular10 text-secondary">surface, no scale</span></div></div></div>
+          </div>
+        </div>
+        <div class="spec-label"><span class="labelRegular10 mono spec-code">no scale</span><span class="labelRegular10 spec-meta">a row on its own takes the surface and no scale (<span class="mono">RULES §3</span>)</span></div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="sheet-footer">
+    <p class="labelRegular10">Generated against <span class="mono">docs/css-api.json</span>. Every class shown here exists in the system — run <span class="mono">npm run check:demo</span> to verify the sheets still cover it.</p>
+  </footer>
+
+</main>
+
+<script src="sheet.js"></script>
+</body>
+</html>

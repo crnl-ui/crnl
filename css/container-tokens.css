@@ -1,0 +1,210 @@
+/* ============================================================
+   container-tokens.css
+   ============================================================
+   Content max-width frames and the responsive page padding that goes with them.
+
+   What's inside
+   - --container-* — max-width tokens from compact (640px) to maximum (1600px)
+   - .container, .container-{maximum|extra-wide|wide|medium|narrow|compact|fluid}
+     — centred frames that also own horizontal padding at each breakpoint
+
+   Notes
+   - Page width is always a .container* class, never a hand-rolled max-width.
+     See RULES §4 and §9.
+   - Which container fits which page: see Container Usage Guidelines at the
+     bottom of this file.
+   ============================================================ */
+
+:root {
+  /* Container Max Widths */
+  --container-maximum: 1600px;     /* Maximum - Full-width layouts, landing pages */
+  --container-extra-wide: 1440px;  /* Extra Wide - Dashboard layouts, data-heavy pages */
+  --container-wide: 1280px;        /* Wide - Standard pages with sidebars */
+  --container-medium: 1024px;      /* Medium - Article pages, forms */
+  --container-narrow: 768px;       /* Narrow - Reading content, centered forms */
+  --container-compact: 640px;      /* Compact - Single column content */
+  
+  /* Default container (same as current system) */
+  --container-default: 1200px;
+}
+
+/* ============================================================
+   CONTAINER UTILITY CLASSES
+   ============================================================ */
+
+/* Base container - responsive padding, centered */
+.container {
+  width: 100%;
+  max-width: var(--container-default);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+/* Container size variants */
+.container-maximum {
+  width: 100%;
+  max-width: var(--container-maximum);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.container-extra-wide {
+  width: 100%;
+  max-width: var(--container-extra-wide);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.container-wide {
+  width: 100%;
+  max-width: var(--container-wide);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.container-medium {
+  width: 100%;
+  max-width: var(--container-medium);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.container-narrow {
+  width: 100%;
+  max-width: var(--container-narrow);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.container-compact {
+  width: 100%;
+  max-width: var(--container-compact);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+/* Fluid container - no max-width */
+.container-fluid {
+  width: 100%;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+/* ============================================================
+   RESPONSIVE CONTAINER PADDING
+   ============================================================ */
+
+/* Mobile: Tighter padding */
+@media (max-width: 499px) {
+  .container,
+  .container-maximum,
+  .container-extra-wide,
+  .container-wide,
+  .container-medium,
+  .container-narrow,
+  .container-compact,
+  .container-fluid {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+}
+
+/* Tablet: Medium padding */
+@media (min-width: 500px) and (max-width: 1099px) {
+  .container,
+  .container-maximum,
+  .container-extra-wide,
+  .container-wide,
+  .container-medium,
+  .container-narrow,
+  .container-compact,
+  .container-fluid {
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+}
+
+/* Desktop: Wider padding */
+@media (min-width: 1100px) {
+  .container,
+  .container-maximum,
+  .container-extra-wide,
+  .container-wide,
+  .container-medium,
+  .container-narrow,
+  .container-compact,
+  .container-fluid {
+    padding-left: 32px;
+    padding-right: 32px;
+  }
+}
+
+/* Extra large screens: Maximum padding for widest containers */
+@media (min-width: 1600px) {
+  .container-maximum,
+  .container-extra-wide {
+    padding-left: 48px;
+    padding-right: 48px;
+  }
+}
+
+/* ============================================================
+   CONTAINER USAGE GUIDELINES
+   ============================================================
+   
+   .container-maximum (1600px)
+   - Landing pages
+   - Hero sections with full-bleed images
+   - Dashboard layouts with multiple columns
+   - Data visualization pages
+   
+   .container-extra-wide (1440px)
+   - Complex page layouts
+   - Multi-column content areas
+   - Product grids with 4+ columns
+   - Admin dashboards
+   
+   .container-wide (1280px)
+   - Standard pages with sidebars
+   - Blog layouts with sidebar
+   - E-commerce product pages
+   - Event listings with filters
+   
+   .container-medium (1024px)
+   - Article pages
+   - Form pages
+   - Profile pages
+   - Standard content pages
+   
+   .container-narrow (768px)
+   - Reading-optimized content
+   - Long-form articles
+   - Centered forms (login, signup)
+   - Privacy policies, legal pages
+   
+   .container-compact (640px)
+   - Single column mobile-first content
+   - Simple forms
+   - Confirmation pages
+   - Error pages
+   
+   .container-fluid
+   - Full-width sections
+   - Image galleries
+   - Video players
+   - Maps
+   ============================================================ */

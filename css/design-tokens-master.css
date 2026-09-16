@@ -1,0 +1,270 @@
+/* ============================================================
+   design-tokens-master.css
+   ============================================================
+   Colour tokens in light and dark mode, the base theme, and the semantic tokens components consume.
+
+   What's inside
+   - Base tokens — white/black alpha scales, status colours, mode-agnostic values
+   - Light / dark mode defaults — neutral, inverted, input, iOS chrome and
+     landing-gradient values
+   - Base theme — every token a theme must supply, at a neutral default, so a
+     page with no data-theme still renders
+   - Semantic color tokens — --text-*, --bg-*, --interactive-*, --color-*
+
+   Notes
+   - data-theme and data-mode go on <html> (see RULES §1). The semantic tokens
+     are :root-scoped, so the attributes do nothing on a container element.
+   - Shipped themes live in themes.css. Authoring one: docs/theming.md.
+   - Components take --color-interactive / --color-inverted, never the
+     --brand-* pair. See RULES §2.
+   ============================================================ */
+
+/* ============================================================
+   BASE TOKENS (Mode Agnostic)
+   ============================================================ */
+:root {
+  /* White scale (mode agnostic) */
+  --white-100: rgba(255, 255, 255, 0.1);
+  --white-200: rgba(255, 255, 255, 0.15);
+  --white-300: rgba(255, 255, 255, 0.25);
+  --white-500: rgba(255, 255, 255, 0.55);
+  --white-700: rgba(255, 255, 255, 0.75);
+  --white-900: rgba(255, 255, 255, 0.95);
+  --white-1000: rgba(255, 255, 255, 1);
+  
+  /* Black scale (mode agnostic) */
+  --black-100: rgba(0, 0, 0, 0.04);
+  --black-200: rgba(0, 0, 0, 0.1);
+  --black-300: rgba(0, 0, 0, 0.15);
+  --black-500: rgba(0, 0, 0, 0.4);
+  --black-700: rgba(0, 0, 0, 0.65);
+  --black-900: rgba(0, 0, 0, 0.85);
+  --black-1000: rgba(0, 0, 0, 1);
+  
+  /* Status colors */
+  --status-warning-light: #D2811E;
+  --status-warning-dark: #F6AF24;
+  --status-success-light: #007A47;
+  --status-success-dark: #00A96E;
+  --status-error-light: #D42F21;
+  --status-error-dark: #E43E2F;
+  --status-info-light: #0671E5;
+  --status-info-dark: #3892F3;
+
+  /* Image placeholder — neutral gray behind loading images.
+     Matches Figma "Mode Agnostic/imageBackgroundGray". */
+  --image-placeholder-bg: #F3F3F3;
+}
+
+/* ============================================================
+   LIGHT MODE DEFAULTS
+   ============================================================ */
+:root,
+[data-mode="light"] {
+  /* Neutral tokens */
+  --neutral-000: rgba(0, 0, 0, 0);
+  --neutral-50: rgba(0, 0, 0, 0.03);
+  --neutral-100: rgba(0, 0, 0, 0.04);
+  --neutral-200: rgba(0, 0, 0, 0.1);
+  --neutral-300: rgba(0, 0, 0, 0.15);
+  --neutral-500: rgba(0, 0, 0, 0.4);
+  --neutral-700: rgba(0, 0, 0, 0.65);
+  --neutral-900: rgba(0, 0, 0, 0.85);
+  --neutral-1000: rgba(0, 0, 0, 1);
+  
+  /* Inverted tokens */
+  --inverted-000: rgba(255, 255, 255, 0);
+  --inverted-50: rgba(255, 255, 255, 0.05);
+  --inverted-100: rgba(255, 255, 255, 0.1);
+  --inverted-200: rgba(255, 255, 255, 0.15);
+  --inverted-300: rgba(255, 255, 255, 0.25);
+  --inverted-500: rgba(255, 255, 255, 0.55);
+  --inverted-700: rgba(255, 255, 255, 0.75);
+  --inverted-900: rgba(255, 255, 255, 0.95);
+  --inverted-1000: rgba(255, 255, 255, 1);
+  
+  /* Status */
+  --status-warning: var(--status-warning-light);
+  --status-success: var(--status-success-light);
+  --status-error: var(--status-error-light);
+  --status-info: var(--status-info-light);
+
+  /* Input background — white in light mode so inputs read as enabled on gray surfaces */
+  --bg-input: #FFFFFF;
+
+  /* iOS system chrome — used by app-mode prototypes for nav/tab bars.
+     Matches Figma "ComponentSpecific/iOS Nav Bar Background" etc. */
+  --ios-nav-bg: rgba(252, 252, 252, 0.85);
+  --ios-tab-bar-bg: rgba(252, 252, 252, 0.85);
+  --ios-selected-tab-bg: #FFFFFF; /* solid white pill behind the active tab */
+  --ios-separator: rgba(0, 0, 0, 0.3);
+
+  /* Landing-gradient backdrops — used by hero sections with a color gradient
+     over a light/dark backdrop. Matches Figma "UI Values/lgLight,lgDark,lgBrandText"
+     defaults. */
+  --lg-light-bg: #F7F7F7;
+  --lg-dark-bg: rgba(0, 0, 0, 0.65);
+  --lg-brand-text: #FFFFFF;
+}
+
+/* ============================================================
+   DARK MODE DEFAULTS
+   ============================================================ */
+[data-mode="dark"] {
+  /* Neutral tokens */
+  --neutral-000: rgba(255, 255, 255, 0);
+  --neutral-50: rgba(255, 255, 255, 0.05);
+  --neutral-100: rgba(255, 255, 255, 0.1);
+  --neutral-200: rgba(255, 255, 255, 0.15);
+  --neutral-300: rgba(255, 255, 255, 0.25);
+  --neutral-500: rgba(255, 255, 255, 0.55);
+  --neutral-700: rgba(255, 255, 255, 0.75);
+  --neutral-900: rgba(255, 255, 255, 0.95);
+  --neutral-1000: rgba(255, 255, 255, 1);
+  
+  /* Inverted tokens */
+  --inverted-000: rgba(0, 0, 0, 0);
+  --inverted-50: rgba(0, 0, 0, 0.03);
+  --inverted-100: rgba(0, 0, 0, 0.04);
+  --inverted-200: rgba(0, 0, 0, 0.1);
+  --inverted-300: rgba(0, 0, 0, 0.15);
+  --inverted-500: rgba(0, 0, 0, 0.4);
+  --inverted-700: rgba(0, 0, 0, 0.65);
+  --inverted-900: rgba(0, 0, 0, 0.85);
+  --inverted-1000: rgba(0, 0, 0, 1);
+  
+  /* Status */
+  --status-warning: var(--status-warning-dark);
+  --status-success: var(--status-success-dark);
+  --status-error: var(--status-error-dark);
+  --status-info: var(--status-info-dark);
+
+  /* Input background — transparent in dark mode; white would be jarring on dark surfaces */
+  --bg-input: transparent;
+
+  /* iOS system chrome */
+  --ios-nav-bg: rgba(28, 28, 28, 0.85);
+  --ios-tab-bar-bg: rgba(23, 23, 23, 0.85);
+  --ios-selected-tab-bg: var(--neutral-100); /* unchanged from prior behavior — dark stays frosted grey */
+  --ios-separator: rgba(255, 255, 255, 0.15);
+}
+
+/* ============================================================
+   BASE THEME — the system with no [data-theme] set
+   ============================================================
+   Every token a theme is required to supply, at a neutral default. A page that
+   sets no data-theme renders in this one, so the system is never half-defined.
+
+   A theme overrides these three blocks and nothing else — that set IS the
+   theming contract. See docs/theming.md.
+   ============================================================ */
+:root {
+  /* Brand colours — the two-colour pair a theme is built from, plus the
+     dark-on-dark surface and the deep tone used behind hero imagery. */
+  --brand-core: #1A1A1A;
+  --brand-light: #F0F0F0;
+  --brand-dark: #0D0D0D;
+  --brand-interactive: #1A1A1A;
+  --brand-inverted: #FFFFFF;
+  --brand-dark-surface: #222222;
+
+  /* Display type — the face and its nine-step ramp. Pick a shipped face with
+     data-display-font on <html> (see display-fonts.css), or set these directly. */
+  --display-font: 'Gantry', 'Inter', system-ui, sans-serif;
+  --display-weight: 400;
+  --display-letter-spacing: -0.02em;
+  --display-size-900: 68px;
+  --display-size-800: 61px;
+  --display-size-700: 54px;
+  --display-size-600: 47px;
+  --display-size-500: 40px;
+  --display-size-400: 33px;
+  --display-size-300: 26px;
+  --display-size-200: 22px;
+  --display-size-100: 18px;
+
+  /* UI values */
+  --button-border-radius: 100px;
+  --background-blur: 50px;
+
+  /* Brand mark — swap per theme. Any url() or none. */
+  --brand-logo-url: url('../images/placeholder-logo.svg');
+}
+
+:root,
+[data-mode="light"] {
+  /* Surfaces */
+  --org-base: #FFFFFF;
+  --org-surface: #F4F4F4;
+  --org-sheet: #FFFFFF;
+  --org-nav: rgba(255, 255, 255, 0.75);
+
+  /* Buttons */
+  --org-transactional-button: #1A1A1A;
+  --org-transactional-button-text: #FFFFFF;
+  --org-primary-button: #1A1A1A;
+  --org-primary-button-text: #FFFFFF;
+  --org-secondary-button-text: #000000;
+  --org-tertiary-button-text: #000000;
+
+  /* The mode-aware accent pair */
+  --color-interactive: #1A1A1A;
+  --color-inverted: #FFFFFF;
+  --ios-selected-tab: #1A1A1A;
+}
+
+[data-mode="dark"] {
+  --org-base: #111111;
+  --org-surface: #1F1F1F;
+  --org-sheet: #292929;
+  --org-nav: rgba(17, 17, 17, 0.7);
+
+  --org-transactional-button: #FFFFFF;
+  --org-transactional-button-text: #000000;
+  --org-primary-button: #FFFFFF;
+  --org-primary-button-text: #000000;
+  --org-secondary-button-text: #FFFFFF;
+  --org-tertiary-button-text: #FFFFFF;
+
+  --color-interactive: #FFFFFF;
+  --color-inverted: #1A1A1A;
+  --ios-selected-tab: #FFFFFF;
+}
+
+/* ============================================================
+   SEMANTIC COLOR TOKENS
+   ============================================================ */
+:root {
+  /* Text */
+  --text-primary: var(--neutral-1000);
+  --text-secondary: var(--neutral-700);
+  --text-disabled: var(--neutral-300);
+  --text-placeholder: var(--neutral-500);
+  
+  /* Backgrounds */
+  --bg-base: var(--org-base);
+  --bg-surface: var(--org-surface);
+  --bg-sheet: var(--org-sheet);
+  --bg-nav: var(--org-nav);
+  
+  /* Borders */
+  --border-default: var(--neutral-200);
+  --border-hover: var(--neutral-500);
+  --border-active: var(--neutral-1000);
+  --border-disabled: var(--neutral-200);
+  
+  /* Interactive */
+  --interactive-primary: var(--org-primary-button);
+  --interactive-primary-text: var(--org-primary-button-text);
+  --interactive-secondary-text: var(--org-secondary-button-text);
+  --interactive-tertiary-text: var(--org-tertiary-button-text);
+  --interactive-transactional: var(--org-transactional-button);
+  --interactive-transactional-text: var(--org-transactional-button-text);
+  
+  /* --color-interactive / --color-inverted are the mode-aware pair: light mode
+     takes brand-interactive / brand-inverted as-is, dark mode swaps them so the
+     accent pops on a dark background. Set per theme per mode. See RULES §2. */
+
+  /* --ios-selected-tab is set per theme per mode, not aliased to
+     --color-interactive: a theme often wants a distinct value here. */
+}

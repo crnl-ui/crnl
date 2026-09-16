@@ -1,0 +1,154 @@
+/* ============================================================
+   spacing-tokens.css
+   ============================================================
+   The 8px spacing scale, its responsive tokens, and section-rhythm utilities.
+
+   What's inside
+   - --spacing-{25…1000} — the fixed scale; 25 (2px) and 50 (4px) are sub-unit
+     steps, use them sparingly
+   - --spacing-row / --spacing-card / --spacing-content, --margin-* — responsive
+     tokens that step at the system breakpoints
+   - .section-padding, .list-gap, .list-gap-tight — rhythm for content sections
+     below headers and tabs
+
+   Notes
+   - Margins, padding and gaps take a token, never a px literal. See RULES §2.
+   - Breakpoints are the system's 500/1100. See RULES §9.
+   ============================================================ */
+
+:root {
+  /* Base unit */
+  --spacing-unit: 8px;
+  
+  /* Fixed spacing scale */
+  --spacing-25: 2px;    /* 0.25x */
+  --spacing-50: 4px;    /* 0.5x */
+  --spacing-75: 6px;    /* 0.75x */
+  --spacing-100: 8px;   /* 1x */
+  --spacing-150: 12px;  /* 1.5x */
+  --spacing-200: 16px;  /* 2x */
+  --spacing-250: 20px;  /* 2.5x */
+  --spacing-300: 24px;  /* 3x */
+  --spacing-400: 32px;  /* 4x */
+  --spacing-500: 40px;  /* 5x */
+  --spacing-600: 48px;  /* 6x */
+  --spacing-700: 56px;  /* 7x */
+  --spacing-800: 64px;  /* 8x */
+  --spacing-900: 72px;  /* 9x */
+  --spacing-1000: 80px; /* 10x */
+}
+
+/* ============================================================
+   RESPONSIVE SPACING TOKENS
+   ============================================================
+   Spacing that steps with the viewport at the system breakpoints (RULES §9).
+   ============================================================ */
+
+:root {
+  /* Spacing - Row (space between short wide objects) */
+  --spacing-row: 8px;            /* Mobile default */
+  --spacing-row-mobile: 8px;     /* 100 */
+  --spacing-row-tablet: 12px;    /* 150 */
+  --spacing-row-desktop: 16px;   /* 200 */
+  
+  /* Spacing - Card (space between most cards) */
+  --spacing-card: 16px;          /* Mobile default */
+  --spacing-card-mobile: 16px;   /* 200 */
+  --spacing-card-tablet: 20px;   /* 250 */
+  --spacing-card-desktop: 24px;  /* 300 */
+  
+  /* Spacing - Content Objects (major sections) */
+  --spacing-content: 32px;       /* Mobile default */
+  --spacing-content-mobile: 32px;  /* 400 */
+  --spacing-content-tablet: 40px;  /* 500 */
+  --spacing-content-desktop: 48px; /* 600 */
+  
+  /* Margin - Small (detailed interfaces) */
+  --margin-small: 16px;          /* Mobile default */
+  --margin-small-mobile: 16px;   /* 200 */
+  --margin-small-tablet: 32px;   /* 400 */
+  --margin-small-desktop: 48px;  /* 600 */
+  
+  /* Margin - Large (most pages) */
+  --margin-large: 16px;          /* Mobile default */
+  --margin-large-mobile: 16px;   /* 200 */
+  --margin-large-tablet: 40px;   /* 500 */
+  --margin-large-desktop: 64px;  /* 800 */
+  
+  /* Margin - Landing Page (open layouts) */
+  --margin-landing: 24px;        /* Mobile default */
+  --margin-landing-mobile: 24px;   /* 300 */
+  --margin-landing-tablet: 48px;   /* 600 */
+  --margin-landing-desktop: 80px;  /* 1000 */
+}
+
+/* ============================================================
+   SECTION SPACING UTILITIES
+   ============================================================
+   Reusable classes for content sections below headers/tabs: responsive
+   top/bottom padding and list gap classes for consistent rhythm.
+   ============================================================ */
+
+/* Section padding — space above/below a content section */
+.section-padding {
+  padding-top: var(--spacing-200);
+  padding-bottom: var(--spacing-200);
+}
+
+/* List gaps — space between items in a list */
+.list-gap       { gap: var(--spacing-200); }  /* 16px — cards, content items */
+.list-gap-tight { gap: var(--spacing-100); }  /* 8px  — compact rows (schedules, event rows) */
+
+@media (min-width: 500px) {
+  .section-padding {
+    padding-top: var(--spacing-400);
+    padding-bottom: var(--spacing-400);
+  }
+}
+
+/* Tablet breakpoint */
+@media (min-width: 500px) and (max-width: 1099px) {
+  :root {
+    --spacing-row: var(--spacing-row-tablet);
+    --spacing-card: var(--spacing-card-tablet);
+    --spacing-content: var(--spacing-content-tablet);
+    --margin-small: var(--margin-small-tablet);
+    --margin-large: var(--margin-large-tablet);
+    --margin-landing: var(--margin-landing-tablet);
+  }
+}
+
+/* Desktop breakpoint */
+@media (min-width: 1100px) {
+  :root {
+    --spacing-row: var(--spacing-row-desktop);
+    --spacing-card: var(--spacing-card-desktop);
+    --spacing-content: var(--spacing-content-desktop);
+    --margin-small: var(--margin-small-desktop);
+    --margin-large: var(--margin-large-desktop);
+    --margin-landing: var(--margin-landing-desktop);
+  }
+}
+/* ============================================================
+   THE PHONE FRAME IS MOBILE, WHATEVER THE VIEWPORT SAYS
+   ============================================================
+   The breakpoints above key off viewport width. `data-platform="app"` renders
+   a 393px phone inside a desktop viewport, so every one of those media queries
+   reports "desktop" and these tokens resolve to their widest values —
+   --margin-large became 64px, which took 128px of a 393px screen for side
+   margin, and --spacing-card 24px where the phone wants 16px.
+
+   The frame is a phone. Pin the tokens to their mobile values there, after the
+   breakpoints so this wins at every width. It fixes every component, utility
+   and template that reads one at once; before this the leak was patched a
+   symptom at a time (see the .event-row rules in platform-tokens.css, which
+   are literal paddings rather than tokens and still need their own override).
+   RULES §9. */
+[data-platform="app"] {
+  --spacing-row: var(--spacing-row-mobile);         /*  8px */
+  --spacing-card: var(--spacing-card-mobile);       /* 16px */
+  --spacing-content: var(--spacing-content-mobile); /* 32px */
+  --margin-small: var(--margin-small-mobile);       /* 16px */
+  --margin-large: var(--margin-large-mobile);       /* 16px */
+  --margin-landing: var(--margin-landing-mobile);   /* 24px */
+}

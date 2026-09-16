@@ -1,0 +1,359 @@
+/* ============================================================
+   sheet.css — scaffolding for the sticker sheet
+   ============================================================
+   This file styles the *sticker sheet itself* — the specimen grid, the
+   swatches, the code labels. It is not part of the design system and nothing here
+   should be copied into a prototype.
+
+   It still obeys RULES §2: no hardcoded colours, no font-size /
+   font-weight / line-height, no px spacing. Where a layout needs a
+   dimension the system has no token for (a grid track, a swatch height)
+   it is derived from a spacing token by calc, declared once below.
+   ============================================================ */
+
+:root {
+  --sheet-col:        calc(var(--spacing-1000) * 3);   /* 240px — specimen track */
+  --sheet-col-wide:   calc(var(--spacing-1000) * 4.5); /* 360px — wide specimen  */
+  --sheet-swatch-h:   var(--spacing-700);              /* 56px  — colour swatch  */
+  --sheet-rule:       var(--border-weight-100) solid var(--border-default);
+  --sheet-rail:       calc(var(--spacing-1000) * 3.25); /* 260px — the nav rail */
+}
+
+/* Monospace is a family, not a size — the type class still owns the scale. */
+.mono { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+
+/* ---------- Page chrome ----------------------------------------------
+   A fixed left rail on desktop, the old horizontal strip below 1100px.
+   .has-rail is added by sheet.js, so a page that does not mount the nav
+   (11-ios-frame.html, which is embedded in an iframe) keeps its own
+   full-width layout. */
+
+.has-rail { padding-left: var(--sheet-rail); }
+
+.sheet-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: var(--sheet-rail);
+  z-index: 90;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  background: var(--bg-surface);
+  border-right: var(--sheet-rule);
+}
+
+.sheet-nav-inner {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-25);
+  padding: var(--spacing-300) var(--spacing-200) var(--spacing-600);
+  min-height: 100%;
+}
+
+.sheet-nav-brand {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-25);
+  padding: 0 var(--spacing-150);
+  margin-bottom: var(--spacing-300);
+  text-decoration: none;
+  color: var(--text-primary);
+}
+
+.sheet-nav-link {
+  display: block;
+  padding: var(--spacing-100) var(--spacing-150);
+  border-radius: var(--border-radius-100);
+  text-decoration: none;
+  color: var(--text-secondary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.sheet-nav-link.is-active {
+  color: var(--color-interactive);
+  background: var(--neutral-100);
+}
+
+/* The current sheet's own sections, nested under it. */
+.sheet-nav-sub {
+  display: flex;
+  flex-direction: column;
+  padding: var(--spacing-50) 0 var(--spacing-150) var(--spacing-300);
+  margin-left: var(--spacing-150);
+  border-left: var(--sheet-rule);
+}
+
+.sheet-nav-sublink {
+  padding: var(--spacing-50) var(--spacing-100);
+  border-radius: var(--border-radius-50);
+  text-decoration: none;
+  color: var(--text-secondary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.sheet-nav-sublink.is-active { color: var(--color-interactive); }
+
+/* Below the desktop breakpoint the rail costs more than it gives: back to a
+   sticky top strip, and the section list goes away with it. */
+@media (max-width: 1099px) {
+  .has-rail { padding-left: 0; }
+
+  .sheet-nav {
+    position: sticky;
+    top: 0;
+    left: auto;
+    bottom: auto;
+    width: auto;
+    background: var(--bg-nav);
+    backdrop-filter: blur(var(--background-blur));
+    -webkit-backdrop-filter: blur(var(--background-blur));
+    border-right: none;
+    border-bottom: var(--sheet-rule);
+    overflow-x: auto;
+  }
+
+  .sheet-nav-inner {
+    flex-direction: row;
+    align-items: center;
+    gap: var(--spacing-50);
+    padding: var(--spacing-100) var(--margin-small);
+    min-height: 0;
+  }
+
+  .sheet-nav-brand {
+    flex-direction: row;
+    align-items: baseline;
+    gap: var(--spacing-100);
+    margin-bottom: 0;
+    margin-right: var(--spacing-200);
+    padding: 0;
+    flex-shrink: 0;
+  }
+
+  /* In the rail the links truncate to fit its width; in the strip they must
+     keep their full label and let the strip scroll instead. */
+  .sheet-nav-link {
+    flex-shrink: 0;
+    overflow: visible;
+    text-overflow: clip;
+  }
+
+  .sheet-nav-sub { display: none; }
+}
+
+/* ---------- Page head ------------------------------------------------- */
+
+.sheet-head { padding: var(--spacing-600) 0 var(--spacing-400); }
+.sheet-head p { max-width: var(--container-narrow); }
+
+/* ---------- Sections -------------------------------------------------- */
+
+.sheet-section {
+  /* clears the sticky top strip when a rail link is followed below 1100px */
+  scroll-margin-top: var(--spacing-800);
+  padding-top: var(--spacing-600);
+  padding-bottom: var(--spacing-300);
+  border-top: var(--sheet-rule);
+  margin-top: var(--spacing-500);
+}
+
+.sheet-section-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--spacing-150);
+  margin-bottom: var(--spacing-100);
+}
+
+.sheet-note {
+  max-width: var(--container-narrow);
+  margin-bottom: var(--spacing-300);
+}
+
+.sheet-sub {
+  margin-top: var(--spacing-400);
+  margin-bottom: var(--spacing-200);
+  display: flex;
+  align-items: baseline;
+  gap: var(--spacing-150);
+}
+
+/* ---------- Specimens ------------------------------------------------- */
+
+.sheet-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(var(--sheet-col), 1fr));
+  gap: var(--spacing-300);
+}
+
+.sheet-grid-wide {
+  grid-template-columns: repeat(auto-fill, minmax(var(--sheet-col-wide), 1fr));
+}
+
+.sheet-grid-1 { grid-template-columns: 1fr; }
+
+/* A single specimen: the live thing, then its exact class string. */
+.spec { display: flex; flex-direction: column; gap: var(--spacing-100); min-width: 0; }
+
+.spec-stage {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: var(--spacing-100);
+  flex-wrap: wrap;
+  padding: var(--spacing-200);
+  background: var(--bg-surface);
+  border-radius: var(--border-radius-100);
+  min-height: var(--spacing-800);
+}
+
+.spec-stage.is-center   { justify-content: center; }
+.spec-stage.is-plain    { background: none; padding: 0; min-height: 0; }
+.spec-stage.is-base     { background: var(--bg-base); }
+.spec-stage.is-sheet    { background: var(--bg-sheet); }
+.spec-stage.is-brand    { background: var(--brand-core); }
+.spec-stage.is-block    { display: block; }
+.spec-stage.is-tight    { padding: var(--spacing-100); }
+
+.spec-label { display: flex; flex-wrap: wrap; align-items: baseline; gap: var(--spacing-100); }
+.spec-code  { color: var(--text-primary); word-break: break-word; }
+.spec-meta  { color: var(--text-secondary); }
+
+/* ---------- Token rows ------------------------------------------------ */
+
+.token-list { display: flex; flex-direction: column; }
+
+.token-row {
+  display: grid;
+  grid-template-columns: calc(var(--spacing-1000) + var(--spacing-100)) minmax(0, 2fr) minmax(0, 2fr);
+  align-items: center;
+  gap: var(--spacing-200);
+  padding: var(--spacing-100) 0;
+  border-bottom: var(--sheet-rule);
+}
+
+.token-row:last-child { border-bottom: none; }
+
+/* A radius, a shadow or a container width has no colour to swatch, so those
+   rows drop the chip column rather than showing an empty one. */
+.token-row.no-chip { grid-template-columns: minmax(0, 2fr) minmax(0, 2fr); }
+
+.token-chip {
+  height: var(--spacing-500);
+  border-radius: var(--border-radius-50);
+  border: var(--border-weight-100) solid var(--border-default);
+  overflow: hidden;
+  /* The chequerboard lives on the wrapper and the colour on the child, because
+     a background-image always paints above a background-color on the same
+     element — an opaque token would otherwise show through it tinted. */
+  background-image: var(--sheet-checker);
+  background-size: var(--spacing-150) var(--spacing-150);
+}
+
+.token-chip-fill { width: 100%; height: 100%; }
+
+/* Alpha tokens need something behind them or 10% black reads as nothing. */
+:root {
+  --sheet-checker:
+    linear-gradient(45deg, var(--neutral-100) 25%, transparent 25%),
+    linear-gradient(-45deg, var(--neutral-100) 25%, transparent 25%),
+    linear-gradient(45deg, transparent 75%, var(--neutral-100) 75%),
+    linear-gradient(-45deg, transparent 75%, var(--neutral-100) 75%);
+}
+
+.token-value { color: var(--text-secondary); }
+
+/* ---------- Swatches -------------------------------------------------- */
+
+.swatch {
+  height: var(--sheet-swatch-h);
+  border-radius: var(--border-radius-100);
+  border: var(--border-weight-100) solid var(--border-default);
+}
+
+/* ---------- Rulers ---------------------------------------------------- */
+
+.ruler {
+  background: var(--color-interactive);
+  border-radius: var(--border-radius-50);
+  height: var(--spacing-150);
+  max-width: 100%;
+}
+
+/* ---------- Misc ------------------------------------------------------ */
+
+/* No accent bar. The need is "set this block apart from the body copy", and
+   the system meets it with the elevation ladder — surface against base. The
+   bar this used to carry was an imported default, and it is the example
+   RULES §2 now names (see also the curve it produced, where a straight rule
+   met a 8px radius and bowed into a crescent). */
+.sheet-callout {
+  padding: var(--spacing-200);
+  border-radius: var(--border-radius-100);
+  background: var(--bg-surface);
+  margin-bottom: var(--spacing-300);
+  max-width: var(--container-narrow);
+}
+
+/* A warning is not a different shape, it is a different word — the copy says
+   "Never". Distinguishing it with a colour the reader has to decode is the
+   same mistake one layer along. */
+
+.demo-box {
+  background: var(--color-interactive);
+  border-radius: var(--border-radius-50);
+  min-height: var(--spacing-500);
+}
+
+.demo-fill {
+  background: var(--neutral-100);
+  border-radius: var(--border-radius-50);
+  padding: var(--spacing-100);
+  text-align: center;
+}
+
+.demo-image {
+  background: var(--neutral-200);
+  background-size: cover;
+  background-position: center;
+  border-radius: var(--border-radius-100);
+}
+
+.sheet-footer {
+  padding: var(--spacing-600) 0;
+  border-top: var(--sheet-rule);
+  margin-top: var(--spacing-800);
+  color: var(--text-secondary);
+}
+
+/* Fill surfaces set their own colour; text classes would win and vanish.
+   Every page that shows one needs this (design-guide § Interactive Surfaces). */
+.surface-fillNeutral *, .surface-fillColor *, .surface-fillInverted *,
+.surface-fillBlack *, .surface-fillWhite * { color: inherit; }
+
+/* .row-wrap — the sheet's own divided-row wrapper, kept only to demonstrate
+   the *other* correct container (space, no divider). The system now ships
+   .list-divided for the divided case; see 07-rows.html. */
+.row-wrap { padding: var(--spacing-200); }
+
+
+/* Page-level layout helpers from design-guide § Complete Component Examples —
+   the system deliberately does not ship these; they are one flex row each. */
+.form-stack { display: flex; flex-direction: column; gap: var(--spacing-200); }
+.filter-bar { display: flex; gap: var(--spacing-150); }
+.filter-bar .input-field { flex: 1; }
+.section-header {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: var(--spacing-200) 0 var(--spacing-150);
+}
+.ios-nav-maintab-row {
+  display: flex; align-items: center; justify-content: space-between;
+  width: 100%; min-height: var(--spacing-600);
+}
+

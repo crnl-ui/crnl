@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="signal" data-mode="light" data-platform="web">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rows, Tags & Controls — Design System Sticker Sheet</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap" rel="stylesheet">
+
+  <script src="../css/ds-loader.js"></script>
+  <script src="demo-content.js"></script>
+  <script src="../css/prototype-harness.js"></script>
+  <link rel="stylesheet" href="sheet.css">
+</head>
+<body>
+
+<nav data-sheet-nav></nav>
+
+<main class="container-extra-wide">
+
+  <header class="sheet-head">
+    <div class="card-text-pair">
+      <h1 class="display500">Rows, Tags &amp; Controls</h1>
+      <p class="labelRegular40 text-secondary">Every slot, gap, state and subcomponent of the list row — plus the selector, the event row, tags and chips.</p>
+    </div>
+  </header>
+
+  <div class="sheet-callout">
+    <p class="bodyRegular30">One structure: <span class="mono">.list-row</span> &gt; optional <span class="mono">.leading</span> + <span class="mono">.list-row-content</span> + optional <span class="mono">.trailing</span>. All three slots are optional. Inside a row the text pair is <span class="mono">.list-row-text-pair</span>, never <span class="mono">.card-text-pair</span> (<span class="mono">RULES §4</span>).</p>
+  </div>
+
+  <div class="sheet-callout is-warn">
+    <p class="bodyRegular30">A <span class="mono">.list-row</span> carries <strong>no padding, no margin and no border</strong> — its container does. Two correct containers: a flex column with <span class="mono">.list-gap</span> / <span class="mono">.list-gap-tight</span>, or a wrapper that carries the padding and a hairline (called <span class="mono">.row-wrap</span> on this page, defined once in <span class="mono">sheet.css</span>).</p>
+  </div>
+
+  <section class="sheet-section" id="leading">
+    <div class="sheet-section-head">
+      <h2 class="display300">Leading slot</h2>
+      <span class="labelRegular10 text-secondary mono">.leading + a gap class</span>
+    </div>
+    <p class="sheet-note bodyRegular30">The gap class is chosen by what is in the slot: <span class="mono">.leading-gap-sm</span> (8px) with logos · <span class="mono">.leading-gap-md</span> (12px) with icons, circles, select boxes · <span class="mono">.leading-gap-lg</span> (16px) with square and small images · <span class="mono">.leading-gap-xl</span> (24px) with large images.</p>
+    <div class="sheet-grid sheet-grid-wide">
+
+      <div class="spec"><div class="spec-stage is-block"><div class="row-wrap"><div class="list-row">
+        <div class="leading leading-gap-md"><span class="icon icon-200">notifications</span></div>
+        <div class="list-row-content"><div class="list-row-text-pair"><span class="labelBold30">Icon</span><span class="labelRegular10 text-secondary">.icon icon-200</span></div></div>
+      </div></div></div><div class="spec-label"><span class="labelRegular10 mono spec-code">.leading .leading-gap-md</span></div></div>
+
+      <div class="spec"><div class="spec-stage is-block"><div class="row-wrap"><div class="list-row">
+        <div class="leading leading-gap-md"><div class="circle-container"><span class="icon icon-200">star</span></div></div>
+        <div class="list-row-content"><div class="list-row-text-pair"><span class="labelBold30">Circle icon</span><span class="labelRegular10 text-secondary">40×40 neutral disc</span></div></div>
+      </div></div></div><div class="spec-label"><span class="labelRegular10 mono spec-code">.circle-container</span></div></div>
+
+      <div class="spec"><div class="spec-stage is-block"><div class="row-wrap"><div class="list-row">
+        <div class="leading leading-gap-md"><div class="circle-container"><span class="display100">A</span></div></div>
+        <div class="list-row-content"><div class="list-row-text-pair"><span class="labelBold30">Circle letter</span><span class="labelRegular10 text-secondary">display100 inside the disc</span></div></div>
+      </div></div></div><div class="spec-label"><span class="labelRegular10 mono spec-code">.circle-container &gt; .display100</span></div></div>
+
+      <div class="spec"><div class="spec-stage is-block"><div class="row-wrap"><div class="list-row">
+        <div class="leading leading-gap-md"><div class="leading-icon"><span class="icon icon-300">confirmation_number</span></div></div>
+        <div class="list-row-content"><div class="list-row-text-pair"><span class="labelBold30">Leading icon</span><span class="labelRegular10 text-secondary">the icon counterpart to the image variants</span></div></div>
+      </div></div></div><div class="spec-label"><span class="labelRegular10 mono spec-code">.leading-icon</span></div></div>
+
+      <div class="spec"><div class="spec-stage is-block"><div class="row-wrap"><div class="list-row">
+        <div class="leading leading-gap-md"><div class="status-dot"></div></div>
+        <div class="list-row-content"><div class="list-row-text-pair"><span class="labelBold30">Unread</span><span class="labelRegular10 text-secondary">--status-info</span></div></div>
+      </div></div><div class="row-wrap"><div class="list-row">
+        <div class="leading leading-gap-md"><div class="status-dot read"></div></div>
+        <div class="list-row-content"><div class="list-row-text-pair"><span class="labelBold30">Read</span><span class="labelRegular10 text-secondary">--neutral-200</span></div></div>
+      </div></div></div><div class="spec-label"><span class="labelRegular10 mono spec-code">.status-dot</span><span class="labelRegular10 mono spec-code">.status-dot.read</span></div></div>
+
+      <div class="spec"><div class="spec-stage is-block"><div class="row-wrap"><div class="list-row">
+        <div class="leading leading-gap-md"><div class="select-box"></div></div>
+        <div class="list-row-content"><div class="list-row-text-pair"><span class="labelBold30">Select box</span><span class="labelRegular10 text-secondary">multi-select / edit mode</span></div></div>
+      </div></div></div><div class="spec-label"><span class="labelRegular10 mono spec-code">.select-box</span></div></div>
+
+      <div class="spec"><div class="spec-stage is-block"><div class="row-wrap"><div class="list-row">
+        <div class="leading leading-gap-sm"><div class="leading-logo" role="img" aria-label="Brand logo"></div></div>
+        <div class="list-row-content"><div class="list-row-text-pair"><span class="labelBold30">Brand logo</span><span class="labelRegular10 text-secondary">48×48 — no src, reads --brand-logo-url</span></div></div>
+      </div></div></div><div class="spec-label"><span class="labelRegular10 mono spec-code">.leading-logo</span><span class="labelRegular10 spec-meta">with .leading-gap-sm</span></div></div>
+
+      <div class="spec"><div class="spec-stage is-block"><div class="row-wrap"><div class="list-row">
+        <div class="leading leading-gap-md"><img class="event-row-logo" data-opponent-logo alt=""></div>
+        <div class="list-row-content"><div class="list-row-text-pair"><span class="labelBold30">Opponent crest</span><span class="labelRegular10 text-secondary">object-fit is already applied</span></div></div>
+      </div></div></div><div class="spec-label"><span class="labelRegular10 mono spec-code">.event-row-logo</span></div></div>
+
+      <div class="spec"><div class="spec-stage is-block"><div class="row-wrap"><div class="list-row">
+        <div class="leading leading-gap-lg"><div class="leading-image-square demo-image" data-demo-image></div></div>
+        <div class="list-row-content"><div class="list-row-text-pair"><span class="labelBold30">Square image</span><span class="labelRegular10 text-secondary">80×80</span></div></div>
+      </div></div></div><div class="spec-label"><span class="labelRegular10 mono spec-code">.leading-image-square</span><span class="labelRegular10 spec-meta">with .leading-gap-lg</span></div></div>
+
+      <div class="spec"><div class="spec-stage is-block"><div class="row-wrap"><div class="list-row">
+        <div class="leading leading-gap-lg"><div class="leading-image-small demo-image" data-demo-image></div></div>
+        <div class="list-row-content"><div class="list-row-text-pair"><span class="labelBold30">Small image</span><span class="labelRegular10 text-secondary">136×80 — the mobile inventory row</span></div></div>
+      </div></div></div><div class="spec-label"><span class="labelRegular10 mono spec-code">.leading-image-small</span><span class="labelRegular10 spec-meta">with .leading-gap-lg</span></div></div>
+
+      <div class="spec"><div class="spec-stage is-block"><div class="row-wrap"><div class="list-row">
+        <div class="leading leading-gap-xl"><div class="leading-image-large demo-image" data-demo-image></div></div>
+        <div class="list-row-content"><div class="list-row-text-pair"><span class="labelBold30">Large image</span><span class="labelRegular10 text-secondary">244×124 — the desktop inventory row</span></div></div>
+      </div></div></div><div class="spec-label"><span class="labelRegular10 mono spec-code">.leading-image-large</span><span class="labelRegular10 spec-meta">with .leading-gap-xl</span></div></div>
+
+      <div class="spec"><div class="spec-stage is-block"><div class="row-wrap"><div class="list-row">
+        <div class="leading leading-gap-md"><img class="leading-payment" alt=""
+             data-content="platform.brand.paymentBrands[0].image" data-content-attr="src"></div>
+        <div class="list-row-content"><div class="list-row-text-pair"><span class="labelBold30">Visa &bull;&bull;&bull;&bull; 1111</span><span class="labelRegular10 text-secondary">33&times;24, object-fit already applied</span></div></div>
+      </div></div><div class="row-wrap"><div class="list-row">
+        <div class="leading leading-gap-md"><img class="leading-payment" alt=""
+             data-content="platform.brand.paymentWallets[0].image" data-content-attr="src"></div>
+        <div class="list-row-content"><div class="list-row-text-pair"><span class="labelBold30">Apple Pay</span><span class="labelRegular10 text-secondary">the same slot, any mark</span></div></div>
+      </div></div></div><div class="spec-label"><span class="labelRegular10 mono spec-code">.leading-payment</span><span class="labelRegular10 spec-meta">the icon is redundant beside the label, so <span class="mono">alt=""</span> is correct</span></div></div>
+
+    </div>
+
+    <div class="sheet-sub"><span class="title50">Every payment mark</span><span class="labelRegular10 text-secondary">vendor artwork, by asset id — never redrawn (<span class="mono">RULES §6</span>, <span class="mono">§7</span>)</span></div>
+    <div class="spec-stage">
+      <img class="leading-payment" alt="Visa" data-content="platform.brand.paymentBrands[0].image" data-content-attr="src">
+      <img class="leading-payment" alt="Mastercard" data-content="platform.brand.paymentBrands[1].image" data-content-attr="src">
+      <img class="leading-payment" alt="American Express" data-content="platform.brand.paymentBrands[2].image" data-content-attr="src">
+      <img class="leading-payment" alt="Discover" data-content="platform.brand.paymentBrands[3].image" data-content-attr="src">
+      <img class="leading-payment" alt="Apple Pay" data-content="platform.brand.paymentWallets[0].image" data-content-attr="src">
+      <img class="leading-payment" alt="Google Pay" data-content="platform.brand.paymentWallets[1].image" data-content-attr="src">
+      <img class="leading-payment" alt="Card" data-content="platform.brand.paymentGeneric.image" data-content-attr="src">
+    </div>
+    <div class="spec-label mt-100">
+      <span class="labelRegular10 mono spec-code">img.pay-visa</span>
+      <span class="labelRegular10 mono spec-code">img.pay-mastercard</span>
+      <span class="labelRegular10 mono spec-code">img.pay-amex</span>
+      <span class="labelRegular10 mono spec-code">img.pay-discover</span>
+      <span class="labelRegular10 mono spec-code">img.pay-applepay</span>
+      <span class="labelRegular10 mono spec-code">img.pay-googlepay</span>
+      <span class="labelRegular10 mono spec-code">img.pay-generic</span>
+      <span class="labelRegular10 spec-meta">from <span class="mono">platform.brand.paymentBrands</span> / <span class="mono">paymentWallets</span> / <span class="mono">paymentGeneric</span></span>
+    </div>
+  </section>
+
+  <section class="sheet-section" id="content">
+    <div class="sheet-section-head">
+      <h2 class="display300">Main content</h2>
+      <span class="labelRegular10 text-secondary mono">.list-row-content</span>
+    </div>
+    <p class="sheet-note bodyRegular30">Up to three blocks with an 8px gap, in this order: the text pair (always first), then an optional tag group, then an optional info block. Only an info item with <span class="mono">.has-label</span> shows text.</p>
+    <div class="sheet-grid sheet-grid-wide">
+      <div class="spec"><div class="spec-stage is-block"><div class="row-wrap"><div class="list-row">
+        <div class="list-row-content">
+          <div class="list-row-text-pair">
+            <span class="labelBold30">Event Name</span>
+            <span class="labelRegular10 text-secondary">Sat, Mar 15 · 7:00 PM</span>
+          </div>
+          <div class="tag-group">
+            <div class="tag tag-brand-color"><span class="labelBold20">VIP</span></div>
+            <div class="tag"><span class="labelBold20">Floor</span></div>
+          </div>
+          <div class="info-block">
+            <div class="info-item"><span class="icon icon-200">event_seat</span></div>
+            <div class="info-item has-label">
+              <span class="icon icon-200">confirmation_number</span>
+              <span class="labelRegular10">2 tickets</span>
+            </div>
+          </div>
+        </div>
+      </div></div></div><div class="spec-label"><span class="labelRegular10 mono spec-code">.list-row-text-pair + .tag-group + .info-block</span></div></div>
+    </div>
+  </section>
+
+  <section class="sheet-section" id="trailing">
+    <div class="sheet-section-head">
+      <h2 class="display300">Trailing slot</h2>
+      <span class="labelRegular10 text-secondary mono">.trailing + a gap class</span>
+    </div>
+    <p class="sheet-note bodyRegular30"><span class="mono">.trailing-gap-xs</span> (2px) with a chevron · <span class="mono">.trailing-gap-sm</span> (4px) with a text pair · <span class="mono">.trailing-gap-md</span> (8px) with a text link or switch · <span class="mono">.trailing-gap-lg</span> (12px) with a button or stepper.</p>
+    <div class="sheet-grid sheet-grid-wide">
+
+      <div class="spec"><div class="spec-stage is-block"><div class="row-wrap"><div class="list-row">
+        <div class="list-row-content"><div class="list-row-text-pair"><span class="labelBold30">Chevron</span></div></div>
+        <div class="trailing trailing-gap-xs"><span class="icon icon-200">chevron_right</span></div>
+      </div></div></div><div class="spec-label"><span class="labelRegular10 mono spec-code">.trailing .trailing-gap-xs</span></div></div>
+
+      <div class="spec"><div class="spec-stage is-block"><div class="row-wrap"><div class="list-row">
+        <div class="list-row-content"><div class="list-row-text-pair"><span class="labelBold30">Text link</span></div></div>
+        <div class="trailing trailing-gap-md"><span class="trailing-text-link labelBold20">View All</span></div>
+      </div></div></div><div class="spec-label"><span class="labelRegular10 mono spec-code">.trailing-text-link</span></div></div>
+
+      <div class="spec"><div class="spec-stage is-block"><div class="row-wrap"><div class="list-row">
+        <div class="list-row-content"><div class="list-row-text-pair"><span class="labelBold30">Right-aligned pair</span></div></div>
+        <div class="trailing trailing-gap-sm"><div class="trailing-text-pair"><span class="labelBold20">$42.00</span><span class="labelRegular10 text-secondary">Per ticket</span></div></div>
+      </div></div></div><div class="spec-label"><span class="labelRegular10 mono spec-code">.trailing-text-pair</span></div></div>
+
+      <div class="spec"><div class="spec-stage is-block"><div class="row-wrap"><div class="list-row">
+        <div class="list-row-content"><div class="list-row-text-pair"><span class="labelBold30">Switch — off</span></div></div>
+        <div class="trailing trailing-gap-md"><div class="switch"><input type="checkbox" id="sw-off"><label for="sw-off"></label></div></div>
+      </div></div><div class="row-wrap"><div class="list-row">
+        <div class="list-row-content"><div class="list-row-text-pair"><span class="labelBold30">Switch — on</span></div></div>
+        <div class="trailing trailing-gap-md"><div class="switch"><input type="checkbox" id="sw-on" checked><label for="sw-on"></label></div></div>
+      </div></div></div><div class="spec-label"><span class="labelRegular10 mono spec-code">.switch &gt; input + label</span><span class="labelRegular10 spec-meta">the input id must match the label for</span></div></div>
+
+      <div class="spec"><div class="spec-stage is-block"><div class="row-wrap"><div class="list-row">
+        <div class="leading leading-gap-md"><div class="circle-container"><span class="display100">A</span></div></div>
+        <div class="list-row-content"><div class="list-row-text-pair"><span class="labelBold30">Adult</span><span class="labelRegular10 text-secondary">$42.00 per ticket</span></div></div>
+        <div class="trailing trailing-gap-lg"><div class="stepper">
+          <button class="stepper-btn disabled" aria-label="Remove"><span class="icon icon-200">remove</span></button>
+          <span class="stepper-count labelBold50">1</span>
+          <button class="stepper-btn" aria-label="Add"><span class="icon icon-200">add</span></button>
+        </div></div>
+      </div></div></div><div class="spec-label"><span class="labelRegular10 mono spec-code">.stepper .stepper-btn .stepper-count</span><span class="labelRegular10 spec-meta">disabled is a class here, not the attribute</span></div></div>
+
+      <div class="spec"><div class="spec-stage is-block"><div class="row-wrap"><div class="list-row">
+        <div class="list-row-content"><div class="list-row-text-pair"><span class="labelBold30">Button</span></div></div>
+        <div class="trailing trailing-gap-lg"><button class="btn btn-primary btn-100">Action</button></div>
+      </div></div></div><div class="spec-label"><span class="labelRegular10 mono spec-code">.trailing .trailing-gap-lg</span></div></div>
+
+    </div>
+  </section>
+
+  <section class="sheet-section" id="row-states">
+    <div class="sheet-section-head">
+      <h2 class="display300">Row states and containers</h2>
+      <span class="labelRegular10 text-secondary mono">.not-tappable · .disabled</span>
+    </div>
+    <div class="sheet-grid sheet-grid-wide">
+      <div class="spec"><div class="spec-stage is-block"><div class="row-wrap"><div class="list-row">
+        <div class="list-row-content"><div class="list-row-text-pair"><span class="labelBold30">Default</span><span class="labelRegular10 text-secondary">tappable</span></div></div>
+        <div class="trailing trailing-gap-xs"><span class="icon icon-200">chevron_right</span></div>
+      </div></div><div class="row-wrap"><div class="list-row not-tappable">
+        <div class="list-row-content"><div class="list-row-text-pair"><span class="labelBold30">Not tappable</span><span class="labelRegular10 text-secondary">no pointer, no press</span></div></div>
+      </div></div><div class="row-wrap"><div class="list-row disabled">
+        <div class="list-row-content"><div class="list-row-text-pair"><span class="labelBold30">Disabled</span><span class="labelRegular10 text-secondary">30% opacity</span></div></div>
+      </div></div></div><div class="spec-label"><span class="labelRegular10 mono spec-code">.list-row</span><span class="labelRegular10 mono spec-code">.not-tappable</span><span class="labelRegular10 mono spec-code">.disabled</span></div></div>
+
+      <div class="spec"><div class="spec-stage is-base is-block"><div class="list-gap-tight">
+        <div class="selector surface-card scale-500"><div class="list-row"><div class="list-row-content"><div class="list-row-text-pair"><span class="labelBold30">Space only</span><span class="labelRegular10 text-secondary">.list-gap-tight — 8px</span></div></div></div></div>
+        <div class="selector surface-card scale-500"><div class="list-row"><div class="list-row-content"><div class="list-row-text-pair"><span class="labelBold30">Space only</span><span class="labelRegular10 text-secondary">each row is its own object</span></div></div></div></div>
+      </div></div><div class="spec-label"><span class="labelRegular10 mono spec-code">.list-gap-tight</span><span class="labelRegular10 spec-meta">the other correct container — space separates rows only when each one reads as a separate object, so they sit on the page background with their own surface. Bare rows with a gap and no surface just slam together (<span class="mono">RULES §2</span>).</span></div></div>
+
+      <div class="spec"><div class="spec-stage is-base is-block"><div class="card-closed"><div class="list-divided">
+        <div class="list-row surface-section">
+          <div class="leading leading-gap-lg"><div class="leading-image-small demo-image" data-demo-image></div></div>
+          <div class="list-row-content"><div class="list-row-text-pair"><span class="labelBold30">Section 313</span><span class="labelRegular10 text-secondary">Row F (Seats 9–14)</span></div></div>
+          <div class="trailing trailing-gap-sm"><div class="trailing-text-pair"><span class="labelBold20">$21/ea</span><span class="labelRegular10 text-secondary">Avg. Price</span></div></div>
+        </div>
+        <div class="list-row surface-section">
+          <div class="leading leading-gap-lg"><div class="leading-image-small demo-image" data-demo-image></div></div>
+          <div class="list-row-content"><div class="list-row-text-pair"><span class="labelBold30">Section 207</span><span class="labelRegular10 text-secondary">Row A (Seats 1–4)</span></div></div>
+          <div class="trailing trailing-gap-sm"><div class="trailing-text-pair"><span class="labelBold20">$34/ea</span><span class="labelRegular10 text-secondary">Avg. Price</span></div></div>
+        </div>
+      </div></div></div><div class="spec-label"><span class="labelRegular10 mono spec-code">.list-divided</span><span class="labelRegular10 mono spec-code">.list-row.surface-section</span><span class="labelRegular10 spec-meta">the dividers reach both edges because the padding is on the row, not a wrapper</span></div></div>
+    </div>
+  </section>
+
+  <section class="sheet-section" id="selector">
+    <div class="sheet-section-head">
+      <h2 class="display300">Selector</h2>
+      <span class="labelRegular10 text-secondary mono">.selector wraps a .list-row to make it selectable</span>
+    </div>
+    <p class="sheet-note bodyRegular30">The selector supplies the 16px radius and the padding; the surface class supplies every interactive state. <span class="mono">surface-washNeutral</span> when it sits inside a card, <span class="mono">surface-card</span> when it sits on the page background. <span class="mono">.is-selected</span> inverts and beats both surfaces; <span class="mono">.is-disabled</span> is 25% opacity and takes no scale.</p>
+    <div class="sheet-grid sheet-grid-wide">
+      <div class="spec"><div class="spec-stage is-block">
+        <div class="selector surface-washNeutral scale-500"><div class="list-row">
+          <div class="list-row-content"><div class="list-row-text-pair"><span class="labelBold30">Section 313 — Row F</span><span class="labelRegular10 text-secondary">Seats 9–14</span></div></div>
+          <div class="trailing trailing-gap-sm"><div class="trailing-text-pair"><span class="labelBold20">$148</span><span class="labelRegular10 text-secondary">each</span></div></div>
+        </div></div>
+      </div><div class="spec-label"><span class="labelRegular10 mono spec-code">.selector .surface-washNeutral .scale-500</span><span class="labelRegular10 spec-meta">inside a card</span></div></div>
+
+      <div class="spec"><div class="spec-stage is-base is-block">
+        <div class="selector surface-card scale-500"><div class="list-row">
+          <div class="list-row-content"><div class="list-row-text-pair"><span class="labelBold30">Section 101 — Row 2</span><span class="labelRegular10 text-secondary">Seats 5–8</span></div></div>
+          <div class="trailing trailing-gap-sm"><div class="trailing-text-pair"><span class="labelBold20">$189</span><span class="labelRegular10 text-secondary">each</span></div></div>
+        </div></div>
+      </div><div class="spec-label"><span class="labelRegular10 mono spec-code">.selector .surface-card .scale-500</span><span class="labelRegular10 spec-meta">on the page background</span></div></div>
+
+      <div class="spec"><div class="spec-stage is-block">
+        <div class="selector surface-washNeutral scale-500 is-selected"><div class="list-row">
+          <div class="list-row-content"><div class="list-row-text-pair"><span class="labelBold30">Selected</span><span class="labelRegular10 text-secondary">inverts to --neutral-1000</span></div></div>
+        </div></div>
+      </div><div class="spec-label"><span class="labelRegular10 mono spec-code">.is-selected</span></div></div>
+
+      <div class="spec"><div class="spec-stage is-block">
+        <div class="selector surface-washNeutral is-disabled"><div class="list-row">
+          <div class="list-row-content"><div class="list-row-text-pair"><span class="labelBold30">Disabled</span><span class="labelRegular10 text-secondary">25% opacity, no pointer events — drop the scale</span></div></div>
+        </div></div>
+      </div><div class="spec-label"><span class="labelRegular10 mono spec-code">.is-disabled</span></div></div>
+    </div>
+  </section>
+
+  <section class="sheet-section" id="event-row">
+    <div class="sheet-section-head">
+      <h2 class="display300">Event row</h2>
+      <span class="labelRegular10 text-secondary mono">the buy-flow card for one game — five offer states</span>
+    </div>
+    <p class="sheet-note bodyRegular30">The card background is built into <span class="mono">.event-row</span>; the wrapper takes no surface token and no scale. <span class="mono">surface-section</span> goes on each <em>interactive section</em> only — which sections those are is what the five states differ on.</p>
+    <div class="event-row-list">
+
+      <div class="event-row">
+        <div class="event-row-top surface-section"><div class="list-row">
+          <div class="leading leading-gap-sm"><img class="event-row-logo" data-opponent-logo alt=""></div>
+          <div class="list-row-content"><div class="list-row-text-pair">
+            <span class="event-row-label" data-opponent-name>Opponent</span>
+            <span class="event-row-sublabel text-secondary" data-game-date>Date</span>
+          </div></div>
+          <div class="trailing trailing-gap-lg"><button class="btn btn-primary btn-100">$19+</button></div>
+        </div></div>
+      </div>
+
+      <div class="event-row">
+        <div class="event-row-top surface-section"><div class="list-row">
+          <div class="leading leading-gap-sm"><img class="event-row-logo" data-opponent-logo alt=""></div>
+          <div class="list-row-content"><div class="list-row-text-pair">
+            <span class="event-row-label" data-opponent-name>Opponent</span>
+            <span class="event-row-sublabel text-secondary" data-game-date>Date</span>
+          </div></div>
+          <div class="trailing trailing-gap-lg"><button class="btn btn-primary btn-100">$19+</button></div>
+        </div></div>
+        <div class="event-row-bottom surface-section"><div class="list-row">
+          <div class="list-row-content"><div class="list-row-text-pair"><span class="labelBold30 text-interactive-tertiary">3 Additional Offers</span></div></div>
+          <div class="trailing trailing-gap-xs"><span class="icon text-interactive-tertiary">arrow_drop_down</span></div>
+        </div></div>
+      </div>
+
+      <div class="event-row">
+        <div class="event-row-top"><div class="list-row not-tappable">
+          <div class="leading leading-gap-sm"><img class="event-row-logo" data-opponent-logo alt=""></div>
+          <div class="list-row-content"><div class="list-row-text-pair">
+            <span class="event-row-label" data-opponent-name>Opponent</span>
+            <span class="event-row-sublabel text-secondary" data-game-date>Date</span>
+          </div></div>
+        </div></div>
+        <div class="event-row-bottom surface-section"><div class="list-row">
+          <div class="list-row-content"><div class="list-row-text-pair"><span class="labelBold30 text-interactive-tertiary">3 Offers Available</span></div></div>
+          <div class="trailing trailing-gap-xs"><span class="icon text-interactive-tertiary">arrow_drop_down</span></div>
+        </div></div>
+      </div>
+
+      <div class="event-row">
+        <div class="event-row-top"><div class="list-row not-tappable">
+          <div class="leading leading-gap-sm"><img class="event-row-logo" data-opponent-logo alt=""></div>
+          <div class="list-row-content"><div class="list-row-text-pair">
+            <span class="event-row-label" data-opponent-name>Opponent</span>
+            <span class="event-row-sublabel text-secondary" data-game-date>Date</span>
+          </div></div>
+          <div class="trailing trailing-gap-sm"><span class="labelBold30 text-secondary">Sold Out</span></div>
+        </div></div>
+      </div>
+
+      <div class="event-row">
+        <div class="event-row-top"><div class="list-row not-tappable">
+          <div class="leading leading-gap-sm"><img class="event-row-logo" data-opponent-logo alt=""></div>
+          <div class="list-row-content"><div class="list-row-text-pair">
+            <span class="event-row-label" data-opponent-name>Opponent</span>
+            <span class="event-row-sublabel text-secondary" data-game-date>Date</span>
+          </div></div>
+          <div class="trailing trailing-gap-sm"><span class="labelBold20 text-interactive-tertiary event-row-coming-soon">Coming Soon</span></div>
+        </div></div>
+      </div>
+
+    </div>
+    <div class="spec-label mt-200">
+      <span class="labelRegular10 mono spec-code">.event-row-list</span>
+      <span class="labelRegular10 mono spec-code">.event-row</span>
+      <span class="labelRegular10 mono spec-code">.event-row-top</span>
+      <span class="labelRegular10 mono spec-code">.event-row-bottom</span>
+      <span class="labelRegular10 mono spec-code">.event-row-label</span>
+      <span class="labelRegular10 mono spec-code">.event-row-sublabel</span>
+      <span class="labelRegular10 mono spec-code">.event-row-coming-soon</span>
+    </div>
+  </section>
+
+  <section class="sheet-section" id="tags">
+    <div class="sheet-section-head">
+      <h2 class="display300">Tags and chips</h2>
+      <span class="labelRegular10 text-secondary mono">tag-chip-components.css</span>
+    </div>
+    <p class="sheet-note bodyRegular30">A <strong>tag</strong> is a static label badge. A <strong>chip</strong> is an interactive filter or toggle, and gets its states from a surface + scale pair — never a <span class="mono">:hover</span> rule. Both are 32px tall with a 4px radius; the label class is yours to add.</p>
+
+    <div class="sheet-sub"><span class="title50">Tag</span></div>
+    <div class="sheet-grid">
+      <div class="spec"><div class="spec-stage"><div class="tag"><span class="labelBold20">Default</span></div></div><div class="spec-label"><span class="labelRegular10 mono spec-code">.tag</span></div></div>
+      <div class="spec"><div class="spec-stage"><div class="tag tag-brand-color"><span class="labelBold20">Brand</span></div></div><div class="spec-label"><span class="labelRegular10 mono spec-code">.tag.tag-brand-color</span></div></div>
+      <div class="spec"><div class="spec-stage"><div class="tag tag-icon-leading"><span class="icon icon-200">flag</span><span class="labelBold20">Leading</span></div></div><div class="spec-label"><span class="labelRegular10 mono spec-code">.tag-icon-leading</span></div></div>
+      <div class="spec"><div class="spec-stage"><div class="tag tag-icon-trailing"><span class="labelBold20">Trailing</span><span class="icon icon-200">arrow_forward</span></div></div><div class="spec-label"><span class="labelRegular10 mono spec-code">.tag-icon-trailing</span></div></div>
+      <div class="spec"><div class="spec-stage"><div class="tag-group"><div class="tag"><span class="labelBold20">Floor</span></div><div class="tag"><span class="labelBold20">Row 3</span></div><div class="tag tag-brand-color"><span class="labelBold20">VIP</span></div></div></div><div class="spec-label"><span class="labelRegular10 mono spec-code">.tag-group</span></div></div>
+    </div>
+
+    <div class="sheet-sub"><span class="title50">Chip</span></div>
+    <div class="sheet-grid">
+      <div class="spec"><div class="spec-stage"><button class="chip surface-borderNeutral scale-300">Bordered</button></div><div class="spec-label"><span class="labelRegular10 mono spec-code">.chip .surface-borderNeutral .scale-300</span></div></div>
+      <div class="spec"><div class="spec-stage"><button class="chip surface-ghost scale-300">Ghost</button></div><div class="spec-label"><span class="labelRegular10 mono spec-code">.chip .surface-ghost .scale-300</span></div></div>
+      <div class="spec"><div class="spec-stage"><button class="chip surface-ghost scale-300 chip-brand-color">Brand colour</button></div><div class="spec-label"><span class="labelRegular10 mono spec-code">.chip-brand-color</span></div></div>
+      <div class="spec"><div class="spec-stage"><button class="chip surface-borderNeutral scale-300 chip-icon-leading"><span class="icon icon-300">star</span><span>Leading</span></button></div><div class="spec-label"><span class="labelRegular10 mono spec-code">.chip-icon-leading</span></div></div>
+      <div class="spec"><div class="spec-stage"><button class="chip surface-borderNeutral scale-300 chip-icon-trailing"><span>Trailing</span><span class="icon icon-300">close</span></button></div><div class="spec-label"><span class="labelRegular10 mono spec-code">.chip-icon-trailing</span></div></div>
+      <div class="spec"><div class="spec-stage"><button class="chip surface-borderNeutral chip-icon-trailing is-disabled"><span>Disabled</span><span class="icon icon-300">close</span></button></div><div class="spec-label"><span class="labelRegular10 mono spec-code">.chip.is-disabled</span><span class="labelRegular10 spec-meta">25% opacity, no pointer events</span></div></div>
+    </div>
+  </section>
+
+  <script>
+    document.addEventListener('content-loaded', e => {
+      const game = ContentLoader.featuredGame(e.detail.schedule);
+      const opp = game && game.opponent;
+      if (!opp) return;
+      document.querySelectorAll('[data-opponent-logo]').forEach(el => { el.src = opp.logo || ''; });
+      document.querySelectorAll('[data-opponent-name]').forEach(el => { el.textContent = opp.name; });
+      document.querySelectorAll('[data-game-date]').forEach(el => {
+        el.textContent = ContentLoader.formatters.fmtShortDate(new Date(game.date + 'T00:00:00')) +
+                         (game.time ? '  ∙  ' + game.time : '');
+      });
+    });
+  </script>
+
+  <footer class="sheet-footer">
+    <p class="labelRegular10">Generated against <span class="mono">docs/css-api.json</span>. Every class shown here exists in the system — run <span class="mono">npm run check:demo</span> to verify the sheets still cover it.</p>
+  </footer>
+
+</main>
+
+<script src="sheet.js"></script>
+</body>
+</html>

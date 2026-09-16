@@ -1,0 +1,290 @@
+/* ============================================================
+   table-components.css
+   ============================================================
+   A stats table — a pinned entity column beside horizontally scrolling attribute columns.
+
+   Ported from the Air DS Figma "Table" component set (16263:30315)
+   and its subcomponents (16276:36620).
+
+   The shape exists because a standings or stat table has one wide
+   identifying column and many narrow numeric ones. On a phone the
+   numbers cannot all fit, so they scroll while the entity
+   stays put — a number you can read but can't attribute is useless.
+
+   What's inside
+   - .stat-table-scroll — the scroll container; wrap every table in one
+   - .stat-table — the table itself
+   - .stat-table-title (+ .is-plain) — the group title band above a table
+   - .stat-table-entity (+ .is-title) — the pinned leading cell
+   - .stat-table-attr (+ .is-sorted, .is-win, .is-loss, .is-empty, .is-text) —
+     one narrow attribute cell, in the head row or the body
+   - .stat-table-row (+ .is-tinted, .is-featured) — a body row
+   - .stat-table-entity-block, .stat-table-rank — the mark + abbreviation block
+
+   Notes
+   - Sizing: attribute cells are 48px wide (--spacing-600), head cells
+     40px tall (--spacing-500), body rows 48px min. The entity column is
+     --stat-table-entity-width (224px), settable per table.
+   - Type comes from a type class you add, the same as .tag and
+     .list-row-text-pair: labelBold10 on head cells and the entity label,
+     labelRegular20 on attribute cells, labelBold20 when sorted, title50
+     on the title band. Colour comes from here and wins because this sheet
+     loads after text-styles-system.css.
+   - .is-sorted is the one place this sheet sets font-weight, so a table
+     using one type class throughout still reads correctly.
+   - Figma gives every row its own scroller because that is what Figma can
+     express. Here one scroller wraps the whole table so the columns can
+     never desync from their headers.
+   - Featured rows drop the win/loss colours for --white-700/--white-1000:
+     green and red on --brand-core fail contrast. This is deliberate, not
+     an omission.
+   - Padding follows alignment: a centred numeric cell takes 8px inline, a
+     left-aligned .is-text cell takes the entity cell's 16px so the text
+     columns align. Block padding is 8px everywhere.
+   - Numeric cells are one line; an .is-text cell wraps, because a string
+     that does not fit is worth two lines rather than an ellipsis.
+   - Two borders exist, both from Figma: one under the head row and one down
+     the right of the entity column, each --neutral-300. There is no rule
+     between body rows — the alternating tint separates them.
+   ============================================================ */
+
+/* ── Scroll container ──────────────────────────────────────────────────
+   The entity column is pinned with position: sticky, which needs a
+   scrollport. Vertical overflow stays visible so the page scrolls the
+   rows; set a max-height here to get a scrolling pane with a sticky
+   head row instead. */
+.stat-table-scroll {
+  overflow-x: auto;
+  overflow-y: visible;
+  width: 100%;
+}
+
+.stat-table {
+  --stat-table-entity-width: 224px;
+  border-collapse: separate;
+  border-spacing: 0;
+  width: 100%;
+}
+
+/* ── Group title ───────────────────────────────────────────────────────
+   Sits above a table to name it — "Atlantic", "Western Conference".
+   Take title50 for the type. .is-plain drops the surface fill for a
+   title that sits on an already-tinted card. */
+.stat-table-title {
+  display: flex;
+  align-items: flex-start;
+  background-color: var(--bg-surface);
+  border-bottom: var(--border-weight-50) solid var(--neutral-300);
+  color: var(--text-primary);
+  padding-top: var(--spacing-200);    /* 16px */
+  padding-bottom: var(--spacing-150); /* 12px */
+  padding-left: var(--spacing-200);
+  padding-right: var(--spacing-200);
+}
+
+.stat-table-title.is-plain {
+  background-color: transparent;
+}
+
+/* ── Head row ──────────────────────────────────────────────────────── */
+.stat-table thead tr {
+  height: var(--spacing-500); /* 40px */
+}
+
+.stat-table thead .stat-table-entity,
+.stat-table thead .stat-table-attr {
+  border-bottom: var(--border-weight-50) solid var(--neutral-300);
+}
+
+/* ── The pinned entity column ──────────────────────────────────────────
+   Sticky rather than a separate flex column so a row stays one <tr> —
+   hover, tint and the featured fill then apply to the whole row without
+   being painted twice. A sticky cell paints its own background, so every
+   row variant below restates its fill on this cell. */
+.stat-table-entity {
+  position: sticky;
+  left: 0;
+  z-index: 1;
+  width: var(--stat-table-entity-width);
+  min-width: var(--spacing-900); /* 72px — the Figma minimum */
+  box-sizing: border-box;
+  background-color: var(--bg-base);
+  border-right: var(--border-weight-50) solid var(--neutral-300);
+  color: var(--text-secondary);
+  text-align: left;
+  padding: var(--spacing-100) var(--spacing-200); /* 8px 16px */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.stat-table thead .stat-table-entity {
+  z-index: 2;
+}
+
+/* The header cell doubles as a label for the whole table when a page
+   carries several — divisions within a conference, say. .is-title is the
+   larger primary treatment for that case (take labelRegular20). */
+.stat-table-entity.is-title {
+  color: var(--text-primary);
+}
+
+/* ── Attribute cells ───────────────────────────────────────────────────
+   48px wide in both the head and the body; the head row is 40px tall and
+   body rows 48px, from the row rules. */
+.stat-table-attr {
+  width: var(--spacing-600); /* 48px */
+  box-sizing: border-box;
+  padding: var(--spacing-100);
+  color: var(--text-secondary);
+  text-align: center;
+  white-space: nowrap;
+}
+
+.stat-table thead .stat-table-attr {
+  color: var(--text-placeholder);
+}
+
+/* An attribute cell holding text rather than a number. Numeric cells are a
+   fixed 48px with centred content, so their 8px inline padding is only a
+   safety gutter and never reads against the entity cell's 16px. Once a cell
+   is wide and left-aligned that gap becomes a visible misalignment, so a
+   text cell takes the entity cell's padding and the columns line up as a
+   grid. Set a width alongside it — 48px will not hold a string. */
+.stat-table-attr.is-text {
+  text-align: left;
+  padding-left: var(--spacing-200);
+  padding-right: var(--spacing-200);
+  /* A number is one line by definition; a string is not. Wrapping is the
+     default here so a long value stays readable instead of being cut off,
+     and overflow-wrap breaks the unbroken ones (an asset id, a URL) that
+     would otherwise push the column wide. Row height is a minimum, so the
+     row grows to fit. */
+  white-space: normal;
+  overflow-wrap: break-word;
+}
+
+/* The sorted column: darker, heavier, and underlined in the head row.
+   font-weight is set here so a table that uses one type class throughout
+   still distinguishes the sorted column. */
+.stat-table-attr.is-sorted {
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+.stat-table thead .stat-table-attr.is-sorted {
+  color: var(--text-primary);
+  border-bottom: var(--border-weight-200) solid var(--text-primary);
+}
+
+/* Result colours. Both weights of a win stay green — sorting changes the
+   emphasis, not the meaning. */
+.stat-table-attr.is-win {
+  color: var(--status-success);
+}
+
+.stat-table-attr.is-loss {
+  color: var(--status-error);
+}
+
+.stat-table-attr.is-empty {
+  color: var(--text-secondary);
+}
+
+/* ── Body rows ─────────────────────────────────────────────────────────
+   No rule between rows. The only borders in this component are the two
+   Figma draws: under the head row, and down the right of the entity
+   column. Rows are separated by the alternating tint instead — a rule per
+   row plus a tint per row is one separator too many at 48px. */
+.stat-table-row {
+  height: var(--spacing-600); /* 48px */
+}
+
+/* Alternating tint. Apply to every other row — this sheet cannot do it
+   with :nth-child because a table may carry title rows between groups.
+
+   --neutral-50 is rgba(…, 0.03), so it must land exactly once per cell or
+   the columns end up at different strengths. It goes on the cells and never
+   on the <tr>: a row-level fill would sit under the attribute cells and
+   composite with theirs, making them twice as dark as the entity column.
+   The entity cell needs an opaque base of its own because it is sticky and
+   has to occlude what scrolls beneath it, so the tint arrives there as a
+   background-image over that base — still exactly one layer. */
+.stat-table-row.is-tinted .stat-table-attr {
+  background-color: var(--neutral-50);
+}
+
+.stat-table-row.is-tinted .stat-table-entity {
+  background-image: linear-gradient(var(--neutral-50), var(--neutral-50));
+}
+
+/* The featured row — the highlighted entry in a ranked list. --brand-core
+   is opaque, so it replaces the fill rather than tinting it. On the cells
+   only, for the same reason as above. */
+.stat-table-row.is-featured .stat-table-entity,
+.stat-table-row.is-featured .stat-table-attr {
+  background-color: var(--brand-core);
+  background-image: none;
+  color: var(--white-700);
+}
+
+.stat-table-row.is-featured .stat-table-entity,
+.stat-table-row.is-featured .stat-table-attr.is-sorted,
+.stat-table-row.is-featured .stat-table-entity-block {
+  color: var(--white-1000);
+}
+
+/* …and the type class on the label has to let that through. A text class sets
+   `color` on the element itself, and a direct declaration beats an inherited
+   one whatever the specificity or load order (RULES §5) — so the entity name,
+   which the documented markup writes as `<span class="labelBold20">`, was
+   rendering near-black on --brand-core while the numbers beside it went white.
+   Same `color: inherit` that .btn and .tag.tag-brand-color already carry. */
+.stat-table-row.is-featured .stat-table-entity *,
+.stat-table-row.is-featured .stat-table-attr * {
+  color: inherit;
+}
+
+/* Win/loss colours are dropped on a featured row: --status-success and
+   --status-error do not carry on --brand-core. */
+.stat-table-row.is-featured .stat-table-attr.is-win,
+.stat-table-row.is-featured .stat-table-attr.is-loss,
+.stat-table-row.is-featured .stat-table-attr.is-empty {
+  color: var(--white-700);
+}
+
+/* ── The entity block ──────────────────────────────────────────────────
+   Crest + abbreviation, with an optional rank ahead of it. Take
+   labelBold20 on the name and labelRegular10 on the rank. */
+.stat-table-entity-block {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-50); /* 4px */
+  min-width: 0;
+  color: var(--text-primary);
+}
+
+.stat-table-entity-block img,
+.stat-table-entity-block svg {
+  flex-shrink: 0;
+  width: var(--spacing-400);  /* 32px */
+  height: var(--spacing-400);
+  object-fit: contain;
+}
+
+.stat-table-entity-block > span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.stat-table-rank {
+  flex-shrink: 0;
+  width: var(--spacing-200); /* 16px */
+  color: var(--text-secondary);
+  text-align: center;
+}
+
+.stat-table-row.is-featured .stat-table-rank {
+  color: var(--white-700);
+}

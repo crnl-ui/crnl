@@ -1,0 +1,530 @@
+/* ============================================================
+   nav-components.css
+   ============================================================
+   Web navigation and page-structure components: top bar, tabs, steps and page header.
+
+   What's inside
+   - .top-bar (+ -inner, -brand, -logo, -name, -actions) — sticky navigation bar
+   - .tabs, .tab (+ .is-active, .tabs-neutral) — horizontal tabs with a
+     brand-colour active indicator
+   - .steps, .step (+ -circle, -number, -label, -connector, state classes,
+     .steps-brand) — multi-step progress indicator
+   - .page-header (+ -content, .has-tabs, .has-steps) — section header with
+     optional tabs or steps
+
+   Notes
+   - The Top Bar and Page Header step at 768/1280 to match the Figma component;
+     the system breakpoints are 500/1100 (RULES §9).
+   - Each section carries the Figma nodeId it was built from.
+   ============================================================ */
+
+
+/* ============================================================
+   TOP BAR
+   ============================================================
+   Sticky navigation bar present on almost every page.
+   Contains a brand slot (logo + brand name) and an optional
+   trailing actions slot (auth buttons, icon buttons, etc.).
+
+   Figma: nodeId 9562:74597 · COMPONENT_SET
+
+   Breakpoints
+     Mobile  (<768px):  px-16px  · shortName
+     Tablet  (≥768px):  px-48px  · fullName
+     Desktop (≥1280px): px-64px  · fullName
+   All breakpoints: py-8px · logo 64×64 · gap logo→name 12px
+
+   HTML pattern:
+     <header class="top-bar" role="banner">
+       <div class="top-bar-inner">
+         <a class="top-bar-brand" href="/">
+           <img class="top-bar-logo" src="{logoUrl}" alt="{brandName}">
+           <span class="top-bar-name display100">
+             <span class="top-bar-name-short">{shortName}</span>
+             <span class="top-bar-name-full">{fullName}</span>
+           </span>
+         </a>
+         <div class="top-bar-actions">
+           <!-- buttons, icon buttons, auth slot -->
+         </div>
+       </div>
+     </header>
+   ============================================================ */
+
+.top-bar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: var(--bg-nav);
+  backdrop-filter: blur(var(--background-blur));
+  -webkit-backdrop-filter: blur(var(--background-blur));
+  border-bottom: var(--border-weight-100) solid var(--border-default);
+  padding: var(--spacing-100) var(--spacing-200); /* 8px 16px — mobile */
+}
+
+@media (min-width: 768px) {
+  .top-bar {
+    padding: var(--spacing-100) var(--spacing-600); /* 8px 48px — tablet */
+  }
+}
+
+@media (min-width: 1280px) {
+  .top-bar {
+    padding: var(--spacing-100) var(--spacing-800); /* 8px 64px — desktop */
+  }
+}
+
+/* Inner row: brand slot + actions slot */
+.top-bar-inner {
+  display: flex;
+  align-items: center;
+  min-height: 64px; /* ensures row height matches logo even without a logo image */
+}
+
+/* Brand: logo + name (typically an <a> for home navigation) */
+.top-bar-brand {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-150); /* 12px between logo and name */
+  flex: 1;
+  min-width: 0;
+  text-decoration: none;
+  color: inherit;
+  transition: opacity 0.1s;
+}
+
+.top-bar-brand:hover {
+  opacity: 0.85;
+}
+
+/* Brand logo */
+.top-bar-logo {
+  width: 64px;
+  height: 64px;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+/* Brand name (uses display100 typography class in HTML) */
+.top-bar-name {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: var(--text-primary);
+}
+
+/* Responsive name switching: short on mobile, full on tablet+ */
+.top-bar-name-short { display: block; }
+.top-bar-name-full  { display: none;  }
+
+@media (min-width: 768px) {
+  .top-bar-name-short { display: none;  }
+  .top-bar-name-full  { display: block; }
+}
+
+/* Trailing actions slot */
+.top-bar-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-100); /* 8px between action items */
+  flex-shrink: 0;
+}
+
+
+/* ============================================================
+   TABS
+   ============================================================
+   Horizontal tab navigation. Scrollable on mobile.
+   Active tab uses a 4px brand-color bottom border indicator.
+   Typically used inside .page-header or standalone below a title.
+
+   Figma: nodeId 910:2638 · COMPONENT_SET
+
+   Anatomy
+     .tabs   — Container with 1px bottom hairline
+     .tab    — Individual tab button (role="tab")
+
+   Active state: .is-active  OR  aria-selected="true"
+
+   The active .tab uses margin-bottom: -1px to bleed its
+   4px bottom border through the container's 1px hairline —
+   creating the illusion of a single thick indicator line.
+
+   Modifiers
+     .tabs-neutral  — Uses neutral-1000 indicator; no brand color
+
+   HTML pattern:
+     <nav class="tabs" role="tablist" aria-label="...">
+       <button class="tab is-active" role="tab" aria-selected="true">Seats</button>
+       <button class="tab" role="tab" aria-selected="false">Summary</button>
+       <button class="tab" role="tab" aria-selected="false">Payment</button>
+     </nav>
+
+   When used inside .page-header.has-tabs, the tabs' border-bottom
+   serves as the page-header's bottom divider (see page-header section).
+   ============================================================ */
+
+.tabs {
+  display: flex;
+  align-items: flex-end;
+  overflow-x: auto;
+  scrollbar-width: none; /* Firefox */
+  border-bottom: var(--border-weight-100) solid var(--border-default);
+}
+
+.tabs::-webkit-scrollbar {
+  display: none; /* Chrome / Safari */
+}
+
+.tab {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--spacing-150) var(--spacing-200); /* 12px 16px */
+  white-space: nowrap;
+  cursor: pointer;
+  flex-shrink: 0;
+  background: none;
+  border: none;
+  outline: none;
+  border-bottom: 4px solid transparent;
+  margin-bottom: -1px; /* overlaps .tabs border-bottom so active indicator bleeds through */
+  font-size: 16px;     /* labelBold30 / labelRegular30 = 16px */
+  font-weight: 400;    /* labelRegular30 — inactive */
+  line-height: 1.5;
+  font-family: inherit;
+  color: var(--text-primary);
+  text-decoration: none;
+  -webkit-font-smoothing: antialiased;
+  transition: color 0.1s, opacity 0.1s;
+}
+
+/* Focus ring (keyboard navigation) */
+.tab:focus-visible {
+  outline: 2px solid var(--interactive-primary);
+  outline-offset: -2px;
+}
+
+/* Inactive hover */
+.tab:not(.is-active):not([aria-selected="true"]):hover {
+  opacity: 0.75;
+}
+
+/* Active state */
+.tab.is-active,
+.tab[aria-selected="true"] {
+  color: var(--interactive-primary);
+  border-bottom-color: var(--interactive-primary);
+  font-weight: 600; /* labelBold30 */
+}
+
+/* Neutral variant: uses --neutral-1000 indicator instead of brand color */
+.tabs-neutral .tab.is-active,
+.tabs-neutral .tab[aria-selected="true"] {
+  color: var(--text-primary);
+  border-bottom-color: var(--neutral-1000);
+  font-weight: 600;
+}
+
+
+/* ============================================================
+   STEPS
+   ============================================================
+   Multi-step progress indicator for checkout and multi-stage
+   flows. Also usable standalone in any context.
+
+   Figma: nodeId 9586:31206 · COMPONENT_SET
+
+   Step states (class on .step):
+     .step-completed  — --status-success green circle + filled check icon
+     .step-active     — --neutral-1000 black circle + white bold number
+     .step-pending    — Outlined circle (1px --neutral-300) + muted number (--text-secondary)
+
+   Anatomy
+     .steps                — Flex row container
+       .step               — Single step (circle + optional label)
+         .step-circle      — 24×24 colored/outlined circle
+           .step-number    — Number inside circle (active/pending)
+           .icon           — Filled check icon (completed only, use icon-100)
+         .step-label       — Text label beside the circle
+       .step-connector     — Chevron separator between steps (use .icon class)
+
+   Modifiers
+     .steps-brand  — Completed steps use --interactive-primary instead of --status-success
+
+   Mobile (<500px): step labels are hidden (circle-only compact view)
+
+   HTML pattern (3-step example):
+     <div class="steps">
+
+       <div class="step step-completed">
+         <div class="step-circle">
+           <span class="icon icon-100">check</span>
+         </div>
+         <span class="step-label">Seats</span>
+       </div>
+
+       <span class="step-connector icon">chevron_right</span>
+
+       <div class="step step-active">
+         <div class="step-circle">
+           <span class="step-number">2</span>
+         </div>
+         <span class="step-label">Summary</span>
+       </div>
+
+       <span class="step-connector icon">chevron_right</span>
+
+       <div class="step step-pending">
+         <div class="step-circle">
+           <span class="step-number">3</span>
+         </div>
+         <span class="step-label">Payment</span>
+       </div>
+
+     </div>
+   ============================================================ */
+
+.steps {
+  display: flex;
+  align-items: center;
+  flex-wrap: nowrap;
+}
+
+/* Individual step */
+.step {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-100); /* 8px between circle and label */
+  flex-shrink: 0;
+}
+
+/* 24×24 icon circle */
+.step-circle {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+/* Number inside circle (active and pending states) */
+.step-number {
+  font-size: 12px;
+  line-height: 1;
+  font-family: inherit;
+}
+
+/* Text label beside the circle */
+.step-label {
+  font-size: 14px;    /* labelBold20 / labelRegular20 = 14px */
+  line-height: 1.43;
+  white-space: nowrap;
+  font-family: inherit;
+}
+
+/* Chevron connector between steps */
+.step-connector {
+  color: var(--text-secondary);
+  flex-shrink: 0;
+  margin-inline: var(--spacing-50); /* 4px breathing room around chevron */
+}
+
+/* --- Completed --- */
+.step-completed .step-circle {
+  background: var(--status-success);
+}
+.step-completed .step-circle .icon {
+  color: var(--white-1000);
+}
+.step-completed .step-label {
+  font-weight: 400;
+  color: var(--text-secondary);
+}
+
+/* --- Active / In Progress --- */
+.step-active .step-circle {
+  background: var(--neutral-1000);
+}
+.step-active .step-number {
+  color: var(--white-1000);
+  font-weight: 600;
+}
+.step-active .step-label {
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+/* --- Pending / Not Started --- */
+.step-pending .step-circle {
+  background: transparent;
+  border: var(--border-weight-100) solid var(--neutral-300); /* 1px · rgba(0,0,0,0.15) light / rgba(255,255,255,0.25) dark */
+}
+.step-pending .step-number {
+  color: var(--text-secondary); /* neutral-700 — muted but readable, matches Figma */
+  font-weight: 400;
+}
+.step-pending .step-label {
+  font-weight: 400;
+  color: var(--text-secondary);
+}
+
+/* Brand variant: completed uses --interactive-primary instead of --status-success */
+.steps-brand .step-completed .step-circle {
+  background: var(--interactive-primary);
+}
+.steps-brand .step-completed .step-circle .icon {
+  color: var(--interactive-primary-text);
+}
+
+/* Mobile: label-free compact view */
+@media (max-width: 499px) {
+  .step-label {
+    display: none;
+  }
+}
+
+
+/* ============================================================
+   PAGE HEADER
+   ============================================================
+   Section-level page header with title + subtitle text content
+   and optional tabs or steps navigation below the text.
+
+   Figma: nodeId 9588:73094 · COMPONENT_SET
+
+   Padding (aligns horizontal edges with top bar at each breakpoint)
+     Mobile  (<768px):  .page-header px-0   + .page-header-content px-16px = 16px from edge
+     Tablet  (≥768px):  .page-header px-32px + .page-header-content px-16px = 48px from edge
+     Desktop (≥1280px): .page-header px-48px + .page-header-content px-16px = 64px from edge
+   pt-64px for Default and Tabs variants.
+   pt-40px for Steps variant (.has-steps override).
+
+   Content bottom padding
+     Default (no tabs/steps):  pb-40px  on .page-header-content
+     .has-tabs:                pb-24px  on .page-header-content (gap to tab strip)
+     .has-steps:               pb-24px  tablet / pb-40px desktop
+
+   Typography scale (use these text style classes inside .card-text-pair)
+     Default (Size 8000): display500  +  labelRegular40
+     Large   (Size 9000): display600  +  labelRegular50
+   Use a container class (.container-narrow, .container-compact, etc.) on the
+   .card-text-pair child to constrain max-width.
+
+   Modifiers
+     .has-tabs   — tabs below text pair; page-header retains border-bottom
+                   (.tabs border-bottom suppressed; active indicator bleeds through via margin-bottom:-1px)
+     .has-steps  — steps above text pair (progress breadcrumb); page-header retains border-bottom
+
+   ⚠️ Double-border avoidance:
+   When .has-tabs, the page-header keeps its own border-bottom. The .tabs
+   border-bottom is suppressed. The active .tab's margin-bottom:-1px
+   and 4px indicator continue working correctly.
+
+   HTML patterns:
+
+   No tabs / steps:
+     <section class="page-header">
+       <div class="page-header-content">
+         <div class="card-text-pair">
+           <span class="display500">Section Title</span>
+           <span class="labelRegular40 text-secondary">Supporting subtitle</span>
+         </div>
+       </div>
+     </section>
+
+   With tabs (most common checkout pattern):
+     <section class="page-header has-tabs">
+       <div class="page-header-content">
+         <div class="card-text-pair">
+           <span class="display600">Buy Tickets</span>
+           <span class="labelRegular50 text-secondary">Account holder name</span>
+         </div>
+       </div>
+       <nav class="tabs" role="tablist" aria-label="Checkout steps">
+         <button class="tab is-active" role="tab" aria-selected="true">Seats</button>
+         <button class="tab" role="tab" aria-selected="false">Summary</button>
+         <button class="tab" role="tab" aria-selected="false">Payment</button>
+       </nav>
+     </section>
+
+   With steps (steps above text pair — acts as progress breadcrumb):
+     <section class="page-header has-steps">
+       <div class="steps">
+         <!-- .step.step-completed / .step-active / .step-pending -->
+       </div>
+       <div class="page-header-content">
+         <div class="card-text-pair">
+           <span class="display500">Checkout</span>
+           <span class="labelRegular40 text-secondary">Account holder name</span>
+         </div>
+       </div>
+     </section>
+   ============================================================ */
+
+.page-header {
+  background: var(--bg-base);
+  padding-top: var(--spacing-800);    /* 64px — constant */
+  padding-inline: 0;                  /* no outer padding on mobile */
+  border-bottom: var(--border-weight-100) solid var(--border-default);
+}
+
+@media (min-width: 768px) {
+  .page-header {
+    padding-inline: var(--spacing-400); /* 32px outer — tablet */
+  }
+}
+
+@media (min-width: 1280px) {
+  .page-header {
+    padding-inline: var(--spacing-600); /* 48px outer — desktop */
+  }
+}
+
+/* Inner content: additional 16px padding + bottom space */
+.page-header-content {
+  padding-inline: var(--spacing-200); /* 16px — all breakpoints */
+  padding-bottom: var(--spacing-500); /* 40px — default (no tabs/steps) */
+}
+
+/* With tabs: reduce gap; page-header keeps its border-bottom; tabs are flush against it */
+.page-header.has-tabs .page-header-content {
+  padding-bottom: var(--spacing-300); /* 24px gap to tab strip */
+}
+
+/* Tabs inside page-header suppress their own border — the header's border-bottom is the divider.
+   The active .tab's margin-bottom:-1px bleeds the 4px indicator through the header's 1px line. */
+.page-header .tabs {
+  border-bottom: none;
+}
+
+/* Steps variant: tighter top — Figma shows pt-40px (not 64px) for .has-steps */
+.page-header.has-steps {
+  padding-top: var(--spacing-500); /* 40px — all breakpoints */
+}
+
+/* With steps: content pb — 24px tablet/mobile, 40px desktop */
+.page-header.has-steps .page-header-content {
+  padding-bottom: var(--spacing-300); /* 24px — tablet/mobile */
+}
+
+@media (min-width: 1280px) {
+  .page-header.has-steps .page-header-content {
+    padding-bottom: var(--spacing-500); /* 40px — desktop */
+  }
+}
+
+/* Steps inside page-header: align with inner content, gap below to text pair */
+.page-header .steps {
+  padding-inline: var(--spacing-200); /* 16px — matches .page-header-content inset */
+  padding-bottom: var(--spacing-400); /* 32px — tablet/mobile gap to text pair */
+}
+
+@media (min-width: 1280px) {
+  .page-header .steps {
+    padding-bottom: var(--spacing-500); /* 40px — desktop gap to text pair */
+  }
+}

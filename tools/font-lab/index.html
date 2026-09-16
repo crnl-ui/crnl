@@ -1,0 +1,1040 @@
+<!DOCTYPE html>
+<html lang="en" data-mode="light" data-platform="web">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Font Lab 3 — display library browser</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap" rel="stylesheet">
+  <script src="../../css/ds-loader.js"></script>
+  <script src="theme-ramps.js"></script>
+  <script src="library3.js"></script>
+  <script src="matches.js"></script>
+</head>
+<body>
+<!--
+@title: Font Lab 3
+@author: Cornelius Hegeman
+@tags: typography, desktop, experiment
+@description: Read-only browser for the built display font library — the real shipping faces on the display ramp and on live app screens, with favourites.
+@status: draft
+-->
+<style>
+  /* ── Font Lab 3 shell — the Font Lab 2 chrome, minus everything that edits ── */
+  body { margin: 0; background: var(--bg-base); color: var(--text-primary); font-family: 'Inter', sans-serif; height: 100vh; overflow: hidden; }
+  .fl-app { display: grid; grid-template-columns: 340px 1fr; height: 100vh; }
+
+  /* Sidebar — inverted rail */
+  .fl-side { display: flex; flex-direction: column; min-height: 0; background: var(--neutral-1000); }
+  .fl-side-head { padding: var(--spacing-200); display: flex; flex-direction: column; gap: var(--spacing-300); }
+  .fl-brand { display: flex; align-items: center; justify-content: space-between; }
+  .fl-logo { font-family: var(--display-font); font-size: var(--display-size-500); font-weight: var(--display-weight); letter-spacing: var(--display-letter-spacing); line-height: 1; color: var(--inverted-1000); }
+  .fl-side .fl-mini { border-color: var(--inverted-200); color: var(--inverted-700); }
+  .fl-side .fl-mini:hover { color: var(--inverted-1000); }
+  .fl-search { background: var(--inverted-100); color: var(--inverted-1000); border: 1px solid var(--inverted-200); border-radius: 100px; padding: 9px 14px; font-family: inherit; font-size: 14px; }
+  .fl-search::placeholder { color: var(--inverted-700); }
+  .fl-chips { display: flex; flex-wrap: wrap; gap: var(--spacing-50); }
+  .fl-chip { border: 1px solid var(--inverted-200); background: none; color: var(--inverted-1000); border-radius: 100px; padding: 0 14px; height: 32px; display: inline-flex; align-items: center; font-family: inherit; font-size: 12px; font-weight: 600; cursor: pointer; }
+  .fl-chip.is-on { background: var(--inverted-1000); color: var(--neutral-1000); border-color: transparent; }
+  .fl-count { padding: var(--spacing-100) var(--spacing-200); font-size: 10px; color: var(--inverted-700); display: flex; align-items: center; justify-content: space-between; }
+  .fl-count strong { color: var(--inverted-1000); font-weight: 600; }
+  .fl-list { flex: 1; overflow-y: auto; min-height: 0; padding: 0 var(--spacing-200); }
+  .fl-group { padding: var(--spacing-200) var(--spacing-100) var(--spacing-50); font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--inverted-500); }
+  .fl-row { background: var(--inverted-100); border-radius: 16px; padding: var(--spacing-200); margin-bottom: var(--spacing-50); cursor: pointer; position: relative; }
+  .fl-row:hover { background: var(--inverted-200); }
+  .fl-row.is-sel { box-shadow: inset 0 0 0 2px var(--brand-inverted); }
+  .fl-row-meta { display: flex; align-items: center; gap: var(--spacing-100); margin-bottom: var(--spacing-150); }
+  /* The name takes the slack so it sits hard against the star and the source name
+     is pushed to the right edge — with three items and space-between the token name
+     floated into the middle of the row and read as centred. */
+  .fl-row-name { flex: 1; min-width: 0; font-size: 14px; font-weight: 600; color: var(--inverted-1000); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .fl-row-src { font-size: 11px; color: var(--inverted-700); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .fl-row-sample { font-size: 24px; line-height: 1.2; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-height: 29px; color: var(--inverted-1000); }
+  .fl-side-foot { padding: var(--spacing-200); display: flex; gap: var(--spacing-100); border-top: 1px solid var(--inverted-200); }
+
+  /* The star is a button inside a clickable row, so it stops the click from
+     selecting the font — favouriting from the rail should not move you off
+     whatever you are currently looking at. */
+  .fl-star { background: none; border: 0; padding: 0 2px; cursor: pointer; font-size: 15px; line-height: 1; color: var(--inverted-500); flex-shrink: 0; }
+  .fl-star:hover { color: var(--inverted-1000); }
+  .fl-star.is-on { color: var(--status-warning); }
+  .fl-headacts .fl-star { font-size: 20px; color: var(--text-secondary); }
+  .fl-headacts .fl-star.is-on { color: var(--status-warning); }
+
+  /* Main — content column + persistent info rail */
+  .fl-main { display: grid; grid-template-columns: minmax(0,1fr) 320px; min-height: 0; min-width: 0; }
+  .fl-main.is-wide { grid-template-columns: minmax(0,1fr); }
+  .fl-main.is-wide .fl-panel { display: none; }
+  .fl-content { display: flex; flex-direction: column; min-height: 0; min-width: 0; }
+  .fl-mainhead { border-bottom: 1px solid var(--border-default); flex-shrink: 0; }
+  .fl-headrow { padding: var(--spacing-200) var(--spacing-400) var(--spacing-100); display: flex; align-items: center; gap: var(--spacing-200); }
+  .fl-curfont { font-size: 40px; line-height: 1.2; color: var(--text-primary); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; flex: 1; min-width: 0; }
+  .fl-cursrc { font-size: 13px; color: var(--text-secondary); white-space: nowrap; flex-shrink: 0; }
+  .fl-headacts { display: flex; gap: var(--spacing-200); align-items: center; flex-shrink: 0; }
+  .fl-substrip { padding: 0 var(--spacing-400) var(--spacing-100); font-size: 12px; color: var(--text-secondary); display: flex; gap: var(--spacing-200); align-items: center; flex-wrap: wrap; }
+  .fl-substrip .fl-meta { flex: 1; min-width: 0; }
+  /* Case and style are GLOBAL, not per font — the point is to sweep the whole
+     library in one setting rather than re-picking it on every family. */
+  .fl-globals { display: flex; gap: var(--spacing-200); align-items: center; flex-shrink: 0; }
+  .fl-globals .fl-seg button { padding: 5px 12px; white-space: nowrap; }
+  .fl-fallback { color: var(--status-warning); font-weight: 600; }
+  .fl-tabs { display: flex; padding: 0 var(--spacing-200); }
+  .fl-tab { background: none; border: none; border-bottom: 4px solid transparent; color: var(--text-secondary); font-family: inherit; font-size: 16px; font-weight: 400; padding: 12px 16px; cursor: pointer; }
+  .fl-tab.is-on { color: var(--color-interactive); font-weight: 600; border-bottom-color: var(--color-interactive); }
+  .fl-view { flex: 1; overflow-y: auto; min-height: 0; display: none; }
+  .fl-view.is-on { display: block; }
+  #view-screens { overflow: hidden; }
+
+  /* Info rail — reports the spec, never edits it */
+  .fl-panel { border-left: 1px solid var(--border-default); padding: var(--spacing-300); display: flex; flex-direction: column; gap: var(--spacing-250); background: var(--bg-surface); overflow-y: auto; min-height: 0; }
+  .fl-ctl { display: flex; flex-direction: column; gap: 6px; }
+  .fl-ctl label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--text-secondary); }
+  .fl-ctl input[type=text] { background: var(--bg-input, var(--bg-base)); color: var(--text-primary); border: 1px solid var(--border-default); border-radius: 8px; padding: 8px 10px; font-family: inherit; font-size: 13px; }
+  .fl-spec { display: flex; flex-direction: column; gap: 2px; margin: 0; }
+  .fl-spec div { display: flex; justify-content: space-between; gap: var(--spacing-200); font-size: 12px; padding: 4px 0; border-bottom: 1px solid var(--border-default); }
+  .fl-spec dt { color: var(--text-secondary); }
+  .fl-spec dd { margin: 0; color: var(--text-primary); font-variant-numeric: tabular-nums; text-align: right; }
+  .fl-cutlist { display: flex; flex-wrap: wrap; gap: 4px; }
+  .fl-cuttag { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; border-radius: 4px; padding: 3px 7px; border: 1px solid var(--border-default); color: var(--text-secondary); }
+  .fl-cuttag.is-live { background: var(--interactive-primary); color: var(--interactive-primary-text); border-color: transparent; }
+  .fl-seg { display: flex; border: 1px solid var(--border-default); border-radius: 8px; overflow: hidden; }
+  .fl-seg button { flex: 1; background: none; border: none; color: var(--text-secondary); font-family: inherit; font-size: 12px; font-weight: 600; padding: 7px 0; cursor: pointer; }
+  .fl-seg button.is-on { background: var(--interactive-primary); color: var(--interactive-primary-text); }
+  .fl-mini { background: none; border: 1px solid var(--border-default); color: var(--text-secondary); border-radius: 100px; padding: 5px 12px; font-family: inherit; font-size: 11px; font-weight: 600; cursor: pointer; }
+  .fl-mini:hover { color: var(--text-primary); }
+  .fl-hint { margin: 6px 0 0; font-size: 11px; line-height: 1.45; color: var(--text-secondary); }
+  .fl-note { font-size: 12px; color: var(--text-secondary); line-height: 1.5; }
+  .fl-note code { background: var(--bg-base); border-radius: 4px; padding: 1px 5px; }
+
+  /* Ramp — same geometry and line-height band as Font Lab 2, sizes read-only */
+  #view-ramp { overflow-y: auto; }
+  .fl-ramp-main { padding: var(--spacing-300) var(--spacing-400) var(--spacing-500); min-width: 0; }
+  .fl-ramp-rows { display: flex; flex-direction: column; }
+  .fl-ramp-row { display: grid; grid-template-columns: 56px 76px 90px 1fr; gap: var(--spacing-200); align-items: center; padding: var(--spacing-100) 0; border-bottom: 1px solid var(--border-default); }
+  .fl-ramp-step { font-size: 12px; font-weight: 700; color: var(--text-secondary); }
+  .fl-ramp-lh { font-size: 11px; color: var(--text-secondary); font-variant-numeric: tabular-nums; }
+  .fl-ramp-size { font-size: 13px; color: var(--text-primary); font-variant-numeric: tabular-nums; }
+  .fl-ramp-row.is-over .fl-ramp-size { color: var(--status-error); font-weight: 700; }
+  /* The grey band is the true line-height box, so size-vs-line-height stays visible */
+  .fl-ramp-preview { overflow: hidden; white-space: nowrap; background: linear-gradient(var(--bg-surface), var(--bg-surface)) left center / 100% var(--lh, 0px) no-repeat; }
+  .fl-ramp-warn { font-size: 11px; color: var(--status-error); }
+
+  /* Screens — full height, phones never clipped */
+  .fl-screens { display: flex; flex-direction: column; height: 100%; min-height: 0; }
+  .fl-screens-panel { flex: 1; min-height: 0; margin: var(--spacing-300) var(--spacing-400) var(--spacing-100); background: var(--black-1000); border-radius: var(--border-radius-200, 16px); display: flex; }
+  .fl-screens-row { flex: 1; min-height: 0; overflow: auto; display: flex; gap: var(--spacing-500); padding: var(--spacing-400); align-items: safe center; justify-content: safe center; }
+  .fl-phone-wrap { display: flex; flex-direction: column; align-items: center; gap: var(--spacing-150); flex-shrink: 0; }
+  .fl-phone-label { color: var(--white-700); text-align: center; font-size: 11px; }
+  .fl-phone { width: 405px; height: 852px; overflow: hidden; background: transparent; }
+  .fl-phone iframe { width: 501px; height: 852px; margin-left: -48px; border: 0; display: block; background: transparent; }
+  .fl-screens-bar { padding: 0 var(--spacing-400) var(--spacing-300); flex-shrink: 0; }
+  .fl-screens-panel.is-blocked { align-items: center; justify-content: center; background: var(--bg-surface); border: 1px solid var(--border-default); }
+  .fl-blocked { max-width: 620px; padding: var(--spacing-500); color: var(--text-secondary); font-size: 14px; line-height: 1.6; }
+  .fl-blocked-title { font-size: 20px; font-weight: 700; color: var(--text-primary); margin-bottom: var(--spacing-200); }
+  .fl-blocked p { margin: 0 0 var(--spacing-200); }
+  .fl-blocked code { background: var(--bg-base); border: 1px solid var(--border-default); border-radius: 6px; padding: 2px 6px; font-family: ui-monospace, Menlo, monospace; font-size: 12.5px; color: var(--text-primary); }
+  .fl-blocked-cmd { display: flex; align-items: center; gap: var(--spacing-150); margin-bottom: var(--spacing-200); }
+  .fl-banner { margin: var(--spacing-300) var(--spacing-400) 0; border: 1px solid var(--status-warning); flex: none; }
+  .fl-missing { padding: var(--spacing-200) var(--spacing-300); border-radius: 12px; background: var(--bg-surface); color: var(--text-secondary); font-size: 12px; line-height: 1.5; }
+  .fl-missing code { background: var(--bg-base); border-radius: 4px; padding: 1px 5px; }
+
+  /* Match card — the Font Lab 1 guide-card pattern: badges, then labelled lines */
+  .fl-match { margin-top: var(--spacing-500); background: var(--bg-surface); border-radius: 16px; padding: var(--spacing-300); display: flex; flex-direction: column; gap: var(--spacing-150); }
+  .fl-match-head { display: flex; align-items: center; gap: var(--spacing-200); flex-wrap: wrap; margin-bottom: var(--spacing-100); }
+  .fl-match-title { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--text-secondary); }
+  .fl-badges { display: flex; gap: 6px; flex-wrap: wrap; }
+  .fl-badge { font-size: 11px; font-weight: 600; padding: 2px 9px; border-radius: 100px; border: 1px solid var(--border-default); color: var(--text-secondary); white-space: nowrap; }
+  .fl-badge.is-strong { background: var(--interactive-primary); color: var(--interactive-primary-text); border-color: transparent; }
+  .fl-badge.is-soft { color: var(--status-warning); border-color: var(--status-warning); }
+  .fl-line { font-size: 14px; line-height: 1.5; color: var(--text-secondary); margin: 0; }
+  .fl-line strong { color: var(--text-primary); font-weight: 600; }
+  .fl-line a { color: var(--color-interactive); }
+  .fl-match-foot { display: flex; gap: var(--spacing-200); align-items: center; flex-wrap: wrap; margin-top: var(--spacing-100); }
+
+  /* Find a match */
+  .fl-find { padding: var(--spacing-300) var(--spacing-400) var(--spacing-600); max-width: 1180px; }
+  .fl-findbar { position: relative; margin-bottom: var(--spacing-200); }
+  .fl-findbar input { width: 100%; box-sizing: border-box; background: var(--bg-input, var(--bg-base)); color: var(--text-primary); border: 1px solid var(--border-default); border-radius: 100px; padding: 13px 20px; font-family: inherit; font-size: 16px; }
+  .fl-findbar input:focus-visible { outline: none; border-color: var(--color-interactive); }
+  .fl-sugg { display: flex; gap: 6px; flex-wrap: wrap; align-items: center; margin-bottom: var(--spacing-400); font-size: 12px; color: var(--text-secondary); }
+  .fl-group { }
+  .fl-cluster { border: 1px solid var(--border-default); border-radius: 16px; padding: var(--spacing-300); margin-bottom: var(--spacing-300); }
+  .fl-cluster-name { font-size: 20px; font-weight: 700; color: var(--text-primary); margin: 0 0 var(--spacing-100); }
+  .fl-cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(290px, 1fr)); gap: var(--spacing-200); margin: var(--spacing-300) 0 var(--spacing-200); }
+  .fl-card { background: var(--bg-surface); border: 1px solid transparent; border-radius: 12px; padding: var(--spacing-200); cursor: pointer; display: flex; flex-direction: column; gap: 4px; text-align: left; font: inherit; }
+  .fl-card:hover { border-color: var(--color-interactive); }
+  .fl-card-spec { font-size: 34px; line-height: 1.2; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; color: var(--text-primary); min-height: 41px; }
+  .fl-card-name { font-size: 13px; font-weight: 600; color: var(--text-primary); }
+  .fl-card-src { font-size: 11px; color: var(--text-secondary); }
+  .fl-card-match { font-size: 11px; line-height: 1.45; color: var(--text-secondary); border-top: 1px solid var(--border-default); padding-top: 6px; margin-top: 2px; }
+  .fl-others { font-size: 12px; line-height: 1.7; color: var(--text-secondary); }
+  .fl-others strong { color: var(--text-primary); font-weight: 600; }
+  .fl-linkish { background: none; border: 0; padding: 0; font: inherit; color: var(--color-interactive); font-weight: 600; cursor: pointer; }
+  .fl-nolib { font-size: 13px; color: var(--text-secondary); font-style: italic; margin: var(--spacing-200) 0; }
+
+  .fl-empty { padding: var(--spacing-600) var(--spacing-400); color: var(--text-secondary); }
+  .fl-toast { position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); background: var(--interactive-primary); color: var(--interactive-primary-text); font-weight: 700; padding: 9px 18px; border-radius: 100px; font-size: 13px; opacity: 0; transition: opacity .18s; pointer-events: none; z-index: 60; }
+  .fl-toast.is-on { opacity: 1; }
+  @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+
+<div class="fl-app">
+  <aside class="fl-side">
+    <div class="fl-side-head">
+      <div class="fl-brand">
+        <div class="fl-logo">Font Lab 3</div>
+        <button class="fl-mini" id="btnMode">Mode</button>
+      </div>
+      <input class="fl-search" type="search" id="q" placeholder="Search 145 built families">
+      <div class="fl-chips" id="catf">
+        <button class="fl-chip is-on" data-c="all">All</button>
+        <button class="fl-chip" data-c="Display">Display</button>
+        <button class="fl-chip" data-c="Sans-serif">Sans</button>
+        <button class="fl-chip" data-c="Serif">Serif</button>
+      </div>
+      <div class="fl-chips" id="favf">
+        <button class="fl-chip is-on" data-f="all">Every</button>
+        <button class="fl-chip" data-f="fav">Favourites</button>
+      </div>
+    </div>
+    <div class="fl-count"><span><strong id="cShown">0</strong> shown</span><span><strong id="cFav">0</strong> favourited</span></div>
+    <div class="fl-list" id="list"></div>
+    <div class="fl-side-foot">
+      <button class="fl-mini" id="btnFavJSON">Export JSON</button>
+      <button class="fl-mini" id="btnFavCSV">Export CSV</button>
+      <button class="fl-mini" id="btnFavClear">Clear</button>
+    </div>
+  </aside>
+
+  <div class="fl-main">
+    <div class="fl-content">
+      <div class="fl-mainhead">
+        <div class="fl-headrow">
+          <div class="fl-curfont" id="curFont">Select a font</div>
+          <span class="fl-cursrc" id="curSrc"></span>
+          <div class="fl-headacts">
+            <button class="fl-star" id="btnFav" title="Favourite">&#9734;</button>
+          </div>
+        </div>
+        <div class="fl-substrip">
+          <span class="fl-meta" id="curMeta"></span>
+          <div class="fl-globals">
+            <div class="fl-seg" id="caseSeg">
+              <button data-v="standard" class="is-on">Standard</button>
+              <button data-v="caps">All caps</button>
+            </div>
+            <div class="fl-seg" id="styleSeg">
+              <button data-v="roman" class="is-on">Roman</button>
+              <button data-v="italic">Italic</button>
+            </div>
+          </div>
+        </div>
+        <div class="fl-tabs">
+          <button class="fl-tab is-on" data-view="ramp">Display ramp</button>
+          <button class="fl-tab" data-view="screens">Screens</button>
+          <button class="fl-tab" data-view="match">Find a match</button>
+        </div>
+      </div>
+
+      <section class="fl-view is-on" id="view-ramp">
+        <div id="rampBanner"></div>
+        <div class="fl-ramp-main">
+          <div class="fl-ramp-rows" id="rampRows"></div>
+          <div id="matchCard"></div>
+        </div>
+      </section>
+
+      <section class="fl-view" id="view-match">
+        <div class="fl-find">
+          <div class="fl-findbar">
+            <input type="search" id="findQ" autocomplete="off" spellcheck="false"
+                   placeholder="Search a paid font, a Google font, or a style — Druk, Gotham, Trade Gothic, Oswald, condensed…">
+          </div>
+          <div class="fl-sugg" id="findSugg"></div>
+          <div id="findResults"></div>
+        </div>
+      </section>
+
+      <section class="fl-view" id="view-screens">
+        <div class="fl-screens">
+          <div class="fl-screens-panel" id="screensPanel"><div class="fl-screens-row" id="screensRow"></div></div>
+          <div class="fl-screens-bar"><p class="fl-note" id="screensNote" style="margin:0"></p></div>
+        </div>
+      </section>
+    </div>
+
+    <aside class="fl-panel" id="panel"></aside>
+  </div>
+</div>
+<div class="fl-toast" id="toast"></div>
+<script>
+'use strict';
+/* Font Lab 3 browses the BUILT library rather than Google Fonts. Every face here is
+   a real file out of built-fonts/, so the nudge is already in the metrics and the
+   caps are already in the glyphs — there is nothing left for the tool to simulate,
+   and no network round-trip. That is also why it needs http://: a font file cannot
+   be loaded cross-origin from file://. */
+const FONTS = window.FL3_FONTS || [];
+const LH    = window.FL3_LH || {};
+const STEPS = ['900','800','700','600','500','400','300','200','100'];
+const byName = Object.fromEntries(FONTS.map(f => [f.n, f]));
+const $ = id => document.getElementById(id);
+const FAVKEY = 'fontlab3-favourites-v1';
+const CATS = ['Display', 'Sans-serif', 'Serif'];
+const FONT_DIR = 'built-fonts/';
+
+let current = null, view = 'ramp', query = '', filterCat = 'all', filterFav = 'all';
+let gCase = 'standard', gStyle = 'roman';
+let sampleText = 'Boxy MVP waltzed quick jabs from the wing.';
+let favs = new Set();
+try { favs = new Set(JSON.parse(localStorage.getItem(FAVKEY) || '[]')); } catch (e) {}
+
+function esc(s) { return String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])); }
+let toastT;
+function toast(msg) {
+  const t = $('toast'); t.textContent = msg; t.classList.add('is-on');
+  clearTimeout(toastT); toastT = setTimeout(() => t.classList.remove('is-on'), 1700);
+}
+
+/* ── variant resolution ──────────────────────────────────────────────────────
+   Case and style are global settings, but not every family has every cut: only 119
+   have a caps cut and only 59 have any italic. Rather than disable the switch or
+   hide those families, each one falls back to the nearest cut it does have and says
+   so in the substrip — a global sweep should never silently show the wrong thing. */
+function variantOf(f) {
+  const order = gCase === 'caps'
+    ? (gStyle === 'italic' ? ['capsItalic', 'caps', 'romanItalic', 'roman'] : ['caps', 'roman'])
+    : (gStyle === 'italic' ? ['romanItalic', 'roman'] : ['roman', 'caps']);
+  let key = order.find(k => f.cuts[k]) || Object.keys(f.cuts)[0];
+  const cut = f.cuts[key];
+  return {
+    key, cut,
+    italic: key.endsWith('Italic'),
+    fellBackCase: (gCase === 'caps') !== (key.indexOf('caps') === 0),
+    fellBackStyle: gStyle === 'italic' && !key.endsWith('Italic'),
+  };
+}
+/* One FontFace per built file, registered under the family name that is actually
+   inside the file — so a roman and its italic land in one CSS family and font-style
+   picks between them exactly as it will in the app. */
+const faceCache = new Map();
+let fontLoadFailed = false;
+function loadFace(v) {
+  if (!v || !v.cut) return Promise.resolve(false);
+  if (faceCache.has(v.cut.file)) return faceCache.get(v.cut.file);
+  const url = FONT_DIR + encodeURIComponent(v.cut.file);
+  const ff = new FontFace(v.cut.family, 'url("' + url + '")',
+                          { style: v.italic ? 'italic' : 'normal', display: 'swap' });
+  const p = ff.load().then(face => { document.fonts.add(face); return true; })
+                     .catch(() => { noteMissing(v.cut.file); return false; });
+  faceCache.set(v.cut.file, p);
+  return p;
+}
+function faceCSS(f, v, sizePx) {
+  return {
+    fontFamily: "'" + v.cut.family.replace(/['"]/g, '') + "', sans-serif",
+    fontStyle: v.italic ? 'italic' : 'normal',
+    fontWeight: f.weight,
+    fontSize: sizePx + 'px',
+    letterSpacing: f.ls + 'em',
+  };
+}
+
+/* ── match research ─────────────────────────────────────────────────────────
+   From the Font Match Research doc: 47 lineages, each with the closest Adobe Fonts
+   family and another paid option, and every one of the 663 liked Google families
+   mapped onto one. The prose lives on the lineage, not the family — 145 rows all
+   pointing at "Condensed poster grotesk" say the same thing about Trade Gothic — so
+   a family only carries an override where it genuinely differs. */
+const M = window.FL3_MATCH || { clusters: {}, custom: {}, families: {} };
+/* Some faces belong to two lineages — Proxima Nova is a geometric skeleton on
+   grotesk proportions, and filing it under one alone makes searches miss. The audit
+   added `cluster2` for exactly those; every index here counts a family under both,
+   and remembers which membership is the secondary one so the UI can say so. */
+const SCRIPT_ROUTED = new Set(M.scriptRouted || []);
+const CLUSTER_GOOGLE = {}, SECONDARY_OF = {};
+function fileUnder(map, cid, item, secondary, key) {
+  if (!cid) return;
+  (map[cid] = map[cid] || []).push(item);
+  if (secondary) SECONDARY_OF[cid + '|' + key] = true;
+}
+for (const fam in M.families) {
+  const e = M.families[fam];
+  fileUnder(CLUSTER_GOOGLE, e.cluster, fam, false, fam);
+  fileUnder(CLUSTER_GOOGLE, e.cluster2, fam, true, fam);
+}
+const CLUSTER_LIB = {};      // lineage → the built families in it
+FONTS.forEach(f => {
+  const c = M.custom[f.token];
+  if (!c) return;
+  fileUnder(CLUSTER_LIB, c.cluster, f, false, f.n);
+  fileUnder(CLUSTER_LIB, c.cluster2, f, true, f.n);
+});
+/* The paid index. Tier 1 is hand-assigned with a confidence and is safe to act on;
+   tier 2 is harvested catalogue names that exist so a search resolves and carries no
+   confidence at all. Keeping them visibly separate is the whole point — a routing
+   guess dressed as a recommendation is worse than no answer. */
+const PAID = M.paid || {};
+const PAID_BY_CLUSTER = {};
+for (const nm in PAID) {
+  fileUnder(PAID_BY_CLUSTER, PAID[nm].cluster, nm, false, nm);
+  fileUnder(PAID_BY_CLUSTER, PAID[nm].cluster2, nm, true, nm);
+}
+const LIB_LABEL = { adobe: 'Adobe Fonts', monotype: 'Monotype Fonts', retail: 'buy from the foundry', bundled: 'ships with an OS' };
+function paidHits(q) {
+  if (!q) return [];
+  return Object.keys(PAID).filter(nm => nm.toLowerCase().includes(q))
+    .sort((a, b) => (PAID[a].tier - PAID[b].tier) ||
+                    (a.toLowerCase().indexOf(q) - b.toLowerCase().indexOf(q)) ||
+                    a.localeCompare(b));
+}
+function matchFor(f) {
+  const cu = f && M.custom[f.token]; if (!cu) return null;
+  const cl = M.clusters[cu.cluster]; if (!cl) return null;
+  const also = cu.cluster2 && M.clusters[cu.cluster2];
+  return { id: cl.id, name: cl.name, genre: cl.genre, score: cl.score, links: cl.links || [],
+           adobe: cu.adobe || cl.adobe, paid: cu.paid || cl.paid,
+           why: cu.why || cl.why, differs: cu.differs || cl.differs,
+           confidence: cu.confidence || cl.confidence, setup: cu.setup,
+           scriptRouted: SCRIPT_ROUTED.has(cl.id),
+           also: also || null, alsoWhy: cu.cluster2Why || '',
+           movedWhy: cu.movedWhy || '', movedFrom: cu.clusterWas || '' };
+}
+
+/* ── sidebar ── */
+/* 145 rail samples means 145 font files if they all load at once, so each row waits
+   until it is near the viewport. */
+const railObserver = new IntersectionObserver(entries => {
+  for (const en of entries) {
+    if (!en.isIntersecting) continue;
+    railObserver.unobserve(en.target);
+    const f = byName[en.target.dataset.font]; if (!f) continue;
+    const v = variantOf(f);
+    const el = en.target.querySelector('.fl-row-sample');
+    loadFace(v).then(ok => { if (ok && el) Object.assign(el.style, faceCSS(f, v, 24)); });
+  }
+}, { rootMargin: '200px' });
+
+function railList() {
+  const q = query.trim().toLowerCase();
+  const rows = FONTS.slice()
+    .sort((a, b) => (CATS.indexOf(a.cat) - CATS.indexOf(b.cat)) || a.token.localeCompare(b.token))
+    .filter(f => {
+      if (filterCat !== 'all' && f.cat !== filterCat) return false;
+      if (filterFav === 'fav' && !favs.has(f.n)) return false;
+      if (q && !f.n.toLowerCase().includes(q) && !f.token.toLowerCase().includes(q)) return false;
+      return true;
+    });
+  let html = '', lastCat = null;
+  for (const f of rows) {
+    if (f.cat !== lastCat) { html += '<div class="fl-group">' + esc(f.cat) + '</div>'; lastCat = f.cat; }
+    html += '<div class="fl-row' + (current === f.n ? ' is-sel' : '') + '" data-font="' + esc(f.n) + '">' +
+      '<div class="fl-row-meta">' +
+        '<button class="fl-star' + (favs.has(f.n) ? ' is-on' : '') + '" data-fav="' + esc(f.n) + '" title="Favourite">' +
+          (favs.has(f.n) ? '&#9733;' : '&#9734;') + '</button>' +
+        '<span class="fl-row-name">' + esc(f.token) + '</span>' +
+        '<span class="fl-row-src">' + esc(f.n) + '</span>' +
+      '</div>' +
+      '<div class="fl-row-sample">' + esc(f.token) + '</div></div>';
+  }
+  $('list').innerHTML = html || '<div class="fl-empty" style="color:var(--inverted-700)">Nothing matches.</div>';
+  $('cShown').textContent = rows.length;
+  $('cFav').textContent = favs.size;
+  document.querySelectorAll('.fl-row').forEach(r => {
+    railObserver.observe(r);
+    r.addEventListener('click', e => {
+      if (e.target.closest('[data-fav]')) return;
+      select(r.dataset.font);
+    });
+  });
+  document.querySelectorAll('[data-fav]').forEach(b => b.addEventListener('click', e => {
+    e.stopPropagation(); toggleFav(b.dataset.fav);
+  }));
+}
+function chips(id, fn) {
+  $(id).addEventListener('click', e => {
+    const b = e.target.closest('button'); if (!b) return;
+    [...e.currentTarget.children].forEach(x => x.classList.toggle('is-on', x === b));
+    fn(b.dataset); railList();
+  });
+}
+chips('catf', d => filterCat = d.c);
+chips('favf', d => filterFav = d.f);
+$('q').addEventListener('input', e => { query = e.target.value; railList(); });
+
+/* ── favourites ── */
+function persistFavs() {
+  try { localStorage.setItem(FAVKEY, JSON.stringify([...favs])); }
+  catch (e) { toast('Could not write to localStorage'); }
+}
+function toggleFav(name) {
+  if (favs.has(name)) favs.delete(name); else favs.add(name);
+  persistFavs(); railList(); syncFavBtn();
+}
+function syncFavBtn() {
+  const on = !!(current && favs.has(current));
+  $('btnFav').classList.toggle('is-on', on);
+  $('btnFav').innerHTML = on ? '&#9733;' : '&#9734;';
+  $('btnFav').title = on ? 'Remove from favourites' : 'Add to favourites';
+}
+$('btnFav').addEventListener('click', () => { if (current) toggleFav(current); });
+function favRows() {
+  return FONTS.filter(f => favs.has(f.n)).map(f => {
+    const v = variantOf(f);
+    /* No metrics flag or note: those tracked work that is now done and baked into
+       the files. The nudge stays as a plain record of what the built file carries. */
+    return { displayFont: f.token, source: f.n, category: f.cat, lane: f.lane,
+             weight: f.weight, letterSpacing: f.ls + 'em', caseMode: f.caps,
+             nudgePct: f.nudge,
+             shippingFile: v.cut ? v.cut.file : '',
+             cutsBuilt: Object.keys(f.cuts).join(' '),
+             sizes: f.sizes };
+  });
+}
+function download(name, text, type) {
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(new Blob([text], { type: type }));
+  a.download = name; document.body.append(a); a.click(); a.remove();
+  setTimeout(() => URL.revokeObjectURL(a.href), 4000);
+}
+$('btnFavJSON').addEventListener('click', () => {
+  if (!favs.size) return toast('No favourites yet');
+  download('font-favourites.json', JSON.stringify({
+    tool: 'font-lab-3', exported: new Date().toISOString(),
+    count: favs.size, lineHeights: LH, favourites: favRows() }, null, 2), 'application/json');
+  toast('Exported ' + favs.size);
+});
+$('btnFavCSV').addEventListener('click', () => {
+  if (!favs.size) return toast('No favourites yet');
+  const rows = favRows();
+  const cols = ['displayFont','source','category','lane','weight','letterSpacing','caseMode',
+                'nudgePct','shippingFile','cutsBuilt'];
+  const cell = x => '"' + String(x == null ? '' : x).replace(/"/g, '""') + '"';
+  const csv = [cols.concat(STEPS.map(s => 'size' + s)).join(',')]
+    .concat(rows.map(r => cols.map(c => cell(r[c])).concat(STEPS.map(s => r.sizes[s])).join(',')))
+    .join('\n');
+  download('font-favourites.csv', csv, 'text/csv');
+  toast('Exported ' + favs.size);
+});
+$('btnFavClear').addEventListener('click', () => {
+  if (!favs.size) return toast('No favourites yet');
+  favs.clear(); persistFavs(); railList(); syncFavBtn(); toast('Cleared');
+});
+
+/* ── global case / style ── */
+function wireSeg(id, apply) {
+  $(id).addEventListener('click', e => {
+    const b = e.target.closest('button'); if (!b) return;
+    [...e.currentTarget.children].forEach(x => x.classList.toggle('is-on', x === b));
+    apply(b.dataset.v);
+    renderAll(); railList();
+  });
+}
+wireSeg('caseSeg', v => { gCase = v; });
+wireSeg('styleSeg', v => { gStyle = v; });
+
+/* ── ramp ── */
+function renderRamp() {
+  if (!current) { $('rampRows').innerHTML = '<div class="fl-empty">Pick a font from the rail to see its ramp.</div>'; return; }
+  const f = byName[current];
+  $('rampRows').innerHTML = STEPS.map(s => {
+    const lh = LH[s], size = f.sizes[s] == null ? lh : f.sizes[s], over = size > lh;
+    return '<div class="fl-ramp-row' + (over ? ' is-over' : '') + '" data-step="' + s + '">' +
+      '<span class="fl-ramp-step">' + s + '</span>' +
+      '<span class="fl-ramp-lh">lh ' + lh + 'px</span>' +
+      '<span><span class="fl-ramp-size">' + size + 'px</span>' +
+        (over ? '<div class="fl-ramp-warn">&gt; lh</div>' : '') + '</span>' +
+      '<div class="fl-ramp-preview" data-prev="' + s + '" style="--lh:' + lh + 'px"></div></div>';
+  }).join('');
+}
+function paintRamp() {
+  if (!current) return;
+  const f = byName[current], v = variantOf(f);
+  loadFace(v).then(() => {
+    STEPS.forEach(s => {
+      const el = document.querySelector('[data-prev="' + s + '"]'); if (!el) return;
+      const lh = LH[s], size = f.sizes[s] == null ? lh : f.sizes[s];
+      el.textContent = sampleText;
+      Object.assign(el.style, faceCSS(f, v, size));
+      el.style.lineHeight = lh + 'px';
+      el.style.setProperty('--lh', lh + 'px');
+    });
+  });
+}
+
+/* ── Screens: live in-context preview (ported from Font Lab 2) ──────────────
+   Four native screens in phone-sized iframes, with the display
+   tokens set inline on each iframe's :root. Two things Font Lab 2 had to fake are
+   gone: the caps cut is a real font so nothing is text-transformed, and the nudge is
+   in the metrics so nothing is offset per class. */
+/* The screens this tab previews a face against. Any app-mode page in this repo
+   works — these are the iOS prototypes plus the demo sheet's phone frame. Add a
+   { path, name } and it appears. */
+const CURATED_SCREENS = [
+  { path: '../ios-prototypes/ios-nav-page-demo.html', name: 'Nav Page' },
+  { path: '../ios-prototypes/ios-nav-demo.html',      name: 'Tab Bar' },
+  { path: '../ios-prototypes/ios-modal-demo.html',    name: 'Modal Sheet' },
+  { path: '../../demo/11-ios-frame.html',             name: 'iOS Chrome' },
+];
+const DISP_SEL = STEPS.map(x => '.display' + x).join(',') + ',.nav-title';
+let screensBuilt = false, screenFrames = [], screensBlocked = false;
+
+/* The template's ≤500px "real phone" breakpoint strips the status bar and home
+   indicator because a device's OS draws them; our frame has no OS chrome. */
+function restoreScreenChrome(doc) {
+  if (!doc || !doc.documentElement || doc.getElementById('fl-chrome')) return;
+  const st = doc.createElement('style'); st.id = 'fl-chrome';
+  st.textContent = '@media (max-width:500px){' +
+    '[data-platform="app"]{--safe-area-top:59px!important;--safe-area-bottom:34px!important;background:var(--bg-base)!important;}' +
+    '[data-platform="app"] .ios-status-bar{height:59px!important;overflow:visible!important;position:fixed!important;top:0!important;left:0!important;right:0!important;}' +
+    '[data-platform="app"] .ios-status-bar svg{display:block!important;}' +
+    '[data-platform="app"] .ios-home-indicator{display:flex!important;position:fixed!important;bottom:0!important;left:0!important;right:0!important;}' +
+    '[data-platform="app"] .ios-nav-page{top:var(--safe-area-top)!important;}' +
+    '[data-platform="app"] .ios-nav-page::before,[data-platform="app"] .ios-nav-page::after{top:calc(-1 * var(--safe-area-top))!important;}' +
+    'html[data-platform="app"] .app-device-controls{position:fixed!important;top:11px!important;left:50%!important;transform:translateX(-50%)!important;min-width:126px!important;height:37px!important;border-radius:19px!important;padding:0 4px!important;background:#000!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important;border:1px solid var(--white-100)!important;opacity:1!important;pointer-events:auto!important;justify-content:center!important;align-items:center!important;gap:0!important;}' +
+    'html[data-platform="app"] .app-device-controls .mode-toggle{padding:0 8px!important;}' +
+    'html[data-platform="app"] .app-device-controls .mode-toggle .material-symbols-rounded{font-size:16px!important;}' +
+    'html[data-platform="app"] .app-device-controls label{padding:0 8px 0 10px!important;gap:1px!important;}' +
+    'html[data-platform="app"] .app-device-controls label .device-control-label{font-size:11px!important;}' +
+    'html[data-platform="app"] .app-device-controls label .material-symbols-rounded{font-size:16px!important;}' +
+    'html[data-platform="app"] .app-device-controls label select{pointer-events:auto!important;}}';
+  (doc.head || doc.documentElement).appendChild(st);
+}
+function screenOverride(doc) {
+  if (!doc || !doc.documentElement || !current) return;
+  restoreScreenChrome(doc);
+  const f = byName[current], v = variantOf(f);
+  let hide = doc.getElementById('fl-hide');
+  if (!hide) {
+    hide = doc.createElement('style'); hide.id = 'fl-hide';
+    /* Hide the template-authoring "View as Web" link, and give .nav-title a
+       size-relative line-height — its 20px box is tuned for all-caps team faces
+       and clips descenders on anything with a g or y. */
+    hide.textContent = '.template-platform-link{display:none!important;}.nav-title{line-height:1.3!important;}';
+    (doc.head || doc.documentElement).appendChild(hide);
+  }
+  /* The face is a local file, so it goes in as an @font-face rather than a Google
+     stylesheet link. The URL is resolved against the parent page — the iframe sits
+     at a different path. */
+  let face = doc.getElementById('fl-face');
+  if (!face) { face = doc.createElement('style'); face.id = 'fl-face'; (doc.head || doc.documentElement).appendChild(face); }
+  const abs = new URL(FONT_DIR + encodeURIComponent(v.cut.file), location.href).href;
+  face.textContent = '@font-face{font-family:"' + v.cut.family + '";' +
+    'src:url("' + abs + '") format("truetype");' +
+    'font-style:' + (v.italic ? 'italic' : 'normal') + ';font-weight:' + f.weight + ';font-display:swap;}';
+
+  const r = doc.documentElement.style;
+  r.setProperty('--display-font', '"' + v.cut.family + '", sans-serif');
+  r.setProperty('--display-weight', f.weight);
+  r.setProperty('--display-letter-spacing', f.ls + 'em');
+  STEPS.forEach(x => r.setProperty('--display-size-' + x, (f.sizes[x] == null ? LH[x] : f.sizes[x]) + 'px'));
+  r.setProperty('--display-width', '100%');
+  r.setProperty('--display-slant', '0');
+  /* font-style has no token in the system, so the italic is selected the only way it can be
+     from out here — a rule on the display classes. */
+  let it = doc.getElementById('fl-italic');
+  if (!it) { it = doc.createElement('style'); it.id = 'fl-italic'; (doc.head || doc.documentElement).appendChild(it); }
+  it.textContent = v.italic ? DISP_SEL + '{font-style:italic!important;}' : '';
+}
+const SERVE_CMD = 'python3 -m http.server';
+const SERVE_URL = 'http://localhost:8000/tools/font-lab/index.html';
+function blockedHTML(title, why) {
+  return '<div class="fl-blocked">' +
+    '<div class="fl-blocked-title">' + title + '</div>' +
+    '<p>' + why + '</p><p>From the repo root:</p>' +
+    '<div class="fl-blocked-cmd"><code>' + SERVE_CMD + '</code>' +
+      '<button class="fl-mini" data-copycmd>Copy</button></div>' +
+    '<p>then open <code>' + SERVE_URL + '</code></p></div>';
+}
+function wireCopy(scope) {
+  (scope || document).querySelectorAll('[data-copycmd]').forEach(b => b.addEventListener('click', () => {
+    navigator.clipboard.writeText(SERVE_CMD).then(() => toast('Copied'), () => toast('Copy failed'));
+  }));
+}
+/* Two different failures, deliberately not conflated. On file:// NOTHING can load, so
+   the whole tool is unusable and gets the full panel. On http a single missing file
+   is just that — one font out of 369 — and telling you to start a server you are
+   already running would send you the wrong way. */
+let bannerShown = false;
+function showBannerIfBlocked() {
+  if (bannerShown || location.protocol !== 'file:') return;
+  bannerShown = true;
+  const el = $('rampBanner');
+  el.className = 'fl-screens-panel is-blocked fl-banner';
+  el.innerHTML = blockedHTML('These fonts need a local server',
+    'The library is 369 real font files in <code>built-fonts/</code>. On <code>file://</code> the browser ' +
+    'refuses to load them cross-origin, so every specimen falls back to Inter.');
+  wireCopy(el);
+}
+const missing = [];
+function noteMissing(file) {
+  fontLoadFailed = true;
+  if (location.protocol === 'file:') return showBannerIfBlocked();
+  if (missing.includes(file) || bannerShown) return;
+  missing.push(file);
+  const el = $('rampBanner');
+  el.className = 'fl-banner fl-missing';
+  el.innerHTML = '<strong>' + missing.length + ' font file' + (missing.length > 1 ? 's' : '') +
+    ' could not be loaded</strong> from <code>built-fonts/</code> — ' +
+    missing.slice(0, 4).map(esc).join(', ') + (missing.length > 4 ? ' and more' : '') +
+    '. Those families fall back to Inter. Re-run <code>_build/build_fonts.py</code> if the folder is incomplete.';
+}
+function markScreensBlocked() {
+  if (screensBlocked) return; screensBlocked = true;
+  const panel = $('screensPanel');
+  if (panel) {
+    panel.classList.add('is-blocked');
+    panel.innerHTML = blockedHTML('These screens need a local server',
+      'You are on <code>file://</code>. The browser gives each file its own origin, so Font Lab ' +
+      'cannot reach into the screens to apply the font — they fall back to each template’s own team face.');
+    wireCopy(panel);
+  }
+  const note = $('screensNote');
+  if (note) { note.style.color = 'var(--status-warning)';
+    note.innerHTML = '⚠ Preview disabled on <code>file://</code> — serve the repo over http to use this tab.'; }
+}
+function buildScreens() {
+  if (screensBuilt) return; screensBuilt = true;
+  const row = $('screensRow');
+  CURATED_SCREENS.forEach(sc => {
+    const wrap = document.createElement('div'); wrap.className = 'fl-phone-wrap';
+    wrap.innerHTML = '<div class="fl-phone"><iframe src="' + sc.path +
+      '" title="' + sc.name + '"></iframe></div>' +
+      '<div class="fl-phone-label">' + sc.name + '</div>';
+    const fr = wrap.querySelector('iframe');
+    fr.addEventListener('load', () => {
+      let doc = null;
+      try { doc = fr.contentDocument; if (doc) void doc.documentElement.className; } catch (e) { doc = null; }
+      if (!doc) { markScreensBlocked(); return; }   // file:// blocks parent → iframe access
+      try { screenOverride(doc); } catch (e) { markScreensBlocked(); }
+    });
+    screenFrames.push(fr);
+    row.appendChild(wrap);
+  });
+}
+function refreshScreens() {
+  if (!screensBuilt || !current) return;
+  screenFrames.forEach(fr => { try { screenOverride(fr.contentDocument); } catch (e) {} });
+  const note = $('screensNote');
+  if (note && !screensBlocked) {
+    const f = byName[current], v = variantOf(f);
+    note.innerHTML = 'Previewing <strong>' + esc(f.token) + '</strong> · <code>' + esc(v.cut.file) + '</code>' +
+      ' · weight ' + f.weight + ' · ' + f.ls + 'em, on this family’s size ramp. ' +
+      '<span style="opacity:.8">The caps and the vertical metrics are in the font file, not simulated. ' +
+      'Change team &amp; mode per screen from its dynamic island.</span>';
+  }
+}
+
+/* ── the match card under the ramp ── */
+function confBadge(c) {
+  return '<span class="fl-badge' + (/high/i.test(c) ? '' : ' is-soft') + '">' + esc(c) + ' confidence</span>';
+}
+function renderMatchCard() {
+  const el = $('matchCard'); if (!el) return;
+  const f = current && byName[current], m = f && matchFor(f);
+  if (!m) { el.innerHTML = ''; return; }
+  const n = (CLUSTER_LIB[m.id] || []).length;
+  el.innerHTML = '<div class="fl-match">' +
+    '<div class="fl-match-head"><span class="fl-match-title">Paid &amp; Adobe equivalents</span>' +
+      '<div class="fl-badges"><span class="fl-badge is-strong">' + esc(m.id + ' · ' + m.name) + '</span>' +
+        confBadge(m.confidence) +
+        (m.score ? '<span class="fl-badge">upgrade ' + esc(m.score) + '</span>' : '') +
+      '</div></div>' +
+    '<p class="fl-line"><strong>Closest on Adobe Fonts:</strong> ' + esc(m.adobe) + '</p>' +
+    (m.paid ? '<p class="fl-line"><strong>Other paid option:</strong> ' + esc(m.paid) + '</p>' : '') +
+    '<p class="fl-line"><strong>Why it matches:</strong> ' + esc(m.why) + '</p>' +
+    '<p class="fl-line"><strong>What differs:</strong> ' + esc(m.differs) + '</p>' +
+    (m.setup ? '<p class="fl-line"><strong>To compare like for like:</strong> ' + esc(m.setup) + '</p>' : '') +
+    (m.also ? '<p class="fl-line"><strong>Also reads as:</strong> ' +
+       '<button class="fl-linkish" data-find="' + esc(m.also.name) + '">' + esc(m.also.name) + '</button>' +
+       ' — ' + esc(m.alsoWhy) + ' Closest there: ' + esc(m.also.adobe) + '.</p>' : '') +
+    (m.movedWhy ? '<p class="fl-line" style="color:var(--text-secondary)"><strong>Reassigned</strong> from ' +
+       esc(m.movedFrom) + ' — ' + esc(m.movedWhy) + '</p>' : '') +
+    (m.scriptRouted ? '<p class="fl-line" style="color:var(--status-warning)"><strong>Routed by script, not by shape.</strong> ' +
+       'A Latin lookalike is not a valid substitute here — judge coverage and shaping, and get a native reader to check it.</p>' : '') +
+    '<div class="fl-match-foot">' +
+      '<button class="fl-mini" id="btnCluster">See all ' + n + ' in this lineage</button>' +
+      m.links.map(l => '<a class="fl-line" href="' + esc(l.url) + '" target="_blank" rel="noopener">' +
+        esc(l.label) + ' ↗</a>').join('') +
+    '</div></div>';
+  const b = $('btnCluster');
+  if (b) b.addEventListener('click', () => { $('findQ').value = m.name; runFind(m.name); switchView('match'); });
+}
+
+/* ── find a match ───────────────────────────────────────────────────────────
+   One box over four things at once: the paid and Adobe names, the lineage names and
+   genres, the 663 liked Google families, and your own token names. Searching "Druk"
+   finds the lineage by its paid option; "Oswald" finds it by a family inside it;
+   "condensed" finds it by genre. All three should land you in the same place. */
+const SUGGESTIONS = ['Knockout', 'Druk', 'Gotham', 'Söhne', 'Tungsten', 'Trade Gothic',
+                     'Cooper Black', 'DIN', 'Futura', 'Interstate', 'Archer', 'Bodoni', 'Operator'];
+let findQuery = '';
+function scoreCluster(cl, q) {
+  const lib = CLUSTER_LIB[cl.id] || [], goog = CLUSTER_GOOGLE[cl.id] || [];
+  const hitLib = lib.filter(f => f.token.toLowerCase().includes(q) || f.n.toLowerCase().includes(q));
+  const hitGoog = goog.filter(g => g.toLowerCase().includes(q));
+  const paid = ((cl.adobe || '') + ' ' + (cl.paid || '')).toLowerCase();
+  const hitPaid = (PAID_BY_CLUSTER[cl.id] || []).filter(nm => nm.toLowerCase().includes(q));
+  const secondaryHit = hitPaid.some(nm => SECONDARY_OF[cl.id + '|' + nm]) ||
+                       hitLib.some(f => SECONDARY_OF[cl.id + '|' + f.n]);
+  let s = 0, why = '';
+  if (cl.id.toLowerCase() === q) { s = 100; why = 'lineage ' + cl.id; }
+  if (hitPaid.length) {
+    const best = hitPaid.slice().sort((a, b) => PAID[a].tier - PAID[b].tier)[0];
+    s = Math.max(s, PAID[best].tier === 1 ? 96 : 88);
+    why = why || (PAID[best].tier === 1 ? 'the lineage for ' + best : 'routes ' + best + ' here');
+    if (secondaryHit) why += ' (second reading)';
+  }
+  if (paid.includes(q)) { s = Math.max(s, 92); why = why || 'the paid face it stands in for'; }
+  if (hitLib.length) { s = Math.max(s, 86); why = why || 'matches ' + hitLib[0].token + ' in your library'; }
+  if (hitGoog.length) { s = Math.max(s, 80); why = why || 'includes ' + hitGoog[0]; }
+  if ((cl.name || '').toLowerCase().includes(q) || (cl.genre || '').toLowerCase().includes(q)) {
+    s = Math.max(s, 70); why = why || 'lineage name';
+  }
+  return { s, why, lib, goog };
+}
+function clusterHTML(cl, why) {
+  const lib = (CLUSTER_LIB[cl.id] || []).slice().sort((a, b) => a.token.localeCompare(b.token));
+  const inLib = new Set(lib.map(f => f.n));
+  const others = (CLUSTER_GOOGLE[cl.id] || []).filter(g => !inLib.has(g)).sort();
+  /* The Adobe and paid names belong to the lineage and are already in the header
+     right above — repeating them on every card would be nine identical sentences.
+     What IS per family is how to set the paid face up to compare like for like, so
+     that is what the card carries, plus a confidence note only where this family
+     rates differently from its lineage. */
+  const cards = lib.map(f => {
+    const m = matchFor(f);
+    const odd = m.confidence && cl.confidence && m.confidence !== cl.confidence;
+    return '<button class="fl-card" data-pick="' + esc(f.n) + '">' +
+      '<div class="fl-card-spec" data-cardspec="' + esc(f.n) + '">' + esc(f.token) + '</div>' +
+      '<div class="fl-card-name">' + esc(f.token) +
+        (SECONDARY_OF[cl.id + '|' + f.n] ? ' <span class="fl-badge">second reading</span>' : '') + '</div>' +
+      '<div class="fl-card-src">' + esc(f.n) + ' · ' + f.weight + ' · ' + f.ls + 'em</div>' +
+      '<div class="fl-card-match">' +
+        (odd ? '<strong>' + esc(m.confidence) + ' confidence.</strong> ' : '') +
+        (m.setup ? 'To compare: ' + esc(m.setup) : 'Stands in for ' + esc(m.adobe)) +
+      '</div>' +
+    '</button>';
+  }).join('');
+  return '<div class="fl-cluster">' +
+    '<h3 class="fl-cluster-name">' + esc(cl.name) + '</h3>' +
+    '<div class="fl-badges" style="margin-bottom:12px">' +
+      '<span class="fl-badge is-strong">' + esc(cl.id) + '</span>' +
+      (cl.genre ? '<span class="fl-badge">' + esc(cl.genre) + '</span>' : '') +
+      confBadge(cl.confidence || '') +
+      (cl.score ? '<span class="fl-badge">upgrade ' + esc(cl.score) + '</span>' : '') +
+      (why ? '<span class="fl-badge">matched on ' + esc(why) + '</span>' : '') +
+    '</div>' +
+    '<p class="fl-line"><strong>Closest on Adobe Fonts:</strong> ' + esc(cl.adobe || '—') + '</p>' +
+    (cl.paid ? '<p class="fl-line"><strong>Other paid option:</strong> ' + esc(cl.paid) + '</p>' : '') +
+    '<p class="fl-line"><strong>Why it matches:</strong> ' + esc(cl.why || '') + '</p>' +
+    '<p class="fl-line"><strong>What differs:</strong> ' + esc(cl.differs || '') + '</p>' +
+    (lib.length
+      ? '<div class="fl-cards">' + cards + '</div>'
+      : '<p class="fl-nolib">Nothing in the built library sits in this lineage.</p>') +
+    (others.length
+      ? '<p class="fl-others"><strong>Other Google Fonts in this lineage (' + others.length + '):</strong> ' +
+          esc(others.join('; ')) + '</p>'
+      : '') +
+    paidListHTML(cl.id) +
+  '</div>';
+}
+/* The paid faces this lineage covers, split by tier so the two never blur. */
+function paidListHTML(cid) {
+  const all = PAID_BY_CLUSTER[cid] || [];
+  const t1 = all.filter(n => PAID[n].tier === 1).sort();
+  const t2 = all.filter(n => PAID[n].tier === 2).sort();
+  if (!t1.length && !t2.length) return '';
+  return (t1.length ? '<p class="fl-others" style="margin-top:8px"><strong>Paid faces this stands in for (' + t1.length + '):</strong> ' +
+      t1.map(n => esc(n) + ' <span style="opacity:.65">(' + esc(PAID[n].foundry || '?') +
+        (PAID[n].library ? ', ' + esc(LIB_LABEL[PAID[n].library] || PAID[n].library) : '') + ')</span>').join('; ') + '</p>' : '') +
+    (t2.length ? '<p class="fl-others" style="opacity:.75"><strong>Also routed here, unverified (' + t2.length + '):</strong> ' +
+      esc(t2.join('; ')) + '</p>' : '');
+}
+/* When the query names an actual paid family, say so before the lineages: what it is,
+   who makes it, and whether you already have it under a subscription. That is usually
+   the first question, and it is the thing the lineage blocks cannot tell you. */
+function paidCardHTML(q) {
+  const hits = paidHits(q).slice(0, 6);
+  if (!hits.length) return '';
+  return '<div class="fl-cluster" style="margin-bottom:20px">' +
+    '<h3 class="fl-cluster-name">' + (hits.length === 1 ? 'You searched a paid face' : 'Paid faces matching “' + esc(q) + '”') + '</h3>' +
+    hits.map(nm => {
+      const p = PAID[nm], cl = p.cluster && M.clusters[p.cluster];
+      const bits = [p.foundry, p.library && LIB_LABEL[p.library]].filter(Boolean).join(' · ');
+      return '<p class="fl-line" style="margin-top:6px">' +
+        '<strong>' + esc(nm) + '</strong>' + (bits ? ' — ' + esc(bits) : '') +
+        (p.tier === 1
+          ? ' · <span class="fl-badge">' + esc(p.confidence) + ' confidence</span>'
+          : ' · <span class="fl-badge is-soft">unverified routing</span>') +
+        (cl ? ' · stands with <button class="fl-linkish" data-find="' + esc(cl.name) + '">' + esc(cl.name) + '</button>'
+            : ' · <em>no lineage assigned — nothing to recommend against it yet</em>') +
+        (p.cluster2 && M.clusters[p.cluster2]
+          ? ' and <button class="fl-linkish" data-find="' + esc(M.clusters[p.cluster2].name) + '">' +
+            esc(M.clusters[p.cluster2].name) + '</button>' +
+            (p.cluster2Why ? '<br><span style="opacity:.8">Two lineages: ' + esc(p.cluster2Why) + '</span>' : '')
+          : '') +
+        (p.note ? '<br><span style="opacity:.8">' + esc(p.note) + '</span>' : '') +
+      '</p>';
+    }).join('') + '</div>';
+}
+function runFind(q) {
+  findQuery = (q || '').trim();
+  const el = $('findResults'), needle = findQuery.toLowerCase();
+  if (!needle) {
+    /* Empty state is a browse, not a blank page: every lineage the library actually
+       covers, biggest first, so the tab is useful before you type anything. */
+    const all = Object.values(M.clusters)
+      .filter(c => (CLUSTER_LIB[c.id] || []).length)
+      .sort((a, b) => (CLUSTER_LIB[b.id].length - CLUSTER_LIB[a.id].length) || a.name.localeCompare(b.name));
+    el.innerHTML = '<p class="fl-line" style="margin-bottom:16px">' + all.length +
+      ' lineages are represented in your library. Search above, or jump to one:</p>' +
+      '<div class="fl-sugg">' + all.map(c =>
+        '<button class="fl-mini" data-find="' + esc(c.name) + '">' + esc(c.name) +
+        ' <span style="opacity:.6">' + CLUSTER_LIB[c.id].length + '</span></button>').join('') + '</div>';
+    wireFind();
+    return;
+  }
+  const hits = Object.values(M.clusters)
+    .map(cl => ({ cl, ...scoreCluster(cl, needle) }))
+    .filter(h => h.s > 0)
+    .sort((a, b) => (b.s - a.s) || ((CLUSTER_LIB[b.cl.id] || []).length - (CLUSTER_LIB[a.cl.id] || []).length));
+  if (!hits.length) {
+    el.innerHTML = '<p class="fl-line">Nothing matches <strong>' + esc(findQuery) + '</strong>. ' +
+      'Try a paid family (Druk, Gotham), a Google family (Oswald, Bitter), or a style word (condensed, slab, geometric).</p>';
+    return;
+  }
+  const libCount = hits.reduce((n, h) => n + (CLUSTER_LIB[h.cl.id] || []).length, 0);
+  el.innerHTML = paidCardHTML(needle) +
+    '<p class="fl-line" style="margin-bottom:16px">' + hits.length + ' lineage' +
+    (hits.length > 1 ? 's' : '') + ' · <strong>' + libCount + '</strong> font' + (libCount === 1 ? '' : 's') +
+    ' in your library</p>' + hits.map(h => clusterHTML(h.cl, h.why)).join('');
+  wireFind();
+}
+function wireFind() {
+  document.querySelectorAll('[data-find]').forEach(b => b.addEventListener('click', () => {
+    $('findQ').value = b.dataset.find; runFind(b.dataset.find);
+    document.querySelector('#view-match').scrollTop = 0;
+  }));
+  document.querySelectorAll('[data-pick]').forEach(b => b.addEventListener('click', () => {
+    select(b.dataset.pick); switchView('ramp');
+  }));
+  /* Card specimens are real font files too, so they load on the same lazy path. */
+  document.querySelectorAll('[data-cardspec]').forEach(el => {
+    const f = byName[el.dataset.cardspec]; if (!f) return;
+    const v = variantOf(f);
+    loadFace(v).then(ok => { if (ok) Object.assign(el.style, faceCSS(f, v, 34)); });
+  });
+}
+function renderSugg() {
+  $('findSugg').innerHTML = '<span>Try:</span>' + SUGGESTIONS.map(s =>
+    '<button class="fl-mini" data-find="' + esc(s) + '">' + esc(s) + '</button>').join('');
+  document.querySelectorAll('#findSugg [data-find]').forEach(b => b.addEventListener('click', () => {
+    $('findQ').value = b.dataset.find; runFind(b.dataset.find);
+  }));
+}
+$('findQ').addEventListener('input', e => runFind(e.target.value));
+
+/* ── info rail ── */
+const CUT_LABEL = { roman: 'Standard', romanItalic: 'Standard italic', caps: 'All caps', capsItalic: 'All caps italic' };
+function panelHTML(f) {
+  const v = variantOf(f);
+  const row = (k, val) => '<div><dt>' + k + '</dt><dd>' + val + '</dd></div>';
+  return '<div class="fl-ctl"><label>Spec as built</label><dl class="fl-spec">' +
+      row('Token family', '<strong>' + esc(f.token) + '</strong>') +
+      row('Source', esc(f.n)) +
+      row('Weight', f.weight) +
+      row('Tracking', f.ls + 'em') +
+      row('Case mode', { none: 'standard', caps: 'all caps', both: 'ships both' }[f.caps]) +
+      row('Lane', esc(f.lane || '—')) +
+    '</dl></div>' +
+    '<div class="fl-ctl"><label>Cuts built</label><div class="fl-cutlist">' +
+      ['roman','romanItalic','caps','capsItalic'].filter(k => f.cuts[k]).map(k =>
+        '<span class="fl-cuttag' + (k === v.key ? ' is-live' : '') + '">' + CUT_LABEL[k] + '</span>').join('') +
+    '</div><p class="fl-hint">Showing <code>' + esc(v.cut.file) + '</code>. ' +
+      'Case and style are set globally in the header, so the whole library sweeps together.</p></div>' +
+    '<div class="fl-ctl"><label>Ramp sizes</label><dl class="fl-spec">' +
+      STEPS.map(s => row('display-' + s,
+        (f.sizes[s] == null ? LH[s] : f.sizes[s]) + 'px <span style="color:var(--text-secondary)">/ ' + LH[s] + '</span>')).join('') +
+    '</dl></div>' +
+    '<div class="fl-ctl"><label for="rampSample">Sample</label>' +
+      '<input type="text" id="rampSample" value="' + esc(sampleText) + '"></div>';
+}
+function renderPanel() {
+  if (!current) { $('panel').innerHTML = ''; return; }
+  $('panel').innerHTML = panelHTML(byName[current]);
+  $('rampSample').addEventListener('input', e => { sampleText = e.target.value || ' '; paintRamp(); });
+}
+
+/* ── render ── */
+function paintHead() {
+  if (!current) { $('curFont').textContent = 'Select a font'; $('curSrc').textContent = ''; $('curMeta').textContent = ''; return; }
+  const f = byName[current], v = variantOf(f);
+  $('curFont').textContent = f.token;
+  loadFace(v).then(() => Object.assign($('curFont').style, {
+    fontFamily: "'" + v.cut.family + "', sans-serif",
+    fontStyle: v.italic ? 'italic' : 'normal',
+    fontWeight: f.weight,
+  }));
+  $('curSrc').textContent = f.n;
+  const notes = [];
+  if (v.fellBackCase) notes.push('<span class="fl-fallback">no ' + (gCase === 'caps' ? 'caps cut — showing standard' : 'standard cut — showing all caps') + '</span>');
+  if (v.fellBackStyle) notes.push('<span class="fl-fallback">no italic — showing roman</span>');
+  $('curMeta').innerHTML = esc(f.cat) + ' · ' + esc(f.lane || '—') + ' · ' + f.weight + ' · ' + f.ls + 'em' +
+    (notes.length ? ' · ' + notes.join(' · ') : '');
+}
+function renderAll() {
+  renderPanel(); renderRamp(); paintRamp(); paintHead(); renderMatchCard(); syncFavBtn();
+  if (view === 'screens') refreshScreens();
+}
+function select(name) {
+  if (!byName[name]) return;
+  current = name;
+  renderAll(); railList();
+  if (history.replaceState) history.replaceState(null, '', '#' + view + '/' + encodeURIComponent(name));
+}
+function switchView(v) {
+  view = v;
+  /* Screens needs the width for four phones; the match tab needs it for the card
+     grid and the prose. Only the ramp keeps the info rail. */
+  document.querySelector('.fl-main').classList.toggle('is-wide', v === 'screens' || v === 'match');
+  document.querySelectorAll('.fl-tab').forEach(t => t.classList.toggle('is-on', t.dataset.view === v));
+  document.querySelectorAll('.fl-view').forEach(x => x.classList.toggle('is-on', x.id === 'view-' + v));
+  if (v === 'screens') { buildScreens(); refreshScreens(); }
+  if (v === 'match' && !$('findResults').innerHTML) runFind($('findQ').value);
+}
+document.querySelectorAll('.fl-tab').forEach(t => t.addEventListener('click', () => switchView(t.dataset.view)));
+$('btnMode').addEventListener('click', () => {
+  const el = document.documentElement;
+  el.setAttribute('data-mode', el.getAttribute('data-mode') === 'dark' ? 'light' : 'dark');
+});
+/* Arrow keys walk the rail — with 145 families, clicking each one is the slow part
+   of looking at a library. */
+window.addEventListener('keydown', e => {
+  if (e.target.matches('input, textarea')) return;
+  if (e.key !== 'ArrowDown' && e.key !== 'ArrowUp') return;
+  const rows = [...document.querySelectorAll('.fl-row')];
+  if (!rows.length) return;
+  e.preventDefault();
+  let i = rows.findIndex(r => r.dataset.font === current);
+  i = i < 0 ? 0 : Math.min(rows.length - 1, Math.max(0, i + (e.key === 'ArrowDown' ? 1 : -1)));
+  select(rows[i].dataset.font);
+  const again = document.querySelector('.fl-row[data-font="' + rows[i].dataset.font.replace(/"/g, '\\"') + '"]');
+  if (again) again.scrollIntoView({ block: 'nearest' });
+});
+
+const parts = decodeURIComponent((location.hash || '').replace(/^#/, '')).split('/');
+renderSugg();
+if (parts[0] === 'screens' || parts[0] === 'match') switchView(parts[0]);
+railList();
+/* Open on something rather than an empty stage — a browser with nothing in it reads
+   as broken, and the first family is as good a starting point as any. */
+const first = document.querySelector('.fl-row');
+if (parts[1] && byName[parts[1]]) select(parts[1]);
+else if (first) select(first.dataset.font);
+else renderAll();
+showBannerIfBlocked();
+</script>
+</body>
+</html>

@@ -1,0 +1,326 @@
+/* ============================================================
+   themes.css
+   ============================================================
+   The themes this system ships with, as worked examples of the theming contract.
+
+   What's inside
+   - Five [data-theme] trios — a base block for brand, type and UI values, then
+     a light and a dark block for surfaces and the accent pair
+   - Nothing else. A theme sets tokens; it never writes a rule or a selector.
+
+   Notes
+   - The contract is exactly the set of tokens the base theme in
+     design-tokens-master.css defines. A theme overrides some or all of them
+     and nothing more. Authoring one: docs/theming.md.
+   - data-theme goes on <html> beside data-mode (RULES §1).
+   - Omit data-theme entirely and the base theme applies, so the system always
+     has a full token set.
+   - Display faces here are named directly so the face travels with the theme.
+     To swap a face without touching a theme, set data-display-font instead —
+     see display-fonts.css.
+   ============================================================ */
+
+/* ============================================
+   INK — near-black and bone, a high-contrast
+   editorial default. Square buttons.
+   ============================================ */
+[data-theme="ink"] {
+  --brand-core: #121212;
+  --brand-light: #F2EFE9;
+  --brand-dark: #000000;
+  --brand-interactive: #121212;
+  --brand-inverted: #F2EFE9;
+  --brand-dark-surface: #1C1C1C;
+
+  --display-font: 'Chronicle', 'Inter', system-ui, sans-serif;
+  --display-weight: 900;
+  --display-letter-spacing: 0em;
+  --display-size-900: 74px;
+  --display-size-800: 66px;
+  --display-size-700: 58px;
+  --display-size-600: 51px;
+  --display-size-500: 43px;
+  --display-size-400: 35px;
+  --display-size-300: 27px;
+  --display-size-200: 23px;
+  --display-size-100: 19px;
+
+  --button-border-radius: 4px;
+  --background-blur: 50px;
+}
+
+[data-theme="ink"][data-mode="light"] {
+  --org-base: #FFFFFF;
+  --org-surface: #F2EFE9;
+  --org-sheet: #FFFFFF;
+  --org-nav: rgba(255, 255, 255, 0.75);
+  --org-transactional-button: #121212;
+  --org-transactional-button-text: #FFFFFF;
+  --org-primary-button: #121212;
+  --org-primary-button-text: #FFFFFF;
+  --org-secondary-button-text: #000000;
+  --org-tertiary-button-text: #000000;
+  --color-interactive: #121212;
+  --color-inverted: #F2EFE9;
+  --ios-selected-tab: #121212;
+}
+
+[data-theme="ink"][data-mode="dark"] {
+  --org-base: #0E0E0E;
+  --org-surface: #1A1A1A;
+  --org-sheet: #242424;
+  --org-nav: rgba(14, 14, 14, 0.7);
+  --org-transactional-button: #F2EFE9;
+  --org-transactional-button-text: #000000;
+  --org-primary-button: #F2EFE9;
+  --org-primary-button-text: #000000;
+  --org-secondary-button-text: #FFFFFF;
+  --org-tertiary-button-text: #FFFFFF;
+  --color-interactive: #F2EFE9;
+  --color-inverted: #121212;
+  --ios-selected-tab: #F2EFE9;
+}
+
+/* ============================================
+   SIGNAL — a saturated blue against amber.
+   Pill buttons, condensed grotesque display.
+   ============================================ */
+[data-theme="signal"] {
+  --brand-core: #0B4FD8;
+  --brand-light: #FFB000;
+  --brand-dark: #061B4A;
+  --brand-interactive: #0B4FD8;
+  --brand-inverted: #FFB000;
+  --brand-dark-surface: #1B2233;
+
+  --display-font: 'Grandstand', 'Inter', system-ui, sans-serif;
+  --display-weight: 1000;
+  --display-letter-spacing: -0.01em;
+  --display-size-900: 76px;
+  --display-size-800: 68px;
+  --display-size-700: 60px;
+  --display-size-600: 52px;
+  --display-size-500: 44px;
+  --display-size-400: 36px;
+  --display-size-300: 28px;
+  --display-size-200: 24px;
+  --display-size-100: 20px;
+
+  --button-border-radius: 100px;
+  --background-blur: 50px;
+}
+
+[data-theme="signal"][data-mode="light"] {
+  --org-base: #FFFFFF;
+  --org-surface: #F1F4FA;
+  --org-sheet: #FFFFFF;
+  --org-nav: rgba(255, 255, 255, 0.75);
+  --org-transactional-button: #0B4FD8;
+  --org-transactional-button-text: #FFFFFF;
+  --org-primary-button: #0B4FD8;
+  --org-primary-button-text: #FFFFFF;
+  --org-secondary-button-text: #000000;
+  --org-tertiary-button-text: #000000;
+  --color-interactive: #0B4FD8;
+  --color-inverted: #FFB000;
+  --ios-selected-tab: #0B4FD8;
+}
+
+[data-theme="signal"][data-mode="dark"] {
+  --org-base: #0C1118;
+  --org-surface: #171E29;
+  --org-sheet: #212A38;
+  --org-nav: rgba(12, 17, 24, 0.7);
+  --org-transactional-button: #FFB000;
+  --org-transactional-button-text: #000000;
+  --org-primary-button: #FFB000;
+  --org-primary-button-text: #000000;
+  --org-secondary-button-text: #FFFFFF;
+  --org-tertiary-button-text: #FFFFFF;
+  --color-interactive: #FFB000;
+  --color-inverted: #0B4FD8;
+  --ios-selected-tab: #FFB000;
+}
+
+/* ============================================
+   MOSS — deep green and chartreuse.
+   Softly rounded buttons, condensed display.
+   ============================================ */
+[data-theme="moss"] {
+  --brand-core: #14502F;
+  --brand-light: #C9F24D;
+  --brand-dark: #071A10;
+  --brand-interactive: #14502F;
+  --brand-inverted: #C9F24D;
+  --brand-dark-surface: #16211A;
+
+  --display-font: 'Spire', 'Inter', system-ui, sans-serif;
+  --display-weight: 700;
+  --display-letter-spacing: 0em;
+  --display-size-900: 74px;
+  --display-size-800: 66px;
+  --display-size-700: 58px;
+  --display-size-600: 51px;
+  --display-size-500: 43px;
+  --display-size-400: 35px;
+  --display-size-300: 27px;
+  --display-size-200: 23px;
+  --display-size-100: 19px;
+
+  --button-border-radius: 12px;
+  --background-blur: 50px;
+}
+
+[data-theme="moss"][data-mode="light"] {
+  --org-base: #FFFFFF;
+  --org-surface: #F1F5F0;
+  --org-sheet: #FFFFFF;
+  --org-nav: rgba(255, 255, 255, 0.75);
+  --org-transactional-button: #14502F;
+  --org-transactional-button-text: #FFFFFF;
+  --org-primary-button: #14502F;
+  --org-primary-button-text: #FFFFFF;
+  --org-secondary-button-text: #000000;
+  --org-tertiary-button-text: #000000;
+  --color-interactive: #14502F;
+  --color-inverted: #C9F24D;
+  --ios-selected-tab: #14502F;
+}
+
+[data-theme="moss"][data-mode="dark"] {
+  --org-base: #0B120D;
+  --org-surface: #151E18;
+  --org-sheet: #1E2A21;
+  --org-nav: rgba(11, 18, 13, 0.7);
+  --org-transactional-button: #C9F24D;
+  --org-transactional-button-text: #000000;
+  --org-primary-button: #C9F24D;
+  --org-primary-button-text: #000000;
+  --org-secondary-button-text: #FFFFFF;
+  --org-tertiary-button-text: #FFFFFF;
+  --color-interactive: #C9F24D;
+  --color-inverted: #14502F;
+  --ios-selected-tab: #C9F24D;
+}
+
+/* ============================================
+   EMBER — oxblood and warm amber.
+   Small radius, heavy slab display.
+   ============================================ */
+[data-theme="ember"] {
+  --brand-core: #8E1F1B;
+  --brand-light: #F0A030;
+  --brand-dark: #2A0A08;
+  --brand-interactive: #8E1F1B;
+  --brand-inverted: #F0A030;
+  --brand-dark-surface: #241716;
+
+  --display-font: 'Register', 'Inter', system-ui, sans-serif;
+  --display-weight: 900;
+  --display-letter-spacing: 0em;
+  --display-size-900: 74px;
+  --display-size-800: 66px;
+  --display-size-700: 58px;
+  --display-size-600: 51px;
+  --display-size-500: 43px;
+  --display-size-400: 35px;
+  --display-size-300: 27px;
+  --display-size-200: 23px;
+  --display-size-100: 19px;
+
+  --button-border-radius: 6px;
+  --background-blur: 50px;
+}
+
+[data-theme="ember"][data-mode="light"] {
+  --org-base: #FFFFFF;
+  --org-surface: #F7F1EC;
+  --org-sheet: #FFFFFF;
+  --org-nav: rgba(255, 255, 255, 0.75);
+  --org-transactional-button: #8E1F1B;
+  --org-transactional-button-text: #FFFFFF;
+  --org-primary-button: #8E1F1B;
+  --org-primary-button-text: #FFFFFF;
+  --org-secondary-button-text: #000000;
+  --org-tertiary-button-text: #000000;
+  --color-interactive: #8E1F1B;
+  --color-inverted: #F0A030;
+  --ios-selected-tab: #8E1F1B;
+}
+
+[data-theme="ember"][data-mode="dark"] {
+  --org-base: #120D0C;
+  --org-surface: #1E1716;
+  --org-sheet: #282020;
+  --org-nav: rgba(18, 13, 12, 0.7);
+  --org-transactional-button: #F0A030;
+  --org-transactional-button-text: #000000;
+  --org-primary-button: #F0A030;
+  --org-primary-button-text: #000000;
+  --org-secondary-button-text: #FFFFFF;
+  --org-tertiary-button-text: #FFFFFF;
+  --color-interactive: #F0A030;
+  --color-inverted: #8E1F1B;
+  --ios-selected-tab: #F0A030;
+}
+
+/* ============================================
+   VIOLET — deep violet and pale lilac.
+   Pill buttons, wide sans display.
+   ============================================ */
+[data-theme="violet"] {
+  --brand-core: #4A2A9E;
+  --brand-light: #D9CCFF;
+  --brand-dark: #150A33;
+  --brand-interactive: #4A2A9E;
+  --brand-inverted: #D9CCFF;
+  --brand-dark-surface: #1F1A2E;
+
+  --display-font: 'Marquee', 'Inter', system-ui, sans-serif;
+  --display-weight: 400;
+  --display-letter-spacing: -0.04em;
+  --display-size-900: 70px;
+  --display-size-800: 63px;
+  --display-size-700: 55px;
+  --display-size-600: 48px;
+  --display-size-500: 41px;
+  --display-size-400: 33px;
+  --display-size-300: 26px;
+  --display-size-200: 22px;
+  --display-size-100: 18px;
+
+  --button-border-radius: 100px;
+  --background-blur: 50px;
+}
+
+[data-theme="violet"][data-mode="light"] {
+  --org-base: #FFFFFF;
+  --org-surface: #F4F1FB;
+  --org-sheet: #FFFFFF;
+  --org-nav: rgba(255, 255, 255, 0.75);
+  --org-transactional-button: #4A2A9E;
+  --org-transactional-button-text: #FFFFFF;
+  --org-primary-button: #4A2A9E;
+  --org-primary-button-text: #FFFFFF;
+  --org-secondary-button-text: #000000;
+  --org-tertiary-button-text: #000000;
+  --color-interactive: #4A2A9E;
+  --color-inverted: #D9CCFF;
+  --ios-selected-tab: #4A2A9E;
+}
+
+[data-theme="violet"][data-mode="dark"] {
+  --org-base: #0F0C16;
+  --org-surface: #1A1523;
+  --org-sheet: #241E30;
+  --org-nav: rgba(15, 12, 22, 0.7);
+  --org-transactional-button: #D9CCFF;
+  --org-transactional-button-text: #000000;
+  --org-primary-button: #D9CCFF;
+  --org-primary-button-text: #000000;
+  --org-secondary-button-text: #FFFFFF;
+  --org-tertiary-button-text: #FFFFFF;
+  --color-interactive: #D9CCFF;
+  --color-inverted: #4A2A9E;
+  --ios-selected-tab: #D9CCFF;
+}

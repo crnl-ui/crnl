@@ -1,0 +1,935 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="signal" data-mode="light" data-platform="web">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Space & Layout — Design System Sticker Sheet</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap" rel="stylesheet">
+
+  <script src="../css/ds-loader.js"></script>
+  <script src="demo-content.js"></script>
+  <script src="../css/prototype-harness.js"></script>
+  <link rel="stylesheet" href="sheet.css">
+</head>
+<body>
+
+<nav data-sheet-nav></nav>
+
+<main class="container-extra-wide">
+
+  <header class="sheet-head">
+    <div class="card-text-pair">
+      <h1 class="display500">Space &amp; Layout</h1>
+      <p class="labelRegular40 text-secondary">The spacing scale, containers, radius, borders, grids and icons — with every utility class the system ships.</p>
+    </div>
+  </header>
+
+  <div class="sheet-callout">
+    <p class="bodyRegular30">An 8px scale. Use <span class="mono">var(--spacing-N)</span> in CSS or the matching utility class in HTML — <strong>never a raw px, em or rem</strong> (<span class="mono">RULES §2</span>). For layout, prefer the responsive semantic tokens: they already know about the three breakpoints, so you do not write a media query (<span class="mono">RULES §9</span>).</p>
+  </div>
+
+  <section class="sheet-section" id="scale">
+    <div class="sheet-section-head">
+      <h2 class="display300">Spacing scale</h2>
+      <span class="labelRegular10 text-secondary mono">spacing-tokens.css</span>
+    </div>
+    <div class="token-list">
+      <div class="token-row" data-token="--spacing-unit">
+        <div class="ruler" style="width: var(--spacing-unit)"></div>
+        <span class="labelBold20 mono">--spacing-unit</span>
+        <span class="labelRegular10 token-value mono" data-token-value></span>
+      </div>
+      <div class="token-row" data-token="--spacing-25">
+        <div class="ruler" style="width: var(--spacing-25)"></div>
+        <span class="labelBold20 mono">--spacing-25</span>
+        <span class="labelRegular10 token-value mono" data-token-value></span>
+      </div>
+      <div class="token-row" data-token="--spacing-50">
+        <div class="ruler" style="width: var(--spacing-50)"></div>
+        <span class="labelBold20 mono">--spacing-50</span>
+        <span class="labelRegular10 token-value mono" data-token-value></span>
+      </div>
+      <div class="token-row" data-token="--spacing-75">
+        <div class="ruler" style="width: var(--spacing-75)"></div>
+        <span class="labelBold20 mono">--spacing-75</span>
+        <span class="labelRegular10 token-value mono" data-token-value></span>
+      </div>
+      <div class="token-row" data-token="--spacing-100">
+        <div class="ruler" style="width: var(--spacing-100)"></div>
+        <span class="labelBold20 mono">--spacing-100</span>
+        <span class="labelRegular10 token-value mono" data-token-value></span>
+      </div>
+      <div class="token-row" data-token="--spacing-150">
+        <div class="ruler" style="width: var(--spacing-150)"></div>
+        <span class="labelBold20 mono">--spacing-150</span>
+        <span class="labelRegular10 token-value mono" data-token-value></span>
+      </div>
+      <div class="token-row" data-token="--spacing-200">
+        <div class="ruler" style="width: var(--spacing-200)"></div>
+        <span class="labelBold20 mono">--spacing-200</span>
+        <span class="labelRegular10 token-value mono" data-token-value></span>
+      </div>
+      <div class="token-row" data-token="--spacing-250">
+        <div class="ruler" style="width: var(--spacing-250)"></div>
+        <span class="labelBold20 mono">--spacing-250</span>
+        <span class="labelRegular10 token-value mono" data-token-value></span>
+      </div>
+      <div class="token-row" data-token="--spacing-300">
+        <div class="ruler" style="width: var(--spacing-300)"></div>
+        <span class="labelBold20 mono">--spacing-300</span>
+        <span class="labelRegular10 token-value mono" data-token-value></span>
+      </div>
+      <div class="token-row" data-token="--spacing-400">
+        <div class="ruler" style="width: var(--spacing-400)"></div>
+        <span class="labelBold20 mono">--spacing-400</span>
+        <span class="labelRegular10 token-value mono" data-token-value></span>
+      </div>
+      <div class="token-row" data-token="--spacing-500">
+        <div class="ruler" style="width: var(--spacing-500)"></div>
+        <span class="labelBold20 mono">--spacing-500</span>
+        <span class="labelRegular10 token-value mono" data-token-value></span>
+      </div>
+      <div class="token-row" data-token="--spacing-600">
+        <div class="ruler" style="width: var(--spacing-600)"></div>
+        <span class="labelBold20 mono">--spacing-600</span>
+        <span class="labelRegular10 token-value mono" data-token-value></span>
+      </div>
+      <div class="token-row" data-token="--spacing-700">
+        <div class="ruler" style="width: var(--spacing-700)"></div>
+        <span class="labelBold20 mono">--spacing-700</span>
+        <span class="labelRegular10 token-value mono" data-token-value></span>
+      </div>
+      <div class="token-row" data-token="--spacing-800">
+        <div class="ruler" style="width: var(--spacing-800)"></div>
+        <span class="labelBold20 mono">--spacing-800</span>
+        <span class="labelRegular10 token-value mono" data-token-value></span>
+      </div>
+      <div class="token-row" data-token="--spacing-900">
+        <div class="ruler" style="width: var(--spacing-900)"></div>
+        <span class="labelBold20 mono">--spacing-900</span>
+        <span class="labelRegular10 token-value mono" data-token-value></span>
+      </div>
+      <div class="token-row" data-token="--spacing-1000">
+        <div class="ruler" style="width: var(--spacing-1000)"></div>
+        <span class="labelBold20 mono">--spacing-1000</span>
+        <span class="labelRegular10 token-value mono" data-token-value></span>
+      </div>
+    </div>
+  </section>
+
+  <section class="sheet-section" id="responsive-spacing">
+    <div class="sheet-section-head">
+      <h2 class="display300">Responsive spacing</h2>
+      <span class="labelRegular10 text-secondary mono">mobile &lt;500px · tablet 500–1099px · desktop ≥1100px</span>
+    </div>
+    <p class="sheet-note bodyRegular30">These change value at the breakpoint, so a layout built on them needs no media query. The values below are live — resize the window and they move. <span class="mono">--spacing-content</span> between major sections, <span class="mono">--spacing-card</span> between cards, <span class="mono">--margin-*</span> for page padding.</p>
+    <div class="token-list">
+      <div class="token-row" data-token="--spacing-row">
+        <div class="ruler" style="width: var(--spacing-row)"></div>
+        <span class="labelBold20 mono">--spacing-row</span>
+        <span class="labelRegular10 token-value mono" data-token-value></span>
+      </div>
+      <div class="token-row" data-token="--spacing-card">
+        <div class="ruler" style="width: var(--spacing-card)"></div>
+        <span class="labelBold20 mono">--spacing-card</span>
+        <span class="labelRegular10 token-value mono" data-token-value></span>
+      </div>
+      <div class="token-row" data-token="--spacing-content">
+        <div class="ruler" style="width: var(--spacing-content)"></div>
+        <span class="labelBold20 mono">--spacing-content</span>
+        <span class="labelRegular10 token-value mono" data-token-value></span>
+      </div>
+      <div class="token-row" data-token="--margin-small">
+        <div class="ruler" style="width: var(--margin-small)"></div>
+        <span class="labelBold20 mono">--margin-small</span>
+        <span class="labelRegular10 token-value mono" data-token-value></span>
+      </div>
+      <div class="token-row" data-token="--margin-large">
+        <div class="ruler" style="width: var(--margin-large)"></div>
+        <span class="labelBold20 mono">--margin-large</span>
+        <span class="labelRegular10 token-value mono" data-token-value></span>
+      </div>
+      <div class="token-row" data-token="--margin-landing">
+        <div class="ruler" style="width: var(--margin-landing)"></div>
+        <span class="labelBold20 mono">--margin-landing</span>
+        <span class="labelRegular10 token-value mono" data-token-value></span>
+      </div>
+    </div>
+
+    <div class="sheet-sub"><span class="title50">The fixed values behind them</span><span class="labelRegular10 text-secondary">for reference — reach for the responsive token, not these</span></div>
+    <div class="token-list">
+        <div class="token-row no-chip" data-token="--spacing-row-mobile">
+          <span class="labelBold20 mono">--spacing-row-mobile</span>
+          <span class="labelRegular10 token-value mono" data-token-value></span>
+        </div>
+        <div class="token-row no-chip" data-token="--spacing-row-tablet">
+          <span class="labelBold20 mono">--spacing-row-tablet</span>
+          <span class="labelRegular10 token-value mono" data-token-value></span>
+        </div>
+        <div class="token-row no-chip" data-token="--spacing-row-desktop">
+          <span class="labelBold20 mono">--spacing-row-desktop</span>
+          <span class="labelRegular10 token-value mono" data-token-value></span>
+        </div>
+        <div class="token-row no-chip" data-token="--spacing-card-mobile">
+          <span class="labelBold20 mono">--spacing-card-mobile</span>
+          <span class="labelRegular10 token-value mono" data-token-value></span>
+        </div>
+        <div class="token-row no-chip" data-token="--spacing-card-tablet">
+          <span class="labelBold20 mono">--spacing-card-tablet</span>
+          <span class="labelRegular10 token-value mono" data-token-value></span>
+        </div>
+        <div class="token-row no-chip" data-token="--spacing-card-desktop">
+          <span class="labelBold20 mono">--spacing-card-desktop</span>
+          <span class="labelRegular10 token-value mono" data-token-value></span>
+        </div>
+        <div class="token-row no-chip" data-token="--spacing-content-mobile">
+          <span class="labelBold20 mono">--spacing-content-mobile</span>
+          <span class="labelRegular10 token-value mono" data-token-value></span>
+        </div>
+        <div class="token-row no-chip" data-token="--spacing-content-tablet">
+          <span class="labelBold20 mono">--spacing-content-tablet</span>
+          <span class="labelRegular10 token-value mono" data-token-value></span>
+        </div>
+        <div class="token-row no-chip" data-token="--spacing-content-desktop">
+          <span class="labelBold20 mono">--spacing-content-desktop</span>
+          <span class="labelRegular10 token-value mono" data-token-value></span>
+        </div>
+        <div class="token-row no-chip" data-token="--margin-small-mobile">
+          <span class="labelBold20 mono">--margin-small-mobile</span>
+          <span class="labelRegular10 token-value mono" data-token-value></span>
+        </div>
+        <div class="token-row no-chip" data-token="--margin-small-tablet">
+          <span class="labelBold20 mono">--margin-small-tablet</span>
+          <span class="labelRegular10 token-value mono" data-token-value></span>
+        </div>
+        <div class="token-row no-chip" data-token="--margin-small-desktop">
+          <span class="labelBold20 mono">--margin-small-desktop</span>
+          <span class="labelRegular10 token-value mono" data-token-value></span>
+        </div>
+        <div class="token-row no-chip" data-token="--margin-large-mobile">
+          <span class="labelBold20 mono">--margin-large-mobile</span>
+          <span class="labelRegular10 token-value mono" data-token-value></span>
+        </div>
+        <div class="token-row no-chip" data-token="--margin-large-tablet">
+          <span class="labelBold20 mono">--margin-large-tablet</span>
+          <span class="labelRegular10 token-value mono" data-token-value></span>
+        </div>
+        <div class="token-row no-chip" data-token="--margin-large-desktop">
+          <span class="labelBold20 mono">--margin-large-desktop</span>
+          <span class="labelRegular10 token-value mono" data-token-value></span>
+        </div>
+        <div class="token-row no-chip" data-token="--margin-landing-mobile">
+          <span class="labelBold20 mono">--margin-landing-mobile</span>
+          <span class="labelRegular10 token-value mono" data-token-value></span>
+        </div>
+        <div class="token-row no-chip" data-token="--margin-landing-tablet">
+          <span class="labelBold20 mono">--margin-landing-tablet</span>
+          <span class="labelRegular10 token-value mono" data-token-value></span>
+        </div>
+        <div class="token-row no-chip" data-token="--margin-landing-desktop">
+          <span class="labelBold20 mono">--margin-landing-desktop</span>
+          <span class="labelRegular10 token-value mono" data-token-value></span>
+        </div>
+    </div>
+  </section>
+
+  <section class="sheet-section" id="spacing-utilities">
+    <div class="sheet-section-head">
+      <h2 class="display300">Spacing utilities</h2>
+      <span class="labelRegular10 text-secondary mono">boilerplate.css</span>
+    </div>
+    <p class="sheet-note bodyRegular30">Every step on the scale exists as a margin, padding and gap utility, in every direction. The pattern is <span class="mono">{m|p}{ |t|b|l|r|x|y}-{step}</span> and <span class="mono">gap{ |-x|-y}-{step}</span>. Steps: <span class="mono">25 50 100 150 200 250 300 400 500 600 700 800 900</span>.</p>
+
+    <div class="sheet-grid sheet-grid-wide mb-400">
+      <div class="spec"><div class="spec-stage is-block is-tight"><div class="demo-fill p-100"><span class="labelRegular10">.p-100</span></div></div><div class="spec-label"><span class="labelRegular10 spec-meta">padding, all sides</span></div></div>
+      <div class="spec"><div class="spec-stage is-block is-tight"><div class="demo-fill p-300"><span class="labelRegular10">.p-300</span></div></div><div class="spec-label"><span class="labelRegular10 spec-meta">padding, all sides</span></div></div>
+      <div class="spec"><div class="spec-stage is-block is-tight"><div class="demo-fill px-500 py-100"><span class="labelRegular10">.px-500 .py-100</span></div></div><div class="spec-label"><span class="labelRegular10 spec-meta">axis padding</span></div></div>
+      <div class="spec"><div class="spec-stage is-tight"><div class="flex-row gap-100"><div class="demo-fill px-200 py-100"><span class="labelRegular10">A</span></div><div class="demo-fill px-200 py-100"><span class="labelRegular10">B</span></div><div class="demo-fill px-200 py-100"><span class="labelRegular10">C</span></div></div></div><div class="spec-label"><span class="labelRegular10 mono spec-code">.gap-100</span></div></div>
+      <div class="spec"><div class="spec-stage is-tight"><div class="flex-row gap-400"><div class="demo-fill px-200 py-100"><span class="labelRegular10">A</span></div><div class="demo-fill px-200 py-100"><span class="labelRegular10">B</span></div></div></div><div class="spec-label"><span class="labelRegular10 mono spec-code">.gap-400</span></div></div>
+      <div class="spec"><div class="spec-stage is-block is-tight"><div class="demo-fill mb-200"><span class="labelRegular10">.mb-200</span></div><div class="demo-fill"><span class="labelRegular10">next</span></div></div><div class="spec-label"><span class="labelRegular10 spec-meta">margin-bottom</span></div></div>
+    </div>
+
+    <div class="sheet-sub"><span class="title50">Margin — every class</span></div>
+      <div class="spec-label mb-200">
+        <span class="labelRegular10 mono spec-code">.m-25</span>
+        <span class="labelRegular10 mono spec-code">.m-50</span>
+        <span class="labelRegular10 mono spec-code">.m-100</span>
+        <span class="labelRegular10 mono spec-code">.m-150</span>
+        <span class="labelRegular10 mono spec-code">.m-200</span>
+        <span class="labelRegular10 mono spec-code">.m-250</span>
+        <span class="labelRegular10 mono spec-code">.m-300</span>
+        <span class="labelRegular10 mono spec-code">.m-400</span>
+        <span class="labelRegular10 mono spec-code">.m-500</span>
+        <span class="labelRegular10 mono spec-code">.m-600</span>
+        <span class="labelRegular10 mono spec-code">.m-700</span>
+        <span class="labelRegular10 mono spec-code">.m-800</span>
+        <span class="labelRegular10 mono spec-code">.m-900</span>
+        <span class="labelRegular10 mono spec-code">.mt-25</span>
+        <span class="labelRegular10 mono spec-code">.mt-50</span>
+        <span class="labelRegular10 mono spec-code">.mt-100</span>
+        <span class="labelRegular10 mono spec-code">.mt-150</span>
+        <span class="labelRegular10 mono spec-code">.mt-200</span>
+        <span class="labelRegular10 mono spec-code">.mt-250</span>
+        <span class="labelRegular10 mono spec-code">.mt-300</span>
+        <span class="labelRegular10 mono spec-code">.mt-400</span>
+        <span class="labelRegular10 mono spec-code">.mt-500</span>
+        <span class="labelRegular10 mono spec-code">.mt-600</span>
+        <span class="labelRegular10 mono spec-code">.mt-700</span>
+        <span class="labelRegular10 mono spec-code">.mt-800</span>
+        <span class="labelRegular10 mono spec-code">.mt-900</span>
+        <span class="labelRegular10 mono spec-code">.mb-25</span>
+        <span class="labelRegular10 mono spec-code">.mb-50</span>
+        <span class="labelRegular10 mono spec-code">.mb-100</span>
+        <span class="labelRegular10 mono spec-code">.mb-150</span>
+        <span class="labelRegular10 mono spec-code">.mb-200</span>
+        <span class="labelRegular10 mono spec-code">.mb-250</span>
+        <span class="labelRegular10 mono spec-code">.mb-300</span>
+        <span class="labelRegular10 mono spec-code">.mb-400</span>
+        <span class="labelRegular10 mono spec-code">.mb-500</span>
+        <span class="labelRegular10 mono spec-code">.mb-600</span>
+        <span class="labelRegular10 mono spec-code">.mb-700</span>
+        <span class="labelRegular10 mono spec-code">.mb-800</span>
+        <span class="labelRegular10 mono spec-code">.mb-900</span>
+        <span class="labelRegular10 mono spec-code">.ml-25</span>
+        <span class="labelRegular10 mono spec-code">.ml-50</span>
+        <span class="labelRegular10 mono spec-code">.ml-100</span>
+        <span class="labelRegular10 mono spec-code">.ml-150</span>
+        <span class="labelRegular10 mono spec-code">.ml-200</span>
+        <span class="labelRegular10 mono spec-code">.ml-250</span>
+        <span class="labelRegular10 mono spec-code">.ml-300</span>
+        <span class="labelRegular10 mono spec-code">.ml-400</span>
+        <span class="labelRegular10 mono spec-code">.ml-500</span>
+        <span class="labelRegular10 mono spec-code">.ml-600</span>
+        <span class="labelRegular10 mono spec-code">.ml-700</span>
+        <span class="labelRegular10 mono spec-code">.ml-800</span>
+        <span class="labelRegular10 mono spec-code">.ml-900</span>
+        <span class="labelRegular10 mono spec-code">.mr-25</span>
+        <span class="labelRegular10 mono spec-code">.mr-50</span>
+        <span class="labelRegular10 mono spec-code">.mr-100</span>
+        <span class="labelRegular10 mono spec-code">.mr-150</span>
+        <span class="labelRegular10 mono spec-code">.mr-200</span>
+        <span class="labelRegular10 mono spec-code">.mr-250</span>
+        <span class="labelRegular10 mono spec-code">.mr-300</span>
+        <span class="labelRegular10 mono spec-code">.mr-400</span>
+        <span class="labelRegular10 mono spec-code">.mr-500</span>
+        <span class="labelRegular10 mono spec-code">.mr-600</span>
+        <span class="labelRegular10 mono spec-code">.mr-700</span>
+        <span class="labelRegular10 mono spec-code">.mr-800</span>
+        <span class="labelRegular10 mono spec-code">.mr-900</span>
+        <span class="labelRegular10 mono spec-code">.mx-25</span>
+        <span class="labelRegular10 mono spec-code">.mx-50</span>
+        <span class="labelRegular10 mono spec-code">.mx-100</span>
+        <span class="labelRegular10 mono spec-code">.mx-150</span>
+        <span class="labelRegular10 mono spec-code">.mx-200</span>
+        <span class="labelRegular10 mono spec-code">.mx-250</span>
+        <span class="labelRegular10 mono spec-code">.mx-300</span>
+        <span class="labelRegular10 mono spec-code">.mx-400</span>
+        <span class="labelRegular10 mono spec-code">.mx-500</span>
+        <span class="labelRegular10 mono spec-code">.mx-600</span>
+        <span class="labelRegular10 mono spec-code">.mx-700</span>
+        <span class="labelRegular10 mono spec-code">.mx-800</span>
+        <span class="labelRegular10 mono spec-code">.mx-900</span>
+        <span class="labelRegular10 mono spec-code">.my-25</span>
+        <span class="labelRegular10 mono spec-code">.my-50</span>
+        <span class="labelRegular10 mono spec-code">.my-100</span>
+        <span class="labelRegular10 mono spec-code">.my-150</span>
+        <span class="labelRegular10 mono spec-code">.my-200</span>
+        <span class="labelRegular10 mono spec-code">.my-250</span>
+        <span class="labelRegular10 mono spec-code">.my-300</span>
+        <span class="labelRegular10 mono spec-code">.my-400</span>
+        <span class="labelRegular10 mono spec-code">.my-500</span>
+        <span class="labelRegular10 mono spec-code">.my-600</span>
+        <span class="labelRegular10 mono spec-code">.my-700</span>
+        <span class="labelRegular10 mono spec-code">.my-800</span>
+        <span class="labelRegular10 mono spec-code">.my-900</span>
+        <span class="labelRegular10 mono spec-code">.mx-auto</span>
+        <span class="labelRegular10 mono spec-code">.ml-auto</span>
+        <span class="labelRegular10 mono spec-code">.mr-auto</span>
+      </div>
+    <div class="sheet-sub"><span class="title50">Padding — every class</span></div>
+      <div class="spec-label mb-200">
+        <span class="labelRegular10 mono spec-code">.p-25</span>
+        <span class="labelRegular10 mono spec-code">.p-50</span>
+        <span class="labelRegular10 mono spec-code">.p-100</span>
+        <span class="labelRegular10 mono spec-code">.p-150</span>
+        <span class="labelRegular10 mono spec-code">.p-200</span>
+        <span class="labelRegular10 mono spec-code">.p-250</span>
+        <span class="labelRegular10 mono spec-code">.p-300</span>
+        <span class="labelRegular10 mono spec-code">.p-400</span>
+        <span class="labelRegular10 mono spec-code">.p-500</span>
+        <span class="labelRegular10 mono spec-code">.p-600</span>
+        <span class="labelRegular10 mono spec-code">.p-700</span>
+        <span class="labelRegular10 mono spec-code">.p-800</span>
+        <span class="labelRegular10 mono spec-code">.p-900</span>
+        <span class="labelRegular10 mono spec-code">.pt-25</span>
+        <span class="labelRegular10 mono spec-code">.pt-50</span>
+        <span class="labelRegular10 mono spec-code">.pt-100</span>
+        <span class="labelRegular10 mono spec-code">.pt-150</span>
+        <span class="labelRegular10 mono spec-code">.pt-200</span>
+        <span class="labelRegular10 mono spec-code">.pt-250</span>
+        <span class="labelRegular10 mono spec-code">.pt-300</span>
+        <span class="labelRegular10 mono spec-code">.pt-400</span>
+        <span class="labelRegular10 mono spec-code">.pt-500</span>
+        <span class="labelRegular10 mono spec-code">.pt-600</span>
+        <span class="labelRegular10 mono spec-code">.pt-700</span>
+        <span class="labelRegular10 mono spec-code">.pt-800</span>
+        <span class="labelRegular10 mono spec-code">.pt-900</span>
+        <span class="labelRegular10 mono spec-code">.pb-25</span>
+        <span class="labelRegular10 mono spec-code">.pb-50</span>
+        <span class="labelRegular10 mono spec-code">.pb-100</span>
+        <span class="labelRegular10 mono spec-code">.pb-150</span>
+        <span class="labelRegular10 mono spec-code">.pb-200</span>
+        <span class="labelRegular10 mono spec-code">.pb-250</span>
+        <span class="labelRegular10 mono spec-code">.pb-300</span>
+        <span class="labelRegular10 mono spec-code">.pb-400</span>
+        <span class="labelRegular10 mono spec-code">.pb-500</span>
+        <span class="labelRegular10 mono spec-code">.pb-600</span>
+        <span class="labelRegular10 mono spec-code">.pb-700</span>
+        <span class="labelRegular10 mono spec-code">.pb-800</span>
+        <span class="labelRegular10 mono spec-code">.pb-900</span>
+        <span class="labelRegular10 mono spec-code">.pl-25</span>
+        <span class="labelRegular10 mono spec-code">.pl-50</span>
+        <span class="labelRegular10 mono spec-code">.pl-100</span>
+        <span class="labelRegular10 mono spec-code">.pl-150</span>
+        <span class="labelRegular10 mono spec-code">.pl-200</span>
+        <span class="labelRegular10 mono spec-code">.pl-250</span>
+        <span class="labelRegular10 mono spec-code">.pl-300</span>
+        <span class="labelRegular10 mono spec-code">.pl-400</span>
+        <span class="labelRegular10 mono spec-code">.pl-500</span>
+        <span class="labelRegular10 mono spec-code">.pl-600</span>
+        <span class="labelRegular10 mono spec-code">.pl-700</span>
+        <span class="labelRegular10 mono spec-code">.pl-800</span>
+        <span class="labelRegular10 mono spec-code">.pl-900</span>
+        <span class="labelRegular10 mono spec-code">.pr-25</span>
+        <span class="labelRegular10 mono spec-code">.pr-50</span>
+        <span class="labelRegular10 mono spec-code">.pr-100</span>
+        <span class="labelRegular10 mono spec-code">.pr-150</span>
+        <span class="labelRegular10 mono spec-code">.pr-200</span>
+        <span class="labelRegular10 mono spec-code">.pr-250</span>
+        <span class="labelRegular10 mono spec-code">.pr-300</span>
+        <span class="labelRegular10 mono spec-code">.pr-400</span>
+        <span class="labelRegular10 mono spec-code">.pr-500</span>
+        <span class="labelRegular10 mono spec-code">.pr-600</span>
+        <span class="labelRegular10 mono spec-code">.pr-700</span>
+        <span class="labelRegular10 mono spec-code">.pr-800</span>
+        <span class="labelRegular10 mono spec-code">.pr-900</span>
+        <span class="labelRegular10 mono spec-code">.px-25</span>
+        <span class="labelRegular10 mono spec-code">.px-50</span>
+        <span class="labelRegular10 mono spec-code">.px-100</span>
+        <span class="labelRegular10 mono spec-code">.px-150</span>
+        <span class="labelRegular10 mono spec-code">.px-200</span>
+        <span class="labelRegular10 mono spec-code">.px-250</span>
+        <span class="labelRegular10 mono spec-code">.px-300</span>
+        <span class="labelRegular10 mono spec-code">.px-400</span>
+        <span class="labelRegular10 mono spec-code">.px-500</span>
+        <span class="labelRegular10 mono spec-code">.px-600</span>
+        <span class="labelRegular10 mono spec-code">.px-700</span>
+        <span class="labelRegular10 mono spec-code">.px-800</span>
+        <span class="labelRegular10 mono spec-code">.px-900</span>
+        <span class="labelRegular10 mono spec-code">.py-25</span>
+        <span class="labelRegular10 mono spec-code">.py-50</span>
+        <span class="labelRegular10 mono spec-code">.py-100</span>
+        <span class="labelRegular10 mono spec-code">.py-150</span>
+        <span class="labelRegular10 mono spec-code">.py-200</span>
+        <span class="labelRegular10 mono spec-code">.py-250</span>
+        <span class="labelRegular10 mono spec-code">.py-300</span>
+        <span class="labelRegular10 mono spec-code">.py-400</span>
+        <span class="labelRegular10 mono spec-code">.py-500</span>
+        <span class="labelRegular10 mono spec-code">.py-600</span>
+        <span class="labelRegular10 mono spec-code">.py-700</span>
+        <span class="labelRegular10 mono spec-code">.py-800</span>
+        <span class="labelRegular10 mono spec-code">.py-900</span>
+      </div>
+    <div class="sheet-sub"><span class="title50">Gap — every class</span></div>
+      <div class="spec-label mb-200">
+        <span class="labelRegular10 mono spec-code">.gap-25</span>
+        <span class="labelRegular10 mono spec-code">.gap-50</span>
+        <span class="labelRegular10 mono spec-code">.gap-100</span>
+        <span class="labelRegular10 mono spec-code">.gap-150</span>
+        <span class="labelRegular10 mono spec-code">.gap-200</span>
+        <span class="labelRegular10 mono spec-code">.gap-250</span>
+        <span class="labelRegular10 mono spec-code">.gap-300</span>
+        <span class="labelRegular10 mono spec-code">.gap-400</span>
+        <span class="labelRegular10 mono spec-code">.gap-500</span>
+        <span class="labelRegular10 mono spec-code">.gap-600</span>
+        <span class="labelRegular10 mono spec-code">.gap-700</span>
+        <span class="labelRegular10 mono spec-code">.gap-800</span>
+        <span class="labelRegular10 mono spec-code">.gap-900</span>
+        <span class="labelRegular10 mono spec-code">.gap-x-25</span>
+        <span class="labelRegular10 mono spec-code">.gap-x-50</span>
+        <span class="labelRegular10 mono spec-code">.gap-x-100</span>
+        <span class="labelRegular10 mono spec-code">.gap-x-150</span>
+        <span class="labelRegular10 mono spec-code">.gap-x-200</span>
+        <span class="labelRegular10 mono spec-code">.gap-x-250</span>
+        <span class="labelRegular10 mono spec-code">.gap-x-300</span>
+        <span class="labelRegular10 mono spec-code">.gap-x-400</span>
+        <span class="labelRegular10 mono spec-code">.gap-x-500</span>
+        <span class="labelRegular10 mono spec-code">.gap-x-600</span>
+        <span class="labelRegular10 mono spec-code">.gap-x-700</span>
+        <span class="labelRegular10 mono spec-code">.gap-x-800</span>
+        <span class="labelRegular10 mono spec-code">.gap-x-900</span>
+        <span class="labelRegular10 mono spec-code">.gap-y-25</span>
+        <span class="labelRegular10 mono spec-code">.gap-y-50</span>
+        <span class="labelRegular10 mono spec-code">.gap-y-100</span>
+        <span class="labelRegular10 mono spec-code">.gap-y-150</span>
+        <span class="labelRegular10 mono spec-code">.gap-y-200</span>
+        <span class="labelRegular10 mono spec-code">.gap-y-250</span>
+        <span class="labelRegular10 mono spec-code">.gap-y-300</span>
+        <span class="labelRegular10 mono spec-code">.gap-y-400</span>
+        <span class="labelRegular10 mono spec-code">.gap-y-500</span>
+        <span class="labelRegular10 mono spec-code">.gap-y-600</span>
+        <span class="labelRegular10 mono spec-code">.gap-y-700</span>
+        <span class="labelRegular10 mono spec-code">.gap-y-800</span>
+        <span class="labelRegular10 mono spec-code">.gap-y-900</span>
+        <span class="labelRegular10 mono spec-code">.gap-xs</span>
+        <span class="labelRegular10 mono spec-code">.gap-sm</span>
+        <span class="labelRegular10 mono spec-code">.gap-md</span>
+        <span class="labelRegular10 mono spec-code">.gap-lg</span>
+        <span class="labelRegular10 mono spec-code">.gap-xl</span>
+      </div>
+    <div class="sheet-sub"><span class="title50">Responsive spacing utilities</span><span class="labelRegular10 text-secondary">the same six semantic tokens, as classes</span></div>
+      <div class="spec-label mb-200">
+        <span class="labelRegular10 mono spec-code">.spacing-row</span>
+        <span class="labelRegular10 mono spec-code">.gap-row</span>
+        <span class="labelRegular10 mono spec-code">.gap-x-row</span>
+        <span class="labelRegular10 mono spec-code">.gap-y-row</span>
+        <span class="labelRegular10 mono spec-code">.mt-row</span>
+        <span class="labelRegular10 mono spec-code">.mb-row</span>
+        <span class="labelRegular10 mono spec-code">.my-row</span>
+        <span class="labelRegular10 mono spec-code">.pt-row</span>
+        <span class="labelRegular10 mono spec-code">.pb-row</span>
+        <span class="labelRegular10 mono spec-code">.py-row</span>
+        <span class="labelRegular10 mono spec-code">.spacing-card</span>
+        <span class="labelRegular10 mono spec-code">.gap-card</span>
+        <span class="labelRegular10 mono spec-code">.gap-x-card</span>
+        <span class="labelRegular10 mono spec-code">.gap-y-card</span>
+        <span class="labelRegular10 mono spec-code">.mt-card</span>
+        <span class="labelRegular10 mono spec-code">.mb-card</span>
+        <span class="labelRegular10 mono spec-code">.my-card</span>
+        <span class="labelRegular10 mono spec-code">.pt-card</span>
+        <span class="labelRegular10 mono spec-code">.pb-card</span>
+        <span class="labelRegular10 mono spec-code">.py-card</span>
+        <span class="labelRegular10 mono spec-code">.spacing-content</span>
+        <span class="labelRegular10 mono spec-code">.gap-content</span>
+        <span class="labelRegular10 mono spec-code">.gap-x-content</span>
+        <span class="labelRegular10 mono spec-code">.gap-y-content</span>
+        <span class="labelRegular10 mono spec-code">.mt-content</span>
+        <span class="labelRegular10 mono spec-code">.mb-content</span>
+        <span class="labelRegular10 mono spec-code">.my-content</span>
+        <span class="labelRegular10 mono spec-code">.pt-content</span>
+        <span class="labelRegular10 mono spec-code">.pb-content</span>
+        <span class="labelRegular10 mono spec-code">.py-content</span>
+        <span class="labelRegular10 mono spec-code">.margin-small</span>
+        <span class="labelRegular10 mono spec-code">.mx-small</span>
+        <span class="labelRegular10 mono spec-code">.my-small</span>
+        <span class="labelRegular10 mono spec-code">.mt-small</span>
+        <span class="labelRegular10 mono spec-code">.mb-small</span>
+        <span class="labelRegular10 mono spec-code">.ml-small</span>
+        <span class="labelRegular10 mono spec-code">.mr-small</span>
+        <span class="labelRegular10 mono spec-code">.px-small</span>
+        <span class="labelRegular10 mono spec-code">.py-small</span>
+        <span class="labelRegular10 mono spec-code">.pt-small</span>
+        <span class="labelRegular10 mono spec-code">.pb-small</span>
+        <span class="labelRegular10 mono spec-code">.pl-small</span>
+        <span class="labelRegular10 mono spec-code">.pr-small</span>
+        <span class="labelRegular10 mono spec-code">.margin-large</span>
+        <span class="labelRegular10 mono spec-code">.mx-large</span>
+        <span class="labelRegular10 mono spec-code">.my-large</span>
+        <span class="labelRegular10 mono spec-code">.mt-large</span>
+        <span class="labelRegular10 mono spec-code">.mb-large</span>
+        <span class="labelRegular10 mono spec-code">.ml-large</span>
+        <span class="labelRegular10 mono spec-code">.mr-large</span>
+        <span class="labelRegular10 mono spec-code">.px-large</span>
+        <span class="labelRegular10 mono spec-code">.py-large</span>
+        <span class="labelRegular10 mono spec-code">.pt-large</span>
+        <span class="labelRegular10 mono spec-code">.pb-large</span>
+        <span class="labelRegular10 mono spec-code">.pl-large</span>
+        <span class="labelRegular10 mono spec-code">.pr-large</span>
+        <span class="labelRegular10 mono spec-code">.margin-landing</span>
+        <span class="labelRegular10 mono spec-code">.mx-landing</span>
+        <span class="labelRegular10 mono spec-code">.my-landing</span>
+        <span class="labelRegular10 mono spec-code">.mt-landing</span>
+        <span class="labelRegular10 mono spec-code">.mb-landing</span>
+        <span class="labelRegular10 mono spec-code">.ml-landing</span>
+        <span class="labelRegular10 mono spec-code">.mr-landing</span>
+        <span class="labelRegular10 mono spec-code">.px-landing</span>
+        <span class="labelRegular10 mono spec-code">.py-landing</span>
+        <span class="labelRegular10 mono spec-code">.pt-landing</span>
+        <span class="labelRegular10 mono spec-code">.pb-landing</span>
+        <span class="labelRegular10 mono spec-code">.pl-landing</span>
+        <span class="labelRegular10 mono spec-code">.pr-landing</span>
+      </div>
+    <div class="sheet-sub"><span class="title50">Section utilities</span></div>
+    <div class="sheet-grid sheet-grid-wide">
+      <div class="spec"><div class="spec-stage is-block is-tight"><div class="section-padding demo-fill"><span class="labelRegular10">.section-padding</span></div></div><div class="spec-label"><span class="labelRegular10 mono spec-code">.section-padding</span><span class="labelRegular10 spec-meta">vertical rhythm for one page section</span></div></div>
+      <div class="spec"><div class="spec-stage is-block is-tight"><div class="list-gap"><div class="demo-fill"><span class="labelRegular10">row</span></div><div class="demo-fill"><span class="labelRegular10">row</span></div></div></div><div class="spec-label"><span class="labelRegular10 mono spec-code">.list-gap</span><span class="labelRegular10 spec-meta">16px — airier content lists</span></div></div>
+      <div class="spec"><div class="spec-stage is-block is-tight"><div class="list-gap-tight"><div class="demo-fill"><span class="labelRegular10">row</span></div><div class="demo-fill"><span class="labelRegular10">row</span></div></div></div><div class="spec-label"><span class="labelRegular10 mono spec-code">.list-gap-tight</span><span class="labelRegular10 spec-meta">8px — compact lists like schedules</span></div></div>
+    </div>
+  </section>
+
+  <section class="sheet-section" id="containers">
+    <div class="sheet-section-head">
+      <h2 class="display300">Containers</h2>
+      <span class="labelRegular10 text-secondary mono">container-tokens.css</span>
+    </div>
+    <p class="sheet-note bodyRegular30">Page width is always a container class, never a hand-rolled <span class="mono">max-width</span> (<span class="mono">RULES §4</span>). The container also carries the horizontal page padding, so a full-bleed band handles its own background and puts a container inside.</p>
+    <div class="token-list">
+        <div class="token-row no-chip" data-token="--container-maximum">
+          <span class="labelBold20 mono">--container-maximum</span>
+          <span class="labelRegular10 token-value mono" data-token-value></span>
+        </div>
+        <div class="token-row no-chip" data-token="--container-extra-wide">
+          <span class="labelBold20 mono">--container-extra-wide</span>
+          <span class="labelRegular10 token-value mono" data-token-value></span>
+        </div>
+        <div class="token-row no-chip" data-token="--container-wide">
+          <span class="labelBold20 mono">--container-wide</span>
+          <span class="labelRegular10 token-value mono" data-token-value></span>
+        </div>
+        <div class="token-row no-chip" data-token="--container-default">
+          <span class="labelBold20 mono">--container-default</span>
+          <span class="labelRegular10 token-value mono" data-token-value></span>
+        </div>
+        <div class="token-row no-chip" data-token="--container-medium">
+          <span class="labelBold20 mono">--container-medium</span>
+          <span class="labelRegular10 token-value mono" data-token-value></span>
+        </div>
+        <div class="token-row no-chip" data-token="--container-narrow">
+          <span class="labelBold20 mono">--container-narrow</span>
+          <span class="labelRegular10 token-value mono" data-token-value></span>
+        </div>
+        <div class="token-row no-chip" data-token="--container-compact">
+          <span class="labelBold20 mono">--container-compact</span>
+          <span class="labelRegular10 token-value mono" data-token-value></span>
+        </div>
+    </div>
+    <div class="sheet-sub"><span class="title50">Classes</span></div>
+    <div class="sheet-grid sheet-grid-1">
+      <div class="spec"><div class="spec-stage is-block is-tight"><div class="container-maximum demo-fill"><span class="labelRegular10">.container-maximum</span></div></div><div class="spec-label"><span class="labelRegular10 mono spec-code">.container-maximum</span><span class="labelRegular10 spec-meta">1600px — landing pages</span></div></div>
+      <div class="spec"><div class="spec-stage is-block is-tight"><div class="container-extra-wide demo-fill"><span class="labelRegular10">.container-extra-wide</span></div></div><div class="spec-label"><span class="labelRegular10 mono spec-code">.container-extra-wide</span><span class="labelRegular10 spec-meta">1440px — dashboards</span></div></div>
+      <div class="spec"><div class="spec-stage is-block is-tight"><div class="container-wide demo-fill"><span class="labelRegular10">.container-wide</span></div></div><div class="spec-label"><span class="labelRegular10 mono spec-code">.container-wide</span><span class="labelRegular10 spec-meta">1280px — pages with sidebars</span></div></div>
+      <div class="spec"><div class="spec-stage is-block is-tight"><div class="container demo-fill"><span class="labelRegular10">.container</span></div></div><div class="spec-label"><span class="labelRegular10 mono spec-code">.container</span><span class="labelRegular10 spec-meta">1200px — default</span></div></div>
+      <div class="spec"><div class="spec-stage is-block is-tight"><div class="container-medium demo-fill"><span class="labelRegular10">.container-medium</span></div></div><div class="spec-label"><span class="labelRegular10 mono spec-code">.container-medium</span><span class="labelRegular10 spec-meta">1024px — articles, forms</span></div></div>
+      <div class="spec"><div class="spec-stage is-block is-tight"><div class="container-narrow demo-fill"><span class="labelRegular10">.container-narrow</span></div></div><div class="spec-label"><span class="labelRegular10 mono spec-code">.container-narrow</span><span class="labelRegular10 spec-meta">768px — reading content</span></div></div>
+      <div class="spec"><div class="spec-stage is-block is-tight"><div class="container-compact demo-fill"><span class="labelRegular10">.container-compact</span></div></div><div class="spec-label"><span class="labelRegular10 mono spec-code">.container-compact</span><span class="labelRegular10 spec-meta">640px — single column</span></div></div>
+      <div class="spec"><div class="spec-stage is-block is-tight"><div class="container-fluid demo-fill"><span class="labelRegular10">.container-fluid</span></div></div><div class="spec-label"><span class="labelRegular10 mono spec-code">.container-fluid</span><span class="labelRegular10 spec-meta">no cap — page padding only</span></div></div>
+    </div>
+  </section>
+
+  <section class="sheet-section" id="radius">
+    <div class="sheet-section-head">
+      <h2 class="display300">Radius</h2>
+      <span class="labelRegular10 text-secondary mono">border-effects-tokens.css</span>
+    </div>
+    <div class="token-list">
+        <div class="token-row no-chip" data-token="--border-radius-50">
+          <span class="labelBold20 mono">--border-radius-50</span>
+          <span class="labelRegular10 token-value mono" data-token-value></span>
+        </div>
+        <div class="token-row no-chip" data-token="--border-radius-100">
+          <span class="labelBold20 mono">--border-radius-100</span>
+          <span class="labelRegular10 token-value mono" data-token-value></span>
+        </div>
+        <div class="token-row no-chip" data-token="--border-radius-200">
+          <span class="labelBold20 mono">--border-radius-200</span>
+          <span class="labelRegular10 token-value mono" data-token-value></span>
+        </div>
+        <div class="token-row no-chip" data-token="--button-border-radius">
+          <span class="labelBold20 mono">--button-border-radius</span>
+          <span class="labelRegular10 token-value mono" data-token-value></span>
+        </div>
+    </div>
+    <div class="sheet-grid mt-300">
+      <div class="spec"><div class="spec-stage is-center"><div class="demo-box rounded-50" style="width: var(--spacing-1000)"></div></div><div class="spec-label"><span class="labelRegular10 mono spec-code">.rounded-50</span><span class="labelRegular10 spec-meta">4px — tags, small elements</span></div></div>
+      <div class="spec"><div class="spec-stage is-center"><div class="demo-box rounded-100" style="width: var(--spacing-1000)"></div></div><div class="spec-label"><span class="labelRegular10 mono spec-code">.rounded-100</span><span class="labelRegular10 spec-meta">8px — cards, inputs, images</span></div></div>
+      <div class="spec"><div class="spec-stage is-center"><div class="demo-box rounded-200" style="width: var(--spacing-1000)"></div></div><div class="spec-label"><span class="labelRegular10 mono spec-code">.rounded-200</span><span class="labelRegular10 spec-meta">16px — large cards, selectors</span></div></div>
+      <div class="spec"><div class="spec-stage is-center"><div class="demo-box rounded-button" style="width: var(--spacing-1000)"></div></div><div class="spec-label"><span class="labelRegular10 mono spec-code">.rounded-button</span><span class="labelRegular10 spec-meta">per theme — changes with the switcher</span></div></div>
+      <div class="spec"><div class="spec-stage is-center"><div class="demo-box rounded-t-200" style="width: var(--spacing-1000)"></div></div><div class="spec-label"><span class="labelRegular10 mono spec-code">.rounded-t-200</span></div></div>
+      <div class="spec"><div class="spec-stage is-center"><div class="demo-box rounded-b-200" style="width: var(--spacing-1000)"></div></div><div class="spec-label"><span class="labelRegular10 mono spec-code">.rounded-b-200</span></div></div>
+      <div class="spec"><div class="spec-stage is-center"><div class="demo-box rounded-l-200" style="width: var(--spacing-1000)"></div></div><div class="spec-label"><span class="labelRegular10 mono spec-code">.rounded-l-200</span></div></div>
+      <div class="spec"><div class="spec-stage is-center"><div class="demo-box rounded-r-200" style="width: var(--spacing-1000)"></div></div><div class="spec-label"><span class="labelRegular10 mono spec-code">.rounded-r-200</span></div></div>
+      <div class="spec"><div class="spec-stage is-center"><div class="demo-box rounded-tl-200" style="width: var(--spacing-1000)"></div></div><div class="spec-label"><span class="labelRegular10 mono spec-code">.rounded-tl-200</span></div></div>
+      <div class="spec"><div class="spec-stage is-center"><div class="demo-box rounded-tr-200" style="width: var(--spacing-1000)"></div></div><div class="spec-label"><span class="labelRegular10 mono spec-code">.rounded-tr-200</span></div></div>
+      <div class="spec"><div class="spec-stage is-center"><div class="demo-box rounded-bl-200" style="width: var(--spacing-1000)"></div></div><div class="spec-label"><span class="labelRegular10 mono spec-code">.rounded-bl-200</span></div></div>
+      <div class="spec"><div class="spec-stage is-center"><div class="demo-box rounded-br-200" style="width: var(--spacing-1000)"></div></div><div class="spec-label"><span class="labelRegular10 mono spec-code">.rounded-br-200</span></div></div>
+    </div>
+    <div class="sheet-sub"><span class="title50">Every radius class</span><span class="labelRegular10 text-secondary">each side and corner exists at all three steps</span></div>
+      <div class="spec-label mb-200">
+        <span class="labelRegular10 mono spec-code">.rounded-50</span>
+        <span class="labelRegular10 mono spec-code">.rounded-100</span>
+        <span class="labelRegular10 mono spec-code">.rounded-200</span>
+        <span class="labelRegular10 mono spec-code">.rounded-button</span>
+        <span class="labelRegular10 mono spec-code">.rounded-t-50</span>
+        <span class="labelRegular10 mono spec-code">.rounded-t-100</span>
+        <span class="labelRegular10 mono spec-code">.rounded-t-200</span>
+        <span class="labelRegular10 mono spec-code">.rounded-b-50</span>
+        <span class="labelRegular10 mono spec-code">.rounded-b-100</span>
+        <span class="labelRegular10 mono spec-code">.rounded-b-200</span>
+        <span class="labelRegular10 mono spec-code">.rounded-l-50</span>
+        <span class="labelRegular10 mono spec-code">.rounded-l-100</span>
+        <span class="labelRegular10 mono spec-code">.rounded-l-200</span>
+        <span class="labelRegular10 mono spec-code">.rounded-r-50</span>
+        <span class="labelRegular10 mono spec-code">.rounded-r-100</span>
+        <span class="labelRegular10 mono spec-code">.rounded-r-200</span>
+        <span class="labelRegular10 mono spec-code">.rounded-tl-50</span>
+        <span class="labelRegular10 mono spec-code">.rounded-tl-100</span>
+        <span class="labelRegular10 mono spec-code">.rounded-tl-200</span>
+        <span class="labelRegular10 mono spec-code">.rounded-tr-50</span>
+        <span class="labelRegular10 mono spec-code">.rounded-tr-100</span>
+        <span class="labelRegular10 mono spec-code">.rounded-tr-200</span>
+        <span class="labelRegular10 mono spec-code">.rounded-bl-50</span>
+        <span class="labelRegular10 mono spec-code">.rounded-bl-100</span>
+        <span class="labelRegular10 mono spec-code">.rounded-bl-200</span>
+        <span class="labelRegular10 mono spec-code">.rounded-br-50</span>
+        <span class="labelRegular10 mono spec-code">.rounded-br-100</span>
+        <span class="labelRegular10 mono spec-code">.rounded-br-200</span>
+      </div>
+  </section>
+
+  <section class="sheet-section" id="borders">
+    <div class="sheet-section-head">
+      <h2 class="display300">Borders and shadows</h2>
+      <span class="labelRegular10 text-secondary mono">border-effects-tokens.css</span>
+    </div>
+    <p class="sheet-note bodyRegular30">Shadows are for sheets and modals only — a card has neither a border nor a shadow (<span class="mono">RULES §2</span>).</p>
+    <div class="token-list">
+        <div class="token-row no-chip" data-token="--border-weight-50">
+          <span class="labelBold20 mono">--border-weight-50</span>
+          <span class="labelRegular10 token-value mono" data-token-value></span>
+        </div>
+        <div class="token-row no-chip" data-token="--border-weight-100">
+          <span class="labelBold20 mono">--border-weight-100</span>
+          <span class="labelRegular10 token-value mono" data-token-value></span>
+        </div>
+        <div class="token-row no-chip" data-token="--border-weight-200">
+          <span class="labelBold20 mono">--border-weight-200</span>
+          <span class="labelRegular10 token-value mono" data-token-value></span>
+        </div>
+        <div class="token-row no-chip" data-token="--shadow-sheet">
+          <span class="labelBold20 mono">--shadow-sheet</span>
+          <span class="labelRegular10 token-value mono" data-token-value></span>
+        </div>
+        <div class="token-row no-chip" data-token="--shadow-sheet-a">
+          <span class="labelBold20 mono">--shadow-sheet-a</span>
+          <span class="labelRegular10 token-value mono" data-token-value></span>
+        </div>
+        <div class="token-row no-chip" data-token="--shadow-sheet-b">
+          <span class="labelBold20 mono">--shadow-sheet-b</span>
+          <span class="labelRegular10 token-value mono" data-token-value></span>
+        </div>
+        <div class="token-row no-chip" data-token="--shadow-modal">
+          <span class="labelBold20 mono">--shadow-modal</span>
+          <span class="labelRegular10 token-value mono" data-token-value></span>
+        </div>
+        <div class="token-row no-chip" data-token="--shadow-modal-a">
+          <span class="labelBold20 mono">--shadow-modal-a</span>
+          <span class="labelRegular10 token-value mono" data-token-value></span>
+        </div>
+        <div class="token-row no-chip" data-token="--shadow-modal-b">
+          <span class="labelBold20 mono">--shadow-modal-b</span>
+          <span class="labelRegular10 token-value mono" data-token-value></span>
+        </div>
+    </div>
+    <div class="sheet-grid mt-300">
+      <div class="spec"><div class="spec-stage is-center"><div class="demo-fill border-50 border-solid border-default" style="width: 100%"><span class="labelRegular10">.border-50</span></div></div><div class="spec-label"><span class="labelRegular10 mono spec-code">.border-50</span><span class="labelRegular10 spec-meta">subtle</span></div></div>
+      <div class="spec"><div class="spec-stage is-center"><div class="demo-fill border-100 border-solid border-default" style="width: 100%"><span class="labelRegular10">.border-100</span></div></div><div class="spec-label"><span class="labelRegular10 mono spec-code">.border-100</span><span class="labelRegular10 spec-meta">standard</span></div></div>
+      <div class="spec"><div class="spec-stage is-center"><div class="demo-fill border-200 border-solid border-active" style="width: 100%"><span class="labelRegular10">.border-200</span></div></div><div class="spec-label"><span class="labelRegular10 mono spec-code">.border-200</span><span class="labelRegular10 spec-meta">heavy / active</span></div></div>
+      <div class="spec"><div class="spec-stage is-center"><div class="demo-fill border" style="width: 100%"><span class="labelRegular10">.border</span></div></div><div class="spec-label"><span class="labelRegular10 mono spec-code">.border</span><span class="labelRegular10 spec-meta">combination — weight + solid + default colour</span></div></div>
+      <div class="spec"><div class="spec-stage is-center"><div class="demo-fill border-thin" style="width: 100%"><span class="labelRegular10">.border-thin</span></div></div><div class="spec-label"><span class="labelRegular10 mono spec-code">.border-thin</span></div></div>
+      <div class="spec"><div class="spec-stage is-center"><div class="demo-fill border-heavy" style="width: 100%"><span class="labelRegular10">.border-heavy</span></div></div><div class="spec-label"><span class="labelRegular10 mono spec-code">.border-heavy</span></div></div>
+      <div class="spec"><div class="spec-stage is-center"><div class="demo-fill border-interactive" style="width: 100%"><span class="labelRegular10">.border-interactive</span></div></div><div class="spec-label"><span class="labelRegular10 mono spec-code">.border-interactive</span></div></div>
+      <div class="spec"><div class="spec-stage is-center"><div class="demo-fill border-top" style="width: 100%"><span class="labelRegular10">.border-top</span></div></div><div class="spec-label"><span class="labelRegular10 mono spec-code">.border-top</span></div></div>
+      <div class="spec"><div class="spec-stage is-center"><div class="demo-fill border-bottom" style="width: 100%"><span class="labelRegular10">.border-bottom</span></div></div><div class="spec-label"><span class="labelRegular10 mono spec-code">.border-bottom</span></div></div>
+      <div class="spec"><div class="spec-stage is-center"><div class="demo-fill border-left" style="width: 100%"><span class="labelRegular10">.border-left</span></div></div><div class="spec-label"><span class="labelRegular10 mono spec-code">.border-left</span></div></div>
+      <div class="spec"><div class="spec-stage is-center"><div class="demo-fill border-right" style="width: 100%"><span class="labelRegular10">.border-right</span></div></div><div class="spec-label"><span class="labelRegular10 mono spec-code">.border-right</span></div></div>
+      <div class="spec"><div class="spec-stage is-center"><div class="demo-fill border-none" style="width: 100%"><span class="labelRegular10">.border-none</span></div></div><div class="spec-label"><span class="labelRegular10 mono spec-code">.border-none</span></div></div>
+      <div class="spec"><div class="spec-stage is-center is-base"><div class="p-300 rounded-200 shadow-sheet" style="background: var(--bg-sheet); width: 100%"><span class="labelRegular10">.shadow-sheet</span></div></div><div class="spec-label"><span class="labelRegular10 mono spec-code">.shadow-sheet</span></div></div>
+      <div class="spec"><div class="spec-stage is-center is-base"><div class="p-300 rounded-200 shadow-modal" style="background: var(--bg-sheet); width: 100%"><span class="labelRegular10">.shadow-modal</span></div></div><div class="spec-label"><span class="labelRegular10 mono spec-code">.shadow-modal</span></div></div>
+      <div class="spec"><div class="spec-stage is-center is-base"><div class="p-300 rounded-200 shadow-sheet-a" style="background: var(--bg-sheet); width: 100%"><span class="labelRegular10">.shadow-sheet-a</span></div></div><div class="spec-label"><span class="labelRegular10 mono spec-code">.shadow-sheet-a</span></div></div>
+      <div class="spec"><div class="spec-stage is-center is-base"><div class="p-300 rounded-200 shadow-sheet-b" style="background: var(--bg-sheet); width: 100%"><span class="labelRegular10">.shadow-sheet-b</span></div></div><div class="spec-label"><span class="labelRegular10 mono spec-code">.shadow-sheet-b</span></div></div>
+      <div class="spec"><div class="spec-stage is-center is-base"><div class="p-300 rounded-200 shadow-modal-a" style="background: var(--bg-sheet); width: 100%"><span class="labelRegular10">.shadow-modal-a</span></div></div><div class="spec-label"><span class="labelRegular10 mono spec-code">.shadow-modal-a</span></div></div>
+      <div class="spec"><div class="spec-stage is-center is-base"><div class="p-300 rounded-200 shadow-modal-b" style="background: var(--bg-sheet); width: 100%"><span class="labelRegular10">.shadow-modal-b</span></div></div><div class="spec-label"><span class="labelRegular10 mono spec-code">.shadow-modal-b</span></div></div>
+      <div class="spec"><div class="spec-stage is-center is-base"><div class="p-300 rounded-200 shadow-none" style="background: var(--bg-sheet); width: 100%"><span class="labelRegular10">.shadow-none</span></div></div><div class="spec-label"><span class="labelRegular10 mono spec-code">.shadow-none</span></div></div>
+    </div>
+    <div class="sheet-sub"><span class="title50">Every border class</span></div>
+      <div class="spec-label mb-200">
+        <span class="labelRegular10 mono spec-code">.border-50</span>
+        <span class="labelRegular10 mono spec-code">.border-100</span>
+        <span class="labelRegular10 mono spec-code">.border-200</span>
+        <span class="labelRegular10 mono spec-code">.border-t-50</span>
+        <span class="labelRegular10 mono spec-code">.border-t-100</span>
+        <span class="labelRegular10 mono spec-code">.border-t-200</span>
+        <span class="labelRegular10 mono spec-code">.border-r-50</span>
+        <span class="labelRegular10 mono spec-code">.border-r-100</span>
+        <span class="labelRegular10 mono spec-code">.border-r-200</span>
+        <span class="labelRegular10 mono spec-code">.border-b-50</span>
+        <span class="labelRegular10 mono spec-code">.border-b-100</span>
+        <span class="labelRegular10 mono spec-code">.border-b-200</span>
+        <span class="labelRegular10 mono spec-code">.border-l-50</span>
+        <span class="labelRegular10 mono spec-code">.border-l-100</span>
+        <span class="labelRegular10 mono spec-code">.border-l-200</span>
+        <span class="labelRegular10 mono spec-code">.border-solid</span>
+        <span class="labelRegular10 mono spec-code">.border-none</span>
+        <span class="labelRegular10 mono spec-code">.border-neutral-200</span>
+        <span class="labelRegular10 mono spec-code">.border-neutral-500</span>
+        <span class="labelRegular10 mono spec-code">.border-neutral-1000</span>
+        <span class="labelRegular10 mono spec-code">.border-brand-interactive</span>
+        <span class="labelRegular10 mono spec-code">.border-default</span>
+        <span class="labelRegular10 mono spec-code">.border-hover</span>
+        <span class="labelRegular10 mono spec-code">.border-active</span>
+        <span class="labelRegular10 mono spec-code">.shadow-sheet</span>
+        <span class="labelRegular10 mono spec-code">.shadow-modal</span>
+        <span class="labelRegular10 mono spec-code">.shadow-none</span>
+        <span class="labelRegular10 mono spec-code">.shadow-sheet-a</span>
+        <span class="labelRegular10 mono spec-code">.shadow-sheet-b</span>
+        <span class="labelRegular10 mono spec-code">.shadow-modal-a</span>
+        <span class="labelRegular10 mono spec-code">.shadow-modal-b</span>
+        <span class="labelRegular10 mono spec-code">.border</span>
+        <span class="labelRegular10 mono spec-code">.border-thin</span>
+        <span class="labelRegular10 mono spec-code">.border-heavy</span>
+        <span class="labelRegular10 mono spec-code">.border-interactive</span>
+        <span class="labelRegular10 mono spec-code">.border-top</span>
+        <span class="labelRegular10 mono spec-code">.border-right</span>
+        <span class="labelRegular10 mono spec-code">.border-bottom</span>
+        <span class="labelRegular10 mono spec-code">.border-left</span>
+      </div>
+  </section>
+
+  <section class="sheet-section" id="grid">
+    <div class="sheet-section-head">
+      <h2 class="display300">Grid and visibility</h2>
+      <span class="labelRegular10 text-secondary mono">boilerplate.css</span>
+    </div>
+    <p class="sheet-note bodyRegular30">Column counts are declared per breakpoint and stack: <span class="mono">.grid .grid-cols-3-desktop .grid-cols-2-tablet .grid-cols-1-mobile</span>. Never cap a layout at phone width — <span class="mono">max-width: 430px</span> is a bug (<span class="mono">RULES §9</span>).</p>
+    <div class="grid grid-cols-3-desktop grid-cols-2-tablet grid-cols-1-mobile gap-200 mb-400">
+      <div class="demo-fill py-300"><span class="labelRegular10">1</span></div>
+      <div class="demo-fill py-300"><span class="labelRegular10">2</span></div>
+      <div class="demo-fill py-300"><span class="labelRegular10">3</span></div>
+    </div>
+    <div class="grid grid-auto-fit gap-200 mb-400">
+      <div class="demo-fill py-300"><span class="labelRegular10">.grid-auto-fit</span></div>
+      <div class="demo-fill py-300"><span class="labelRegular10">.grid-auto-fit</span></div>
+      <div class="demo-fill py-300"><span class="labelRegular10">.grid-auto-fit</span></div>
+    </div>
+      <div class="spec-label mb-200">
+        <span class="labelRegular10 mono spec-code">.grid</span>
+        <span class="labelRegular10 mono spec-code">.grid-cols-1-mobile</span>
+        <span class="labelRegular10 mono spec-code">.grid-cols-2-tablet</span>
+        <span class="labelRegular10 mono spec-code">.grid-cols-3-tablet</span>
+        <span class="labelRegular10 mono spec-code">.grid-cols-2-desktop</span>
+        <span class="labelRegular10 mono spec-code">.grid-cols-3-desktop</span>
+        <span class="labelRegular10 mono spec-code">.grid-cols-4-desktop</span>
+        <span class="labelRegular10 mono spec-code">.grid-auto-fit</span>
+        <span class="labelRegular10 mono spec-code">.flex-center</span>
+        <span class="labelRegular10 mono spec-code">.flex-center-viewport</span>
+        <span class="labelRegular10 mono spec-code">.flex-column</span>
+        <span class="labelRegular10 mono spec-code">.flex-row</span>
+      </div>
+    <div class="sheet-sub"><span class="title50">Responsive visibility</span><span class="labelRegular10 text-secondary">resize to see these appear and disappear</span></div>
+    <div class="sheet-grid">
+      <div class="spec"><div class="spec-stage is-center"><span class="labelBold20 hide-mobile">Hidden below 500px</span></div><div class="spec-label"><span class="labelRegular10 mono spec-code">.hide-mobile</span></div></div>
+      <div class="spec"><div class="spec-stage is-center"><span class="labelBold20 show-mobile">Only below 500px</span></div><div class="spec-label"><span class="labelRegular10 mono spec-code">.show-mobile</span></div></div>
+      <div class="spec"><div class="spec-stage is-center"><span class="labelBold20 hide-tablet">Hidden on tablet</span></div><div class="spec-label"><span class="labelRegular10 mono spec-code">.hide-tablet</span></div></div>
+      <div class="spec"><div class="spec-stage is-center"><span class="labelBold20 show-tablet">Only on tablet</span></div><div class="spec-label"><span class="labelRegular10 mono spec-code">.show-tablet</span></div></div>
+      <div class="spec"><div class="spec-stage is-center"><span class="labelBold20 hide-desktop">Hidden on desktop</span></div><div class="spec-label"><span class="labelRegular10 mono spec-code">.hide-desktop</span></div></div>
+      <div class="spec"><div class="spec-stage is-center"><span class="labelBold20 show-desktop">Only on desktop</span></div><div class="spec-label"><span class="labelRegular10 mono spec-code">.show-desktop</span></div></div>
+      <div class="spec"><div class="spec-stage is-center"><span class="labelBold20 hide-mobile-tablet">Desktop only</span></div><div class="spec-label"><span class="labelRegular10 mono spec-code">.hide-mobile-tablet</span></div></div>
+      <div class="spec"><div class="spec-stage is-center"><span class="labelBold20 hide-tablet-desktop">Mobile only</span></div><div class="spec-label"><span class="labelRegular10 mono spec-code">.hide-tablet-desktop</span></div></div>
+    </div>
+  </section>
+
+  <section class="sheet-section" id="icons">
+    <div class="sheet-section-head">
+      <h2 class="display300">Icons</h2>
+      <span class="labelRegular10 text-secondary mono">icons.css · Material Symbols Rounded</span>
+    </div>
+    <p class="sheet-note bodyRegular30">A standalone icon is <span class="mono">&lt;span class=&quot;icon icon-N&quot;&gt;name&lt;/span&gt;</span>. Icons are <strong>filled</strong> by default; add <span class="mono">.icon-outlined</span> to opt one out. Never add <span class="mono">material-symbols-rounded</span> next to <span class="mono">.icon</span> — <span class="mono">.icon</span> already sets the family. Inside a button it is <span class="mono">.btn-icon material-symbols-rounded</span> instead (<span class="mono">RULES §4</span>).</p>
+    <div class="sheet-grid">
+      <div class="spec"><div class="spec-stage is-center"><span class="icon icon-50">confirmation_number</span></div><div class="spec-label"><span class="labelRegular10 mono spec-code">.icon-50</span><span class="labelRegular10 spec-meta">12px</span></div></div>
+      <div class="spec"><div class="spec-stage is-center"><span class="icon icon-100">confirmation_number</span></div><div class="spec-label"><span class="labelRegular10 mono spec-code">.icon-100</span><span class="labelRegular10 spec-meta">16px</span></div></div>
+      <div class="spec"><div class="spec-stage is-center"><span class="icon icon-200">confirmation_number</span></div><div class="spec-label"><span class="labelRegular10 mono spec-code">.icon-200</span><span class="labelRegular10 spec-meta">20px</span></div></div>
+      <div class="spec"><div class="spec-stage is-center"><span class="icon icon-300">confirmation_number</span></div><div class="spec-label"><span class="labelRegular10 mono spec-code">.icon-300</span><span class="labelRegular10 spec-meta">24px</span></div></div>
+      <div class="spec"><div class="spec-stage is-center"><span class="icon icon-400">confirmation_number</span></div><div class="spec-label"><span class="labelRegular10 mono spec-code">.icon-400</span><span class="labelRegular10 spec-meta">32px</span></div></div>
+      <div class="spec"><div class="spec-stage is-center"><span class="icon icon-500">confirmation_number</span></div><div class="spec-label"><span class="labelRegular10 mono spec-code">.icon-500</span><span class="labelRegular10 spec-meta">40px</span></div></div>
+      <div class="spec"><div class="spec-stage is-center"><span class="icon icon-600">confirmation_number</span></div><div class="spec-label"><span class="labelRegular10 mono spec-code">.icon-600</span><span class="labelRegular10 spec-meta">48px</span></div></div>
+      <div class="spec"><div class="spec-stage is-center"><span class="icon icon-700">confirmation_number</span></div><div class="spec-label"><span class="labelRegular10 mono spec-code">.icon-700</span><span class="labelRegular10 spec-meta">64px</span></div></div>
+      <div class="spec"><div class="spec-stage is-center"><span class="icon icon-400 icon-outlined">confirmation_number</span></div><div class="spec-label"><span class="labelRegular10 mono spec-code">.icon-outlined</span><span class="labelRegular10 spec-meta">the opt-out from filled</span></div></div>
+    </div>
+    <div class="token-list mt-300">
+        <div class="token-row no-chip" data-token="--icon-size-50">
+          <span class="labelBold20 mono">--icon-size-50</span>
+          <span class="labelRegular10 token-value mono" data-token-value></span>
+        </div>
+        <div class="token-row no-chip" data-token="--icon-size-100">
+          <span class="labelBold20 mono">--icon-size-100</span>
+          <span class="labelRegular10 token-value mono" data-token-value></span>
+        </div>
+        <div class="token-row no-chip" data-token="--icon-size-200">
+          <span class="labelBold20 mono">--icon-size-200</span>
+          <span class="labelRegular10 token-value mono" data-token-value></span>
+        </div>
+        <div class="token-row no-chip" data-token="--icon-size-300">
+          <span class="labelBold20 mono">--icon-size-300</span>
+          <span class="labelRegular10 token-value mono" data-token-value></span>
+        </div>
+        <div class="token-row no-chip" data-token="--icon-size-400">
+          <span class="labelBold20 mono">--icon-size-400</span>
+          <span class="labelRegular10 token-value mono" data-token-value></span>
+        </div>
+        <div class="token-row no-chip" data-token="--icon-size-500">
+          <span class="labelBold20 mono">--icon-size-500</span>
+          <span class="labelRegular10 token-value mono" data-token-value></span>
+        </div>
+        <div class="token-row no-chip" data-token="--icon-size-600">
+          <span class="labelBold20 mono">--icon-size-600</span>
+          <span class="labelRegular10 token-value mono" data-token-value></span>
+        </div>
+        <div class="token-row no-chip" data-token="--icon-size-700">
+          <span class="labelBold20 mono">--icon-size-700</span>
+          <span class="labelRegular10 token-value mono" data-token-value></span>
+        </div>
+    </div>
+  </section>
+
+  <section class="sheet-section" id="platform">
+    <div class="sheet-section-head">
+      <h2 class="display300">Platform and component tokens</h2>
+      <span class="labelRegular10 text-secondary mono">platform-tokens.css · table-components.css · product-patterns.css</span>
+    </div>
+    <p class="sheet-note bodyRegular30">The safe areas are <span class="mono">0px</span> on web and non-zero in app mode — switch platform on the <a class="link" href="11-ios.html">iOS sheet</a> to see them change. The last two are component-scoped: set them on the component, not globally.</p>
+    <div class="token-list">
+        <div class="token-row no-chip" data-token="--safe-area-top">
+          <span class="labelBold20 mono">--safe-area-top</span>
+          <span class="labelRegular10 token-value mono" data-token-value></span>
+        </div>
+        <div class="token-row no-chip" data-token="--safe-area-bottom">
+          <span class="labelBold20 mono">--safe-area-bottom</span>
+          <span class="labelRegular10 token-value mono" data-token-value></span>
+        </div>
+        <div class="token-row no-chip" data-token="--ios-tab-bar-clearance">
+          <span class="labelBold20 mono">--ios-tab-bar-clearance</span>
+          <span class="labelRegular10 token-value mono" data-token-value></span>
+        </div>
+        <div class="token-row no-chip" data-token="--stat-table-entity-width">
+          <span class="labelBold20 mono">--stat-table-entity-width</span>
+          <span class="labelRegular10 token-value mono" data-token-value></span>
+        </div>
+        <div class="token-row no-chip" data-token="--game-summary-logo-size">
+          <span class="labelBold20 mono">--game-summary-logo-size</span>
+          <span class="labelRegular10 token-value mono" data-token-value></span>
+        </div>
+    </div>
+  </section>
+
+  <footer class="sheet-footer">
+    <p class="labelRegular10">Generated against <span class="mono">docs/css-api.json</span>. Every class shown here exists in the system — run <span class="mono">npm run check:demo</span> to verify the sheets still cover it.</p>
+  </footer>
+
+</main>
+
+<script src="sheet.js"></script>
+</body>
+</html>

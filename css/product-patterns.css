@@ -1,0 +1,574 @@
+/* ============================================================
+   product-patterns.css
+   ============================================================
+   Composite layouts that recur across product screens and sit above the component layer.
+
+   What's inside
+   - .context-header — the band under the top nav with a page title and optional tabs
+   - .circle-icon — large decorative icon disc for auth flows and empty states
+   - .action-row — a row of equally weighted buttons
+   - .game-summary (+ -team, -stack, -logo, -team-info, -abbr, -record, -rank,
+     -score, -center, -status, -detail, -live-dot, -actions, -card) — the
+     scoreboard: away leads, home trails, in a scheduled / live / final state
+   - .event-card (+ .event-card-media, .event-card-list) — a tappable card for one event
+   - .action-tile-row, .action-tile (+ -circle) — a row of icon-above-label actions
+   - .heading-select — a heading that is also a picker
+   - .disclosure-toggle — a label plus chevron that expands detail in place
+   - .section-heading — title plus supporting line for a section within a page
+   - .link — an emphasised inline link
+   - .crest-placeholder — stands in for a missing team crest
+
+   Notes
+   - These arrange components rather than being one. A pattern earns a place
+     here once it recurs across several templates and has one agreed
+     definition; until then it stays product CSS in the template.
+   - Reach for one of these before writing layout CSS. See RULES §3.
+   ============================================================ */
+
+
+/* ============================================================
+   CONTEXT HEADER
+   ============================================================
+   The band under the top nav holding a page title and, optionally, tabs.
+   Used by every Buy tab, event details, and the ticket wallet.
+
+   <div class="context-header">
+     <div class="container-compact">
+       <h1 class="display500">Buy Tickets</h1>
+       <div class="tabs">…</div>
+     </div>
+   </div>
+
+   As a real class the mobile media query wins on ordinary specificity, so no
+   `!important` is needed (RULES §2) — an inline style could not be beaten
+   from a stylesheet without one.
+   ============================================================ */
+
+.context-header {
+  padding-top: var(--spacing-800);
+  background: var(--bg-base);
+  border-bottom: var(--border-weight-100) solid var(--neutral-200);
+}
+
+@media (max-width: 768px) {
+  .context-header {
+    padding-top: var(--spacing-200);
+  }
+
+  .context-header .header-inner {
+    padding-bottom: var(--spacing-200);
+  }
+}
+
+
+/* ============================================================
+   CIRCLE ICON
+   ============================================================
+   A large decorative icon disc — auth flows, empty states, confirmations.
+   Not to be confused with `.leading-icon` (40px, inside a list row's leading
+   slot) or `.btn-circle` (an actual button). This one is not interactive.
+
+   <div class="circle-icon"><span class="icon icon-400">mail</span></div>
+   ============================================================ */
+
+.circle-icon {
+  width: var(--spacing-700);
+  height: var(--spacing-700);
+  border-radius: 50%;
+  background: var(--neutral-100);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+
+/* ============================================================
+   ACTION ROW
+   ============================================================
+   A row of equally-weighted buttons — the footer of a form or auth step.
+   Children share the width evenly.
+
+   <div class="action-row">
+     <button class="btn btn-secondary btn-300">Back</button>
+     <button class="btn btn-primary btn-300">Continue</button>
+   </div>
+   ============================================================ */
+
+.action-row {
+  display: flex;
+  gap: var(--spacing-200);
+  align-items: center;
+}
+
+.action-row .btn {
+  flex: 1;
+}
+
+
+/* ============================================================
+   GAME SUMMARY  ("Scoreboard")
+   ============================================================
+   Figma: `Game Summary` 15861:41266 — 16 variants over three axes.
+   Rebuilt against that component 2026-09-11; the previous version here was a
+   single layout that matched none of them.
+
+     State        scheduled | live | final   (Figma: Future/Today, During, Final)
+     Away game    which club sits on which side
+     On scrim     Figma's "Mode Agnostic" — white text over photography
+
+   **Away team leads (left), home team trails (right). Always.** That is the
+   component's own rule, and it is the whole of the away-game axis: when the
+   org is playing away it takes the left slot, and the opponent takes it at
+   home. Do not mirror by "org side" — mirror by who is at home.
+
+   Two shapes, decided by whether there is a score to show:
+
+     scheduled   [ crest 48 · abbr/record ]  date/time  [ abbr/record · crest ]
+     live/final  [ crest 32 over abbr/record ] score   clock   score [ … ]
+
+   In the score states the crest shrinks and moves *above* the abbreviation so
+   the big number can take the horizontal room. The score is `.display400` —
+   add the type class in markup, as `.stat-table` does. Everything else is
+   12/10px Inter, which the component sets because it changes with state.
+
+   The data is one fixture (RULES §6): `game.record`, `game.score` on a final,
+   `game.live` on a live one — the loader fills that from the sport when the
+   fixture does not state it, and `npm run check` refuses a fixture whose
+   status and numbers disagree.
+
+   <div class="game-summary is-final">
+     <div class="game-summary-team away">
+       <div class="game-summary-stack">
+         <img class="game-summary-logo" src="{away.logo}" alt="">
+         <div class="game-summary-team-info">
+           <span class="game-summary-abbr">{away.abbr}</span>
+           <span class="game-summary-record">{away.record}</span>
+         </div>
+       </div>
+       <span class="game-summary-score display400 is-loser">98</span>
+     </div>
+     <div class="game-summary-center">
+       <span class="game-summary-status">Final</span>
+       <span class="game-summary-detail">Mon, 11/4</span>
+     </div>
+     <div class="game-summary-team home">
+       <span class="game-summary-score display400">107</span>
+       <div class="game-summary-stack">…</div>
+     </div>
+   </div>
+   ============================================================ */
+
+.game-summary {
+  --game-summary-logo-size: 48px;
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-150); /* 12px */
+  width: 100%;
+}
+
+/* A score state gives the number the room and shrinks the crest. */
+.game-summary.is-live,
+.game-summary.is-final {
+  --game-summary-logo-size: 32px;
+}
+
+.game-summary-team {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-150); /* 12px */
+  min-width: 0;
+}
+
+/* Away leads, home trails — the crests bracket the centre like a scoreboard. */
+.game-summary-team.away { justify-content: flex-start; }
+.game-summary-team.home { justify-content: flex-end; }
+
+/* Crest over name over record. In the scheduled state this is a row instead,
+   with the larger crest beside the text rather than above it. */
+.game-summary-stack {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-25); /* 2px */
+  flex-shrink: 0;
+  min-width: 0;
+}
+
+.game-summary.is-scheduled .game-summary-stack {
+  flex-direction: row;
+  gap: var(--spacing-150);
+}
+
+.game-summary-logo {
+  width: var(--game-summary-logo-size);
+  height: var(--game-summary-logo-size);
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+/* Name and record. Not a .card-text-pair — Figma calls it "Not a Text Pair"
+   because the two lines are centred on each other rather than left-aligned,
+   and the gap is 1px rather than the pair scale's 2px. */
+.game-summary-team-info {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  min-width: 0;
+  text-align: center;
+}
+
+.game-summary.is-scheduled .game-summary-team-info {
+  align-items: flex-start;
+  text-align: left;
+}
+
+.game-summary.is-scheduled .game-summary-team.home .game-summary-team-info {
+  align-items: flex-end;
+  text-align: right;
+}
+
+/* An optional league position ahead of the abbreviation. */
+.game-summary-rank {
+  font-family: 'Inter', system-ui, sans-serif;
+  font-weight: 400;
+  font-size: 10px;
+  line-height: normal;
+  letter-spacing: -0.01em;
+  color: var(--text-secondary);
+  margin-right: var(--spacing-25);
+}
+
+.game-summary-abbr {
+  font-family: 'Inter', system-ui, sans-serif;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: normal;
+  letter-spacing: -0.02em;
+  color: var(--text-primary);
+  white-space: nowrap;
+}
+
+/* The scheduled state has room for the club name at label-bold-40. */
+.game-summary.is-scheduled .game-summary-abbr { font-size: 18px; }
+
+.game-summary-record {
+  font-family: 'Inter', system-ui, sans-serif;
+  font-weight: 400;
+  font-size: 10px;
+  line-height: normal;
+  letter-spacing: -0.01em;
+  color: var(--text-secondary);
+  white-space: nowrap;
+}
+
+.game-summary.is-scheduled .game-summary-record { font-size: 12px; }
+
+/* The number. Takes .display400 in markup for the face and the ramp; this
+   only decides how much room it gets and where it sits. */
+.game-summary-score {
+  flex: 1;
+  min-width: 0;
+  text-align: center;
+  color: var(--text-primary);
+}
+
+/* A finished game greys the side that lost. Only on a final — a live score is
+   provisional and both sides stay at full strength. */
+.game-summary.is-final .game-summary-score.is-loser {
+  color: var(--text-disabled);
+}
+
+.game-summary-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1px;
+  flex-shrink: 0;
+  text-align: center;
+}
+
+.game-summary-status {
+  font-family: 'Inter', system-ui, sans-serif;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: normal;
+  letter-spacing: -0.02em;
+  color: var(--text-primary);
+  white-space: nowrap;
+}
+
+.game-summary-detail {
+  font-family: 'Inter', system-ui, sans-serif;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: normal;
+  letter-spacing: -0.02em;
+  color: var(--text-secondary);
+  white-space: nowrap;
+}
+
+/* The live dot keeps --status-success in every theme and mode; it reads as
+   "on air", not as the theme's palette. */
+.game-summary-live-dot { color: var(--status-success); }
+
+/* --- On a scrim ("Mode Agnostic") ----------------------------------------
+   Over photography or a brand panel the text stops following the mode and
+   goes white, because the backdrop does not change with it (RULES §8). The
+   crests keep their own colour. */
+.game-summary.on-scrim .game-summary-abbr,
+.game-summary.on-scrim .game-summary-score,
+.game-summary.on-scrim .game-summary-status {
+  color: var(--white-1000);
+}
+
+.game-summary.on-scrim .game-summary-rank,
+.game-summary.on-scrim .game-summary-record,
+.game-summary.on-scrim .game-summary-detail {
+  color: var(--white-700);
+}
+
+.game-summary.on-scrim.is-final .game-summary-score.is-loser {
+  color: var(--white-500);
+}
+
+/* --- The card -------------------------------------------------------------
+   Figma: `Game Summary Card` 17022:282838 — the row plus the actions that go
+   with its state. Three states, because the card collapses Future and Today
+   into one "before":
+
+     before   Buy Tickets (transactional) + Game Info (secondary)
+     during   View Tickets (neutral)      + Game Info (secondary)
+     after    Game Info (secondary), alone and full width
+
+   Buttons are .btn-300 and share the row equally. */
+.game-summary-card {
+  background: var(--bg-surface);
+  border-radius: var(--border-radius-200); /* 16px */
+  padding: var(--spacing-200);             /* 16px */
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-200);
+}
+
+.game-summary-actions {
+  display: flex;
+  gap: var(--spacing-100); /* 8px */
+  width: 100%;
+}
+
+.game-summary-actions > .btn { flex: 1; }
+
+
+/* ============================================================
+   EVENT CARD
+   ============================================================
+   A tappable card for one event. Two variants:
+
+     .event-card              padded — text and controls, no bleed
+     .event-card-media        edge-to-edge — an image meets the card corners
+
+   <div class="event-card event-card-media">
+     <img class="matchup-image"> <div class="list-row">…</div>
+   </div>
+   ============================================================ */
+
+.event-card {
+  background: var(--bg-surface);
+  border-radius: var(--border-radius-200);
+  padding: var(--spacing-300);
+  cursor: pointer;
+  overflow: hidden;
+  transition: opacity 0.15s ease;
+}
+
+.event-card:hover {
+  opacity: 0.85;
+}
+
+/* Media variant: the image owns the edges, so the card sheds its padding. */
+.event-card-media {
+  padding: 0;
+}
+
+.event-card-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-200);
+}
+
+
+/* ============================================================
+   ACTION TILE
+   ============================================================
+   A row of equally-weighted actions, each a circular icon above a label.
+   Used for the things you can do with a ticket you already own — upgrade,
+   transfer, sell.
+
+   It is not a `.btn`: buttons are a pill with the label inside. This is a
+   target with the icon carrying the meaning and the label naming it, sized to
+   share a row with its siblings.
+
+   <div class="action-tile-row">
+     <button class="action-tile">
+       <div class="action-tile-circle"><span class="icon icon-400">send</span></div>
+       <span class="labelBold20">Transfer</span>
+     </button>
+   </div>
+   ============================================================ */
+
+.action-tile-row {
+  display: flex;
+  gap: var(--spacing-25);
+  width: 100%;
+}
+
+.action-tile {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-100);
+  padding: var(--spacing-100) 0;
+  border-radius: var(--border-radius-100);
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.action-tile-circle {
+  width: var(--spacing-700);
+  height: var(--spacing-700);
+  border-radius: 50%;
+  background: var(--interactive-transactional);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.action-tile-circle .icon {
+  color: var(--interactive-transactional-text);
+}
+
+
+/* ============================================================
+   HEADING SELECT
+   ============================================================
+   A heading that is also a picker — the title states the current selection and
+   the caret says it can be changed. Used for the season switcher on the
+   schedule, and anywhere a page is scoped to one of several values.
+
+   The heading keeps its own text class; this only makes it interactive.
+
+   <button class="heading-select">
+     <span class="display300">25-26 Season</span>
+     <span class="icon icon-200">unfold_more</span>
+   </button>
+   ============================================================ */
+
+.heading-select {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-50);
+  padding: 0;
+  background: none;
+  border: none;
+  font-family: inherit;
+  color: var(--text-primary);
+  cursor: pointer;
+}
+
+
+/* ============================================================
+   DISCLOSURE TOGGLE
+   ============================================================
+   A text label plus a chevron that expands detail in place — an order summary
+   opening to its line items, a fee breakdown. Low emphasis by design: it
+   reveals, it does not commit, so it must not read as a `.btn`.
+
+   <button class="disclosure-toggle bodyRegular30">
+     <span>Show Details</span>
+     <span class="icon icon-200">expand_more</span>
+   </button>
+   ============================================================ */
+
+.disclosure-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-25);
+  padding: 0;
+  background: none;
+  border: none;
+  font-family: inherit;
+  color: var(--text-primary);
+  cursor: pointer;
+}
+
+
+/* ============================================================
+   SECTION HEADING
+   ============================================================
+   Title plus supporting line introducing a section within a page. Sits below
+   `.page-header` (which titles the whole page) and above the section content.
+
+   <div class="section-heading">
+     <span class="display300">Up Next</span>
+     <span class="labelRegular30 text-secondary">Get tickets now!</span>
+   </div>
+   ============================================================ */
+
+.section-heading {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-25);
+}
+
+
+/* ============================================================
+   INLINE LINK
+   ============================================================
+   An emphasised link inside running text — "Contact Customer Support".
+   Anchors already take the interactive colour from boilerplate.css; this adds
+   the weight that lifts one out of a sentence.
+
+   <span class="labelRegular10 text-secondary">
+     Can't find your purchase? Contact <a class="link">Customer Support</a>
+   </span>
+   ============================================================ */
+
+.link {
+  font-weight: 600;
+  color: var(--color-interactive);
+  text-decoration: none;
+  cursor: pointer;
+}
+
+
+/* ============================================================
+   CREST PLACEHOLDER
+   ============================================================
+   Stands in for a team crest that isn't available — an opponent with no logo
+   in content/opponents.json, or a generic fixture in an early-stage prototype. Same footprint
+   as `.leading-logo`, so swapping a real crest in later changes nothing else.
+
+   <div class="crest-placeholder">OPP</div>
+   ============================================================ */
+
+.crest-placeholder {
+  width: var(--spacing-600);
+  height: var(--spacing-600);
+  border-radius: 50%;
+  background: var(--neutral-300);
+  color: var(--white-1000);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  font-size: 0.8125rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}

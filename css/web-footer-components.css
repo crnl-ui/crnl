@@ -1,0 +1,200 @@
+/* ============================================================
+   web-footer-components.css
+   ============================================================
+   The responsive site footer.
+
+   What's inside
+   - .web-footer, .web-footer-main — the footer band and its main row
+   - .web-footer-logo, .web-footer-app (+ -title, -badges, -badge) — logo and
+     app download column
+   - .web-footer-column (+ -heading), .web-footer-link — link columns
+   - .web-footer-bottom, .web-footer-legal (+ -links), .web-footer-copyright,
+     .web-footer-powered — bottom bar
+
+   Notes
+   - Background is --brand-dark, so text uses the white family: the footer is
+     always a dark surface regardless of mode.
+   - Reflows at the system breakpoints (RULES §9).
+   ============================================================ */
+
+/* ============================================================
+   WEB FOOTER
+   ============================================================ */
+
+.web-footer {
+  background: var(--brand-dark);
+  padding: var(--spacing-800) var(--spacing-400) 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-500);
+  margin-top: auto;
+}
+
+/* --- Main content row --- */
+
+.web-footer-main {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-400);
+}
+
+.web-footer-logo {
+  width: 120px;
+  height: 120px;
+  flex-shrink: 0;
+  border-radius: var(--border-radius-200);
+  overflow: hidden;
+}
+
+.web-footer-logo .leading-logo {
+  width: 120px;
+  height: 120px;
+}
+
+/* --- App download column --- */
+
+.web-footer-app {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-100);
+  flex-shrink: 0;
+}
+
+.web-footer-app-title {
+  color: white;
+}
+
+.web-footer-badges {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-100);
+  padding-top: var(--spacing-100);
+}
+
+.web-footer-badge {
+  display: block;
+  height: 40px;
+  width: auto;
+}
+
+.web-footer-badge img {
+  height: 40px;
+  width: auto;
+  display: block;
+}
+
+/* --- Link columns --- */
+
+.web-footer-column {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-100);
+}
+
+.web-footer-column-heading {
+  color: white;
+}
+
+.web-footer-link {
+  display: block;
+  color: rgba(255, 255, 255, 0.7);
+  text-decoration: none;
+  transition: color 0.15s ease;
+  cursor: pointer;
+}
+
+.web-footer-link:hover {
+  color: white;
+}
+
+/* --- Bottom bar --- */
+
+.web-footer-bottom {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: var(--spacing-200) 0;
+  border-top: var(--border-weight-50) solid rgba(255, 255, 255, 0.15);
+  gap: var(--spacing-400);
+}
+
+.web-footer-legal {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-300);
+}
+
+.web-footer-copyright {
+  color: white;
+}
+
+.web-footer-legal-links {
+  display: flex;
+  flex-direction: row;
+  gap: var(--spacing-200);
+  flex-wrap: wrap;
+}
+
+.web-footer-legal-links a {
+  color: rgba(255, 255, 255, 0.7);
+  text-decoration: none;
+  transition: color 0.15s ease;
+}
+
+.web-footer-legal-links a:hover {
+  color: white;
+}
+
+.web-footer-powered {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-25);
+  flex-shrink: 0;
+}
+
+.web-footer-powered span {
+  color: white;
+}
+
+.web-footer-powered img {
+  height: 19px;
+  width: auto;
+  filter: brightness(0) invert(1);
+}
+
+/* --- Desktop (>1099px) --- */
+
+@media (min-width: 1100px) {
+  .web-footer {
+    padding: var(--spacing-800) var(--spacing-800) 0;
+  }
+
+  .web-footer-main {
+    flex-direction: row;
+    justify-content: space-between;
+    gap: var(--spacing-500);
+  }
+
+  .web-footer-main::after {
+    content: '';
+  }
+
+  .web-footer-bottom {
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .web-footer-legal {
+    flex-direction: row;
+    align-items: center;
+  }
+}
+
+/* --- Mobile (≤500px) --- */
+
+@media (max-width: 500px) {
+  .web-footer-legal-links {
+    flex-direction: column;
+    gap: var(--spacing-100);
+  }
+}

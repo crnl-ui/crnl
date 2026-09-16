@@ -1,0 +1,1363 @@
+{
+  "wb": {
+    "family": "Instrument Sans",
+    "size": 76,
+    "weight": 400,
+    "italic": 0,
+    "ls": -0.027,
+    "lh": 1.1,
+    "transform": "none",
+    "token": "900",
+    "axes": {
+      "wdth": 100
+    },
+    "css": "",
+    "sample": "Up Next \u2014 Wolves 112, Lakers 98"
+  },
+  "favs": [
+    {
+      "family": "Roboto",
+      "set": {
+        "size": 76,
+        "weight": 400,
+        "italic": 0,
+        "ls": 0.144,
+        "lh": 1.1,
+        "transform": "uppercase",
+        "token": "900",
+        "axes": {
+          "wdth": 100
+        },
+        "css": "",
+        "sample": "Up Next \u2014 Wolves 112, Lakers 98"
+      },
+      "note": "",
+      "added": "2026-07-16"
+    },
+    {
+      "family": "Roboto",
+      "set": {
+        "size": 76,
+        "weight": 900,
+        "italic": 1,
+        "ls": 0.019,
+        "lh": 1.1,
+        "transform": "uppercase",
+        "token": "900",
+        "axes": {
+          "wdth": 75
+        },
+        "css": "",
+        "sample": "Up Next \u2014 Wolves 112, Lakers 98"
+      },
+      "note": "",
+      "added": "2026-07-16"
+    },
+    {
+      "family": "Dela Gothic One",
+      "set": {
+        "size": 74,
+        "weight": 400,
+        "italic": 0,
+        "ls": -0.031,
+        "lh": 1.1,
+        "transform": "none",
+        "token": "900",
+        "axes": {},
+        "css": "",
+        "sample": "Up Next \u2014 Wolves 112, Lakers 98"
+      },
+      "note": "",
+      "added": "2026-07-17"
+    },
+    {
+      "family": "Dela Gothic One",
+      "set": {
+        "size": 74,
+        "weight": 400,
+        "italic": 0,
+        "ls": -0.006,
+        "lh": 1.1,
+        "transform": "uppercase",
+        "token": "900",
+        "axes": {},
+        "css": "",
+        "sample": "Up Next \u2014 Wolves 112, Lakers 98"
+      },
+      "note": "",
+      "added": "2026-07-17"
+    },
+    {
+      "family": "Open Sans",
+      "set": null,
+      "note": "",
+      "added": "2026-07-20"
+    },
+    {
+      "family": "Google Sans",
+      "set": null,
+      "note": "",
+      "added": "2026-07-20"
+    },
+    {
+      "family": "Lato",
+      "set": null,
+      "note": "",
+      "added": "2026-07-20"
+    },
+    {
+      "family": "Inter",
+      "set": null,
+      "note": "",
+      "added": "2026-07-20"
+    },
+    {
+      "family": "DM Sans",
+      "set": null,
+      "note": "",
+      "added": "2026-07-20"
+    },
+    {
+      "family": "Montserrat",
+      "set": null,
+      "note": "",
+      "added": "2026-07-20"
+    },
+    {
+      "family": "Poppins",
+      "set": null,
+      "note": "",
+      "added": "2026-07-20"
+    },
+    {
+      "family": "Bricolage Grotesque",
+      "set": null,
+      "note": "",
+      "added": "2026-07-20"
+    },
+    {
+      "family": "Saira",
+      "set": null,
+      "note": "",
+      "added": "2026-07-20"
+    },
+    {
+      "family": "Prompt",
+      "set": null,
+      "note": "",
+      "added": "2026-07-20"
+    },
+    {
+      "family": "Barlow",
+      "set": null,
+      "note": "",
+      "added": "2026-07-20"
+    },
+    {
+      "family": "Roboto Condensed",
+      "set": null,
+      "note": "",
+      "added": "2026-07-20"
+    },
+    {
+      "family": "Oswald",
+      "set": null,
+      "note": "",
+      "added": "2026-07-20"
+    },
+    {
+      "family": "Libre Franklin",
+      "set": null,
+      "note": "",
+      "added": "2026-07-20"
+    },
+    {
+      "family": "Rubik",
+      "set": null,
+      "note": "",
+      "added": "2026-07-20"
+    },
+    {
+      "family": "Ubuntu",
+      "set": null,
+      "note": "",
+      "added": "2026-07-20"
+    },
+    {
+      "family": "Work Sans",
+      "set": null,
+      "note": "",
+      "added": "2026-07-20"
+    },
+    {
+      "family": "EB Garamond",
+      "set": null,
+      "note": "",
+      "added": "2026-07-20"
+    },
+    {
+      "family": "Alfa Slab One",
+      "set": null,
+      "note": "",
+      "added": "2026-07-20"
+    },
+    {
+      "family": "Jost",
+      "set": null,
+      "note": "",
+      "added": "2026-07-20"
+    },
+    {
+      "family": "Lora",
+      "set": null,
+      "note": "",
+      "added": "2026-07-20"
+    },
+    {
+      "family": "Dosis",
+      "set": null,
+      "note": "",
+      "added": "2026-07-20"
+    },
+    {
+      "family": "Outfit",
+      "set": null,
+      "note": "",
+      "added": "2026-07-20"
+    },
+    {
+      "family": "Orbitron",
+      "set": null,
+      "note": "",
+      "added": "2026-07-20"
+    },
+    {
+      "family": "Google Sans Flex",
+      "set": null,
+      "note": "",
+      "added": "2026-07-20"
+    },
+    {
+      "family": "Teko",
+      "set": null,
+      "note": "",
+      "added": "2026-07-20"
+    },
+    {
+      "family": "Public Sans",
+      "set": null,
+      "note": "",
+      "added": "2026-07-20"
+    },
+    {
+      "family": "Asap",
+      "set": null,
+      "note": "",
+      "added": "2026-07-20"
+    },
+    {
+      "family": "Figtree",
+      "set": null,
+      "note": "",
+      "added": "2026-07-20"
+    },
+    {
+      "family": "Cinzel",
+      "set": null,
+      "note": "",
+      "added": "2026-07-20"
+    },
+    {
+      "family": "Chakra Petch",
+      "set": null,
+      "note": "",
+      "added": "2026-07-20"
+    },
+    {
+      "family": "Cairo",
+      "set": null,
+      "note": "",
+      "added": "2026-07-20"
+    },
+    {
+      "family": "Onest",
+      "set": null,
+      "note": "",
+      "added": "2026-07-20"
+    },
+    {
+      "family": "IBM Plex Sans",
+      "set": null,
+      "note": "",
+      "added": "2026-07-20"
+    },
+    {
+      "family": "Lexend Deca",
+      "set": null,
+      "note": "",
+      "added": "2026-07-20"
+    },
+    {
+      "family": "Sofia Sans",
+      "set": null,
+      "note": "",
+      "added": "2026-07-20"
+    },
+    {
+      "family": "Encode Sans",
+      "set": null,
+      "note": "",
+      "added": "2026-07-20"
+    },
+    {
+      "family": "Montserrat Alternates",
+      "set": null,
+      "note": "",
+      "added": "2026-07-20"
+    },
+    {
+      "family": "Alumni Sans",
+      "set": null,
+      "note": "",
+      "added": "2026-07-20"
+    },
+    {
+      "family": "Viga",
+      "set": null,
+      "note": "",
+      "added": "2026-07-20"
+    },
+    {
+      "family": "Geologica",
+      "set": null,
+      "note": "",
+      "added": "2026-07-20"
+    },
+    {
+      "family": "Nanum Myeongjo",
+      "set": null,
+      "note": "",
+      "added": "2026-07-20"
+    },
+    {
+      "family": "Lexend",
+      "set": null,
+      "note": "",
+      "added": "2026-07-20"
+    },
+    {
+      "family": "Libre Baskerville",
+      "set": null,
+      "note": "",
+      "added": "2026-07-20"
+    },
+    {
+      "family": "League Gothic",
+      "set": null,
+      "note": "",
+      "added": "2026-07-20"
+    },
+    {
+      "family": "Quattrocento",
+      "set": null,
+      "note": "",
+      "added": "2026-07-20"
+    },
+    {
+      "family": "Bebas Neue",
+      "set": null,
+      "note": "",
+      "added": "2026-07-20"
+    },
+    {
+      "family": "Paytone One",
+      "set": null,
+      "note": "",
+      "added": "2026-07-20"
+    },
+    {
+      "family": "Alegreya Sans",
+      "set": null,
+      "note": "",
+      "added": "2026-07-20"
+    },
+    {
+      "family": "Oxanium",
+      "set": null,
+      "note": "",
+      "added": "2026-07-20"
+    },
+    {
+      "family": "Cormorant Garamond",
+      "set": null,
+      "note": "",
+      "added": "2026-07-20"
+    },
+    {
+      "family": "Anton",
+      "set": null,
+      "note": "",
+      "added": "2026-07-20"
+    },
+    {
+      "family": "Bree Serif",
+      "set": null,
+      "note": "",
+      "added": "2026-07-20"
+    },
+    {
+      "family": "Forum",
+      "set": null,
+      "note": "",
+      "added": "2026-07-20"
+    },
+    {
+      "family": "Instrument Serif",
+      "set": null,
+      "note": "",
+      "added": "2026-07-20"
+    },
+    {
+      "family": "Rammetto One",
+      "set": null,
+      "note": "",
+      "added": "2026-07-20"
+    },
+    {
+      "family": "Audiowide",
+      "set": null,
+      "note": "",
+      "added": "2026-07-20"
+    },
+    {
+      "family": "Baskervville",
+      "set": null,
+      "note": "",
+      "added": "2026-07-20"
+    },
+    {
+      "family": "Shippori Mincho",
+      "set": null,
+      "note": "",
+      "added": "2026-07-20"
+    },
+    {
+      "family": "Kumbh Sans",
+      "set": null,
+      "note": "",
+      "added": "2026-07-20"
+    },
+    {
+      "family": "Nanum Gothic",
+      "set": null,
+      "note": "",
+      "added": "2026-07-20"
+    },
+    {
+      "family": "Krub",
+      "set": null,
+      "note": "",
+      "added": "2026-07-20"
+    },
+    {
+      "family": "Cabin",
+      "set": null,
+      "note": "",
+      "added": "2026-07-20"
+    },
+    {
+      "family": "Khand",
+      "set": null,
+      "note": "",
+      "added": "2026-07-20"
+    },
+    {
+      "family": "Noto Sans Display",
+      "set": null,
+      "note": "",
+      "added": "2026-07-20"
+    },
+    {
+      "family": "Aleo",
+      "set": null,
+      "note": "",
+      "added": "2026-07-20"
+    },
+    {
+      "family": "Noto Sans HK",
+      "set": null,
+      "note": "",
+      "added": "2026-07-20"
+    },
+    {
+      "family": "Schibsted Grotesk",
+      "set": null,
+      "note": "",
+      "added": "2026-07-20"
+    },
+    {
+      "family": "Mukta",
+      "set": null,
+      "note": "",
+      "added": "2026-07-20"
+    },
+    {
+      "family": "Vazirmatn",
+      "set": null,
+      "note": "",
+      "added": "2026-07-20"
+    },
+    {
+      "family": "Libre Caslon Text",
+      "set": null,
+      "note": "",
+      "added": "2026-07-20"
+    },
+    {
+      "family": "Ropa Sans",
+      "set": null,
+      "note": "",
+      "added": "2026-07-20"
+    },
+    {
+      "family": "Bitter",
+      "set": null,
+      "note": "",
+      "added": "2026-07-20"
+    },
+    {
+      "family": "Sora",
+      "set": null,
+      "note": "",
+      "added": "2026-07-20"
+    },
+    {
+      "family": "Source Sans 3",
+      "set": null,
+      "note": "",
+      "added": "2026-07-20"
+    },
+    {
+      "family": "Roboto Flex",
+      "set": null,
+      "note": "",
+      "added": "2026-07-20"
+    },
+    {
+      "family": "Bowlby One SC",
+      "set": null,
+      "note": "",
+      "added": "2026-07-20"
+    },
+    {
+      "family": "Philosopher",
+      "set": null,
+      "note": "",
+      "added": "2026-07-20"
+    },
+    {
+      "family": "Didact Gothic",
+      "set": null,
+      "note": "",
+      "added": "2026-07-20"
+    },
+    {
+      "family": "Alexandria",
+      "set": null,
+      "note": "",
+      "added": "2026-07-20"
+    },
+    {
+      "family": "Rajdhani",
+      "set": null,
+      "note": "",
+      "added": "2026-07-20"
+    },
+    {
+      "family": "Lustria",
+      "set": null,
+      "note": "",
+      "added": "2026-07-20"
+    },
+    {
+      "family": "M PLUS Rounded 1c",
+      "set": null,
+      "note": "",
+      "added": "2026-07-20"
+    },
+    {
+      "family": "Fredoka",
+      "set": null,
+      "note": "",
+      "added": "2026-07-20"
+    },
+    {
+      "family": "M PLUS 1",
+      "set": null,
+      "note": "",
+      "added": "2026-07-20"
+    },
+    {
+      "family": "Georama",
+      "set": null,
+      "note": "",
+      "added": "2026-07-20"
+    },
+    {
+      "family": "Overpass",
+      "set": null,
+      "note": "",
+      "added": "2026-07-20"
+    },
+    {
+      "family": "Pathway Gothic One",
+      "set": null,
+      "note": "",
+      "added": "2026-07-20"
+    },
+    {
+      "family": "Crimson Text",
+      "set": null,
+      "note": "",
+      "added": "2026-07-20"
+    },
+    {
+      "family": "Jura",
+      "set": null,
+      "note": "",
+      "added": "2026-07-20"
+    },
+    {
+      "family": "Instrument Sans",
+      "set": null,
+      "note": "",
+      "added": "2026-07-21"
+    },
+    {
+      "family": "Mona Sans",
+      "set": null,
+      "note": "",
+      "added": "2026-07-21"
+    },
+    {
+      "family": "Fraunces",
+      "set": null,
+      "note": "",
+      "added": "2026-07-21"
+    },
+    {
+      "family": "Source Serif 4",
+      "set": null,
+      "note": "",
+      "added": "2026-07-21"
+    },
+    {
+      "family": "Roboto Serif",
+      "set": null,
+      "note": "",
+      "added": "2026-07-21"
+    },
+    {
+      "family": "Wix Madefor Text",
+      "set": null,
+      "note": "",
+      "added": "2026-07-21"
+    },
+    {
+      "family": "Wix Madefor Display",
+      "set": null,
+      "note": "",
+      "added": "2026-07-21"
+    },
+    {
+      "family": "Funnel Sans",
+      "set": null,
+      "note": "",
+      "added": "2026-07-21"
+    },
+    {
+      "family": "Funnel Display",
+      "set": null,
+      "note": "",
+      "added": "2026-07-21"
+    },
+    {
+      "family": "Spectral",
+      "set": null,
+      "note": "",
+      "added": "2026-07-21"
+    },
+    {
+      "family": "Red Hat Display",
+      "set": null,
+      "note": "",
+      "added": "2026-07-21"
+    },
+    {
+      "family": "Red Hat Text",
+      "set": null,
+      "note": "",
+      "added": "2026-07-21"
+    },
+    {
+      "family": "Mozilla Headline",
+      "set": null,
+      "note": "",
+      "added": "2026-07-21"
+    },
+    {
+      "family": "Mozilla Text",
+      "set": null,
+      "note": "",
+      "added": "2026-07-21"
+    },
+    {
+      "family": "Familjen Grotesk",
+      "set": null,
+      "note": "",
+      "added": "2026-07-21"
+    },
+    {
+      "family": "Host Grotesk",
+      "set": null,
+      "note": "",
+      "added": "2026-07-21"
+    },
+    {
+      "family": "IBM Plex Serif",
+      "set": null,
+      "note": "",
+      "added": "2026-07-21"
+    },
+    {
+      "family": "Cormorant",
+      "set": null,
+      "note": "",
+      "added": "2026-07-21"
+    },
+    {
+      "family": "Big Shoulders",
+      "set": null,
+      "note": "",
+      "added": "2026-07-21"
+    },
+    {
+      "family": "Unbounded",
+      "set": null,
+      "note": "",
+      "added": "2026-07-21"
+    },
+    {
+      "family": "Chivo",
+      "set": null,
+      "note": "",
+      "added": "2026-07-21"
+    },
+    {
+      "family": "Hanken Grotesk",
+      "set": null,
+      "note": "",
+      "added": "2026-07-21"
+    },
+    {
+      "family": "Epilogue",
+      "set": null,
+      "note": "",
+      "added": "2026-07-21"
+    },
+    {
+      "family": "Commissioner",
+      "set": null,
+      "note": "",
+      "added": "2026-07-21"
+    },
+    {
+      "family": "Rethink Sans",
+      "set": null,
+      "note": "",
+      "added": "2026-07-21"
+    },
+    {
+      "family": "Hubot Sans",
+      "set": null,
+      "note": "",
+      "added": "2026-07-21"
+    },
+    {
+      "family": "Zalando Sans",
+      "set": null,
+      "note": "",
+      "added": "2026-07-21"
+    },
+    {
+      "family": "Anek Latin",
+      "set": null,
+      "note": "",
+      "added": "2026-07-21"
+    },
+    {
+      "family": "Radio Canada Big",
+      "set": null,
+      "note": "",
+      "added": "2026-07-21"
+    },
+    {
+      "family": "Proza Libre",
+      "set": null,
+      "note": "",
+      "added": "2026-07-21"
+    },
+    {
+      "family": "Merriweather Sans",
+      "set": null,
+      "note": "",
+      "added": "2026-07-21"
+    },
+    {
+      "family": "Crimson Pro",
+      "set": null,
+      "note": "",
+      "added": "2026-07-21"
+    },
+    {
+      "family": "Zilla Slab",
+      "set": null,
+      "note": "",
+      "added": "2026-07-21"
+    },
+    {
+      "family": "PT Serif",
+      "set": null,
+      "note": "",
+      "added": "2026-07-21"
+    },
+    {
+      "family": "Cardo",
+      "set": null,
+      "note": "",
+      "added": "2026-07-21"
+    },
+    {
+      "family": "Piazzolla",
+      "set": null,
+      "note": "",
+      "added": "2026-07-21"
+    },
+    {
+      "family": "Inknut Antiqua",
+      "set": null,
+      "note": "",
+      "added": "2026-07-21"
+    },
+    {
+      "family": "BioRhyme",
+      "set": null,
+      "note": "",
+      "added": "2026-07-21"
+    },
+    {
+      "family": "Arvo",
+      "set": null,
+      "note": "",
+      "added": "2026-07-21"
+    },
+    {
+      "family": "Anybody",
+      "set": null,
+      "note": "",
+      "added": "2026-07-21"
+    },
+    {
+      "family": "Special Gothic",
+      "set": null,
+      "note": "",
+      "added": "2026-07-21"
+    },
+    {
+      "family": "Cal Sans",
+      "set": null,
+      "note": "",
+      "added": "2026-07-21"
+    },
+    {
+      "family": "Barlow Condensed",
+      "set": null,
+      "note": "",
+      "added": "2026-07-21"
+    },
+    {
+      "family": "Barlow Semi Condensed",
+      "set": null,
+      "note": "",
+      "added": "2026-07-21"
+    },
+    {
+      "family": "IBM Plex Sans Condensed",
+      "set": null,
+      "note": "",
+      "added": "2026-07-21"
+    },
+    {
+      "family": "Antonio",
+      "set": null,
+      "note": "",
+      "added": "2026-07-21"
+    },
+    {
+      "family": "League Spartan",
+      "set": null,
+      "note": "",
+      "added": "2026-07-21"
+    },
+    {
+      "family": "Staatliches",
+      "set": null,
+      "note": "",
+      "added": "2026-07-21"
+    },
+    {
+      "family": "Young Serif",
+      "set": null,
+      "note": "",
+      "added": "2026-07-21"
+    },
+    {
+      "family": "Marcellus",
+      "set": null,
+      "note": "",
+      "added": "2026-07-21"
+    },
+    {
+      "family": "Bungee",
+      "set": null,
+      "note": "",
+      "added": "2026-07-21"
+    },
+    {
+      "family": "Recursive",
+      "set": null,
+      "note": "",
+      "added": "2026-07-21"
+    },
+    {
+      "family": "Red Hat Mono",
+      "set": null,
+      "note": "",
+      "added": "2026-07-21"
+    },
+    {
+      "family": "Sofia Sans Extra Condensed",
+      "set": null,
+      "note": "",
+      "added": "2026-07-21"
+    },
+    {
+      "family": "Black Han Sans",
+      "set": null,
+      "note": "",
+      "added": "2026-07-21"
+    },
+    {
+      "family": "Noto Sans Arabic",
+      "set": null,
+      "note": "",
+      "added": "2026-07-21"
+    },
+    {
+      "family": "Days One",
+      "set": null,
+      "note": "",
+      "added": "2026-07-21"
+    },
+    {
+      "family": "Monda",
+      "set": null,
+      "note": "",
+      "added": "2026-07-21"
+    },
+    {
+      "family": "Reddit Sans",
+      "set": null,
+      "note": "",
+      "added": "2026-07-21"
+    },
+    {
+      "family": "M PLUS 1p",
+      "set": null,
+      "note": "",
+      "added": "2026-07-21"
+    },
+    {
+      "family": "Baloo Thambi 2",
+      "set": null,
+      "note": "",
+      "added": "2026-07-21"
+    },
+    {
+      "family": "Murecho",
+      "set": null,
+      "note": "",
+      "added": "2026-07-21"
+    },
+    {
+      "family": "Encode Sans Expanded",
+      "set": null,
+      "note": "",
+      "added": "2026-07-21"
+    },
+    {
+      "family": "Hepta Slab",
+      "set": null,
+      "note": "",
+      "added": "2026-07-21"
+    },
+    {
+      "family": "Baloo Da 2",
+      "set": null,
+      "note": "",
+      "added": "2026-07-21"
+    },
+    {
+      "family": "Aldrich",
+      "set": null,
+      "note": "",
+      "added": "2026-07-21"
+    },
+    {
+      "family": "Exo",
+      "set": null,
+      "note": "",
+      "added": "2026-07-21"
+    },
+    {
+      "family": "Satisfy",
+      "set": null,
+      "note": "",
+      "added": "2026-07-21"
+    },
+    {
+      "family": "Sigmar One",
+      "set": null,
+      "note": "",
+      "added": "2026-07-21"
+    },
+    {
+      "family": "Jockey One",
+      "set": null,
+      "note": "",
+      "added": "2026-07-21"
+    },
+    {
+      "family": "Special Gothic Condensed One",
+      "set": null,
+      "note": "",
+      "added": "2026-07-21"
+    },
+    {
+      "family": "Special Gothic Expanded One",
+      "set": null,
+      "note": "",
+      "added": "2026-07-21"
+    },
+    {
+      "family": "Playpen Sans",
+      "set": null,
+      "note": "",
+      "added": "2026-07-21"
+    },
+    {
+      "family": "Frank Ruhl Libre",
+      "set": null,
+      "note": "",
+      "added": "2026-07-21"
+    }
+  ],
+  "dislikes": [
+    "Nunito Sans",
+    "Noto Sans JP",
+    "Merriweather",
+    "Manrope",
+    "PT Sans",
+    "Noto Sans TC",
+    "Arimo",
+    "Mulish",
+    "Raleway",
+    "Roboto Mono",
+    "Share Tech",
+    "Fira Sans",
+    "Plus Jakarta Sans",
+    "Noto Sans",
+    "Heebo",
+    "Roboto Slab",
+    "Fjalla One",
+    "Nunito",
+    "Playfair Display",
+    "Lobster Two",
+    "Changa One",
+    "Source Code Pro",
+    "Archivo Black",
+    "Space Grotesk",
+    "Noto Sans KR",
+    "Kanit",
+    "Anek Telugu",
+    "Exo 2",
+    "Oxygen",
+    "Urbanist",
+    "Black Ops One",
+    "Geist",
+    "Lilita One",
+    "Archivo",
+    "IBM Plex Mono",
+    "Titillium Web",
+    "PT Sans Narrow",
+    "Inter Tight",
+    "Pacifico",
+    "Geist Mono",
+    "Lobster",
+    "DM Mono",
+    "Shadows Into Light",
+    "Smooch Sans",
+    "Noto Sans Thai",
+    "Newsreader",
+    "Quicksand",
+    "Sarabun",
+    "Inconsolata",
+    "Karla",
+    "Vollkorn",
+    "Amiri",
+    "Noto Serif",
+    "Varela Round",
+    "Domine",
+    "Literata",
+    "Hammersmith One",
+    "ABeeZee",
+    "Alegreya",
+    "JetBrains Mono",
+    "Libre Barcode 39",
+    "Creepster",
+    "Sawarabi Gothic",
+    "Noto Naskh Arabic",
+    "Syne",
+    "Courgette",
+    "Google Sans Code",
+    "Noto Serif JP",
+    "BIZ UDPGothic",
+    "IBM Plex Sans Arabic",
+    "Indie Flower",
+    "Saira Condensed",
+    "Zen Old Mincho",
+    "Signika Negative",
+    "Press Start 2P",
+    "Yantramanav",
+    "Josefin Sans",
+    "News Cycle",
+    "Noto Sans Hebrew",
+    "Berkshire Swash",
+    "Lusitana",
+    "Homemade Apple",
+    "Parisienne",
+    "Prata",
+    "Playfair",
+    "Italianno",
+    "Monoton",
+    "Michroma",
+    "Comic Neue",
+    "Noto Sans Malayalam",
+    "Fira Sans Extra Condensed",
+    "Noto Sans Mono",
+    "Special Elite",
+    "Alice",
+    "Noto Sans Telugu",
+    "Ramabhadra",
+    "Syncopate",
+    "Eczar",
+    "Mukta Malar",
+    "Chango",
+    "IBM Plex Sans Thai",
+    "Bai Jamjuree",
+    "Besley",
+    "Hind Siliguri",
+    "Bad Script",
+    "Rock Salt",
+    "Palanquin Dark",
+    "Poiret One",
+    "Caveat",
+    "Gloria Hallelujah",
+    "Calistoga",
+    "Bodoni Moda",
+    "Gloock",
+    "Albert Sans",
+    "Nata Sans",
+    "AR One Sans",
+    "Atkinson Hyperlegible Next",
+    "Noto Serif Display",
+    "Libre Caslon Display",
+    "Neuton",
+    "Petrona",
+    "Brygada 1918",
+    "Manuale",
+    "Faustina",
+    "Hahmlet",
+    "DM Serif Text",
+    "DM Serif Display",
+    "Science Gothic",
+    "Geom",
+    "Archivo Narrow",
+    "Abril Fatface",
+    "Space Mono",
+    "Azeret Mono",
+    "Fira Code",
+    "Chivo Mono",
+    "Atkinson Hyperlegible Mono",
+    "Inclusive Sans",
+    "Allison",
+    "Sriracha",
+    "Abhaya Libre",
+    "Andada Pro",
+    "Cedarville Cursive",
+    "Damion",
+    "Mrs Saint Delafield",
+    "Quantico",
+    "Darker Grotesque",
+    "Covered By Your Grace",
+    "Cutive Mono",
+    "Jersey 25",
+    "Just Another Hand",
+    "Slabo 27px",
+    "Nanum Pen Script",
+    "Biryani",
+    "Itim",
+    "UnifrakturMaguntia",
+    "Racing Sans One",
+    "Tajawal",
+    "Noto Sans SC",
+    "Ubuntu Mono",
+    "Bona Nova SC",
+    "Protest Revolution",
+    "Taviraj",
+    "Lexend Exa",
+    "Fredericka the Great",
+    "Balsamiq Sans",
+    "Averia Libre",
+    "Trirong",
+    "Abel",
+    "Grenze Gotisch",
+    "Arapey",
+    "Dancing Script",
+    "Laila",
+    "Comfortaa",
+    "Pontano Sans",
+    "Belanosima",
+    "Kosugi",
+    "Carlito",
+    "Cormorant SC",
+    "Pangolin",
+    "Style Script",
+    "Alatsi",
+    "Almarai",
+    "Marck Script",
+    "Gudea",
+    "Klee One",
+    "Ruda",
+    "Sofia",
+    "ADLaM Display",
+    "Khula",
+    "Ephesis",
+    "Play",
+    "Chonburi",
+    "Gantari",
+    "Maven Pro",
+    "Padauk",
+    "Mochiy Pop One",
+    "Alegreya Sans SC",
+    "Noto Sans Georgian",
+    "Questrial",
+    "Zen Kaku Gothic New",
+    "IM Fell English",
+    "Rampart One",
+    "Arizonia",
+    "Hachi Maru Pop",
+    "Assistant",
+    "Potta One",
+    "Sniglet",
+    "Rufina",
+    "Salsa",
+    "Megrim",
+    "Shadows Into Light Two",
+    "Over the Rainbow",
+    "Mandali",
+    "ZCOOL KuaiLe",
+    "Alegreya SC",
+    "Gravitas One",
+    "Hanuman",
+    "Coda",
+    "Goudy Bookletter 1911",
+    "Bellota Text",
+    "Calligraffitti",
+    "Karma",
+    "Overlock",
+    "Overpass Mono",
+    "Be Vietnam Pro",
+    "Castoro",
+    "Lexend Zetta",
+    "Noto Serif Hebrew",
+    "Noto Serif Georgian",
+    "Puritan",
+    "ZCOOL QingKe HuangYou",
+    "Kalam",
+    "Rye",
+    "Tilt Neon",
+    "Noto Sans Sinhala",
+    "Tiro Devanagari Hindi",
+    "Nanum Brush Script",
+    "Noto Sans Khmer",
+    "Armata",
+    "Rochester",
+    "Great Vibes",
+    "Podkova",
+    "Mansalva",
+    "Pattaya",
+    "Yesteryear",
+    "Gowun Batang",
+    "Noto Sans Thai Looped",
+    "Scada",
+    "Suez One",
+    "Aguafina Script",
+    "Bellefair"
+  ],
+  "favSample": "Buy Tickets \u2014 Section 114, Row C",
+  "ramp": {
+    "team": "",
+    "caps": "none",
+    "sizes": {
+      "100": 20,
+      "200": 24,
+      "300": 28,
+      "400": 36,
+      "500": 44,
+      "600": 52,
+      "700": 60,
+      "800": 68,
+      "900": 76
+    },
+    "linked": true
+  },
+  "filters": {
+    "q": "",
+    "cat": "display",
+    "heavy": false,
+    "variable": false,
+    "curated": false,
+    "favs": false,
+    "cond": false,
+    "caps": false,
+    "tag": "",
+    "sort": "guide"
+  },
+  "cmp": {
+    "mode": "stack",
+    "zoom": 1,
+    "opacity": 0.85,
+    "color": "#ff2d78"
+  }
+}

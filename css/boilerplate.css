@@ -1,0 +1,602 @@
+/* ============================================================
+   boilerplate.css
+   ============================================================
+   The base layer: CSS reset, element defaults, and the spacing, layout, grid and responsive utilities.
+
+   What's inside
+   - CSS reset and base element styles (body, headings, links, images)
+   - .flex-center, .flex-center-viewport, .flex-column, .flex-row — layout
+   - .m-*, .p-*, .gap-* (with side and axis variants) — spacing utilities on
+     the token scale
+   - .spacing-row / .spacing-card / .spacing-content, .margin-small /
+     .margin-large / .margin-landing families — responsive spacing utilities
+   - .grid, .grid-cols-*, .grid-auto-fit — responsive grid utilities
+   - .hide-* / .show-* — responsive visibility
+
+   Notes
+   - Container classes live in container-tokens.css.
+   - Spacing takes a utility or a token, never a literal. See RULES §2.
+   - Breakpoints are 500/1100. See RULES §9.
+   ============================================================ */
+
+/* ============================================================
+   CSS RESET & BASE STYLES
+   ============================================================ */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background-color: var(--bg-base);
+  color: var(--text-primary);
+  min-height: 100vh;
+  line-height: 1.5;
+}
+
+/* ============================================================
+   LAYOUT UTILITIES
+   ============================================================ */
+
+/* Centre within the parent. What the name says, and what people expect. */
+.flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Centre within the viewport — a hero band, a login screen, an empty state
+   that owns the page. Kept separate from .flex-center so that centring an
+   icon in a row never produces a viewport-tall element. */
+.flex-center-viewport {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+}
+
+.flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+.flex-row {
+  display: flex;
+  flex-direction: row;
+}
+
+.gap-xs { gap: var(--spacing-100); }
+.gap-sm { gap: var(--spacing-150); }
+.gap-md { gap: var(--spacing-200); }
+.gap-lg { gap: var(--spacing-300); }
+.gap-xl { gap: var(--spacing-400); }
+
+/* ============================================================
+   SPACING UTILITIES - MARGIN
+   ============================================================ */
+
+/* All sides */
+.m-25 { margin: var(--spacing-25); }
+.m-50 { margin: var(--spacing-50); }
+.m-100 { margin: var(--spacing-100); }
+.m-150 { margin: var(--spacing-150); }
+.m-200 { margin: var(--spacing-200); }
+.m-250 { margin: var(--spacing-250); }
+.m-300 { margin: var(--spacing-300); }
+.m-400 { margin: var(--spacing-400); }
+.m-500 { margin: var(--spacing-500); }
+.m-600 { margin: var(--spacing-600); }
+.m-700 { margin: var(--spacing-700); }
+.m-800 { margin: var(--spacing-800); }
+.m-900 { margin: var(--spacing-900); }
+
+/* Top */
+.mt-25 { margin-top: var(--spacing-25); }
+.mt-50 { margin-top: var(--spacing-50); }
+.mt-100 { margin-top: var(--spacing-100); }
+.mt-150 { margin-top: var(--spacing-150); }
+.mt-200 { margin-top: var(--spacing-200); }
+.mt-250 { margin-top: var(--spacing-250); }
+.mt-300 { margin-top: var(--spacing-300); }
+.mt-400 { margin-top: var(--spacing-400); }
+.mt-500 { margin-top: var(--spacing-500); }
+.mt-600 { margin-top: var(--spacing-600); }
+.mt-700 { margin-top: var(--spacing-700); }
+.mt-800 { margin-top: var(--spacing-800); }
+.mt-900 { margin-top: var(--spacing-900); }
+
+/* Bottom */
+.mb-25 { margin-bottom: var(--spacing-25); }
+.mb-50 { margin-bottom: var(--spacing-50); }
+.mb-100 { margin-bottom: var(--spacing-100); }
+.mb-150 { margin-bottom: var(--spacing-150); }
+.mb-200 { margin-bottom: var(--spacing-200); }
+.mb-250 { margin-bottom: var(--spacing-250); }
+.mb-300 { margin-bottom: var(--spacing-300); }
+.mb-400 { margin-bottom: var(--spacing-400); }
+.mb-500 { margin-bottom: var(--spacing-500); }
+.mb-600 { margin-bottom: var(--spacing-600); }
+.mb-700 { margin-bottom: var(--spacing-700); }
+.mb-800 { margin-bottom: var(--spacing-800); }
+.mb-900 { margin-bottom: var(--spacing-900); }
+
+/* Left */
+.ml-25 { margin-left: var(--spacing-25); }
+.ml-50 { margin-left: var(--spacing-50); }
+.ml-100 { margin-left: var(--spacing-100); }
+.ml-150 { margin-left: var(--spacing-150); }
+.ml-200 { margin-left: var(--spacing-200); }
+.ml-250 { margin-left: var(--spacing-250); }
+.ml-300 { margin-left: var(--spacing-300); }
+.ml-400 { margin-left: var(--spacing-400); }
+.ml-500 { margin-left: var(--spacing-500); }
+.ml-600 { margin-left: var(--spacing-600); }
+.ml-700 { margin-left: var(--spacing-700); }
+.ml-800 { margin-left: var(--spacing-800); }
+.ml-900 { margin-left: var(--spacing-900); }
+
+/* Right */
+.mr-25 { margin-right: var(--spacing-25); }
+.mr-50 { margin-right: var(--spacing-50); }
+.mr-100 { margin-right: var(--spacing-100); }
+.mr-150 { margin-right: var(--spacing-150); }
+.mr-200 { margin-right: var(--spacing-200); }
+.mr-250 { margin-right: var(--spacing-250); }
+.mr-300 { margin-right: var(--spacing-300); }
+.mr-400 { margin-right: var(--spacing-400); }
+.mr-500 { margin-right: var(--spacing-500); }
+.mr-600 { margin-right: var(--spacing-600); }
+.mr-700 { margin-right: var(--spacing-700); }
+.mr-800 { margin-right: var(--spacing-800); }
+.mr-900 { margin-right: var(--spacing-900); }
+
+/* Horizontal (left + right) */
+.mx-25 { margin-left: var(--spacing-25); margin-right: var(--spacing-25); }
+.mx-50 { margin-left: var(--spacing-50); margin-right: var(--spacing-50); }
+.mx-100 { margin-left: var(--spacing-100); margin-right: var(--spacing-100); }
+.mx-150 { margin-left: var(--spacing-150); margin-right: var(--spacing-150); }
+.mx-200 { margin-left: var(--spacing-200); margin-right: var(--spacing-200); }
+.mx-250 { margin-left: var(--spacing-250); margin-right: var(--spacing-250); }
+.mx-300 { margin-left: var(--spacing-300); margin-right: var(--spacing-300); }
+.mx-400 { margin-left: var(--spacing-400); margin-right: var(--spacing-400); }
+.mx-500 { margin-left: var(--spacing-500); margin-right: var(--spacing-500); }
+.mx-600 { margin-left: var(--spacing-600); margin-right: var(--spacing-600); }
+.mx-700 { margin-left: var(--spacing-700); margin-right: var(--spacing-700); }
+.mx-800 { margin-left: var(--spacing-800); margin-right: var(--spacing-800); }
+.mx-900 { margin-left: var(--spacing-900); margin-right: var(--spacing-900); }
+
+/* Vertical (top + bottom) */
+.my-25 { margin-top: var(--spacing-25); margin-bottom: var(--spacing-25); }
+.my-50 { margin-top: var(--spacing-50); margin-bottom: var(--spacing-50); }
+.my-100 { margin-top: var(--spacing-100); margin-bottom: var(--spacing-100); }
+.my-150 { margin-top: var(--spacing-150); margin-bottom: var(--spacing-150); }
+.my-200 { margin-top: var(--spacing-200); margin-bottom: var(--spacing-200); }
+.my-250 { margin-top: var(--spacing-250); margin-bottom: var(--spacing-250); }
+.my-300 { margin-top: var(--spacing-300); margin-bottom: var(--spacing-300); }
+.my-400 { margin-top: var(--spacing-400); margin-bottom: var(--spacing-400); }
+.my-500 { margin-top: var(--spacing-500); margin-bottom: var(--spacing-500); }
+.my-600 { margin-top: var(--spacing-600); margin-bottom: var(--spacing-600); }
+.my-700 { margin-top: var(--spacing-700); margin-bottom: var(--spacing-700); }
+.my-800 { margin-top: var(--spacing-800); margin-bottom: var(--spacing-800); }
+.my-900 { margin-top: var(--spacing-900); margin-bottom: var(--spacing-900); }
+
+/* Auto */
+.mx-auto { margin-left: auto; margin-right: auto; }
+.ml-auto { margin-left: auto; }
+.mr-auto { margin-right: auto; }
+
+/* ============================================================
+   SPACING UTILITIES - PADDING
+   ============================================================ */
+
+/* All sides */
+.p-25 { padding: var(--spacing-25); }
+.p-50 { padding: var(--spacing-50); }
+.p-100 { padding: var(--spacing-100); }
+.p-150 { padding: var(--spacing-150); }
+.p-200 { padding: var(--spacing-200); }
+.p-250 { padding: var(--spacing-250); }
+.p-300 { padding: var(--spacing-300); }
+.p-400 { padding: var(--spacing-400); }
+.p-500 { padding: var(--spacing-500); }
+.p-600 { padding: var(--spacing-600); }
+.p-700 { padding: var(--spacing-700); }
+.p-800 { padding: var(--spacing-800); }
+.p-900 { padding: var(--spacing-900); }
+
+/* Top */
+.pt-25 { padding-top: var(--spacing-25); }
+.pt-50 { padding-top: var(--spacing-50); }
+.pt-100 { padding-top: var(--spacing-100); }
+.pt-150 { padding-top: var(--spacing-150); }
+.pt-200 { padding-top: var(--spacing-200); }
+.pt-250 { padding-top: var(--spacing-250); }
+.pt-300 { padding-top: var(--spacing-300); }
+.pt-400 { padding-top: var(--spacing-400); }
+.pt-500 { padding-top: var(--spacing-500); }
+.pt-600 { padding-top: var(--spacing-600); }
+.pt-700 { padding-top: var(--spacing-700); }
+.pt-800 { padding-top: var(--spacing-800); }
+.pt-900 { padding-top: var(--spacing-900); }
+
+/* Bottom */
+.pb-25 { padding-bottom: var(--spacing-25); }
+.pb-50 { padding-bottom: var(--spacing-50); }
+.pb-100 { padding-bottom: var(--spacing-100); }
+.pb-150 { padding-bottom: var(--spacing-150); }
+.pb-200 { padding-bottom: var(--spacing-200); }
+.pb-250 { padding-bottom: var(--spacing-250); }
+.pb-300 { padding-bottom: var(--spacing-300); }
+.pb-400 { padding-bottom: var(--spacing-400); }
+.pb-500 { padding-bottom: var(--spacing-500); }
+.pb-600 { padding-bottom: var(--spacing-600); }
+.pb-700 { padding-bottom: var(--spacing-700); }
+.pb-800 { padding-bottom: var(--spacing-800); }
+.pb-900 { padding-bottom: var(--spacing-900); }
+
+/* Left */
+.pl-25 { padding-left: var(--spacing-25); }
+.pl-50 { padding-left: var(--spacing-50); }
+.pl-100 { padding-left: var(--spacing-100); }
+.pl-150 { padding-left: var(--spacing-150); }
+.pl-200 { padding-left: var(--spacing-200); }
+.pl-250 { padding-left: var(--spacing-250); }
+.pl-300 { padding-left: var(--spacing-300); }
+.pl-400 { padding-left: var(--spacing-400); }
+.pl-500 { padding-left: var(--spacing-500); }
+.pl-600 { padding-left: var(--spacing-600); }
+.pl-700 { padding-left: var(--spacing-700); }
+.pl-800 { padding-left: var(--spacing-800); }
+.pl-900 { padding-left: var(--spacing-900); }
+
+/* Right */
+.pr-25 { padding-right: var(--spacing-25); }
+.pr-50 { padding-right: var(--spacing-50); }
+.pr-100 { padding-right: var(--spacing-100); }
+.pr-150 { padding-right: var(--spacing-150); }
+.pr-200 { padding-right: var(--spacing-200); }
+.pr-250 { padding-right: var(--spacing-250); }
+.pr-300 { padding-right: var(--spacing-300); }
+.pr-400 { padding-right: var(--spacing-400); }
+.pr-500 { padding-right: var(--spacing-500); }
+.pr-600 { padding-right: var(--spacing-600); }
+.pr-700 { padding-right: var(--spacing-700); }
+.pr-800 { padding-right: var(--spacing-800); }
+.pr-900 { padding-right: var(--spacing-900); }
+
+/* Horizontal (left + right) */
+.px-25 { padding-left: var(--spacing-25); padding-right: var(--spacing-25); }
+.px-50 { padding-left: var(--spacing-50); padding-right: var(--spacing-50); }
+.px-100 { padding-left: var(--spacing-100); padding-right: var(--spacing-100); }
+.px-150 { padding-left: var(--spacing-150); padding-right: var(--spacing-150); }
+.px-200 { padding-left: var(--spacing-200); padding-right: var(--spacing-200); }
+.px-250 { padding-left: var(--spacing-250); padding-right: var(--spacing-250); }
+.px-300 { padding-left: var(--spacing-300); padding-right: var(--spacing-300); }
+.px-400 { padding-left: var(--spacing-400); padding-right: var(--spacing-400); }
+.px-500 { padding-left: var(--spacing-500); padding-right: var(--spacing-500); }
+.px-600 { padding-left: var(--spacing-600); padding-right: var(--spacing-600); }
+.px-700 { padding-left: var(--spacing-700); padding-right: var(--spacing-700); }
+.px-800 { padding-left: var(--spacing-800); padding-right: var(--spacing-800); }
+.px-900 { padding-left: var(--spacing-900); padding-right: var(--spacing-900); }
+
+/* Vertical (top + bottom) */
+.py-25 { padding-top: var(--spacing-25); padding-bottom: var(--spacing-25); }
+.py-50 { padding-top: var(--spacing-50); padding-bottom: var(--spacing-50); }
+.py-100 { padding-top: var(--spacing-100); padding-bottom: var(--spacing-100); }
+.py-150 { padding-top: var(--spacing-150); padding-bottom: var(--spacing-150); }
+.py-200 { padding-top: var(--spacing-200); padding-bottom: var(--spacing-200); }
+.py-250 { padding-top: var(--spacing-250); padding-bottom: var(--spacing-250); }
+.py-300 { padding-top: var(--spacing-300); padding-bottom: var(--spacing-300); }
+.py-400 { padding-top: var(--spacing-400); padding-bottom: var(--spacing-400); }
+.py-500 { padding-top: var(--spacing-500); padding-bottom: var(--spacing-500); }
+.py-600 { padding-top: var(--spacing-600); padding-bottom: var(--spacing-600); }
+.py-700 { padding-top: var(--spacing-700); padding-bottom: var(--spacing-700); }
+.py-800 { padding-top: var(--spacing-800); padding-bottom: var(--spacing-800); }
+.py-900 { padding-top: var(--spacing-900); padding-bottom: var(--spacing-900); }
+
+/* ============================================================
+   SPACING UTILITIES - GAP (Flexbox/Grid)
+   ============================================================ */
+
+.gap-25 { gap: var(--spacing-25); }
+.gap-50 { gap: var(--spacing-50); }
+.gap-100 { gap: var(--spacing-100); }
+.gap-150 { gap: var(--spacing-150); }
+.gap-200 { gap: var(--spacing-200); }
+.gap-250 { gap: var(--spacing-250); }
+.gap-300 { gap: var(--spacing-300); }
+.gap-400 { gap: var(--spacing-400); }
+.gap-500 { gap: var(--spacing-500); }
+.gap-600 { gap: var(--spacing-600); }
+.gap-700 { gap: var(--spacing-700); }
+.gap-800 { gap: var(--spacing-800); }
+.gap-900 { gap: var(--spacing-900); }
+
+/* Row gap */
+.gap-y-25 { row-gap: var(--spacing-25); }
+.gap-y-50 { row-gap: var(--spacing-50); }
+.gap-y-100 { row-gap: var(--spacing-100); }
+.gap-y-150 { row-gap: var(--spacing-150); }
+.gap-y-200 { row-gap: var(--spacing-200); }
+.gap-y-250 { row-gap: var(--spacing-250); }
+.gap-y-300 { row-gap: var(--spacing-300); }
+.gap-y-400 { row-gap: var(--spacing-400); }
+.gap-y-500 { row-gap: var(--spacing-500); }
+.gap-y-600 { row-gap: var(--spacing-600); }
+.gap-y-700 { row-gap: var(--spacing-700); }
+.gap-y-800 { row-gap: var(--spacing-800); }
+.gap-y-900 { row-gap: var(--spacing-900); }
+
+/* Column gap */
+.gap-x-25 { column-gap: var(--spacing-25); }
+.gap-x-50 { column-gap: var(--spacing-50); }
+.gap-x-100 { column-gap: var(--spacing-100); }
+.gap-x-150 { column-gap: var(--spacing-150); }
+.gap-x-200 { column-gap: var(--spacing-200); }
+.gap-x-250 { column-gap: var(--spacing-250); }
+.gap-x-300 { column-gap: var(--spacing-300); }
+.gap-x-400 { column-gap: var(--spacing-400); }
+.gap-x-500 { column-gap: var(--spacing-500); }
+.gap-x-600 { column-gap: var(--spacing-600); }
+.gap-x-700 { column-gap: var(--spacing-700); }
+.gap-x-800 { column-gap: var(--spacing-800); }
+.gap-x-900 { column-gap: var(--spacing-900); }
+
+/* ============================================================
+   RESPONSIVE SPACING UTILITIES
+   ============================================================
+   Auto-adjusting spacing based on viewport
+   ============================================================ */
+
+/* Spacing - Row (for event rows, selectors, short wide objects) */
+.spacing-row { gap: var(--spacing-row); }
+.gap-row { gap: var(--spacing-row); }
+.gap-y-row { row-gap: var(--spacing-row); }
+.gap-x-row { column-gap: var(--spacing-row); }
+.mb-row { margin-bottom: var(--spacing-row); }
+.mt-row { margin-top: var(--spacing-row); }
+.my-row { margin-top: var(--spacing-row); margin-bottom: var(--spacing-row); }
+.pb-row { padding-bottom: var(--spacing-row); }
+.pt-row { padding-top: var(--spacing-row); }
+.py-row { padding-top: var(--spacing-row); padding-bottom: var(--spacing-row); }
+
+/* Spacing - Card (for card grids and lists) */
+.spacing-card { gap: var(--spacing-card); }
+.gap-card { gap: var(--spacing-card); }
+.gap-y-card { row-gap: var(--spacing-card); }
+.gap-x-card { column-gap: var(--spacing-card); }
+.mb-card { margin-bottom: var(--spacing-card); }
+.mt-card { margin-top: var(--spacing-card); }
+.my-card { margin-top: var(--spacing-card); margin-bottom: var(--spacing-card); }
+.pb-card { padding-bottom: var(--spacing-card); }
+.pt-card { padding-top: var(--spacing-card); }
+.py-card { padding-top: var(--spacing-card); padding-bottom: var(--spacing-card); }
+
+/* Spacing - Content Objects (for major page sections) */
+.spacing-content { gap: var(--spacing-content); }
+.gap-content { gap: var(--spacing-content); }
+.gap-y-content { row-gap: var(--spacing-content); }
+.gap-x-content { column-gap: var(--spacing-content); }
+.mb-content { margin-bottom: var(--spacing-content); }
+.mt-content { margin-top: var(--spacing-content); }
+.my-content { margin-top: var(--spacing-content); margin-bottom: var(--spacing-content); }
+.pb-content { padding-bottom: var(--spacing-content); }
+.pt-content { padding-top: var(--spacing-content); }
+.py-content { padding-top: var(--spacing-content); padding-bottom: var(--spacing-content); }
+
+/* Margin - Small (for detailed interfaces, event lists, grids) */
+.margin-small { margin: var(--margin-small); }
+.mx-small { margin-left: var(--margin-small); margin-right: var(--margin-small); }
+.my-small { margin-top: var(--margin-small); margin-bottom: var(--margin-small); }
+.mt-small { margin-top: var(--margin-small); }
+.mb-small { margin-bottom: var(--margin-small); }
+.ml-small { margin-left: var(--margin-small); }
+.mr-small { margin-right: var(--margin-small); }
+.px-small { padding-left: var(--margin-small); padding-right: var(--margin-small); }
+.py-small { padding-top: var(--margin-small); padding-bottom: var(--margin-small); }
+.pt-small { padding-top: var(--margin-small); }
+.pb-small { padding-bottom: var(--margin-small); }
+.pl-small { padding-left: var(--margin-small); }
+.pr-small { padding-right: var(--margin-small); }
+
+/* Margin - Large (for most pages) */
+.margin-large { margin: var(--margin-large); }
+.mx-large { margin-left: var(--margin-large); margin-right: var(--margin-large); }
+.my-large { margin-top: var(--margin-large); margin-bottom: var(--margin-large); }
+.mt-large { margin-top: var(--margin-large); }
+.mb-large { margin-bottom: var(--margin-large); }
+.ml-large { margin-left: var(--margin-large); }
+.mr-large { margin-right: var(--margin-large); }
+.px-large { padding-left: var(--margin-large); padding-right: var(--margin-large); }
+.py-large { padding-top: var(--margin-large); padding-bottom: var(--margin-large); }
+.pt-large { padding-top: var(--margin-large); }
+.pb-large { padding-bottom: var(--margin-large); }
+.pl-large { padding-left: var(--margin-large); }
+.pr-large { padding-right: var(--margin-large); }
+
+/* Margin - Landing Page (for open layouts, hero sections) */
+.margin-landing { margin: var(--margin-landing); }
+.mx-landing { margin-left: var(--margin-landing); margin-right: var(--margin-landing); }
+.my-landing { margin-top: var(--margin-landing); margin-bottom: var(--margin-landing); }
+.mt-landing { margin-top: var(--margin-landing); }
+.mb-landing { margin-bottom: var(--margin-landing); }
+.ml-landing { margin-left: var(--margin-landing); }
+.mr-landing { margin-right: var(--margin-landing); }
+.px-landing { padding-left: var(--margin-landing); padding-right: var(--margin-landing); }
+.py-landing { padding-top: var(--margin-landing); padding-bottom: var(--margin-landing); }
+.pt-landing { padding-top: var(--margin-landing); }
+.pb-landing { padding-bottom: var(--margin-landing); }
+.pl-landing { padding-left: var(--margin-landing); }
+.pr-landing { padding-right: var(--margin-landing); }
+
+/* ============================================================
+   RESPONSIVE GRID UTILITIES
+   ============================================================ */
+
+.grid {
+  display: grid;
+  gap: var(--spacing-300);
+}
+
+/* Mobile: 1 column */
+@media (max-width: 499px) {
+  .grid-cols-1-mobile {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Tablet: 2 columns */
+@media (min-width: 500px) and (max-width: 1099px) {
+  .grid-cols-2-tablet {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .grid-cols-3-tablet {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* Desktop: flexible columns */
+@media (min-width: 1100px) {
+  .grid-cols-2-desktop {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .grid-cols-3-desktop {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  
+  .grid-cols-4-desktop {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+/* Responsive auto-fill grid */
+.grid-auto-fit {
+  display: grid;
+  gap: var(--spacing-300);
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
+}
+
+@media (max-width: 499px) {
+  .grid-auto-fit {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ============================================================
+   COMMON ELEMENT STYLES
+   ============================================================ */
+
+/* --color-interactive is the mode-aware interactive colour; --brand-interactive
+   is one value per theme in both modes and renders dark-on-dark. See RULES §2. */
+a {
+  color: var(--color-interactive);
+  text-decoration: none;
+  transition: opacity 0.2s ease;
+}
+
+a:hover {
+  opacity: 0.8;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+
+input,
+textarea,
+select {
+  font-family: inherit;
+  color: var(--text-primary);
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-default);
+  border-radius: 8px;
+  padding: 12px;
+  width: 100%;
+  transition: border-color 0.2s ease;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  outline: none;
+  border-color: var(--border-active);
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: var(--text-placeholder);
+}
+
+/* ============================================================
+   RESPONSIVE UTILITIES
+   ============================================================ */
+
+/* Breakpoints: mobile <500px, tablet 500–1099px, desktop ≥1100px. See RULES §9. */
+
+/* Mobile-only (0-499px) */
+@media (max-width: 499px) {
+  .hide-mobile {
+    display: none !important;
+  }
+  
+  .show-mobile {
+    display: block !important;
+  }
+}
+
+/* Tablet-only (500-1099px) */
+@media (min-width: 500px) and (max-width: 1099px) {
+  .hide-tablet {
+    display: none !important;
+  }
+  
+  .show-tablet {
+    display: block !important;
+  }
+}
+
+/* Desktop (1100px+) */
+@media (min-width: 1100px) {
+  .hide-desktop {
+    display: none !important;
+  }
+  
+  .show-desktop {
+    display: block !important;
+  }
+}
+
+/* Mobile & Tablet (0-1099px) */
+@media (max-width: 1099px) {
+  .hide-mobile-tablet {
+    display: none !important;
+  }
+}
+
+/* Tablet & Desktop (500px+) */
+@media (min-width: 500px) {
+  .hide-tablet-desktop {
+    display: none !important;
+  }
+}

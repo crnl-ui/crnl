@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="signal" data-mode="light" data-platform="web">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>iOS / App — Design System Sticker Sheet</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap" rel="stylesheet">
+
+  <script src="../css/ds-loader.js"></script>
+  <script src="demo-content.js"></script>
+  <script src="../css/prototype-harness.js"></script>
+  <link rel="stylesheet" href="sheet.css">
+</head>
+<body>
+
+<nav data-sheet-nav></nav>
+
+<main class="container-extra-wide">
+
+  <header class="sheet-head">
+    <div class="card-text-pair">
+      <h1 class="display500">iOS &amp; App Platform</h1>
+      <p class="labelRegular40 text-secondary">The phone frame, the three-layer chrome stack, and every iOS navigation component — running live.</p>
+    </div>
+  </header>
+
+  <div class="sheet-callout">
+    <p class="bodyRegular30"><span class="mono">data-platform="app"</span> on <span class="mono">&lt;html&gt;</span> renders the page inside an iPhone 15 Pro frame (393×852) on a black backdrop. Nothing in the template changes: at or below 500px the frame, backdrop and rounded corners go, the status bar collapses to an 8px spacer, and the content goes full-bleed.</p>
+  </div>
+
+  <section class="sheet-section" id="live">
+    <div class="sheet-section-head">
+      <h2 class="display300">The live frame</h2>
+      <span class="labelRegular10 text-secondary mono">11-ios-frame.html · data-platform="app"</span>
+    </div>
+    <p class="sheet-note bodyRegular30">Every iOS component in one running screen — scroll it, open the modal, switch tabs and subtabs. It is a separate document because the platform is a property of <span class="mono">&lt;html&gt;</span>, so it cannot coexist with a web-mode page. <a class="link" href="11-ios-frame.html">Open it on its own →</a></p>
+    <div class="spec-stage is-plain is-block">
+      <iframe id="ios-frame" src="11-ios-frame.html?harness=off" title="iOS chrome, live"
+              style="width: 501px; max-width: 100%; height: 940px; border: 0; display: block;"></iframe>
+    </div>
+  </section>
+
+  <section class="sheet-section" id="stack">
+    <div class="sheet-section-head">
+      <h2 class="display300">Layout architecture</h2>
+      <span class="labelRegular10 text-secondary mono">a three-layer absolute stack</span>
+    </div>
+    <p class="sheet-note bodyRegular30">Content scrolls <em>behind</em> translucent chrome, so the two chrome layers sit above the scrollport and the scrollport fills the frame. <span class="mono">.ios-scroll-inner</span>'s <span class="mono">margin-top</span> is measured at runtime, because the chrome gets taller when subtabs are present — a static copy bakes the measured value in instead (≈119px with the standard nav, more with subtabs).</p>
+    <div class="spec-stage is-block">
+      <pre class="labelRegular10 mono" style="margin: 0; overflow-x: auto;">.ios-status-bar                      absolute, height --safe-area-top
+.ios-chrome-top      z: 100          .ios-safe-area-top + .ios-nav-maintab (+ subtabs)
+.ios-scroll          z: 1            fills the frame
+  .ios-scroll-inner                  margin-top set by measureChrome()
+.ios-chrome-bottom   z: 100          .ios-tab-bar + .ios-home-indicator</pre>
+    </div>
+    <div class="spec-label mt-200">
+      <span class="labelRegular10 mono spec-code">.ios-status-bar</span>
+      <span class="labelRegular10 mono spec-code">.ios-status-bar-modal</span>
+      <span class="labelRegular10 mono spec-code">.ios-safe-area-top</span>
+      <span class="labelRegular10 mono spec-code">.ios-chrome-top</span>
+      <span class="labelRegular10 mono spec-code">.ios-chrome-bottom</span>
+      <span class="labelRegular10 mono spec-code">.ios-scroll</span>
+      <span class="labelRegular10 mono spec-code">.ios-scroll-inner</span>
+      <span class="labelRegular10 mono spec-code">.ios-home-indicator</span>
+    </div>
+  </section>
+
+  <section class="sheet-section" id="components">
+    <div class="sheet-section-head">
+      <h2 class="display300">Every iOS class</h2>
+      <span class="labelRegular10 text-secondary mono">ios-nav-components.css · platform-tokens.css</span>
+    </div>
+
+    <div class="sheet-sub"><span class="title50">Glass and buttons</span></div>
+    <div class="spec-label mb-200">
+      <span class="labelRegular10 mono spec-code">.ios-glass</span>
+      <span class="labelRegular10 mono spec-code">.ios-nav-btn</span>
+      <span class="labelRegular10 mono spec-code">.ios-nav-btn-brand</span>
+    </div>
+    <p class="bodyRegular30 sheet-note"><span class="mono">.ios-glass</span> is the frosted surface matching Figma's "Fake Glass" style — blur, a luminosity-blended tint, a hard-light overlay gradient, a 175° bevel ring through a mask, and a soft drop shadow. Semantic tokens throughout, so it holds across every theme and both modes. Apply it to any element and give that element its own radius.</p>
+
+    <div class="sheet-sub"><span class="title50">Nav bars</span></div>
+    <div class="spec-label mb-200">
+      <span class="labelRegular10 mono spec-code">.ios-nav-maintab</span>
+      <span class="labelRegular10 mono spec-code">.ios-nav-controls</span>
+      <span class="labelRegular10 mono spec-code">.ios-nav-page</span>
+      <span class="labelRegular10 mono spec-code">.ios-nav-page-row</span>
+      <span class="labelRegular10 mono spec-code">.ios-nav-page-title</span>
+      <span class="labelRegular10 mono spec-code">.ios-nav-page-left</span>
+      <span class="labelRegular10 mono spec-code">.ios-nav-page-right</span>
+    </div>
+
+    <div class="sheet-sub"><span class="title50">Segmented control (subtabs)</span></div>
+    <div class="spec-label mb-200">
+      <span class="labelRegular10 mono spec-code">.ios-nav-subtabs-container</span>
+      <span class="labelRegular10 mono spec-code">.ios-nav-subtabs</span>
+      <span class="labelRegular10 mono spec-code">.ios-nav-subtab</span>
+      <span class="labelRegular10 mono spec-code">.ios-nav-subtab-sep</span>
+    </div>
+    <p class="bodyRegular30 sheet-note">The active subtab is <span class="mono">--interactive-primary</span> text on a <span class="mono">--ios-selected-tab-bg</span> pill; the separators next to it hide. Never use <span class="mono">--bg-input</span> for that pill — it is transparent in dark mode and the pill vanishes.</p>
+
+    <div class="sheet-sub"><span class="title50">Bottom tab bar</span></div>
+    <div class="spec-label mb-200">
+      <span class="labelRegular10 mono spec-code">.ios-tab-bar</span>
+      <span class="labelRegular10 mono spec-code">.ios-tab-bar-inner</span>
+      <span class="labelRegular10 mono spec-code">.ios-tab</span>
+      <span class="labelRegular10 mono spec-code">.ios-tab-label</span>
+      <span class="labelRegular10 mono spec-code">.ios-tab-brand-icon</span>
+    </div>
+    <p class="bodyRegular30 sheet-note">Five tabs on a glass pill over an <span class="mono">--org-base</span> gradient fade. Inactive is an outlined icon in <span class="mono">--neutral-500</span>; active is filled, in <span class="mono">--ios-selected-tab</span>, on a <span class="mono">--ios-selected-tab-bg</span> pill. The brand tab draws a themeable monochrome SVG through <span class="mono">mask-image</span> from <span class="mono">--brand-tab-icon</span>, so it inherits <span class="mono">currentColor</span> for both states.</p>
+
+    <div class="sheet-sub"><span class="title50">Modal sheet</span></div>
+    <div class="spec-label mb-200">
+      <span class="labelRegular10 mono spec-code">.ios-modal-backdrop</span>
+      <span class="labelRegular10 mono spec-code">.ios-modal-stack</span>
+      <span class="labelRegular10 mono spec-code">.ios-modal-sheet</span>
+      <span class="labelRegular10 mono spec-code">.ios-nav-modal</span>
+      <span class="labelRegular10 mono spec-code">.ios-nav-modal-row</span>
+      <span class="labelRegular10 mono spec-code">.ios-modal-content</span>
+    </div>
+    <p class="bodyRegular30 sheet-note">Show and hide by toggling <span class="mono">.is-open</span> on the backdrop — that one class drives the backdrop fade, the sheet's slide and the stack indicator's delayed reveal. The <span class="mono">hidden</span> attribute works too but skips the animation, because <span class="mono">display: none</span> applies instantly.</p>
+
+    <div class="sheet-callout">
+      <p class="bodyRegular30"><strong>Why <span class="mono">hidden</span> needs a rule at all.</strong> <span class="mono">.ios-modal-backdrop</span> sets <span class="mono">display: flex</span>, and an author declaration beats the browser's own <span class="mono">[hidden] { display: none }</span> on <em>cascade origin</em> — before specificity is even considered. Without the explicit <span class="mono">.ios-modal-backdrop[hidden]</span> guard, a modal marked hidden renders <strong>open</strong>, covering the screen. Every flex or grid overlay has the same trap. Building this sheet is how it was found: the guard, the backdrop's closed state and the sheet's slide are all in <span class="mono">ios-nav-components.css</span> now, where four native templates had been carrying byte-identical copies of them.</p>
+    </div>
+
+    <div class="sheet-sub"><span class="title50">Content wrappers</span></div>
+    <div class="spec-label mb-200">
+      <span class="labelRegular10 mono spec-code">.ios-content</span>
+      <span class="labelRegular10 mono spec-code">.has-ios-tab-bar</span>
+    </div>
+
+    <div class="sheet-sub"><span class="title50">Review chrome</span><span class="labelRegular10 text-secondary">injected by prototype-harness.js — never pasted into a page</span></div>
+    <div class="spec-label mb-200">
+      <span class="labelRegular10 mono spec-code">.app-device-controls</span>
+      <span class="labelRegular10 mono spec-code">.device-control-label</span>
+      <span class="labelRegular10 mono spec-code">.mode-toggle</span>
+      <span class="labelRegular10 mono spec-code">.template-fab</span>
+      <span class="labelRegular10 mono spec-code">.template-fab-trigger</span>
+      <span class="labelRegular10 mono spec-code">.template-fab-panel</span>
+      <span class="labelRegular10 mono spec-code">.open</span>
+      <span class="labelRegular10 mono spec-code">.template-fab-link</span>
+      <span class="labelRegular10 mono spec-code">.template-platform-link</span>
+    </div>
+    <p class="bodyRegular30 sheet-note">The Dynamic Island theme/mode pill in app mode, and the floating panel in web mode, are both the harness's. On a real phone the pill hides and a triple-tap opens the same controls in a popup. The theme switcher at the corner of every sheet on this site is that harness.</p>
+  </section>
+
+  <section class="sheet-section" id="safe-areas">
+    <div class="sheet-section-head">
+      <h2 class="display300">Safe areas</h2>
+      <span class="labelRegular10 text-secondary mono">platform-tokens.css</span>
+    </div>
+    <p class="sheet-note bodyRegular30">These read <span class="mono">0px</span> here because this page is in web mode. In the frame above they are 59px and 34px.</p>
+    <div class="token-list">
+        <div class="token-row no-chip" data-token="--safe-area-top">
+          <span class="labelBold20 mono">--safe-area-top</span>
+          <span class="labelRegular10 token-value mono" data-token-value></span>
+        </div>
+        <div class="token-row no-chip" data-token="--safe-area-bottom">
+          <span class="labelBold20 mono">--safe-area-bottom</span>
+          <span class="labelRegular10 token-value mono" data-token-value></span>
+        </div>
+        <div class="token-row no-chip" data-token="--ios-tab-bar-clearance">
+          <span class="labelBold20 mono">--ios-tab-bar-clearance</span>
+          <span class="labelRegular10 token-value mono" data-token-value></span>
+        </div>
+        <div class="token-row no-chip" data-token="--brand-tab-icon">
+          <span class="labelBold20 mono">--brand-tab-icon</span>
+          <span class="labelRegular10 token-value mono" data-token-value></span>
+        </div>
+        <div class="token-row" data-token="--ios-selected-tab">
+          <div class="token-chip"><div class="token-chip-fill" data-token-chip></div></div>
+          <span class="labelBold20 mono">--ios-selected-tab</span>
+          <span class="labelRegular10 token-value mono" data-token-value></span>
+        </div>
+        <div class="token-row" data-token="--ios-selected-tab-bg">
+          <div class="token-chip"><div class="token-chip-fill" data-token-chip></div></div>
+          <span class="labelBold20 mono">--ios-selected-tab-bg</span>
+          <span class="labelRegular10 token-value mono" data-token-value></span>
+        </div>
+        <div class="token-row" data-token="--ios-nav-bg">
+          <div class="token-chip"><div class="token-chip-fill" data-token-chip></div></div>
+          <span class="labelBold20 mono">--ios-nav-bg</span>
+          <span class="labelRegular10 token-value mono" data-token-value></span>
+        </div>
+        <div class="token-row" data-token="--ios-tab-bar-bg">
+          <div class="token-chip"><div class="token-chip-fill" data-token-chip></div></div>
+          <span class="labelBold20 mono">--ios-tab-bar-bg</span>
+          <span class="labelRegular10 token-value mono" data-token-value></span>
+        </div>
+        <div class="token-row" data-token="--ios-separator">
+          <div class="token-chip"><div class="token-chip-fill" data-token-chip></div></div>
+          <span class="labelBold20 mono">--ios-separator</span>
+          <span class="labelRegular10 token-value mono" data-token-value></span>
+        </div>
+        <div class="token-row" data-token="--ios-modal-stack-bg">
+          <div class="token-chip"><div class="token-chip-fill" data-token-chip="background"></div></div>
+          <span class="labelBold20 mono">--ios-modal-stack-bg</span>
+          <span class="labelRegular10 token-value mono" data-token-value></span>
+        </div>
+    </div>
+    <div class="sheet-callout is-warn mt-400">
+      <p class="bodyRegular30"><span class="mono">list-row-components.css</span> steps its padding up at <span class="mono">@media (min-width: 500px)</span>, and the phone frame renders inside a wider viewport — so app-mode overrides in <span class="mono">platform-tokens.css</span> keep the mobile values. If a list row inside the frame shows desktop padding, that override is missing for the class in question.</p>
+    </div>
+  </section>
+
+  <footer class="sheet-footer">
+    <p class="labelRegular10">Generated against <span class="mono">docs/css-api.json</span>. Every class shown here exists in the system — run <span class="mono">npm run check:demo</span> to verify the sheets still cover it.</p>
+  </footer>
+
+</main>
+
+<script>
+  /* The frame is a separate document, so the harness switcher on this page
+     cannot reach it. Mirror the theme and mode across on load and on every
+     change — 501px keeps the iframe above the 500px breakpoint where the
+     phone frame collapses. */
+  (function () {
+    const frame = document.getElementById('ios-frame');
+    if (!frame) return;
+    const sync = () => {
+      const doc = frame.contentDocument;
+      if (!doc) return;
+      const html = document.documentElement;
+      doc.documentElement.setAttribute('data-theme', html.getAttribute('data-theme'));
+      doc.documentElement.setAttribute('data-mode', html.getAttribute('data-mode'));
+    };
+    frame.addEventListener('load', sync);
+    new MutationObserver(sync).observe(document.documentElement, {
+      attributes: true, attributeFilter: ['data-theme', 'data-mode'],
+    });
+  })();
+</script>
+
+<script src="sheet.js"></script>
+</body>
+</html>

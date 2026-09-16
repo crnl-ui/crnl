@@ -1,0 +1,370 @@
+file,family,style,kind,source,sourceFile,license,cut,caseMode,weight,letterSpacing,nudgePct,shiftUnits,lowercaseRemapped,italicAngle,axes,needsMetricsFlag,metricsNote,size900,bytes
+Beacon Italic.ttf,Beacon,Italic,oblique,Afacad Flux,"AfacadFlux[slnt,wght].ttf",ofl,as drawn,both,1000,0,-1.5,-22,0,-14.0,"{""slnt"": -14.0, ""wght"": 1000.0}",True,,76,84416
+Beacon Caps Italic.ttf,Beacon Caps,Italic,oblique,Afacad Flux,"AfacadFlux[slnt,wght].ttf",ofl,caps,both,1000,0,-1.5,-22,203,-14.0,"{""slnt"": -14.0, ""wght"": 1000.0}",True,,76,84476
+Beacon.ttf,Beacon,Regular,roman,Afacad Flux,"AfacadFlux[slnt,wght].ttf",ofl,as drawn,both,1000,0,-1.5,-22,0,0,"{""slnt"": 0, ""wght"": 1000.0}",True,,76,83048
+Beacon Caps.ttf,Beacon Caps,Regular,roman,Afacad Flux,"AfacadFlux[slnt,wght].ttf",ofl,caps,both,1000,0,-1.5,-22,203,0,"{""slnt"": 0, ""wght"": 1000.0}",True,,76,83088
+Ticker.ttf,Ticker,Regular,roman,Akshar,Akshar[wght].ttf,ofl,as drawn,both,700,-0.035,6.5,65,0,0,"{""wght"": 700.0}",True,,76,148396
+Ticker Caps.ttf,Ticker Caps,Regular,roman,Akshar,Akshar[wght].ttf,ofl,caps,both,700,-0.035,6.5,65,70,0,"{""wght"": 700.0}",True,,76,148436
+Lantern Italic.ttf,Lantern,Italic,italic,Alegreya Sans,AlegreyaSans-BlackItalic.ttf,ofl,as drawn,none,900,0,3.5,35,0,-7.0,,True,,76,274768
+Lantern.ttf,Lantern,Regular,roman,Alegreya Sans,AlegreyaSans-Black.ttf,ofl,as drawn,none,900,0,3.5,35,0,0,,True,,76,267004
+Archive Italic.ttf,Archive,Italic,italic,Aleo,Aleo-Italic[wght].ttf,ofl,as drawn,both,900,-0.01,5.5,56,0,-7.0,"{""wght"": 900.0}",True,,74,76236
+Archive Caps Italic.ttf,Archive Caps,Italic,italic,Aleo,Aleo-Italic[wght].ttf,ofl,caps,both,900,-0.01,5.5,56,238,-7.0,"{""wght"": 900.0}",True,,74,76296
+Archive.ttf,Archive,Regular,roman,Aleo,Aleo[wght].ttf,ofl,as drawn,both,900,-0.01,5.5,56,0,0,"{""wght"": 900.0}",True,,74,73636
+Archive Caps.ttf,Archive Caps,Regular,roman,Aleo,Aleo[wght].ttf,ofl,caps,both,900,-0.01,5.5,56,238,0,"{""wght"": 900.0}",True,,74,73680
+Collegiate Slab.ttf,Collegiate Slab,Regular,roman,Alfa Slab One,AlfaSlabOne-Regular.ttf,ofl,as drawn,both,400,0,3.5,40,0,0,,True,,66,97240
+Collegiate Slab Caps.ttf,Collegiate Slab Caps,Regular,roman,Alfa Slab One,AlfaSlabOne-Regular.ttf,ofl,caps,both,400,0,3.5,40,232,0,,True,,66,97284
+Varsity Caps Italic.ttf,Varsity Caps,Italic,italic,Alumni Sans,AlumniSans-Italic[wght].ttf,ofl,caps,caps,900,0.025,0,0,257,-8.0,"{""wght"": 900.0}",True,Also size?,76,91052
+Varsity Caps.ttf,Varsity Caps,Regular,roman,Alumni Sans,AlumniSans[wght].ttf,ofl,caps,caps,900,0.025,0,0,257,0,"{""wght"": 900.0}",True,Also size?,76,87648
+Varsity SC Caps Italic.ttf,Varsity SC Caps,Italic,italic,Alumni Sans SC,AlumniSansSC-Italic[wght].ttf,ofl,caps,caps,900,0,1,10,257,-8.0,"{""wght"": 900.0}",True,,76,83444
+Varsity SC Caps.ttf,Varsity SC Caps,Regular,roman,Alumni Sans SC,AlumniSansSC[wght].ttf,ofl,caps,caps,900,0,1,10,257,0,"{""wght"": 900.0}",True,,76,80388
+Gantry.ttf,Gantry,Regular,roman,Anton,Anton-Regular.ttf,ofl,as drawn,both,400,0,0,0,0,0,,False,,74,170828
+Gantry Caps.ttf,Gantry Caps,Regular,roman,Anton,Anton-Regular.ttf,ofl,caps,both,400,0,0,0,355,0,,False,,74,170872
+Gantry SC.ttf,Gantry SC,Regular,roman,Anton SC,AntonSC-Regular.ttf,ofl,as drawn,none,400,0,0,0,0,0,,False,,74,162212
+Spire.ttf,Spire,Regular,roman,Antonio,Antonio[wght].ttf,ofl,as drawn,both,700,0,-7,-147,0,0,"{""wght"": 700.0}",True,,74,37556
+Spire Caps.ttf,Spire Caps,Regular,roman,Antonio,Antonio[wght].ttf,ofl,caps,both,700,0,-7,-147,150,0,"{""wght"": 700.0}",True,,74,37596
+Montana Italic.ttf,Montana,Italic,italic,Anybody,"Anybody-Italic[wdth,wght].ttf",ofl,as drawn,both,900,-0.02,6.5,150,0,-10.0,"{""wdth"": 100, ""wght"": 900.0}",True,,66,67244
+Montana Caps Italic.ttf,Montana Caps,Italic,italic,Anybody,"Anybody-Italic[wdth,wght].ttf",ofl,caps,both,900,-0.02,6.5,150,240,-10.0,"{""wdth"": 100, ""wght"": 900.0}",True,,66,67300
+Montana.ttf,Montana,Regular,roman,Anybody,"Anybody[wdth,wght].ttf",ofl,as drawn,both,900,-0.02,6.5,150,0,0,"{""wdth"": 100, ""wght"": 900.0}",True,,66,65988
+Montana Caps.ttf,Montana Caps,Regular,roman,Anybody,"Anybody[wdth,wght].ttf",ofl,caps,both,900,-0.02,6.5,150,240,0,"{""wdth"": 100, ""wght"": 900.0}",True,,66,66028
+Marquee.ttf,Marquee,Regular,roman,Archivo Black,ArchivoBlack-Regular.ttf,ofl,as drawn,both,400,-0.04,0,0,0,0,,False,,70,90880
+Marquee Caps.ttf,Marquee Caps,Regular,roman,Archivo Black,ArchivoBlack-Regular.ttf,ofl,caps,both,400,-0.04,0,0,129,0,,False,,70,90920
+Sprint Italic.ttf,Sprint,Italic,italic,Asap Condensed,AsapCondensed-BlackItalic.ttf,ofl,as drawn,both,900,0.03,0,0,0,-6.0,,False,,76,118608
+Sprint Caps Italic.ttf,Sprint Caps,Italic,italic,Asap Condensed,AsapCondensed-BlackItalic.ttf,ofl,caps,both,900,0.03,0,0,218,-6.0,,False,,76,118664
+Sprint.ttf,Sprint,Regular,roman,Asap Condensed,AsapCondensed-Black.ttf,ofl,as drawn,both,900,0.03,0,0,0,0,,False,,76,113900
+Sprint Caps.ttf,Sprint Caps,Regular,roman,Asap Condensed,AsapCondensed-Black.ttf,ofl,caps,both,900,0.03,0,0,218,0,,False,,76,113944
+Rampart.ttf,Rampart,Regular,roman,BBH Bartle,BBHBartle-Regular.ttf,ofl,as drawn,none,400,0,1.5,23,0,0,,True,,50,17924
+Stanchion.ttf,Stanchion,Regular,roman,BBH Bogle,BBHBogle-Regular.ttf,ofl,as drawn,none,400,0.03,0.5,5,0,0,,True,,76,15724
+Anvil.ttf,Anvil,Regular,roman,BBH Hegarty,BBHHegarty-Regular.ttf,ofl,as drawn,none,400,0.02,0,0,0,0,,False,,62,28680
+Huddle.ttf,Huddle,Regular,roman,Baloo 2,Baloo2[wght].ttf,ofl,as drawn,both,800,-0.035,4.5,45,0,0,"{""wght"": 800.0}",True,,76,421744
+Huddle Caps.ttf,Huddle Caps,Regular,roman,Baloo 2,Baloo2[wght].ttf,ofl,caps,both,800,-0.035,4.5,45,242,0,"{""wght"": 800.0}",True,,76,422260
+Super.ttf,Super,Regular,roman,Bangers,Bangers-Regular.ttf,ofl,as drawn,none,400,0.02,2.5,25,0,0,,True,,76,93216
+Transit Italic.ttf,Transit,Italic,italic,Barlow,Barlow-BlackItalic.ttf,ofl,as drawn,both,900,-0.005,-3.5,-38,0,-7.0,,False,,70,114452
+Transit Caps Italic.ttf,Transit Caps,Italic,italic,Barlow,Barlow-BlackItalic.ttf,ofl,caps,both,900,-0.005,-3.5,-38,169,-7.0,,False,,70,114508
+Transit.ttf,Transit,Regular,roman,Barlow,Barlow-Black.ttf,ofl,as drawn,both,900,-0.005,-3.5,-38,0,0,,False,,70,110988
+Transit Caps.ttf,Transit Caps,Regular,roman,Barlow,Barlow-Black.ttf,ofl,caps,both,900,-0.005,-3.5,-38,169,0,,False,,70,111032
+Transit Condensed Italic.ttf,Transit Condensed,Italic,italic,Barlow Condensed,BarlowCondensed-BlackItalic.ttf,ofl,as drawn,both,900,0.015,-4.5,-45,0,-7.0,,True,,76,112428
+Transit Condensed Caps Italic.ttf,Transit Condensed Caps,Italic,italic,Barlow Condensed,BarlowCondensed-BlackItalic.ttf,ofl,caps,both,900,0.015,-4.5,-45,169,-7.0,,True,,76,112484
+Transit Condensed.ttf,Transit Condensed,Regular,roman,Barlow Condensed,BarlowCondensed-Black.ttf,ofl,as drawn,both,900,0.015,-4.5,-45,0,0,,True,,76,110652
+Transit Condensed Caps.ttf,Transit Condensed Caps,Regular,roman,Barlow Condensed,BarlowCondensed-Black.ttf,ofl,caps,both,900,0.015,-4.5,-45,169,0,,True,,76,110696
+Transit Semi Condensed Italic.ttf,Transit Semi Condensed,Italic,italic,Barlow Semi Condensed,BarlowSemiCondensed-BlackItalic.ttf,ofl,as drawn,both,900,-0.005,-4.5,-45,0,-7.0,,True,,76,115248
+Transit Semi Condensed Caps Italic.ttf,Transit Semi Condensed Caps,Italic,italic,Barlow Semi Condensed,BarlowSemiCondensed-BlackItalic.ttf,ofl,caps,both,900,-0.005,-4.5,-45,169,-7.0,,True,,76,115304
+Transit Semi Condensed.ttf,Transit Semi Condensed,Regular,roman,Barlow Semi Condensed,BarlowSemiCondensed-Black.ttf,ofl,as drawn,both,900,-0.005,-4.5,-45,0,0,,True,,76,113016
+Transit Semi Condensed Caps.ttf,Transit Semi Condensed Caps,Regular,roman,Barlow Semi Condensed,BarlowSemiCondensed-Black.ttf,ofl,caps,both,900,-0.005,-4.5,-45,169,0,,True,,76,113056
+Turnstile.ttf,Turnstile,Regular,roman,Bebas Neue,BebasNeue-Regular.ttf,ofl,as drawn,none,400,0.04,6.5,65,0,0,,True,,76,61228
+Playbill Italic.ttf,Playbill,Italic,italic,Bevan,Bevan-Italic.ttf,ofl,as drawn,both,400,-0.01,4,97,0,-10.0,,True,,64,119048
+Playbill Caps Italic.ttf,Playbill Caps,Italic,italic,Bevan,Bevan-Italic.ttf,ofl,caps,both,400,-0.01,4,97,199,-10.0,,True,,64,119104
+Playbill.ttf,Playbill,Regular,roman,Bevan,Bevan-Regular.ttf,ofl,as drawn,both,400,-0.01,4,97,0,0,,True,,64,118044
+Playbill Caps.ttf,Playbill Caps,Regular,roman,Bevan,Bevan-Regular.ttf,ofl,caps,both,400,-0.01,4,97,199,0,,True,,64,118084
+Horsecollar.ttf,Horsecollar,Regular,roman,Big Shoulders,"BigShoulders[opsz,wght].ttf",ofl,as drawn,both,900,-0.005,1.5,33,0,0,"{""wght"": 900.0, ""opsz"": 72.0}",False,,70,94292
+Horsecollar Caps.ttf,Horsecollar Caps,Regular,roman,Big Shoulders,"BigShoulders[opsz,wght].ttf",ofl,caps,both,900,-0.005,1.5,33,240,0,"{""wght"": 900.0, ""opsz"": 72.0}",False,,70,94336
+Almanac Italic.ttf,Almanac,Italic,italic,Bitter,Bitter-Italic[wght].ttf,ofl,as drawn,both,900,0.005,2,21,0,-9.0,"{""wght"": 900.0}",True,,74,194072
+Almanac Caps Italic.ttf,Almanac Caps,Italic,italic,Bitter,Bitter-Italic[wght].ttf,ofl,caps,both,900,0.005,2,21,364,-9.0,"{""wght"": 900.0}",True,,74,194128
+Almanac.ttf,Almanac,Regular,roman,Bitter,Bitter[wght].ttf,ofl,as drawn,both,900,0.005,2,21,0,0,"{""wght"": 900.0}",True,,74,201828
+Almanac Caps.ttf,Almanac Caps,Regular,roman,Bitter,Bitter[wght].ttf,ofl,caps,both,900,0.005,2,21,364,0,"{""wght"": 900.0}",True,,74,201868
+Monolith.ttf,Monolith,Regular,roman,Black Han Sans,BlackHanSans-Regular.ttf,ofl,as drawn,none,400,0,8,89,0,0,,True,,68,984128
+Circle.ttf,Circle,Regular,roman,Boldonse,Boldonse-Regular.ttf,ofl,as drawn,none,400,-0.005,3.5,53,0,0,,True,,50,78308
+Buddy.ttf,Buddy,Regular,roman,Bowlby One SC,BowlbyOneSC-Regular.ttf,ofl,as drawn,none,400,0.025,3,73,0,0,,True,,64,55072
+Big Game.ttf,Big Game,Regular,roman,Bungee,Bungee-Regular.ttf,ofl,as drawn,none,400,-0.05,0.5,5,0,0,,False,,70,118292
+Citadel Italic.ttf,Citadel,Italic,oblique,Cairo,"Cairo[slnt,wght].ttf",ofl,as drawn,both,1000,0.015,-2,-20,0,-11.0,"{""wght"": 1000.0, ""slnt"": -11.0}",True,,76,166920
+Citadel Caps Italic.ttf,Citadel Caps,Italic,oblique,Cairo,"Cairo[slnt,wght].ttf",ofl,caps,both,1000,0.015,-2,-20,127,-11.0,"{""wght"": 1000.0, ""slnt"": -11.0}",True,,76,166976
+Citadel.ttf,Citadel,Regular,roman,Cairo,"Cairo[slnt,wght].ttf",ofl,as drawn,both,1000,0.015,-2,-20,0,0,"{""wght"": 1000.0, ""slnt"": 0}",True,,76,162736
+Citadel Caps.ttf,Citadel Caps,Regular,roman,Cairo,"Cairo[slnt,wght].ttf",ofl,caps,both,1000,0.015,-2,-20,127,0,"{""wght"": 1000.0, ""slnt"": 0}",True,,76,162776
+Esteemed.ttf,Esteemed,Regular,roman,Calistoga,Calistoga-Regular.ttf,ofl,as drawn,none,400,-0.02,0,0,0,0,,False,,76,274912
+Barrel.ttf,Barrel,Regular,roman,Caprasimo,Caprasimo-Regular.ttf,ofl,as drawn,none,400,-0.015,0,0,0,0,,False,,70,41720
+Flag.ttf,Flag,Regular,roman,Carter One,CarterOne.ttf,ofl,as drawn,both,400,-0.02,0,0,0,0,,False,,72,66256
+Flag Caps.ttf,Flag Caps,Regular,roman,Carter One,CarterOne.ttf,ofl,caps,both,400,-0.02,0,0,78,0,,False,,72,66432
+Wrap.ttf,Wrap,Regular,roman,Ceviche One,CevicheOne-Regular.ttf,ofl,as drawn,both,400,-0.001,0,0,0,0,,False,,76,36732
+Wrap Caps.ttf,Wrap Caps,Regular,roman,Ceviche One,CevicheOne-Regular.ttf,ofl,caps,both,400,-0.001,0,0,62,0,,False,,76,36836
+Cadence.ttf,Cadence,Regular,roman,Changa,Changa[wght].ttf,ofl,as drawn,both,800,-0.02,0,0,0,0,"{""wght"": 800.0}",False,,76,70156
+Cadence Caps.ttf,Cadence Caps,Regular,roman,Changa,Changa[wght].ttf,ofl,caps,both,800,-0.02,0,0,128,0,"{""wght"": 800.0}",False,,76,70200
+Chewy Italic.ttf,Chewy,Italic,italic,Changa One,ChangaOne-Italic.ttf,ofl,as drawn,both,400,-0.015,0,0,0,-12.0,,False,,76,26484
+Chewy Caps Italic.ttf,Chewy Caps,Italic,italic,Changa One,ChangaOne-Italic.ttf,ofl,caps,both,400,-0.015,0,0,62,-12.0,,False,,76,26604
+Chewy.ttf,Chewy,Regular,roman,Changa One,ChangaOne-Regular.ttf,ofl,as drawn,both,400,-0.015,0,0,0,0,,False,,76,22520
+Chewy Caps.ttf,Chewy Caps,Regular,roman,Changa One,ChangaOne-Regular.ttf,ofl,caps,both,400,-0.015,0,0,62,0,,False,,76,22628
+Woolie.ttf,Woolie,Regular,roman,Chango,Chango-Regular.ttf,ofl,as drawn,none,400,-0.05,0,0,0,0,,False,,66,40604
+Laurel.ttf,Laurel,Regular,roman,Cinzel,Cinzel[wght].ttf,ofl,as drawn,both,900,-0.015,6,69,0,0,"{""wght"": 900.0}",True,,66,77132
+Laurel Caps.ttf,Laurel Caps,Regular,roman,Cinzel,Cinzel[wght].ttf,ofl,caps,both,900,-0.015,6,69,114,0,"{""wght"": 900.0}",True,,66,77172
+Big Impact Caps.ttf,Big Impact Caps,Regular,roman,Coda,Coda-ExtraBold.ttf,ofl,caps,caps,800,-0.01,6,141,136,0,,True,,66,90808
+Steward Italic.ttf,Steward,Italic,oblique,Commissioner,"Commissioner[FLAR,VOLM,slnt,wght].ttf",ofl,as drawn,both,900,-0.005,-4,-82,0,-12.0,"{""wght"": 900.0, ""slnt"": -12.0, ""FLAR"": 0.0, ""VOLM"": 0.0}",True,,74,174180
+Steward Caps Italic.ttf,Steward Caps,Italic,oblique,Commissioner,"Commissioner[FLAR,VOLM,slnt,wght].ttf",ofl,caps,both,900,-0.005,-4,-82,385,-12.0,"{""wght"": 900.0, ""slnt"": -12.0, ""FLAR"": 0.0, ""VOLM"": 0.0}",True,,74,174252
+Steward.ttf,Steward,Regular,roman,Commissioner,"Commissioner[FLAR,VOLM,slnt,wght].ttf",ofl,as drawn,both,900,-0.005,-4,-82,0,0,"{""wght"": 900.0, ""slnt"": 0.0, ""FLAR"": 0.0, ""VOLM"": 0.0}",True,,74,167360
+Steward Caps.ttf,Steward Caps,Regular,roman,Commissioner,"Commissioner[FLAR,VOLM,slnt,wght].ttf",ofl,caps,both,900,-0.005,-4,-82,385,0,"{""wght"": 900.0, ""slnt"": 0.0, ""FLAR"": 0.0, ""VOLM"": 0.0}",True,,74,167416
+Cornerstone.ttf,Cornerstone,Regular,roman,Coustard,Coustard-Black.ttf,ofl,as drawn,both,900,-0.015,3.5,85,0,0,,True,,64,78536
+Cornerstone Caps.ttf,Cornerstone Caps,Regular,roman,Coustard,Coustard-Black.ttf,ofl,caps,both,900,-0.015,3.5,85,116,0,,True,,64,78580
+Atrium Italic.ttf,Atrium,Italic,italic,DM Sans,"DMSans-Italic[opsz,wght].ttf",ofl,as drawn,both,1000,-0.04,0,0,0,-10.0,"{""opsz"": 9.0, ""wght"": 1000.0}",False,,73,60524
+Atrium Caps Italic.ttf,Atrium Caps,Italic,italic,DM Sans,"DMSans-Italic[opsz,wght].ttf",ofl,caps,both,1000,-0.04,0,0,123,-10.0,"{""opsz"": 9.0, ""wght"": 1000.0}",False,,73,60580
+Atrium.ttf,Atrium,Regular,roman,DM Sans,"DMSans[opsz,wght].ttf",ofl,as drawn,both,1000,-0.04,0,0,0,0,"{""opsz"": 9.0, ""wght"": 1000.0}",False,,73,56140
+Atrium Caps.ttf,Atrium Caps,Regular,roman,DM Sans,"DMSans[opsz,wght].ttf",ofl,caps,both,1000,-0.04,0,0,123,0,"{""opsz"": 9.0, ""wght"": 1000.0}",False,,73,56184
+Mod.ttf,Mod,Regular,roman,Dela Gothic One,DelaGothicOne-Regular.ttf,ofl,as drawn,both,400,-0.015,-4,-51,0,0,,False,,60,2508648
+Mod Caps.ttf,Mod Caps,Regular,roman,Dela Gothic One,DelaGothicOne-Regular.ttf,ofl,caps,both,400,-0.015,-4,-51,576,0,,False,,60,2508460
+Blimp.ttf,Blimp,Regular,roman,DynaPuff,"DynaPuff[wdth,wght].ttf",ofl,as drawn,both,700,-0.005,0,0,0,0,"{""wght"": 700.0, ""wdth"": 100.0}",False,,72,91132
+Blimp Caps.ttf,Blimp Caps,Regular,roman,DynaPuff,"DynaPuff[wdth,wght].ttf",ofl,caps,both,700,-0.005,0,0,226,0,"{""wght"": 700.0, ""wdth"": 100.0}",False,,72,91128
+Herald.ttf,Herald,Regular,roman,Eczar,Eczar[wght].ttf,ofl,as drawn,both,800,0,7.5,81,0,0,"{""wght"": 800.0}",True,,70,266964
+Herald Caps.ttf,Herald Caps,Regular,roman,Eczar,Eczar[wght].ttf,ofl,caps,both,800,0,7.5,81,206,0,"{""wght"": 800.0}",True,,70,267032
+Gateway Condensed.ttf,Gateway Condensed,Regular,roman,Encode Sans Condensed,EncodeSansCondensed-Black.ttf,ofl,as drawn,both,900,0.01,-3.5,-72,0,0,,True,,74,166544
+Gateway Condensed Caps.ttf,Gateway Condensed Caps,Regular,roman,Encode Sans Condensed,EncodeSansCondensed-Black.ttf,ofl,caps,both,900,0.01,-3.5,-72,234,0,,True,,74,166584
+Gateway Semi Expanded.ttf,Gateway Semi Expanded,Regular,roman,Encode Sans Semi Expanded,EncodeSansSemiExpanded-Black.ttf,ofl,as drawn,both,900,-0.005,-2,-46,0,0,,True,,66,168408
+Gateway Semi Expanded Caps.ttf,Gateway Semi Expanded Caps,Regular,roman,Encode Sans Semi Expanded,EncodeSansSemiExpanded-Black.ttf,ofl,caps,both,900,-0.005,-2,-46,234,0,,True,,66,168452
+Annals Italic.ttf,Annals,Italic,italic,Epunda Slab,EpundaSlab-Italic[wght].ttf,ofl,as drawn,both,700,0.013,0,0,0,-12.0,"{""wght"": 700}",False,,76,60608
+Annals Caps Italic.ttf,Annals Caps,Italic,italic,Epunda Slab,EpundaSlab-Italic[wght].ttf,ofl,caps,both,700,0.013,0,0,163,-12.0,"{""wght"": 700}",False,,76,60664
+Annals.ttf,Annals,Regular,roman,Epunda Slab,EpundaSlab[wght].ttf,ofl,as drawn,both,700,0.013,0,0,0,0,"{""wght"": 700}",False,,76,58748
+Annals Caps.ttf,Annals Caps,Regular,roman,Epunda Slab,EpundaSlab[wght].ttf,ofl,caps,both,700,0.013,0,0,163,0,"{""wght"": 700}",False,,76,58792
+Circuit Italic.ttf,Circuit,Italic,italic,Exo,Exo-Italic[wght].ttf,ofl,as drawn,both,900,-0.02,4.5,45,0,-9.0,"{""wght"": 900.0}",True,,76,112424
+Circuit Caps Italic.ttf,Circuit Caps,Italic,italic,Exo,Exo-Italic[wght].ttf,ofl,caps,both,900,-0.02,4.5,45,231,-9.0,"{""wght"": 900.0}",True,,76,112480
+Circuit.ttf,Circuit,Regular,roman,Exo,Exo[wght].ttf,ofl,as drawn,both,900,-0.02,4.5,45,0,0,"{""wght"": 900.0}",True,,76,108608
+Circuit Caps.ttf,Circuit Caps,Regular,roman,Exo,Exo[wght].ttf,ofl,caps,both,900,-0.02,4.5,45,231,0,"{""wght"": 900.0}",True,,76,108648
+Voltage Italic.ttf,Voltage,Italic,italic,Exo 2,Exo2-Italic[wght].ttf,ofl,as drawn,both,900,-0.015,-5,-51,0,-8.0,"{""wght"": 900.0}",True,,74,151016
+Voltage Caps Italic.ttf,Voltage Caps,Italic,italic,Exo 2,Exo2-Italic[wght].ttf,ofl,caps,both,900,-0.015,-5,-51,702,-8.0,"{""wght"": 900.0}",True,,74,150224
+Voltage.ttf,Voltage,Regular,roman,Exo 2,Exo2[wght].ttf,ofl,as drawn,both,900,-0.015,-5,-51,0,0,"{""wght"": 900.0}",True,,74,151136
+Voltage Caps.ttf,Voltage Caps,Regular,roman,Exo 2,Exo2[wght].ttf,ofl,caps,both,900,-0.015,-5,-51,702,0,"{""wght"": 900.0}",True,,74,150324
+Quarry.ttf,Quarry,Regular,roman,Farro,Farro-Bold.ttf,ofl,as drawn,both,700,-0.02,7.5,79,0,0,,True,,72,68008
+Quarry Caps.ttf,Quarry Caps,Regular,roman,Farro,Farro-Bold.ttf,ofl,caps,both,700,-0.02,7.5,79,114,0,,True,,72,68052
+Chisel Italic.ttf,Chisel,Italic,italic,Finlandica,Finlandica-Italic[wght].ttf,ofl,as drawn,both,700,-0.025,0,0,0,-8.0,"{""wght"": 700.0}",False,,76,91148
+Chisel Caps Italic.ttf,Chisel Caps,Italic,italic,Finlandica,Finlandica-Italic[wght].ttf,ofl,caps,both,700,-0.025,0,0,240,-8.0,"{""wght"": 700.0}",False,,76,91208
+Chisel.ttf,Chisel,Regular,roman,Finlandica,Finlandica[wght].ttf,ofl,as drawn,both,700,-0.025,0,0,0,0,"{""wght"": 700.0}",False,,76,86396
+Chisel Caps.ttf,Chisel Caps,Regular,roman,Finlandica,Finlandica[wght].ttf,ofl,caps,both,700,-0.025,0,0,240,0,"{""wght"": 700.0}",False,,76,86436
+Forge Italic.ttf,Forge,Italic,italic,Fira Sans,FiraSans-BlackItalic.ttf,ofl,as drawn,both,900,0,1.5,15,0,-8.0,,True,,74,527408
+Forge Caps Italic.ttf,Forge Caps,Italic,italic,Fira Sans,FiraSans-BlackItalic.ttf,ofl,caps,both,900,0,1.5,15,590,-8.0,,True,,74,527492
+Forge.ttf,Forge,Regular,roman,Fira Sans,FiraSans-Black.ttf,ofl,as drawn,both,900,0,1.5,15,0,0,,True,,74,507108
+Forge Caps.ttf,Forge Caps,Regular,roman,Fira Sans,FiraSans-Black.ttf,ofl,caps,both,900,0,1.5,15,590,0,,True,,74,507180
+Forge Condensed Italic.ttf,Forge Condensed,Italic,italic,Fira Sans Condensed,FiraSansCondensed-BlackItalic.ttf,ofl,as drawn,both,900,0.015,1,10,0,-8.0,,True,,76,540316
+Forge Condensed Caps Italic.ttf,Forge Condensed Caps,Italic,italic,Fira Sans Condensed,FiraSansCondensed-BlackItalic.ttf,ofl,caps,both,900,0.015,1,10,590,-8.0,,True,,76,540404
+Forge Condensed.ttf,Forge Condensed,Regular,roman,Fira Sans Condensed,FiraSansCondensed-Black.ttf,ofl,as drawn,both,900,0.015,1,10,0,0,,True,,76,516168
+Forge Condensed Caps.ttf,Forge Condensed Caps,Regular,roman,Fira Sans Condensed,FiraSansCondensed-Black.ttf,ofl,caps,both,900,0.015,1,10,590,0,,True,,76,516240
+Forge Extra Condensed Italic.ttf,Forge Extra Condensed,Italic,italic,Fira Sans Extra Condensed,FiraSansExtraCondensed-BlackItalic.ttf,ofl,as drawn,both,900,0.015,1.5,15,0,-8.0,,True,,76,539348
+Forge Extra Condensed Caps Italic.ttf,Forge Extra Condensed Caps,Italic,italic,Fira Sans Extra Condensed,FiraSansExtraCondensed-BlackItalic.ttf,ofl,caps,both,900,0.015,1.5,15,590,-8.0,,True,,76,539432
+Forge Extra Condensed.ttf,Forge Extra Condensed,Regular,roman,Fira Sans Extra Condensed,FiraSansExtraCondensed-Black.ttf,ofl,as drawn,both,900,0.015,1.5,15,0,0,,True,,76,516672
+Forge Extra Condensed Caps.ttf,Forge Extra Condensed Caps,Regular,roman,Fira Sans Extra Condensed,FiraSansExtraCondensed-Black.ttf,ofl,caps,both,900,0.015,1.5,15,590,0,,True,,76,516740
+Dynasty Italic.ttf,Dynasty,Italic,italic,Fraunces,"Fraunces-Italic[SOFT,WONK,opsz,wght].ttf",ofl,as drawn,both,900,-0.01,0,0,0,-16.0,"{""opsz"": 9.0, ""wght"": 900.0, ""SOFT"": 0.0, ""WONK"": 1.0}",False,,70,88536
+Dynasty Caps Italic.ttf,Dynasty Caps,Italic,italic,Fraunces,"Fraunces-Italic[SOFT,WONK,opsz,wght].ttf",ofl,caps,both,900,-0.01,0,0,228,-16.0,"{""opsz"": 9.0, ""wght"": 900.0, ""SOFT"": 0.0, ""WONK"": 1.0}",False,,70,88564
+Dynasty.ttf,Dynasty,Regular,roman,Fraunces,"Fraunces[SOFT,WONK,opsz,wght].ttf",ofl,as drawn,both,900,-0.01,0,0,0,0,"{""opsz"": 9.0, ""wght"": 900.0, ""SOFT"": 0.0, ""WONK"": 1.0}",False,,70,72716
+Dynasty Caps.ttf,Dynasty Caps,Regular,roman,Fraunces,"Fraunces[SOFT,WONK,opsz,wght].ttf",ofl,caps,both,900,-0.01,0,0,228,0,"{""opsz"": 9.0, ""wght"": 900.0, ""SOFT"": 0.0, ""WONK"": 1.0}",False,,70,72724
+Depot Italic.ttf,Depot,Italic,italic,Funnel Sans,FunnelSans-Italic[wght].ttf,ofl,as drawn,both,800,-0.04,-3.5,-42,0,-14.035995483398438,"{""wght"": 800.0}",True,,76,35104
+Depot Caps Italic.ttf,Depot Caps,Italic,italic,Funnel Sans,FunnelSans-Italic[wght].ttf,ofl,caps,both,800,-0.04,-3.5,-42,112,-14.035995483398438,"{""wght"": 800.0}",True,,76,35160
+Depot.ttf,Depot,Regular,roman,Funnel Sans,FunnelSans[wght].ttf,ofl,as drawn,both,800,-0.04,-3.5,-42,0,0,"{""wght"": 800.0}",True,,76,34140
+Depot Caps.ttf,Depot Caps,Regular,roman,Funnel Sans,FunnelSans[wght].ttf,ofl,caps,both,800,-0.04,-3.5,-42,112,0,"{""wght"": 800.0}",True,,76,34184
+Precinct Italic.ttf,Precinct,Italic,italic,Geist,Geist-Italic[wght].ttf,ofl,as drawn,both,900,-0.015,0,0,0,-12.0,"{""wght"": 900.0}",False,,72,91408
+Precinct Caps Italic.ttf,Precinct Caps,Italic,italic,Geist,Geist-Italic[wght].ttf,ofl,caps,both,900,-0.015,0,0,242,-12.0,"{""wght"": 900.0}",False,,72,91472
+Precinct.ttf,Precinct,Regular,roman,Geist,Geist[wght].ttf,ofl,as drawn,both,900,-0.015,0,0,0,0,"{""wght"": 900.0}",False,,72,89964
+Precinct Caps.ttf,Precinct Caps,Regular,roman,Geist,Geist[wght].ttf,ofl,caps,both,900,-0.015,0,0,242,0,"{""wght"": 900.0}",False,,72,90012
+Relay.ttf,Relay,Regular,roman,Gemunu Libre,GemunuLibre[wght].ttf,ofl,as drawn,both,800,-0.01,-2.5,-25,0,0,"{""wght"": 800.0}",True,,76,154768
+Relay Caps.ttf,Relay Caps,Regular,roman,Gemunu Libre,GemunuLibre[wght].ttf,ofl,caps,both,800,-0.01,-2.5,-25,202,0,"{""wght"": 800.0}",True,,76,154864
+Dynamo Italic.ttf,Dynamo,Italic,italic,Genos,Genos-Italic[wght].ttf,ofl,as drawn,none,900,0,-5.5,-55,0,-8.0,"{""wght"": 900.0}",True,,76,94872
+Dynamo.ttf,Dynamo,Regular,roman,Genos,Genos[wght].ttf,ofl,as drawn,none,900,0,-5.5,-55,0,0,"{""wght"": 900.0}",True,,76,88624
+Panorama Italic.ttf,Panorama,Italic,italic,Georama,"Georama-Italic[wdth,wght].ttf",ofl,as drawn,both,900,0.005,-2,-22,0,-9.0,"{""wdth"": 100, ""wght"": 900.0}",True,,70,145216
+Panorama Caps Italic.ttf,Panorama Caps,Italic,italic,Georama,"Georama-Italic[wdth,wght].ttf",ofl,caps,both,900,0.005,-2,-22,200,-9.0,"{""wdth"": 100, ""wght"": 900.0}",True,,70,145276
+Panorama.ttf,Panorama,Regular,roman,Georama,"Georama[wdth,wght].ttf",ofl,as drawn,both,900,0.005,-2,-22,0,0,"{""wdth"": 100, ""wght"": 900.0}",True,,70,145472
+Panorama Caps.ttf,Panorama Caps,Regular,roman,Georama,"Georama[wdth,wght].ttf",ofl,caps,both,900,0.005,-2,-22,200,0,"{""wdth"": 100, ""wght"": 900.0}",True,,70,145516
+Brats.ttf,Brats,Regular,roman,Germania One,GermaniaOne-Regular.ttf,ofl,as drawn,both,400,-0.015,4,40,0,0,,True,,76,33028
+Brats Caps.ttf,Brats Caps,Regular,roman,Germania One,GermaniaOne-Regular.ttf,ofl,caps,both,400,-0.015,4,40,75,0,,True,,76,33200
+Wideout.ttf,Wideout,Regular,roman,Goldman,Goldman-Bold.ttf,ofl,as drawn,both,700,-0.025,0,0,0,0,,False,,70,78088
+Wideout Caps.ttf,Wideout Caps,Regular,roman,Goldman,Goldman-Bold.ttf,ofl,caps,both,700,-0.025,0,0,202,0,,False,,70,78132
+Bollard.ttf,Bollard,Regular,roman,Golos Text,GolosText[wght].ttf,ofl,as drawn,both,900,0.005,-2,-22,0,0,"{""wght"": 900.0}",True,,68,70160
+Bollard Caps.ttf,Bollard Caps,Regular,roman,Golos Text,GolosText[wght].ttf,ofl,caps,both,900,0.005,-2,-22,198,0,"{""wght"": 900.0}",True,,68,70200
+Redshirt Italic.ttf,Redshirt,Italic,italic,Grandstander,Grandstander-Italic[wght].ttf,ofl,as drawn,both,900,-0.011,12,240,0,-15.0,"{""wght"": 900.0}",True,,76,105720
+Redshirt Caps Italic.ttf,Redshirt Caps,Italic,italic,Grandstander,Grandstander-Italic[wght].ttf,ofl,caps,both,900,-0.011,12,240,239,-15.0,"{""wght"": 900.0}",True,,76,105776
+Redshirt.ttf,Redshirt,Regular,roman,Grandstander,Grandstander[wght].ttf,ofl,as drawn,both,900,-0.011,12,240,0,0,"{""wght"": 900.0}",True,,76,104964
+Redshirt Caps.ttf,Redshirt Caps,Regular,roman,Grandstander,Grandstander[wght].ttf,ofl,caps,both,900,-0.011,12,240,239,0,"{""wght"": 900.0}",True,,76,105004
+Heritage Italic.ttf,Heritage,Italic,italic,Grenze,Grenze-Italic[wght].ttf,ofl,as drawn,both,900,0,-4,-40,0,-10.0,"{""wght"": 900.0}",True,,76,73208
+Heritage Caps Italic.ttf,Heritage Caps,Italic,italic,Grenze,Grenze-Italic[wght].ttf,ofl,caps,both,900,0,-4,-40,218,-10.0,"{""wght"": 900.0}",True,,76,73268
+Heritage.ttf,Heritage,Regular,roman,Grenze,Grenze[wght].ttf,ofl,as drawn,both,900,0,-4,-40,0,0,"{""wght"": 900.0}",True,,76,69352
+Heritage Caps.ttf,Heritage Caps,Regular,roman,Grenze,Grenze[wght].ttf,ofl,caps,both,900,0,-4,-40,218,0,"{""wght"": 900.0}",True,,76,69396
+Meister.ttf,Meister,Regular,roman,Grenze Gotisch,GrenzeGotisch[wght].ttf,ofl,as drawn,none,800,-0.01,-3.5,-35,0,0,"{""wght"": 800}",True,,76,96304
+Keystone SC.ttf,Keystone SC,Regular,roman,Holtwood One SC,HoltwoodOneSC-Regular.ttf,ofl,as drawn,both,400,-0.02,0,0,0,0,,True,,56,58512
+Keystone SC Caps.ttf,Keystone SC Caps,Regular,roman,Holtwood One SC,HoltwoodOneSC-Regular.ttf,ofl,caps,both,400,-0.02,0,0,120,0,,True,,56,58552
+Torque Italic.ttf,Torque,Italic,italic,Hubot Sans,"HubotSans-Italic[wdth,wght].ttf",ofl,as drawn,both,900,-0.005,-1,-12,0,-12.024307250976562,"{""wdth"": 100, ""wght"": 900.0}",True,,66,100296
+Torque Caps Italic.ttf,Torque Caps,Italic,italic,Hubot Sans,"HubotSans-Italic[wdth,wght].ttf",ofl,caps,both,900,-0.005,-1,-12,171,-12.024307250976562,"{""wdth"": 100, ""wght"": 900.0}",True,,66,100352
+Torque.ttf,Torque,Regular,roman,Hubot Sans,"HubotSans[wdth,wght].ttf",ofl,as drawn,both,900,-0.005,-1,-12,0,0,"{""wdth"": 100, ""wght"": 900.0}",True,,66,98532
+Torque Caps.ttf,Torque Caps,Regular,roman,Hubot Sans,"HubotSans[wdth,wght].ttf",ofl,caps,both,900,-0.005,-1,-12,171,0,"{""wdth"": 100, ""wght"": 900.0}",True,,66,98576
+Anthem Italic.ttf,Anthem,Italic,italic,Inter,"Inter-Italic[opsz,wght].ttf",ofl,as drawn,both,900,-0.04,0,0,0,-9.3988037109375,"{""opsz"": 14.0, ""wght"": 900.0}",False,,68,346512
+Anthem Caps Italic.ttf,Anthem Caps,Italic,italic,Inter,"Inter-Italic[opsz,wght].ttf",ofl,caps,both,900,-0.04,0,0,1208,-9.3988037109375,"{""opsz"": 14.0, ""wght"": 900.0}",False,,68,344856
+Anthem.ttf,Anthem,Regular,roman,Inter,"Inter[opsz,wght].ttf",ofl,as drawn,both,900,-0.04,0,0,0,0,"{""opsz"": 14.0, ""wght"": 900.0}",False,,68,342764
+Anthem Caps.ttf,Anthem Caps,Regular,roman,Inter,"Inter[opsz,wght].ttf",ofl,caps,both,900,-0.04,0,0,1208,0,"{""opsz"": 14.0, ""wght"": 900.0}",False,,68,341092
+Hustle.ttf,Hustle,Regular,roman,Jaro,Jaro[opsz].ttf,ofl,as drawn,both,400,-0.02,-4,-80,0,0,"{""opsz"": 14.0}",True,,76,98248
+Hustle Caps.ttf,Hustle Caps,Regular,roman,Jaro,Jaro[opsz].ttf,ofl,caps,both,400,-0.02,-4,-80,339,0,"{""opsz"": 14.0}",True,,76,98288
+Tunnel Italic.ttf,Tunnel,Italic,italic,Kanit,Kanit-BlackItalic.ttf,ofl,as drawn,both,900,0.005,-2,-21,0,-12.0,,True,,72,185520
+Tunnel Caps Italic.ttf,Tunnel Caps,Italic,italic,Kanit,Kanit-BlackItalic.ttf,ofl,caps,both,900,0.005,-2,-21,205,-12.0,,True,,72,185576
+Tunnel.ttf,Tunnel,Regular,roman,Kanit,Kanit-Black.ttf,ofl,as drawn,both,900,0.005,-2,-21,0,0,,True,,72,176904
+Tunnel Caps.ttf,Tunnel Caps,Regular,roman,Kanit,Kanit-Black.ttf,ofl,caps,both,900,0.005,-2,-21,205,0,,True,,72,176948
+Tally.ttf,Tally,Regular,roman,Khand,Khand-Bold.ttf,ofl,as drawn,both,700,-0.005,6,60,0,0,,True,,76,358708
+Tally Caps.ttf,Tally Caps,Regular,roman,Khand,Khand-Bold.ttf,ofl,caps,both,700,-0.005,6,60,101,0,,True,,76,358980
+Commentator Caps.ttf,Commentator Caps,Regular,roman,Knewave,Knewave-Regular.ttf,ofl,caps,caps,400,-0.01,-3,-30,60,0,,True,,76,32368
+Score.ttf,Score,Regular,roman,Konkhmer Sleokchher,KonkhmerSleokchher-Regular.ttf,ofl,as drawn,both,400,-0.03,4.5,100,0,0,,True,,70,1834808
+Score Caps.ttf,Score Caps,Regular,roman,Konkhmer Sleokchher,KonkhmerSleokchher-Regular.ttf,ofl,caps,both,400,-0.03,4.5,100,114,0,,True,,70,1834848
+Noise Caps.ttf,Noise Caps,Regular,roman,Koulen,Koulen-Regular.ttf,ofl,caps,caps,400,0.03,4,82,26,0,,True,,76,56440
+Pylon.ttf,Pylon,Regular,roman,League Gothic,LeagueGothic[wdth].ttf,ofl,as drawn,both,400,0.01,0,0,0,0,"{""wdth"": 100.0}",False,,76,41500
+Pylon Caps.ttf,Pylon Caps,Regular,roman,League Gothic,LeagueGothic[wdth].ttf,ofl,caps,both,400,0.01,0,0,170,0,"{""wdth"": 100.0}",False,,76,41544
+Landmark.ttf,Landmark,Regular,roman,League Spartan,LeagueSpartan[wght].ttf,ofl,as drawn,both,900,-0.005,9.5,190,0,0,"{""wght"": 900.0}",True,,76,57288
+Landmark Caps.ttf,Landmark Caps,Regular,roman,League Spartan,LeagueSpartan[wght].ttf,ofl,caps,both,900,-0.005,9.5,190,198,0,"{""wght"": 900.0}",True,,76,57328
+Citrus.ttf,Citrus,Regular,roman,Lemon,Lemon-Regular.ttf,ofl,as drawn,none,400,-0.055,0,0,0,0,,False,,68,77272
+Bulletin Italic.ttf,Bulletin,Italic,italic,Libre Franklin,LibreFranklin-Italic[wght].ttf,ofl,as drawn,both,900,-0.005,1,11,0,-8.0,"{""wght"": 900.0}",True,,70,124844
+Bulletin Caps Italic.ttf,Bulletin Caps,Italic,italic,Libre Franklin,LibreFranklin-Italic[wght].ttf,ofl,caps,both,900,-0.005,1,11,353,-8.0,"{""wght"": 900.0}",True,,70,124904
+Bulletin.ttf,Bulletin,Regular,roman,Libre Franklin,LibreFranklin[wght].ttf,ofl,as drawn,both,900,-0.005,1,11,0,0,"{""wght"": 900.0}",True,,70,112844
+Bulletin Caps.ttf,Bulletin Caps,Regular,roman,Libre Franklin,LibreFranklin[wght].ttf,ofl,caps,both,900,-0.005,1,11,353,0,"{""wght"": 900.0}",True,,70,112888
+Signbrush Caps.ttf,Signbrush Caps,Regular,roman,Lilita One,LilitaOne-Regular.ttf,ofl,caps,caps,400,-0.015,0,0,62,0,,False,,76,28096
+Lights.ttf,Lights,Regular,roman,Limelight,Limelight-Regular.ttf,ofl,as drawn,both,400,-0.035,4.5,100,0,0,,True,,70,132164
+Lights Caps.ttf,Lights Caps,Regular,roman,Limelight,Limelight-Regular.ttf,ofl,caps,both,400,-0.035,4.5,100,132,0,,True,,70,132560
+Chorus.ttf,Chorus,Regular,roman,Mitr,Mitr-Bold.ttf,ofl,as drawn,both,700,0.015,-2,-22,0,0,,True,,70,224452
+Chorus Caps.ttf,Chorus Caps,Regular,roman,Mitr,Mitr-Bold.ttf,ofl,caps,both,700,0.015,-2,-22,205,0,,True,,70,224492
+Trestle.ttf,Trestle,Regular,roman,Moderustic,Moderustic[wght].ttf,ofl,as drawn,both,800,0,-1,-11,0,0,"{""wght"": 800.0}",True,,70,152712
+Trestle Caps.ttf,Trestle Caps,Regular,roman,Moderustic,Moderustic[wght].ttf,ofl,caps,both,800,0,-1,-11,278,0,"{""wght"": 800.0}",True,,70,152916
+Foundry Italic.ttf,Foundry,Italic,italic,Mona Sans,"MonaSans-Italic[wdth,wght].ttf",ofl,as drawn,both,900,-0.005,-1.5,-16,0,-11.695053100585938,"{""wdth"": 100, ""wght"": 900.0}",True,,70,101624
+Foundry Caps Italic.ttf,Foundry Caps,Italic,italic,Mona Sans,"MonaSans-Italic[wdth,wght].ttf",ofl,caps,both,900,-0.005,-1.5,-16,171,-11.695053100585938,"{""wdth"": 100, ""wght"": 900.0}",True,,70,101680
+Foundry.ttf,Foundry,Regular,roman,Mona Sans,"MonaSans[wdth,wght].ttf",ofl,as drawn,both,900,-0.005,-1.5,-16,0,0,"{""wdth"": 100, ""wght"": 900.0}",True,,70,100368
+Foundry Caps.ttf,Foundry Caps,Regular,roman,Mona Sans,"MonaSans[wdth,wght].ttf",ofl,caps,both,900,-0.005,-1.5,-16,171,0,"{""wdth"": 100, ""wght"": 900.0}",True,,70,100408
+Boulevard Italic.ttf,Boulevard,Italic,italic,Montserrat,Montserrat-Italic[wght].ttf,ofl,as drawn,both,900,0,0,0,0,-11.300003051757812,"{""wght"": 900.0}",True,,66,384000
+Boulevard Caps Italic.ttf,Boulevard Caps,Italic,italic,Montserrat,Montserrat-Italic[wght].ttf,ofl,caps,both,900,0,0,0,489,-11.300003051757812,"{""wght"": 900.0}",True,,66,384068
+Boulevard.ttf,Boulevard,Regular,roman,Montserrat,Montserrat[wght].ttf,ofl,as drawn,both,900,0,0,0,0,0,"{""wght"": 900.0}",True,,66,373752
+Boulevard Caps.ttf,Boulevard Caps,Regular,roman,Montserrat,Montserrat[wght].ttf,ofl,caps,both,900,0,0,0,489,0,"{""wght"": 900.0}",True,,66,373808
+Standard Italic.ttf,Standard,Italic,italic,Noto Sans Display,"NotoSansDisplay-Italic[wdth,wght].ttf",ofl,as drawn,both,900,-0.02,-1.5,-15,0,-12.0,"{""wght"": 900.0, ""wdth"": 100.0}",True,,76,384212
+Standard Caps Italic.ttf,Standard Caps,Italic,italic,Noto Sans Display,"NotoSansDisplay-Italic[wdth,wght].ttf",ofl,caps,both,900,-0.02,-1.5,-15,772,-12.0,"{""wght"": 900.0, ""wdth"": 100.0}",True,,76,386120
+Standard.ttf,Standard,Regular,roman,Noto Sans Display,"NotoSansDisplay[wdth,wght].ttf",ofl,as drawn,both,900,-0.02,-1.5,-15,0,0,"{""wght"": 900.0, ""wdth"": 100.0}",True,,76,360084
+Standard Caps.ttf,Standard Caps,Regular,roman,Noto Sans Display,"NotoSansDisplay[wdth,wght].ttf",ofl,caps,both,900,-0.02,-1.5,-15,772,0,"{""wght"": 900.0, ""wdth"": 100.0}",True,,76,362000
+Record Italic.ttf,Record,Italic,italic,Noto Serif,"NotoSerif-Italic[wdth,wght].ttf",ofl,as drawn,both,900,-0.002,-2,-21,0,-12.0,"{""wght"": 900.0, ""wdth"": 80.5}",True,,74,543556
+Record Caps Italic.ttf,Record Caps,Italic,italic,Noto Serif,"NotoSerif-Italic[wdth,wght].ttf",ofl,caps,both,900,-0.002,-2,-21,1544,-12.0,"{""wght"": 900.0, ""wdth"": 80.5}",True,,74,554644
+Record.ttf,Record,Regular,roman,Noto Serif,"NotoSerif[wdth,wght].ttf",ofl,as drawn,both,900,-0.002,-2,-21,0,0,"{""wght"": 900.0, ""wdth"": 80.5}",True,,74,516032
+Record Caps.ttf,Record Caps,Regular,roman,Noto Serif,"NotoSerif[wdth,wght].ttf",ofl,caps,both,900,-0.002,-2,-21,1546,0,"{""wght"": 900.0, ""wdth"": 80.5}",True,,74,527176
+Roundhouse Italic.ttf,Roundhouse,Italic,italic,Nunito Sans,"NunitoSans-Italic[YTLC,opsz,wdth,wght].ttf",ofl,as drawn,both,1000,0,2.5,27,0,-9.0,"{""wght"": 1000.0, ""wdth"": 100, ""opsz"": 12.0, ""YTLC"": 500.0}",True,,70,115828
+Roundhouse Caps Italic.ttf,Roundhouse Caps,Italic,italic,Nunito Sans,"NunitoSans-Italic[YTLC,opsz,wdth,wght].ttf",ofl,caps,both,1000,0,2.5,27,355,-9.0,"{""wght"": 1000.0, ""wdth"": 100, ""opsz"": 12.0, ""YTLC"": 500.0}",True,,70,115884
+Roundhouse.ttf,Roundhouse,Regular,roman,Nunito Sans,"NunitoSans[YTLC,opsz,wdth,wght].ttf",ofl,as drawn,both,1000,0,2.5,27,0,0,"{""wght"": 1000.0, ""wdth"": 100, ""opsz"": 12.0, ""YTLC"": 500.0}",True,,70,113104
+Roundhouse Caps.ttf,Roundhouse Caps,Regular,roman,Nunito Sans,"NunitoSans[YTLC,opsz,wdth,wght].ttf",ofl,caps,both,1000,0,2.5,27,355,0,"{""wght"": 1000.0, ""wdth"": 100, ""opsz"": 12.0, ""YTLC"": 500.0}",True,,70,113148
+Scribe.ttf,Scribe,Regular,roman,Oleo Script,OleoScript-Bold.ttf,ofl,as drawn,none,700,0,5,50,0,0,,True,,76,34420
+Telemetry.ttf,Telemetry,Regular,roman,Orbitron,Orbitron[wght].ttf,ofl,as drawn,both,900,-0.015,-1,-12,0,0,"{""wght"": 900.0}",True,,64,23220
+Telemetry Caps.ttf,Telemetry Caps,Regular,roman,Orbitron,Orbitron[wght].ttf,ofl,caps,both,900,-0.015,-1,-12,58,0,"{""wght"": 900.0}",True,,64,23260
+Bleacher.ttf,Bleacher,Regular,roman,Oswald,Oswald[wght].ttf,ofl,as drawn,both,700,-0.015,-4,-40,0,0,"{""wght"": 700.0}",True,,76,88952
+Bleacher Caps.ttf,Bleacher Caps,Regular,roman,Oswald,Oswald[wght].ttf,ofl,caps,both,700,-0.015,-4,-40,335,0,"{""wght"": 700.0}",True,,76,88992
+Angular.ttf,Angular,Regular,roman,Oxanium,Oxanium[wght].ttf,ofl,as drawn,both,700,-0.05,6.5,65,0,0,"{""wght"": 700}",True,,76,28956
+Angular Caps.ttf,Angular Caps,Regular,roman,Oxanium,Oxanium[wght].ttf,ofl,caps,both,700,-0.05,6.5,65,101,0,"{""wght"": 700}",True,,76,28996
+Human.ttf,Human,Regular,roman,Passion One,PassionOne-Regular.ttf,ofl,as drawn,none,400,0.005,3.5,35,0,0,,True,,76,24836
+A-Game Caps.ttf,A-Game Caps,Regular,roman,Phudu,Phudu[wght].ttf,ofl,caps,caps,900,0,-6.5,-65,196,0,"{""wght"": 900.0}",True,,76,65448
+Map.ttf,Map,Regular,roman,Pirata One,PirataOne-Regular.ttf,ofl,as drawn,none,400,-0.01,0,0,0,0,,False,,76,56028
+Chronicle Italic.ttf,Chronicle,Italic,italic,Playfair Display,PlayfairDisplay-Italic[wght].ttf,ofl,as drawn,none,900,0,-5,-51,0,-14.0,"{""wght"": 900.0}",True,,74,177552
+Chronicle.ttf,Chronicle,Regular,roman,Playfair Display,PlayfairDisplay[wght].ttf,ofl,as drawn,none,900,0,-5,-51,0,0,"{""wght"": 900.0}",True,,74,194564
+Flow.ttf,Flow,Regular,roman,Poetsen One,PoetsenOne-Regular.ttf,ofl,as drawn,none,400,-0.03,-4.5,-45,0,0,,False,,76,199500
+Box.ttf,Box,Regular,roman,Poller One,PollerOne.ttf,ofl,as drawn,both,400,-0.045,5.5,130,0,0,,True,,66,31316
+Box Caps.ttf,Box Caps,Regular,roman,Poller One,PollerOne.ttf,ofl,caps,both,400,-0.045,5.5,130,65,0,,True,,66,31448
+Brash.ttf,Brash,Regular,roman,Protest Revolution,ProtestRevolution-Regular.ttf,ofl,as drawn,none,400,-0.055,0,0,0,0,,False,,76,803220
+Marker.ttf,Marker,Regular,roman,Protest Riot,ProtestRiot-Regular.ttf,ofl,as drawn,both,400,0.01,0,0,0,0,,False,,76,109748
+Marker Caps.ttf,Marker Caps,Regular,roman,Protest Riot,ProtestRiot-Regular.ttf,ofl,caps,both,400,0.01,0,0,199,0,,False,,76,109792
+Strike.ttf,Strike,Regular,roman,Protest Strike,ProtestStrike-Regular.ttf,ofl,as drawn,both,400,0,0,0,0,0,,False,,76,84548
+Strike Caps.ttf,Strike Caps,Regular,roman,Protest Strike,ProtestStrike-Regular.ttf,ofl,caps,both,400,0,0,0,198,0,,False,,76,84592
+Jumbo.ttf,Jumbo,Regular,roman,Rammetto One,RammettoOne-Regular.ttf,ofl,as drawn,both,400,-0.04,6,156,0,0,,True,,60,69424
+Jumbo Caps.ttf,Jumbo Caps,Regular,roman,Rammetto One,RammettoOne-Regular.ttf,ofl,caps,both,400,-0.04,6,156,129,0,,True,,60,69464
+Guard.ttf,Guard,Regular,roman,Ranchers,Ranchers-Regular.ttf,ofl,as drawn,both,400,0.015,0,0,0,0,,False,,76,165904
+Guard Caps.ttf,Guard Caps,Regular,roman,Ranchers,Ranchers-Regular.ttf,ofl,caps,both,400,0.015,0,0,302,0,,False,,76,165948
+Legacy Italic.ttf,Legacy,Italic,italic,Rasa,Rasa-Italic[wght].ttf,ofl,as drawn,both,700,-0.01,7,70,0,-7.100006103515625,"{""wght"": 700.0}",True,,76,161564
+Legacy Caps Italic.ttf,Legacy Caps,Italic,italic,Rasa,Rasa-Italic[wght].ttf,ofl,caps,both,700,-0.01,7,70,232,-7.100006103515625,"{""wght"": 700.0}",True,,76,161624
+Legacy.ttf,Legacy,Regular,roman,Rasa,Rasa[wght].ttf,ofl,as drawn,both,700,-0.01,7,70,0,0,"{""wght"": 700.0}",True,,76,259248
+Legacy Caps.ttf,Legacy Caps,Regular,roman,Rasa,Rasa[wght].ttf,ofl,caps,both,700,-0.01,7,70,232,0,"{""wght"": 700.0}",True,,76,259296
+Riff Italic.ttf,Riff,Italic,oblique,Recursive,"Recursive[CASL,CRSV,MONO,slnt,wght].ttf",ofl,as drawn,both,900,-0.005,0.5,5,0,-15.0,"{""MONO"": 0.0, ""CASL"": 0.0, ""wght"": 900, ""slnt"": -15.0, ""CRSV"": 0.5}",True,,72,244696
+Riff Caps Italic.ttf,Riff Caps,Italic,oblique,Recursive,"Recursive[CASL,CRSV,MONO,slnt,wght].ttf",ofl,caps,both,900,-0.005,0.5,5,246,-15.0,"{""MONO"": 0.0, ""CASL"": 0.0, ""wght"": 900, ""slnt"": -15.0, ""CRSV"": 0.5}",True,,72,244756
+Riff.ttf,Riff,Regular,roman,Recursive,"Recursive[CASL,CRSV,MONO,slnt,wght].ttf",ofl,as drawn,both,900,-0.005,0.5,5,0,0,"{""MONO"": 0.0, ""CASL"": 0.0, ""wght"": 900, ""slnt"": -10, ""CRSV"": 0.5}",True,,72,243864
+Riff Caps.ttf,Riff Caps,Regular,roman,Recursive,"Recursive[CASL,CRSV,MONO,slnt,wght].ttf",ofl,caps,both,900,-0.005,0.5,5,246,0,"{""MONO"": 0.0, ""CASL"": 0.0, ""wght"": 900, ""slnt"": -10, ""CRSV"": 0.5}",True,,72,243908
+Vector Italic.ttf,Vector,Italic,italic,Red Hat Display,RedHatDisplay-Italic[wght].ttf,ofl,as drawn,both,900,-0.01,0,0,0,-12.0,"{""wght"": 900.0}",False,,74,53016
+Vector Caps Italic.ttf,Vector Caps,Italic,italic,Red Hat Display,RedHatDisplay-Italic[wght].ttf,ofl,caps,both,900,-0.01,0,0,124,-12.0,"{""wght"": 900.0}",False,,74,53076
+Vector.ttf,Vector,Regular,roman,Red Hat Display,RedHatDisplay[wght].ttf,ofl,as drawn,both,900,-0.01,0,0,0,0,"{""wght"": 900.0}",False,,74,51920
+Vector Caps.ttf,Vector Caps,Regular,roman,Red Hat Display,RedHatDisplay[wght].ttf,ofl,caps,both,900,-0.01,0,0,124,0,"{""wght"": 900.0}",False,,74,51960
+Corridor.ttf,Corridor,Regular,roman,Reddit Sans Condensed,RedditSansCondensed[wght].ttf,ofl,as drawn,both,900,-0.015,0,0,0,0,"{""wght"": 900.0}",False,,76,139152
+Corridor Caps.ttf,Corridor Caps,Regular,roman,Reddit Sans Condensed,RedditSansCondensed[wght].ttf,ofl,caps,both,900,-0.015,0,0,468,0,"{""wght"": 900.0}",False,,76,138944
+Pennant Italic.ttf,Pennant,Italic,italic,Roboto Condensed,RobotoCondensed-Italic[wght].ttf,ofl,as drawn,both,900,-0.02,0,0,0,-12.0,"{""wght"": 900.0}",False,,76,151056
+Pennant Caps Italic.ttf,Pennant Caps,Italic,italic,Roboto Condensed,RobotoCondensed-Italic[wght].ttf,ofl,caps,both,900,-0.02,0,0,349,-12.0,"{""wght"": 900.0}",False,,76,151500
+Pennant.ttf,Pennant,Regular,roman,Roboto Condensed,RobotoCondensed[wght].ttf,ofl,as drawn,both,900,-0.02,0,0,0,0,"{""wght"": 900.0}",False,,76,145136
+Pennant Caps.ttf,Pennant Caps,Regular,roman,Roboto Condensed,RobotoCondensed[wght].ttf,ofl,caps,both,900,-0.02,0,0,349,0,"{""wght"": 900.0}",False,,76,145564
+Chassis Italic.ttf,Chassis,Italic,oblique,Roboto Flex,"RobotoFlex[GRAD,XOPQ,XTRA,YOPQ,YTAS,YTDE,YTFI,YTLC,YTUC,opsz,slnt,wdth,wght].ttf",ofl,as drawn,both,1000,-0.01,0,0,0,-10.0,"{""opsz"": 14.0, ""wght"": 1000.0, ""GRAD"": 0.0, ""wdth"": 25.0, ""slnt"": -10.0, ""XOPQ"": 96.0, ""YOPQ"": 79.0, ""XTRA"": 468.0, ""YTUC"": 712.0, ""YTLC"": 514.0, ""YTAS"": 750.0, ""YTDE"": -203.0, ""YTFI"": 738.0}",False,,76,97376
+Chassis Caps Italic.ttf,Chassis Caps,Italic,oblique,Roboto Flex,"RobotoFlex[GRAD,XOPQ,XTRA,YOPQ,YTAS,YTDE,YTFI,YTLC,YTUC,opsz,slnt,wdth,wght].ttf",ofl,caps,both,1000,-0.01,0,0,311,-10.0,"{""opsz"": 14.0, ""wght"": 1000.0, ""GRAD"": 0.0, ""wdth"": 25.0, ""slnt"": -10.0, ""XOPQ"": 96.0, ""YOPQ"": 79.0, ""XTRA"": 468.0, ""YTUC"": 712.0, ""YTLC"": 514.0, ""YTAS"": 750.0, ""YTDE"": -203.0, ""YTFI"": 738.0}",False,,76,98032
+Chassis.ttf,Chassis,Regular,roman,Roboto Flex,"RobotoFlex[GRAD,XOPQ,XTRA,YOPQ,YTAS,YTDE,YTFI,YTLC,YTUC,opsz,slnt,wdth,wght].ttf",ofl,as drawn,both,1000,-0.01,0,0,0,0,"{""opsz"": 14.0, ""wght"": 1000.0, ""GRAD"": 0.0, ""wdth"": 25.0, ""slnt"": -10.0, ""XOPQ"": 96.0, ""YOPQ"": 79.0, ""XTRA"": 468.0, ""YTUC"": 712.0, ""YTLC"": 514.0, ""YTAS"": 750.0, ""YTDE"": -203.0, ""YTFI"": 738.0}",False,,76,97320
+Chassis Caps.ttf,Chassis Caps,Regular,roman,Roboto Flex,"RobotoFlex[GRAD,XOPQ,XTRA,YOPQ,YTAS,YTDE,YTFI,YTLC,YTUC,opsz,slnt,wdth,wght].ttf",ofl,caps,both,1000,-0.01,0,0,311,0,"{""opsz"": 14.0, ""wght"": 1000.0, ""GRAD"": 0.0, ""wdth"": 25.0, ""slnt"": -10.0, ""XOPQ"": 96.0, ""YOPQ"": 79.0, ""XTRA"": 468.0, ""YTUC"": 712.0, ""YTLC"": 514.0, ""YTAS"": 750.0, ""YTDE"": -203.0, ""YTFI"": 738.0}",False,,76,97960
+Ledger Italic.ttf,Ledger,Italic,italic,Roboto Serif,"RobotoSerif-Italic[GRAD,opsz,wdth,wght].ttf",ofl,as drawn,both,900,-0.01,0,0,0,-10.0,"{""wdth"": 50.0, ""opsz"": 20.0, ""wght"": 900.0, ""GRAD"": 0.0}",False,,76,285308
+Ledger Caps Italic.ttf,Ledger Caps,Italic,italic,Roboto Serif,"RobotoSerif-Italic[GRAD,opsz,wdth,wght].ttf",ofl,caps,both,900,-0.01,0,0,312,-10.0,"{""wdth"": 50.0, ""opsz"": 20.0, ""wght"": 900.0, ""GRAD"": 0.0}",False,,76,285368
+Ledger.ttf,Ledger,Regular,roman,Roboto Serif,"RobotoSerif[GRAD,opsz,wdth,wght].ttf",ofl,as drawn,both,900,-0.01,0,0,0,0,"{""wdth"": 50.0, ""opsz"": 20.0, ""wght"": 900.0, ""GRAD"": 0.0}",False,,76,269056
+Ledger Caps.ttf,Ledger Caps,Regular,roman,Roboto Serif,"RobotoSerif[GRAD,opsz,wdth,wght].ttf",ofl,caps,both,900,-0.01,0,0,312,0,"{""wdth"": 50.0, ""opsz"": 20.0, ""wght"": 900.0, ""GRAD"": 0.0}",False,,76,269096
+Register.ttf,Register,Regular,roman,Roboto Slab,RobotoSlab[wght].ttf,apache,as drawn,both,900,0,-2,-42,0,0,"{""wght"": 900.0}",True,,74,129564
+Register Caps.ttf,Register Caps,Regular,roman,Roboto Slab,RobotoSlab[wght].ttf,apache,caps,both,900,0,-2,-42,349,0,"{""wght"": 900.0}",True,,74,129620
+Yearbook Italic.ttf,Yearbook,Italic,italic,Rokkitt,Rokkitt-Italic[wght].ttf,ofl,as drawn,both,800,-0.005,5.5,55,0,-9.0,"{""wght"": 800}",True,,76,71792
+Yearbook Caps Italic.ttf,Yearbook Caps,Italic,italic,Rokkitt,Rokkitt-Italic[wght].ttf,ofl,caps,both,800,-0.005,5.5,55,252,-9.0,"{""wght"": 800}",True,,76,71852
+Yearbook.ttf,Yearbook,Regular,roman,Rokkitt,Rokkitt[wght].ttf,ofl,as drawn,both,800,-0.005,5.5,55,0,0,"{""wght"": 800}",True,,76,71368
+Yearbook Caps.ttf,Yearbook Caps,Regular,roman,Rokkitt,Rokkitt[wght].ttf,ofl,caps,both,800,-0.005,5.5,55,252,0,"{""wght"": 800}",True,,76,71412
+Dynamite.ttf,Dynamite,Regular,roman,Rowdies,Rowdies-Bold.ttf,ofl,as drawn,both,700,-0.02,0,0,0,0,,False,,72,76400
+Dynamite Caps.ttf,Dynamite Caps,Regular,roman,Rowdies,Rowdies-Bold.ttf,ofl,caps,both,700,-0.02,0,0,202,0,,False,,72,76440
+Dust.ttf,Dust,Regular,roman,Rubik Bubbles,RubikBubbles-Regular.ttf,ofl,as drawn,both,400,-0.005,0,0,0,0,,False,,70,219580
+Dust Caps.ttf,Dust Caps,Regular,roman,Rubik Bubbles,RubikBubbles-Regular.ttf,ofl,caps,both,400,-0.005,0,0,218,0,,False,,70,219624
+Overspray.ttf,Overspray,Regular,roman,Rubik Spray Paint,RubikSprayPaint-Regular.ttf,ofl,as drawn,both,400,0,0,0,0,0,,False,,66,941612
+Overspray Caps.ttf,Overspray Caps,Regular,roman,Rubik Spray Paint,RubikSprayPaint-Regular.ttf,ofl,caps,both,400,0,0,0,218,0,,False,,66,941652
+Bunker.ttf,Bunker,Regular,roman,Russo One,RussoOne-Regular.ttf,ofl,as drawn,both,400,-0.01,3,33,0,0,,True,,70,38968
+Bunker Caps.ttf,Bunker Caps,Regular,roman,Russo One,RussoOne-Regular.ttf,ofl,caps,both,400,-0.01,3,33,149,0,,True,,70,39264
+Piston Italic.ttf,Piston,Italic,italic,SUSE,SUSE-Italic[wght].ttf,ofl,as drawn,both,800,-0.025,0,0,0,-14.0,"{""wght"": 800}",False,,76,112220
+Piston Caps Italic.ttf,Piston Caps,Italic,italic,SUSE,SUSE-Italic[wght].ttf,ofl,caps,both,800,-0.025,0,0,324,-14.0,"{""wght"": 800}",False,,76,112088
+Piston.ttf,Piston,Regular,roman,SUSE,SUSE[wght].ttf,ofl,as drawn,both,800,-0.025,0,0,0,0,"{""wght"": 800}",False,,76,112512
+Piston Caps.ttf,Piston Caps,Regular,roman,SUSE,SUSE[wght].ttf,ofl,caps,both,800,-0.025,0,0,324,0,"{""wght"": 800}",False,,76,112360
+Gridiron Italic.ttf,Gridiron,Italic,italic,Saira,"Saira-Italic[wdth,wght].ttf",ofl,as drawn,both,900,-0.015,0,0,0,-12.0,"{""wght"": 900.0, ""wdth"": 100}",False,,74,86768
+Gridiron Caps Italic.ttf,Gridiron Caps,Italic,italic,Saira,"Saira-Italic[wdth,wght].ttf",ofl,caps,both,900,-0.015,0,0,220,-12.0,"{""wght"": 900.0, ""wdth"": 100}",False,,74,86828
+Gridiron.ttf,Gridiron,Regular,roman,Saira,"Saira[wdth,wght].ttf",ofl,as drawn,both,900,-0.015,0,0,0,0,"{""wght"": 900.0, ""wdth"": 100}",False,,74,82736
+Gridiron Caps.ttf,Gridiron Caps,Regular,roman,Saira,"Saira[wdth,wght].ttf",ofl,caps,both,900,-0.015,0,0,220,0,"{""wght"": 900.0, ""wdth"": 100}",False,,74,82780
+Gridiron Condensed.ttf,Gridiron Condensed,Regular,roman,Saira Condensed,SairaCondensed-Black.ttf,ofl,as drawn,both,900,0,0,0,0,0,,False,,76,96632
+Gridiron Condensed Caps.ttf,Gridiron Condensed Caps,Regular,roman,Saira Condensed,SairaCondensed-Black.ttf,ofl,caps,both,900,0,0,0,217,0,,False,,76,96672
+Gridiron Semi Condensed.ttf,Gridiron Semi Condensed,Regular,roman,Saira Semi Condensed,SairaSemiCondensed-Black.ttf,ofl,as drawn,both,900,0,0,0,0,0,,False,,76,96756
+Gridiron Semi Condensed Caps.ttf,Gridiron Semi Condensed Caps,Regular,roman,Saira Semi Condensed,SairaSemiCondensed-Black.ttf,ofl,caps,both,900,0,0,0,217,0,,False,,76,96800
+Bulwark Italic.ttf,Bulwark,Italic,oblique,Science Gothic,"ScienceGothic[CTRS,slnt,wdth,wght].ttf",ofl,as drawn,both,900,-0.035,0,0,0,-10.0,"{""CTRS"": 0.0, ""slnt"": -10.0, ""wdth"": 100.0, ""wght"": 900.0}",False,,64,222588
+Bulwark Caps Italic.ttf,Bulwark Caps,Italic,oblique,Science Gothic,"ScienceGothic[CTRS,slnt,wdth,wght].ttf",ofl,caps,both,900,-0.035,0,0,300,-10.0,"{""CTRS"": 0.0, ""slnt"": -10.0, ""wdth"": 100.0, ""wght"": 900.0}",False,,64,222644
+Bulwark.ttf,Bulwark,Regular,roman,Science Gothic,"ScienceGothic[CTRS,slnt,wdth,wght].ttf",ofl,as drawn,both,900,-0.035,0,0,0,0,"{""CTRS"": 0.0, ""slnt"": 0.0, ""wdth"": 100.0, ""wght"": 900.0}",False,,64,214260
+Bulwark Caps.ttf,Bulwark Caps,Regular,roman,Science Gothic,"ScienceGothic[CTRS,slnt,wdth,wght].ttf",ofl,caps,both,900,-0.035,0,0,300,0,"{""CTRS"": 0.0, ""slnt"": 0.0, ""wdth"": 100.0, ""wght"": 900.0}",False,,64,214300
+Weightshift.ttf,Weightshift,Regular,roman,Shrikhand,Shrikhand-Regular.ttf,ofl,as drawn,none,400,0.011,0,0,0,0,,False,,66,220772
+Woah.ttf,Woah,Regular,roman,Sigmar One,SigmarOne-Regular.ttf,ofl,as drawn,none,400,-0.045,0,0,0,0,,False,,68,172284
+Grandstand Italic.ttf,Grandstand,Italic,italic,Sofia Sans,SofiaSans-Italic[wght].ttf,ofl,as drawn,both,1000,-0.01,3.5,35,0,-9.0,"{""wght"": 1000.0}",True,,76,146212
+Grandstand Caps Italic.ttf,Grandstand Caps,Italic,italic,Sofia Sans,SofiaSans-Italic[wght].ttf,ofl,caps,both,1000,-0.01,3.5,35,200,-9.0,"{""wght"": 1000.0}",True,,76,146288
+Grandstand.ttf,Grandstand,Regular,roman,Sofia Sans,SofiaSans[wght].ttf,ofl,as drawn,both,1000,-0.01,3.5,35,0,0,"{""wght"": 1000.0}",True,,76,163284
+Grandstand Caps.ttf,Grandstand Caps,Regular,roman,Sofia Sans,SofiaSans[wght].ttf,ofl,caps,both,1000,-0.01,3.5,35,200,0,"{""wght"": 1000.0}",True,,76,163340
+Grandstand Condensed Italic.ttf,Grandstand Condensed,Italic,italic,Sofia Sans Condensed,SofiaSansCondensed-Italic[wght].ttf,ofl,as drawn,both,1000,0,3.5,35,0,-9.0,"{""wght"": 1000.0}",True,,76,145784
+Grandstand Condensed Caps Italic.ttf,Grandstand Condensed Caps,Italic,italic,Sofia Sans Condensed,SofiaSansCondensed-Italic[wght].ttf,ofl,caps,both,1000,0,3.5,35,200,-9.0,"{""wght"": 1000.0}",True,,76,145856
+Grandstand Condensed.ttf,Grandstand Condensed,Regular,roman,Sofia Sans Condensed,SofiaSansCondensed[wght].ttf,ofl,as drawn,both,1000,0,3.5,35,0,0,"{""wght"": 1000.0}",True,,76,162736
+Grandstand Condensed Caps.ttf,Grandstand Condensed Caps,Regular,roman,Sofia Sans Condensed,SofiaSansCondensed[wght].ttf,ofl,caps,both,1000,0,3.5,35,200,0,"{""wght"": 1000.0}",True,,76,162792
+Grandstand Extra Condensed Italic.ttf,Grandstand Extra Condensed,Italic,italic,Sofia Sans Extra Condensed,SofiaSansExtraCondensed-Italic[wght].ttf,ofl,as drawn,both,1000,0.005,3.5,35,0,-9.0,"{""wght"": 1000.0}",True,,76,143912
+Grandstand Extra Condensed Caps Italic.ttf,Grandstand Extra Condensed Caps,Italic,italic,Sofia Sans Extra Condensed,SofiaSansExtraCondensed-Italic[wght].ttf,ofl,caps,both,1000,0.005,3.5,35,200,-9.0,"{""wght"": 1000.0}",True,,76,143984
+Grandstand Extra Condensed.ttf,Grandstand Extra Condensed,Regular,roman,Sofia Sans Extra Condensed,SofiaSansExtraCondensed[wght].ttf,ofl,as drawn,both,1000,0.005,3.5,35,0,0,"{""wght"": 1000.0}",True,,76,162368
+Grandstand Extra Condensed Caps.ttf,Grandstand Extra Condensed Caps,Regular,roman,Sofia Sans Extra Condensed,SofiaSansExtraCondensed[wght].ttf,ofl,caps,both,1000,0.005,3.5,35,200,0,"{""wght"": 1000.0}",True,,76,162428
+Placard.ttf,Placard,Regular,roman,Special Gothic,"SpecialGothic[wdth,wght].ttf",ofl,as drawn,both,700,0,0,0,0,0,"{""wght"": 700.0, ""wdth"": 100}",False,,76,89844
+Placard Caps.ttf,Placard Caps,Regular,roman,Special Gothic,"SpecialGothic[wdth,wght].ttf",ofl,caps,both,700,0,0,0,128,0,"{""wght"": 700.0, ""wdth"": 100}",False,,76,89888
+Gazette Italic.ttf,Gazette,Italic,italic,Spectral,Spectral-ExtraBoldItalic.ttf,ofl,as drawn,both,800,-0.015,4,41,0,-10.0,,True,,74,273064
+Gazette Caps Italic.ttf,Gazette Caps,Italic,italic,Spectral,Spectral-ExtraBoldItalic.ttf,ofl,caps,both,800,-0.015,4,41,297,-10.0,,True,,74,273124
+Gazette.ttf,Gazette,Regular,roman,Spectral,Spectral-ExtraBold.ttf,ofl,as drawn,both,800,-0.015,4,41,0,0,,True,,74,260096
+Gazette Caps.ttf,Gazette Caps,Regular,roman,Spectral,Spectral-ExtraBold.ttf,ofl,caps,both,800,-0.015,4,41,297,0,,True,,74,260140
+Triple Caps.ttf,Triple Caps,Regular,roman,Staatliches,Staatliches-Regular.ttf,ofl,caps,caps,400,-0.015,2.5,25,128,0,,False,,76,63400
+Banner.ttf,Banner,Regular,roman,Stack Sans Headline,StackSansHeadline[wght].ttf,ofl,as drawn,both,700,-0.01,0,0,0,0,"{""wght"": 700.0}",False,,74,78672
+Banner Caps.ttf,Banner Caps,Regular,roman,Stack Sans Headline,StackSansHeadline[wght].ttf,ofl,caps,both,700,-0.01,0,0,127,0,"{""wght"": 700.0}",False,,74,78712
+Fastback.ttf,Fastback,Regular,roman,Tac One,TacOne-Regular.ttf,ofl,as drawn,both,400,0,-3,-30,0,0,,True,,76,146396
+Fastback Caps.ttf,Fastback Caps,Regular,roman,Tac One,TacOne-Regular.ttf,ofl,caps,both,400,0,-3,-30,340,0,,True,,76,146440
+Scoreline.ttf,Scoreline,Regular,roman,Teko,Teko[wght].ttf,ofl,as drawn,both,700,-0.01,8,80,0,0,"{""wght"": 700.0}",True,,76,173856
+Scoreline Caps.ttf,Scoreline Caps,Regular,roman,Teko,Teko[wght].ttf,ofl,caps,both,700,-0.01,8,80,100,0,"{""wght"": 700.0}",True,,76,173896
+Jumbotron.ttf,Jumbotron,Regular,roman,Tektur,"Tektur[wdth,wght].ttf",ofl,as drawn,both,900,0.035,0,0,0,0,"{""wdth"": 75.0, ""wght"": 900.0}",False,,76,74344
+Jumbotron Caps.ttf,Jumbotron Caps,Regular,roman,Tektur,"Tektur[wdth,wght].ttf",ofl,caps,both,900,0.035,0,0,380,0,"{""wdth"": 75.0, ""wght"": 900.0}",False,,76,74720
+Broadcast Italic.ttf,Broadcast,Italic,oblique,TikTok Sans,"TikTokSans[opsz,slnt,wdth,wght].ttf",ofl,as drawn,both,900,-0.025,0,0,0,-6.0,"{""opsz"": 36.0, ""wdth"": 75.0, ""wght"": 900.0, ""slnt"": -6.0}",False,,76,205364
+Broadcast Caps Italic.ttf,Broadcast Caps,Italic,oblique,TikTok Sans,"TikTokSans[opsz,slnt,wdth,wght].ttf",ofl,caps,both,900,-0.025,0,0,336,-6.0,"{""opsz"": 36.0, ""wdth"": 75.0, ""wght"": 900.0, ""slnt"": -6.0}",False,,76,205436
+Broadcast.ttf,Broadcast,Regular,roman,TikTok Sans,"TikTokSans[opsz,slnt,wdth,wght].ttf",ofl,as drawn,both,900,-0.025,0,0,0,0,"{""opsz"": 36.0, ""wdth"": 75.0, ""wght"": 900.0, ""slnt"": -6.0}",False,,76,205304
+Broadcast Caps.ttf,Broadcast Caps,Regular,roman,TikTok Sans,"TikTokSans[opsz,slnt,wdth,wght].ttf",ofl,caps,both,900,-0.025,0,0,336,0,"{""opsz"": 36.0, ""wdth"": 75.0, ""wght"": 900.0, ""slnt"": -6.0}",False,,76,205356
+Turf.ttf,Turf,Regular,roman,Tillana,Tillana-ExtraBold.ttf,ofl,as drawn,both,800,-0.05,4,45,0,0,,True,,68,304136
+Turf Caps.ttf,Turf Caps,Regular,roman,Tillana,Tillana-ExtraBold.ttf,ofl,caps,both,800,-0.05,4,45,202,0,,True,,68,305340
+Rookie.ttf,Rookie,Regular,roman,Tilt Warp,"TiltWarp[XROT,YROT].ttf",ofl,as drawn,none,400,-0.04,0,0,0,0,"{""XROT"": 0.0, ""YROT"": 0.0}",False,,76,70048
+Floodlight Italic.ttf,Floodlight,Italic,italic,Tomorrow,Tomorrow-BlackItalic.ttf,ofl,as drawn,both,900,0,-1.5,-18,0,-10.0,,True,,62,58692
+Floodlight Caps Italic.ttf,Floodlight Caps,Italic,italic,Tomorrow,Tomorrow-BlackItalic.ttf,ofl,caps,both,900,0,-1.5,-18,198,-10.0,,True,,62,58748
+Floodlight.ttf,Floodlight,Regular,roman,Tomorrow,Tomorrow-Black.ttf,ofl,as drawn,both,900,0,-1.5,-18,0,0,,True,,62,55096
+Floodlight Caps.ttf,Floodlight Caps,Regular,roman,Tomorrow,Tomorrow-Black.ttf,ofl,caps,both,900,0,-1.5,-18,198,0,,True,,62,55140
+Diamond Italic.ttf,Diamond,Italic,italic,Tourney,"Tourney-Italic[wdth,wght].ttf",ofl,as drawn,both,700,-0.045,0,0,0,-12.0,"{""wght"": 700, ""wdth"": 100}",False,,76,67284
+Diamond Caps Italic.ttf,Diamond Caps,Italic,italic,Tourney,"Tourney-Italic[wdth,wght].ttf",ofl,caps,both,700,-0.045,0,0,238,-12.0,"{""wght"": 700, ""wdth"": 100}",False,,76,67340
+Diamond.ttf,Diamond,Regular,roman,Tourney,"Tourney[wdth,wght].ttf",ofl,as drawn,both,700,-0.045,0,0,0,0,"{""wght"": 700, ""wdth"": 100}",False,,76,64552
+Diamond Caps.ttf,Diamond Caps,Regular,roman,Tourney,"Tourney[wdth,wght].ttf",ofl,caps,both,700,-0.045,0,0,238,0,"{""wght"": 700, ""wdth"": 100}",False,,76,64592
+Trophy.ttf,Trophy,Regular,roman,Ultra,Ultra-Regular.ttf,apache,as drawn,both,400,0,0,0,0,0,,False,,58,52440
+Trophy Caps.ttf,Trophy Caps,Regular,roman,Ultra,Ultra-Regular.ttf,apache,caps,both,400,0,0,0,125,0,,False,,58,52812
+Coach.ttf,Coach,Regular,roman,Vina Sans,VinaSans-Regular.ttf,ofl,as drawn,both,400,0,-7.5,-75,0,0,,True,,76,93384
+Coach Caps.ttf,Coach Caps,Regular,roman,Vina Sans,VinaSans-Regular.ttf,ofl,caps,both,400,0,-7.5,-75,160,0,,True,,76,93424
+Ballast Italic.ttf,Ballast,Italic,italic,Work Sans,WorkSans-Italic[wght].ttf,ofl,as drawn,both,800,0,0,0,0,-13.0,"{""wght"": 800}",False,,70,176824
+Ballast Caps Italic.ttf,Ballast Caps,Italic,italic,Work Sans,WorkSans-Italic[wght].ttf,ofl,caps,both,800,0,0,0,237,-13.0,"{""wght"": 800}",False,,70,176884
+Ballast.ttf,Ballast,Regular,roman,Work Sans,WorkSans[wght].ttf,ofl,as drawn,both,800,0,0,0,0,0,"{""wght"": 800}",False,,70,193044
+Ballast Caps.ttf,Ballast Caps,Regular,roman,Work Sans,WorkSans[wght].ttf,ofl,caps,both,800,0,0,0,237,0,"{""wght"": 800}",False,,70,193088
+Founders.ttf,Founders,Regular,roman,Young Serif,YoungSerif-Regular.ttf,ofl,as drawn,both,400,0,4,46,0,0,,True,,66,106676
+Founders Caps.ttf,Founders Caps,Regular,roman,Young Serif,YoungSerif-Regular.ttf,ofl,caps,both,400,0,4,46,173,0,,True,,66,106716
+Regent SC.ttf,Regent SC,Regular,roman,Ysabeau SC,YsabeauSC[wght].ttf,ofl,as drawn,both,1000,-0.025,-4.5,-45,0,0,"{""wght"": 1000.0}",True,,76,116348
+Regent SC Caps.ttf,Regent SC Caps,Regular,roman,Ysabeau SC,YsabeauSC[wght].ttf,ofl,caps,both,1000,-0.025,-4.5,-45,372,0,"{""wght"": 1000.0}",True,,76,116400
+Skyline Italic.ttf,Skyline,Italic,italic,Zalando Sans Expanded,ZalandoSansExpanded-Italic[wght].ttf,ofl,as drawn,both,900,-0.01,0,0,0,-10.0,"{""wght"": 900.0}",False,,60,78108
+Skyline Caps Italic.ttf,Skyline Caps,Italic,italic,Zalando Sans Expanded,ZalandoSansExpanded-Italic[wght].ttf,ofl,caps,both,900,-0.01,0,0,168,-10.0,"{""wght"": 900.0}",False,,60,78164
+Skyline.ttf,Skyline,Regular,roman,Zalando Sans Expanded,ZalandoSansExpanded[wght].ttf,ofl,as drawn,both,900,-0.01,0,0,0,0,"{""wght"": 900.0}",False,,60,77364
+Skyline Caps.ttf,Skyline Caps,Regular,roman,Zalando Sans Expanded,ZalandoSansExpanded[wght].ttf,ofl,caps,both,900,-0.01,0,0,168,0,"{""wght"": 900.0}",False,,60,77404

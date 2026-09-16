@@ -1,0 +1,14 @@
+# Dependencies
+node_modules/
+
+# Generated — rebuilt by `npm run build:docs`
+css/ds.css
+dist/
+storybook-static/
+
+# Font build scratch — `npm run build:fonts` regenerates from tools/font-lab
+tools/font-lab/_build/sources/
+tools/font-lab/_build/state*.json
+
+# OS
+.DS_Store

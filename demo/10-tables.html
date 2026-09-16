@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="signal" data-mode="light" data-platform="web">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tables — Design System Sticker Sheet</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap" rel="stylesheet">
+
+  <script src="../css/ds-loader.js"></script>
+  <script src="demo-content.js"></script>
+  <script src="../css/prototype-harness.js"></script>
+  <link rel="stylesheet" href="sheet.css">
+</head>
+<body>
+
+<nav data-sheet-nav></nav>
+
+<main class="container-extra-wide">
+
+  <header class="sheet-head">
+    <div class="card-text-pair">
+      <h1 class="display500">Stat Table</h1>
+      <p class="labelRegular40 text-secondary">The stat table — every cell and row state, with a pinned leading column that scrolls.</p>
+    </div>
+  </header>
+
+  <div class="sheet-callout">
+    <p class="bodyRegular30">A standings or stat table: one wide identifying column, then as many narrow numeric ones as the data has. The numbers cannot all fit on a phone, so they scroll horizontally while the entity stays pinned — a number you can read but cannot attribute is useless. Narrow the window and scroll the table sideways.</p>
+  </div>
+
+  <div class="sheet-callout is-warn">
+    <p class="bodyRegular30">Like <span class="mono">.tag</span>, this component sets structure and colour only — <strong>you add the type class</strong>: <span class="mono">labelBold10</span> on head cells, <span class="mono">labelRegular20</span> on attribute cells, <span class="mono">labelBold20</span> when sorted, <span class="mono">title50</span> on the title band.</p>
+  </div>
+
+  <section class="sheet-section" id="table">
+    <div class="sheet-section-head">
+      <h2 class="display300">Stat table</h2>
+      <span class="labelRegular10 text-secondary mono">table-components.css</span>
+    </div>
+
+    <div class="stat-table-title"><span class="title50">Standings</span></div>
+
+    <div class="stat-table-scroll">
+      <table class="stat-table">
+        <thead>
+          <tr>
+            <th class="stat-table-entity labelBold10">Entity</th>
+            <th class="stat-table-attr labelBold10 is-sorted">W</th>
+            <th class="stat-table-attr labelBold10">L</th>
+            <th class="stat-table-attr labelBold10">PCT</th>
+            <th class="stat-table-attr labelBold10">GB</th>
+            <th class="stat-table-attr labelBold10">HOME</th>
+            <th class="stat-table-attr labelBold10">AWAY</th>
+            <th class="stat-table-attr labelBold10">L10</th>
+            <th class="stat-table-attr labelBold10">STRK</th>
+          </tr>
+        </thead>
+        <tbody data-standings>
+          <tr class="stat-table-row">
+            <td class="stat-table-entity">
+              <span class="stat-table-entity-block">
+                <span class="stat-table-rank labelRegular10">1</span>
+                <img alt=""><span class="labelBold20">—</span>
+              </span>
+            </td>
+            <td class="stat-table-attr labelBold20 is-sorted">42</td>
+            <td class="stat-table-attr labelRegular20">18</td>
+            <td class="stat-table-attr labelRegular20">.700</td>
+            <td class="stat-table-attr labelRegular20">—</td>
+            <td class="stat-table-attr labelRegular20 is-win">24-6</td>
+            <td class="stat-table-attr labelRegular20 is-loss">18-12</td>
+            <td class="stat-table-attr labelRegular20">7-3</td>
+            <td class="stat-table-attr labelRegular20 is-empty"></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="spec-label mt-200">
+      <span class="labelRegular10 mono spec-code">.stat-table-scroll</span>
+      <span class="labelRegular10 mono spec-code">.stat-table</span>
+      <span class="labelRegular10 mono spec-code">.stat-table-title</span>
+      <span class="labelRegular10 mono spec-code">.stat-table-entity</span>
+      <span class="labelRegular10 mono spec-code">.stat-table-attr</span>
+      <span class="labelRegular10 mono spec-code">.stat-table-row</span>
+      <span class="labelRegular10 mono spec-code">.stat-table-entity-block</span>
+      <span class="labelRegular10 mono spec-code">.stat-table-rank</span>
+    </div>
+  </section>
+
+  <section class="sheet-section" id="states">
+    <div class="sheet-section-head">
+      <h2 class="display300">Cell and row states</h2>
+      <span class="labelRegular10 text-secondary mono">every modifier the component ships</span>
+    </div>
+    <div class="sheet-grid sheet-grid-wide">
+      <div class="spec"><div class="spec-stage is-plain is-block"><div class="stat-table-title is-plain"><span class="title50">Plain title band</span></div></div><div class="spec-label"><span class="labelRegular10 mono spec-code">.stat-table-title.is-plain</span><span class="labelRegular10 spec-meta">no fill</span></div></div>
+      <div class="spec"><div class="spec-stage is-plain is-block">
+        <div class="stat-table-scroll"><table class="stat-table"><tbody>
+          <tr class="stat-table-row"><td class="stat-table-entity is-title"><span class="stat-table-entity-block"><span class="labelBold20">Larger primary treatment</span></span></td><td class="stat-table-attr labelRegular20">1</td></tr>
+          <tr class="stat-table-row"><td class="stat-table-entity is-text labelRegular20">A plain text entity cell</td><td class="stat-table-attr labelRegular20">2</td></tr>
+        </tbody></table></div>
+      </div><div class="spec-label"><span class="labelRegular10 mono spec-code">.stat-table-entity.is-title</span><span class="labelRegular10 mono spec-code">.stat-table-entity.is-text</span></div></div>
+      <div class="spec"><div class="spec-stage is-plain is-block">
+        <div class="stat-table-scroll"><table class="stat-table"><tbody>
+          <tr class="stat-table-row"><td class="stat-table-entity is-text labelRegular20">Default row</td><td class="stat-table-attr labelRegular20">1</td></tr>
+          <tr class="stat-table-row is-tinted"><td class="stat-table-entity is-text labelRegular20">Tinted row</td><td class="stat-table-attr labelRegular20">2</td></tr>
+          <tr class="stat-table-row is-featured" data-featured-row><td class="stat-table-entity"><span class="stat-table-entity-block"><img data-content="brand.assets.logo" alt=""><span class="labelBold20" data-content="brand.identity.abbreviated">YOU</span></span></td><td class="stat-table-attr labelBold20">3</td></tr>
+        </tbody></table></div>
+      </div><div class="spec-label"><span class="labelRegular10 mono spec-code">.is-tinted</span><span class="labelRegular10 mono spec-code">.is-featured</span><span class="labelRegular10 spec-meta">tint alternate rows yourself — one featured row per table, the entry this screen belongs to</span></div></div>
+      <div class="spec"><div class="spec-stage is-plain is-block">
+        <div class="stat-table-scroll"><table class="stat-table"><thead>
+          <tr><th class="stat-table-entity labelBold10">Column states</th><th class="stat-table-attr labelBold10 is-sorted">SORTED</th><th class="stat-table-attr labelBold10">W</th><th class="stat-table-attr labelBold10">L</th><th class="stat-table-attr labelBold10">—</th></tr>
+        </thead><tbody>
+          <tr class="stat-table-row"><td class="stat-table-entity is-text labelRegular20">One row</td><td class="stat-table-attr labelBold20 is-sorted">42</td><td class="stat-table-attr labelRegular20 is-win">W</td><td class="stat-table-attr labelRegular20 is-loss">L</td><td class="stat-table-attr labelRegular20 is-empty"></td></tr>
+        </tbody></table></div>
+      </div><div class="spec-label"><span class="labelRegular10 mono spec-code">.is-sorted</span><span class="labelRegular10 mono spec-code">.is-win</span><span class="labelRegular10 mono spec-code">.is-loss</span><span class="labelRegular10 mono spec-code">.is-empty</span></div></div>
+    </div>
+    <div class="sheet-callout mt-400">
+      <p class="bodyRegular30">The featured row fills with <span class="mono">--brand-core</span> and <strong>drops the win/loss colours</strong> for <span class="mono">--white-700</span> / <span class="mono">--white-1000</span>, because green and red do not carry on a brand fill. That is deliberate — do not add them back.</p>
+    </div>
+  </section>
+
+  <section class="sheet-section" id="tuning">
+    <div class="sheet-section-head">
+      <h2 class="display300">Tuning</h2>
+      <span class="labelRegular10 text-secondary mono">--stat-table-entity-width</span>
+    </div>
+    <p class="sheet-note bodyRegular30">The leading column is 224px by default; set the custom property on the table to retune it. Attribute cells are a fixed 48px, and a table of long strings needs <span class="mono">table-layout: fixed</span> and a definite width or the value spills into the next column. Vertical scroll is the page's job — the component leaves <span class="mono">overflow-y</span> visible.</p>
+    <div class="stat-table-scroll">
+      <table class="stat-table" style="--stat-table-entity-width: calc(var(--spacing-1000) * 2)">
+        <thead><tr><th class="stat-table-entity labelBold10">Narrow</th><th class="stat-table-attr labelBold10">W</th><th class="stat-table-attr labelBold10">L</th></tr></thead>
+        <tbody><tr class="stat-table-row"><td class="stat-table-entity is-text labelRegular20">160px column</td><td class="stat-table-attr labelRegular20">42</td><td class="stat-table-attr labelRegular20">18</td></tr></tbody>
+      </table>
+    </div>
+  </section>
+
+  <script>
+    /* Rows are built from the counterparties in the demo content layer — resolved
+       references, never names typed into the page (RULES §6). */
+    document.addEventListener('content-loaded', e => {
+      const { schedule, brand } = e.detail;
+      const games = (schedule && schedule.games) || [];
+      const seen = new Map();
+      for (const g of games) {
+        const o = g.opponent;
+        if (o && o.id && !seen.has(o.id)) seen.set(o.id, o);
+        if (seen.size >= 8) break;
+      }
+      const tbody = document.querySelector('[data-standings]');
+      if (!tbody || !seen.size) return;
+
+      const cell = (v, cls) => `<td class="stat-table-attr ${cls}">${v}</td>`;
+      const rows = [...seen.values()].map((o, i) => {
+        const w = 48 - i * 4, l = 12 + i * 4;
+        const tint = i % 2 === 1 ? ' is-tinted' : '';
+        return `<tr class="stat-table-row${tint}">
+          <td class="stat-table-entity">
+            <span class="stat-table-entity-block">
+              <span class="stat-table-rank labelRegular10">${i + 1}</span>
+              <img src="${o.logo || ''}" alt="">
+              <span class="labelBold20">${o.abbr || o.short || o.name}</span>
+            </span>
+          </td>
+          ${cell(w, 'labelBold20 is-sorted')}
+          ${cell(l, 'labelRegular20')}
+          ${cell((w / (w + l)).toFixed(3).slice(1), 'labelRegular20')}
+          ${cell(i === 0 ? '—' : (i * 4) + '.0', 'labelRegular20')}
+          ${cell(Math.round(w * 0.6) + '-' + Math.round(l * 0.4), 'labelRegular20 is-win')}
+          ${cell(Math.round(w * 0.4) + '-' + Math.round(l * 0.6), 'labelRegular20 is-loss')}
+          ${cell((10 - i % 5) + '-' + (i % 5), 'labelRegular20')}
+          ${i === 3 ? '<td class="stat-table-attr labelRegular20 is-empty"></td>' : cell(i % 2 ? 'L2' : 'W3', 'labelRegular20')}
+        </tr>`;
+      });
+
+      /* One featured row per table — the entry this screen belongs to. */
+      rows.splice(2, 0, `<tr class="stat-table-row is-featured">
+        <td class="stat-table-entity">
+          <span class="stat-table-entity-block">
+            <span class="stat-table-rank labelRegular10">3</span>
+            <img src="${ContentLoader.asset(brand.assets.logo) || ''}" alt="">
+            <span class="labelBold20">${brand.identity.abbreviated}</span>
+          </span>
+        </td>
+        ${cell(40, 'labelBold20 is-sorted')}${cell(20, 'labelRegular20')}${cell('.667', 'labelRegular20')}
+        ${cell('2.0', 'labelRegular20')}${cell('22-8', 'labelRegular20')}${cell('18-12', 'labelRegular20')}
+        ${cell('6-4', 'labelRegular20')}${cell('W1', 'labelRegular20')}
+      </tr>`);
+
+      tbody.innerHTML = rows.join('');
+    });
+  </script>
+
+  <footer class="sheet-footer">
+    <p class="labelRegular10">Generated against <span class="mono">docs/css-api.json</span>. Every class shown here exists in the system — run <span class="mono">npm run check:demo</span> to verify the sheets still cover it.</p>
+  </footer>
+
+</main>
+
+<script src="sheet.js"></script>
+</body>
+</html>

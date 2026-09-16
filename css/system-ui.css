@@ -1,0 +1,81 @@
+/* ============================================================
+   system-ui.css
+   ============================================================
+   Vendor chrome: controls specified by Apple or Google that a prototype reproduces rather than designs.
+
+   What's inside
+   - .wallet-btn-wrapper, .wallet-btn, .wallet-btn-label, .wallet-icon — the
+     "Add to Apple Wallet" button, per Apple's HIG
+
+   Notes
+   - This file is the one exemption from the token and type rules: vendor
+     colours as literals, vendor type, no response to theme or mode. The
+     exemption is bounded to controls traceable to a published vendor guideline,
+     and it lives here — never inside a template. See RULES §7.
+   ============================================================ */
+
+
+/* ============================================================
+   ADD TO APPLE WALLET
+   ============================================================
+   Apple HIG — "Add to Apple Wallet" button.
+   https://developer.apple.com/design/human-interface-guidelines/wallet
+
+   <div class="wallet-btn-wrapper">
+     <button class="wallet-btn">
+       <img class="wallet-icon" alt=""
+            data-content="platform.brand.appleWallet.image" data-content-attr="src">
+       <span class="wallet-btn-label"
+             data-content="platform.brand.appleWallet.label">Add to Apple Wallet</span>
+     </button>
+   </div>
+
+   Google Wallet: the mark ships as `img.wallet-google`, but there is no
+   `.wallet-btn` variant for it — Google's button has its own published spec
+   (colours, type, clear space) and dressing an Apple button in a Google mark
+   would be inventing vendor chrome, which is exactly what §7 forbids. Add the
+   variant here when someone brings the spec.
+   ============================================================ */
+
+.wallet-btn-wrapper {
+  margin-top: var(--spacing-150);
+}
+
+.wallet-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-150);
+  width: 100%;
+  height: 48px;
+  padding: var(--spacing-100) var(--spacing-200);
+  border-radius: var(--border-radius-100);
+  cursor: pointer;
+  box-sizing: border-box;
+
+  /* Apple's values — not tokens, and not themed. */
+  background: #1d1e1e;
+  border: 0.33px solid #808080;
+}
+
+.wallet-btn-label {
+  /* SF Pro at Apple's semibold (590), which is not an Inter weight and not on
+     this system's type scale. Intentional. */
+  font-family: -apple-system, 'SF Pro', 'Inter', sans-serif;
+  font-weight: 590;
+  font-size: 18px;
+  line-height: 40px;
+  letter-spacing: -0.4px;
+  color: #ffffff;
+}
+
+/* Apple's card-stack mark. The reserved box is 26×18 from the comp, but the
+   artwork is 4:3 (32×24), so `contain` letterboxes it to 24×18 inside that box
+   rather than squashing it — the reserved width stays put, so nothing shifts.
+   The file is images/wallet-apple.svg. In a project, register it as an asset id
+   and reference the id, never the path (RULES §6). */
+.wallet-icon {
+  width: 26px;
+  height: 18px;
+  object-fit: contain;
+}

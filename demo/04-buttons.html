@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="signal" data-mode="light" data-platform="web">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Buttons — Design System Sticker Sheet</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap" rel="stylesheet">
+
+  <script src="../css/ds-loader.js"></script>
+  <script src="demo-content.js"></script>
+  <script src="../css/prototype-harness.js"></script>
+  <link rel="stylesheet" href="sheet.css">
+</head>
+<body>
+
+<nav data-sheet-nav></nav>
+
+<main class="container-extra-wide">
+
+  <header class="sheet-head">
+    <div class="card-text-pair">
+      <h1 class="display500">Buttons</h1>
+      <p class="labelRegular40 text-secondary">Every button type at every size, in every state — plus circle buttons and the one vendor control.</p>
+    </div>
+  </header>
+
+  <div class="sheet-callout">
+    <p class="bodyRegular30">Compose <span class="mono">.btn</span> + type + size. Sizes are <span class="mono">.btn-700</span> (56px), <span class="mono">.btn-300</span> (40px) and <span class="mono">.btn-100</span> (32px). Disabled is the <span class="mono">disabled</span> attribute, never a class. Every row below shows all three sizes, then the disabled state.</p>
+  </div>
+
+  <div class="sheet-callout is-warn">
+    <p class="bodyRegular30"><span class="mono">.btn</span> and <span class="mono">.btn-circle</span> already carry their interaction tier internally — <strong>never add a <span class="mono">.scale-*</span> to one</strong>, and never write <span class="mono">:hover</span> or <span class="mono">:active</span> (<span class="mono">RULES §2</span>).</p>
+  </div>
+
+  <section class="sheet-section" id="types">
+    <div class="sheet-section-head">
+      <h2 class="display300">Types</h2>
+      <span class="labelRegular10 text-secondary mono">button-components.css</span>
+    </div>
+    <div class="sheet-grid sheet-grid-wide">
+      <div class="spec">
+        <div class="spec-stage ">
+          <button class="btn btn-transactional btn-700">Buy Tickets</button>
+          <button class="btn btn-transactional btn-300">Buy Tickets</button>
+          <button class="btn btn-transactional btn-100">Buy Tickets</button>
+          <button class="btn btn-transactional btn-300" disabled>Sold Out</button>
+        </div>
+        <div class="spec-label"><span class="labelRegular10 mono spec-code">.btn-transactional</span><span class="labelRegular10 spec-meta">revenue actions — Buy, Purchase, Add to Cart</span></div>
+      </div>
+      <div class="spec">
+        <div class="spec-stage ">
+          <button class="btn btn-primary btn-700">Buy Tickets</button>
+          <button class="btn btn-primary btn-300">Buy Tickets</button>
+          <button class="btn btn-primary btn-100">Buy Tickets</button>
+          <button class="btn btn-primary btn-300" disabled>Sold Out</button>
+        </div>
+        <div class="spec-label"><span class="labelRegular10 mono spec-code">.btn-primary</span><span class="labelRegular10 spec-meta">the main page action; one per view</span></div>
+      </div>
+      <div class="spec">
+        <div class="spec-stage ">
+          <button class="btn btn-neutral btn-700">Buy Tickets</button>
+          <button class="btn btn-neutral btn-300">Buy Tickets</button>
+          <button class="btn btn-neutral btn-100">Buy Tickets</button>
+          <button class="btn btn-neutral btn-300" disabled>Sold Out</button>
+        </div>
+        <div class="spec-label"><span class="labelRegular10 mono spec-code">.btn-neutral</span><span class="labelRegular10 spec-meta">high-contrast, non-branded CTA</span></div>
+      </div>
+      <div class="spec">
+        <div class="spec-stage ">
+          <button class="btn btn-secondary btn-700">Buy Tickets</button>
+          <button class="btn btn-secondary btn-300">Buy Tickets</button>
+          <button class="btn btn-secondary btn-100">Buy Tickets</button>
+          <button class="btn btn-secondary btn-300" disabled>Sold Out</button>
+        </div>
+        <div class="spec-label"><span class="labelRegular10 mono spec-code">.btn-secondary</span><span class="labelRegular10 spec-meta">supporting action (outlined)</span></div>
+      </div>
+      <div class="spec">
+        <div class="spec-stage ">
+          <button class="btn btn-tertiary btn-700">Buy Tickets</button>
+          <button class="btn btn-tertiary btn-300">Buy Tickets</button>
+          <button class="btn btn-tertiary btn-100">Buy Tickets</button>
+          <button class="btn btn-tertiary btn-300" disabled>Sold Out</button>
+        </div>
+        <div class="spec-label"><span class="labelRegular10 mono spec-code">.btn-tertiary</span><span class="labelRegular10 spec-meta">low-emphasis inline (text only)</span></div>
+      </div>
+      <div class="spec">
+        <div class="spec-stage ">
+          <button class="btn btn-destructive btn-700">Buy Tickets</button>
+          <button class="btn btn-destructive btn-300">Buy Tickets</button>
+          <button class="btn btn-destructive btn-100">Buy Tickets</button>
+          <button class="btn btn-destructive btn-300" disabled>Sold Out</button>
+        </div>
+        <div class="spec-label"><span class="labelRegular10 mono spec-code">.btn-destructive</span><span class="labelRegular10 spec-meta">irreversible actions</span></div>
+      </div>
+    </div>
+
+    <div class="sheet-sub"><span class="title50">On dark and brand surfaces</span><span class="labelRegular10 text-secondary">shown on --brand-core, which is where they belong</span></div>
+    <div class="sheet-grid sheet-grid-wide">
+      <div class="spec">
+        <div class="spec-stage is-brand">
+          <button class="btn btn-white btn-700">Buy Tickets</button>
+          <button class="btn btn-white btn-300">Buy Tickets</button>
+          <button class="btn btn-white btn-100">Buy Tickets</button>
+          <button class="btn btn-white btn-300" disabled>Sold Out</button>
+        </div>
+        <div class="spec-label"><span class="labelRegular10 mono spec-code">.btn-white</span><span class="labelRegular10 spec-meta">CTA on dark or brand surfaces</span></div>
+      </div>
+      <div class="spec">
+        <div class="spec-stage is-brand">
+          <button class="btn btn-white-tertiary btn-700">Buy Tickets</button>
+          <button class="btn btn-white-tertiary btn-300">Buy Tickets</button>
+          <button class="btn btn-white-tertiary btn-100">Buy Tickets</button>
+          <button class="btn btn-white-tertiary btn-300" disabled>Sold Out</button>
+        </div>
+        <div class="spec-label"><span class="labelRegular10 mono spec-code">.btn-white-tertiary</span><span class="labelRegular10 spec-meta">low-emphasis on dark surfaces</span></div>
+      </div>
+      <div class="spec">
+        <div class="spec-stage is-brand">
+          <button class="btn btn-black btn-700">Buy Tickets</button>
+          <button class="btn btn-black btn-300">Buy Tickets</button>
+          <button class="btn btn-black btn-100">Buy Tickets</button>
+          <button class="btn btn-black btn-300" disabled>Sold Out</button>
+        </div>
+        <div class="spec-label"><span class="labelRegular10 mono spec-code">.btn-black</span><span class="labelRegular10 spec-meta">solid black — for light photography and white panels</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sheet-section" id="sizes">
+    <div class="sheet-section-head">
+      <h2 class="display300">Sizes and modifiers</h2>
+      <span class="labelRegular10 text-secondary mono">.btn-700 · .btn-300 · .btn-100</span>
+    </div>
+    <div class="sheet-grid sheet-grid-wide">
+      <div class="spec"><div class="spec-stage"><button class="btn btn-primary btn-700">Button 700</button></div><div class="spec-label"><span class="labelRegular10 mono spec-code">.btn-700</span><span class="labelRegular10 spec-meta">56px</span></div></div>
+      <div class="spec"><div class="spec-stage"><button class="btn btn-primary btn-300">Button 300</button></div><div class="spec-label"><span class="labelRegular10 mono spec-code">.btn-300</span><span class="labelRegular10 spec-meta">40px</span></div></div>
+      <div class="spec"><div class="spec-stage"><button class="btn btn-primary btn-100">Button 100</button></div><div class="spec-label"><span class="labelRegular10 mono spec-code">.btn-100</span><span class="labelRegular10 spec-meta">32px</span></div></div>
+      <div class="spec"><div class="spec-stage"><button class="btn btn-transactional btn-300 btn-icon-leading"><span class="btn-icon material-symbols-rounded">confirmation_number</span><span>Buy Tickets</span></button></div><div class="spec-label"><span class="labelRegular10 mono spec-code">.btn-icon-leading</span><span class="labelRegular10 spec-meta">icon first</span></div></div>
+      <div class="spec"><div class="spec-stage"><button class="btn btn-primary btn-300 btn-icon-trailing"><span>Next</span><span class="btn-icon material-symbols-rounded">arrow_forward</span></button></div><div class="spec-label"><span class="labelRegular10 mono spec-code">.btn-icon-trailing</span><span class="labelRegular10 spec-meta">icon last</span></div></div>
+      <div class="spec"><div class="spec-stage is-block"><button class="btn btn-transactional btn-700 btn-fill btn-icon-trailing"><span>Buy Tickets</span><span class="btn-icon material-symbols-rounded">arrow_forward</span></button></div><div class="spec-label"><span class="labelRegular10 mono spec-code">.btn-fill</span><span class="labelRegular10 spec-meta">full width</span></div></div>
+      <div class="spec"><div class="spec-stage"><button class="btn btn-primary btn-300" disabled>Sold Out</button></div><div class="spec-label"><span class="labelRegular10 mono spec-code">[disabled]</span><span class="labelRegular10 spec-meta">the attribute, not a class</span></div></div>
+      <div class="spec"><div class="spec-stage is-center"><span class="btn-icon material-symbols-rounded">confirmation_number</span></div><div class="spec-label"><span class="labelRegular10 mono spec-code">.btn-icon</span><span class="labelRegular10 spec-meta">sizes the icon box only — still needs material-symbols-rounded</span></div></div>
+    </div>
+  </section>
+
+  <section class="sheet-section" id="groups">
+    <div class="sheet-section-head">
+      <h2 class="display300">Groups</h2>
+      <span class="labelRegular10 text-secondary mono">.btn-group · .btn-group-stack</span>
+    </div>
+    <div class="sheet-grid sheet-grid-wide">
+      <div class="spec">
+        <div class="spec-stage is-block">
+          <div class="btn-group">
+            <button class="btn btn-primary btn-300">Save</button>
+            <button class="btn btn-secondary btn-300">Cancel</button>
+          </div>
+        </div>
+        <div class="spec-label"><span class="labelRegular10 mono spec-code">.btn-group</span><span class="labelRegular10 spec-meta">side by side</span></div>
+      </div>
+      <div class="spec">
+        <div class="spec-stage is-block">
+          <div class="btn-group-stack">
+            <button class="btn btn-transactional btn-700">Buy Tickets</button>
+            <button class="btn btn-secondary btn-700">Learn More</button>
+          </div>
+        </div>
+        <div class="spec-label"><span class="labelRegular10 mono spec-code">.btn-group-stack</span><span class="labelRegular10 spec-meta">stacked, full width</span></div>
+      </div>
+      <div class="spec">
+        <div class="spec-stage is-block">
+          <div class="action-row">
+            <button class="btn btn-secondary btn-300">Back</button>
+            <button class="btn btn-primary btn-300">Continue</button>
+          </div>
+        </div>
+        <div class="spec-label"><span class="labelRegular10 mono spec-code">.action-row</span><span class="labelRegular10 spec-meta">product-patterns.css — equal-weight row, each button flexes</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sheet-section" id="circle">
+    <div class="sheet-section-head">
+      <h2 class="display300">Circle buttons</h2>
+      <span class="labelRegular10 text-secondary mono">.btn-circle + size + type · icon only</span>
+    </div>
+    <p class="sheet-note bodyRegular30"><span class="mono">.btn-circle-700</span> is 56×56 with a 32px icon; <span class="mono">.btn-circle-300</span> is 40×40 with a 24px icon. Filled is the bare type; add <span class="mono">-secondary</span> for outlined and <span class="mono">-tertiary</span> for ghost. Always give it an <span class="mono">aria-label</span>.</p>
+
+    <div class="sheet-sub"><span class="title50">Filled</span></div>
+    <div class="sheet-grid sheet-grid-wide">
+      <div class="spec">
+        <div class="spec-stage ">
+          <button class="btn-circle btn-circle-700 btn-circle-brand" aria-label="Close"><span class="btn-icon material-symbols-rounded">close</span></button>
+          <button class="btn-circle btn-circle-300 btn-circle-brand" aria-label="Close"><span class="btn-icon material-symbols-rounded">close</span></button>
+          <button class="btn-circle btn-circle-300 btn-circle-brand" aria-label="Close" disabled><span class="btn-icon material-symbols-rounded">close</span></button>
+        </div>
+        <div class="spec-label"><span class="labelRegular10 mono spec-code">.btn-circle-brand</span><span class="labelRegular10 spec-meta">700 · 300 · disabled</span></div>
+      </div>
+      <div class="spec">
+        <div class="spec-stage ">
+          <button class="btn-circle btn-circle-700 btn-circle-neutral" aria-label="Close"><span class="btn-icon material-symbols-rounded">close</span></button>
+          <button class="btn-circle btn-circle-300 btn-circle-neutral" aria-label="Close"><span class="btn-icon material-symbols-rounded">close</span></button>
+          <button class="btn-circle btn-circle-300 btn-circle-neutral" aria-label="Close" disabled><span class="btn-icon material-symbols-rounded">close</span></button>
+        </div>
+        <div class="spec-label"><span class="labelRegular10 mono spec-code">.btn-circle-neutral</span><span class="labelRegular10 spec-meta">700 · 300 · disabled</span></div>
+      </div>
+      <div class="spec">
+        <div class="spec-stage ">
+          <button class="btn-circle btn-circle-700 btn-circle-inverted" aria-label="Close"><span class="btn-icon material-symbols-rounded">close</span></button>
+          <button class="btn-circle btn-circle-300 btn-circle-inverted" aria-label="Close"><span class="btn-icon material-symbols-rounded">close</span></button>
+          <button class="btn-circle btn-circle-300 btn-circle-inverted" aria-label="Close" disabled><span class="btn-icon material-symbols-rounded">close</span></button>
+        </div>
+        <div class="spec-label"><span class="labelRegular10 mono spec-code">.btn-circle-inverted</span><span class="labelRegular10 spec-meta">700 · 300 · disabled</span></div>
+      </div>
+      <div class="spec">
+        <div class="spec-stage ">
+          <button class="btn-circle btn-circle-700 btn-circle-black" aria-label="Close"><span class="btn-icon material-symbols-rounded">close</span></button>
+          <button class="btn-circle btn-circle-300 btn-circle-black" aria-label="Close"><span class="btn-icon material-symbols-rounded">close</span></button>
+          <button class="btn-circle btn-circle-300 btn-circle-black" aria-label="Close" disabled><span class="btn-icon material-symbols-rounded">close</span></button>
+        </div>
+        <div class="spec-label"><span class="labelRegular10 mono spec-code">.btn-circle-black</span><span class="labelRegular10 spec-meta">700 · 300 · disabled</span></div>
+      </div>
+      <div class="spec">
+        <div class="spec-stage ">
+          <button class="btn-circle btn-circle-700 btn-circle-destructive" aria-label="Close"><span class="btn-icon material-symbols-rounded">close</span></button>
+          <button class="btn-circle btn-circle-300 btn-circle-destructive" aria-label="Close"><span class="btn-icon material-symbols-rounded">close</span></button>
+          <button class="btn-circle btn-circle-300 btn-circle-destructive" aria-label="Close" disabled><span class="btn-icon material-symbols-rounded">close</span></button>
+        </div>
+        <div class="spec-label"><span class="labelRegular10 mono spec-code">.btn-circle-destructive</span><span class="labelRegular10 spec-meta">700 · 300 · disabled</span></div>
+      </div>
+      <div class="spec">
+        <div class="spec-stage is-brand">
+          <button class="btn-circle btn-circle-700 btn-circle-white" aria-label="Close"><span class="btn-icon material-symbols-rounded">close</span></button>
+          <button class="btn-circle btn-circle-300 btn-circle-white" aria-label="Close"><span class="btn-icon material-symbols-rounded">close</span></button>
+          <button class="btn-circle btn-circle-300 btn-circle-white" aria-label="Close" disabled><span class="btn-icon material-symbols-rounded">close</span></button>
+        </div>
+        <div class="spec-label"><span class="labelRegular10 mono spec-code">.btn-circle-white</span><span class="labelRegular10 spec-meta">700 · 300 · disabled</span></div>
+      </div>
+    </div>
+
+    <div class="sheet-sub"><span class="title50">Outlined</span></div>
+    <div class="sheet-grid sheet-grid-wide">
+      <div class="spec">
+        <div class="spec-stage ">
+          <button class="btn-circle btn-circle-700 btn-circle-brand-secondary" aria-label="Close"><span class="btn-icon material-symbols-rounded">close</span></button>
+          <button class="btn-circle btn-circle-300 btn-circle-brand-secondary" aria-label="Close"><span class="btn-icon material-symbols-rounded">close</span></button>
+          <button class="btn-circle btn-circle-300 btn-circle-brand-secondary" aria-label="Close" disabled><span class="btn-icon material-symbols-rounded">close</span></button>
+        </div>
+        <div class="spec-label"><span class="labelRegular10 mono spec-code">.btn-circle-brand-secondary</span><span class="labelRegular10 spec-meta">700 · 300 · disabled</span></div>
+      </div>
+      <div class="spec">
+        <div class="spec-stage ">
+          <button class="btn-circle btn-circle-700 btn-circle-neutral-secondary" aria-label="Close"><span class="btn-icon material-symbols-rounded">close</span></button>
+          <button class="btn-circle btn-circle-300 btn-circle-neutral-secondary" aria-label="Close"><span class="btn-icon material-symbols-rounded">close</span></button>
+          <button class="btn-circle btn-circle-300 btn-circle-neutral-secondary" aria-label="Close" disabled><span class="btn-icon material-symbols-rounded">close</span></button>
+        </div>
+        <div class="spec-label"><span class="labelRegular10 mono spec-code">.btn-circle-neutral-secondary</span><span class="labelRegular10 spec-meta">700 · 300 · disabled</span></div>
+      </div>
+      <div class="spec">
+        <div class="spec-stage ">
+          <button class="btn-circle btn-circle-700 btn-circle-destructive-secondary" aria-label="Close"><span class="btn-icon material-symbols-rounded">close</span></button>
+          <button class="btn-circle btn-circle-300 btn-circle-destructive-secondary" aria-label="Close"><span class="btn-icon material-symbols-rounded">close</span></button>
+          <button class="btn-circle btn-circle-300 btn-circle-destructive-secondary" aria-label="Close" disabled><span class="btn-icon material-symbols-rounded">close</span></button>
+        </div>
+        <div class="spec-label"><span class="labelRegular10 mono spec-code">.btn-circle-destructive-secondary</span><span class="labelRegular10 spec-meta">700 · 300 · disabled</span></div>
+      </div>
+    </div>
+
+    <div class="sheet-sub"><span class="title50">Ghost</span></div>
+    <div class="sheet-grid sheet-grid-wide">
+      <div class="spec">
+        <div class="spec-stage ">
+          <button class="btn-circle btn-circle-700 btn-circle-brand-tertiary" aria-label="Close"><span class="btn-icon material-symbols-rounded">close</span></button>
+          <button class="btn-circle btn-circle-300 btn-circle-brand-tertiary" aria-label="Close"><span class="btn-icon material-symbols-rounded">close</span></button>
+          <button class="btn-circle btn-circle-300 btn-circle-brand-tertiary" aria-label="Close" disabled><span class="btn-icon material-symbols-rounded">close</span></button>
+        </div>
+        <div class="spec-label"><span class="labelRegular10 mono spec-code">.btn-circle-brand-tertiary</span><span class="labelRegular10 spec-meta">700 · 300 · disabled</span></div>
+      </div>
+      <div class="spec">
+        <div class="spec-stage ">
+          <button class="btn-circle btn-circle-700 btn-circle-neutral-tertiary" aria-label="Close"><span class="btn-icon material-symbols-rounded">close</span></button>
+          <button class="btn-circle btn-circle-300 btn-circle-neutral-tertiary" aria-label="Close"><span class="btn-icon material-symbols-rounded">close</span></button>
+          <button class="btn-circle btn-circle-300 btn-circle-neutral-tertiary" aria-label="Close" disabled><span class="btn-icon material-symbols-rounded">close</span></button>
+        </div>
+        <div class="spec-label"><span class="labelRegular10 mono spec-code">.btn-circle-neutral-tertiary</span><span class="labelRegular10 spec-meta">700 · 300 · disabled</span></div>
+      </div>
+      <div class="spec">
+        <div class="spec-stage ">
+          <button class="btn-circle btn-circle-700 btn-circle-destructive-tertiary" aria-label="Close"><span class="btn-icon material-symbols-rounded">close</span></button>
+          <button class="btn-circle btn-circle-300 btn-circle-destructive-tertiary" aria-label="Close"><span class="btn-icon material-symbols-rounded">close</span></button>
+          <button class="btn-circle btn-circle-300 btn-circle-destructive-tertiary" aria-label="Close" disabled><span class="btn-icon material-symbols-rounded">close</span></button>
+        </div>
+        <div class="spec-label"><span class="labelRegular10 mono spec-code">.btn-circle-destructive-tertiary</span><span class="labelRegular10 spec-meta">700 · 300 · disabled</span></div>
+      </div>
+      <div class="spec">
+        <div class="spec-stage is-brand">
+          <button class="btn-circle btn-circle-700 btn-circle-white-tertiary" aria-label="Close"><span class="btn-icon material-symbols-rounded">close</span></button>
+          <button class="btn-circle btn-circle-300 btn-circle-white-tertiary" aria-label="Close"><span class="btn-icon material-symbols-rounded">close</span></button>
+          <button class="btn-circle btn-circle-300 btn-circle-white-tertiary" aria-label="Close" disabled><span class="btn-icon material-symbols-rounded">close</span></button>
+        </div>
+        <div class="spec-label"><span class="labelRegular10 mono spec-code">.btn-circle-white-tertiary</span><span class="labelRegular10 spec-meta">700 · 300 · disabled</span></div>
+      </div>
+    </div>
+
+    <div class="sheet-sub"><span class="title50">Letter variant</span></div>
+    <div class="sheet-grid sheet-grid-wide">
+      <div class="spec">
+        <div class="spec-stage">
+          <button class="btn-circle btn-circle-700 btn-circle-brand btn-circle-letter" aria-label="Account"><span>A</span></button>
+          <button class="btn-circle btn-circle-300 btn-circle-brand btn-circle-letter" aria-label="Account"><span>A</span></button>
+        </div>
+        <div class="spec-label"><span class="labelRegular10 mono spec-code">.btn-circle-letter</span><span class="labelRegular10 spec-meta">an initial instead of an icon — account avatars</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sheet-section" id="vendor">
+    <div class="sheet-section-head">
+      <h2 class="display300">Vendor chrome</h2>
+      <span class="labelRegular10 text-secondary mono">system-ui.css</span>
+    </div>
+    <p class="sheet-note bodyRegular30">The one exemption from the token and type rules: controls specified by Apple or Google that a prototype <em>reproduces</em> rather than designs. Vendor colours as literals, vendor type, no response to theme or mode — theming an Apple button to the theme's brand would make it wrong. The exemption lives in that file and is never claimed inside a template (<span class="mono">RULES §7</span>).</p>
+    <div class="sheet-grid sheet-grid-wide">
+      <div class="spec">
+        <div class="spec-stage is-block">
+          <div class="wallet-btn-wrapper">
+            <button class="wallet-btn">
+              <img class="wallet-icon" alt=""
+                   data-content="platform.brand.appleWallet.image" data-content-attr="src">
+              <span class="wallet-btn-label"
+                    data-content="platform.brand.appleWallet.label">Add to Apple Wallet</span>
+            </button>
+          </div>
+        </div>
+        <div class="spec-label"><span class="labelRegular10 mono spec-code">.wallet-btn-wrapper .wallet-btn .wallet-icon .wallet-btn-label</span><span class="labelRegular10 spec-meta">Apple's own colours and type, unthemed on purpose</span></div>
+      </div>
+
+      <div class="spec">
+        <div class="spec-stage">
+          <img alt="Apple Wallet" style="height: var(--spacing-300)"
+               data-content="platform.brand.appleWallet.image" data-content-attr="src">
+          <img alt="Google Wallet" style="height: var(--spacing-300)"
+               data-content="platform.brand.googleWallet.image" data-content-attr="src">
+        </div>
+        <div class="spec-label"><span class="labelRegular10 mono spec-code">img.wallet-apple</span><span class="labelRegular10 mono spec-code">img.wallet-google</span><span class="labelRegular10 spec-meta">the two wallet marks, as asset ids. There is no Google button variant — its spec has not been brought in (<span class="mono">RULES §7</span>)</span></div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="sheet-footer">
+    <p class="labelRegular10">Generated against <span class="mono">docs/css-api.json</span>. Every class shown here exists in the system — run <span class="mono">npm run check:demo</span> to verify the sheets still cover it.</p>
+  </footer>
+
+</main>
+
+<script src="sheet.js"></script>
+</body>
+</html>

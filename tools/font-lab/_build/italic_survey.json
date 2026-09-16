@@ -1,0 +1,3891 @@
+{
+ "Alfa Slab One": {
+  "italFiles": [],
+  "axes": [],
+  "recs": [
+   [
+    "AlfaSlabOne-Regular.ttf",
+    400,
+    "normal"
+   ]
+  ]
+ },
+ "Anybody": {
+  "italFiles": [
+   [
+    "Anybody-Italic[wdth,wght].ttf",
+    400,
+    "italic"
+   ]
+  ],
+  "axes": [
+   "wdth",
+   "wght"
+  ],
+  "recs": [
+   [
+    "Anybody[wdth,wght].ttf",
+    400,
+    "normal"
+   ],
+   [
+    "Anybody-Italic[wdth,wght].ttf",
+    400,
+    "italic"
+   ]
+  ]
+ },
+ "Baloo 2": {
+  "italFiles": [],
+  "axes": [
+   "wght"
+  ],
+  "recs": [
+   [
+    "Baloo2[wght].ttf",
+    400,
+    "normal"
+   ]
+  ]
+ },
+ "Bangers": {
+  "italFiles": [],
+  "axes": [],
+  "recs": [
+   [
+    "Bangers-Regular.ttf",
+    400,
+    "normal"
+   ]
+  ]
+ },
+ "Big Shoulders": {
+  "italFiles": [],
+  "axes": [
+   "opsz",
+   "wght"
+  ],
+  "recs": [
+   [
+    "BigShoulders[opsz,wght].ttf",
+    400,
+    "normal"
+   ]
+  ]
+ },
+ "Boldonse": {
+  "italFiles": [],
+  "axes": [],
+  "recs": [
+   [
+    "Boldonse-Regular.ttf",
+    400,
+    "normal"
+   ]
+  ]
+ },
+ "Bowlby One SC": {
+  "italFiles": [],
+  "axes": [],
+  "recs": [
+   [
+    "BowlbyOneSC-Regular.ttf",
+    400,
+    "normal"
+   ]
+  ]
+ },
+ "Bungee": {
+  "italFiles": [],
+  "axes": [],
+  "recs": [
+   [
+    "Bungee-Regular.ttf",
+    400,
+    "normal"
+   ]
+  ]
+ },
+ "Calistoga": {
+  "italFiles": [],
+  "axes": [],
+  "recs": [
+   [
+    "Calistoga-Regular.ttf",
+    400,
+    "normal"
+   ]
+  ]
+ },
+ "Caprasimo": {
+  "italFiles": [],
+  "axes": [],
+  "recs": [
+   [
+    "Caprasimo-Regular.ttf",
+    400,
+    "normal"
+   ]
+  ]
+ },
+ "Carter One": {
+  "italFiles": [],
+  "axes": [],
+  "recs": [
+   [
+    "CarterOne.ttf",
+    400,
+    "normal"
+   ]
+  ]
+ },
+ "Ceviche One": {
+  "italFiles": [],
+  "axes": [],
+  "recs": [
+   [
+    "CevicheOne-Regular.ttf",
+    400,
+    "normal"
+   ]
+  ]
+ },
+ "Changa One": {
+  "italFiles": [
+   [
+    "ChangaOne-Italic.ttf",
+    400,
+    "italic"
+   ]
+  ],
+  "axes": [],
+  "recs": [
+   [
+    "ChangaOne-Regular.ttf",
+    400,
+    "normal"
+   ],
+   [
+    "ChangaOne-Italic.ttf",
+    400,
+    "italic"
+   ]
+  ]
+ },
+ "Chango": {
+  "italFiles": [],
+  "axes": [],
+  "recs": [
+   [
+    "Chango-Regular.ttf",
+    400,
+    "normal"
+   ]
+  ]
+ },
+ "Coda": {
+  "italFiles": [],
+  "axes": [],
+  "recs": [
+   [
+    "Coda-Regular.ttf",
+    400,
+    "normal"
+   ],
+   [
+    "Coda-ExtraBold.ttf",
+    800,
+    "normal"
+   ]
+  ]
+ },
+ "Dela Gothic One": {
+  "italFiles": [],
+  "axes": [],
+  "recs": [
+   [
+    "DelaGothicOne-Regular.ttf",
+    400,
+    "normal"
+   ]
+  ]
+ },
+ "DynaPuff": {
+  "italFiles": [],
+  "axes": [
+   "wdth",
+   "wght"
+  ],
+  "recs": [
+   [
+    "DynaPuff[wdth,wght].ttf",
+    400,
+    "normal"
+   ]
+  ]
+ },
+ "Germania One": {
+  "italFiles": [],
+  "axes": [],
+  "recs": [
+   [
+    "GermaniaOne-Regular.ttf",
+    400,
+    "normal"
+   ]
+  ]
+ },
+ "Goldman": {
+  "italFiles": [],
+  "axes": [],
+  "recs": [
+   [
+    "Goldman-Regular.ttf",
+    400,
+    "normal"
+   ],
+   [
+    "Goldman-Bold.ttf",
+    700,
+    "normal"
+   ]
+  ]
+ },
+ "Grandstander": {
+  "italFiles": [
+   [
+    "Grandstander-Italic[wght].ttf",
+    400,
+    "italic"
+   ]
+  ],
+  "axes": [
+   "wght"
+  ],
+  "recs": [
+   [
+    "Grandstander[wght].ttf",
+    400,
+    "normal"
+   ],
+   [
+    "Grandstander-Italic[wght].ttf",
+    400,
+    "italic"
+   ]
+  ]
+ },
+ "Grenze Gotisch": {
+  "italFiles": [],
+  "axes": [
+   "wght"
+  ],
+  "recs": [
+   [
+    "GrenzeGotisch[wght].ttf",
+    400,
+    "normal"
+   ]
+  ]
+ },
+ "Knewave": {
+  "italFiles": [],
+  "axes": [],
+  "recs": [
+   [
+    "Knewave-Regular.ttf",
+    400,
+    "normal"
+   ]
+  ]
+ },
+ "Konkhmer Sleokchher": {
+  "italFiles": [],
+  "axes": [],
+  "recs": [
+   [
+    "KonkhmerSleokchher-Regular.ttf",
+    400,
+    "normal"
+   ]
+  ]
+ },
+ "Koulen": {
+  "italFiles": [],
+  "axes": [],
+  "recs": [
+   [
+    "Koulen-Regular.ttf",
+    400,
+    "normal"
+   ]
+  ]
+ },
+ "Lemon": {
+  "italFiles": [],
+  "axes": [],
+  "recs": [
+   [
+    "Lemon-Regular.ttf",
+    400,
+    "normal"
+   ]
+  ]
+ },
+ "Lilita One": {
+  "italFiles": [],
+  "axes": [],
+  "recs": [
+   [
+    "LilitaOne-Regular.ttf",
+    400,
+    "normal"
+   ]
+  ]
+ },
+ "Limelight": {
+  "italFiles": [],
+  "axes": [],
+  "recs": [
+   [
+    "Limelight-Regular.ttf",
+    400,
+    "normal"
+   ]
+  ]
+ },
+ "Oleo Script": {
+  "italFiles": [],
+  "axes": [],
+  "recs": [
+   [
+    "OleoScript-Regular.ttf",
+    400,
+    "normal"
+   ],
+   [
+    "OleoScript-Bold.ttf",
+    700,
+    "normal"
+   ]
+  ]
+ },
+ "Oxanium": {
+  "italFiles": [],
+  "axes": [
+   "wght"
+  ],
+  "recs": [
+   [
+    "Oxanium[wght].ttf",
+    400,
+    "normal"
+   ]
+  ]
+ },
+ "Passion One": {
+  "italFiles": [],
+  "axes": [],
+  "recs": [
+   [
+    "PassionOne-Regular.ttf",
+    400,
+    "normal"
+   ],
+   [
+    "PassionOne-Bold.ttf",
+    700,
+    "normal"
+   ],
+   [
+    "PassionOne-Black.ttf",
+    900,
+    "normal"
+   ]
+  ]
+ },
+ "Phudu": {
+  "italFiles": [],
+  "axes": [
+   "wght"
+  ],
+  "recs": [
+   [
+    "Phudu[wght].ttf",
+    400,
+    "normal"
+   ]
+  ]
+ },
+ "Pirata One": {
+  "italFiles": [],
+  "axes": [],
+  "recs": [
+   [
+    "PirataOne-Regular.ttf",
+    400,
+    "normal"
+   ]
+  ]
+ },
+ "Poetsen One": {
+  "italFiles": [],
+  "axes": [],
+  "recs": [
+   [
+    "PoetsenOne-Regular.ttf",
+    400,
+    "normal"
+   ]
+  ]
+ },
+ "Poller One": {
+  "italFiles": [],
+  "axes": [],
+  "recs": [
+   [
+    "PollerOne.ttf",
+    400,
+    "normal"
+   ]
+  ]
+ },
+ "Protest Revolution": {
+  "italFiles": [],
+  "axes": [],
+  "recs": [
+   [
+    "ProtestRevolution-Regular.ttf",
+    400,
+    "normal"
+   ]
+  ]
+ },
+ "Protest Riot": {
+  "italFiles": [],
+  "axes": [],
+  "recs": [
+   [
+    "ProtestRiot-Regular.ttf",
+    400,
+    "normal"
+   ]
+  ]
+ },
+ "Protest Strike": {
+  "italFiles": [],
+  "axes": [],
+  "recs": [
+   [
+    "ProtestStrike-Regular.ttf",
+    400,
+    "normal"
+   ]
+  ]
+ },
+ "Rammetto One": {
+  "italFiles": [],
+  "axes": [],
+  "recs": [
+   [
+    "RammettoOne-Regular.ttf",
+    400,
+    "normal"
+   ]
+  ]
+ },
+ "Ranchers": {
+  "italFiles": [],
+  "axes": [],
+  "recs": [
+   [
+    "Ranchers-Regular.ttf",
+    400,
+    "normal"
+   ]
+  ]
+ },
+ "Rowdies": {
+  "italFiles": [],
+  "axes": [],
+  "recs": [
+   [
+    "Rowdies-Light.ttf",
+    300,
+    "normal"
+   ],
+   [
+    "Rowdies-Regular.ttf",
+    400,
+    "normal"
+   ],
+   [
+    "Rowdies-Bold.ttf",
+    700,
+    "normal"
+   ]
+  ]
+ },
+ "Rubik Bubbles": {
+  "italFiles": [],
+  "axes": [],
+  "recs": [
+   [
+    "RubikBubbles-Regular.ttf",
+    400,
+    "normal"
+   ]
+  ]
+ },
+ "Rubik Spray Paint": {
+  "italFiles": [],
+  "axes": [],
+  "recs": [
+   [
+    "RubikSprayPaint-Regular.ttf",
+    400,
+    "normal"
+   ]
+  ]
+ },
+ "Shrikhand": {
+  "italFiles": [],
+  "axes": [],
+  "recs": [
+   [
+    "Shrikhand-Regular.ttf",
+    400,
+    "normal"
+   ]
+  ]
+ },
+ "Sigmar One": {
+  "italFiles": [],
+  "axes": [],
+  "recs": [
+   [
+    "SigmarOne-Regular.ttf",
+    400,
+    "normal"
+   ]
+  ]
+ },
+ "Staatliches": {
+  "italFiles": [],
+  "axes": [],
+  "recs": [
+   [
+    "Staatliches-Regular.ttf",
+    400,
+    "normal"
+   ]
+  ]
+ },
+ "Tektur": {
+  "italFiles": [],
+  "axes": [
+   "wdth",
+   "wght"
+  ],
+  "recs": [
+   [
+    "Tektur[wdth,wght].ttf",
+    400,
+    "normal"
+   ]
+  ]
+ },
+ "Tillana": {
+  "italFiles": [],
+  "axes": [],
+  "recs": [
+   [
+    "Tillana-Regular.ttf",
+    400,
+    "normal"
+   ],
+   [
+    "Tillana-Medium.ttf",
+    500,
+    "normal"
+   ],
+   [
+    "Tillana-SemiBold.ttf",
+    600,
+    "normal"
+   ],
+   [
+    "Tillana-Bold.ttf",
+    700,
+    "normal"
+   ],
+   [
+    "Tillana-ExtraBold.ttf",
+    800,
+    "normal"
+   ]
+  ]
+ },
+ "Tilt Warp": {
+  "italFiles": [],
+  "axes": [
+   "XROT",
+   "YROT"
+  ],
+  "recs": [
+   [
+    "TiltWarp[XROT,YROT].ttf",
+    400,
+    "normal"
+   ]
+  ]
+ },
+ "Tourney": {
+  "italFiles": [
+   [
+    "Tourney-Italic[wdth,wght].ttf",
+    400,
+    "italic"
+   ]
+  ],
+  "axes": [
+   "wdth",
+   "wght"
+  ],
+  "recs": [
+   [
+    "Tourney[wdth,wght].ttf",
+    400,
+    "normal"
+   ],
+   [
+    "Tourney-Italic[wdth,wght].ttf",
+    400,
+    "italic"
+   ]
+  ]
+ },
+ "Vina Sans": {
+  "italFiles": [],
+  "axes": [],
+  "recs": [
+   [
+    "VinaSans-Regular.ttf",
+    400,
+    "normal"
+   ]
+  ]
+ },
+ "Afacad Flux": {
+  "italFiles": [],
+  "axes": [
+   "slnt",
+   "wght"
+  ],
+  "recs": [
+   [
+    "AfacadFlux[slnt,wght].ttf",
+    400,
+    "normal"
+   ]
+  ]
+ },
+ "Akshar": {
+  "italFiles": [],
+  "axes": [
+   "wght"
+  ],
+  "recs": [
+   [
+    "Akshar[wght].ttf",
+    400,
+    "normal"
+   ]
+  ]
+ },
+ "Alegreya Sans": {
+  "italFiles": [
+   [
+    "AlegreyaSans-ThinItalic.ttf",
+    100,
+    "italic"
+   ],
+   [
+    "AlegreyaSans-LightItalic.ttf",
+    300,
+    "italic"
+   ],
+   [
+    "AlegreyaSans-Italic.ttf",
+    400,
+    "italic"
+   ],
+   [
+    "AlegreyaSans-MediumItalic.ttf",
+    500,
+    "italic"
+   ],
+   [
+    "AlegreyaSans-BoldItalic.ttf",
+    700,
+    "italic"
+   ],
+   [
+    "AlegreyaSans-ExtraBoldItalic.ttf",
+    800,
+    "italic"
+   ],
+   [
+    "AlegreyaSans-BlackItalic.ttf",
+    900,
+    "italic"
+   ]
+  ],
+  "axes": [],
+  "recs": [
+   [
+    "AlegreyaSans-Thin.ttf",
+    100,
+    "normal"
+   ],
+   [
+    "AlegreyaSans-ThinItalic.ttf",
+    100,
+    "italic"
+   ],
+   [
+    "AlegreyaSans-Light.ttf",
+    300,
+    "normal"
+   ],
+   [
+    "AlegreyaSans-LightItalic.ttf",
+    300,
+    "italic"
+   ],
+   [
+    "AlegreyaSans-Regular.ttf",
+    400,
+    "normal"
+   ],
+   [
+    "AlegreyaSans-Italic.ttf",
+    400,
+    "italic"
+   ],
+   [
+    "AlegreyaSans-Medium.ttf",
+    500,
+    "normal"
+   ],
+   [
+    "AlegreyaSans-MediumItalic.ttf",
+    500,
+    "italic"
+   ],
+   [
+    "AlegreyaSans-Bold.ttf",
+    700,
+    "normal"
+   ],
+   [
+    "AlegreyaSans-BoldItalic.ttf",
+    700,
+    "italic"
+   ],
+   [
+    "AlegreyaSans-ExtraBold.ttf",
+    800,
+    "normal"
+   ],
+   [
+    "AlegreyaSans-ExtraBoldItalic.ttf",
+    800,
+    "italic"
+   ],
+   [
+    "AlegreyaSans-Black.ttf",
+    900,
+    "normal"
+   ],
+   [
+    "AlegreyaSans-BlackItalic.ttf",
+    900,
+    "italic"
+   ]
+  ]
+ },
+ "Alumni Sans": {
+  "italFiles": [
+   [
+    "AlumniSans-Italic[wght].ttf",
+    400,
+    "italic"
+   ]
+  ],
+  "axes": [
+   "wght"
+  ],
+  "recs": [
+   [
+    "AlumniSans[wght].ttf",
+    400,
+    "normal"
+   ],
+   [
+    "AlumniSans-Italic[wght].ttf",
+    400,
+    "italic"
+   ]
+  ]
+ },
+ "Alumni Sans SC": {
+  "italFiles": [
+   [
+    "AlumniSansSC-Italic[wght].ttf",
+    400,
+    "italic"
+   ]
+  ],
+  "axes": [
+   "wght"
+  ],
+  "recs": [
+   [
+    "AlumniSansSC[wght].ttf",
+    400,
+    "normal"
+   ],
+   [
+    "AlumniSansSC-Italic[wght].ttf",
+    400,
+    "italic"
+   ]
+  ]
+ },
+ "Anton": {
+  "italFiles": [],
+  "axes": [],
+  "recs": [
+   [
+    "Anton-Regular.ttf",
+    400,
+    "normal"
+   ]
+  ]
+ },
+ "Anton SC": {
+  "italFiles": [],
+  "axes": [],
+  "recs": [
+   [
+    "AntonSC-Regular.ttf",
+    400,
+    "normal"
+   ]
+  ]
+ },
+ "Antonio": {
+  "italFiles": [],
+  "axes": [
+   "wght"
+  ],
+  "recs": [
+   [
+    "Antonio[wght].ttf",
+    400,
+    "normal"
+   ]
+  ]
+ },
+ "Archivo Black": {
+  "italFiles": [],
+  "axes": [],
+  "recs": [
+   [
+    "ArchivoBlack-Regular.ttf",
+    400,
+    "normal"
+   ]
+  ]
+ },
+ "Asap Condensed": {
+  "italFiles": [
+   [
+    "AsapCondensed-ExtraLightItalic.ttf",
+    200,
+    "italic"
+   ],
+   [
+    "AsapCondensed-LightItalic.ttf",
+    300,
+    "italic"
+   ],
+   [
+    "AsapCondensed-Italic.ttf",
+    400,
+    "italic"
+   ],
+   [
+    "AsapCondensed-MediumItalic.ttf",
+    500,
+    "italic"
+   ],
+   [
+    "AsapCondensed-SemiBoldItalic.ttf",
+    600,
+    "italic"
+   ],
+   [
+    "AsapCondensed-BoldItalic.ttf",
+    700,
+    "italic"
+   ],
+   [
+    "AsapCondensed-ExtraBoldItalic.ttf",
+    800,
+    "italic"
+   ],
+   [
+    "AsapCondensed-BlackItalic.ttf",
+    900,
+    "italic"
+   ]
+  ],
+  "axes": [],
+  "recs": [
+   [
+    "AsapCondensed-ExtraLight.ttf",
+    200,
+    "normal"
+   ],
+   [
+    "AsapCondensed-ExtraLightItalic.ttf",
+    200,
+    "italic"
+   ],
+   [
+    "AsapCondensed-Light.ttf",
+    300,
+    "normal"
+   ],
+   [
+    "AsapCondensed-LightItalic.ttf",
+    300,
+    "italic"
+   ],
+   [
+    "AsapCondensed-Regular.ttf",
+    400,
+    "normal"
+   ],
+   [
+    "AsapCondensed-Italic.ttf",
+    400,
+    "italic"
+   ],
+   [
+    "AsapCondensed-Medium.ttf",
+    500,
+    "normal"
+   ],
+   [
+    "AsapCondensed-MediumItalic.ttf",
+    500,
+    "italic"
+   ],
+   [
+    "AsapCondensed-SemiBold.ttf",
+    600,
+    "normal"
+   ],
+   [
+    "AsapCondensed-SemiBoldItalic.ttf",
+    600,
+    "italic"
+   ],
+   [
+    "AsapCondensed-Bold.ttf",
+    700,
+    "normal"
+   ],
+   [
+    "AsapCondensed-BoldItalic.ttf",
+    700,
+    "italic"
+   ],
+   [
+    "AsapCondensed-ExtraBold.ttf",
+    800,
+    "normal"
+   ],
+   [
+    "AsapCondensed-ExtraBoldItalic.ttf",
+    800,
+    "italic"
+   ],
+   [
+    "AsapCondensed-Black.ttf",
+    900,
+    "normal"
+   ],
+   [
+    "AsapCondensed-BlackItalic.ttf",
+    900,
+    "italic"
+   ]
+  ]
+ },
+ "Barlow": {
+  "italFiles": [
+   [
+    "Barlow-ThinItalic.ttf",
+    100,
+    "italic"
+   ],
+   [
+    "Barlow-ExtraLightItalic.ttf",
+    200,
+    "italic"
+   ],
+   [
+    "Barlow-LightItalic.ttf",
+    300,
+    "italic"
+   ],
+   [
+    "Barlow-Italic.ttf",
+    400,
+    "italic"
+   ],
+   [
+    "Barlow-MediumItalic.ttf",
+    500,
+    "italic"
+   ],
+   [
+    "Barlow-SemiBoldItalic.ttf",
+    600,
+    "italic"
+   ],
+   [
+    "Barlow-BoldItalic.ttf",
+    700,
+    "italic"
+   ],
+   [
+    "Barlow-ExtraBoldItalic.ttf",
+    800,
+    "italic"
+   ],
+   [
+    "Barlow-BlackItalic.ttf",
+    900,
+    "italic"
+   ]
+  ],
+  "axes": [],
+  "recs": [
+   [
+    "Barlow-Thin.ttf",
+    100,
+    "normal"
+   ],
+   [
+    "Barlow-ThinItalic.ttf",
+    100,
+    "italic"
+   ],
+   [
+    "Barlow-ExtraLight.ttf",
+    200,
+    "normal"
+   ],
+   [
+    "Barlow-ExtraLightItalic.ttf",
+    200,
+    "italic"
+   ],
+   [
+    "Barlow-Light.ttf",
+    300,
+    "normal"
+   ],
+   [
+    "Barlow-LightItalic.ttf",
+    300,
+    "italic"
+   ],
+   [
+    "Barlow-Regular.ttf",
+    400,
+    "normal"
+   ],
+   [
+    "Barlow-Italic.ttf",
+    400,
+    "italic"
+   ],
+   [
+    "Barlow-Medium.ttf",
+    500,
+    "normal"
+   ],
+   [
+    "Barlow-MediumItalic.ttf",
+    500,
+    "italic"
+   ],
+   [
+    "Barlow-SemiBold.ttf",
+    600,
+    "normal"
+   ],
+   [
+    "Barlow-SemiBoldItalic.ttf",
+    600,
+    "italic"
+   ],
+   [
+    "Barlow-Bold.ttf",
+    700,
+    "normal"
+   ],
+   [
+    "Barlow-BoldItalic.ttf",
+    700,
+    "italic"
+   ],
+   [
+    "Barlow-ExtraBold.ttf",
+    800,
+    "normal"
+   ],
+   [
+    "Barlow-ExtraBoldItalic.ttf",
+    800,
+    "italic"
+   ],
+   [
+    "Barlow-Black.ttf",
+    900,
+    "normal"
+   ],
+   [
+    "Barlow-BlackItalic.ttf",
+    900,
+    "italic"
+   ]
+  ]
+ },
+ "Barlow Condensed": {
+  "italFiles": [
+   [
+    "BarlowCondensed-ThinItalic.ttf",
+    100,
+    "italic"
+   ],
+   [
+    "BarlowCondensed-ExtraLightItalic.ttf",
+    200,
+    "italic"
+   ],
+   [
+    "BarlowCondensed-LightItalic.ttf",
+    300,
+    "italic"
+   ],
+   [
+    "BarlowCondensed-Italic.ttf",
+    400,
+    "italic"
+   ],
+   [
+    "BarlowCondensed-MediumItalic.ttf",
+    500,
+    "italic"
+   ],
+   [
+    "BarlowCondensed-SemiBoldItalic.ttf",
+    600,
+    "italic"
+   ],
+   [
+    "BarlowCondensed-BoldItalic.ttf",
+    700,
+    "italic"
+   ],
+   [
+    "BarlowCondensed-ExtraBoldItalic.ttf",
+    800,
+    "italic"
+   ],
+   [
+    "BarlowCondensed-BlackItalic.ttf",
+    900,
+    "italic"
+   ]
+  ],
+  "axes": [],
+  "recs": [
+   [
+    "BarlowCondensed-Thin.ttf",
+    100,
+    "normal"
+   ],
+   [
+    "BarlowCondensed-ThinItalic.ttf",
+    100,
+    "italic"
+   ],
+   [
+    "BarlowCondensed-ExtraLight.ttf",
+    200,
+    "normal"
+   ],
+   [
+    "BarlowCondensed-ExtraLightItalic.ttf",
+    200,
+    "italic"
+   ],
+   [
+    "BarlowCondensed-Light.ttf",
+    300,
+    "normal"
+   ],
+   [
+    "BarlowCondensed-LightItalic.ttf",
+    300,
+    "italic"
+   ],
+   [
+    "BarlowCondensed-Regular.ttf",
+    400,
+    "normal"
+   ],
+   [
+    "BarlowCondensed-Italic.ttf",
+    400,
+    "italic"
+   ],
+   [
+    "BarlowCondensed-Medium.ttf",
+    500,
+    "normal"
+   ],
+   [
+    "BarlowCondensed-MediumItalic.ttf",
+    500,
+    "italic"
+   ],
+   [
+    "BarlowCondensed-SemiBold.ttf",
+    600,
+    "normal"
+   ],
+   [
+    "BarlowCondensed-SemiBoldItalic.ttf",
+    600,
+    "italic"
+   ],
+   [
+    "BarlowCondensed-Bold.ttf",
+    700,
+    "normal"
+   ],
+   [
+    "BarlowCondensed-BoldItalic.ttf",
+    700,
+    "italic"
+   ],
+   [
+    "BarlowCondensed-ExtraBold.ttf",
+    800,
+    "normal"
+   ],
+   [
+    "BarlowCondensed-ExtraBoldItalic.ttf",
+    800,
+    "italic"
+   ],
+   [
+    "BarlowCondensed-Black.ttf",
+    900,
+    "normal"
+   ],
+   [
+    "BarlowCondensed-BlackItalic.ttf",
+    900,
+    "italic"
+   ]
+  ]
+ },
+ "Barlow Semi Condensed": {
+  "italFiles": [
+   [
+    "BarlowSemiCondensed-ThinItalic.ttf",
+    100,
+    "italic"
+   ],
+   [
+    "BarlowSemiCondensed-ExtraLightItalic.ttf",
+    200,
+    "italic"
+   ],
+   [
+    "BarlowSemiCondensed-LightItalic.ttf",
+    300,
+    "italic"
+   ],
+   [
+    "BarlowSemiCondensed-Italic.ttf",
+    400,
+    "italic"
+   ],
+   [
+    "BarlowSemiCondensed-MediumItalic.ttf",
+    500,
+    "italic"
+   ],
+   [
+    "BarlowSemiCondensed-SemiBoldItalic.ttf",
+    600,
+    "italic"
+   ],
+   [
+    "BarlowSemiCondensed-BoldItalic.ttf",
+    700,
+    "italic"
+   ],
+   [
+    "BarlowSemiCondensed-ExtraBoldItalic.ttf",
+    800,
+    "italic"
+   ],
+   [
+    "BarlowSemiCondensed-BlackItalic.ttf",
+    900,
+    "italic"
+   ]
+  ],
+  "axes": [],
+  "recs": [
+   [
+    "BarlowSemiCondensed-Thin.ttf",
+    100,
+    "normal"
+   ],
+   [
+    "BarlowSemiCondensed-ThinItalic.ttf",
+    100,
+    "italic"
+   ],
+   [
+    "BarlowSemiCondensed-ExtraLight.ttf",
+    200,
+    "normal"
+   ],
+   [
+    "BarlowSemiCondensed-ExtraLightItalic.ttf",
+    200,
+    "italic"
+   ],
+   [
+    "BarlowSemiCondensed-Light.ttf",
+    300,
+    "normal"
+   ],
+   [
+    "BarlowSemiCondensed-LightItalic.ttf",
+    300,
+    "italic"
+   ],
+   [
+    "BarlowSemiCondensed-Regular.ttf",
+    400,
+    "normal"
+   ],
+   [
+    "BarlowSemiCondensed-Italic.ttf",
+    400,
+    "italic"
+   ],
+   [
+    "BarlowSemiCondensed-Medium.ttf",
+    500,
+    "normal"
+   ],
+   [
+    "BarlowSemiCondensed-MediumItalic.ttf",
+    500,
+    "italic"
+   ],
+   [
+    "BarlowSemiCondensed-SemiBold.ttf",
+    600,
+    "normal"
+   ],
+   [
+    "BarlowSemiCondensed-SemiBoldItalic.ttf",
+    600,
+    "italic"
+   ],
+   [
+    "BarlowSemiCondensed-Bold.ttf",
+    700,
+    "normal"
+   ],
+   [
+    "BarlowSemiCondensed-BoldItalic.ttf",
+    700,
+    "italic"
+   ],
+   [
+    "BarlowSemiCondensed-ExtraBold.ttf",
+    800,
+    "normal"
+   ],
+   [
+    "BarlowSemiCondensed-ExtraBoldItalic.ttf",
+    800,
+    "italic"
+   ],
+   [
+    "BarlowSemiCondensed-Black.ttf",
+    900,
+    "normal"
+   ],
+   [
+    "BarlowSemiCondensed-BlackItalic.ttf",
+    900,
+    "italic"
+   ]
+  ]
+ },
+ "BBH Bartle": {
+  "italFiles": [],
+  "axes": [],
+  "recs": [
+   [
+    "BBHBartle-Regular.ttf",
+    400,
+    "normal"
+   ]
+  ]
+ },
+ "BBH Bogle": {
+  "italFiles": [],
+  "axes": [],
+  "recs": [
+   [
+    "BBHBogle-Regular.ttf",
+    400,
+    "normal"
+   ]
+  ]
+ },
+ "BBH Hegarty": {
+  "italFiles": [],
+  "axes": [],
+  "recs": [
+   [
+    "BBHHegarty-Regular.ttf",
+    400,
+    "normal"
+   ]
+  ]
+ },
+ "Bebas Neue": {
+  "italFiles": [],
+  "axes": [],
+  "recs": [
+   [
+    "BebasNeue-Regular.ttf",
+    400,
+    "normal"
+   ]
+  ]
+ },
+ "Black Han Sans": {
+  "italFiles": [],
+  "axes": [],
+  "recs": [
+   [
+    "BlackHanSans-Regular.ttf",
+    400,
+    "normal"
+   ]
+  ]
+ },
+ "Cairo": {
+  "italFiles": [],
+  "axes": [
+   "slnt",
+   "wght"
+  ],
+  "recs": [
+   [
+    "Cairo[slnt,wght].ttf",
+    400,
+    "normal"
+   ]
+  ]
+ },
+ "Changa": {
+  "italFiles": [],
+  "axes": [
+   "wght"
+  ],
+  "recs": [
+   [
+    "Changa[wght].ttf",
+    400,
+    "normal"
+   ]
+  ]
+ },
+ "Commissioner": {
+  "italFiles": [],
+  "axes": [
+   "FLAR",
+   "VOLM",
+   "slnt",
+   "wght"
+  ],
+  "recs": [
+   [
+    "Commissioner[FLAR,VOLM,slnt,wght].ttf",
+    400,
+    "normal"
+   ]
+  ]
+ },
+ "DM Sans": {
+  "italFiles": [
+   [
+    "DMSans-Italic[opsz,wght].ttf",
+    400,
+    "italic"
+   ]
+  ],
+  "axes": [
+   "opsz",
+   "wght"
+  ],
+  "recs": [
+   [
+    "DMSans[opsz,wght].ttf",
+    400,
+    "normal"
+   ],
+   [
+    "DMSans-Italic[opsz,wght].ttf",
+    400,
+    "italic"
+   ]
+  ]
+ },
+ "Encode Sans Condensed": {
+  "italFiles": [],
+  "axes": [],
+  "recs": [
+   [
+    "EncodeSansCondensed-Thin.ttf",
+    100,
+    "normal"
+   ],
+   [
+    "EncodeSansCondensed-ExtraLight.ttf",
+    200,
+    "normal"
+   ],
+   [
+    "EncodeSansCondensed-Light.ttf",
+    300,
+    "normal"
+   ],
+   [
+    "EncodeSansCondensed-Regular.ttf",
+    400,
+    "normal"
+   ],
+   [
+    "EncodeSansCondensed-Medium.ttf",
+    500,
+    "normal"
+   ],
+   [
+    "EncodeSansCondensed-SemiBold.ttf",
+    600,
+    "normal"
+   ],
+   [
+    "EncodeSansCondensed-Bold.ttf",
+    700,
+    "normal"
+   ],
+   [
+    "EncodeSansCondensed-ExtraBold.ttf",
+    800,
+    "normal"
+   ],
+   [
+    "EncodeSansCondensed-Black.ttf",
+    900,
+    "normal"
+   ]
+  ]
+ },
+ "Encode Sans Semi Expanded": {
+  "italFiles": [],
+  "axes": [],
+  "recs": [
+   [
+    "EncodeSansSemiExpanded-Thin.ttf",
+    100,
+    "normal"
+   ],
+   [
+    "EncodeSansSemiExpanded-ExtraLight.ttf",
+    200,
+    "normal"
+   ],
+   [
+    "EncodeSansSemiExpanded-Light.ttf",
+    300,
+    "normal"
+   ],
+   [
+    "EncodeSansSemiExpanded-Regular.ttf",
+    400,
+    "normal"
+   ],
+   [
+    "EncodeSansSemiExpanded-Medium.ttf",
+    500,
+    "normal"
+   ],
+   [
+    "EncodeSansSemiExpanded-SemiBold.ttf",
+    600,
+    "normal"
+   ],
+   [
+    "EncodeSansSemiExpanded-Bold.ttf",
+    700,
+    "normal"
+   ],
+   [
+    "EncodeSansSemiExpanded-ExtraBold.ttf",
+    800,
+    "normal"
+   ],
+   [
+    "EncodeSansSemiExpanded-Black.ttf",
+    900,
+    "normal"
+   ]
+  ]
+ },
+ "Exo": {
+  "italFiles": [
+   [
+    "Exo-Italic[wght].ttf",
+    400,
+    "italic"
+   ]
+  ],
+  "axes": [
+   "wght"
+  ],
+  "recs": [
+   [
+    "Exo[wght].ttf",
+    400,
+    "normal"
+   ],
+   [
+    "Exo-Italic[wght].ttf",
+    400,
+    "italic"
+   ]
+  ]
+ },
+ "Exo 2": {
+  "italFiles": [
+   [
+    "Exo2-Italic[wght].ttf",
+    400,
+    "italic"
+   ]
+  ],
+  "axes": [
+   "wght"
+  ],
+  "recs": [
+   [
+    "Exo2[wght].ttf",
+    400,
+    "normal"
+   ],
+   [
+    "Exo2-Italic[wght].ttf",
+    400,
+    "italic"
+   ]
+  ]
+ },
+ "Farro": {
+  "italFiles": [],
+  "axes": [],
+  "recs": [
+   [
+    "Farro-Light.ttf",
+    300,
+    "normal"
+   ],
+   [
+    "Farro-Regular.ttf",
+    400,
+    "normal"
+   ],
+   [
+    "Farro-Medium.ttf",
+    500,
+    "normal"
+   ],
+   [
+    "Farro-Bold.ttf",
+    700,
+    "normal"
+   ]
+  ]
+ },
+ "Finlandica": {
+  "italFiles": [
+   [
+    "Finlandica-Italic[wght].ttf",
+    400,
+    "italic"
+   ]
+  ],
+  "axes": [
+   "wght"
+  ],
+  "recs": [
+   [
+    "Finlandica[wght].ttf",
+    400,
+    "normal"
+   ],
+   [
+    "Finlandica-Italic[wght].ttf",
+    400,
+    "italic"
+   ]
+  ]
+ },
+ "Fira Sans": {
+  "italFiles": [
+   [
+    "FiraSans-ThinItalic.ttf",
+    100,
+    "italic"
+   ],
+   [
+    "FiraSans-ExtraLightItalic.ttf",
+    200,
+    "italic"
+   ],
+   [
+    "FiraSans-LightItalic.ttf",
+    300,
+    "italic"
+   ],
+   [
+    "FiraSans-Italic.ttf",
+    400,
+    "italic"
+   ],
+   [
+    "FiraSans-MediumItalic.ttf",
+    500,
+    "italic"
+   ],
+   [
+    "FiraSans-SemiBoldItalic.ttf",
+    600,
+    "italic"
+   ],
+   [
+    "FiraSans-BoldItalic.ttf",
+    700,
+    "italic"
+   ],
+   [
+    "FiraSans-ExtraBoldItalic.ttf",
+    800,
+    "italic"
+   ],
+   [
+    "FiraSans-BlackItalic.ttf",
+    900,
+    "italic"
+   ]
+  ],
+  "axes": [],
+  "recs": [
+   [
+    "FiraSans-Thin.ttf",
+    100,
+    "normal"
+   ],
+   [
+    "FiraSans-ThinItalic.ttf",
+    100,
+    "italic"
+   ],
+   [
+    "FiraSans-ExtraLight.ttf",
+    200,
+    "normal"
+   ],
+   [
+    "FiraSans-ExtraLightItalic.ttf",
+    200,
+    "italic"
+   ],
+   [
+    "FiraSans-Light.ttf",
+    300,
+    "normal"
+   ],
+   [
+    "FiraSans-LightItalic.ttf",
+    300,
+    "italic"
+   ],
+   [
+    "FiraSans-Regular.ttf",
+    400,
+    "normal"
+   ],
+   [
+    "FiraSans-Italic.ttf",
+    400,
+    "italic"
+   ],
+   [
+    "FiraSans-Medium.ttf",
+    500,
+    "normal"
+   ],
+   [
+    "FiraSans-MediumItalic.ttf",
+    500,
+    "italic"
+   ],
+   [
+    "FiraSans-SemiBold.ttf",
+    600,
+    "normal"
+   ],
+   [
+    "FiraSans-SemiBoldItalic.ttf",
+    600,
+    "italic"
+   ],
+   [
+    "FiraSans-Bold.ttf",
+    700,
+    "normal"
+   ],
+   [
+    "FiraSans-BoldItalic.ttf",
+    700,
+    "italic"
+   ],
+   [
+    "FiraSans-ExtraBold.ttf",
+    800,
+    "normal"
+   ],
+   [
+    "FiraSans-ExtraBoldItalic.ttf",
+    800,
+    "italic"
+   ],
+   [
+    "FiraSans-Black.ttf",
+    900,
+    "normal"
+   ],
+   [
+    "FiraSans-BlackItalic.ttf",
+    900,
+    "italic"
+   ]
+  ]
+ },
+ "Fira Sans Condensed": {
+  "italFiles": [
+   [
+    "FiraSansCondensed-ThinItalic.ttf",
+    100,
+    "italic"
+   ],
+   [
+    "FiraSansCondensed-ExtraLightItalic.ttf",
+    200,
+    "italic"
+   ],
+   [
+    "FiraSansCondensed-LightItalic.ttf",
+    300,
+    "italic"
+   ],
+   [
+    "FiraSansCondensed-Italic.ttf",
+    400,
+    "italic"
+   ],
+   [
+    "FiraSansCondensed-MediumItalic.ttf",
+    500,
+    "italic"
+   ],
+   [
+    "FiraSansCondensed-SemiBoldItalic.ttf",
+    600,
+    "italic"
+   ],
+   [
+    "FiraSansCondensed-BoldItalic.ttf",
+    700,
+    "italic"
+   ],
+   [
+    "FiraSansCondensed-ExtraBoldItalic.ttf",
+    800,
+    "italic"
+   ],
+   [
+    "FiraSansCondensed-BlackItalic.ttf",
+    900,
+    "italic"
+   ]
+  ],
+  "axes": [],
+  "recs": [
+   [
+    "FiraSansCondensed-Thin.ttf",
+    100,
+    "normal"
+   ],
+   [
+    "FiraSansCondensed-ThinItalic.ttf",
+    100,
+    "italic"
+   ],
+   [
+    "FiraSansCondensed-ExtraLight.ttf",
+    200,
+    "normal"
+   ],
+   [
+    "FiraSansCondensed-ExtraLightItalic.ttf",
+    200,
+    "italic"
+   ],
+   [
+    "FiraSansCondensed-Light.ttf",
+    300,
+    "normal"
+   ],
+   [
+    "FiraSansCondensed-LightItalic.ttf",
+    300,
+    "italic"
+   ],
+   [
+    "FiraSansCondensed-Regular.ttf",
+    400,
+    "normal"
+   ],
+   [
+    "FiraSansCondensed-Italic.ttf",
+    400,
+    "italic"
+   ],
+   [
+    "FiraSansCondensed-Medium.ttf",
+    500,
+    "normal"
+   ],
+   [
+    "FiraSansCondensed-MediumItalic.ttf",
+    500,
+    "italic"
+   ],
+   [
+    "FiraSansCondensed-SemiBold.ttf",
+    600,
+    "normal"
+   ],
+   [
+    "FiraSansCondensed-SemiBoldItalic.ttf",
+    600,
+    "italic"
+   ],
+   [
+    "FiraSansCondensed-Bold.ttf",
+    700,
+    "normal"
+   ],
+   [
+    "FiraSansCondensed-BoldItalic.ttf",
+    700,
+    "italic"
+   ],
+   [
+    "FiraSansCondensed-ExtraBold.ttf",
+    800,
+    "normal"
+   ],
+   [
+    "FiraSansCondensed-ExtraBoldItalic.ttf",
+    800,
+    "italic"
+   ],
+   [
+    "FiraSansCondensed-Black.ttf",
+    900,
+    "normal"
+   ],
+   [
+    "FiraSansCondensed-BlackItalic.ttf",
+    900,
+    "italic"
+   ]
+  ]
+ },
+ "Fira Sans Extra Condensed": {
+  "italFiles": [
+   [
+    "FiraSansExtraCondensed-ThinItalic.ttf",
+    100,
+    "italic"
+   ],
+   [
+    "FiraSansExtraCondensed-ExtraLightItalic.ttf",
+    200,
+    "italic"
+   ],
+   [
+    "FiraSansExtraCondensed-LightItalic.ttf",
+    300,
+    "italic"
+   ],
+   [
+    "FiraSansExtraCondensed-Italic.ttf",
+    400,
+    "italic"
+   ],
+   [
+    "FiraSansExtraCondensed-MediumItalic.ttf",
+    500,
+    "italic"
+   ],
+   [
+    "FiraSansExtraCondensed-SemiBoldItalic.ttf",
+    600,
+    "italic"
+   ],
+   [
+    "FiraSansExtraCondensed-BoldItalic.ttf",
+    700,
+    "italic"
+   ],
+   [
+    "FiraSansExtraCondensed-ExtraBoldItalic.ttf",
+    800,
+    "italic"
+   ],
+   [
+    "FiraSansExtraCondensed-BlackItalic.ttf",
+    900,
+    "italic"
+   ]
+  ],
+  "axes": [],
+  "recs": [
+   [
+    "FiraSansExtraCondensed-Thin.ttf",
+    100,
+    "normal"
+   ],
+   [
+    "FiraSansExtraCondensed-ThinItalic.ttf",
+    100,
+    "italic"
+   ],
+   [
+    "FiraSansExtraCondensed-ExtraLight.ttf",
+    200,
+    "normal"
+   ],
+   [
+    "FiraSansExtraCondensed-ExtraLightItalic.ttf",
+    200,
+    "italic"
+   ],
+   [
+    "FiraSansExtraCondensed-Light.ttf",
+    300,
+    "normal"
+   ],
+   [
+    "FiraSansExtraCondensed-LightItalic.ttf",
+    300,
+    "italic"
+   ],
+   [
+    "FiraSansExtraCondensed-Regular.ttf",
+    400,
+    "normal"
+   ],
+   [
+    "FiraSansExtraCondensed-Italic.ttf",
+    400,
+    "italic"
+   ],
+   [
+    "FiraSansExtraCondensed-Medium.ttf",
+    500,
+    "normal"
+   ],
+   [
+    "FiraSansExtraCondensed-MediumItalic.ttf",
+    500,
+    "italic"
+   ],
+   [
+    "FiraSansExtraCondensed-SemiBold.ttf",
+    600,
+    "normal"
+   ],
+   [
+    "FiraSansExtraCondensed-SemiBoldItalic.ttf",
+    600,
+    "italic"
+   ],
+   [
+    "FiraSansExtraCondensed-Bold.ttf",
+    700,
+    "normal"
+   ],
+   [
+    "FiraSansExtraCondensed-BoldItalic.ttf",
+    700,
+    "italic"
+   ],
+   [
+    "FiraSansExtraCondensed-ExtraBold.ttf",
+    800,
+    "normal"
+   ],
+   [
+    "FiraSansExtraCondensed-ExtraBoldItalic.ttf",
+    800,
+    "italic"
+   ],
+   [
+    "FiraSansExtraCondensed-Black.ttf",
+    900,
+    "normal"
+   ],
+   [
+    "FiraSansExtraCondensed-BlackItalic.ttf",
+    900,
+    "italic"
+   ]
+  ]
+ },
+ "Funnel Sans": {
+  "italFiles": [
+   [
+    "FunnelSans-Italic[wght].ttf",
+    400,
+    "italic"
+   ]
+  ],
+  "axes": [
+   "wght"
+  ],
+  "recs": [
+   [
+    "FunnelSans[wght].ttf",
+    400,
+    "normal"
+   ],
+   [
+    "FunnelSans-Italic[wght].ttf",
+    400,
+    "italic"
+   ]
+  ]
+ },
+ "Geist": {
+  "italFiles": [
+   [
+    "Geist-Italic[wght].ttf",
+    400,
+    "italic"
+   ]
+  ],
+  "axes": [
+   "wght"
+  ],
+  "recs": [
+   [
+    "Geist[wght].ttf",
+    400,
+    "normal"
+   ],
+   [
+    "Geist-Italic[wght].ttf",
+    400,
+    "italic"
+   ]
+  ]
+ },
+ "Gemunu Libre": {
+  "italFiles": [],
+  "axes": [
+   "wght"
+  ],
+  "recs": [
+   [
+    "GemunuLibre[wght].ttf",
+    400,
+    "normal"
+   ]
+  ]
+ },
+ "Genos": {
+  "italFiles": [
+   [
+    "Genos-Italic[wght].ttf",
+    400,
+    "italic"
+   ]
+  ],
+  "axes": [
+   "wght"
+  ],
+  "recs": [
+   [
+    "Genos[wght].ttf",
+    400,
+    "normal"
+   ],
+   [
+    "Genos-Italic[wght].ttf",
+    400,
+    "italic"
+   ]
+  ]
+ },
+ "Georama": {
+  "italFiles": [
+   [
+    "Georama-Italic[wdth,wght].ttf",
+    400,
+    "italic"
+   ]
+  ],
+  "axes": [
+   "wdth",
+   "wght"
+  ],
+  "recs": [
+   [
+    "Georama[wdth,wght].ttf",
+    400,
+    "normal"
+   ],
+   [
+    "Georama-Italic[wdth,wght].ttf",
+    400,
+    "italic"
+   ]
+  ]
+ },
+ "Golos Text": {
+  "italFiles": [],
+  "axes": [
+   "wght"
+  ],
+  "recs": [
+   [
+    "GolosText[wght].ttf",
+    400,
+    "normal"
+   ]
+  ]
+ },
+ "Hubot Sans": {
+  "italFiles": [
+   [
+    "HubotSans-Italic[wdth,wght].ttf",
+    400,
+    "italic"
+   ]
+  ],
+  "axes": [
+   "wdth",
+   "wght"
+  ],
+  "recs": [
+   [
+    "HubotSans[wdth,wght].ttf",
+    400,
+    "normal"
+   ],
+   [
+    "HubotSans-Italic[wdth,wght].ttf",
+    400,
+    "italic"
+   ]
+  ]
+ },
+ "Inter": {
+  "italFiles": [
+   [
+    "Inter-Italic[opsz,wght].ttf",
+    400,
+    "italic"
+   ]
+  ],
+  "axes": [
+   "opsz",
+   "wght"
+  ],
+  "recs": [
+   [
+    "Inter[opsz,wght].ttf",
+    400,
+    "normal"
+   ],
+   [
+    "Inter-Italic[opsz,wght].ttf",
+    400,
+    "italic"
+   ]
+  ]
+ },
+ "Jaro": {
+  "italFiles": [],
+  "axes": [
+   "opsz"
+  ],
+  "recs": [
+   [
+    "Jaro[opsz].ttf",
+    400,
+    "normal"
+   ]
+  ]
+ },
+ "Kanit": {
+  "italFiles": [
+   [
+    "Kanit-ThinItalic.ttf",
+    100,
+    "italic"
+   ],
+   [
+    "Kanit-ExtraLightItalic.ttf",
+    200,
+    "italic"
+   ],
+   [
+    "Kanit-LightItalic.ttf",
+    300,
+    "italic"
+   ],
+   [
+    "Kanit-Italic.ttf",
+    400,
+    "italic"
+   ],
+   [
+    "Kanit-MediumItalic.ttf",
+    500,
+    "italic"
+   ],
+   [
+    "Kanit-SemiBoldItalic.ttf",
+    600,
+    "italic"
+   ],
+   [
+    "Kanit-BoldItalic.ttf",
+    700,
+    "italic"
+   ],
+   [
+    "Kanit-ExtraBoldItalic.ttf",
+    800,
+    "italic"
+   ],
+   [
+    "Kanit-BlackItalic.ttf",
+    900,
+    "italic"
+   ]
+  ],
+  "axes": [],
+  "recs": [
+   [
+    "Kanit-Thin.ttf",
+    100,
+    "normal"
+   ],
+   [
+    "Kanit-ThinItalic.ttf",
+    100,
+    "italic"
+   ],
+   [
+    "Kanit-ExtraLight.ttf",
+    200,
+    "normal"
+   ],
+   [
+    "Kanit-ExtraLightItalic.ttf",
+    200,
+    "italic"
+   ],
+   [
+    "Kanit-Light.ttf",
+    300,
+    "normal"
+   ],
+   [
+    "Kanit-LightItalic.ttf",
+    300,
+    "italic"
+   ],
+   [
+    "Kanit-Regular.ttf",
+    400,
+    "normal"
+   ],
+   [
+    "Kanit-Italic.ttf",
+    400,
+    "italic"
+   ],
+   [
+    "Kanit-Medium.ttf",
+    500,
+    "normal"
+   ],
+   [
+    "Kanit-MediumItalic.ttf",
+    500,
+    "italic"
+   ],
+   [
+    "Kanit-SemiBold.ttf",
+    600,
+    "normal"
+   ],
+   [
+    "Kanit-SemiBoldItalic.ttf",
+    600,
+    "italic"
+   ],
+   [
+    "Kanit-Bold.ttf",
+    700,
+    "normal"
+   ],
+   [
+    "Kanit-BoldItalic.ttf",
+    700,
+    "italic"
+   ],
+   [
+    "Kanit-ExtraBold.ttf",
+    800,
+    "normal"
+   ],
+   [
+    "Kanit-ExtraBoldItalic.ttf",
+    800,
+    "italic"
+   ],
+   [
+    "Kanit-Black.ttf",
+    900,
+    "normal"
+   ],
+   [
+    "Kanit-BlackItalic.ttf",
+    900,
+    "italic"
+   ]
+  ]
+ },
+ "Khand": {
+  "italFiles": [],
+  "axes": [],
+  "recs": [
+   [
+    "Khand-Light.ttf",
+    300,
+    "normal"
+   ],
+   [
+    "Khand-Regular.ttf",
+    400,
+    "normal"
+   ],
+   [
+    "Khand-Medium.ttf",
+    500,
+    "normal"
+   ],
+   [
+    "Khand-SemiBold.ttf",
+    600,
+    "normal"
+   ],
+   [
+    "Khand-Bold.ttf",
+    700,
+    "normal"
+   ]
+  ]
+ },
+ "League Gothic": {
+  "italFiles": [],
+  "axes": [
+   "wdth"
+  ],
+  "recs": [
+   [
+    "LeagueGothic[wdth].ttf",
+    400,
+    "normal"
+   ]
+  ]
+ },
+ "League Spartan": {
+  "italFiles": [],
+  "axes": [
+   "wght"
+  ],
+  "recs": [
+   [
+    "LeagueSpartan[wght].ttf",
+    400,
+    "normal"
+   ]
+  ]
+ },
+ "Libre Franklin": {
+  "italFiles": [
+   [
+    "LibreFranklin-Italic[wght].ttf",
+    400,
+    "italic"
+   ]
+  ],
+  "axes": [
+   "wght"
+  ],
+  "recs": [
+   [
+    "LibreFranklin[wght].ttf",
+    400,
+    "normal"
+   ],
+   [
+    "LibreFranklin-Italic[wght].ttf",
+    400,
+    "italic"
+   ]
+  ]
+ },
+ "Mitr": {
+  "italFiles": [],
+  "axes": [],
+  "recs": [
+   [
+    "Mitr-ExtraLight.ttf",
+    200,
+    "normal"
+   ],
+   [
+    "Mitr-Light.ttf",
+    300,
+    "normal"
+   ],
+   [
+    "Mitr-Regular.ttf",
+    400,
+    "normal"
+   ],
+   [
+    "Mitr-Medium.ttf",
+    500,
+    "normal"
+   ],
+   [
+    "Mitr-SemiBold.ttf",
+    600,
+    "normal"
+   ],
+   [
+    "Mitr-Bold.ttf",
+    700,
+    "normal"
+   ]
+  ]
+ },
+ "Moderustic": {
+  "italFiles": [],
+  "axes": [
+   "wght"
+  ],
+  "recs": [
+   [
+    "Moderustic[wght].ttf",
+    400,
+    "normal"
+   ]
+  ]
+ },
+ "Mona Sans": {
+  "italFiles": [
+   [
+    "MonaSans-Italic[wdth,wght].ttf",
+    400,
+    "italic"
+   ]
+  ],
+  "axes": [
+   "wdth",
+   "wght"
+  ],
+  "recs": [
+   [
+    "MonaSans[wdth,wght].ttf",
+    400,
+    "normal"
+   ],
+   [
+    "MonaSans-Italic[wdth,wght].ttf",
+    400,
+    "italic"
+   ]
+  ]
+ },
+ "Montserrat": {
+  "italFiles": [
+   [
+    "Montserrat-Italic[wght].ttf",
+    400,
+    "italic"
+   ]
+  ],
+  "axes": [
+   "wght"
+  ],
+  "recs": [
+   [
+    "Montserrat[wght].ttf",
+    400,
+    "normal"
+   ],
+   [
+    "Montserrat-Italic[wght].ttf",
+    400,
+    "italic"
+   ]
+  ]
+ },
+ "Noto Sans Display": {
+  "italFiles": [
+   [
+    "NotoSansDisplay-Italic[wdth,wght].ttf",
+    400,
+    "italic"
+   ]
+  ],
+  "axes": [
+   "wdth",
+   "wght"
+  ],
+  "recs": [
+   [
+    "NotoSansDisplay[wdth,wght].ttf",
+    400,
+    "normal"
+   ],
+   [
+    "NotoSansDisplay-Italic[wdth,wght].ttf",
+    400,
+    "italic"
+   ]
+  ]
+ },
+ "Nunito Sans": {
+  "italFiles": [
+   [
+    "NunitoSans-Italic[YTLC,opsz,wdth,wght].ttf",
+    400,
+    "italic"
+   ]
+  ],
+  "axes": [
+   "YTLC",
+   "opsz",
+   "wdth",
+   "wght"
+  ],
+  "recs": [
+   [
+    "NunitoSans[YTLC,opsz,wdth,wght].ttf",
+    400,
+    "normal"
+   ],
+   [
+    "NunitoSans-Italic[YTLC,opsz,wdth,wght].ttf",
+    400,
+    "italic"
+   ]
+  ]
+ },
+ "Orbitron": {
+  "italFiles": [],
+  "axes": [
+   "wght"
+  ],
+  "recs": [
+   [
+    "Orbitron[wght].ttf",
+    400,
+    "normal"
+   ]
+  ]
+ },
+ "Oswald": {
+  "italFiles": [],
+  "axes": [
+   "wght"
+  ],
+  "recs": [
+   [
+    "Oswald[wght].ttf",
+    400,
+    "normal"
+   ]
+  ]
+ },
+ "Recursive": {
+  "italFiles": [],
+  "axes": [
+   "CASL",
+   "CRSV",
+   "MONO",
+   "slnt",
+   "wght"
+  ],
+  "recs": [
+   [
+    "Recursive[CASL,CRSV,MONO,slnt,wght].ttf",
+    400,
+    "normal"
+   ]
+  ]
+ },
+ "Red Hat Display": {
+  "italFiles": [
+   [
+    "RedHatDisplay-Italic[wght].ttf",
+    400,
+    "italic"
+   ]
+  ],
+  "axes": [
+   "wght"
+  ],
+  "recs": [
+   [
+    "RedHatDisplay[wght].ttf",
+    400,
+    "normal"
+   ],
+   [
+    "RedHatDisplay-Italic[wght].ttf",
+    400,
+    "italic"
+   ]
+  ]
+ },
+ "Reddit Sans Condensed": {
+  "italFiles": [],
+  "axes": [
+   "wght"
+  ],
+  "recs": [
+   [
+    "RedditSansCondensed[wght].ttf",
+    400,
+    "normal"
+   ]
+  ]
+ },
+ "Roboto Condensed": {
+  "italFiles": [
+   [
+    "RobotoCondensed-Italic[wght].ttf",
+    400,
+    "italic"
+   ]
+  ],
+  "axes": [
+   "wght"
+  ],
+  "recs": [
+   [
+    "RobotoCondensed[wght].ttf",
+    400,
+    "normal"
+   ],
+   [
+    "RobotoCondensed-Italic[wght].ttf",
+    400,
+    "italic"
+   ]
+  ]
+ },
+ "Roboto Flex": {
+  "italFiles": [],
+  "axes": [
+   "GRAD",
+   "XOPQ",
+   "XTRA",
+   "YOPQ",
+   "YTAS",
+   "YTDE",
+   "YTFI",
+   "YTLC",
+   "YTUC",
+   "opsz",
+   "slnt",
+   "wdth",
+   "wght"
+  ],
+  "recs": [
+   [
+    "RobotoFlex[GRAD,XOPQ,XTRA,YOPQ,YTAS,YTDE,YTFI,YTLC,YTUC,opsz,slnt,wdth,wght].ttf",
+    400,
+    "normal"
+   ]
+  ]
+ },
+ "Russo One": {
+  "italFiles": [],
+  "axes": [],
+  "recs": [
+   [
+    "RussoOne-Regular.ttf",
+    400,
+    "normal"
+   ]
+  ]
+ },
+ "Saira": {
+  "italFiles": [
+   [
+    "Saira-Italic[wdth,wght].ttf",
+    400,
+    "italic"
+   ]
+  ],
+  "axes": [
+   "wdth",
+   "wght"
+  ],
+  "recs": [
+   [
+    "Saira[wdth,wght].ttf",
+    400,
+    "normal"
+   ],
+   [
+    "Saira-Italic[wdth,wght].ttf",
+    400,
+    "italic"
+   ]
+  ]
+ },
+ "Saira Condensed": {
+  "italFiles": [],
+  "axes": [],
+  "recs": [
+   [
+    "SairaCondensed-Thin.ttf",
+    100,
+    "normal"
+   ],
+   [
+    "SairaCondensed-ExtraLight.ttf",
+    200,
+    "normal"
+   ],
+   [
+    "SairaCondensed-Light.ttf",
+    300,
+    "normal"
+   ],
+   [
+    "SairaCondensed-Regular.ttf",
+    400,
+    "normal"
+   ],
+   [
+    "SairaCondensed-Medium.ttf",
+    500,
+    "normal"
+   ],
+   [
+    "SairaCondensed-SemiBold.ttf",
+    600,
+    "normal"
+   ],
+   [
+    "SairaCondensed-Bold.ttf",
+    700,
+    "normal"
+   ],
+   [
+    "SairaCondensed-ExtraBold.ttf",
+    800,
+    "normal"
+   ],
+   [
+    "SairaCondensed-Black.ttf",
+    900,
+    "normal"
+   ]
+  ]
+ },
+ "Saira Semi Condensed": {
+  "italFiles": [],
+  "axes": [],
+  "recs": [
+   [
+    "SairaSemiCondensed-Thin.ttf",
+    100,
+    "normal"
+   ],
+   [
+    "SairaSemiCondensed-ExtraLight.ttf",
+    200,
+    "normal"
+   ],
+   [
+    "SairaSemiCondensed-Light.ttf",
+    300,
+    "normal"
+   ],
+   [
+    "SairaSemiCondensed-Regular.ttf",
+    400,
+    "normal"
+   ],
+   [
+    "SairaSemiCondensed-Medium.ttf",
+    500,
+    "normal"
+   ],
+   [
+    "SairaSemiCondensed-SemiBold.ttf",
+    600,
+    "normal"
+   ],
+   [
+    "SairaSemiCondensed-Bold.ttf",
+    700,
+    "normal"
+   ],
+   [
+    "SairaSemiCondensed-ExtraBold.ttf",
+    800,
+    "normal"
+   ],
+   [
+    "SairaSemiCondensed-Black.ttf",
+    900,
+    "normal"
+   ]
+  ]
+ },
+ "Science Gothic": {
+  "italFiles": [],
+  "axes": [
+   "CTRS",
+   "slnt",
+   "wdth",
+   "wght"
+  ],
+  "recs": [
+   [
+    "ScienceGothic[CTRS,slnt,wdth,wght].ttf",
+    400,
+    "normal"
+   ]
+  ]
+ },
+ "Sofia Sans": {
+  "italFiles": [
+   [
+    "SofiaSans-Italic[wght].ttf",
+    400,
+    "italic"
+   ]
+  ],
+  "axes": [
+   "wght"
+  ],
+  "recs": [
+   [
+    "SofiaSans[wght].ttf",
+    400,
+    "normal"
+   ],
+   [
+    "SofiaSans-Italic[wght].ttf",
+    400,
+    "italic"
+   ]
+  ]
+ },
+ "Sofia Sans Condensed": {
+  "italFiles": [
+   [
+    "SofiaSansCondensed-Italic[wght].ttf",
+    400,
+    "italic"
+   ]
+  ],
+  "axes": [
+   "wght"
+  ],
+  "recs": [
+   [
+    "SofiaSansCondensed[wght].ttf",
+    400,
+    "normal"
+   ],
+   [
+    "SofiaSansCondensed-Italic[wght].ttf",
+    400,
+    "italic"
+   ]
+  ]
+ },
+ "Sofia Sans Extra Condensed": {
+  "italFiles": [
+   [
+    "SofiaSansExtraCondensed-Italic[wght].ttf",
+    400,
+    "italic"
+   ]
+  ],
+  "axes": [
+   "wght"
+  ],
+  "recs": [
+   [
+    "SofiaSansExtraCondensed[wght].ttf",
+    400,
+    "normal"
+   ],
+   [
+    "SofiaSansExtraCondensed-Italic[wght].ttf",
+    400,
+    "italic"
+   ]
+  ]
+ },
+ "Special Gothic": {
+  "italFiles": [],
+  "axes": [
+   "wdth",
+   "wght"
+  ],
+  "recs": [
+   [
+    "SpecialGothic[wdth,wght].ttf",
+    400,
+    "normal"
+   ]
+  ]
+ },
+ "Stack Sans Headline": {
+  "italFiles": [],
+  "axes": [
+   "wght"
+  ],
+  "recs": [
+   [
+    "StackSansHeadline[wght].ttf",
+    400,
+    "normal"
+   ]
+  ]
+ },
+ "SUSE": {
+  "italFiles": [
+   [
+    "SUSE-Italic[wght].ttf",
+    400,
+    "italic"
+   ]
+  ],
+  "axes": [
+   "wght"
+  ],
+  "recs": [
+   [
+    "SUSE[wght].ttf",
+    400,
+    "normal"
+   ],
+   [
+    "SUSE-Italic[wght].ttf",
+    400,
+    "italic"
+   ]
+  ]
+ },
+ "Tac One": {
+  "italFiles": [],
+  "axes": [],
+  "recs": [
+   [
+    "TacOne-Regular.ttf",
+    400,
+    "normal"
+   ]
+  ]
+ },
+ "Teko": {
+  "italFiles": [],
+  "axes": [
+   "wght"
+  ],
+  "recs": [
+   [
+    "Teko[wght].ttf",
+    400,
+    "normal"
+   ]
+  ]
+ },
+ "TikTok Sans": {
+  "italFiles": [],
+  "axes": [
+   "opsz",
+   "slnt",
+   "wdth",
+   "wght"
+  ],
+  "recs": [
+   [
+    "TikTokSans[opsz,slnt,wdth,wght].ttf",
+    400,
+    "normal"
+   ]
+  ]
+ },
+ "Tomorrow": {
+  "italFiles": [
+   [
+    "Tomorrow-ThinItalic.ttf",
+    100,
+    "italic"
+   ],
+   [
+    "Tomorrow-ExtraLightItalic.ttf",
+    200,
+    "italic"
+   ],
+   [
+    "Tomorrow-LightItalic.ttf",
+    300,
+    "italic"
+   ],
+   [
+    "Tomorrow-Italic.ttf",
+    400,
+    "italic"
+   ],
+   [
+    "Tomorrow-MediumItalic.ttf",
+    500,
+    "italic"
+   ],
+   [
+    "Tomorrow-SemiBoldItalic.ttf",
+    600,
+    "italic"
+   ],
+   [
+    "Tomorrow-BoldItalic.ttf",
+    700,
+    "italic"
+   ],
+   [
+    "Tomorrow-ExtraBoldItalic.ttf",
+    800,
+    "italic"
+   ],
+   [
+    "Tomorrow-BlackItalic.ttf",
+    900,
+    "italic"
+   ]
+  ],
+  "axes": [],
+  "recs": [
+   [
+    "Tomorrow-Thin.ttf",
+    100,
+    "normal"
+   ],
+   [
+    "Tomorrow-ThinItalic.ttf",
+    100,
+    "italic"
+   ],
+   [
+    "Tomorrow-ExtraLight.ttf",
+    200,
+    "normal"
+   ],
+   [
+    "Tomorrow-ExtraLightItalic.ttf",
+    200,
+    "italic"
+   ],
+   [
+    "Tomorrow-Light.ttf",
+    300,
+    "normal"
+   ],
+   [
+    "Tomorrow-LightItalic.ttf",
+    300,
+    "italic"
+   ],
+   [
+    "Tomorrow-Regular.ttf",
+    400,
+    "normal"
+   ],
+   [
+    "Tomorrow-Italic.ttf",
+    400,
+    "italic"
+   ],
+   [
+    "Tomorrow-Medium.ttf",
+    500,
+    "normal"
+   ],
+   [
+    "Tomorrow-MediumItalic.ttf",
+    500,
+    "italic"
+   ],
+   [
+    "Tomorrow-SemiBold.ttf",
+    600,
+    "normal"
+   ],
+   [
+    "Tomorrow-SemiBoldItalic.ttf",
+    600,
+    "italic"
+   ],
+   [
+    "Tomorrow-Bold.ttf",
+    700,
+    "normal"
+   ],
+   [
+    "Tomorrow-BoldItalic.ttf",
+    700,
+    "italic"
+   ],
+   [
+    "Tomorrow-ExtraBold.ttf",
+    800,
+    "normal"
+   ],
+   [
+    "Tomorrow-ExtraBoldItalic.ttf",
+    800,
+    "italic"
+   ],
+   [
+    "Tomorrow-Black.ttf",
+    900,
+    "normal"
+   ],
+   [
+    "Tomorrow-BlackItalic.ttf",
+    900,
+    "italic"
+   ]
+  ]
+ },
+ "Work Sans": {
+  "italFiles": [
+   [
+    "WorkSans-Italic[wght].ttf",
+    400,
+    "italic"
+   ]
+  ],
+  "axes": [
+   "wght"
+  ],
+  "recs": [
+   [
+    "WorkSans[wght].ttf",
+    400,
+    "normal"
+   ],
+   [
+    "WorkSans-Italic[wght].ttf",
+    400,
+    "italic"
+   ]
+  ]
+ },
+ "Ysabeau SC": {
+  "italFiles": [],
+  "axes": [
+   "wght"
+  ],
+  "recs": [
+   [
+    "YsabeauSC[wght].ttf",
+    400,
+    "normal"
+   ]
+  ]
+ },
+ "Zalando Sans Expanded": {
+  "italFiles": [
+   [
+    "ZalandoSansExpanded-Italic[wght].ttf",
+    400,
+    "italic"
+   ]
+  ],
+  "axes": [
+   "wght"
+  ],
+  "recs": [
+   [
+    "ZalandoSansExpanded[wght].ttf",
+    400,
+    "normal"
+   ],
+   [
+    "ZalandoSansExpanded-Italic[wght].ttf",
+    400,
+    "italic"
+   ]
+  ]
+ },
+ "Aleo": {
+  "italFiles": [
+   [
+    "Aleo-Italic[wght].ttf",
+    400,
+    "italic"
+   ]
+  ],
+  "axes": [
+   "wght"
+  ],
+  "recs": [
+   [
+    "Aleo[wght].ttf",
+    400,
+    "normal"
+   ],
+   [
+    "Aleo-Italic[wght].ttf",
+    400,
+    "italic"
+   ]
+  ]
+ },
+ "Bevan": {
+  "italFiles": [
+   [
+    "Bevan-Italic.ttf",
+    400,
+    "italic"
+   ]
+  ],
+  "axes": [],
+  "recs": [
+   [
+    "Bevan-Regular.ttf",
+    400,
+    "normal"
+   ],
+   [
+    "Bevan-Italic.ttf",
+    400,
+    "italic"
+   ]
+  ]
+ },
+ "Bitter": {
+  "italFiles": [
+   [
+    "Bitter-Italic[wght].ttf",
+    400,
+    "italic"
+   ]
+  ],
+  "axes": [
+   "wght"
+  ],
+  "recs": [
+   [
+    "Bitter[wght].ttf",
+    400,
+    "normal"
+   ],
+   [
+    "Bitter-Italic[wght].ttf",
+    400,
+    "italic"
+   ]
+  ]
+ },
+ "Cinzel": {
+  "italFiles": [],
+  "axes": [
+   "wght"
+  ],
+  "recs": [
+   [
+    "Cinzel[wght].ttf",
+    400,
+    "normal"
+   ]
+  ]
+ },
+ "Coustard": {
+  "italFiles": [],
+  "axes": [],
+  "recs": [
+   [
+    "Coustard-Regular.ttf",
+    400,
+    "normal"
+   ],
+   [
+    "Coustard-Black.ttf",
+    900,
+    "normal"
+   ]
+  ]
+ },
+ "Eczar": {
+  "italFiles": [],
+  "axes": [
+   "wght"
+  ],
+  "recs": [
+   [
+    "Eczar[wght].ttf",
+    400,
+    "normal"
+   ]
+  ]
+ },
+ "Epunda Slab": {
+  "italFiles": [
+   [
+    "EpundaSlab-Italic[wght].ttf",
+    400,
+    "italic"
+   ]
+  ],
+  "axes": [
+   "wght"
+  ],
+  "recs": [
+   [
+    "EpundaSlab[wght].ttf",
+    400,
+    "normal"
+   ],
+   [
+    "EpundaSlab-Italic[wght].ttf",
+    400,
+    "italic"
+   ]
+  ]
+ },
+ "Fraunces": {
+  "italFiles": [
+   [
+    "Fraunces-Italic[SOFT,WONK,opsz,wght].ttf",
+    400,
+    "italic"
+   ]
+  ],
+  "axes": [
+   "SOFT",
+   "WONK",
+   "opsz",
+   "wght"
+  ],
+  "recs": [
+   [
+    "Fraunces[SOFT,WONK,opsz,wght].ttf",
+    400,
+    "normal"
+   ],
+   [
+    "Fraunces-Italic[SOFT,WONK,opsz,wght].ttf",
+    400,
+    "italic"
+   ]
+  ]
+ },
+ "Grenze": {
+  "italFiles": [
+   [
+    "Grenze-Italic[wght].ttf",
+    400,
+    "italic"
+   ]
+  ],
+  "axes": [
+   "wght"
+  ],
+  "recs": [
+   [
+    "Grenze[wght].ttf",
+    400,
+    "normal"
+   ],
+   [
+    "Grenze-Italic[wght].ttf",
+    400,
+    "italic"
+   ]
+  ]
+ },
+ "Holtwood One SC": {
+  "italFiles": [],
+  "axes": [],
+  "recs": [
+   [
+    "HoltwoodOneSC-Regular.ttf",
+    400,
+    "normal"
+   ]
+  ]
+ },
+ "Noto Serif": {
+  "italFiles": [
+   [
+    "NotoSerif-Italic[wdth,wght].ttf",
+    400,
+    "italic"
+   ]
+  ],
+  "axes": [
+   "wdth",
+   "wght"
+  ],
+  "recs": [
+   [
+    "NotoSerif[wdth,wght].ttf",
+    400,
+    "normal"
+   ],
+   [
+    "NotoSerif-Italic[wdth,wght].ttf",
+    400,
+    "italic"
+   ]
+  ]
+ },
+ "Playfair Display": {
+  "italFiles": [
+   [
+    "PlayfairDisplay-Italic[wght].ttf",
+    400,
+    "italic"
+   ]
+  ],
+  "axes": [
+   "wght"
+  ],
+  "recs": [
+   [
+    "PlayfairDisplay[wght].ttf",
+    400,
+    "normal"
+   ],
+   [
+    "PlayfairDisplay-Italic[wght].ttf",
+    400,
+    "italic"
+   ]
+  ]
+ },
+ "Rasa": {
+  "italFiles": [
+   [
+    "Rasa-Italic[wght].ttf",
+    400,
+    "italic"
+   ]
+  ],
+  "axes": [
+   "wght"
+  ],
+  "recs": [
+   [
+    "Rasa[wght].ttf",
+    400,
+    "normal"
+   ],
+   [
+    "Rasa-Italic[wght].ttf",
+    400,
+    "italic"
+   ]
+  ]
+ },
+ "Roboto Serif": {
+  "italFiles": [
+   [
+    "RobotoSerif-Italic[GRAD,opsz,wdth,wght].ttf",
+    400,
+    "italic"
+   ]
+  ],
+  "axes": [
+   "GRAD",
+   "opsz",
+   "wdth",
+   "wght"
+  ],
+  "recs": [
+   [
+    "RobotoSerif[GRAD,opsz,wdth,wght].ttf",
+    400,
+    "normal"
+   ],
+   [
+    "RobotoSerif-Italic[GRAD,opsz,wdth,wght].ttf",
+    400,
+    "italic"
+   ]
+  ]
+ },
+ "Roboto Slab": {
+  "italFiles": [],
+  "axes": [
+   "wght"
+  ],
+  "recs": [
+   [
+    "RobotoSlab[wght].ttf",
+    400,
+    "normal"
+   ]
+  ]
+ },
+ "Rokkitt": {
+  "italFiles": [
+   [
+    "Rokkitt-Italic[wght].ttf",
+    400,
+    "italic"
+   ]
+  ],
+  "axes": [
+   "wght"
+  ],
+  "recs": [
+   [
+    "Rokkitt[wght].ttf",
+    400,
+    "normal"
+   ],
+   [
+    "Rokkitt-Italic[wght].ttf",
+    400,
+    "italic"
+   ]
+  ]
+ },
+ "Spectral": {
+  "italFiles": [
+   [
+    "Spectral-ExtraLightItalic.ttf",
+    200,
+    "italic"
+   ],
+   [
+    "Spectral-LightItalic.ttf",
+    300,
+    "italic"
+   ],
+   [
+    "Spectral-Italic.ttf",
+    400,
+    "italic"
+   ],
+   [
+    "Spectral-MediumItalic.ttf",
+    500,
+    "italic"
+   ],
+   [
+    "Spectral-SemiBoldItalic.ttf",
+    600,
+    "italic"
+   ],
+   [
+    "Spectral-BoldItalic.ttf",
+    700,
+    "italic"
+   ],
+   [
+    "Spectral-ExtraBoldItalic.ttf",
+    800,
+    "italic"
+   ]
+  ],
+  "axes": [],
+  "recs": [
+   [
+    "Spectral-ExtraLight.ttf",
+    200,
+    "normal"
+   ],
+   [
+    "Spectral-ExtraLightItalic.ttf",
+    200,
+    "italic"
+   ],
+   [
+    "Spectral-Light.ttf",
+    300,
+    "normal"
+   ],
+   [
+    "Spectral-LightItalic.ttf",
+    300,
+    "italic"
+   ],
+   [
+    "Spectral-Regular.ttf",
+    400,
+    "normal"
+   ],
+   [
+    "Spectral-Italic.ttf",
+    400,
+    "italic"
+   ],
+   [
+    "Spectral-Medium.ttf",
+    500,
+    "normal"
+   ],
+   [
+    "Spectral-MediumItalic.ttf",
+    500,
+    "italic"
+   ],
+   [
+    "Spectral-SemiBold.ttf",
+    600,
+    "normal"
+   ],
+   [
+    "Spectral-SemiBoldItalic.ttf",
+    600,
+    "italic"
+   ],
+   [
+    "Spectral-Bold.ttf",
+    700,
+    "normal"
+   ],
+   [
+    "Spectral-BoldItalic.ttf",
+    700,
+    "italic"
+   ],
+   [
+    "Spectral-ExtraBold.ttf",
+    800,
+    "normal"
+   ],
+   [
+    "Spectral-ExtraBoldItalic.ttf",
+    800,
+    "italic"
+   ]
+  ]
+ },
+ "Ultra": {
+  "italFiles": [],
+  "axes": [],
+  "recs": [
+   [
+    "Ultra-Regular.ttf",
+    400,
+    "normal"
+   ]
+  ]
+ },
+ "Young Serif": {
+  "italFiles": [],
+  "axes": [],
+  "recs": [
+   [
+    "YoungSerif-Regular.ttf",
+    400,
+    "normal"
+   ]
+  ]
+ }
+}

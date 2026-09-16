@@ -1,0 +1,815 @@
+/* ============================================================
+   button-components.css
+   ============================================================
+   The button system: every button type, three sizes, icon placement, fill width and circle icon buttons.
+
+   What's inside
+   - .btn — base reset and structure; always paired with a type and a size
+   - .btn-{transactional|primary|neutral|secondary|tertiary|destructive|white|white-tertiary|black} — types
+   - .btn-{700|300|100} — sizes
+   - .btn-icon, .btn-icon-{leading|trailing|only} — icon glyph and placement
+   - .btn-fill — span the container
+   - .btn-circle (+ size, type and letter variants) — circular icon buttons
+   - .btn-group, .btn-group-stack — layout for several buttons
+
+   Notes
+   - The canonical form is <button class="btn btn-{type} btn-{size}">; no bare
+     <button>. See RULES §2 and §4.
+   - Icon in a button: <span class="btn-icon material-symbols-rounded">name</span>.
+     See RULES §4.
+   - Which type to reach for: see Usage Guidelines at the bottom of this file.
+
+   Button Types:
+   - Transactional (.btn-transactional)  — High-priority actions (Buy, Purchase)
+   - Primary (.btn-primary)              — Main actions (Submit, Save)
+   - Neutral (.btn-neutral)              — Standard actions (Cancel, Back)
+   - Secondary (.btn-secondary)          — Outlined alternative actions
+   - Tertiary (.btn-tertiary)            — Low-emphasis text actions
+   - Destructive (.btn-destructive)      — Dangerous actions (Delete, Remove)
+   - White (.btn-white)                  — CTA on dark/brand surfaces
+   - White Tertiary (.btn-white-tertiary)— Low-emphasis on dark surfaces
+   - Black (.btn-black)                  — Always-black fill; use on light surfaces
+   
+   Button Sizes:
+   - Large   (.btn-700)  — 56px height, Inter 600 16px
+   - Small   (.btn-300)  — 40px height, Inter 600 14px
+   - X-Small (.btn-100)  — 32px height, Inter 600 14px
+   (label type is set by the size rules below, not by a text-style class)
+   
+   Icon Placement:
+   - .btn-icon-leading   — Icon before label
+   - .btn-icon-trailing  — Icon after label
+   - .btn-icon-only      — Icon only (no label)
+   
+   Width Modes:
+   - Default: width based on children (hug)
+   - .btn-fill: fills parent container width
+   
+   Interactive Scale:
+   - Buttons use scale-500 (1 → 1.025 → 0.975)
+   
+   Circle Icon Buttons:
+   - .btn-circle (.btn-circle-700, .btn-circle-300)
+   - Uses scale-300 (1 → 1.035 → 0.965)
+   
+   ============================================================ */
+
+
+/* ============================================================
+   BASE BUTTON RESET & STRUCTURE
+   ============================================================ */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-100);
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  white-space: nowrap;
+  border-radius: var(--button-border-radius);
+  transition: background 120ms ease, transform 180ms ease-out, border-color 120ms ease;
+  transform: scale(1);
+  position: relative;
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Scale interaction: Interaction 500 for all buttons */
+.btn:hover {
+  transform: scale(1.025);
+}
+.btn:active {
+  transform: scale(0.975);
+}
+
+/* Pressed state: 60% opacity on children */
+.btn:active > * {
+  opacity: 0.6;
+}
+
+/* Color inheritance for text style classes inside buttons */
+.btn * {
+  color: inherit;
+}
+
+/* Disabled base */
+.btn:disabled,
+.btn[disabled] {
+  cursor: not-allowed;
+  transform: scale(1) !important;
+  pointer-events: auto;
+}
+.btn:disabled:hover,
+.btn[disabled]:hover {
+  transform: scale(1) !important;
+}
+.btn:disabled:active > *,
+.btn[disabled]:active > * {
+  opacity: 1;
+}
+
+
+/* ============================================================
+   BUTTON SIZES
+   ============================================================
+   
+   700 (Large):  56px height, 32px horizontal padding
+   300 (Small):  40px height, 24px horizontal padding
+   100 (X-Small): 32px height, 16px horizontal padding
+   
+   Icon-side padding is reduced:
+   700: 28px (icon side) vs 32px (text side)
+   300: 20px (icon side) vs 24px (text side)
+   100: 14px (icon side) vs 16px (text side)
+   ============================================================ */
+
+/* --- Large (700) --- */
+.btn-700 {
+  height: 56px;
+  padding: 0 var(--spacing-400);
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 100%;
+  letter-spacing: -0.02em;
+}
+/* Icon glyphs inside buttons. Filled by default, the same as `.icon` — the
+   FILL axis has to be set here because the Material Symbols font defaults to
+   outlined. Add `.icon-outlined` to a specific glyph to opt out. See RULES §4. */
+.btn-icon {
+  font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+}
+
+.btn-700 .btn-icon {
+  width: 24px;
+  height: 24px;
+  font-size: 24px;   /* the glyph follows its box — .material-symbols-rounded defaults to 24px */
+  flex-shrink: 0;
+}
+
+/* --- Small (300) --- */
+.btn-300 {
+  height: 40px;
+  padding: 0 var(--spacing-300);
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 100%;
+  letter-spacing: -0.02em;
+}
+.btn-300 .btn-icon {
+  width: 20px;
+  height: 20px;
+  font-size: 20px;   /* the glyph follows its box — .material-symbols-rounded defaults to 24px */
+  flex-shrink: 0;
+}
+
+/* --- X-Small (100) --- */
+.btn-100 {
+  height: 32px;
+  padding: 0 var(--spacing-200);
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 100%;
+  letter-spacing: -0.02em;
+}
+.btn-100 .btn-icon {
+  width: 16px;
+  height: 16px;
+  font-size: 16px;   /* the glyph follows its box — .material-symbols-rounded defaults to 24px */
+  flex-shrink: 0;
+}
+
+
+/* ============================================================
+   ICON PLACEMENT PADDING ADJUSTMENTS
+   ============================================================
+   
+   When an icon is present, the padding on
+   the icon side is reduced to maintain
+   optical balance.
+   ============================================================ */
+
+/* Leading icon: reduced left padding */
+.btn-700.btn-icon-leading { padding-left: 28px; }
+.btn-300.btn-icon-leading { padding-left: 20px; }
+.btn-100.btn-icon-leading { padding-left: 14px; }
+
+/* Trailing icon: reduced right padding */
+.btn-700.btn-icon-trailing { padding-right: 28px; }
+.btn-300.btn-icon-trailing { padding-right: 20px; }
+.btn-100.btn-icon-trailing { padding-right: 14px; }
+
+/* Both icons: reduced both sides */
+.btn-700.btn-icon-leading.btn-icon-trailing { padding-left: 28px; padding-right: 28px; }
+.btn-300.btn-icon-leading.btn-icon-trailing { padding-left: 20px; padding-right: 20px; }
+.btn-100.btn-icon-leading.btn-icon-trailing { padding-left: 14px; padding-right: 14px; }
+
+
+/* ============================================================
+   FILL WIDTH MODE
+   ============================================================ */
+
+.btn-fill {
+  width: 100%;
+}
+
+
+/* ============================================================
+   BUTTON TYPE: TRANSACTIONAL
+   ============================================================
+   
+   Surface: fillColor variant using transactional tokens
+   Default:  transactional fill, transactional text
+   Hover:    white-300 overlay
+   Pressed:  black-300 overlay, 60% text opacity
+   Disabled: 40% opacity, no interaction
+   
+   Use for: Buy tickets, Purchase, Add to cart
+   ============================================================ */
+
+.btn-transactional {
+  background: var(--interactive-transactional);
+  color: var(--interactive-transactional-text);
+}
+.btn-transactional:hover {
+  background:
+    linear-gradient(var(--white-300), var(--white-300)),
+    linear-gradient(var(--interactive-transactional), var(--interactive-transactional));
+}
+.btn-transactional:active {
+  background:
+    linear-gradient(var(--black-300), var(--black-300)),
+    linear-gradient(var(--interactive-transactional), var(--interactive-transactional));
+}
+.btn-transactional:disabled {
+  background: var(--interactive-transactional);
+  opacity: 0.4;
+}
+
+
+/* ============================================================
+   BUTTON TYPE: PRIMARY
+   ============================================================
+   
+   Surface: fillColor using primary tokens
+   Default:  primary fill, primary text
+   Hover:    white-300 overlay
+   Pressed:  black-300 overlay, 60% text opacity
+   Disabled: 40% opacity, no interaction
+   
+   Use for: Submit, Save, Confirm, Continue
+   ============================================================ */
+
+.btn-primary {
+  background: var(--interactive-primary);
+  color: var(--interactive-primary-text);
+}
+.btn-primary:hover {
+  background:
+    linear-gradient(var(--white-300), var(--white-300)),
+    linear-gradient(var(--interactive-primary), var(--interactive-primary));
+}
+.btn-primary:active {
+  background:
+    linear-gradient(var(--black-300), var(--black-300)),
+    linear-gradient(var(--interactive-primary), var(--interactive-primary));
+}
+.btn-primary:disabled {
+  background: var(--interactive-primary);
+  opacity: 0.4;
+}
+
+
+/* ============================================================
+   BUTTON TYPE: NEUTRAL
+   ============================================================
+   
+   Surface: fillNeutral
+   Default:  neutral-1000 fill, inverted-1000 text
+   Hover:    inverted-200 overlay
+   Pressed:  black-500 overlay, 60% text opacity
+   Disabled: 40% opacity, no interaction
+   
+   Use for: Default CTA on surfaces needing
+   high contrast but no brand emphasis
+   ============================================================ */
+
+.btn-neutral {
+  background: var(--neutral-1000);
+  color: var(--inverted-1000);
+}
+.btn-neutral:hover {
+  background:
+    linear-gradient(var(--inverted-200), var(--inverted-200)),
+    linear-gradient(var(--neutral-1000), var(--neutral-1000));
+}
+.btn-neutral:active {
+  background:
+    linear-gradient(var(--black-500), var(--black-500)),
+    linear-gradient(var(--neutral-1000), var(--neutral-1000));
+}
+.btn-neutral:disabled {
+  background: var(--neutral-1000);
+  opacity: 0.4;
+}
+
+
+/* ============================================================
+   BUTTON TYPE: SECONDARY
+   ============================================================
+   
+   Surface: borderNeutral
+   Default:  transparent fill, neutral-300 border
+   Hover:    neutral-100 fill, neutral-200 border
+   Pressed:  black-300 fill, neutral-200 border, 60% text
+   Disabled: 40% opacity, no interaction
+   
+   Use for: Cancel, Back, secondary options
+   ============================================================ */
+
+.btn-secondary {
+  background: var(--neutral-000);
+  border: var(--border-weight-100) solid var(--neutral-300);
+  color: var(--interactive-secondary-text);
+}
+.btn-secondary:hover {
+  background:
+    linear-gradient(var(--neutral-100), var(--neutral-100)),
+    linear-gradient(var(--neutral-000), var(--neutral-000));
+  border-color: var(--neutral-200);
+}
+.btn-secondary:active {
+  background:
+    linear-gradient(var(--black-300), var(--black-300)),
+    linear-gradient(var(--neutral-000), var(--neutral-000));
+  border-color: var(--neutral-200);
+}
+.btn-secondary:disabled {
+  background: var(--neutral-000);
+  border-color: var(--neutral-300);
+  opacity: 0.4;
+}
+
+
+/* ============================================================
+   BUTTON TYPE: TERTIARY
+   ============================================================
+   
+   Surface: ghost (transparent)
+   Default:  transparent fill, no border, branded text
+   Hover:    neutral-100 fill
+   Pressed:  black-300 fill, 60% text
+   Disabled: 40% opacity, no interaction
+   
+   Use for: Low-emphasis actions, text links in context
+   ============================================================ */
+
+.btn-tertiary {
+  background: var(--neutral-000);
+  border: none;
+  color: var(--interactive-tertiary-text);
+}
+.btn-tertiary:hover {
+  background:
+    linear-gradient(var(--neutral-100), var(--neutral-100)),
+    linear-gradient(var(--neutral-000), var(--neutral-000));
+}
+.btn-tertiary:active {
+  background:
+    linear-gradient(var(--black-300), var(--black-300)),
+    linear-gradient(var(--neutral-000), var(--neutral-000));
+}
+.btn-tertiary:disabled {
+  background: var(--neutral-000);
+  opacity: 0.4;
+}
+
+
+/* ============================================================
+   BUTTON TYPE: DESTRUCTIVE
+   ============================================================
+   
+   Uses status-error for the fill.
+   Default:  status-error fill, white text
+   Hover:    white-300 overlay
+   Pressed:  black-300 overlay, 60% text
+   Disabled: 40% opacity, no interaction
+   
+   Use for: Delete, Remove, Permanent actions
+   ============================================================ */
+
+.btn-destructive {
+  background: var(--status-error);
+  color: var(--white-1000);
+}
+.btn-destructive:hover {
+  background:
+    linear-gradient(var(--white-300), var(--white-300)),
+    linear-gradient(var(--status-error), var(--status-error));
+}
+.btn-destructive:active {
+  background:
+    linear-gradient(var(--black-300), var(--black-300)),
+    linear-gradient(var(--status-error), var(--status-error));
+}
+.btn-destructive:disabled {
+  background: var(--status-error);
+  opacity: 0.4;
+}
+
+
+/* ============================================================
+   BUTTON TYPE: WHITE
+   ============================================================
+   
+   Surface: fillWhite
+   Default:  white-1000 fill, black-1000 text
+   Hover:    black-200 overlay
+   Pressed:  black-500 overlay, 60% text
+   Disabled: 40% opacity, no interaction
+   
+   Use for: CTAs on dark/brand-colored surfaces
+   where a high-contrast white button is needed
+   ============================================================ */
+
+.btn-white {
+  background: var(--white-1000);
+  color: var(--black-1000);
+}
+.btn-white:hover {
+  background:
+    linear-gradient(var(--black-200), var(--black-200)),
+    linear-gradient(var(--white-1000), var(--white-1000));
+}
+.btn-white:active {
+  background:
+    linear-gradient(var(--black-500), var(--black-500)),
+    linear-gradient(var(--white-1000), var(--white-1000));
+}
+.btn-white:disabled {
+  background: var(--white-1000);
+  opacity: 0.4;
+}
+
+
+/* ============================================================
+   BUTTON TYPE: WHITE TERTIARY
+   ============================================================
+   
+   Surface: ghost
+   Default:  transparent fill, no border, white text
+   Hover:    neutral-100 fill
+   Pressed:  black-300 fill, 60% text
+   Disabled: 40% opacity, no interaction
+   
+   Use for: Low-emphasis actions on dark/brand
+   surfaces. Text-only style with white text
+   that gains a subtle background on hover.
+   ============================================================ */
+
+.btn-white-tertiary {
+  background: var(--neutral-000);
+  border: none;
+  color: var(--white-1000);
+}
+.btn-white-tertiary:hover {
+  background:
+    linear-gradient(var(--neutral-100), var(--neutral-100)),
+    linear-gradient(var(--neutral-000), var(--neutral-000));
+}
+.btn-white-tertiary:active {
+  background:
+    linear-gradient(var(--black-300), var(--black-300)),
+    linear-gradient(var(--neutral-000), var(--neutral-000));
+}
+.btn-white-tertiary:disabled {
+  background: var(--neutral-000);
+  opacity: 0.4;
+}
+
+
+/* ============================================================
+   BUTTON TYPE: BLACK
+   ============================================================
+
+   Surface: fillBlack
+   Default:  black-1000 fill, white-1000 text
+   Hover:    white-300 overlay (lightens)
+   Pressed:  white-500 overlay (more lightening), 60% text
+   Disabled: 40% opacity, no interaction
+
+   Use for: High-contrast CTAs on light surfaces where
+   a non-branded black button is needed (always black
+   in both light and dark mode — unlike btn-neutral
+   which uses neutral-1000 which flips in dark mode)
+   ============================================================ */
+
+.btn-black {
+  background: var(--black-1000);
+  color: var(--white-1000);
+}
+.btn-black:hover {
+  background:
+    linear-gradient(var(--white-300), var(--white-300)),
+    linear-gradient(var(--black-1000), var(--black-1000));
+}
+.btn-black:active {
+  background:
+    linear-gradient(var(--white-500), var(--white-500)),
+    linear-gradient(var(--black-1000), var(--black-1000));
+}
+.btn-black:disabled {
+  background: var(--black-1000);
+  opacity: 0.4;
+}
+
+
+/* ============================================================
+   CIRCLE ICON BUTTONS
+   ============================================================
+   
+   Circular buttons for icon-only actions.
+   Uses scale-300 (1 → 1.035 → 0.965)
+   
+   Sizes:
+   - 700 (Large): 56×56, 32px icon
+   - 300 (Small): 40×40, 24px icon
+   
+   Types mirror the button types above
+   but letter/number variants use neutral-1000 fill.
+   ============================================================ */
+
+.btn-circle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  transition: background 120ms ease, transform 180ms ease-out;
+  transform: scale(1);
+  box-sizing: border-box;
+}
+
+/* Scale: Interaction 300 for circle buttons */
+.btn-circle:hover {
+  transform: scale(1.035);
+}
+.btn-circle:active {
+  transform: scale(0.965);
+}
+.btn-circle:active > * {
+  opacity: 0.6;
+}
+.btn-circle * {
+  color: inherit;
+}
+/* Ensure text/letter content centers correctly regardless of font metrics */
+.btn-circle span:not(.icon) {
+  line-height: 1;
+  display: block;
+}
+/* Letter/avatar variant — overrides btn-icon icon sizing for plain text content */
+.btn-circle .btn-circle-letter {
+  width: auto;
+  height: auto;
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  line-height: 1;
+  display: block;
+}
+.btn-circle-700 .btn-circle-letter { font-size: 20px; }
+.btn-circle-300 .btn-circle-letter { font-size: 16px; }
+
+/* Circle Sizes */
+.btn-circle-700 {
+  width: 56px;
+  height: 56px;
+}
+.btn-circle-700 .btn-icon {
+  width: 32px;
+  height: 32px;
+  font-size: 32px;
+}
+
+.btn-circle-300 {
+  width: 40px;
+  height: 40px;
+}
+.btn-circle-300 .btn-icon {
+  width: 24px;
+  height: 24px;
+  font-size: 24px;
+}
+
+/* Circle type: brand / primary (fillColor) */
+.btn-circle.btn-circle-brand {
+  background: var(--interactive-primary);
+  color: var(--interactive-primary-text);
+}
+.btn-circle.btn-circle-brand:hover {
+  background:
+    linear-gradient(var(--white-300), var(--white-300)),
+    linear-gradient(var(--interactive-primary), var(--interactive-primary));
+}
+.btn-circle.btn-circle-brand:active {
+  background:
+    linear-gradient(var(--black-300), var(--black-300)),
+    linear-gradient(var(--interactive-primary), var(--interactive-primary));
+}
+
+/* Circle Type: Neutral (fillNeutral) */
+.btn-circle.btn-circle-neutral {
+  background: var(--neutral-1000);
+  color: var(--inverted-1000);
+}
+.btn-circle.btn-circle-neutral:hover {
+  background:
+    linear-gradient(var(--inverted-200), var(--inverted-200)),
+    linear-gradient(var(--neutral-1000), var(--neutral-1000));
+}
+.btn-circle.btn-circle-neutral:active {
+  background:
+    linear-gradient(var(--black-500), var(--black-500)),
+    linear-gradient(var(--neutral-1000), var(--neutral-1000));
+}
+
+/* Circle Type: Inverted */
+.btn-circle.btn-circle-inverted {
+  background: var(--inverted-1000);
+  color: var(--neutral-1000);
+}
+.btn-circle.btn-circle-inverted:hover {
+  background:
+    linear-gradient(var(--neutral-200), var(--neutral-200)),
+    linear-gradient(var(--inverted-1000), var(--inverted-1000));
+}
+.btn-circle.btn-circle-inverted:active {
+  background:
+    linear-gradient(var(--black-500), var(--black-500)),
+    linear-gradient(var(--inverted-1000), var(--inverted-1000));
+}
+
+/* Circle Type: Black */
+.btn-circle.btn-circle-black {
+  background: var(--black-1000);
+  color: var(--white-1000);
+}
+.btn-circle.btn-circle-black:hover {
+  background:
+    linear-gradient(var(--white-300), var(--white-300)),
+    linear-gradient(var(--black-1000), var(--black-1000));
+}
+.btn-circle.btn-circle-black:active {
+  background: var(--black-1000);
+}
+
+/* Circle Type: White */
+.btn-circle.btn-circle-white {
+  background: var(--white-1000);
+  color: var(--black-1000);
+}
+.btn-circle.btn-circle-white:hover {
+  background:
+    linear-gradient(var(--black-200), var(--black-200)),
+    linear-gradient(var(--white-1000), var(--white-1000));
+}
+.btn-circle.btn-circle-white:active {
+  background:
+    linear-gradient(var(--black-500), var(--black-500)),
+    linear-gradient(var(--white-1000), var(--white-1000));
+}
+
+/* Circle Type: Destructive */
+.btn-circle.btn-circle-destructive {
+  background: var(--status-error);
+  color: var(--white-1000);
+}
+.btn-circle.btn-circle-destructive:hover {
+  background:
+    linear-gradient(var(--white-300), var(--white-300)),
+    linear-gradient(var(--status-error), var(--status-error));
+}
+.btn-circle.btn-circle-destructive:active {
+  background:
+    linear-gradient(var(--black-300), var(--black-300)),
+    linear-gradient(var(--status-error), var(--status-error));
+}
+
+/* Circle Secondary variants (border style) */
+.btn-circle.btn-circle-brand-secondary {
+  background: var(--neutral-000);
+  border: 1px solid var(--neutral-300);
+  color: var(--interactive-primary);
+}
+.btn-circle.btn-circle-neutral-secondary {
+  background: var(--neutral-000);
+  border: 1px solid var(--neutral-300);
+  color: var(--text-primary);
+}
+.btn-circle.btn-circle-destructive-secondary {
+  background: var(--neutral-000);
+  border: 1px solid var(--neutral-300);
+  color: var(--status-error);
+}
+
+/* Circle Tertiary variants (ghost style) */
+.btn-circle.btn-circle-brand-tertiary {
+  background: var(--neutral-000);
+  border: none;
+  color: var(--interactive-primary);
+}
+.btn-circle.btn-circle-neutral-tertiary {
+  background: var(--neutral-000);
+  border: none;
+  color: var(--text-primary);
+}
+.btn-circle.btn-circle-destructive-tertiary {
+  background: var(--neutral-000);
+  border: none;
+  color: var(--status-error);
+}
+.btn-circle.btn-circle-white-tertiary {
+  background: var(--neutral-000);
+  border: none;
+  color: var(--white-1000);
+}
+
+/* Circle disabled */
+.btn-circle:disabled,
+.btn-circle[disabled] {
+  opacity: 0.4;
+  cursor: not-allowed;
+  transform: scale(1) !important;
+}
+
+
+/* ============================================================
+   BUTTON GROUP UTILITIES
+   ============================================================ */
+
+.btn-group {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-150);
+}
+
+.btn-group-stack {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-150);
+}
+
+.btn-group-stack .btn {
+  width: 100%;
+}
+
+
+/* ============================================================
+   USAGE GUIDELINES
+   ============================================================
+   
+   BUTTON TYPE HIERARCHY:
+   1. Transactional    — Revenue/conversion actions only
+   2. Primary          — Main page action (1 per view)
+   3. Neutral          — High-contrast, non-branded CTA
+   4. Secondary        — Supporting action beside primary
+   5. Tertiary         — Low-emphasis, inline actions
+   6. Destructive      — Irreversible/dangerous actions
+   7. White            — CTA on dark/brand surfaces (fillWhite)
+   8. White Tertiary   — Low-emphasis on dark surfaces (ghost, white text)
+   9. Black            — Always-black CTA on light surfaces (never flips in dark mode)
+   
+   SIZING GUIDELINES:
+   - 700 (Large):  Hero CTAs, full-width mobile buttons
+   - 300 (Small):  Standard buttons in forms and cards
+   - 100 (X-Small): Compact UI, table actions, dense layouts
+   
+   ICON USAGE:
+   - Leading icon:  Adds context (★ Label, ← Back)
+   - Trailing icon: Indicates direction (Next →, Open ←)
+   - Icon only:     Use circle buttons instead
+   
+   COMPOSITION:
+   <button class="btn btn-transactional btn-700">
+     Buy Tickets
+   </button>
+   
+   <button class="btn btn-primary btn-300 btn-icon-leading">
+     <span class="btn-icon material-symbols-rounded">save</span>
+     <span>Save</span>
+   </button>
+   
+   <button class="btn btn-secondary btn-100 btn-fill">
+     Cancel
+   </button>
+   
+   <button class="btn-circle btn-circle-700 btn-circle-brand">
+     <span class="btn-icon material-symbols-rounded">add</span>
+   </button>
+   
+   ============================================================ */

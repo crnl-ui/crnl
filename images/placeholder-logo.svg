@@ -1,0 +1,5 @@
+<svg width="28" height="28" viewBox="0 0 28 28" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder mark">
+  <!-- A deliberately generic mark, in a mid grey that reads on both a light and
+       a dark surface. A theme replaces it via --brand-logo-url. -->
+  <path d="M14 2.5L24 5.75V14C24 19.6 19.85 23.85 14 25.9C8.15 23.85 4 19.6 4 14V5.75L14 2.5Z" fill="#8A8A8A"/>
+</svg>

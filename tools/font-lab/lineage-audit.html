@@ -1,0 +1,293 @@
+<title>Typeface Lineage Audit</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+  :root {
+    --ground: #FCFCFD;
+    --surface: #F2F3F6;
+    --sunken: #E8EAEF;
+    --line: #DEE1E8;
+    --ink: #16181D;
+    --muted: #5A6270;
+    --accent: #8C2F39;
+    --accent-soft: #F3E4E5;
+    --good: #2C6E5B;
+    --good-soft: #E2EFEA;
+    --warn: #9A6410;
+    --warn-soft: #F6EBDA;
+    --shadow: 0 1px 2px rgba(22,24,29,.05);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --ground: #121418; --surface: #1A1D23; --sunken: #22262E; --line: #2C313A;
+      --ink: #E9EBEF; --muted: #99A1AF; --accent: #E58490; --accent-soft: #3A2126;
+      --good: #7FC7AC; --good-soft: #1C2B27; --warn: #DCA95E; --warn-soft: #2E2415;
+      --shadow: 0 1px 2px rgba(0,0,0,.3);
+    }
+  }
+  :root[data-theme="dark"] {
+    --ground: #121418; --surface: #1A1D23; --sunken: #22262E; --line: #2C313A;
+    --ink: #E9EBEF; --muted: #99A1AF; --accent: #E58490; --accent-soft: #3A2126;
+    --good: #7FC7AC; --good-soft: #1C2B27; --warn: #DCA95E; --warn-soft: #2E2415;
+    --shadow: 0 1px 2px rgba(0,0,0,.3);
+  }
+
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--ground); color: var(--ink);
+    font-family: 'IBM Plex Sans', system-ui, sans-serif;
+    font-size: 16px; line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: 940px; margin: 0 auto; padding: 0 28px 96px; }
+  .col { max-width: 66ch; }
+
+  header { padding: 72px 0 40px; border-bottom: 1px solid var(--line); margin-bottom: 44px; }
+  .eyebrow {
+    font-family: 'IBM Plex Mono', monospace; font-size: 11px; font-weight: 500;
+    letter-spacing: .13em; text-transform: uppercase; color: var(--accent); margin-bottom: 18px;
+  }
+  h1 {
+    font-family: 'Newsreader', Georgia, serif; font-weight: 600;
+    font-size: clamp(38px, 6vw, 58px); line-height: 1.04; letter-spacing: -.02em;
+    margin: 0 0 20px; text-wrap: balance;
+  }
+  .standfirst { font-size: 19px; line-height: 1.55; color: var(--muted); max-width: 62ch; margin: 0; }
+
+  h2 {
+    font-family: 'Newsreader', Georgia, serif; font-weight: 600;
+    font-size: 29px; line-height: 1.2; letter-spacing: -.01em;
+    margin: 64px 0 6px; text-wrap: balance;
+  }
+  h2:first-of-type { margin-top: 0; }
+  .sub { color: var(--muted); font-size: 15px; margin: 0 0 24px; }
+  h3 {
+    font-size: 15px; font-weight: 600; margin: 32px 0 8px; letter-spacing: -.005em;
+  }
+  p { margin: 0 0 16px; }
+  strong { font-weight: 600; }
+  a { color: var(--accent); }
+
+  /* Verdict strip — the three numbers that carry the whole report */
+  .verdicts { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: 10px; overflow: hidden; margin: 36px 0 8px; }
+  .v { background: var(--surface); padding: 20px 22px; }
+  .v-num { font-family: 'Newsreader', Georgia, serif; font-size: 40px; line-height: 1; font-weight: 600; letter-spacing: -.02em; font-variant-numeric: tabular-nums; }
+  .v-num.pos { color: var(--good); }
+  .v-num.mid { color: var(--warn); }
+  .v-lab { font-family: 'IBM Plex Mono', monospace; font-size: 10.5px; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); margin-top: 10px; }
+  .v-note { font-size: 13.5px; color: var(--muted); margin-top: 6px; line-height: 1.45; }
+
+  table { width: 100%; border-collapse: collapse; font-size: 14.5px; }
+  .scroll { overflow-x: auto; margin: 20px 0 8px; border: 1px solid var(--line); border-radius: 10px; }
+  th, td { text-align: left; padding: 11px 14px; border-bottom: 1px solid var(--line); vertical-align: top; }
+  thead th {
+    background: var(--surface); font-family: 'IBM Plex Mono', monospace;
+    font-size: 10.5px; letter-spacing: .09em; text-transform: uppercase; color: var(--muted); font-weight: 500;
+    white-space: nowrap;
+  }
+  tbody tr:last-child td { border-bottom: 0; }
+  td.mono, .num { font-family: 'IBM Plex Mono', monospace; font-variant-numeric: tabular-nums; font-size: 13.5px; white-space: nowrap; }
+  td.name { font-weight: 500; white-space: nowrap; }
+
+  .chip {
+    display: inline-block; font-family: 'IBM Plex Mono', monospace; font-size: 10.5px;
+    letter-spacing: .05em; text-transform: uppercase; padding: 2px 8px; border-radius: 3px;
+    background: var(--sunken); color: var(--muted); white-space: nowrap;
+  }
+  .chip.use { background: var(--good-soft); color: var(--good); }
+  .chip.maybe { background: var(--warn-soft); color: var(--warn); }
+  .chip.skip { background: var(--accent-soft); color: var(--accent); }
+
+  .callout {
+    border-left: 3px solid var(--accent); background: var(--surface);
+    padding: 18px 22px; border-radius: 0 8px 8px 0; margin: 26px 0;
+  }
+  .callout p:last-child { margin-bottom: 0; }
+  .callout .lede { font-family: 'Newsreader', Georgia, serif; font-size: 20px; line-height: 1.35; font-weight: 600; margin-bottom: 10px; }
+
+  ul { margin: 0 0 16px; padding-left: 20px; }
+  li { margin-bottom: 9px; }
+  li::marker { color: var(--muted); }
+
+  .pair { font-family: 'IBM Plex Mono', monospace; font-size: 13px; }
+  .arrow { color: var(--muted); padding: 0 4px; }
+
+  footer { margin-top: 72px; padding-top: 26px; border-top: 1px solid var(--line); font-size: 13.5px; color: var(--muted); }
+  footer a { color: var(--muted); }
+  @media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
+</style>
+
+<div class="wrap">
+  <header>
+    <div class="eyebrow">Display font library · evidence review</div>
+    <h1>Typeface Lineage Audit</h1>
+    <p class="standfirst">Two independent sources tested against the 47-lineage taxonomy behind Font Lab 3's match finder — a learned embedding over 1,883 Google fonts, and a hand-curated paid-to-free mapping. The taxonomy holds. The failures are more interesting than the agreements.</p>
+  </header>
+
+  <div class="verdicts">
+    <div class="v">
+      <div class="v-num pos">4.7×</div>
+      <div class="v-lab">Better than chance</div>
+      <div class="v-note">A font's nearest neighbour in embedding space lands in the lineage we assigned it 4.7 times more often than random.</div>
+    </div>
+    <div class="v">
+      <div class="v-num pos">+0.25</div>
+      <div class="v-lab">Cosine separation</div>
+      <div class="v-note">Same-lineage pairs average 0.53 similarity; cross-lineage pairs 0.28. The grouping tracks something real.</div>
+    </div>
+    <div class="v">
+      <div class="v-num mid">41%</div>
+      <div class="v-lab">External agreement</div>
+      <div class="v-note">Of 32 testable paid→free suggestions from an independent source, 13 land in the same lineage as ours.</div>
+    </div>
+  </div>
+
+  <h2>What the 41% actually means</h2>
+  <p class="sub">The headline number that looks like a failure, and isn't</p>
+
+  <div class="col">
+    <p>Read cold, 41% agreement with an outside source sounds like the index is wrong more often than right. Reading the nineteen disagreements individually tells a different story, because several of them are the <em>other</em> source being wrong.</p>
+    <p>Its suggested free stand-in for <strong>Whitney</strong> — a wayfinding gothic — is Hind, a Devanagari-first family. For <strong>Frutiger</strong>, also Hind. For <strong>Akzidenz Grotesk</strong>, the reference 19th-century grotesk, it proposes Archivo Black, which is a poster weight. For <strong>Clarendon</strong>, a text Egyptian, it proposes Ultra, a fat face. Those are not near misses; they are category errors, and our index disagreeing with them is the index working.</p>
+  </div>
+
+  <div class="callout">
+    <p class="lede">The disagreements that survive scrutiny all say the same thing: some faces genuinely belong to two lineages, and the data model can only hold one.</p>
+    <p>Proxima Nova is filed under geometric sans; the external source pairs it with Roboto, an American grotesk. Both are defensible — the family's own description in our index is "geometric skeleton with grotesk proportions." Graphik, Circular and Founders Grotesk produce the same argument. A single <span class="pair">cluster</span> field forces a choice the type doesn't make.</p>
+  </div>
+
+  <div class="col">
+    <p>That is the most valuable finding in this audit, and it is a schema change rather than a data correction: the paid index and the 663-family inventory both need a secondary lineage. Search would then resolve Proxima Nova into both S03 and S04 instead of picking a side, which is closer to how anyone actually uses it.</p>
+  </div>
+
+  <h2>The embedding test</h2>
+  <p class="sub">fontjoy's 200-dimension vectors over 1,883 Google font variants</p>
+
+  <div class="col">
+    <p>This is the only objective similarity signal in anything I found — a learned representation, not a designer's opinion, which makes it a real check rather than a second opinion. Coverage is the catch: the dataset is from an earlier era of Google Fonts and reaches only <strong>57 of your 145</strong> families. Anybody, Big Shoulders, Boldonse, the Protest family, Tektur and Tilt Warp all postdate it.</p>
+    <p>Within those 57, the taxonomy separates cleanly. Same-lineage pairs average a cosine similarity of 0.53 against 0.28 for cross-lineage pairs — a gap of 0.25 on a scale where anything above about 0.1 is meaningful with this many pairs.</p>
+    <p>Nearest-neighbour agreement reads as 17.5%, which looks poor until you notice the base rate. Those 57 families spread across 27 lineages, and <strong>13 of them are the only member of their lineage in the subset</strong> — their nearest neighbour <em>cannot</em> be same-lineage, so they can never agree. A random guess lands in the right lineage 3.8% of the time. Restricted to the 44 families that could agree, the figure is 23%.</p>
+  </div>
+
+  <h2>Where the seams are</h2>
+  <p class="sub">Every high-similarity pair the embedding puts together that we split apart</p>
+
+  <div class="scroll">
+    <table>
+      <thead>
+        <tr><th>Pair</th><th>Cosine</th><th>Our split</th><th>Reading</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="name">Changa · Changa One</td><td class="num">0.973</td>
+          <td class="mono">A02 / D08</td>
+          <td>Correct by policy. The research routes Arabic families by script, so a Latin-shape match is deliberately overridden.</td>
+        </tr>
+        <tr>
+          <td class="name">Bitter · Rasa</td><td class="num">0.934</td>
+          <td class="mono">R06 / I02</td>
+          <td>Same script-routing rule. Worth a note in the tool so it doesn't read as an error.</td>
+        </tr>
+        <tr>
+          <td class="name">Khand · Oswald</td><td class="num">0.875</td>
+          <td class="mono">S09 / S07</td>
+          <td><strong>Genuine correction.</strong> Khand sits with the condensed poster grotesks, not the DIN industrials. Anton's nearest neighbour is also Khand, which corroborates.</td>
+        </tr>
+        <tr>
+          <td class="name">Coustard · Ultra</td><td class="num">0.862</td>
+          <td class="mono">R06 / R07</td>
+          <td>The heavy-slab boundary is porous in both directions.</td>
+        </tr>
+        <tr>
+          <td class="name">Bevan · Rokkitt</td><td class="num">0.844</td>
+          <td class="mono">R07 / R06</td>
+          <td>Same boundary, mirrored. Two pairs crossing it is a taxonomy question, not two mistakes.</td>
+        </tr>
+        <tr>
+          <td class="name">Roboto Condensed · Oswald</td><td class="num">0.843</td>
+          <td class="mono">S03 / S07</td>
+          <td><strong>Candidate correction.</strong> A condensed cut of an editorial grotesk behaves like a poster grotesk.</td>
+        </tr>
+        <tr>
+          <td class="name">Montserrat · Rammetto One</td><td class="num">0.853</td>
+          <td class="mono">S04 / D05</td>
+          <td>Discard. A geometric sans and a fat rounded display face are not neighbours; this is the embedding's limit.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="col">
+    <p>Two seams, then, and one policy. The <strong>R06/R07 slab boundary</strong> and the <strong>S07/S09 condensed-industrial boundary</strong> each get crossed by more than one pair, which points at the definitions rather than at individual rows. The script-routing rule is doing exactly what the research document says it should, but the tool should say so where it shows a match.</p>
+  </div>
+
+  <h2>What each source is worth</h2>
+  <p class="sub">Everything gathered, and whether it earns a place in the pipeline</p>
+
+  <div class="scroll">
+    <table>
+      <thead>
+        <tr><th>Source</th><th>What it is</th><th>Verdict</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="name">fontjoy vectors</td>
+          <td>1,883 Google font variants as 200-dim learned embeddings, with metadata. 20MB, freely available, no auth.</td>
+          <td><span class="chip use">Keep</span> The only objective signal available. Covers 57/145 today.</td>
+        </tr>
+        <tr>
+          <td class="name">frontendresource</td>
+          <td>74 hand-curated paid→Google pairings in one table.</td>
+          <td><span class="chip maybe">Cross-check only</span> Useful as a challenge to our calls; too many category errors to import.</td>
+        </tr>
+        <tr>
+          <td class="name">similarfont.io</td>
+          <td>~50 premium faces, one page each, predictable URL shape.</td>
+          <td><span class="chip maybe">Harvestable</span> Small, but structured enough to walk. Unknown methodology.</td>
+        </tr>
+        <tr>
+          <td class="name">Identifont</td>
+          <td>Curated similarity index covering commercial faces.</td>
+          <td><span class="chip maybe">Worth a pass</span> Strongest on the paid side, where our coverage is thinnest.</td>
+        </tr>
+        <tr>
+          <td class="name">font-fallbacks-dataset</td>
+          <td>Metric overrides for CSS fallback matching.</td>
+          <td><span class="chip">Different problem</span> Not similarity — but directly useful for the <span class="pair">@font-face</span> stack.</td>
+        </tr>
+        <tr>
+          <td class="name">Alternatives listicles</td>
+          <td>The bulk of what a search returns.</td>
+          <td><span class="chip skip">Discard</span> Affiliate content, heavy mutual copying, shallow reasoning.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="col">
+    <p>Nothing found provides what actually capped the paid index at 581 names: a licensed, machine-readable catalogue of commercial type. These are similarity opinions and one embedding. The catalogue problem stays unsolved.</p>
+  </div>
+
+  <h2>What to change</h2>
+  <p class="sub">Ordered by how much it moves the tool</p>
+
+  <div class="col">
+    <h3>Add a secondary lineage</h3>
+    <p>A schema change to the paid index and the family inventory. Proxima Nova, Graphik, Circular and Founders Grotesk all sit legitimately between the geometric and American-grotesk lineages; forcing one loses information and makes search miss. This is the change that most improves the answers.</p>
+
+    <h3>Move Khand, and look again at Roboto Condensed</h3>
+    <p>Khand from S09 to S07 is supported by two independent nearest-neighbour results. Roboto Condensed is the same argument one step weaker.</p>
+
+    <h3>Restate the two porous boundaries</h3>
+    <p>R06 against R07, and S07 against S09. Each was crossed by multiple pairs, which reads as a definition that needs sharpening rather than rows that need moving.</p>
+
+    <h3>Surface the script-routing rule in the tool</h3>
+    <p>When a match is separated by script rather than by shape, Font Lab 3 should say so. Otherwise the two most similar faces in the whole set sit in different lineages with no explanation on screen.</p>
+
+    <h3>Re-run the embedding test as coverage improves</h3>
+    <p>88 of your 145 families are too recent for this dataset. The same test on a current embedding would be a far stronger check, and the script to run it is already written.</p>
+  </div>
+
+  <footer>
+    <p>Sources: <a href="https://github.com/Jack000/fontjoy">Jack000/fontjoy</a> · <a href="https://frontendresource.com/most-used-fonts-alternative-google-fonts/">frontendresource premium font alternatives</a> · <a href="https://similarfont.io/">similarfont.io</a> · <a href="http://www.identifont.com/similar?2QU=">Identifont</a> · <a href="https://github.com/khempenius/font-fallbacks-dataset">khempenius/font-fallbacks-dataset</a></p>
+    <p>Tested against the 47-lineage taxonomy in <span class="pair">font-match-research.md</span>. Analysis scripts and raw data in <span class="pair">_build/external/</span>.</p>
+  </footer>
+</div>

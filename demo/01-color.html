@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="signal" data-mode="light" data-platform="web">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Color — Design System Sticker Sheet</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap" rel="stylesheet">
+
+  <script src="../css/ds-loader.js"></script>
+  <script src="demo-content.js"></script>
+  <script src="../css/prototype-harness.js"></script>
+  <link rel="stylesheet" href="sheet.css">
+</head>
+<body>
+
+<nav data-sheet-nav></nav>
+
+<main class="container-extra-wide">
+
+  <header class="sheet-head">
+    <div class="card-text-pair">
+      <h1 class="display500">Color</h1>
+      <p class="labelRegular40 text-secondary">Every colour token in the design system, resolved live for the theme and mode you have selected.</p>
+    </div>
+  </header>
+
+  <div class="sheet-callout">
+    <p class="bodyRegular30">Every value below is read live out of <span class="mono">getComputedStyle</span>, so it is what the browser actually paints for the theme and mode selected in the switcher — not what the CSS source says. Switch theme or mode and the whole page re-resolves.</p>
+  </div>
+
+  <div class="sheet-callout is-warn">
+    <p class="bodyRegular30"><strong>Never hardcode a colour</strong> — no <span class="mono">#hex</span>, <span class="mono">rgb()</span> or <span class="mono">rgba()</span> in a prototype (<span class="mono">RULES §2</span>). Reach for a semantic token first, a brand token second, an alpha scale last.</p>
+  </div>
+
+  <section class="sheet-section" id="backgrounds">
+    <div class="sheet-section-head">
+      <h2 class="display300">Backgrounds</h2>
+      <span class="labelRegular10 text-secondary mono">design-tokens-master.css</span>
+    </div>
+    <p class="sheet-note bodyRegular30">Elevation is a ladder and you climb it once: page → card → modal. Never sit a solid surface on another solid surface (<span class="mono">RULES §2</span>).</p>
+    <div class="token-list">
+        <div class="token-row" data-token="--bg-base">
+          <div class="token-chip"><div class="token-chip-fill" data-token-chip></div></div>
+          <span class="labelBold20 mono">--bg-base</span>
+          <span class="labelRegular10 token-value mono" data-token-value></span>
+        </div>
+        <div class="token-row" data-token="--bg-surface">
+          <div class="token-chip"><div class="token-chip-fill" data-token-chip></div></div>
+          <span class="labelBold20 mono">--bg-surface</span>
+          <span class="labelRegular10 token-value mono" data-token-value></span>
+        </div>
+        <div class="token-row" data-token="--bg-sheet">
+          <div class="token-chip"><div class="token-chip-fill" data-token-chip></div></div>
+          <span class="labelBold20 mono">--bg-sheet</span>
+          <span class="labelRegular10 token-value mono" data-token-value></span>
+        </div>
+        <div class="token-row" data-token="--bg-nav">
+          <div class="token-chip"><div class="token-chip-fill" data-token-chip></div></div>
+          <span class="labelBold20 mono">--bg-nav</span>
+          <span class="labelRegular10 token-value mono" data-token-value></span>
+        </div>
+        <div class="token-row" data-token="--bg-input">
+          <div class="token-chip"><div class="token-chip-fill" data-token-chip></div></div>
+          <span class="labelBold20 mono">--bg-input</span>
+          <span class="labelRegular10 token-value mono" data-token-value></span>
+        </div>
+    </div>
+
+    <div class="sheet-sub"><span class="title50">The elevation ladder</span></div>
+    <div class="spec-stage is-base is-block">
+      <p class="labelRegular10 text-secondary mb-100 mono">--bg-base (page)</p>
+      <div class="p-200 rounded-200" style="background: var(--bg-surface)">
+        <p class="labelRegular10 text-secondary mb-100 mono">--bg-surface (card)</p>
+        <div class="p-200 rounded-200" style="background: var(--bg-sheet)">
+          <p class="labelRegular10 text-secondary mono">--bg-sheet (modal / sheet)</p>
+        </div>
+        <div class="p-200 rounded-200 mt-100 surface-washNeutral">
+          <p class="labelRegular10 text-secondary mono">on a surface, use a wash — not a second --bg-surface</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sheet-section" id="text">
+    <div class="sheet-section-head">
+      <h2 class="display300">Text</h2>
+      <span class="labelRegular10 text-secondary mono">design-tokens-master.css · text-styles-system.css</span>
+    </div>
+    <div class="token-list">
+        <div class="token-row" data-token="--text-primary">
+          <div class="token-chip"><div class="token-chip-fill" data-token-chip></div></div>
+          <span class="labelBold20 mono">--text-primary</span>
+          <span class="labelRegular10 token-value mono" data-token-value></span>
+        </div>
+        <div class="token-row" data-token="--text-secondary">
+          <div class="token-chip"><div class="token-chip-fill" data-token-chip></div></div>
+          <span class="labelBold20 mono">--text-secondary</span>
+          <span class="labelRegular10 token-value mono" data-token-value></span>
+        </div>
+        <div class="token-row" data-token="--text-disabled">
+          <div class="token-chip"><div class="token-chip-fill" data-token-chip></div></div>
+          <span class="labelBold20 mono">--text-disabled</span>
+          <span class="labelRegular10 token-value mono" data-token-value></span>
+        </div>
+        <div class="token-row" data-token="--text-placeholder">
+          <div class="token-chip"><div class="token-chip-fill" data-token-chip></div></div>
+          <span class="labelBold20 mono">--text-placeholder</span>
+          <span class="labelRegular10 token-value mono" data-token-value></span>
+        </div>
+    </div>
+
+    <div class="sheet-sub"><span class="title50">Colour modifier classes</span><span class="labelRegular10 text-secondary">colour is a class, never an inline override (<span class="mono">RULES §5</span>)</span></div>
+    <div class="sheet-grid">
+      <div class="spec"><div class="spec-stage"><span class="labelBold30 text-primary">Aa Primary</span></div><div class="spec-label"><span class="labelRegular10 mono spec-code">.text-primary</span></div></div>
+      <div class="spec"><div class="spec-stage"><span class="labelBold30 text-secondary">Aa Secondary</span></div><div class="spec-label"><span class="labelRegular10 mono spec-code">.text-secondary</span></div></div>
+      <div class="spec"><div class="spec-stage"><span class="labelBold30 text-disabled">Aa Disabled</span></div><div class="spec-label"><span class="labelRegular10 mono spec-code">.text-disabled</span></div></div>
+      <div class="spec"><div class="spec-stage"><span class="labelBold30 text-placeholder">Aa Placeholder</span></div><div class="spec-label"><span class="labelRegular10 mono spec-code">.text-placeholder</span></div></div>
+      <div class="spec"><div class="spec-stage"><span class="labelBold30 text-brand-core">Aa Brand Core</span></div><div class="spec-label"><span class="labelRegular10 mono spec-code">.text-brand-core</span></div></div>
+      <div class="spec"><div class="spec-stage"><span class="labelBold30 text-brand-light">Aa Brand Light</span></div><div class="spec-label"><span class="labelRegular10 mono spec-code">.text-brand-light</span></div></div>
+      <div class="spec"><div class="spec-stage"><span class="labelBold30 text-brand-interactive">Aa Brand Interactive</span></div><div class="spec-label"><span class="labelRegular10 mono spec-code">.text-brand-interactive</span></div></div>
+      <div class="spec"><div class="spec-stage"><span class="labelBold30 text-brand-inverted">Aa Brand Inverted</span></div><div class="spec-label"><span class="labelRegular10 mono spec-code">.text-brand-inverted</span></div></div>
+      <div class="spec"><div class="spec-stage"><span class="labelBold30 text-interactive-tertiary">Aa Interactive Tertiary</span></div><div class="spec-label"><span class="labelRegular10 mono spec-code">.text-interactive-tertiary</span></div></div>
+      <div class="spec"><div class="spec-stage is-brand"><span class="labelBold30 text-inverted">Aa Inverted</span></div><div class="spec-label"><span class="labelRegular10 mono spec-code">.text-inverted</span><span class="labelRegular10 spec-meta">shown on --brand-core</span></div></div>
+      <div class="spec"><div class="spec-stage"><span class="labelBold30 text-success">Aa Success</span></div><div class="spec-label"><span class="labelRegular10 mono spec-code">.text-success</span></div></div>
+      <div class="spec"><div class="spec-stage"><span class="labelBold30 text-warning">Aa Warning</span></div><div class="spec-label"><span class="labelRegular10 mono spec-code">.text-warning</span></div></div>
+      <div class="spec"><div class="spec-stage"><span class="labelBold30 text-error">Aa Error</span></div><div class="spec-label"><span class="labelRegular10 mono spec-code">.text-error</span></div></div>
+      <div class="spec"><div class="spec-stage"><span class="labelBold30 text-info">Aa Info</span></div><div class="spec-label"><span class="labelRegular10 mono spec-code">.text-info</span></div></div>
+    </div>
+  </section>
+
+  <section class="sheet-section" id="borders">
+    <div class="sheet-section-head">
+      <h2 class="display300">Borders</h2>
+      <span class="labelRegular10 text-secondary mono">design-tokens-master.css</span>
+    </div>
+    <p class="sheet-note bodyRegular30">Cards never take a border — <span class="mono">--bg-surface</span> against <span class="mono">--bg-base</span> is the edge (<span class="mono">RULES §2</span>). These are for inputs, dividers and outlined controls.</p>
+    <div class="token-list">
+        <div class="token-row" data-token="--border-default">
+          <div class="token-chip"><div class="token-chip-fill" data-token-chip></div></div>
+          <span class="labelBold20 mono">--border-default</span>
+          <span class="labelRegular10 token-value mono" data-token-value></span>
+        </div>
+        <div class="token-row" data-token="--border-hover">
+          <div class="token-chip"><div class="token-chip-fill" data-token-chip></div></div>
+          <span class="labelBold20 mono">--border-hover</span>
+          <span class="labelRegular10 token-value mono" data-token-value></span>
+        </div>
+        <div class="token-row" data-token="--border-active">
+          <div class="token-chip"><div class="token-chip-fill" data-token-chip></div></div>
+          <span class="labelBold20 mono">--border-active</span>
+          <span class="labelRegular10 token-value mono" data-token-value></span>
+        </div>
+        <div class="token-row" data-token="--border-disabled">
+          <div class="token-chip"><div class="token-chip-fill" data-token-chip></div></div>
+          <span class="labelBold20 mono">--border-disabled</span>
+          <span class="labelRegular10 token-value mono" data-token-value></span>
+        </div>
+    </div>
+  </section>
+
+  <section class="sheet-section" id="brand">
+    <div class="sheet-section-head">
+      <h2 class="display300">Brand</h2>
+      <span class="labelRegular10 text-secondary mono">per theme</span>
+    </div>
+    <p class="sheet-note bodyRegular30">One value per theme, identical in light and dark. Use them for the brand itself — panels, crests, brand blocks.</p>
+    <div class="token-list">
+        <div class="token-row" data-token="--brand-core">
+          <div class="token-chip"><div class="token-chip-fill" data-token-chip></div></div>
+          <span class="labelBold20 mono">--brand-core</span>
+          <span class="labelRegular10 token-value mono" data-token-value></span>
+        </div>
+        <div class="token-row" data-token="--brand-light">
+          <div class="token-chip"><div class="token-chip-fill" data-token-chip></div></div>
+          <span class="labelBold20 mono">--brand-light</span>
+          <span class="labelRegular10 token-value mono" data-token-value></span>
+        </div>
+        <div class="token-row" data-token="--brand-dark">
+          <div class="token-chip"><div class="token-chip-fill" data-token-chip></div></div>
+          <span class="labelBold20 mono">--brand-dark</span>
+          <span class="labelRegular10 token-value mono" data-token-value></span>
+        </div>
+        <div class="token-row" data-token="--brand-dark-surface">
+          <div class="token-chip"><div class="token-chip-fill" data-token-chip></div></div>
+          <span class="labelBold20 mono">--brand-dark-surface</span>
+          <span class="labelRegular10 token-value mono" data-token-value></span>
+        </div>
+    </div>
+
+    <div class="sheet-callout is-warn mt-300">
+      <p class="bodyRegular30"><span class="mono">--brand-interactive</span> and <span class="mono">--brand-inverted</span> exist but <strong>never appear in a component</strong> — being mode-stable they render dark-on-dark in one mode. The mode-aware pair below is what links, active states and accents take (<span class="mono">RULES §2</span>).</p>
+    </div>
+    <div class="token-list">
+        <div class="token-row" data-token="--brand-interactive">
+          <div class="token-chip"><div class="token-chip-fill" data-token-chip></div></div>
+          <span class="labelBold20 mono">--brand-interactive</span>
+          <span class="labelRegular10 token-value mono" data-token-value></span>
+        </div>
+        <div class="token-row" data-token="--brand-inverted">
+          <div class="token-chip"><div class="token-chip-fill" data-token-chip></div></div>
+          <span class="labelBold20 mono">--brand-inverted</span>
+          <span class="labelRegular10 token-value mono" data-token-value></span>
+        </div>
+    </div>
+  </section>
+
+  <section class="sheet-section" id="interactive">
+    <div class="sheet-section-head">
+      <h2 class="display300">Interactive</h2>
+      <span class="labelRegular10 text-secondary mono">per theme + mode</span>
+    </div>
+    <p class="sheet-note bodyRegular30">Identical to the brand pair in light, swapped in dark. This is what you reach for.</p>
+    <div class="token-list">
+        <div class="token-row" data-token="--color-interactive">
+          <div class="token-chip"><div class="token-chip-fill" data-token-chip></div></div>
+          <span class="labelBold20 mono">--color-interactive</span>
+          <span class="labelRegular10 token-value mono" data-token-value></span>
+        </div>
+        <div class="token-row" data-token="--color-inverted">
+          <div class="token-chip"><div class="token-chip-fill" data-token-chip></div></div>
+          <span class="labelBold20 mono">--color-inverted</span>
+          <span class="labelRegular10 token-value mono" data-token-value></span>
+        </div>
+        <div class="token-row" data-token="--interactive-primary">
+          <div class="token-chip"><div class="token-chip-fill" data-token-chip></div></div>
+          <span class="labelBold20 mono">--interactive-primary</span>
+          <span class="labelRegular10 token-value mono" data-token-value></span>
+        </div>
+        <div class="token-row" data-token="--interactive-primary-text">
+          <div class="token-chip"><div class="token-chip-fill" data-token-chip></div></div>
+          <span class="labelBold20 mono">--interactive-primary-text</span>
+          <span class="labelRegular10 token-value mono" data-token-value></span>
+        </div>
+        <div class="token-row" data-token="--interactive-transactional">
+          <div class="token-chip"><div class="token-chip-fill" data-token-chip></div></div>
+          <span class="labelBold20 mono">--interactive-transactional</span>
+          <span class="labelRegular10 token-value mono" data-token-value></span>
+        </div>
+        <div class="token-row" data-token="--interactive-transactional-text">
+          <div class="token-chip"><div class="token-chip-fill" data-token-chip></div></div>
+          <span class="labelBold20 mono">--interactive-transactional-text</span>
+          <span class="labelRegular10 token-value mono" data-token-value></span>
+        </div>
+        <div class="token-row" data-token="--interactive-secondary-text">
+          <div class="token-chip"><div class="token-chip-fill" data-token-chip></div></div>
+          <span class="labelBold20 mono">--interactive-secondary-text</span>
+          <span class="labelRegular10 token-value mono" data-token-value></span>
+        </div>
+        <div class="token-row" data-token="--interactive-tertiary-text">
+          <div class="token-chip"><div class="token-chip-fill" data-token-chip></div></div>
+          <span class="labelBold20 mono">--interactive-tertiary-text</span>
+          <span class="labelRegular10 token-value mono" data-token-value></span>
+        </div>
+        <div class="token-row" data-token="--ios-selected-tab">
+          <div class="token-chip"><div class="token-chip-fill" data-token-chip></div></div>
+          <span class="labelBold20 mono">--ios-selected-tab</span>
+          <span class="labelRegular10 token-value mono" data-token-value></span>
+        </div>
+    </div>
+  </section>
+
+  <section class="sheet-section" id="status">
+    <div class="sheet-section-head">
+      <h2 class="display300">Status</h2>
+      <span class="labelRegular10 text-secondary mono">mode-aware, with fixed literals</span>
+    </div>
+    <p class="sheet-note bodyRegular30">The four unsuffixed tokens follow the mode. The <span class="mono">-light</span> / <span class="mono">-dark</span> pairs are the fixed values behind them, for the rare case that must not follow the mode.</p>
+    <div class="token-list">
+        <div class="token-row" data-token="--status-success">
+          <div class="token-chip"><div class="token-chip-fill" data-token-chip></div></div>
+          <span class="labelBold20 mono">--status-success</span>
+          <span class="labelRegular10 token-value mono" data-token-value></span>
+        </div>
+        <div class="token-row" data-token="--status-warning">
+          <div class="token-chip"><div class="token-chip-fill" data-token-chip></div></div>
+          <span class="labelBold20 mono">--status-warning</span>
+          <span class="labelRegular10 token-value mono" data-token-value></span>
+        </div>
+        <div class="token-row" data-token="--status-error">
+          <div class="token-chip"><div class="token-chip-fill" data-token-chip></div></div>
+          <span class="labelBold20 mono">--status-error</span>
+          <span class="labelRegular10 token-value mono" data-token-value></span>
+        </div>
+        <div class="token-row" data-token="--status-info">
+          <div class="token-chip"><div class="token-chip-fill" data-token-chip></div></div>
+          <span class="labelBold20 mono">--status-info</span>
+          <span class="labelRegular10 token-value mono" data-token-value></span>
+        </div>
+        <div class="token-row" data-token="--status-success-light">
+          <div class="token-chip"><div class="token-chip-fill" data-token-chip></div></div>
+          <span class="labelBold20 mono">--status-success-light</span>
+          <span class="labelRegular10 token-value mono" data-token-value></span>
+        </div>
+        <div class="token-row" data-token="--status-success-dark">
+          <div class="token-chip"><div class="token-chip-fill" data-token-chip></div></div>
+          <span class="labelBold20 mono">--status-success-dark</span>
+          <span class="labelRegular10 token-value mono" data-token-value></span>
+        </div>
+        <div class="token-row" data-token="--status-warning-light">
+          <div class="token-chip"><div class="token-chip-fill" data-token-chip></div></div>
+          <span class="labelBold20 mono">--status-warning-light</span>
+          <span class="labelRegular10 token-value mono" data-token-value></span>
+        </div>
+        <div class="token-row" data-token="--status-warning-dark">
+          <div class="token-chip"><div class="token-chip-fill" data-token-chip></div></div>
+          <span class="labelBold20 mono">--status-warning-dark</span>
+          <span class="labelRegular10 token-value mono" data-token-value></span>
+        </div>
+        <div class="token-row" data-token="--status-error-light">
+          <div class="token-chip"><div class="token-chip-fill" data-token-chip></div></div>
+          <span class="labelBold20 mono">--status-error-light</span>
+          <span class="labelRegular10 token-value mono" data-token-value></span>
+        </div>
+        <div class="token-row" data-token="--status-error-dark">
+          <div class="token-chip"><div class="token-chip-fill" data-token-chip></div></div>
+          <span class="labelBold20 mono">--status-error-dark</span>
+          <span class="labelRegular10 token-value mono" data-token-value></span>
+        </div>
+        <div class="token-row" data-token="--status-info-light">
+          <div class="token-chip"><div class="token-chip-fill" data-token-chip></div></div>
+          <span class="labelBold20 mono">--status-info-light</span>
+          <span class="labelRegular10 token-value mono" data-token-value></span>
+        </div>
+        <div class="token-row" data-token="--status-info-dark">
+          <div class="token-chip"><div class="token-chip-fill" data-token-chip></div></div>
+          <span class="labelBold20 mono">--status-info-dark</span>
+          <span class="labelRegular10 token-value mono" data-token-value></span>
+        </div>
+    </div>
+  </section>
+
+  <section class="sheet-section" id="alpha">
+    <div class="sheet-section-head">
+      <h2 class="display300">Alpha scales</h2>
+      <span class="labelRegular10 text-secondary mono">design-tokens-master.css</span>
+    </div>
+    <p class="sheet-note bodyRegular30"><span class="mono">--neutral-*</span> and <span class="mono">--inverted-*</span> flip with the mode; <span class="mono">--white-*</span> and <span class="mono">--black-*</span> are absolute and are also the flat scrim palette (<span class="mono">RULES §8</span>). The chequerboard behind each chip is there because these are transparent.</p>
+
+    <div class="sheet-sub"><span class="title50">Neutral</span><span class="labelRegular10 text-secondary">black in light mode, white in dark</span></div>
+    <div class="token-list">
+        <div class="token-row" data-token="--neutral-000">
+          <div class="token-chip"><div class="token-chip-fill" data-token-chip></div></div>
+          <span class="labelBold20 mono">--neutral-000</span>
+          <span class="labelRegular10 token-value mono" data-token-value></span>
+        </div>
+        <div class="token-row" data-token="--neutral-50">
+          <div class="token-chip"><div class="token-chip-fill" data-token-chip></div></div>
+          <span class="labelBold20 mono">--neutral-50</span>
+          <span class="labelRegular10 token-value mono" data-token-value></span>
+        </div>
+        <div class="token-row" data-token="--neutral-100">
+          <div class="token-chip"><div class="token-chip-fill" data-token-chip></div></div>
+          <span class="labelBold20 mono">--neutral-100</span>
+          <span class="labelRegular10 token-value mono" data-token-value></span>
+        </div>
+        <div class="token-row" data-token="--neutral-200">
+          <div class="token-chip"><div class="token-chip-fill" data-token-chip></div></div>
+          <span class="labelBold20 mono">--neutral-200</span>
+          <span class="labelRegular10 token-value mono" data-token-value></span>
+        </div>
+        <div class="token-row" data-token="--neutral-300">
+          <div class="token-chip"><div class="token-chip-fill" data-token-chip></div></div>
+          <span class="labelBold20 mono">--neutral-300</span>
+          <span class="labelRegular10 token-value mono" data-token-value></span>
+        </div>
+        <div class="token-row" data-token="--neutral-500">
+          <div class="token-chip"><div class="token-chip-fill" data-token-chip></div></div>
+          <span class="labelBold20 mono">--neutral-500</span>
+          <span class="labelRegular10 token-value mono" data-token-value></span>
+        </div>
+        <div class="token-row" data-token="--neutral-700">
+          <div class="token-chip"><div class="token-chip-fill" data-token-chip></div></div>
+          <span class="labelBold20 mono">--neutral-700</span>
+          <span class="labelRegular10 token-value mono" data-token-value></span>
+        </div>
+        <div class="token-row" data-token="--neutral-900">
+          <div class="token-chip"><div class="token-chip-fill" data-token-chip></div></div>
+          <span class="labelBold20 mono">--neutral-900</span>
+          <span class="labelRegular10 token-value mono" data-token-value></span>
+        </div>
+        <div class="token-row" data-token="--neutral-1000">
+          <div class="token-chip"><div class="token-chip-fill" data-token-chip></div></div>
+          <span class="labelBold20 mono">--neutral-1000</span>
+          <span class="labelRegular10 token-value mono" data-token-value></span>
+        </div>
+    </div>
+
+    <div class="sheet-sub"><span class="title50">Inverted</span><span class="labelRegular10 text-secondary">the opposite of neutral in the same mode</span></div>
+    <div class="token-list">
+        <div class="token-row" data-token="--inverted-000">
+          <div class="token-chip"><div class="token-chip-fill" data-token-chip></div></div>
+          <span class="labelBold20 mono">--inverted-000</span>
+          <span class="labelRegular10 token-value mono" data-token-value></span>
+        </div>
+        <div class="token-row" data-token="--inverted-50">
+          <div class="token-chip"><div class="token-chip-fill" data-token-chip></div></div>
+          <span class="labelBold20 mono">--inverted-50</span>
+          <span class="labelRegular10 token-value mono" data-token-value></span>
+        </div>
+        <div class="token-row" data-token="--inverted-100">
+          <div class="token-chip"><div class="token-chip-fill" data-token-chip></div></div>
+          <span class="labelBold20 mono">--inverted-100</span>
+          <span class="labelRegular10 token-value mono" data-token-value></span>
+        </div>
+        <div class="token-row" data-token="--inverted-200">
+          <div class="token-chip"><div class="token-chip-fill" data-token-chip></div></div>
+          <span class="labelBold20 mono">--inverted-200</span>
+          <span class="labelRegular10 token-value mono" data-token-value></span>
+        </div>
+        <div class="token-row" data-token="--inverted-300">
+          <div class="token-chip"><div class="token-chip-fill" data-token-chip></div></div>
+          <span class="labelBold20 mono">--inverted-300</span>
+          <span class="labelRegular10 token-value mono" data-token-value></span>
+        </div>
+        <div class="token-row" data-token="--inverted-500">
+          <div class="token-chip"><div class="token-chip-fill" data-token-chip></div></div>
+          <span class="labelBold20 mono">--inverted-500</span>
+          <span class="labelRegular10 token-value mono" data-token-value></span>
+        </div>
+        <div class="token-row" data-token="--inverted-700">
+          <div class="token-chip"><div class="token-chip-fill" data-token-chip></div></div>
+          <span class="labelBold20 mono">--inverted-700</span>
+          <span class="labelRegular10 token-value mono" data-token-value></span>
+        </div>
+        <div class="token-row" data-token="--inverted-900">
+          <div class="token-chip"><div class="token-chip-fill" data-token-chip></div></div>
+          <span class="labelBold20 mono">--inverted-900</span>
+          <span class="labelRegular10 token-value mono" data-token-value></span>
+        </div>
+        <div class="token-row" data-token="--inverted-1000">
+          <div class="token-chip"><div class="token-chip-fill" data-token-chip></div></div>
+          <span class="labelBold20 mono">--inverted-1000</span>
+          <span class="labelRegular10 token-value mono" data-token-value></span>
+        </div>
+    </div>
+
+    <div class="sheet-sub"><span class="title50">White</span><span class="labelRegular10 text-secondary">absolute — same in both modes</span></div>
+    <div class="token-list">
+        <div class="token-row" data-token="--white-100">
+          <div class="token-chip"><div class="token-chip-fill" data-token-chip></div></div>
+          <span class="labelBold20 mono">--white-100</span>
+          <span class="labelRegular10 token-value mono" data-token-value></span>
+        </div>
+        <div class="token-row" data-token="--white-200">
+          <div class="token-chip"><div class="token-chip-fill" data-token-chip></div></div>
+          <span class="labelBold20 mono">--white-200</span>
+          <span class="labelRegular10 token-value mono" data-token-value></span>
+        </div>
+        <div class="token-row" data-token="--white-300">
+          <div class="token-chip"><div class="token-chip-fill" data-token-chip></div></div>
+          <span class="labelBold20 mono">--white-300</span>
+          <span class="labelRegular10 token-value mono" data-token-value></span>
+        </div>
+        <div class="token-row" data-token="--white-500">
+          <div class="token-chip"><div class="token-chip-fill" data-token-chip></div></div>
+          <span class="labelBold20 mono">--white-500</span>
+          <span class="labelRegular10 token-value mono" data-token-value></span>
+        </div>
+        <div class="token-row" data-token="--white-700">
+          <div class="token-chip"><div class="token-chip-fill" data-token-chip></div></div>
+          <span class="labelBold20 mono">--white-700</span>
+          <span class="labelRegular10 token-value mono" data-token-value></span>
+        </div>
+        <div class="token-row" data-token="--white-900">
+          <div class="token-chip"><div class="token-chip-fill" data-token-chip></div></div>
+          <span class="labelBold20 mono">--white-900</span>
+          <span class="labelRegular10 token-value mono" data-token-value></span>
+        </div>
+        <div class="token-row" data-token="--white-1000">
+          <div class="token-chip"><div class="token-chip-fill" data-token-chip></div></div>
+          <span class="labelBold20 mono">--white-1000</span>
+          <span class="labelRegular10 token-value mono" data-token-value></span>
+        </div>
+    </div>
+
+    <div class="sheet-sub"><span class="title50">Black</span><span class="labelRegular10 text-secondary">absolute — same in both modes</span></div>
+    <div class="token-list">
+        <div class="token-row" data-token="--black-100">
+          <div class="token-chip"><div class="token-chip-fill" data-token-chip></div></div>
+          <span class="labelBold20 mono">--black-100</span>
+          <span class="labelRegular10 token-value mono" data-token-value></span>
+        </div>
+        <div class="token-row" data-token="--black-200">
+          <div class="token-chip"><div class="token-chip-fill" data-token-chip></div></div>
+          <span class="labelBold20 mono">--black-200</span>
+          <span class="labelRegular10 token-value mono" data-token-value></span>
+        </div>
+        <div class="token-row" data-token="--black-300">
+          <div class="token-chip"><div class="token-chip-fill" data-token-chip></div></div>
+          <span class="labelBold20 mono">--black-300</span>
+          <span class="labelRegular10 token-value mono" data-token-value></span>
+        </div>
+        <div class="token-row" data-token="--black-500">
+          <div class="token-chip"><div class="token-chip-fill" data-token-chip></div></div>
+          <span class="labelBold20 mono">--black-500</span>
+          <span class="labelRegular10 token-value mono" data-token-value></span>
+        </div>
+        <div class="token-row" data-token="--black-700">
+          <div class="token-chip"><div class="token-chip-fill" data-token-chip></div></div>
+          <span class="labelBold20 mono">--black-700</span>
+          <span class="labelRegular10 token-value mono" data-token-value></span>
+        </div>
+        <div class="token-row" data-token="--black-900">
+          <div class="token-chip"><div class="token-chip-fill" data-token-chip></div></div>
+          <span class="labelBold20 mono">--black-900</span>
+          <span class="labelRegular10 token-value mono" data-token-value></span>
+        </div>
+        <div class="token-row" data-token="--black-1000">
+          <div class="token-chip"><div class="token-chip-fill" data-token-chip></div></div>
+          <span class="labelBold20 mono">--black-1000</span>
+          <span class="labelRegular10 token-value mono" data-token-value></span>
+        </div>
+    </div>
+  </section>
+
+  <section class="sheet-section" id="scrims">
+    <div class="sheet-section-head">
+      <h2 class="display300">Scrims</h2>
+      <span class="labelRegular10 text-secondary mono">border-effects-tokens.css</span>
+    </div>
+    <p class="sheet-note bodyRegular30">Text over a photograph needs a scrim. Flat scrims are the alpha scales above; gradients are tokens, because a scale cannot express them. Scrims are <strong>mode-stable</strong> — a photo needs the same darkening in light mode as in dark, so never wrap one in a <span class="mono">[data-mode]</span> block (<span class="mono">RULES §8</span>).</p>
+
+    <div class="sheet-grid sheet-grid-wide">
+      <div class="spec">
+        <div class="spec-stage is-plain">
+          <div class="demo-image rounded-100" data-demo-image style="width: 100%; aspect-ratio: 16/9; position: relative; overflow: hidden;">
+            <div class="scrim-image" style="position: absolute; inset: 0;"></div>
+            <div style="position: absolute; left: var(--spacing-200); bottom: var(--spacing-200);">
+              <p class="labelBold30" style="color: var(--white-1000)">Primary on scrim</p>
+              <p class="labelRegular10" style="color: var(--white-700)">Secondary on scrim</p>
+            </div>
+          </div>
+        </div>
+        <div class="spec-label"><span class="labelRegular10 mono spec-code">.scrim-image</span><span class="labelRegular10 spec-meta">bottom-up black fade</span></div>
+      </div>
+      <div class="spec">
+        <div class="spec-stage is-plain">
+          <div class="demo-image rounded-100" data-demo-image style="width: 100%; aspect-ratio: 16/9; position: relative; overflow: hidden;">
+            <div class="scrim-brand" style="position: absolute; inset: 0;"></div>
+            <div style="position: absolute; left: var(--spacing-200); bottom: var(--spacing-200);">
+              <p class="labelBold30" style="color: var(--white-1000)">Fades into --brand-dark</p>
+            </div>
+          </div>
+        </div>
+        <div class="spec-label"><span class="labelRegular10 mono spec-code">.scrim-brand</span></div>
+      </div>
+      <div class="spec">
+        <div class="spec-stage is-plain">
+          <div class="demo-image rounded-100" data-demo-image style="width: 100%; aspect-ratio: 16/9; position: relative; overflow: hidden;">
+            <div class="scrim-brand-strong" style="position: absolute; inset: 0;"></div>
+            <div style="position: absolute; left: var(--spacing-200); bottom: var(--spacing-200);">
+              <p class="labelBold30" style="color: var(--white-1000)">Heavier brand fade</p>
+            </div>
+          </div>
+        </div>
+        <div class="spec-label"><span class="labelRegular10 mono spec-code">.scrim-brand-strong</span></div>
+      </div>
+    </div>
+
+    <div class="sheet-sub"><span class="title50">Flat scrims — which alpha step</span></div>
+    <div class="sheet-grid">
+      <div class="spec"><div class="spec-stage is-center" style="background: var(--brand-core)"><div style="background: var(--black-300); padding: var(--spacing-200); width: 100%; text-align: center;"><span class="labelBold20" style="color: var(--white-1000)">--black-300</span></div></div><div class="spec-label"><span class="labelRegular10 spec-meta">light wash over a brand panel</span></div></div>
+      <div class="spec"><div class="spec-stage is-center" style="background: var(--brand-core)"><div style="background: var(--black-500); padding: var(--spacing-200); width: 100%; text-align: center;"><span class="labelBold20" style="color: var(--white-1000)">--black-500</span></div></div><div class="spec-label"><span class="labelRegular10 spec-meta">standard bed for text on a photo</span></div></div>
+      <div class="spec"><div class="spec-stage is-center" style="background: var(--brand-core)"><div style="background: var(--black-700); padding: var(--spacing-200); width: 100%; text-align: center;"><span class="labelBold20" style="color: var(--white-1000)">--black-700</span></div></div><div class="spec-label"><span class="labelRegular10 spec-meta">heavy, for body copy on a busy image</span></div></div>
+    </div>
+    <div class="token-list mt-300">
+        <div class="token-row" data-token="--scrim-image">
+          <div class="token-chip"><div class="token-chip-fill" data-token-chip="background"></div></div>
+          <span class="labelBold20 mono">--scrim-image</span>
+          <span class="labelRegular10 token-value mono" data-token-value></span>
+        </div>
+        <div class="token-row" data-token="--scrim-brand">
+          <div class="token-chip"><div class="token-chip-fill" data-token-chip="background"></div></div>
+          <span class="labelBold20 mono">--scrim-brand</span>
+          <span class="labelRegular10 token-value mono" data-token-value></span>
+        </div>
+        <div class="token-row" data-token="--scrim-brand-strong">
+          <div class="token-chip"><div class="token-chip-fill" data-token-chip="background"></div></div>
+          <span class="labelBold20 mono">--scrim-brand-strong</span>
+          <span class="labelRegular10 token-value mono" data-token-value></span>
+        </div>
+    </div>
+  </section>
+
+  <section class="sheet-section" id="plumbing">
+    <div class="sheet-section-head">
+      <h2 class="display300">Plumbing</h2>
+      <span class="labelRegular10 text-secondary mono">never use in markup</span>
+    </div>
+    <p class="sheet-note bodyRegular30">The raw per-theme, per-mode layer that the semantic tokens alias — <span class="mono">--bg-base</span> is <span class="mono">--org-base</span>. Listed for completeness and for debugging a theme; reach for the semantic token instead.</p>
+    <div class="token-list">
+        <div class="token-row" data-token="--org-base">
+          <div class="token-chip"><div class="token-chip-fill" data-token-chip></div></div>
+          <span class="labelBold20 mono">--org-base</span>
+          <span class="labelRegular10 token-value mono" data-token-value></span>
+        </div>
+        <div class="token-row" data-token="--org-surface">
+          <div class="token-chip"><div class="token-chip-fill" data-token-chip></div></div>
+          <span class="labelBold20 mono">--org-surface</span>
+          <span class="labelRegular10 token-value mono" data-token-value></span>
+        </div>
+        <div class="token-row" data-token="--org-sheet">
+          <div class="token-chip"><div class="token-chip-fill" data-token-chip></div></div>
+          <span class="labelBold20 mono">--org-sheet</span>
+          <span class="labelRegular10 token-value mono" data-token-value></span>
+        </div>
+        <div class="token-row" data-token="--org-nav">
+          <div class="token-chip"><div class="token-chip-fill" data-token-chip></div></div>
+          <span class="labelBold20 mono">--org-nav</span>
+          <span class="labelRegular10 token-value mono" data-token-value></span>
+        </div>
+        <div class="token-row" data-token="--org-primary-button">
+          <div class="token-chip"><div class="token-chip-fill" data-token-chip></div></div>
+          <span class="labelBold20 mono">--org-primary-button</span>
+          <span class="labelRegular10 token-value mono" data-token-value></span>
+        </div>
+        <div class="token-row" data-token="--org-primary-button-text">
+          <div class="token-chip"><div class="token-chip-fill" data-token-chip></div></div>
+          <span class="labelBold20 mono">--org-primary-button-text</span>
+          <span class="labelRegular10 token-value mono" data-token-value></span>
+        </div>
+        <div class="token-row" data-token="--org-transactional-button">
+          <div class="token-chip"><div class="token-chip-fill" data-token-chip></div></div>
+          <span class="labelBold20 mono">--org-transactional-button</span>
+          <span class="labelRegular10 token-value mono" data-token-value></span>
+        </div>
+        <div class="token-row" data-token="--org-transactional-button-text">
+          <div class="token-chip"><div class="token-chip-fill" data-token-chip></div></div>
+          <span class="labelBold20 mono">--org-transactional-button-text</span>
+          <span class="labelRegular10 token-value mono" data-token-value></span>
+        </div>
+        <div class="token-row" data-token="--org-secondary-button-text">
+          <div class="token-chip"><div class="token-chip-fill" data-token-chip></div></div>
+          <span class="labelBold20 mono">--org-secondary-button-text</span>
+          <span class="labelRegular10 token-value mono" data-token-value></span>
+        </div>
+        <div class="token-row" data-token="--org-tertiary-button-text">
+          <div class="token-chip"><div class="token-chip-fill" data-token-chip></div></div>
+          <span class="labelBold20 mono">--org-tertiary-button-text</span>
+          <span class="labelRegular10 token-value mono" data-token-value></span>
+        </div>
+    </div>
+
+    <div class="sheet-sub"><span class="title50">Chrome and effect tokens</span></div>
+    <div class="token-list">
+        <div class="token-row" data-token="--ios-nav-bg">
+          <div class="token-chip"><div class="token-chip-fill" data-token-chip></div></div>
+          <span class="labelBold20 mono">--ios-nav-bg</span>
+          <span class="labelRegular10 token-value mono" data-token-value></span>
+        </div>
+        <div class="token-row" data-token="--ios-tab-bar-bg">
+          <div class="token-chip"><div class="token-chip-fill" data-token-chip></div></div>
+          <span class="labelBold20 mono">--ios-tab-bar-bg</span>
+          <span class="labelRegular10 token-value mono" data-token-value></span>
+        </div>
+        <div class="token-row" data-token="--ios-selected-tab-bg">
+          <div class="token-chip"><div class="token-chip-fill" data-token-chip></div></div>
+          <span class="labelBold20 mono">--ios-selected-tab-bg</span>
+          <span class="labelRegular10 token-value mono" data-token-value></span>
+        </div>
+        <div class="token-row" data-token="--ios-separator">
+          <div class="token-chip"><div class="token-chip-fill" data-token-chip></div></div>
+          <span class="labelBold20 mono">--ios-separator</span>
+          <span class="labelRegular10 token-value mono" data-token-value></span>
+        </div>
+        <div class="token-row" data-token="--ios-modal-stack-bg">
+          <div class="token-chip"><div class="token-chip-fill" data-token-chip="background"></div></div>
+          <span class="labelBold20 mono">--ios-modal-stack-bg</span>
+          <span class="labelRegular10 token-value mono" data-token-value></span>
+        </div>
+        <div class="token-row" data-token="--lg-light-bg">
+          <div class="token-chip"><div class="token-chip-fill" data-token-chip></div></div>
+          <span class="labelBold20 mono">--lg-light-bg</span>
+          <span class="labelRegular10 token-value mono" data-token-value></span>
+        </div>
+        <div class="token-row" data-token="--lg-dark-bg">
+          <div class="token-chip"><div class="token-chip-fill" data-token-chip></div></div>
+          <span class="labelBold20 mono">--lg-dark-bg</span>
+          <span class="labelRegular10 token-value mono" data-token-value></span>
+        </div>
+        <div class="token-row" data-token="--lg-brand-text">
+          <div class="token-chip"><div class="token-chip-fill" data-token-chip></div></div>
+          <span class="labelBold20 mono">--lg-brand-text</span>
+          <span class="labelRegular10 token-value mono" data-token-value></span>
+        </div>
+        <div class="token-row" data-token="--image-placeholder-bg">
+          <div class="token-chip"><div class="token-chip-fill" data-token-chip></div></div>
+          <span class="labelBold20 mono">--image-placeholder-bg</span>
+          <span class="labelRegular10 token-value mono" data-token-value></span>
+        </div>
+        <div class="token-row no-chip" data-token="--background-blur">
+          <span class="labelBold20 mono">--background-blur</span>
+          <span class="labelRegular10 token-value mono" data-token-value></span>
+        </div>
+        <div class="token-row no-chip" data-token="--brand-logo-url">
+          <span class="labelBold20 mono">--brand-logo-url</span>
+          <span class="labelRegular10 token-value mono" data-token-value></span>
+        </div>
+        <div class="token-row no-chip" data-token="--brand-tab-icon">
+          <span class="labelBold20 mono">--brand-tab-icon</span>
+          <span class="labelRegular10 token-value mono" data-token-value></span>
+        </div>
+    </div>
+  </section>
+
+  <footer class="sheet-footer">
+    <p class="labelRegular10">Generated against <span class="mono">docs/css-api.json</span>. Every class shown here exists in the system — run <span class="mono">npm run check:demo</span> to verify the sheets still cover it.</p>
+  </footer>
+
+</main>
+
+<script src="sheet.js"></script>
+</body>
+</html>

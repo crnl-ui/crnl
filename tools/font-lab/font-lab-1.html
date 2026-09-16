@@ -1,0 +1,1891 @@
+<!DOCTYPE html>
+<html lang="en" data-mode="light" data-platform="web">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Font Lab — Google Fonts vetting tool</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap" rel="stylesheet">
+  <script src="../../css/ds-loader.js"></script>
+  <script src="theme-ramps.js"></script>
+  <script src="catalog.js"></script>
+</head>
+<body>
+<!--
+@title: Font Lab
+@author: Cornelius Hegeman
+@tags: typography, desktop, experiment
+@description: Vetting tool for finding free Google Fonts that can stand in for paid display fonts — compare, tune, and preview a candidate across the display ramp and real app screens.
+@status: draft
+-->
+
+<style>
+  /* ── Font Lab shell (tool chrome — design tokens throughout) ── */
+  body { margin: 0; background: var(--bg-base); color: var(--text-primary); font-family: 'Inter', sans-serif; height: 100vh; overflow: hidden; }
+  .fl-app { display: grid; grid-template-columns: 340px 1fr; height: 100vh; }
+
+  /* Sidebar — inverted rail (Cornelius's 2026-07-15 Figma redesign) */
+  .fl-side { display: flex; flex-direction: column; min-height: 0; background: var(--neutral-1000); }
+  .fl-side-head { padding: var(--spacing-200); display: flex; flex-direction: column; gap: var(--spacing-300); }
+  .fl-brand { display: flex; align-items: center; justify-content: space-between; }
+  .fl-logo { font-family: var(--display-font); font-size: var(--display-size-500); font-weight: var(--display-weight); letter-spacing: var(--display-letter-spacing); line-height: 1; color: var(--inverted-1000); }
+  .fl-side .fl-mini { border-color: var(--inverted-200); color: var(--inverted-700); }
+  .fl-search { background: var(--inverted-100); color: var(--inverted-1000); border: 1px solid var(--inverted-200); border-radius: 100px; padding: 9px 14px; font-family: inherit; font-size: 14px; }
+  .fl-search::placeholder { color: var(--inverted-700); }
+  .fl-chips { display: flex; flex-wrap: wrap; gap: var(--spacing-50); }
+  .fl-chip { border: 1px solid var(--inverted-200); background: none; color: var(--inverted-1000); border-radius: 100px; padding: 0 14px; height: 32px; display: inline-flex; align-items: center; font-family: inherit; font-size: 12px; font-weight: 600; cursor: pointer; }
+  .fl-chip.is-on { background: var(--inverted-1000); color: var(--neutral-1000); border-color: transparent; }
+  .fl-chip.fl-more-btn { width: 32px; height: 32px; padding: 0; justify-content: center; border-radius: 50%; }
+  .fl-chip.fl-more-btn .icon { font-size: 18px; }
+  .fl-tagwrap { position: relative; }
+  .fl-tagmenu { position: absolute; left: 0; top: 34px; z-index: 60; background: var(--neutral-1000); border: 1px solid var(--inverted-200); border-radius: 10px; padding: 4px; display: flex; flex-direction: column; min-width: 220px; max-height: 340px; overflow-y: auto; box-shadow: 0 8px 24px rgba(0,0,0,0.4); }
+  .fl-tagmenu[hidden] { display: none; }
+  .fl-tagmenu .fl-taggroup { padding: 8px 12px 3px; font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--inverted-500); }
+  .fl-tagmenu button { background: none; border: none; text-align: left; padding: 6px 12px; border-radius: 6px; font-family: inherit; font-size: 12px; font-weight: 600; color: var(--inverted-1000); cursor: pointer; display: flex; justify-content: space-between; gap: 12px; }
+  .fl-tagmenu button:hover { background: var(--inverted-100); }
+  .fl-tagmenu button.is-on { color: var(--brand-inverted); }
+  .fl-tagmenu button small { color: var(--inverted-500); font-weight: 400; }
+  .fl-count { padding: var(--spacing-100) var(--spacing-200); font-size: 10px; color: var(--inverted-700); display: flex; align-items: center; justify-content: space-between; }
+  .fl-count strong { color: var(--inverted-1000); font-weight: 600; }
+  .fl-sortwrap { position: relative; }
+  .fl-sort { background: none; border: none; color: var(--inverted-1000); cursor: pointer; padding: 2px; display: flex; }
+  .fl-sort .icon { font-size: 20px; }
+  .fl-sortmenu { position: absolute; right: 0; top: 26px; z-index: 50; background: var(--neutral-1000); border: 1px solid var(--inverted-200); border-radius: 10px; padding: 4px; display: flex; flex-direction: column; min-width: 130px; box-shadow: 0 8px 24px rgba(0,0,0,0.4); }
+  .fl-sortmenu[hidden] { display: none; }
+  .fl-sortmenu button { background: none; border: none; text-align: left; padding: 8px 12px; border-radius: 6px; font-family: inherit; font-size: 12px; font-weight: 600; color: var(--inverted-1000); cursor: pointer; }
+  .fl-sortmenu button:hover { background: var(--inverted-100); }
+  .fl-sortmenu button.is-on { color: var(--brand-inverted); }
+  .fl-list { flex: 1; overflow-y: auto; min-height: 0; padding: 0 var(--spacing-200); }  /* align rows with search + count above */
+  .fl-row { background: var(--inverted-100); border-radius: 16px; padding: var(--spacing-200); margin-bottom: var(--spacing-50); cursor: pointer; position: relative; }
+  .fl-row:hover { background: var(--inverted-200); }
+  .fl-row.is-sel { box-shadow: inset 0 0 0 2px var(--brand-inverted); }
+  .fl-row-meta { display: flex; align-items: center; justify-content: space-between; gap: var(--spacing-100); margin-bottom: var(--spacing-150); }
+  .fl-row-name { font-size: 14px; font-weight: 400; color: var(--inverted-1000); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .fl-row-badges { display: flex; gap: 4px; flex-shrink: 0; }
+  .fl-row-badge { font-size: 10px; font-weight: 600; border-radius: 4px; padding: 0 4px; white-space: nowrap; border: 1px solid var(--border-default); color: var(--text-secondary); }
+  .fl-side .fl-row-badge { font-size: 12px; padding: 3px 8px; border-color: var(--inverted-200); color: var(--inverted-700); }
+  .fl-side .fl-tier { color: var(--brand-inverted); border-color: var(--brand-inverted); background: none; }
+  .fl-side .fl-grade { background: var(--brand-inverted); color: var(--black-1000); border-color: transparent; } /* black-1000: lime is mode-stable, so its text must be too */
+  .fl-row-sample { font-size: 24px; line-height: 1.2; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-height: 29px; color: var(--inverted-1000); }
+  .fl-row-star { background: none; border: none; cursor: pointer; color: var(--inverted-700); font-size: 16px; line-height: 1; padding: 0 0 0 2px; }
+  .fl-row-star:hover { color: var(--inverted-1000); }
+  .fl-row-star.is-fav { color: var(--brand-inverted); }
+  /* Saved-style variants shown under a favorited font (Favorites filter only) */
+  .fl-fav-variant { background: var(--inverted-100); border-radius: 12px; margin: 2px 0 2px 16px; padding: 8px 12px; cursor: pointer; }
+  .fl-fav-variant:hover { background: var(--inverted-200); }
+  .fl-fav-variant.is-active { box-shadow: inset 0 0 0 2px var(--brand-inverted); }
+  .fl-fav-variant-meta { display: flex; justify-content: space-between; gap: 8px; font-size: 11px; color: var(--inverted-700); margin-bottom: 4px; }
+  .fl-fav-variant-meta span:first-child { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .fl-fav-variant-meta span:last-child { flex-shrink: 0; font-variant-numeric: tabular-nums; }
+  .fl-fav-variant-sample { font-size: 18px; line-height: 1.25; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; color: var(--inverted-1000); }
+
+  /* Main */
+  .fl-main { display: flex; flex-direction: column; min-height: 0; min-width: 0; }
+  .fl-mainhead { border-bottom: 1px solid var(--border-default); flex-shrink: 0; }
+  .fl-curfont { padding: var(--spacing-200) var(--spacing-400) var(--spacing-100); font-size: 40px; line-height: 1.2; color: var(--text-primary); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .fl-tabs { display: flex; padding: 0 var(--spacing-200); }
+  .fl-tab { background: none; border: none; border-bottom: 4px solid transparent; color: var(--text-secondary); font-family: inherit; font-size: 16px; font-weight: 400; padding: 12px 16px; cursor: pointer; }
+  .fl-tab.is-on { color: var(--color-interactive); font-weight: 600; border-bottom-color: var(--color-interactive); }
+  .fl-view { flex: 1; overflow-y: auto; min-height: 0; display: none; }
+  .fl-view.is-on { display: block; }
+  #view-workbench { overflow: hidden; } /* workbench manages its own internal scrolling */
+
+  /* Workbench — fixed to viewport: specimen scrolls internally, guide card stays pinned */
+  .fl-wb { display: grid; grid-template-columns: 1fr 320px; height: 100%; min-height: 0; }
+  .fl-stage { padding: var(--spacing-500) var(--spacing-400); display: flex; flex-direction: column; gap: var(--spacing-300); min-width: 0; min-height: 0; }
+  .fl-spec-scroll { flex: 1; min-height: 0; overflow-y: auto; }
+  .fl-specimen { outline: none; word-break: break-word; }
+  .fl-specimen:focus { box-shadow: 0 0 0 1px var(--border-default); border-radius: 4px; }
+  .fl-panel { border-left: 1px solid var(--border-default); padding: var(--spacing-300); display: flex; flex-direction: column; gap: var(--spacing-250); background: var(--bg-surface); overflow-y: auto; min-height: 0; }
+  .fl-ctl { display: flex; flex-direction: column; gap: 6px; }
+  .fl-ctl[hidden] { display: none; }  /* author display:flex would otherwise override the hidden attr */
+  .fl-ctl-head { display: flex; justify-content: space-between; align-items: baseline; }
+  .fl-ctl label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--text-secondary); }
+  .fl-ctl-val { font-size: 12px; color: var(--text-primary); font-variant-numeric: tabular-nums; }
+  .fl-ctl input[type=range] { width: 100%; accent-color: var(--color-interactive); }
+  .fl-ctl select, .fl-ctl input[type=number], .fl-ctl input[type=text], .fl-ctl textarea {
+    background: var(--bg-input, var(--bg-base)); color: var(--text-primary); border: 1px solid var(--border-default);
+    border-radius: 8px; padding: 8px 10px; font-family: inherit; font-size: 13px;
+  }
+  .fl-ctl textarea { font-family: ui-monospace, Menlo, monospace; font-size: 12px; min-height: 84px; resize: vertical; }
+  .fl-seg { display: flex; border: 1px solid var(--border-default); border-radius: 8px; overflow: hidden; }
+  .fl-seg button { flex: 1; background: none; border: none; color: var(--text-secondary); font-family: inherit; font-size: 12px; font-weight: 600; padding: 7px 0; cursor: pointer; }
+  .fl-seg button.is-on { background: var(--interactive-primary); color: var(--interactive-primary-text); }
+  .fl-css-out { font-family: ui-monospace, Menlo, monospace; font-size: 11px; line-height: 1.6; background: var(--bg-base); border: 1px solid var(--border-default); border-radius: 8px; padding: var(--spacing-150); white-space: pre-wrap; word-break: break-all; color: var(--text-secondary); }
+  .fl-btn { background: var(--interactive-primary); color: var(--interactive-primary-text); border: none; border-radius: 100px; padding: 10px 16px; font-family: inherit; font-size: 13px; font-weight: 700; cursor: pointer; }
+  .fl-btn.ghost { background: none; color: var(--interactive-secondary-text); border: 1px solid var(--border-default); }
+  .fl-check { display: flex; align-items: center; gap: var(--spacing-100); font-size: 12px; font-weight: 600; color: var(--text-secondary); cursor: pointer; padding: 2px 0; }
+  .fl-check input { accent-color: var(--color-interactive); width: 16px; height: 16px; margin: 0; }
+  .fl-btn:active { transform: scale(0.98); }
+  .fl-presets { display: flex; flex-wrap: wrap; gap: var(--spacing-50); align-items: center; }
+  .fl-cmpbar { display: inline-flex; align-items: center; gap: var(--spacing-100); margin-left: auto; padding-left: var(--spacing-200); }
+  #cmpImg { display: block; max-width: 100%; border-radius: 8px; margin-bottom: var(--spacing-300); }
+  #cmpImg[hidden] { display: none; }
+
+  /* Guide card + role/grade badges */
+  .fl-tier { color: var(--color-interactive); border-color: var(--color-interactive); }
+  .fl-grade { background: var(--interactive-primary); color: var(--interactive-primary-text); border-color: transparent; }
+  .fl-guide-card { margin-top: auto; border-radius: 12px; padding: var(--spacing-200); background: var(--bg-surface); display: flex; flex-direction: column; gap: var(--spacing-200); max-width: 720px; }
+  .fl-guide-head { display: flex; flex-direction: column; gap: var(--spacing-150); }
+  .fl-guide-title { font-family: var(--display-font); font-size: var(--display-size-300); font-weight: var(--display-weight); letter-spacing: var(--display-letter-spacing); line-height: 1.1; color: var(--text-primary); }
+  .fl-guide-badges { display: flex; gap: 6px; flex-wrap: wrap; }
+  .fl-guide-card .fl-row-badge { font-size: 12px; padding: 1px 6px; }
+  .fl-guide-body { display: flex; flex-direction: column; gap: var(--spacing-100); }
+  .fl-guide-line { font-size: 14px; color: var(--text-secondary); line-height: 1.5; }
+  .fl-guide-line strong { color: var(--text-primary); font-weight: 600; }
+  .fl-guide-warn { font-size: 14px; line-height: 1.5; color: var(--status-warning, #d97706); }
+  .fl-guide-pair { font-size: 14px; color: var(--text-secondary); line-height: 1.5; }
+  .fl-guide-pair button { background: none; border: none; padding: 0; color: var(--color-interactive); font: inherit; font-weight: 600; cursor: pointer; }
+
+  /* Favorites */
+  .fl-favs { padding: var(--spacing-300) var(--spacing-400); display: flex; flex-direction: column; gap: var(--spacing-200); }
+  #favList { display: flex; flex-direction: column; gap: var(--spacing-100); }
+  .fl-fav-card { border-radius: 12px; padding: var(--spacing-200); background: var(--bg-surface); }
+  .fl-fav-head { display: flex; align-items: center; gap: var(--spacing-150); margin-bottom: var(--spacing-100); flex-wrap: wrap; }
+  .fl-fav-name { font-weight: 700; font-size: 14px; }
+  .fl-fav-meta { font-size: 11px; color: var(--text-secondary); }
+  .fl-fav-line { margin: var(--spacing-100) 0; word-break: break-word; }
+  .fl-fav-actions { display: flex; gap: var(--spacing-100); flex-wrap: wrap; align-items: center; }
+  .fl-fav-note { flex: 1; min-width: 160px; background: none; border: none; border-radius: 8px; color: var(--text-secondary); font-family: inherit; font-size: 12px; padding: 6px 10px; }
+  .fl-fav-note:hover { background: var(--bg-base); }
+  .fl-fav-note:focus { background: var(--bg-base); outline: 1px solid var(--border-default); color: var(--text-primary); }
+  .fl-circ { width: 28px; height: 28px; padding: 0; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .fl-mini { background: none; border: 1px solid var(--border-default); color: var(--text-secondary); border-radius: 100px; padding: 5px 12px; font-family: inherit; font-size: 11px; font-weight: 600; cursor: pointer; }
+  .fl-mini:hover { color: var(--text-primary); }
+
+  /* Ramp */
+  #view-ramp { overflow: hidden; } /* ramp columns scroll internally so the panel is a flush full-height rail */
+  .fl-ramp { display: grid; grid-template-columns: minmax(0,1fr) 320px; height: 100%; min-height: 0; }
+  .fl-ramp-main { padding: var(--spacing-300) var(--spacing-400); overflow-y: auto; min-height: 0; min-width: 0; }
+  .fl-ramp-rows { display: flex; flex-direction: column; }
+  .fl-ramp-row { display: grid; grid-template-columns: 56px 76px 90px 1fr; gap: var(--spacing-200); align-items: center; padding: var(--spacing-100) 0; border-bottom: 1px solid var(--border-default); }
+  .fl-ramp-step { font-size: 12px; font-weight: 700; color: var(--text-secondary); }
+  .fl-ramp-lh { font-size: 11px; color: var(--text-secondary); font-variant-numeric: tabular-nums; }
+  .fl-ramp-row input[type=number] { width: 70px; background: var(--bg-input, var(--bg-base)); color: var(--text-primary); border: 1px solid var(--border-default); border-radius: 6px; padding: 5px 6px; font-family: inherit; font-size: 13px; }
+  .fl-ramp-row.is-over input[type=number] { border-color: var(--status-error); color: var(--status-error); }
+  .fl-ramp-preview { overflow: hidden; white-space: nowrap; background: linear-gradient(var(--bg-surface), var(--bg-surface)) left center / 100% var(--lh, 0px) no-repeat; }
+  .fl-ramp-warn { font-size: 11px; color: var(--status-error); }
+  .fl-note { font-size: 12px; color: var(--text-secondary); line-height: 1.5; }
+
+  /* Screens — live in-context preview (native templates in phone frames) */
+  #view-screens { overflow: hidden; }
+  .fl-screens { display: flex; flex-direction: column; height: 100%; min-height: 0; }
+  .fl-screens-bar { padding: 0 var(--spacing-400) var(--spacing-400); display: flex; align-items: center; gap: var(--spacing-300); flex-wrap: wrap; flex-shrink: 0; }
+  .fl-screens-bar .fl-ctl { flex-direction: row; align-items: center; gap: var(--spacing-100); }
+  /* Rounded stage — the fix for the phone-corner bleed.
+     The rounding + dark background live HERE, on a NON-scrolling wrapper. This panel
+     has no `overflow`, so it never applies a rounded clip to the descendant iframes'
+     compositing layers — which was the actual trigger for the Chrome corner bleed
+     (a rounded OVERFLOW ancestor, not the phone frame itself). The proof: the 2-up
+     spike renders the same iframe clean because its scroll ancestor has no
+     border-radius; adding one here reproduced the bleed, removing it fixed it. */
+  .fl-screens-panel { flex: 1; min-height: 0; margin: var(--spacing-400) var(--spacing-400) var(--spacing-100); background: var(--black-1000); border-radius: var(--border-radius-200); display: flex; }
+  /* Scroll container — clips + scrolls the phones, but has NO border-radius, so it
+     doesn't trigger the bleed. Phones inset by padding (32px) clear the panel's 16px
+     rounded corners, so no phone pixels ever reach the decorative rounded corners. */
+  .fl-screens-row { flex: 1; min-height: 0; overflow: auto; display: flex; gap: var(--spacing-500); padding: var(--spacing-400); align-items: safe center; justify-content: safe center; }
+  .fl-phone-wrap { display: flex; flex-direction: column; align-items: center; gap: var(--spacing-150); flex-shrink: 0; }
+  /* label is light — the stage is a fixed dark (--black-1000) surface; --white-700 is mode-stable */
+  .fl-phone-label { color: var(--white-700); text-align: center; }
+  /* Device frame. The iframe is 501px wide — JUST over the template's 500px
+     "real phone" breakpoint — so each template renders its NATIVE app-mode:
+     <html> is a #000 backdrop, <body> is the rounded 393px phone centered in it.
+     The rounding is drawn by <body> (a real element Chrome clips cleanly) INSIDE
+     the iframe.
+     .fl-phone is a tight 405px window that CROPS the ~54px of app-backdrop that
+     app-mode centers on each side, so phones sit close together instead of far
+     apart. This crop uses overflow:hidden with NO border-radius — a SQUARE clip,
+     which does NOT trigger the corner bleed (only a ROUNDED overflow clip does).
+     The iframe is shifted left by (501-405)/2 = 48px so the centered phone lands in
+     the window with a ~6px reveal each side (keeps <body>'s own edge ring visible). */
+  .fl-phone { width: 405px; height: 852px; overflow: hidden; background: transparent; }
+  .fl-phone iframe { width: 501px; height: 852px; margin-left: -48px; border: 0; display: block; background: transparent; }
+
+  /* ── Discover: swipeable like/dislike font deck ──
+     System-native: action buttons are .btn-circle, the category badge is a .tag,
+     text uses the label/title styles, colors are brand/status tokens. The only
+     bespoke pieces (no DS equivalent) are the progress bar, the stacked-card
+     deck, and the drag LIKE/NOPE stamps — all composed from tokens. */
+  #view-swipe { overflow: hidden; }
+  .fl-swipe { display: flex; flex-direction: column; height: 100%; align-items: center; padding: var(--spacing-400) var(--spacing-400) var(--spacing-300); gap: var(--spacing-300); }
+
+  /* Progress bar — no DS component; built from tokens */
+  .fl-swipe-head { width: 100%; max-width: 600px; display: flex; flex-direction: column; gap: var(--spacing-150); }
+  .fl-swipe-track { height: 6px; border-radius: var(--border-radius-100); background: var(--border-default); overflow: hidden; }
+  .fl-swipe-fill { height: 100%; width: 0; background: var(--color-interactive); border-radius: var(--border-radius-100); transition: width .35s cubic-bezier(.3,.7,.3,1); }
+  .fl-swipe-stats { display: flex; align-items: center; gap: var(--spacing-150); }
+  .fl-swipe-tallies { display: inline-flex; gap: var(--spacing-200); margin-left: auto; font-variant-numeric: tabular-nums; }
+  .fl-swipe-tallies .material-symbols-rounded { font-size: 15px; vertical-align: -2px; }
+
+  /* body centers the deck + actions + hint as one group */
+  .fl-swipe-body { flex: 1; min-height: 0; width: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: var(--spacing-400); }
+
+  /* Stacked-card deck — no DS component; the top card sits in normal flow (defines
+     the deck height), ghost cards are absolute inset:0 behind it, scaled + nudged
+     down so the stack peeks out. */
+  .fl-swipe-deck { position: relative; width: 100%; max-width: 600px; }
+  .fl-swipe-ghost { position: absolute; inset: 0; z-index: 1; background: var(--bg-surface); border: 1px solid var(--border-default); border-radius: var(--border-radius-200); transform-origin: top center; }
+  .fl-swipe-ghost.g1 { transform: translateY(14px) scale(.955); opacity: .7; }
+  .fl-swipe-ghost.g2 { transform: translateY(28px) scale(.91); opacity: .4; z-index: 0; }
+
+  .fl-swipe-card { position: relative; z-index: 3; background: var(--bg-surface); border: 1px solid var(--border-default); border-radius: var(--border-radius-200); padding: var(--spacing-400); display: flex; flex-direction: column; gap: var(--spacing-300); box-shadow: var(--shadow-modal-a), var(--shadow-modal-b); touch-action: none; cursor: grab; will-change: transform; }
+  .fl-swipe-card:not(.dragging) { transition: transform .32s cubic-bezier(.3,.7,.3,1), opacity .32s; }
+  .fl-swipe-card.dragging { cursor: grabbing; }
+  .fl-swipe-card.enter { transform: scale(.96); opacity: 0; transition: none; }
+  .fl-swipe-card.fly-like { transform: translateX(130%) rotate(14deg); opacity: 0; }
+  .fl-swipe-card.fly-dislike { transform: translateX(-130%) rotate(-14deg); opacity: 0; }
+
+  /* card content */
+  .fl-swipe-card-head { display: flex; flex-direction: column; gap: var(--spacing-100); }
+  .fl-swipe-tags { display: flex; align-items: center; gap: var(--spacing-100); }
+  .fl-swipe-fam { font-size: 30px; line-height: 1.1; color: var(--text-primary); word-break: break-word; }  /* the specimen — rendered in the candidate font itself */
+  .fl-swipe-weights { display: flex; flex-direction: column; gap: var(--spacing-200); border-top: 1px solid var(--border-default); padding-top: var(--spacing-250); }
+  .fl-swipe-w { display: flex; flex-direction: column; gap: var(--spacing-25); }
+  .fl-swipe-wlabel { display: flex; justify-content: space-between; gap: var(--spacing-100); font-variant-numeric: tabular-nums; }
+  .fl-swipe-wt { font-weight: 400; }
+  .fl-swipe-wsample { font-size: 30px; line-height: 1.15; color: var(--text-primary); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+  /* drag LIKE / NOPE stamps — no DS component; built from tokens */
+  .fl-swipe-stamp { position: absolute; top: 28px; font-size: 24px; font-weight: 800; letter-spacing: 2px; padding: 4px 14px; border: 3px solid; border-radius: var(--border-radius-100); opacity: 0; pointer-events: none; z-index: 4; }
+  .fl-swipe-stamp.like { right: 28px; color: var(--color-interactive); border-color: var(--color-interactive); transform: rotate(12deg); }
+  .fl-swipe-stamp.nope { left: 28px; color: var(--status-error); border-color: var(--status-error); transform: rotate(-12deg); }
+  .fl-swipe-card.fly-like .fl-swipe-stamp.like { opacity: 1; }
+  .fl-swipe-card.fly-dislike .fl-swipe-stamp.nope { opacity: 1; }
+
+  /* actions row — the buttons themselves are the system’s .btn-circle; only the layout is local */
+  .fl-swipe-actions { display: flex; align-items: center; gap: var(--spacing-400); flex-shrink: 0; }
+  .fl-swipe-hint { text-align: center; }
+  .fl-swipe-hint kbd { background: var(--neutral-100); border-radius: var(--border-radius-50); padding: 1px 6px; font: inherit; font-size: 11px; }
+  .fl-swipe-done { text-align: center; display: flex; flex-direction: column; gap: var(--spacing-100); padding: var(--spacing-500); }
+
+  /* ── v2: family verdicts + reusable styles ── */
+  /* sidebar is always-dark (--inverted-*), so the generic .fl-seg's :root-scoped
+     text/border tokens render invisible here — restyle to match the sidebar chips */
+  .fl-sidemode { width: 100%; border-color: var(--inverted-200); border-radius: 100px; }
+  .fl-sidemode button { flex: 1; color: var(--inverted-700); }
+  .fl-sidemode button:hover:not(.is-on) { color: var(--inverted-1000); }
+  .fl-sidemode button.is-on { background: var(--inverted-1000); color: var(--neutral-1000); }
+  /* per-row like/dislike controls (replace the old single star) */
+  .fl-row-verdict { display: inline-flex; gap: 2px; margin-left: 2px; }
+  .fl-vbtn { background: none; border: none; cursor: pointer; color: var(--inverted-500); font-size: 14px; line-height: 1; padding: 2px 3px; border-radius: 100px; }
+  .fl-vbtn:hover { color: var(--inverted-1000); background: var(--inverted-100); }
+  .fl-vbtn.fl-like.is-on { color: var(--brand-inverted); }
+  .fl-vbtn.fl-dislike.is-on { color: var(--status-error, #e5484d); }
+  .fl-row.is-disliked { opacity: 0.42; }
+  .fl-row.is-disliked:hover { opacity: 0.75; }
+  /* styles mode: hide the font-only controls */
+  .fl-side.is-styles .fl-search, .fl-side.is-styles .fl-chips, .fl-side.is-styles .fl-sortwrap { display: none; }
+  .fl-style-add { width: calc(100% - 24px); margin: 8px 12px; padding: 10px; border: 1px dashed var(--inverted-300); background: none; color: var(--inverted-1000); border-radius: 12px; cursor: pointer; font: inherit; font-weight: 600; }
+  .fl-style-add:hover { border-color: var(--brand-inverted); color: var(--brand-inverted); }
+  .fl-style-row { padding: 10px 16px; border-bottom: 1px solid var(--inverted-100); cursor: pointer; }
+  .fl-style-row:hover { background: var(--inverted-100); }
+  .fl-style-row.is-active { box-shadow: inset 3px 0 0 var(--brand-inverted); }
+  .fl-style-top { display: flex; justify-content: space-between; align-items: center; }
+  .fl-style-name { font-weight: 600; color: var(--inverted-1000); }
+  .fl-style-spec { font-size: 11px; color: var(--inverted-500); margin: 1px 0 4px; }
+  .fl-style-sample { font-size: 24px; line-height: 1.25; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; color: var(--inverted-1000); }
+  /* workbench panel: verdict + save-style + active-style readout */
+  .fl-verdict-row { display: flex; gap: var(--spacing-100); }
+  .fl-verdict-btn { flex: 1; }
+  .fl-verdict-btn.fl-like.is-on { background: var(--brand-inverted); color: var(--black-1000); border-color: transparent; }
+  .fl-verdict-btn.fl-dislike.is-on { background: var(--status-error, #e5484d); color: #fff; border-color: transparent; }
+  .fl-active-style { font-size: 12px; color: var(--text-secondary); text-align: center; margin: 2px 0; }
+  /* favorites sections */
+  .fl-fav-section { margin-bottom: var(--spacing-400); }
+  .fl-fav-sec-head { display: flex; align-items: center; gap: var(--spacing-150); font-weight: 700; color: var(--text-primary); margin-bottom: var(--spacing-200); font-size: 15px; }
+  .fl-fav-sec-head span { color: var(--text-secondary); font-weight: 500; }
+  .fl-fav-sec-head button { margin-left: auto; }
+  .fl-fav-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: var(--spacing-200); }
+  #favLiked { display: flex; flex-direction: column; gap: var(--spacing-300); }
+  .fl-style-card.is-active { box-shadow: inset 0 0 0 2px var(--brand-inverted); }
+  .fl-style-rename { background: none; border: none; border-bottom: 1px dashed transparent; color: var(--text-primary); font: inherit; font-weight: 600; font-size: 15px; padding: 0; width: 60%; }
+  .fl-style-rename:hover { border-bottom-color: var(--border-default); }
+  .fl-style-rename:focus { outline: none; border-bottom-color: var(--brand-inverted); }
+  .fl-dislike-wrap { display: flex; flex-wrap: wrap; gap: var(--spacing-100); }
+  .fl-dislike-chip { display: inline-flex; align-items: center; gap: 4px; background: var(--bg-surface); border: 1px solid var(--border-default); border-radius: 100px; padding: 3px 6px 3px 12px; font-size: 12px; color: var(--text-secondary); }
+  /* modal */
+  .fl-modal-backdrop { position: fixed; inset: 0; background: rgba(0,0,0,0.5); display: flex; align-items: center; justify-content: center; z-index: 100; }
+  .fl-modal-backdrop[hidden] { display: none; }
+  .fl-modal { background: var(--bg-base); border-radius: 16px; padding: var(--spacing-400); width: min(420px, 90vw); box-shadow: 0 24px 60px rgba(0,0,0,0.4); }
+  .fl-modal-title { font-size: 20px; font-weight: 700; color: var(--text-primary); }
+  .fl-modal-sub { font-size: 13px; color: var(--text-secondary); margin: 4px 0 16px; }
+  .fl-modal-label { display: block; font-size: 12px; font-weight: 600; color: var(--text-secondary); margin-bottom: 6px; }
+  .fl-modal-input { width: 100%; box-sizing: border-box; background: var(--bg-input, var(--bg-surface)); color: var(--text-primary); border: 1px solid var(--border-default); border-radius: 10px; padding: 10px 12px; font: inherit; font-size: 15px; }
+  .fl-modal-input:focus { outline: none; border-color: var(--brand-inverted); }
+  .fl-modal-actions { display: flex; justify-content: flex-end; gap: var(--spacing-100); margin-top: var(--spacing-400); }
+  .fl-modal-actions .fl-btn { width: auto; padding: 0 20px; }
+</style>
+
+<div class="fl-app">
+
+  <!-- ══ Sidebar: search + catalog ══ -->
+  <aside class="fl-side">
+    <div class="fl-side-head">
+      <div class="fl-brand">
+        <span class="fl-logo">Font Lab</span>
+        <button class="fl-mini" id="modeBtn" title="Toggle light/dark">◐ Mode</button>
+      </div>
+      <div class="fl-seg fl-sidemode" id="sideMode" title="Browse font families, or your saved reusable styles">
+        <button data-side="fonts" class="is-on">Fonts</button><button data-side="styles">Styles</button>
+      </div>
+      <input type="text" id="search" class="fl-search" placeholder="Search 1,892 Google Fonts…">
+      <div class="fl-chips" id="chipRow">
+        <span id="catChips" style="display:contents;"></span>
+        <button class="fl-chip" data-flag="curated" title="The 155-font branding &amp; display guide collection">Curated</button>
+        <button class="fl-chip" data-flag="liked" title="Show only font families you've liked">♥ Liked</button>
+        <button class="fl-chip" id="foreignChip" title="Show fonts built for non-Latin writing systems (Thai, Devanagari, Arabic, CJK, …). Hidden by default.">Other scripts</button>
+        <span class="fl-tagwrap">
+          <button class="fl-chip fl-more-btn" id="moreBtn" title="Filter by Google's tag taxonomy"><span class="icon">more_horiz</span></button>
+          <div class="fl-tagmenu" id="tagMenu" hidden></div>
+        </span>
+      </div>
+    </div>
+    <div class="fl-count"><span id="countLine"></span>
+      <div class="fl-sortwrap">
+        <button class="fl-sort" id="sortBtn" title="Sort"><span class="icon">sort</span></button>
+        <div class="fl-sortmenu" id="sortMenu" hidden>
+          <button data-sort="pop">Popular</button>
+          <button data-sort="guide">Guide rank</button>
+          <button data-sort="az">A–Z</button>
+        </div>
+      </div>
+    </div>
+    <div class="fl-list" id="fontList"></div>
+  </aside>
+
+  <!-- ══ Main ══ -->
+  <main class="fl-main">
+    <header class="fl-mainhead">
+      <div class="fl-curfont" id="curFontLabel"></div>
+      <nav class="fl-tabs">
+        <button class="fl-tab is-on" data-view="workbench">Workbench</button>
+        <button class="fl-tab" data-view="favorites">Favorites <span id="favCount"></span></button>
+        <button class="fl-tab" data-view="ramp">Display Styles</button>
+        <button class="fl-tab" data-view="screens">Screens</button>
+        <button class="fl-tab" data-view="swipe">Discover</button>
+      </nav>
+    </header>
+
+    <!-- ── Workbench ── -->
+    <section class="fl-view is-on" id="view-workbench">
+      <div class="fl-wb">
+        <div class="fl-stage">
+          <div class="fl-presets" id="samplePresets">
+            <span class="fl-cmpbar">
+              <button class="fl-mini" id="cmpAdd" title="Compare against a screenshot of a paid font — paste (⌘V) works anywhere">+ Sample image</button>
+              <input type="file" id="fileInput" accept="image/*" hidden>
+              <input type="range" id="cmp-zoom" min="0.1" max="6" step="0.01" value="1" title="resize sample image" hidden style="width:110px; accent-color: var(--color-interactive);">
+              <button class="fl-mini" id="cmpClear" hidden>✕ image</button>
+            </span>
+          </div>
+          <div class="fl-spec-scroll">
+            <img id="cmpImg" alt="comparison sample" hidden>
+            <div class="fl-specimen" id="wb-specimen" contenteditable="true" spellcheck="false"></div>
+          </div>
+          <div class="fl-guide-card" id="guideCard" hidden></div>
+        </div>
+        <div class="fl-panel">
+          <div class="fl-ctl"><div class="fl-ctl-head"><label>Display token</label><span class="fl-ctl-val" id="v-token"></span></div>
+            <select id="c-token"></select></div>
+          <div class="fl-ctl"><div class="fl-ctl-head"><label>Size</label><span class="fl-ctl-val" id="v-size"></span></div>
+            <input type="range" id="c-size" min="10" max="220" step="1"></div>
+          <div class="fl-ctl" id="ctl-lh" hidden><div class="fl-ctl-head"><label>Line height</label><span class="fl-ctl-val" id="v-lh"></span></div>
+            <input type="range" id="c-lh" min="0.7" max="2" step="0.01"></div>
+          <div class="fl-ctl" id="ctl-weight"><div class="fl-ctl-head"><label>Weight</label><span class="fl-ctl-val" id="v-weight"></span></div>
+            <div id="weightSlot"></div></div>
+          <div class="fl-ctl"><div class="fl-ctl-head"><label>Letter spacing</label><span class="fl-ctl-val" id="v-ls"></span></div>
+            <input type="range" id="c-ls" min="-0.10" max="0.30" step="0.001"></div>
+          <div class="fl-ctl"><label>Transform</label>
+            <div class="fl-seg" id="c-transform">
+              <button data-v="none" class="is-on">Aa</button><button data-v="uppercase">AA</button><button data-v="capitalize">Aa Bb</button><button data-v="lowercase">aa</button>
+            </div></div>
+          <div class="fl-ctl" id="ctl-italic" hidden><label>Style</label>
+            <div class="fl-seg" id="c-italic"><button data-v="0" class="is-on">Roman</button><button data-v="1">Italic</button></div></div>
+          <div id="axesSlot"></div>
+          <div class="fl-verdict-row">
+            <button class="fl-btn fl-verdict-btn fl-like" id="wbLike" title="Like this typeface">♥ Like</button>
+            <button class="fl-btn fl-verdict-btn fl-dislike" id="wbDislike" title="Dislike this typeface">✕ Dislike</button>
+          </div>
+          <div class="fl-active-style" id="activeStyleLabel"></div>
+          <button class="fl-btn" id="saveStyleBtn">＋ Save current as style…</button>
+          <button class="fl-btn ghost" id="copyCss">Copy CSS + &lt;link&gt;</button>
+          <button class="fl-btn ghost" id="resetWb">Reset to defaults</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Favorites ── -->
+    <section class="fl-view" id="view-favorites">
+      <div class="fl-favs">
+        <div style="display:flex; gap:var(--spacing-200); align-items:center; flex-wrap:wrap;">
+          <input type="text" id="favSample" placeholder="Shared sample text for all favorites…" style="flex:1; min-width:240px; background:var(--bg-input,var(--bg-base)); color:var(--text-primary); border:1px solid var(--border-default); border-radius:100px; padding:9px 14px; font-family:inherit; font-size:13px;">
+          <button class="fl-mini" id="famExportCsv" title="Download liked/disliked families as a CSV (opens in Sheets/Excel)">↓ Families CSV</button>
+          <button class="fl-mini" id="famImportCsv" title="Upload a families CSV (family,verdict)">↑ Families CSV</button>
+          <input type="file" id="famImportFile" accept=".csv,text/csv" hidden>
+          <button class="fl-mini" id="allExportJson" title="Full backup: verdicts + styles">↓ Backup JSON</button>
+          <button class="fl-mini" id="allImportJson" title="Restore from a backup JSON (also accepts old favorites files)">↑ Restore JSON</button>
+          <input type="file" id="allImportFile" accept=".json,application/json" hidden>
+        </div>
+        <div id="favList"></div>
+      </div>
+    </section>
+
+    <!-- ── the design system Ramp ── -->
+    <section class="fl-view" id="view-ramp">
+      <div class="fl-ramp">
+        <div class="fl-ramp-main">
+          <div style="display:flex; gap:var(--spacing-200); align-items:center; flex-wrap:wrap; margin-bottom:var(--spacing-200);">
+            <div class="fl-ctl"><label>Reference team ramp</label><select id="rampTeam"></select></div>
+            <div class="fl-ctl"><label>Uppercase (autocaps sim)</label>
+              <div class="fl-seg" style="width:130px;" id="rampCaps"><button data-v="none" class="is-on">Off</button><button data-v="uppercase">On</button></div></div>
+            <div class="fl-ctl"><label>Sample</label><input type="text" id="rampSample" value="Up Next" style="width:140px;"></div>
+          </div>
+          <div class="fl-ramp-rows" id="rampRows"></div>
+          <p class="fl-note" style="margin-top:var(--spacing-200);">
+            Line heights are fixed system-wide. <strong style="color:var(--status-error);">Red = font size exceeds line height</strong> — iOS ignores the line height in that case (a ramp may exceed them deliberately, but it will clip on iOS). The grey band behind each preview shows the true line-height box.
+          </p>
+        </div>
+        <div class="fl-panel">
+          <div class="fl-ctl"><div class="fl-ctl-head"><label>Letter spacing</label><span class="fl-ctl-val" id="v-rls"></span></div>
+            <input type="range" id="ramp-ls" min="-0.10" max="0.30" step="0.001"></div>
+          <div class="fl-ctl"><div class="fl-ctl-head"><label>Weight</label><span class="fl-ctl-val" id="v-rw"></span></div>
+            <div id="rampWeightSlot"></div></div>
+          <label class="fl-check" title="On: editing any step scales the other steps to keep the same size ÷ line-height ratio">
+            <input type="checkbox" id="linkRamp"> Link sizes to line height
+          </label>
+          <button class="fl-btn ghost" id="resetRamp">Reset to defaults</button>
+          <div class="fl-ctl"><label>Export — CSS tokens</label><div class="fl-css-out" id="rampCssOut"></div>
+            <button class="fl-btn ghost" id="copyRampCss">Copy CSS</button></div>
+          <div class="fl-ctl"><label>Export — theme JSON</label><div class="fl-css-out" id="rampJsonOut"></div>
+            <button class="fl-btn ghost" id="copyRampJson">Copy JSON</button></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Screens: live in-context preview ── -->
+    <section class="fl-view" id="view-screens">
+      <div class="fl-screens">
+        <div class="fl-screens-panel">
+          <div class="fl-screens-row" id="screensRow"></div>
+        </div>
+        <div class="fl-screens-bar">
+          <p class="fl-note" id="screensNote" style="margin:0; flex:1; min-width:240px;"></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Discover: swipeable like/dislike font deck ── -->
+    <section class="fl-view" id="view-swipe">
+      <div class="fl-swipe">
+        <div class="fl-swipe-head">
+          <div class="fl-swipe-track"><div class="fl-swipe-fill" id="swipeFill"></div></div>
+          <div class="fl-swipe-stats" id="swipeStats"></div>
+        </div>
+        <div class="fl-swipe-body">
+          <div class="fl-swipe-deck" id="swipeDeck"></div>
+          <div class="fl-swipe-actions">
+            <button class="btn-circle btn-circle-700 btn-circle-destructive-secondary" id="swipeDislike" title="Dislike (D)"><span class="material-symbols-rounded btn-icon">close</span></button>
+            <button class="btn-circle btn-circle-300 btn-circle-neutral-tertiary" id="swipeUndo" title="Undo (U)"><span class="material-symbols-rounded btn-icon">undo</span></button>
+            <button class="btn-circle btn-circle-700 btn-circle-team-secondary" id="swipeLike" title="Like (L)"><span class="material-symbols-rounded btn-icon">favorite</span></button>
+          </div>
+          <p class="labelRegular10 text-secondary fl-swipe-hint">Drag the card, or press <kbd>L</kbd> like · <kbd>D</kbd> dislike · <kbd>U</kbd> undo. Likes go to Favorites.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+</div>
+
+<!-- ══ Save-style modal ══ -->
+<div class="fl-modal-backdrop" id="styleModal" hidden>
+  <div class="fl-modal" role="dialog" aria-modal="true">
+    <div class="fl-modal-title">Save style</div>
+    <p class="fl-modal-sub" id="styleModalSpec"></p>
+    <label class="fl-modal-label">Style name</label>
+    <input type="text" id="styleModalName" class="fl-modal-input" placeholder="e.g. Heavy Display, Tight Caps">
+    <div class="fl-modal-actions">
+      <button class="fl-btn ghost" id="styleModalCancel">Cancel</button>
+      <button class="fl-btn" id="styleModalSave">Save style</button>
+    </div>
+  </div>
+</div>
+
+<script>
+/* ═══════════════════ Font Lab ═══════════════════ */
+const CAT = window.GF_CATALOG;
+const GUIDE = window.GF_GUIDE || { fonts: {}, cautions: {}, pairings: [] };
+const CAUTION_LABELS = {
+  overexposed: 'Overexposed — weak default for a distinctive identity',
+  accent: 'Accent shelf — great for display moments, too narrow to carry a whole system',
+  cheap: 'Cultural baggage — often reads inexpensive outside its niche',
+  fragile: 'Fragile hairlines — test in the real output medium',
+  baggage: 'Source-brand baggage — reads as another company’s identity',
+};
+function cautionFlags(name) {
+  const out = [];
+  for (const [k, list] of Object.entries(GUIDE.cautions))
+    if (list.some(x => name === x || name.startsWith(x + ' '))) out.push(k);
+  return out;
+}
+const TEAMS = window.THEME_RAMPS;
+const LH = window.DISPLAY_LINEHEIGHTS;
+const STEPS = ['900','800','700','600','500','400','300','200','100'];
+const byName = {}; CAT.forEach(f => byName[f.n] = f);
+
+/* ── Non-Latin / other-language fonts ──
+   Families whose reason for existing is a non-Latin writing system (Thai, Devanagari,
+   Arabic, CJK, …). Hidden by default — noise for Latin display/branding work — with an
+   "Other scripts" chip to reveal them. Detection is name-based (the catalog has no
+   subset data): explicit script/language words, CJK region codes (TC/HK/JP/KR/CJK —
+   never bare "SC", which collides with small-caps Latin families like Playfair Display
+   SC), and a hand-listed set of CJK brand families that carry no script word. Anything
+   in the branding/display guide is never hidden (Cornelius already vetted it). */
+const NON_LATIN_SCRIPTS = /\b(?:Thai|Devanagari|Hindi|Marathi|Sanskrit|Tamil|Telugu|Bengali|Kannada|Malayalam|Gujarati|Gurmukhi|Oriya|Odia|Sinhala|Arabic|Hebrew|Urdu|Khmer|Lao|Myanmar|Tibetan|Georgian|Armenian|Ethiopic|Cherokee|Kufi|Naskh|Nastaliq|Rashi|Kawi|Brahmi|Sundanese|Javanese|Balinese|Batak|Buginese|Cham|Tagalog|Hanifi|Rohingya|Adlam|Vithkuqi|Chakma|Mongolian|Syriac|Thaana|Coptic|Deseret|Glagolitic|Runic|Ogham|Phoenician|Nabataean|Palmyrene|Hatran|Mandaic|Samaritan|Avestan|Carian|Lycian|Lydian|Cuneiform|Hieroglyphs|Anatolian|Cypriot|Grantha|Sharada|Modi|Tirhuta|Newa|Takri|Multani|Khojki|Khudawadi|Ahom|Bhaiksuki|Marchen|Soyombo|Zanabazar|Dogra|Gondi|Wancho|Hmong|Limbu|Lepcha|Rejang|Kayah|Osage|Elbasan|Medefaidrin|Miao|Nushu|Duployan|Saurashtra|Sompeng|Warang|Citi|Meetei|Mayek|Uyghur|Sogdian|Permic|Turkic|Mincho|Myeongjo|WenKai)\b/;
+const NON_LATIN_CJK_CODE = /\b(?:TC|HK|JP|KR|CJK)\b/;
+const NON_LATIN_BRANDS = new Set(["Gothic A1","Hachi Maru Pop","Kaisei Decol","Kaisei HarunoUmi","Kaisei Opti","Kaisei Tokumin","Kiwi Maru","Klee One","Kosugi","Kosugi Maru","LXGW Marker Gothic","M PLUS 1","M PLUS 1 Code","M PLUS 1p","M PLUS 2","M PLUS Rounded 1c","Mochiy Pop One","Mochiy Pop P One","Nanum Brush Script","Nanum Gothic","Nanum Gothic Coding","Nanum Pen Script","Noto Sans Gothic","Noto Sans SC","Noto Serif SC","WDXL Lubrifont SC","Potta One","Rampart One","Reggae One","RocknRoll One","Sawarabi Gothic","Shippori Antique","Shippori Antique B1","Stick","Stick No Bills","Train One","Yuji Boku","Yuji Hentaigana Akari","Yuji Hentaigana Akebono","Yuji Mai","Yuji Syuku","Yusei Magic","Zen Antique","Zen Antique Soft","Zen Dots","Zen Kaku Gothic Antique","Zen Kaku Gothic New","Zen Kurenaido","Zen Loop","Zen Maru Gothic","Zen Tokyo Zoo"]);
+// hidden when the "Other scripts" chip is off — unless it's a vetted guide font
+function isForeignHidden(name) {
+  if (GUIDE.fonts[name]) return false;                       // vetted into the branding guide
+  if (S.verdicts && S.verdicts[name] === 'like') return false;  // already liked — never hide
+  return NON_LATIN_SCRIPTS.test(name) || NON_LATIN_CJK_CODE.test(name) || NON_LATIN_BRANDS.has(name);
+}
+const foreignVisible = () => S.filters.showForeign;   // chip state; hidden by default
+
+/* ── State ── */
+const DEFAULTS = {
+  family: 'Oswald', size: 64, weight: 700, italic: 0, ls: 0, lh: 1.1, transform: 'none',
+  token: '900',      // the design system display token — locks line-height to the ramp's fixed px value
+  axes: {}, css: '',
+  sample: 'Up Next — Acme 112, Northside 98',
+};
+const DEFAULT_FAVSAMPLE = 'Buy Tickets — Section 114, Row C';
+// Default ramp = no team preset, so each step's size falls back to its fixed line height
+// weight + letter-spacing live on S.wb (shared with the workbench); the ramp only owns the size scale
+const rampDefaults = () => ({ team: '', caps: 'none', sizes: {}, linked: true });
+let S = {
+  wb: {...DEFAULTS},
+  // Family triage and reusable styles are SEPARATE concepts (v2 model):
+  verdicts: {},        // { [family]: 'like' | 'dislike' } — the typeface itself, no styling
+  styles: [],          // [{id, name, weight, ls, transform, italic, axes}] — reusable, applied to any family
+  activeStyleId: null, // which library style is currently applied in the workbench (for highlight)
+  favs: [],            // LEGACY (pre-v2) — migrated into verdicts/styles on load, then dropped
+  dislikes: [],        // LEGACY (pre-v2)
+  favSample: DEFAULT_FAVSAMPLE,
+  ramp: rampDefaults(),
+  filters: { q: '', cat: 'all', heavy: false, variable: false, liked: false, cond: false, caps: false, tag: '', sort: 'pop', showForeign: false, side: 'fonts' },
+  cmp: { mode: 'stack', zoom: 1, opacity: 0.85, color: '#ff2d78' },
+};
+try {
+  const saved = JSON.parse(localStorage.getItem('fontlab-v1'));
+  if (saved) S = {...S, ...saved, wb: {...DEFAULTS, ...saved.wb}, ramp: {...S.ramp, ...saved.ramp}, filters: {...S.filters, ...saved.filters}, cmp: {...S.cmp, ...(saved.cmp||{})}};
+} catch(e) {}
+if (!S.verdicts) S.verdicts = {};
+if (!Array.isArray(S.styles)) S.styles = [];
+
+/* ── One-time migration to the v2 model (family verdicts + reusable styles) ──
+   Pre-v2 saves stored likes as `favs` (family + optional style snapshot) and dislikes
+   as `dislikes`. Fold both into `verdicts`, and harvest any deliberately-tuned favorite
+   into the reusable style library. Seeds a starter library the first time. Idempotent:
+   once verdicts/styles exist, nothing re-runs, and the legacy arrays are dropped. */
+function newId() { return 'st_' + Date.now().toString(36) + Math.random().toString(36).slice(2, 6); }
+/* A style's identity includes its font family. Styles saved before families
+   were stored have no `family` — they stay family-independent ("any font")
+   and keep the original behaviour of applying onto whatever font is selected. */
+const styleKey = s => [s.family || '*', s.weight, Math.round((s.ls || 0) * 1000) / 1000, s.transform || 'none', s.italic ? 1 : 0].join('|');
+const styleFamily = st => (st && st.family && byName[st.family]) ? st.family : null;
+let migrated = false;
+(function migrate() {
+  // Seed the starter library ONCE ever (guarded by a persisted flag), so deleting
+  // every style doesn't re-summon the defaults on the next load.
+  if (!S.styles.length && !S.seededStyles) {
+    S.styles = [
+      {name: 'Regular',       weight: 400, ls: 0,     transform: 'none',      italic: 0},
+      {name: 'Display Bold',  weight: 700, ls: 0,     transform: 'none',      italic: 0},
+      {name: 'Heavy Display', weight: 800, ls: -0.02, transform: 'none',      italic: 0},
+      {name: 'Tight Caps',    weight: 700, ls: 0.04,  transform: 'uppercase', italic: 0},
+      {name: 'Loose Caps',    weight: 600, ls: 0.12,  transform: 'uppercase', italic: 0},
+    ].map(s => ({id: newId(), axes: {}, ...s}));
+    migrated = true;
+  }
+  S.seededStyles = true;
+  if (Array.isArray(S.favs) && S.favs.length && !Object.keys(S.verdicts).length) {
+    migrated = true;
+    const seen = new Set(S.styles.map(styleKey));
+    S.favs.forEach(f => {
+      if (f.family) S.verdicts[f.family] = 'like';
+      const st = f.set;
+      if (st && st.weight && !seen.has(styleKey(st))) {
+        seen.add(styleKey(st));
+        const bits = [st.transform && st.transform !== 'none' ? st.transform : null, st.italic ? 'italic' : null].filter(Boolean);
+        S.styles.push({id: newId(), name: f.note || `Saved · w${st.weight}${bits.length ? ' ' + bits.join(' ') : ''}`,
+          weight: st.weight, ls: st.ls || 0, transform: st.transform || 'none', italic: st.italic ? 1 : 0, axes: st.axes || {}});
+      }
+    });
+  }
+  if (Array.isArray(S.dislikes)) S.dislikes.forEach(n => { if (!S.verdicts[n]) S.verdicts[n] = 'dislike'; });
+  delete S.favs; delete S.dislikes;
+})();
+// verdict helpers
+const verdictOf = name => S.verdicts[name] || null;
+function setVerdict(name, v) {           // v: 'like' | 'dislike' | null (toggles off if same)
+  if (!v || S.verdicts[name] === v) delete S.verdicts[name];
+  else S.verdicts[name] = v;
+}
+const likedFamilies = () => Object.keys(S.verdicts).filter(n => S.verdicts[n] === 'like');
+const dislikedFamilies = () => Object.keys(S.verdicts).filter(n => S.verdicts[n] === 'dislike');
+let saveT;
+function persistNow() {              // write immediately (used on structural changes + page unload)
+  clearTimeout(saveT);
+  const {cmp, ...rest} = S;          // don't persist image-session stuff beyond settings
+  localStorage.setItem('fontlab-v1', JSON.stringify({...rest, cmp: {mode:cmp.mode, zoom:cmp.zoom, opacity:cmp.opacity, color:cmp.color}}));
+}
+function persist() { clearTimeout(saveT); saveT = setTimeout(persistNow, 300); }
+// flush any pending debounced save before the page goes away, so a quick refresh can't drop a deletion
+window.addEventListener('pagehide', persistNow);
+window.addEventListener('beforeunload', persistNow);
+// lock in the one-time migration (verdicts + seeded styles + seededStyles flag) right away
+if (migrated) persistNow();
+
+/* ── Google Fonts loader ── */
+const loaded = new Set();
+function css2Url(f, opts = {}) {
+  // opts: {weight, italic, full} — full loads every axis range / all weights
+  let spec;
+  if (f.v && f.v.wght) {
+    const tags = Object.keys(f.v).filter(t => t !== 'ital').sort();
+    const hasItal = f.i && (opts.full || opts.italic);
+    const axisList = (hasItal ? ['ital'] : []).concat(tags);
+    const tuple = ital => (hasItal ? [ital] : []).concat(tags.map(t => f.v[t][0] === f.v[t][1] ? f.v[t][0] : f.v[t][0] + '..' + f.v[t][1])).join(',');
+    spec = axisList.join(',') + '@' + (hasItal ? tuple(0) + ';' + tuple(1) : tuple(0));
+  } else {
+    const ws = opts.full ? f.w : [opts.weight || nearestWeight(f, 750)];
+    if (f.i && (opts.full || opts.italic)) {
+      spec = 'ital,wght@' + ws.map(w => '0,' + w).concat(opts.full || opts.italic ? ws.map(w => '1,' + w) : []).join(';');
+    } else {
+      spec = 'wght@' + ws.join(';');
+    }
+  }
+  return 'https://fonts.googleapis.com/css2?family=' + encodeURIComponent(f.n).replace(/%20/g,'+') + ':' + spec + '&display=swap';
+}
+function loadFont(name, opts = {}) {
+  const f = byName[name]; if (!f) return;
+  const url = css2Url(f, opts);
+  if (loaded.has(url)) return;
+  loaded.add(url);
+  const l = document.createElement('link'); l.rel = 'stylesheet'; l.href = url;
+  document.head.appendChild(l);
+}
+function nearestWeight(f, target) {
+  if (f.v && f.v.wght) return Math.min(Math.max(target, f.v.wght[0]), f.v.wght[1]);
+  return f.w.reduce((a,b) => Math.abs(b-target) < Math.abs(a-target) ? b : a);
+}
+
+/* ── Sidebar list (lazy) ── */
+const listEl = document.getElementById('fontList');
+const io = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      const name = e.target.dataset.f, row = e.target;
+      const w = nearestWeight(byName[name], S.wb.weight); // preview at the selected weight (clamped to each font's range)
+      loadFont(name, {weight: w});
+      const sampleEl = row.querySelector('.fl-row-sample');
+      sampleEl.style.fontFamily = `'${name}'`;
+      sampleEl.style.fontWeight = w;
+      detectCaps(name, w).then(isCaps => {
+        if (isCaps && row.isConnected && !row.querySelector('.fl-caps-badge')) {
+          const b = document.createElement('span');
+          b.className = 'fl-row-badge fl-caps-badge'; b.textContent = 'CAPS';
+          const badgesEl = row.querySelector('.fl-row-badges');
+          badgesEl.insertBefore(b, badgesEl.querySelector('.fl-row-verdict'));
+        }
+      });
+      io.unobserve(e.target);
+    }
+  });
+}, {root: listEl, rootMargin: '200px'});
+
+// Re-apply the selected weight to every already-loaded sidebar sample (clamped per font).
+// Skips rows not yet scrolled into view — the observer handles those at the current weight.
+function applySampleWeight() {
+  document.querySelectorAll('#fontList .fl-row-sample').forEach(el => {
+    if (!el.style.fontFamily) return;           // not loaded yet — leave to the observer
+    const row = el.closest('.fl-row'); if (!row) return;
+    const f = byName[row.dataset.f]; if (!f) return;
+    const w = nearestWeight(f, S.wb.weight);
+    loadFont(row.dataset.f, {weight: w});        // dedups; no-op for variable fonts (full range already loaded)
+    el.style.fontWeight = w;
+  });
+}
+
+function filteredFonts() {
+  const F = S.filters, q = F.q.trim().toLowerCase();
+  const out = CAT.filter(f => {
+    if (q && !f.n.toLowerCase().includes(q)) return false;
+    // Hide other-language scripts by default, but let an explicit search surface them
+    if (!foreignVisible() && !q && isForeignHidden(f.n)) return false;
+    if (F.cat !== 'all' && f.c !== F.cat) return false;
+    if (F.tag) {
+      if (!f.t) return false;
+      if (F.tag.endsWith('/*')) { const pre = F.tag.slice(0, -1); if (!Object.keys(f.t).some(k => k.startsWith(pre))) return false; }
+      else if (f.t[F.tag] == null) return false;
+    }
+    if (F.curated && !GUIDE.fonts[f.n]) return false;
+    if (F.liked && S.verdicts[f.n] !== 'like') return false;
+    return true;
+  });
+  // CAT ships popularity-sorted; A–Z and Guide re-sort. Tag filters rank by tag score first.
+  if (F.sort === 'az') out.sort((a,b) => a.n.localeCompare(b.n));
+  else if (F.sort === 'guide') out.sort((a,b) => (GUIDE.fonts[a.n]?.r ?? 9999) - (GUIDE.fonts[b.n]?.r ?? 9999) || (a.p ?? 99999) - (b.p ?? 99999));
+  else if (F.tag) {
+    const score = f => F.tag.endsWith('/*')
+      ? Math.max(0, ...Object.entries(f.t).filter(([k]) => k.startsWith(F.tag.slice(0, -1))).map(([,v]) => v))
+      : (f.t[F.tag] ?? 0);
+    out.sort((a,b) => score(b) - score(a) || (a.p ?? 99999) - (b.p ?? 99999));
+  }
+  return out;
+}
+
+/* Caps-only detection — measure whether lowercase renders as caps (cached, learns as you scroll) */
+const capsCache = JSON.parse(localStorage.getItem('fontlab-caps') || '{}');
+const capsCx = document.createElement('canvas').getContext('2d');
+let capsSaveT;
+function detectCaps(name, weight) {
+  if (capsCache[name] != null) return Promise.resolve(capsCache[name]);
+  return document.fonts.load(`${weight} 40px "${name}"`).then(fs => {
+    if (!fs.length) return null;
+    capsCx.font = `${weight} 40px "${name}"`;
+    const caps = [['a','A'],['g','G'],['e','E'],['r','R']].every(([lo,up]) =>
+      Math.abs(capsCx.measureText(lo).width - capsCx.measureText(up).width) < 0.5);
+    capsCache[name] = caps ? 1 : 0;
+    clearTimeout(capsSaveT);
+    capsSaveT = setTimeout(() => localStorage.setItem('fontlab-caps', JSON.stringify(capsCache)), 800);
+    return capsCache[name];
+  }).catch(() => null);
+}
+let renderCap = 120;
+function renderList() {
+  if (S.filters.side === 'styles') return renderStyleList();
+  document.querySelector('.fl-side').classList.remove('is-styles');
+  const fonts = filteredFonts();
+  document.getElementById('countLine').innerHTML = `<strong>${fonts.length} fonts</strong> (${Math.min(renderCap, fonts.length)} loaded)`;
+  listEl.innerHTML = '';
+  fonts.slice(0, renderCap).forEach(f => {
+    const verdict = verdictOf(f.n);
+    const row = document.createElement('div');
+    row.className = 'fl-row' + (f.n === S.wb.family ? ' is-sel' : '') + (verdict === 'dislike' ? ' is-disliked' : '');
+    row.dataset.f = f.n;
+    const wRange = f.v && f.v.wght ? f.v.wght[0] + '–' + f.v.wght[1] : f.w.join(' ');
+    // meta lives in the tooltip now — the card only shows guide badges
+    row.title = f.c + (f.v ? ' · variable' : '') + (f.d ? ' · condensed' : '') + ' · weights ' + wRange + (f.p ? ' · popularity #' + f.p : '');
+    let tagBadge = '';
+    if (S.filters.tag && f.t) {
+      const isGroup = S.filters.tag.endsWith('/*');
+      const val = isGroup
+        ? Math.max(0, ...Object.entries(f.t).filter(([k]) => k.startsWith(S.filters.tag.slice(0, -1))).map(([,v]) => v))
+        : f.t[S.filters.tag];
+      tagBadge = `<span class="fl-row-badge" title="${S.filters.tag} score">${isGroup ? S.filters.tag.slice(0, -2) : S.filters.tag.split('/').pop()} ${val}</span>`;
+    }
+    const g = GUIDE.fonts[f.n];
+    const badges = g
+      ? `<span class="fl-row-badge fl-tier" title="Branding guide role: ${g.rn}">${g.rl}</span><span class="fl-row-badge fl-grade" title="grade ${g.g} within ${g.rn}">${g.g}</span><span class="fl-row-badge" title="guide rank">${g.r}/155</span>`
+      : (f.p ? `<span class="fl-row-badge" title="popularity rank">#${f.p}</span>` : '');
+    row.innerHTML = `
+      <div class="fl-row-meta"><span class="fl-row-name">${f.n}</span>
+        <span class="fl-row-badges">${badges}${capsCache[f.n] === 1 ? '<span class="fl-row-badge fl-caps-badge">CAPS</span>' : ''}${tagBadge}<span class="fl-row-verdict">
+          <button class="fl-vbtn fl-like${verdict === 'like' ? ' is-on' : ''}" data-v="like" title="Like this typeface">♥</button>
+          <button class="fl-vbtn fl-dislike${verdict === 'dislike' ? ' is-on' : ''}" data-v="dislike" title="Dislike this typeface">✕</button>
+        </span></span></div>
+      <div class="fl-row-sample">${escapeHtml(S.wb.sample) || 'Sample'}</div>`;
+    row.addEventListener('click', ev => {
+      const vb = ev.target.closest('.fl-vbtn');
+      if (vb) { ev.stopPropagation(); setVerdict(f.n, vb.dataset.v); renderList(); renderFavs(); if (document.getElementById('view-swipe').classList.contains('is-on')) renderSwipe(); persist(); return; }
+      selectFont(f.n);
+    });
+    listEl.appendChild(row);
+    io.observe(row);
+  });
+  if (fonts.length > renderCap) {
+    const more = document.createElement('button');
+    more.className = 'fl-mini'; more.style.margin = '12px'; more.textContent = 'Show more';
+    more.onclick = () => { renderCap += 120; renderList(); };
+    listEl.appendChild(more);
+  }
+}
+function escapeHtml(s) { return (s||'').replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])); }
+
+/* Category chips — main row gets the big four, the rest live in the ••• panel */
+const CAT_LABELS = { all:'All', display:'Display', 'sans-serif':'Sans-Serif', serif:'Serif', handwriting:'Handwriting', monospace:'Monospace' };
+const catButtons = [];
+function makeCatChip(c) {
+  const b = document.createElement('button');
+  b.className = 'fl-chip' + (S.filters.cat === c ? ' is-on' : ''); b.textContent = CAT_LABELS[c];
+  b.onclick = () => { S.filters.cat = c; catButtons.forEach(x => x.classList.toggle('is-on', x === b)); renderCap = 120; renderList(); persist(); };
+  catButtons.push(b);
+  return b;
+}
+const MAIN_CATS = ['all','display','sans-serif','serif'];
+if (!MAIN_CATS.includes(S.filters.cat)) S.filters.cat = 'all';
+// these filters were removed from the UI in the 2026-07-15 redesign — clear any saved state
+S.filters.heavy = S.filters.variable = S.filters.cond = S.filters.caps = false;
+const catChips = document.getElementById('catChips');
+MAIN_CATS.forEach(c => catChips.appendChild(makeCatChip(c)));
+document.querySelectorAll('[data-flag]').forEach(b => {
+  b.classList.toggle('is-on', S.filters[b.dataset.flag]);
+  b.onclick = () => { S.filters[b.dataset.flag] = !S.filters[b.dataset.flag]; b.classList.toggle('is-on'); renderCap = 120; renderList(); persist(); };
+});
+// "Other scripts" — reveal non-Latin/other-language fonts (also refreshes Swipe if it's the active tab)
+const foreignChip = document.getElementById('foreignChip');
+foreignChip.classList.toggle('is-on', S.filters.showForeign);
+foreignChip.onclick = () => {
+  S.filters.showForeign = !S.filters.showForeign;
+  foreignChip.classList.toggle('is-on', S.filters.showForeign);
+  renderCap = 120; renderList();
+  if (document.getElementById('view-swipe').classList.contains('is-on')) renderSwipe();
+  persist();
+};
+// Sidebar Fonts | Styles toggle
+const sideMode = document.getElementById('sideMode');
+sideMode.querySelectorAll('button').forEach(b => b.classList.toggle('is-on', b.dataset.side === S.filters.side));
+sideMode.querySelectorAll('button').forEach(b => b.onclick = () => {
+  S.filters.side = b.dataset.side;
+  sideMode.querySelectorAll('button').forEach(x => x.classList.toggle('is-on', x === b));
+  renderCap = 120; renderList(); persist();
+});
+document.getElementById('search').value = S.filters.q;
+document.getElementById('search').addEventListener('input', e => { S.filters.q = e.target.value; renderCap = 120; renderList(); persist(); });
+
+/* ── Styles library: sidebar list + apply ──
+   A style is a font PLUS its tuning (family / weight / letter-spacing / transform /
+   italic / axes). Applying one switches to the style's own font, so a saved style
+   always looks the way it did when it was saved regardless of what's selected in
+   the sidebar. Legacy styles saved before families were stored have no `family`
+   and stay family-independent — they apply onto the current font as before. */
+function applyStyle(st) {
+  S.activeStyleId = st.id;
+  const fam = styleFamily(st);
+  if (fam) { S.wb.family = fam; loadFont(fam, {full: true}); }
+  const f = byName[S.wb.family];
+  S.wb.weight = f && (f.v && f.v.wght) ? Math.min(Math.max(st.weight, f.v.wght[0]), f.v.wght[1]) : nearestWeight(f, st.weight);
+  S.wb.ls = st.ls; S.wb.transform = st.transform || 'none';
+  S.wb.italic = (f && f.i) ? (st.italic ? 1 : 0) : 0;
+  // keep only axes the current font supports, clamped
+  const kept = {};
+  if (f && f.v) Object.entries(st.axes || {}).forEach(([t, v]) => {
+    if (!['wght','ital'].includes(t) && f.v[t]) kept[t] = Math.min(Math.max(v, f.v[t][0]), f.v[t][1]);
+  });
+  S.wb.axes = kept;
+  buildWeightControl(); buildAxesControls(); applyWb(); updateGuideCard(); buildRampWeight(); renderRamp();
+  renderList(); renderFavs(); persist();
+}
+function renderStyleList() {
+  document.querySelector('.fl-side').classList.add('is-styles');
+  document.getElementById('countLine').innerHTML = `<strong>${S.styles.length} styles</strong>`;
+  listEl.innerHTML = '';
+  const add = document.createElement('button');
+  add.className = 'fl-style-add'; add.innerHTML = '＋ Save current as style…';
+  add.onclick = () => openStyleModal();
+  listEl.appendChild(add);
+  // Fallback font for legacy styles that carry no family of their own.
+  const fallbackFam = byName[S.wb.family] ? S.wb.family : (S.styles.length && likedFamilies()[0]) || 'Inter';
+  S.styles.forEach(st => {
+    const fam = styleFamily(st) || fallbackFam;
+    loadFont(fam, {full: true});
+    const bits = [styleFamily(st) ? st.family : 'any font', 'w' + st.weight];
+    if (st.italic) bits.push('italic');
+    if (st.ls) bits.push((st.ls > 0 ? '+' : '') + st.ls + 'em');
+    if (st.transform && st.transform !== 'none') bits.push(st.transform);
+    const row = document.createElement('div');
+    row.className = 'fl-style-row' + (st.id === S.activeStyleId ? ' is-active' : '');
+    row.innerHTML = `
+      <div class="fl-style-top"><span class="fl-style-name">${escapeHtml(st.name)}</span>
+        <button class="fl-vbtn fl-style-del" title="Delete style">✕</button></div>
+      <div class="fl-style-spec">${bits.join(' · ')}</div>
+      <div class="fl-style-sample"></div>`;
+    const s = row.querySelector('.fl-style-sample');
+    s.textContent = S.wb.sample || 'Sample';
+    s.style.fontFamily = `'${fam}'`;
+    s.style.fontWeight = st.weight;
+    s.style.fontStyle = st.italic ? 'italic' : 'normal';
+    s.style.letterSpacing = (st.ls || 0) + 'em';
+    s.style.textTransform = st.transform || 'none';
+    row.querySelector('.fl-style-del').onclick = ev => { ev.stopPropagation(); deleteStyle(st.id); };
+    row.onclick = () => applyStyle(st);
+    listEl.appendChild(row);
+  });
+}
+function deleteStyle(id) {
+  S.styles = S.styles.filter(s => s.id !== id);
+  if (S.activeStyleId === id) S.activeStyleId = null;
+  renderList(); renderFavs(); persistNow();
+}
+
+/* Sort — icon opens a dropdown menu */
+const SORT_LABELS = { pop: 'Popular', guide: 'Guide rank', az: 'A–Z' };
+const sortBtn = document.getElementById('sortBtn');
+const sortMenu = document.getElementById('sortMenu');
+function syncSortMenu() {
+  sortBtn.title = 'Sort: ' + SORT_LABELS[S.filters.sort];
+  sortMenu.querySelectorAll('button').forEach(b => b.classList.toggle('is-on', b.dataset.sort === S.filters.sort));
+}
+sortBtn.onclick = e => { e.stopPropagation(); sortMenu.hidden = !sortMenu.hidden; };
+sortMenu.querySelectorAll('button').forEach(b => b.onclick = () => {
+  S.filters.sort = b.dataset.sort;
+  sortMenu.hidden = true;
+  syncSortMenu(); renderCap = 120; renderList(); persist();
+});
+document.addEventListener('click', e => { if (!sortMenu.hidden && !e.target.closest('.fl-sortwrap')) sortMenu.hidden = true; });
+syncSortMenu();
+
+/* Tag dropdown — ••• opens the Google-taxonomy menu directly */
+(function() {
+  const counts = {};
+  CAT.forEach(f => f.t && Object.keys(f.t).forEach(t => counts[t] = (counts[t] || 0) + 1));
+  const groups = {};
+  Object.keys(counts).sort().forEach(t => {
+    const [g, name] = [t.slice(0, t.indexOf('/')), t.slice(t.indexOf('/') + 1)];
+    (groups[g] = groups[g] || []).push({t, name});
+  });
+  // per-group counts: fonts carrying ANY tag in the group (for the "All <group>" options)
+  const groupCounts = {};
+  CAT.forEach(f => {
+    if (!f.t) return;
+    const seen = new Set(Object.keys(f.t).map(t => t.slice(0, t.indexOf('/'))));
+    seen.forEach(g => groupCounts[g] = (groupCounts[g] || 0) + 1);
+  });
+  const menu = document.getElementById('tagMenu');
+  const moreBtn = document.getElementById('moreBtn');
+  menu.innerHTML = '<button data-tag="">Any tag</button>' +
+    Object.entries(groups).map(([g, items]) =>
+      `<div class="fl-taggroup">${g}</div>` +
+      `<button data-tag="${g}/*">All ${g}<small>${groupCounts[g]}</small></button>` +
+      items.map(x => `<button data-tag="${x.t}">${x.name}<small>${counts[x.t]}</small></button>`).join('')
+    ).join('');
+  const sync = () => {
+    moreBtn.classList.toggle('is-on', !!S.filters.tag);
+    menu.querySelectorAll('button').forEach(b => b.classList.toggle('is-on', b.dataset.tag === S.filters.tag));
+  };
+  menu.querySelectorAll('button').forEach(b => b.onclick = () => {
+    S.filters.tag = b.dataset.tag;
+    menu.hidden = true;
+    sync(); renderCap = 120; renderList(); persist();
+  });
+  moreBtn.onclick = e => { e.stopPropagation(); menu.hidden = !menu.hidden; };
+  document.addEventListener('click', e => { if (!menu.hidden && !e.target.closest('.fl-tagwrap')) menu.hidden = true; });
+  sync();
+})();
+
+/* ── Workbench ── */
+const spec = document.getElementById('wb-specimen');
+function selectFont(name) {
+  const f = byName[name]; if (!f) return;
+  S.wb.family = name;
+  S.wb.weight = nearestWeight(f, S.wb.weight);
+  S.wb.italic = f.i ? S.wb.italic : 0;
+  // keep only axes this font supports, clamped to its ranges
+  const kept = {};
+  if (f.v) Object.keys(f.v).forEach(t => {
+    if (!['wght','ital'].includes(t) && S.wb.axes[t] != null)
+      kept[t] = Math.min(Math.max(S.wb.axes[t], f.v[t][0]), f.v[t][1]);
+  });
+  S.wb.axes = kept;
+  loadFont(name, {full: true});
+  buildWeightControl(); buildAxesControls(); applyWb(); updateGuideCard(); renderList();
+  // Keep the Display Styles tab in sync too — otherwise its weight slider
+  // (and preview) keep the PREVIOUS font's range when you switch fonts while it's open
+  // (e.g. Oswald's 200–700 cap lingering after selecting Inter, which goes to 900).
+  buildRampWeight(); renderRamp();
+  persist();
+}
+/* Branding-guide card for the selected font: tier, role, cautions, pairings */
+function updateGuideCard() {
+  const el = document.getElementById('guideCard');
+  const fam = S.wb.family, g = GUIDE.fonts[fam];
+  const flags = cautionFlags(fam);
+  if (!g && !flags.length) { el.hidden = true; return; }
+  el.hidden = false;
+  const badges = g
+    ? `<span class="fl-row-badge fl-tier">${g.rn}</span><span class="fl-row-badge fl-grade" title="graded ${g.g} within its role group by guide rank">${g.g}</span><span class="fl-row-badge">#${g.r} of 155</span>`
+    : `<span class="fl-row-badge">not in the curated 155</span>`;
+  let html = `<div class="fl-guide-head"><div class="fl-guide-title">Branding &amp; Display Guide</div><div class="fl-guide-badges">${badges}</div></div>`;
+  let body = '';
+  if (g) {
+    body += `<div class="fl-guide-line"><strong>Best for:</strong> ${g.u}</div>`;
+    body += `<div class="fl-guide-line"><strong>Why it makes the collection:</strong> ${g.w}</div>`;
+    body += `<div class="fl-guide-line"><strong>Caution:</strong> ${g.c}</div>`;
+  }
+  flags.forEach(k => body += `<div class="fl-guide-warn">⚠ ${CAUTION_LABELS[k]}</div>`);
+  GUIDE.pairings.filter(p => p.a === fam || p.b === fam).forEach(p => {
+    const other = p.a === fam ? p.b : p.a;
+    body += `<div class="fl-guide-pair">Pairs with <button data-pair="${other}">${other}</button> — ${p.ch.toLowerCase()} <em>(${p.use.toLowerCase()})</em>. Watch: ${p.watch}</div>`;
+  });
+  el.innerHTML = html + (body ? `<div class="fl-guide-body">${body}</div>` : '');
+  el.querySelectorAll('[data-pair]').forEach(b => b.onclick = () => selectFont(b.dataset.pair));
+}
+function buildWeightControl() {
+  const f = byName[S.wb.family], slot = document.getElementById('weightSlot');
+  if (f.v && f.v.wght) {
+    slot.innerHTML = `<input type="range" id="c-weight" min="${f.v.wght[0]}" max="${f.v.wght[1]}" step="1" value="${S.wb.weight}">`;
+    slot.firstChild.addEventListener('input', e => { S.wb.weight = +e.target.value; clearCustomProp('font-weight'); applyWb(); persist(); });
+  } else {
+    slot.innerHTML = `<select id="c-weight">${f.w.map(w => `<option ${w == S.wb.weight ? 'selected' : ''}>${w}</option>`).join('')}</select>`;
+    slot.firstChild.addEventListener('change', e => { S.wb.weight = +e.target.value; clearCustomProp('font-weight'); applyWb(); persist(); });
+  }
+  document.getElementById('ctl-italic').hidden = !f.i;
+}
+function buildAxesControls() {
+  const f = byName[S.wb.family], slot = document.getElementById('axesSlot');
+  slot.innerHTML = '';
+  if (!f.v) return;
+  Object.keys(f.v).filter(t => !['wght','ital'].includes(t)).forEach(tag => {
+    const [min, max] = f.v[tag];
+    const dflt = S.wb.axes[tag] ?? (tag === 'wdth' ? 100 : min);
+    S.wb.axes[tag] = dflt;
+    const div = document.createElement('div');
+    div.className = 'fl-ctl';
+    div.innerHTML = `<div class="fl-ctl-head"><label>${tag}</label><span class="fl-ctl-val" id="v-ax-${tag}">${dflt}</span></div>
+      <input type="range" min="${min}" max="${max}" step="${(max-min) > 20 ? 1 : 0.1}" value="${dflt}">`;
+    div.querySelector('input').addEventListener('input', e => {
+      S.wb.axes[tag] = +e.target.value;
+      document.getElementById('v-ax-' + tag).textContent = e.target.value;
+      applyWb(); persist();
+    });
+    slot.appendChild(div);
+  });
+}
+function wbFontCss(target) {
+  const w = S.wb;
+  target.style.fontFamily = `'${w.family}', sans-serif`;
+  target.style.fontWeight = w.weight;
+  target.style.fontStyle = w.italic ? 'italic' : 'normal';
+  target.style.letterSpacing = w.ls + 'em';
+  target.style.textTransform = w.transform;
+  const varAxes = Object.entries(w.axes).filter(([t]) => t !== 'wdth');
+  target.style.fontStretch = w.axes.wdth ? w.axes.wdth + '%' : '';
+  target.style.fontVariationSettings = varAxes.length ? varAxes.map(([t,v]) => `"${t}" ${v}`).join(', ') : '';
+  target.style.fontOpticalSizing = w.axes.opsz != null ? 'none' : '';
+}
+/* custom CSS is applied as inline properties AFTER the slider styles, so it always wins —
+   e.g. font-weight: 900 on a 700-max font applies (browser renders synthetic bold) */
+function clearCustomInline(el) {
+  (el._customProps || []).forEach(p => el.style.removeProperty(p));
+  el._customProps = [];
+}
+function applyCustomCss(el, cssText) {
+  el._customProps = el._customProps || [];
+  (cssText || '').split(';').forEach(decl => {
+    const i = decl.indexOf(':');
+    if (i < 0) return;
+    const prop = decl.slice(0, i).trim(), val = decl.slice(i + 1).trim();
+    if (!prop || !val) return;
+    el.style.setProperty(prop, val);
+    el._customProps.push(prop);
+  });
+}
+/* last-touched wins: moving a control strips its conflicting property from the custom CSS box */
+function clearCustomProp(prop) {
+  if (!S.wb.css) return;
+  const re = new RegExp('(^|;)\\s*' + prop + '\\s*:[^;]*;?', 'ig');
+  const next = S.wb.css.replace(re, '$1').replace(/^\s*;\s*/, '').trim();
+  if (next !== S.wb.css) {
+    S.wb.css = next;
+    const el = document.getElementById('c-css');
+    if (el && el.value !== next) el.value = next;
+  }
+}
+function applyWb() {
+  const w = S.wb;
+  spec.textContent === w.sample || (spec.textContent = w.sample);
+  wbFontCss(spec);
+  spec.style.fontSize = w.size + 'px';
+  const tokenLh = w.token && LH[w.token];   // fixed px line height for the selected the design system token
+  spec.style.lineHeight = tokenLh ? tokenLh + 'px' : w.lh;
+  applyCustomCss(spec, w.css);
+  const over = tokenLh && w.size > tokenLh;
+  const vsize = document.getElementById('v-size');
+  vsize.textContent = w.size + 'px' + (over ? ' · exceeds lh' : '');
+  vsize.style.color = over ? 'var(--status-error)' : '';
+  document.getElementById('v-weight').textContent = w.weight;
+  applySampleWeight();   // keep sidebar samples at the selected weight
+  document.getElementById('v-ls').textContent = w.ls.toFixed(3) + 'em';
+  document.getElementById('v-lh').textContent = w.lh.toFixed(2);
+  document.getElementById('v-token').textContent = tokenLh ? 'lh ' + tokenLh + 'px' : 'free lh';
+  document.getElementById('c-size').value = w.size;
+  document.getElementById('c-ls').value = w.ls;
+  document.getElementById('c-lh').value = w.lh;
+  document.getElementById('c-token').value = w.token || '';
+  const cw = document.getElementById('c-weight'); if (cw) cw.value = w.weight;   // keep weight control in sync (ramp panel can change it)
+  // Sync the Style + Transform segmented toggles too, so applying a favorite (or any wb change) reflects here
+  document.getElementById('c-transform').querySelectorAll('button').forEach(b => b.classList.toggle('is-on', b.dataset.v === w.transform));
+  document.getElementById('c-italic').querySelectorAll('button').forEach(b => b.classList.toggle('is-on', +b.dataset.v === w.italic));
+  document.getElementById('ctl-lh').hidden = !!w.token;   // free line-height slider only in Custom
+  const cf = document.getElementById('curFontLabel');
+  cf.textContent = w.family + ' · ' + w.weight + (w.italic ? ' italic' : '');
+  cf.style.fontFamily = `'${w.family}', sans-serif`;   // the header label renders in the font itself
+  cf.style.fontWeight = w.weight;
+  cf.style.fontStyle = w.italic ? 'italic' : 'normal';
+  // family verdict buttons reflect the current font's like/dislike state
+  const verdict = verdictOf(w.family);
+  document.getElementById('wbLike').classList.toggle('is-on', verdict === 'like');
+  document.getElementById('wbDislike').classList.toggle('is-on', verdict === 'dislike');
+  // active-style readout: does the current tuning match a saved style, or is it unsaved?
+  const active = S.styles.find(s => s.id === S.activeStyleId && styleMatchesWb(s)) || S.styles.find(styleMatchesWb);
+  S.activeStyleId = active ? active.id : null;
+  document.getElementById('activeStyleLabel').textContent = active ? `Style: ${active.name}` : 'Style: unsaved (tweak below, then Save)';
+  refreshScreens();   // live-update the in-context preview when the font/settings change
+}
+// does a library style match the current workbench state? A style that carries a
+// family must match that too, otherwise the readout would claim "Style: X" while
+// showing a different font. Legacy styles (no family) still match on tuning alone.
+function styleMatchesWb(st) {
+  const w = S.wb;
+  if (st.family && st.family !== w.family) return false;
+  return st.weight === w.weight && (st.ls || 0) === (w.ls || 0)
+    && (st.transform || 'none') === (w.transform || 'none') && !!st.italic === !!w.italic;
+}
+/* Build the copyable CSS string on demand (no longer shown in a live readout) */
+function buildCssText() {
+  const w = S.wb, f = byName[w.family];
+  const tokenLh = w.token && LH[w.token];
+  return `font-family: '${w.family}', ${f.c === 'serif' ? 'serif' : 'sans-serif'};
+font-weight: ${w.weight};
+font-size: ${w.size}px;
+letter-spacing: ${w.ls}em;
+line-height: ${tokenLh ? tokenLh + 'px' : w.lh};${w.token ? '   /* the design system display-size-' + w.token + ' */' : ''}${w.transform !== 'none' ? '\ntext-transform: ' + w.transform + ';' : ''}${w.css ? '\n' + w.css : ''}
+
+<link href="${css2Url(f, {full:true})}" rel="stylesheet">`;
+}
+document.getElementById('c-size').addEventListener('input', e => { S.wb.size = +e.target.value; clearCustomProp('font-size'); applyWb(); persist(); });
+document.getElementById('c-ls').addEventListener('input', e => { S.wb.ls = +e.target.value; clearCustomProp('letter-spacing'); applyWb(); persist(); });
+document.getElementById('c-lh').addEventListener('input', e => { S.wb.lh = +e.target.value; clearCustomProp('line-height'); applyWb(); persist(); });
+// Display-token picker: each step locks line-height to the ramp's fixed px value; Custom frees it
+const tokenSel = document.getElementById('c-token');
+tokenSel.innerHTML = '<option value="">Custom (free line height)</option>' +
+  STEPS.map(s => `<option value="${s}">${s} · lh ${LH[s]}px</option>`).join('');
+tokenSel.addEventListener('change', e => { S.wb.token = e.target.value; applyWb(); persist(); });
+spec.addEventListener('input', () => { S.wb.sample = spec.textContent; persist();
+  document.querySelectorAll('.fl-row-sample').forEach(el => el.textContent = S.wb.sample); });
+function segWire(id, cb) {
+  document.getElementById(id).addEventListener('click', e => {
+    const b = e.target.closest('button'); if (!b) return;
+    [...b.parentNode.children].forEach(x => x.classList.toggle('is-on', x === b));
+    cb(b.dataset.v);
+  });
+}
+segWire('c-transform', v => { S.wb.transform = v; clearCustomProp('text-transform'); applyWb(); persist(); });
+segWire('c-italic', v => { S.wb.italic = +v; clearCustomProp('font-style'); loadFont(S.wb.family, {full:true}); applyWb(); persist(); });
+
+/* Sample presets */
+const PRESETS = {
+  'Scoreboard': 'Acme 112 — Northside 98',
+  'Buy CTA': 'Buy Tickets · Section 114 · $89',
+  'Up Next': 'Up Next — Saturday, Nov 8 · 7 PM',
+  'Alphabet': 'ABCDEFGHIJKLM abcdefghijklm 0123456789',
+  'Numerals': '0123456789 · $%#&@',
+};
+const presetsEl = document.getElementById('samplePresets');
+Object.entries(PRESETS).forEach(([k, v]) => {
+  const b = document.createElement('button'); b.className = 'fl-mini'; b.textContent = k;
+  b.onclick = () => { S.wb.sample = v; spec.textContent = v; applyWb(); persist();
+    document.querySelectorAll('.fl-row-sample').forEach(el => el.textContent = v); };
+  presetsEl.appendChild(b);
+});
+
+/* Copy helpers */
+function copy(text, btn) {
+  navigator.clipboard.writeText(text).then(() => {
+    const t = btn.textContent; btn.textContent = '✓ Copied'; setTimeout(() => btn.textContent = t, 1200);
+  });
+}
+document.getElementById('copyCss').onclick = e => copy(buildCssText(), e.target);
+
+/* ── Family verdict controls (workbench) ── */
+function refreshAfterVerdict() {
+  applyWb(); renderList(); renderFavs();
+  if (document.getElementById('view-swipe').classList.contains('is-on')) renderSwipe();
+  persist();
+}
+document.getElementById('wbLike').onclick = () => { setVerdict(S.wb.family, 'like'); refreshAfterVerdict(); };
+document.getElementById('wbDislike').onclick = () => { setVerdict(S.wb.family, 'dislike'); refreshAfterVerdict(); };
+
+/* ── Save-style modal: names the current workbench styling into the reusable library ── */
+const styleModal = document.getElementById('styleModal');
+function suggestStyleName(w) {
+  return (WEIGHT_NAMES[w.weight] || ('w' + w.weight)) + (w.transform === 'uppercase' ? ' Caps' : '') + (w.italic ? ' Italic' : '');
+}
+function styleSpec(w) {
+  // Accepts a saved style or S.wb — both carry a family (legacy styles don't).
+  const bits = [w.family ? w.family : 'any font', 'weight ' + w.weight];
+  if (w.italic) bits.push('italic');
+  if (w.ls) bits.push((w.ls > 0 ? '+' : '') + w.ls + 'em');
+  if (w.transform && w.transform !== 'none') bits.push(w.transform);
+  return bits.join(' · ');
+}
+function openStyleModal() {
+  document.getElementById('styleModalSpec').textContent = 'Saving: ' + styleSpec(S.wb);
+  const nameInput = document.getElementById('styleModalName');
+  nameInput.value = suggestStyleName(S.wb);
+  styleModal.hidden = false; nameInput.focus(); nameInput.select();
+}
+function closeStyleModal() { styleModal.hidden = true; }
+function saveStyleFromModal() {
+  const name = (document.getElementById('styleModalName').value || '').trim(); if (!name) return;
+  const w = S.wb;
+  const st = {id: newId(), name, family: w.family, weight: w.weight, ls: w.ls || 0, transform: w.transform || 'none', italic: w.italic ? 1 : 0, axes: {...(w.axes || {})}};
+  S.styles.push(st); S.activeStyleId = st.id;
+  closeStyleModal(); applyWb(); renderFavs(); renderList(); persist();
+}
+document.getElementById('saveStyleBtn').onclick = openStyleModal;
+document.getElementById('styleModalCancel').onclick = closeStyleModal;
+document.getElementById('styleModalSave').onclick = saveStyleFromModal;
+styleModal.addEventListener('click', e => { if (e.target === styleModal) closeStyleModal(); });
+document.getElementById('styleModalName').addEventListener('keydown', e => {
+  if (e.key === 'Enter') saveStyleFromModal();
+  else if (e.key === 'Escape') closeStyleModal();
+});
+
+/* ── Favorites tab: Styles · Liked families · Disliked ── */
+function renderFavs() {
+  const liked = likedFamilies(), disliked = dislikedFamilies();
+  document.getElementById('favCount').textContent = liked.length ? '(' + liked.length + ')' : '';
+  const el = document.getElementById('favList');
+  const sample = S.favSample || S.wb.sample || 'Sample';
+  el.innerHTML =
+    `<div class="fl-fav-section"><div class="fl-fav-sec-head">Styles <span>${S.styles.length}</span>` +
+      `<button class="fl-mini" id="favNewStyle">＋ Save current as style</button></div><div id="favStyles" class="fl-fav-grid"></div></div>` +
+    `<div class="fl-fav-section"><div class="fl-fav-sec-head">Liked families <span>${liked.length}</span></div>` +
+      `<div id="favLiked">${liked.length ? '' : '<p class="fl-note">No liked families yet — heart fonts in the sidebar or the Swipe deck.</p>'}</div></div>` +
+    `<div class="fl-fav-section"><div class="fl-fav-sec-head">Disliked <span>${disliked.length}</span></div>` +
+      `<div id="favDisliked" class="fl-dislike-wrap">${disliked.length ? '' : '<p class="fl-note">Nothing disliked.</p>'}</div></div>`;
+
+  // Styles — each previewed in ITS OWN font. Legacy styles with no family fall
+  // back to the current workbench font (they're family-independent by nature).
+  const fallbackFam = byName[S.wb.family] ? S.wb.family : 'Inter';
+  const styleWrap = document.getElementById('favStyles');
+  S.styles.forEach(st => {
+    const fam = styleFamily(st) || fallbackFam;
+    loadFont(fam, {full: true});
+    const card = document.createElement('div');
+    card.className = 'fl-fav-card fl-style-card' + (st.id === S.activeStyleId ? ' is-active' : '');
+    card.innerHTML = `
+      <div class="fl-fav-head">
+        <input class="fl-style-rename" value="${escapeHtml(st.name)}" aria-label="style name">
+        <span class="fl-fav-meta">${styleSpec(st)}</span>
+      </div>
+      <div class="fl-fav-line"></div>
+      <div class="fl-fav-actions">
+        <button class="fl-mini" data-a="apply">${styleFamily(st) ? 'Apply' : 'Apply to current font'}</button>
+        <button class="fl-mini" data-a="setfont">Set font to current</button>
+        <button class="fl-mini" data-a="del">Delete</button>
+      </div>`;
+    const line = card.querySelector('.fl-fav-line');
+    line.textContent = sample; line.style.fontFamily = `'${fam}'`; line.style.fontSize = '40px';
+    line.style.fontWeight = st.weight; line.style.letterSpacing = (st.ls || 0) + 'em';
+    line.style.textTransform = st.transform || 'none'; line.style.fontStyle = st.italic ? 'italic' : 'normal';
+    card.querySelector('.fl-style-rename').addEventListener('input', e => { st.name = e.target.value; persist(); if (S.filters.side === 'styles') { /* keep sidebar in sync lazily */ } });
+    card.querySelector('[data-a=apply]').onclick = () => { applyStyle(st); switchView('workbench'); };
+    // Attach (or re-point) the style to the font currently in the workbench —
+    // the repair path for legacy styles, which were saved before families were stored.
+    card.querySelector('[data-a=setfont]').onclick = () => {
+      st.family = S.wb.family; persistNow(); renderFavs(); renderList();
+    };
+    card.querySelector('[data-a=del]').onclick = () => { deleteStyle(st.id); };
+    styleWrap.appendChild(card);
+  });
+
+  // Liked families — previewed in the active workbench style
+  const w = S.wb, likedWrap = document.getElementById('favLiked');
+  liked.forEach(fam => {
+    const f = byName[fam]; if (!f) return;
+    loadFont(fam, {weight: nearestWeight(f, w.weight)});
+    const card = document.createElement('div');
+    card.className = 'fl-fav-card';
+    card.innerHTML = `
+      <div class="fl-fav-head">
+        <span class="fl-fav-name">${escapeHtml(fam)}</span>
+        <span class="fl-fav-meta">${f.c}${f.v ? ' · variable' : ''}${GUIDE.fonts[fam] ? ' · guide #' + GUIDE.fonts[fam].r : (f.p ? ' · pop #' + f.p : '')}</span>
+      </div>
+      <div class="fl-fav-line"></div>
+      <div class="fl-fav-actions">
+        <button class="fl-mini" data-a="open">Open in workbench</button>
+        <button class="fl-mini" data-a="dislike">Dislike</button>
+        <button class="fl-mini" data-a="remove">Remove</button>
+      </div>`;
+    const line = card.querySelector('.fl-fav-line');
+    line.textContent = sample; line.style.fontFamily = `'${fam}'`; line.style.fontSize = '40px';
+    line.style.fontWeight = nearestWeight(f, w.weight); line.style.letterSpacing = (w.ls || 0) + 'em';
+    line.style.textTransform = w.transform || 'none'; line.style.fontStyle = (f.i && w.italic) ? 'italic' : 'normal';
+    card.querySelector('[data-a=open]').onclick = () => { selectFont(fam); switchView('workbench'); };
+    card.querySelector('[data-a=dislike]').onclick = () => { setVerdict(fam, 'dislike'); renderFavs(); renderList(); persist(); };
+    card.querySelector('[data-a=remove]').onclick = () => { setVerdict(fam, null); renderFavs(); renderList(); persist(); };
+    likedWrap.appendChild(card);
+  });
+
+  // Disliked — compact chips, click ✕ to un-dislike, ♥ to move to liked
+  const disWrap = document.getElementById('favDisliked');
+  disliked.forEach(fam => {
+    const chip = document.createElement('span');
+    chip.className = 'fl-dislike-chip';
+    chip.innerHTML = `<span>${escapeHtml(fam)}</span><button class="fl-vbtn fl-like" data-a="like" title="Move to liked">♥</button><button class="fl-vbtn" data-a="clear" title="Remove from disliked">✕</button>`;
+    chip.querySelector('[data-a=like]').onclick = () => { setVerdict(fam, 'like'); renderFavs(); renderList(); persist(); };
+    chip.querySelector('[data-a=clear]').onclick = () => { setVerdict(fam, null); renderFavs(); renderList(); persist(); };
+    disWrap.appendChild(chip);
+  });
+  const nb = document.getElementById('favNewStyle'); if (nb) nb.onclick = openStyleModal;
+}
+document.getElementById('favSample').value = S.favSample;
+document.getElementById('favSample').addEventListener('input', e => { S.favSample = e.target.value;
+  document.querySelectorAll('.fl-fav-line').forEach(l => l.textContent = e.target.value); persist(); });
+
+/* ── Import / export: families CSV (portable) + full JSON backup ── */
+function download(name, text, type) {
+  const a = document.createElement('a'); a.href = URL.createObjectURL(new Blob([text], {type})); a.download = name; a.click();
+}
+const csvCell = v => { v = String(v == null ? '' : v); return /[",\n]/.test(v) ? '"' + v.replace(/"/g, '""') + '"' : v; };
+function parseCsvLine(line) {
+  const out = []; let cur = '', q = false;
+  for (let i = 0; i < line.length; i++) {
+    const c = line[i];
+    if (q) { if (c === '"') { if (line[i+1] === '"') { cur += '"'; i++; } else q = false; } else cur += c; }
+    else { if (c === '"') q = true; else if (c === ',') { out.push(cur); cur = ''; } else cur += c; }
+  }
+  out.push(cur); return out;
+}
+document.getElementById('famExportCsv').onclick = () => {
+  const rows = [['family','verdict'], ...Object.keys(S.verdicts).sort().map(n => [n, S.verdicts[n]])];
+  download('font-lab-families.csv', rows.map(r => r.map(csvCell).join(',')).join('\n'), 'text/csv');
+};
+document.getElementById('famImportCsv').onclick = () => document.getElementById('famImportFile').click();
+document.getElementById('famImportFile').addEventListener('change', e => {
+  const file = e.target.files[0]; if (!file) return;
+  file.text().then(t => {
+    t.split(/\r?\n/).filter(l => l.trim()).forEach((line, i) => {
+      const cells = parseCsvLine(line);
+      const fam = (cells[0] || '').trim(), v = (cells[1] || '').trim().toLowerCase();
+      if (i === 0 && /^family$/i.test(fam)) return;                 // header row
+      if (!fam) return;
+      if (v === 'like' || v === 'dislike') S.verdicts[fam] = v;
+      else if (v === '' || v === 'none' || v === 'remove') delete S.verdicts[fam];
+    });
+    renderFavs(); renderList();
+    if (document.getElementById('view-swipe').classList.contains('is-on')) renderSwipe();
+    persist(); e.target.value = '';
+  });
+});
+document.getElementById('allExportJson').onclick = () => {
+  download('font-lab-backup.json', JSON.stringify({version: 2, verdicts: S.verdicts, styles: S.styles, favSample: S.favSample, exported: new Date().toISOString()}, null, 2), 'application/json');
+};
+document.getElementById('allImportJson').onclick = () => document.getElementById('allImportFile').click();
+document.getElementById('allImportFile').addEventListener('change', e => {
+  const file = e.target.files[0]; if (!file) return;
+  file.text().then(t => {
+    try {
+      const d = JSON.parse(t);
+      if (d.verdicts && typeof d.verdicts === 'object') Object.assign(S.verdicts, d.verdicts);
+      if (Array.isArray(d.styles)) d.styles.forEach(st => { if (!S.styles.some(x => x.name === st.name && styleKey(x) === styleKey(st))) S.styles.push({axes: {}, ...st, id: st.id || newId()}); });
+      if (Array.isArray(d.favorites)) d.favorites.forEach(f => { if (f.family) S.verdicts[f.family] = 'like'; });  // legacy files
+      renderFavs(); renderList(); persist();
+    } catch (err) { alert('Not a valid Font Lab JSON'); }
+    e.target.value = '';
+  });
+});
+
+/* ── Comparison image (lives in the workbench) ── */
+let cmpImgData = null;
+const cmpImgEl = document.getElementById('cmpImg');
+function renderCmpImg() {
+  const has = !!cmpImgData;
+  cmpImgEl.hidden = !has;
+  document.getElementById('cmp-zoom').hidden = !has;
+  document.getElementById('cmpClear').hidden = !has;
+  if (!has) return;
+  // Mac screenshots are 2x — display at half natural width, zoom adjusts from there
+  const size = () => { cmpImgEl.style.width = (cmpImgEl.naturalWidth * S.cmp.zoom / 2) + 'px'; };
+  cmpImgEl.onload = size;
+  if (cmpImgEl.src !== cmpImgData) cmpImgEl.src = cmpImgData;
+  if (cmpImgEl.complete && cmpImgEl.naturalWidth) size();
+}
+function loadCmpImage(file) {
+  const r = new FileReader();
+  r.onload = () => { cmpImgData = r.result; renderCmpImg(); switchView('workbench'); };
+  r.readAsDataURL(file);
+}
+document.getElementById('cmpAdd').onclick = () => document.getElementById('fileInput').click();
+document.getElementById('fileInput').addEventListener('change', e => e.target.files[0] && loadCmpImage(e.target.files[0]));
+document.getElementById('cmp-zoom').value = S.cmp.zoom;
+document.getElementById('cmp-zoom').addEventListener('input', e => { S.cmp.zoom = +e.target.value; renderCmpImg(); persist(); });
+document.getElementById('cmpClear').onclick = () => { cmpImgData = null; renderCmpImg(); };
+window.addEventListener('paste', e => {
+  const item = [...(e.clipboardData?.items || [])].find(i => i.type.startsWith('image/'));
+  if (item) loadCmpImage(item.getAsFile());
+});
+
+/* ── the design system Ramp ── */
+const rampTeamSel = document.getElementById('rampTeam');
+rampTeamSel.innerHTML = '<option value="">— custom —</option>' + Object.entries(TEAMS)
+  .map(([id, t]) => `<option value="${id}">${t.name} (${t.font})</option>`).join('');
+rampTeamSel.value = S.ramp.team || '';
+rampTeamSel.addEventListener('change', () => {
+  const t = TEAMS[rampTeamSel.value];
+  S.ramp.team = rampTeamSel.value;
+  if (t) {
+    S.ramp.sizes = {...t.sizes};
+    S.wb.ls = parseFloat(t.letterSpacing) || 0;   // weight + ls are shared with the workbench
+    S.wb.weight = +t.weight || 800;
+    applyWb();
+  } else {
+    S.ramp.sizes = {};   // custom → each step defaults to its line height
+  }
+  buildRampWeight(); renderRamp(); persist();
+});
+segWire('rampCaps', v => { S.ramp.caps = v; renderRamp(); persist(); });
+document.getElementById('rampSample').addEventListener('input', renderRamp);
+// Ramp letter-spacing edits the SHARED workbench value so workbench, ramp, and screens stay in sync
+document.getElementById('ramp-ls').addEventListener('input', e => { S.wb.ls = +e.target.value; clearCustomProp('letter-spacing'); applyWb(); renderRamp(); persist(); });
+document.getElementById('linkRamp').addEventListener('change', e => {
+  S.ramp.linked = e.target.checked;
+  persist();
+});
+function buildRampWeight() {
+  const f = byName[S.wb.family], slot = document.getElementById('rampWeightSlot');
+  if (f.v && f.v.wght) {
+    slot.innerHTML = `<input type="range" min="${f.v.wght[0]}" max="${f.v.wght[1]}" step="1" value="${Math.min(Math.max(S.wb.weight, f.v.wght[0]), f.v.wght[1])}">`;
+    slot.firstChild.addEventListener('input', e => { S.wb.weight = +e.target.value; clearCustomProp('font-weight'); applyWb(); renderRamp(); persist(); });
+  } else {
+    slot.innerHTML = `<select>${f.w.map(w => `<option ${w == nearestWeight(f, S.wb.weight) ? 'selected' : ''}>${w}</option>`).join('')}</select>`;
+    slot.firstChild.addEventListener('change', e => { S.wb.weight = +e.target.value; clearCustomProp('font-weight'); applyWb(); renderRamp(); persist(); });
+  }
+}
+let rampRowRefs = [];
+// Refresh one row's input value, over-state, and preview from S.ramp.sizes (used for in-place updates)
+function refreshRampRow(ref) {
+  const v = S.ramp.sizes[ref.step];
+  const over = v > ref.lh;
+  ref.row.classList.toggle('is-over', over);
+  if (document.activeElement !== ref.input) ref.input.value = v;   // don't clobber the field being typed in
+  let warn = ref.row.querySelector('.fl-ramp-warn');
+  if (over && !warn) { warn = document.createElement('div'); warn.className = 'fl-ramp-warn'; warn.innerHTML = '&gt; lh'; ref.input.parentNode.appendChild(warn); }
+  if (!over && warn) warn.remove();
+  ref.prev.style.fontSize = v + 'px';
+}
+function renderRamp() {
+  const rows = document.getElementById('rampRows');
+  rows.innerHTML = '';
+  rampRowRefs = [];
+  const sample = document.getElementById('rampSample').value || 'Up Next';
+  const f = byName[S.wb.family];
+  STEPS.forEach(step => {
+    const lh = LH[step];
+    const size = S.ramp.sizes[step] ?? lh;   // default a step's size to its fixed line height
+    S.ramp.sizes[step] = size;
+    const over = size > lh;
+    const row = document.createElement('div');
+    row.className = 'fl-ramp-row' + (over ? ' is-over' : '');
+    row.innerHTML = `
+      <span class="fl-ramp-step">${step}</span>
+      <span class="fl-ramp-lh">lh ${lh}px</span>
+      <span><input type="number" min="8" max="140" value="${size}">${over ? '<div class="fl-ramp-warn">&gt; lh</div>' : ''}</span>
+      <div class="fl-ramp-preview" style="--lh:${lh}px;"></div>`;
+    const prev = row.querySelector('.fl-ramp-preview');
+    prev.textContent = sample;
+    prev.style.fontFamily = `'${S.wb.family}'`;
+    prev.style.fontSize = size + 'px';
+    prev.style.lineHeight = lh + 'px';
+    prev.style.fontWeight = S.wb.weight;
+    prev.style.fontStyle = S.wb.italic ? 'italic' : 'normal';
+    prev.style.letterSpacing = S.wb.ls + 'em';
+    prev.style.textTransform = S.ramp.caps;
+    if (f?.v?.wdth && S.wb.axes.wdth) prev.style.fontStretch = S.wb.axes.wdth + '%';
+    const rampVarAxes = Object.entries(S.wb.axes).filter(([t]) => t !== 'wdth');
+    prev.style.fontVariationSettings = rampVarAxes.length ? rampVarAxes.map(([t,v]) => `"${t}" ${v}`).join(', ') : '';
+    const input = row.querySelector('input');
+    const ref = { step, lh, row, input, prev };
+    rampRowRefs.push(ref);
+    input.addEventListener('input', e => {
+      const v = +e.target.value || 0;
+      S.ramp.sizes[step] = v; rampTeamSel.value = ''; S.ramp.team = '';
+      if (S.ramp.linked && v > 0) {
+        const ratio = v / lh;   // rescale every step to the same size ÷ line-height ratio
+        rampRowRefs.forEach(r => { S.ramp.sizes[r.step] = Math.max(1, Math.round(ratio * r.lh)); });
+        S.ramp.sizes[step] = v;   // keep the edited step exactly as typed
+      }
+      // update rows in place — a full re-render would steal focus mid-typing
+      rampRowRefs.forEach(refreshRampRow);
+      updateRampExports(); persist();
+    });
+    rows.appendChild(row);
+  });
+  document.getElementById('linkRamp').checked = !!S.ramp.linked;
+  document.getElementById('v-rls').textContent = S.wb.ls.toFixed(3) + 'em';
+  document.getElementById('v-rw').textContent = S.wb.weight;
+  document.getElementById('ramp-ls').value = S.wb.ls;
+  updateRampExports();
+}
+function updateRampExports() {
+  const fam = S.wb.family;
+  document.getElementById('rampCssOut').textContent =
+`--display-font: '${fam}', sans-serif;
+--display-weight: ${S.wb.weight};
+--display-letter-spacing: ${S.wb.ls}em;
+` + STEPS.map(s => `--display-size-${s}: ${S.ramp.sizes[s]}px;`).join('\n');
+  const json = { displayFont: fam, displayWeight: String(S.wb.weight), displayLetterSpacing: S.wb.ls + 'em' };
+  STEPS.slice().reverse().forEach(s => json['displaySize' + s] = S.ramp.sizes[s] + 'px');
+  document.getElementById('rampJsonOut').textContent = JSON.stringify(json, null, 1);
+  refreshScreens();   // ramp size-scale / weight / ls changes flow into the in-context preview
+}
+document.getElementById('copyRampCss').onclick = e => copy(document.getElementById('rampCssOut').textContent, e.target);
+document.getElementById('copyRampJson').onclick = e => copy(document.getElementById('rampJsonOut').textContent, e.target);
+
+/* ── Screens: live in-context preview ──
+   Each curated native template loads in a phone-sized iframe. We override the
+   the design system display tokens inline on the iframe's :root (inline wins over the team
+   stylesheet with no specificity fight) and load the selected Google font into
+   the iframe. The token set mirrors the ramp export: font from the workbench,
+   weight/letter-spacing/sizes from the ramp. */
+/* ─────────────────────────────────────────────────────────────────────────
+   HOW TO ADD A SCREEN TO THIS TAB
+   1. Add a row below: { id: '<folder>', name: '<label>' } where <folder> is the
+      app-mode page in this repo.
+      (That's all that's usually needed — the iframe, font/token override, iOS
+      chrome restore, and per-screen dynamic-island controls all apply generically.)
+   2. UPPERCASE caveat: the "Uppercase (autocaps sim)" toggle transforms elements
+      matched by the selector in screenOverride() — currently .display900..100 + .nav-title.
+      Most screens only use .display* (covered). If a new screen renders display-type
+      text with its OWN inline class (like event-details' .nav-title, defined in the
+      template's <style> using var(--display-font)), add that class name to the caps
+      selector in screenOverride(), or uppercase won't reach it. Find them with:
+      grep -B8 'var(--display-font)' <the screen html>
+   3. Screens only render over http://; on file:// the browser blocks cross-document
+      styling. See markScreensBlocked().
+   4. Screens are lazy-built once on first visit (buildScreens); no teardown needed.
+   ───────────────────────────────────────────────────────────────────────── */
+/* The screens a face is previewed against. Any app-mode page in this repo works —
+   these are the iOS prototypes plus the demo sheet's phone frame. Add a
+   { path, name } and it appears. */
+const CURATED_SCREENS = [
+  { path: '../ios-prototypes/ios-nav-page-demo.html', name: 'Nav Page' },
+  { path: '../ios-prototypes/ios-nav-demo.html',      name: 'Tab Bar' },
+  { path: '../ios-prototypes/ios-modal-demo.html',    name: 'Modal Sheet' },
+  { path: '../../demo/11-ios-frame.html',             name: 'iOS Chrome' },
+];
+let screenFrames = [], screensBuilt = false;
+// The <=500px "real phone" breakpoint strips the status bar SVG + home indicator
+// (a device's OS draws them). Our phone frame has no OS chrome, so restore them.
+function restoreScreenChrome(doc) {
+  if (!doc || !doc.documentElement || doc.getElementById('fl-chrome')) return;
+  const st = doc.createElement('style'); st.id = 'fl-chrome';
+  st.textContent = `@media (max-width:500px){
+    [data-platform="app"]{--safe-area-top:59px!important;--safe-area-bottom:34px!important;background:var(--bg-base)!important;}   /* mobile mode sets background:none → browser-default white; restore a mode-aware base so it's dark in dark mode (no white corner fringe / scroll bleed) */
+    [data-platform="app"] .ios-status-bar{height:59px!important;overflow:visible!important;position:fixed!important;top:0!important;left:0!important;right:0!important;}
+    [data-platform="app"] .ios-status-bar svg{display:block!important;}
+    [data-platform="app"] .ios-home-indicator{display:flex!important;position:fixed!important;bottom:0!important;left:0!important;right:0!important;}
+    [data-platform="app"] .ios-nav-page{top:var(--safe-area-top)!important;}
+    [data-platform="app"] .ios-nav-page::before,[data-platform="app"] .ios-nav-page::after{top:calc(-1 * var(--safe-area-top))!important;}
+    /* Restore the template's dynamic-island device controls (team + mode) that the breakpoint hides into a popup */
+    html[data-platform="app"] .app-device-controls{position:fixed!important;top:11px!important;left:50%!important;transform:translateX(-50%)!important;min-width:126px!important;height:37px!important;border-radius:19px!important;padding:0 4px!important;background:#000!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important;border:1px solid var(--white-100)!important;opacity:1!important;pointer-events:auto!important;justify-content:center!important;align-items:center!important;gap:0!important;}
+    html[data-platform="app"] .app-device-controls .mode-toggle{padding:0 8px!important;}
+    html[data-platform="app"] .app-device-controls .mode-toggle .material-symbols-rounded{font-size:16px!important;}
+    html[data-platform="app"] .app-device-controls label{padding:0 8px 0 10px!important;gap:1px!important;}
+    html[data-platform="app"] .app-device-controls label .device-control-label{font-size:11px!important;}
+    html[data-platform="app"] .app-device-controls label .material-symbols-rounded{font-size:16px!important;}
+    html[data-platform="app"] .app-device-controls label select{pointer-events:auto!important;}
+  }`;
+  (doc.head || doc.documentElement).appendChild(st);
+}
+function screenOverride(doc) {
+  if (!doc || !doc.documentElement) return;
+  restoreScreenChrome(doc);
+  // The template's "View as Web" link is fixed-positioned and only auto-hides below
+  // 500px. Our preview iframe is 501px (app-mode), so hide it explicitly — it's a
+  // template-authoring affordance, not part of the screen being previewed.
+  let hide = doc.getElementById('fl-hide');
+  if (!hide) {
+    hide = doc.createElement('style'); hide.id = 'fl-hide';
+    hide.textContent =
+      // Hide the template-authoring "View as Web" link in the preview.
+      '.template-platform-link{display:none!important;}' +
+      // Descender fix: the ellipsis nav title uses line-height:20px + overflow:hidden,
+      // tuned for all-caps team fonts (no descenders). A previewed font WITH descenders
+      // (g/y/p) gets its tails clipped by that tight 20px line box. A size-relative
+      // line-height makes the box tall enough to hold descenders; the title keeps its
+      // own overflow:hidden so the "…" ellipsis still works.
+      // NOTE: do NOT touch .ios-nav-page-title-block's overflow — its overflow:hidden is
+      // what lets the flex item shrink below content width (min-width:auto), i.e. what
+      // enables truncation. Removing it makes the title run off the page.
+      '.nav-title{line-height:1.3!important;}';
+    (doc.head || doc.documentElement).appendChild(hide);
+  }
+  const fam = S.wb.family, f = byName[fam]; if (!f) return;
+  let link = doc.getElementById('fl-font');
+  if (!link) { link = doc.createElement('link'); link.id = 'fl-font'; link.rel = 'stylesheet'; (doc.head || doc.documentElement).appendChild(link); }
+  const url = css2Url(f, { full: true });
+  if (link.getAttribute('href') !== url) link.setAttribute('href', url);
+  const r = doc.documentElement.style;   // inline custom props on :root beat the team theme
+  r.setProperty('--display-font', `'${fam}', sans-serif`);
+  r.setProperty('--display-weight', S.wb.weight);
+  r.setProperty('--display-letter-spacing', S.wb.ls + 'em');
+  STEPS.forEach(s => r.setProperty('--display-size-' + s, (S.ramp.sizes[s] ?? LH[s]) + 'px'));
+  // Autocaps sim: the ramp's Uppercase toggle transforms display type in the screens too
+  // (.display* classes have no transform hook — autocaps teams bake caps into the font)
+  const dispSel = STEPS.map(s => '.display' + s).join(',') + ',.nav-title';   // .nav-title = event-details' inline display-type class
+  let caps = doc.getElementById('fl-caps');
+  if (!caps) { caps = doc.createElement('style'); caps.id = 'fl-caps'; (doc.head || doc.documentElement).appendChild(caps); }
+  caps.textContent = S.ramp.caps === 'uppercase' ? dispSel + '{text-transform:uppercase!important;}' : '';
+  // Italic + variable axes have no CSS var hook in the templates, so apply them
+  // as a rule on the display-type selectors (weight/ls/family flow via the vars above).
+  const varAxes = Object.entries(S.wb.axes).filter(([t]) => t !== 'wdth');
+  const typoDecls = [
+    'font-style:' + (S.wb.italic ? 'italic' : 'normal') + '!important',
+    S.wb.axes.wdth ? 'font-stretch:' + S.wb.axes.wdth + '%!important' : '',
+    varAxes.length ? 'font-variation-settings:' + varAxes.map(([t,v]) => `"${t}" ${v}`).join(',') + '!important' : '',
+  ].filter(Boolean).join(';');
+  let typo = doc.getElementById('fl-typo');
+  if (!typo) { typo = doc.createElement('style'); typo.id = 'fl-typo'; (doc.head || doc.documentElement).appendChild(typo); }
+  typo.textContent = dispSel + '{' + typoDecls + '}';
+}
+function refreshScreens() {
+  if (!screensBuilt) return;
+  screenFrames.forEach(fr => { try { screenOverride(fr.contentDocument); } catch (e) {} });
+  const note = document.getElementById('screensNote');
+  if (note) note.innerHTML = `Previewing <strong>${escapeHtml(S.wb.family)}</strong> · weight ${S.wb.weight} · ${S.wb.ls}em, using your display size scale. <span style="opacity:.8">Change team &amp; mode per screen from its dynamic island. Content needs http:// — not file://.</span>`;
+}
+function buildScreens() {
+  if (screensBuilt) return; screensBuilt = true;
+  const row = document.getElementById('screensRow');
+  CURATED_SCREENS.forEach(s => {
+    const wrap = document.createElement('div'); wrap.className = 'fl-phone-wrap';
+    wrap.innerHTML = `<div class="fl-phone"><iframe src="${s.path}"></iframe></div><div class="fl-phone-label labelRegular10">${s.name}</div>`;
+    const fr = wrap.querySelector('iframe');
+    fr.addEventListener('load', () => {
+      let doc = null;
+      try { doc = fr.contentDocument; if (doc) void doc.documentElement.className; } catch (e) { doc = null; }
+      if (!doc) { markScreensBlocked(); return; }   // file:// blocks parent→iframe access
+      try { screenOverride(doc); } catch (e) { markScreensBlocked(); }   // team/mode now controlled per-screen via the dynamic island
+    });
+    screenFrames.push(fr);
+    row.appendChild(wrap);
+  });
+  refreshScreens();
+}
+let screensBlockedShown = false;
+function markScreensBlocked() {
+  if (screensBlockedShown) return; screensBlockedShown = true;
+  const note = document.getElementById('screensNote');
+  if (!note) return;
+  note.style.color = 'var(--status-warning)';
+  note.innerHTML = `⚠ <strong>Open this tab over a local server</strong> — on <code>file://</code> the browser blocks Font Lab from styling the screens, and their content can’t load. From the repo root run <code>python3 -m http.server</code>, then open <code>http://localhost:8000/tools/font-lab/font-lab-1.html#screens</code> (use the http:// URL, not the file path).`;
+}
+
+/* ── Views + mode ── */
+let flPrevView = 'workbench';
+function switchView(v) {
+  // Leaving a triage session: refresh the sidebar stars + favorites list to reflect swipes.
+  if (flPrevView === 'swipe' && v !== 'swipe') { renderList(); renderFavs(); }
+  flPrevView = v;
+  document.querySelectorAll('.fl-tab').forEach(t => t.classList.toggle('is-on', t.dataset.view === v));
+  document.querySelectorAll('.fl-view').forEach(x => x.classList.toggle('is-on', x.id === 'view-' + v));
+  if (v === 'ramp') { buildRampWeight(); renderRamp(); }
+  if (v === 'favorites') renderFavs();
+  if (v === 'screens') buildScreens();
+  if (v === 'swipe') renderSwipe();
+  if (history.replaceState) history.replaceState(null, '', '#' + v);
+}
+document.querySelector('.fl-tabs').addEventListener('click', e => {
+  const t = e.target.closest('.fl-tab'); if (t) switchView(t.dataset.view);
+});
+document.getElementById('modeBtn').onclick = () => {
+  const h = document.documentElement;
+  h.setAttribute('data-mode', h.getAttribute('data-mode') === 'dark' ? 'light' : 'dark');
+};
+/* Per-tab reset to defaults — favorites are never cleared */
+function flashBtn(btn, msg) { const t = btn.textContent; btn.textContent = msg; setTimeout(() => btn.textContent = t, 1000); }
+document.getElementById('resetWb').onclick = e => {
+  S.wb = JSON.parse(JSON.stringify(DEFAULTS));
+  document.getElementById('c-transform').querySelectorAll('button').forEach(b => b.classList.toggle('is-on', b.dataset.v === S.wb.transform));
+  document.getElementById('c-italic').querySelectorAll('button').forEach(b => b.classList.toggle('is-on', +b.dataset.v === S.wb.italic));
+  selectFont(S.wb.family);   // rebuilds weight/axes controls + applies + syncs sliders
+  flashBtn(e.target, '✓ Reset'); persist();
+};
+document.getElementById('resetRamp').onclick = e => {
+  S.ramp = rampDefaults();
+  rampTeamSel.value = S.ramp.team;
+  document.getElementById('rampSample').value = 'Up Next';
+  document.getElementById('rampCaps').querySelectorAll('button').forEach(b => b.classList.toggle('is-on', b.dataset.v === S.ramp.caps));
+  buildRampWeight(); renderRamp();
+  flashBtn(e.target, '✓ Reset'); persist();
+};
+
+/* ── Swipe: quick like/dislike triage ──
+   Like/dislike set the FAMILY verdict (S.verdicts) — no styling captured here; styling
+   is a separate reusable concept. Decided families drop out of the queue, so it survives
+   reloads and resumes. Queue order: the curated 155-font guide first (by guide rank),
+   then everyone else in popularity order. */
+const swipeHistory = [];   // {family, action} — for Undo
+let swipeAnimating = false;
+function swipeQueue() {
+  const decided = S.verdicts;
+  const pending = CAT.filter(f => !decided[f.n] && (foreignVisible() || !isForeignHidden(f.n)));   // CAT ships popularity-sorted; other-language scripts hidden by default
+  const curated = pending.filter(f => GUIDE.fonts[f.n])
+    .sort((a, b) => (GUIDE.fonts[a.n].r ?? 9999) - (GUIDE.fonts[b.n].r ?? 9999));
+  const rest = pending.filter(f => !GUIDE.fonts[f.n]);  // stays in popularity order
+  return curated.concat(rest);
+}
+const WEIGHT_NAMES = {100:'Thin',200:'ExtraLight',300:'Light',400:'Regular',500:'Medium',600:'SemiBold',700:'Bold',800:'ExtraBold',900:'Black'};
+// Three distinct weights spanning the font's range: light / mid / bold.
+function swipeWeights(f) {
+  let lo, mid, hi;
+  if (f.v && f.v.wght) {                 // variable: use the axis range
+    lo = Math.round(f.v.wght[0]); hi = Math.round(f.v.wght[1]); mid = Math.round((lo + hi) / 2);
+  } else {                                // static: pick from available weights
+    const ws = [...(f.w || [400])].sort((a, b) => a - b);
+    lo = ws[0]; hi = ws[ws.length - 1]; mid = ws[Math.floor((ws.length - 1) / 2)];
+  }
+  return [...new Set([lo, mid, hi])];    // dedupe (fonts with 1–2 weights collapse)
+}
+function renderSwipe() {
+  const deck = document.getElementById('swipeDeck');
+  const q = swipeQueue();
+  const total = CAT.filter(f => foreignVisible() || !isForeignHidden(f.n)).length, decided = total - q.length;
+  document.getElementById('swipeFill').style.width = (total ? decided / total * 100 : 0) + '%';
+  document.getElementById('swipeStats').innerHTML =
+    `<span class="labelRegular20 text-secondary"><span class="labelBold20 text-primary">${decided.toLocaleString()}</span> / ${total.toLocaleString()} reviewed</span>` +
+    `<span class="fl-swipe-tallies labelBold20">` +
+      `<span class="text-brand-interactive"><span class="material-symbols-rounded">favorite</span> ${likedFamilies().length}</span>` +
+      `<span class="text-error"><span class="material-symbols-rounded">close</span> ${dislikedFamilies().length}</span>` +
+    `</span>`;
+  const likeBtn = document.getElementById('swipeLike'), dislikeBtn = document.getElementById('swipeDislike');
+  document.getElementById('swipeUndo').disabled = !swipeHistory.length;
+  if (!q.length) {
+    deck.innerHTML = `<div class="fl-swipe-done"><p class="title50 text-primary">All done 🎉</p><p class="bodyRegular30 text-secondary">Every font reviewed — ${likedFamilies().length} liked. See the Favorites tab.</p></div>`;
+    likeBtn.disabled = dislikeBtn.disabled = true;
+    return;
+  }
+  likeBtn.disabled = dislikeBtn.disabled = false;
+  const f = q[0];
+  const weights = swipeWeights(f);
+  weights.forEach(wt => loadFont(f.n, {weight: wt}));
+  q.slice(1, 4).forEach(nf => loadFont(nf.n, {weight: nearestWeight(nf, 500)}));   // preload next few (one weight, keep it light)
+  const nW = f.w ? f.w.length : 1;
+  // Rich specimen: the same phrase in three cases (direct case comparison), plus
+  // numerals and a full alphabet line — each row stepping through the weight range
+  // so light→black shows too. lo/mid/hi come from swipeWeights (all preloaded above).
+  const wLo = weights[0], wHi = weights[weights.length - 1], wMid = weights[Math.min(1, weights.length - 1)];
+  const specimens = [
+    { case: 'All caps',      wt: wHi,  size: 44, text: 'GAME DAY IS HERE' },
+    { case: 'Sentence case', wt: wMid, size: 38, text: 'Game day is here' },
+    { case: 'lowercase',     wt: wLo,  size: 30, text: 'game day is here' },
+    { case: 'Numerals',      wt: wHi,  size: 32, text: '0123456789 · 112–98 · 7:30' },
+    { case: 'Letters',       wt: wMid, size: 22, text: 'ABCDEFGHIJKLM abcdefghijklm' },
+  ];
+  const rows = specimens.map(s =>
+    `<div class="fl-swipe-w">
+       <span class="fl-swipe-wlabel labelBold5 text-secondary">${s.case}<span class="fl-swipe-wt">${s.wt}${WEIGHT_NAMES[s.wt] ? ' · ' + WEIGHT_NAMES[s.wt] : ''}</span></span>
+       <div class="fl-swipe-wsample" data-wt="${s.wt}" style="font-size:${s.size}px">${escapeHtml(s.text)}</div>
+     </div>`).join('');
+  // ghost cards behind the top card give the deck a real stacked-cards feel
+  const ghosts = q.slice(1, 3).map((_, i) => `<div class="fl-swipe-ghost g${i + 1}"></div>`).join('');
+  deck.innerHTML = ghosts +
+    `<div class="fl-swipe-card enter" id="swipeCard">
+       <div class="fl-swipe-stamp like">LIKE</div>
+       <div class="fl-swipe-stamp nope">NOPE</div>
+       <div class="fl-swipe-card-head">
+         <div class="fl-swipe-tags">
+           <span class="tag text-capitalize">${escapeHtml(f.c)}</span>
+           <span class="labelRegular20 text-secondary">${nW} weight${nW > 1 ? 's' : ''}${f.v ? ' · variable' : ''}</span>
+         </div>
+         <span class="fl-swipe-fam" id="swipeFam">${escapeHtml(f.n)}</span>
+       </div>
+       <div class="fl-swipe-weights">${rows}</div>
+     </div>`;
+  const card = document.getElementById('swipeCard');
+  // render the family name in the candidate font itself (mid weight)
+  const fam = document.getElementById('swipeFam');
+  fam.style.fontFamily = "'" + f.n + "'";
+  fam.style.fontWeight = weights[Math.min(1, weights.length - 1)];
+  card.querySelectorAll('.fl-swipe-wsample').forEach(el => {
+    el.style.fontFamily = "'" + f.n + "'"; el.style.fontWeight = el.dataset.wt;
+  });
+  attachSwipeDrag(card);
+  requestAnimationFrame(() => { const c = document.getElementById('swipeCard'); if (c) c.classList.remove('enter'); });
+}
+
+/* Drag-to-swipe: pointer drag translates + rotates the top card and reveals the
+   LIKE/NOPE stamp live; releasing past the threshold decides, otherwise it springs back. */
+const SWIPE_THRESHOLD = 100;
+let swipeDrag = null;
+function attachSwipeDrag(card) {
+  const likeStamp = card.querySelector('.fl-swipe-stamp.like');
+  const nopeStamp = card.querySelector('.fl-swipe-stamp.nope');
+  card.addEventListener('pointerdown', e => {
+    if (swipeAnimating || e.button != null && e.button !== 0) return;
+    swipeDrag = { id: e.pointerId, startX: e.clientX, startY: e.clientY, dx: 0 };
+    card.setPointerCapture(e.pointerId);
+    card.classList.add('dragging');
+  });
+  card.addEventListener('pointermove', e => {
+    if (!swipeDrag || e.pointerId !== swipeDrag.id) return;
+    swipeDrag.dx = e.clientX - swipeDrag.startX;
+    const dy = (e.clientY - swipeDrag.startY) * 0.4;
+    card.style.transform = `translate(${swipeDrag.dx}px, ${dy}px) rotate(${swipeDrag.dx * 0.06}deg)`;
+    const t = Math.min(1, Math.abs(swipeDrag.dx) / SWIPE_THRESHOLD);
+    likeStamp.style.opacity = swipeDrag.dx > 0 ? t : 0;
+    nopeStamp.style.opacity = swipeDrag.dx < 0 ? t : 0;
+  });
+  const end = e => {
+    if (!swipeDrag || e.pointerId !== swipeDrag.id) return;
+    const dx = swipeDrag.dx; swipeDrag = null;
+    card.classList.remove('dragging');
+    card.style.transform = '';                 // clear inline so CSS classes take over
+    likeStamp.style.opacity = nopeStamp.style.opacity = '';
+    if (dx > SWIPE_THRESHOLD) swipeDecide('like');
+    else if (dx < -SWIPE_THRESHOLD) swipeDecide('dislike');   // else: springs back via transition
+  };
+  card.addEventListener('pointerup', end);
+  card.addEventListener('pointercancel', end);
+}
+function swipeDecide(action) {
+  if (swipeAnimating) return;
+  const q = swipeQueue(); if (!q.length) return;
+  const f = q[0];
+  // remember any prior verdict so Undo restores it exactly
+  swipeHistory.push({family: f.n, action, prev: S.verdicts[f.n] || null});
+  S.verdicts[f.n] = action;
+  document.getElementById('favCount').textContent = likedFamilies().length ? '(' + likedFamilies().length + ')' : '';
+  persist();
+  const card = document.getElementById('swipeCard');
+  swipeAnimating = true;
+  if (card) card.classList.add(action === 'like' ? 'fly-like' : 'fly-dislike');
+  setTimeout(() => { swipeAnimating = false; renderSwipe(); }, 300);
+}
+function swipeUndo() {
+  if (swipeAnimating || !swipeHistory.length) return;
+  const last = swipeHistory.pop();
+  if (last.prev) S.verdicts[last.family] = last.prev; else delete S.verdicts[last.family];
+  document.getElementById('favCount').textContent = likedFamilies().length ? '(' + likedFamilies().length + ')' : '';
+  persist(); renderSwipe();
+}
+document.getElementById('swipeLike').onclick = () => swipeDecide('like');
+document.getElementById('swipeDislike').onclick = () => swipeDecide('dislike');
+document.getElementById('swipeUndo').onclick = swipeUndo;
+document.addEventListener('keydown', e => {
+  if (!document.getElementById('view-swipe').classList.contains('is-on')) return;
+  const t = e.target;
+  if (t && (t.tagName === 'INPUT' || t.tagName === 'TEXTAREA' || t.isContentEditable)) return;  // don't hijack typing
+  const k = e.key.toLowerCase();
+  if (k === 'l' || k === 'arrowright') { e.preventDefault(); swipeDecide('like'); }
+  else if (k === 'd' || k === 'arrowleft') { e.preventDefault(); swipeDecide('dislike'); }
+  else if (k === 'u') { e.preventDefault(); swipeUndo(); }
+});
+
+/* ── Init ── */
+spec.textContent = S.wb.sample;
+loadFont(S.wb.family, {full: true});
+buildWeightControl(); buildAxesControls(); applyWb(); updateGuideCard();
+document.getElementById('c-transform').querySelectorAll('button').forEach(b => b.classList.toggle('is-on', b.dataset.v === S.wb.transform));
+renderList(); renderFavs();
+
+const hashView = location.hash.replace('#','');
+if (['workbench','favorites','ramp','screens','swipe'].includes(hashView)) switchView(hashView);
+</script>
+
+</body>
+</html>

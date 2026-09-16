@@ -1,0 +1,589 @@
+/* ============================================================
+   card-components.css
+   ============================================================
+   Card layouts and the small blocks that go inside them: closed and open cards, tiles, logo blocks and matchups.
+
+   What's inside
+   - .card-closed (+ -header/-body/-footer) — full card with background and divided
+     sections; the header is a row (text pair + optional trailing action)
+   - .card-open (+ -header/-content/-section) — transparent container with separated sections
+   - .card-closed-interactive, .card-open-section-interactive — layout for tappable cards
+   - .card-text-pair, .card-actions* — content utilities
+   - .card-grid — responsive card grids (pair with grid-cols-* from boilerplate.css)
+   - .card-media (+ -tall, -square) — the photo band at the top of a card or
+     tile, sized by ratio and never by height
+   - .logo-block — brand-coloured tile with a centred logo
+   - .matchup — two-panel away/home strip
+   - .tile (+ .tile-info, .tile-tag) — the small card shown alongside others
+
+   Notes
+   - Cards never take a border or a custom :hover; interaction is a
+     .surface-* + .scale-* pair on the element. See RULES §2.
+   - A closed card clips its children, so a full-bleed image or an interactive
+     band's hover wash follows the 16px radius with no extra CSS. Do not add
+     `overflow: hidden` to a card in a template — it is already there.
+   - Label + sublabel is .card-text-pair. See RULES §4.
+   - Worked markup for each pattern: see Usage Examples at the bottom of this file.
+   ============================================================ */
+
+/* ============================================================
+   CLOSED LAYOUT CARD
+   ============================================================
+   Full card with background, divided sections
+   Use for: Event details, product info, structured content
+   ============================================================ */
+
+
+/* A rounded box that does not clip its children rounds only itself: any child
+   with a background of its own — a .surface-section hover or press wash, a
+   full-bleed image in the first band — paints square corners over the card's
+   radius. Every other rounded container in the system already clips
+   (.event-row, .event-card, .tile, .logo-block, .matchup); these two did not,
+   and four files had been patching it with an inline `style="overflow: hidden"`
+   instead. */
+.card-closed {
+  background: var(--bg-surface);
+  border-radius: var(--border-radius-200); /* 16px */
+  overflow: hidden;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Top section with border separator.
+
+   A row, not a block: a card header is a text pair with an optional trailing
+   action — a "more" button, a link, a tag — and that shape was documented in
+   design-guide § Card with header, body and footer long before the CSS did it,
+   so the documented markup stacked instead. It is the same shape .input-label-row
+   already ships for a label with a trailing link.
+
+     <div class="card-closed-header">
+       <div class="card-text-pair">…</div>
+       <button class="btn-circle btn-circle-300 btn-circle-neutral-tertiary">…</button>
+     </div>
+
+   The first child takes the free space, so a header with one child fills the
+   row exactly as it did when this was a block — every existing card is
+   unchanged — and `min-width: 0` lets a long title truncate rather than push
+   the action off the edge. */
+.card-closed-header {
+  padding: var(--spacing-250); /* 20px */
+  border-bottom: var(--border-weight-100) solid var(--neutral-200);
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-200); /* 16px */
+}
+
+.card-closed-header > *:first-child {
+  flex: 1;
+  min-width: 0;
+}
+
+/* Middle section with border separator.
+
+   A flex column, because a card section holds a stack of things and something
+   has to space them. Eleven files across four authors were patching this in by
+   hand — `style="display: flex; flex-direction: column; gap: var(--spacing-200)"`
+   — which is the tell that it belongs here. Without it, children had to carry
+   their own outer margin to separate themselves, and that margin then stacked
+   on top of the section's padding: `.card-actions` alone in a body produced
+   24px of padding plus its own 16px margin above and 24px below, which is the
+   lopsided gap you can see in any card built before this. */
+.card-closed-body {
+  padding: var(--spacing-300); /* 24px */
+  border-bottom: var(--border-weight-100) solid var(--neutral-200);
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-200); /* 16px between stacked children */
+}
+
+/* Bottom section without border */
+.card-closed-footer {
+  padding: var(--spacing-300); /* 24px */
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-200);
+}
+
+/* Remove bottom border on last bordered section */
+.card-closed-body:last-child,
+.card-closed-footer:last-child {
+  border-bottom: none;
+}
+
+/* Mobile app: tighter card padding */
+[data-platform="app"] .card-closed-header,
+[data-platform="app"] .card-closed-body,
+[data-platform="app"] .card-closed-footer {
+  padding: var(--spacing-200); /* 16px */
+}
+
+/* ============================================================
+   OPEN LAYOUT CARD
+   ============================================================
+   Transparent container with separated background sections
+   Use for: Landing pages, feature highlights, blog layouts
+   ============================================================ */
+
+.card-open {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-250); /* 20px between header and content */
+  width: 100%;
+}
+
+/* Header without background */
+.card-open-header {
+  width: 100%;
+}
+
+/* Content container for subsections */
+.card-open-content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-150); /* 12px between subsections */
+  width: 100%;
+}
+
+/* Individual subsections with backgrounds */
+.card-open-section {
+  background: var(--bg-surface);
+  border-radius: var(--border-radius-200); /* 16px */
+  padding: var(--spacing-300); /* 24px */
+  width: 100%;
+}
+
+/* ============================================================
+   CARD VARIANTS - INTERACTIVE STATES
+   ============================================================
+   These classes provide layout structure only. Hover/press behavior comes
+   from composing surface and scale tokens on the element:
+
+     <div class="card-closed-interactive surface-card scale-700">
+     <div class="card-open-section-interactive surface-card scale-500">
+
+   No borders, no :hover rules here. See RULES §2.
+   ============================================================ */
+
+/* Closed card — layout only, no border, no hover */
+.card-closed-interactive {
+  background: var(--bg-surface);
+  border-radius: var(--border-radius-200);
+  overflow: hidden; /* see .card-closed above */
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Open section card — layout only, no border, no hover */
+.card-open-section-interactive {
+  background: var(--bg-surface);
+  border-radius: var(--border-radius-200);
+  padding: var(--spacing-300);
+  width: 100%;
+}
+
+/* ============================================================
+   CARD CONTENT UTILITIES
+   ============================================================ */
+
+/* Text pair for card headers (title + subtitle) */
+.card-text-pair {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  width: 100%;
+}
+
+/* Card actions container (buttons, links at bottom) */
+/* No outer margin. A component spaces its own contents and nothing else —
+   the container decides how far it sits from its neighbours (RULES §2). The
+   `margin-top: 16px` that used to live here existed because card sections were
+   not flex columns; now that they are, it only unbalanced the section. */
+.card-actions {
+  display: flex;
+  gap: var(--spacing-150); /* 12px between action items */
+  align-items: center;
+}
+
+/* Horizontal card actions */
+.card-actions-horizontal {
+  display: flex;
+  flex-direction: row;
+  gap: var(--spacing-150);
+  align-items: center;
+}
+
+/* Vertical card actions */
+.card-actions-vertical {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-100); /* 8px between stacked actions */
+}
+
+/* ============================================================
+   RESPONSIVE CARD GRIDS
+   ============================================================
+   Use with existing grid utilities from boilerplate.css
+   ============================================================ */
+
+/* Card grid with responsive gap */
+.card-grid {
+  display: grid;
+  gap: var(--spacing-card); /* 16px mobile, 20px tablet, 24px desktop */
+  width: 100%;
+}
+
+/* Closed card grid (tighter spacing) */
+.card-grid-closed {
+  display: grid;
+  gap: var(--spacing-row); /* 8px mobile, 12px tablet, 16px desktop */
+  width: 100%;
+}
+
+/* Open card grid (more breathing room) */
+.card-grid-open {
+  display: grid;
+  gap: var(--spacing-content); /* 32px mobile, 40px tablet, 48px desktop */
+  width: 100%;
+}
+
+/* ============================================================
+   CARD MEDIA
+   ============================================================
+   The photographic band at the top of a card or tile.
+
+   It is sized by **ratio, never by height**. Every hand-rolled media block in
+   the templates set a fixed `height: 144px`, which is a reasonable 2.5:1 on a
+   361px phone card and a letterbox slot 4:1 on a 600px web card — the same
+   markup, wildly different crops. An aspect-ratio holds the proportion at
+   every width, which is what "a photo band" actually means.
+
+   It carries **no radius of its own**. The card clips its children, so a
+   rounded media block inside a rounded card produces two different curves
+   nested at the corners. If you can see a notch where the image meets the
+   card, something has given the media a radius.
+
+   Works as an <img> or as a wrapper around a .matchup or a background image:
+
+     <img class="card-media" src="{photo}" alt="">
+
+     <div class="card-media">
+       <div class="matchup">…</div>
+     </div>
+
+   Ratios: the default 16/9, `.card-media-tall` 4/3, `.card-media-square` 1/1.
+   Nothing else — a one-off ratio is a sign the image should be cropped, not
+   the slot reshaped.
+   ============================================================ */
+
+.card-media {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;             /* when it is the <img> itself */
+  overflow: hidden;              /* when it wraps a matchup or a background */
+  background-color: var(--image-placeholder-bg);
+  border-radius: 0;              /* the card clips — see the note above */
+}
+
+/* A wrapped child fills the slot rather than deciding its own size. */
+.card-media > * {
+  width: 100%;
+  height: 100%;
+}
+
+.card-media-tall   { aspect-ratio: 4 / 3; }
+.card-media-square { aspect-ratio: 1 / 1; }
+
+
+/* ============================================================
+   LOGO BLOCK
+   ============================================================
+   Brand-coloured tile with a centred logo. The container
+   is fluid — it fills whatever parent it's placed in.
+   The size modifier (-sm/-md/-lg) controls the logo
+   image size only, not the container.
+
+   Always wrap in a parent element that sets dimensions:
+   <div style="width: 80px; height: 80px;">
+     <div class="logo-block logo-block-sm">
+       <img src="logo.svg" alt="Brand name">
+     </div>
+   </div>
+
+   Logo sizes: logo-block-sm (64px) · logo-block-md (80px) · logo-block-lg (104px)
+
+   Opposing teams — set --badge-bg inline from the opponent's `color`:
+   <div class="logo-block logo-block-sm" style="--badge-bg: ${away.primaryColor ?? 'var(--neutral-200)'};">
+   ============================================================ */
+
+.logo-block {
+  position: relative;
+  overflow: hidden;
+  background: var(--badge-bg, var(--brand-core));
+  border-radius: var(--border-radius-100); /* 8px */
+  width: 100%;
+  height: 100%;
+}
+
+.logo-block img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* Logo size variants — controls the image, NOT the container */
+.logo-block-sm img { width: 64px;  height: 64px;  }
+.logo-block-md img { width: 80px;  height: 80px;  }
+.logo-block-lg img { width: 104px; height: 104px; }
+
+/* ============================================================
+   MATCHUP
+   ============================================================
+   Two-panel split rectangle — one panel per theme.
+   Away team on the left, home team on the right.
+   Each panel fills 50% width, full height.
+   Always uses the smallest (64px) logo.
+
+   The matchup is fluid — height comes from the parent.
+   Wrap in a parent element that sets the height:
+   <div style="height: 120px;">
+     <div class="matchup">...</div>
+   </div>
+
+   Home panel: no --badge-bg needed — inherits --brand-core
+   Away panel: set --badge-bg inline from the opponent's `color`
+
+   Structure:
+   <div style="height: 120px;">
+     <div class="matchup">
+       <div class="matchup-panel" style="--badge-bg: {away.primaryColor ?? 'var(--neutral-200)'};">
+         <img src="{away.logoUrl}" alt="{away.name}">
+       </div>
+       <div class="matchup-panel">
+         <img src="{home.logoUrl}" alt="{home.name}">
+       </div>
+     </div>
+   </div>
+   ============================================================ */
+
+.matchup {
+  display: flex;
+  width: 100%;
+  height: 100%; /* fills parent — parent is responsible for height */
+  overflow: hidden;
+}
+
+.matchup-panel {
+  flex: 1 0 0;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+  background: var(--badge-bg, var(--brand-core));
+}
+
+.matchup-panel img {
+  position: absolute;
+  width: 64px; /* smallest logo — panel height is parent-controlled */
+  height: 64px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* ============================================================
+   TILE
+   ============================================================
+   The recommended pattern for any small card
+   displayed alongside others: event listings,
+   product grids, schedules, content feeds.
+
+   Use card-closed or card-open for full-width or
+   single-column cards. Use tile whenever items
+   are presented as multiple-per-row.
+
+   Placement contexts:
+   - Grid (desktop/tablet): card-grid with column modifiers
+   - Carousel (mobile-first): horizontal scroll row
+   - Inside card-open: tiles as content within a larger
+     open-layout card (card-open-content as flex row)
+
+   Structure: a fixed-height visual header block
+   (matchup, image, logo-block, or colored block)
+   followed by .tile-info for text and actions.
+   .tile-tag is an optional frosted label overlaid
+   top-left of the visual header.
+
+   ⚠️ Interactivity rule — pick one, never both:
+   - No button → tile is the tap target:
+     add surface-card scale-700 to .tile
+   - Has button → button is the CTA:
+     .tile has no surface/scale classes
+
+   Grid:
+   <div class="card-grid grid-cols-3-desktop grid-cols-2-tablet grid-cols-1-mobile">
+     <div class="tile surface-card scale-700">...</div>
+   </div>
+
+   Carousel:
+   <div style="display: flex; gap: var(--spacing-card); overflow-x: auto;">
+     <div class="tile surface-card scale-700" style="min-width: 200px; flex-shrink: 0;">...</div>
+   </div>
+
+   Inside open card:
+   <div class="card-open">
+     <div class="card-open-header">...</div>
+     <div class="card-open-content" style="flex-direction: row;">
+       <div class="tile surface-card scale-700" style="flex: 1 1 200px;">...</div>
+     </div>
+   </div>
+
+   Structure:
+   <div class="tile surface-card scale-700">        no button — tile is tap target
+   <div class="tile">                               has button — button is CTA
+     <div style="height: 120px;">                  visual header (any fixed-height block)
+       <div class="matchup">...</div>
+     </div>
+     <div class="tile-tag">Home</div>              optional — frosted label top-left
+     <div class="tile-info">
+       <div class="card-text-pair">...</div>
+       <span class="labelBold20 text-success">From $45</span>  optional
+       <button class="btn btn-primary btn-100">...</button>    optional (determines interactivity)
+     </div>
+   </div>
+   ============================================================ */
+
+.tile {
+  background: var(--bg-surface);
+  border-radius: var(--border-radius-100); /* 8px */
+  overflow: hidden;
+  position: relative;
+}
+
+.tile-info {
+  padding: var(--spacing-200);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-100); /* 8px — text pair → price */
+}
+
+.tile-info .btn {
+  margin-top: var(--spacing-100); /* +8px = 16px total — price → button */
+}
+
+/* Frosted glass label — absolutely positioned over the matchup image */
+.tile-tag {
+  position: absolute;
+  top: var(--spacing-100);   /* 8px */
+  left: var(--spacing-100);  /* 8px */
+  display: flex;
+  align-items: center;
+  height: 32px;
+  padding: var(--spacing-50) var(--spacing-150); /* 4px 12px */
+  border-radius: var(--border-radius-50);        /* 4px */
+  backdrop-filter: blur(25px);
+  background: rgba(0, 0, 0, 0.04);
+}
+
+/* ============================================================
+   USAGE EXAMPLES
+   ============================================================ */
+
+/* 
+CLOSED LAYOUT CARD EXAMPLE:
+
+<div class="card-closed">
+  <div class="card-closed-header">
+    <div class="card-text-pair">
+      <h3 class="title60">Event Title</h3>
+      <p class="labelRegular20 text-secondary">Saturday, March 15</p>
+    </div>
+  </div>
+  <div class="card-closed-body">
+    <p class="bodyRegular30">Event description goes here...</p>
+  </div>
+  <div class="card-closed-footer">
+    <div class="card-actions-horizontal">
+      <button class="btn btn-primary btn-300">Register</button>
+      <a href="#" class="labelBold40 text-brand-interactive">Learn More</a>
+    </div>
+  </div>
+</div>
+
+OPEN LAYOUT CARD EXAMPLE:
+
+<div class="card-open">
+  <div class="card-open-header">
+    <div class="card-text-pair">
+      <h2 class="display400">Feature Highlights</h2>
+      <p class="labelRegular30 text-secondary">Discover what makes us different</p>
+    </div>
+  </div>
+  <div class="card-open-content">
+    <div class="card-open-section">
+      <p class="bodyRegular30">First feature description...</p>
+    </div>
+    <div class="card-open-section">
+      <p class="bodyRegular30">Second feature description...</p>
+    </div>
+  </div>
+</div>
+
+CARD GRIDS:
+
+<div class="card-grid grid-cols-3-desktop grid-cols-2-tablet grid-cols-1-mobile">
+  <div class="card-closed-interactive surface-card scale-700">...</div>
+  <div class="card-closed-interactive surface-card scale-700">...</div>
+  <div class="card-closed-interactive surface-card scale-700">...</div>
+</div>
+
+TILE GRID (recommended for small side-by-side cards):
+
+<div class="card-grid grid-cols-3-desktop grid-cols-2-tablet grid-cols-1-mobile">
+
+  <!-- No button — tile is the tap target -->
+  <div class="tile surface-card scale-700">
+    <div style="height: 120px;">
+      <div class="matchup">
+        <div class="matchup-panel" style="--badge-bg: ${away.primaryColor ?? 'var(--neutral-200)'};">
+          <img src="${away.logoUrl}" alt="${away.name}">
+        </div>
+        <div class="matchup-panel">
+          <img src="home-logo.svg" alt="Home Team">
+        </div>
+      </div>
+    </div>
+    <div class="tile-info">
+      <div class="card-text-pair">
+        <span class="labelBold30">vs. Away Team</span>
+        <span class="labelRegular10 text-secondary">Sat, Mar 15 · 7:00 PM</span>
+      </div>
+      <span class="labelBold20 text-success">From $45</span>
+    </div>
+  </div>
+
+  <!-- Has button — button is the CTA, no surface/scale on wrapper -->
+  <div class="tile">
+    <div style="height: 120px;">
+      <div class="matchup">...</div>
+    </div>
+    <div class="tile-info">
+      <div class="card-text-pair">
+        <span class="labelBold30">vs. Away Team</span>
+        <span class="labelRegular10 text-secondary">Tue, Mar 18 · 7:30 PM</span>
+      </div>
+      <span class="labelBold20 text-success">From $89</span>
+      <button class="btn btn-primary btn-100">Buy Tickets</button>
+    </div>
+  </div>
+
+</div>
+
+*/

@@ -1,0 +1,187 @@
+/* ============================================================
+   icons.css
+   ============================================================
+   The Material Symbols (Rounded) icon system: size tokens, the base icon class and its variants.
+
+   What's inside
+   - --icon-size-{50…700} — the icon size scale
+   - .icon — base class; sets the Material Symbols font, filled by default
+   - .icon-{50…700} — size utilities
+   - .icon-outlined — opt a glyph out of the filled default
+
+   Notes
+   - The canonical form is <span class="icon icon-N">name</span>; .icon sets
+     the font family, so never add material-symbols-rounded beside it. See
+     RULES §4.
+   - The variable font is loaded via the Google Fonts <link> in the page <head>:
+     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
+   - Icons inherit color, so the text colour modifiers apply.
+   - Full usage notes: see Usage Guidelines at the bottom of this file.
+   ============================================================ */
+
+/* ============================================================
+   ICON SIZE TOKENS
+   ============================================================ */
+:root {
+  /* Icon size scale — maps to spacing tokens where possible */
+  --icon-size-50:  12px;   /* Dense metadata rows — venue, timestamp */
+  --icon-size-100: 16px;   /* Compact UI, inline with small text */
+  --icon-size-200: 20px;   /* Inline with body/label text */
+  --icon-size-300: 24px;   /* Default — standard UI icons */
+  --icon-size-400: 32px;   /* Emphasized icons, empty states */
+  --icon-size-500: 40px;   /* Large feature icons */
+  --icon-size-600: 48px;   /* Illustrative icons, hero areas */
+  --icon-size-700: 64px;   /* Confirmation / empty-state artwork */
+}
+
+/* ============================================================
+   BASE ICON CLASS
+   ============================================================ */
+.icon {
+  font-family: 'Material Symbols Rounded';
+  font-size: var(--icon-size-300);
+  font-weight: normal;
+  font-style: normal;
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  display: inline-block;
+  white-space: nowrap;
+  word-wrap: normal;
+  direction: ltr;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-feature-settings: 'liga';
+  
+  /* Inherit color from parent or text color modifiers */
+  color: inherit;
+  
+  /* Optical size matches font-size by default */
+  /* FILL 1 = filled icons are the system default. Use .icon-outlined to opt out. */
+  font-variation-settings:
+    'FILL' 1,
+    'wght' 400,
+    'GRAD' 0,
+    'opsz' 24;
+  
+  /* Prevent icons from being selected like text */
+  user-select: none;
+  
+  /* Vertical alignment with adjacent text */
+  vertical-align: middle;
+}
+
+/* ============================================================
+   ICON SIZE UTILITIES
+   ============================================================ */
+.icon-50 {
+  font-size: var(--icon-size-50);
+  font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 20;
+}
+
+.icon-100 {
+  font-size: var(--icon-size-100);
+  font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 20;
+}
+
+.icon-200 {
+  font-size: var(--icon-size-200);
+  font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 20;
+}
+
+.icon-300 {
+  font-size: var(--icon-size-300);
+  font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+}
+
+.icon-400 {
+  font-size: var(--icon-size-400);
+  font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 40;
+}
+
+.icon-500 {
+  font-size: var(--icon-size-500);
+  font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 40;
+}
+
+.icon-600 {
+  font-size: var(--icon-size-600);
+  font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 48;
+}
+
+.icon-700 {
+  font-size: var(--icon-size-700);
+  font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 48;
+}
+
+/* ============================================================
+   ICON STYLE VARIANTS
+   ============================================================ */
+
+/* Outlined variant — opt out of the filled default for specific icons */
+.icon-outlined {
+  font-variation-settings:
+    'FILL' 0,
+    'wght' 400,
+    'GRAD' 0,
+    'opsz' 24;
+}
+
+/* Combine outlined with size classes */
+.icon-50.icon-outlined  { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 20; }
+.icon-100.icon-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 20; }
+.icon-200.icon-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 20; }
+.icon-300.icon-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+.icon-400.icon-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 40; }
+.icon-500.icon-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 40; }
+.icon-600.icon-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 48; }
+.icon-700.icon-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 48; }
+
+/* ============================================================
+   USAGE GUIDELINES
+   ============================================================
+   
+   BASIC USAGE:
+   <span class="icon">home</span>
+   
+   Default is 24px filled. Use .icon-outlined to opt out for specific icons.
+   Never add material-symbols-rounded next to .icon (RULES §4).
+   
+   WITH SIZE:
+   <span class="icon icon-100">close</span>       16px
+   <span class="icon">favorite</span>             24px (default)
+   <span class="icon icon-400">star</span>         32px
+   <span class="icon icon-600">sports_soccer</span> 48px
+   
+   FILLED vs OUTLINED:
+   <span class="icon">favorite</span>                       Filled (default)
+   <span class="icon icon-outlined">favorite</span>     Outlined
+   
+   WITH TEXT COLOR MODIFIERS:
+   Icons inherit color, so all existing text color classes work:
+   <span class="icon text-primary">home</span>
+   <span class="icon text-secondary">info</span>
+   <span class="icon text-brand-core">sports_soccer</span>
+   <span class="icon text-brand-interactive">arrow_forward</span>
+   <span class="icon text-success">check_circle</span>
+   <span class="icon text-error">error</span>
+   <span class="icon text-warning">warning</span>
+   
+   INLINE WITH TEXT:
+   Icons align vertically with adjacent text via vertical-align: middle.
+   <p class="bodyRegular30"><span class="icon">schedule</span> 7:00 PM CT</p>
+   <button><span class="icon">add</span> Add to Cart</button>
+   
+   ICON SIZE REFERENCE:
+   --icon-size-100 (16px) — Compact UI, inline with .labelBold20/.labelRegular20
+   --icon-size-200 (20px) — Inline with .bodyRegular30/.labelBold30
+   --icon-size-300 (24px) — Default, standard UI icons (nav, buttons, cards)
+   --icon-size-400 (32px) — Emphasized icons, section headers
+   --icon-size-500 (40px) — Large feature icons, empty states
+   --icon-size-600 (48px) — Illustrative use, hero sections
+   
+   FINDING ICON NAMES:
+   Browse all available icons at https://fonts.google.com/icons?icon.set=Material+Symbols
+   Use the icon name exactly as shown (lowercase, underscores).
+   
+   ============================================================ */

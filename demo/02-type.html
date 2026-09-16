@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="signal" data-mode="light" data-platform="web">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Type — Design System Sticker Sheet</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap" rel="stylesheet">
+
+  <script src="../css/ds-loader.js"></script>
+  <script src="demo-content.js"></script>
+  <script src="../css/prototype-harness.js"></script>
+  <link rel="stylesheet" href="sheet.css">
+</head>
+<body>
+
+<nav data-sheet-nav></nav>
+
+<main class="container-extra-wide">
+
+  <header class="sheet-head">
+    <div class="card-text-pair">
+      <h1 class="display500">Type</h1>
+      <p class="labelRegular40 text-secondary">All 63 text classes as live specimens, with the metrics the browser resolved for this theme.</p>
+    </div>
+  </header>
+
+  <div class="sheet-callout">
+    <p class="bodyRegular30">Four families. Pick the family, then the step. <span class="mono">Bold</span>/<span class="mono">Regular</span> is weight, the number is size. Metrics next to each name are read live — switch theme and the display ramp changes with it, because a display font and its ramp travel together (<span class="mono">RULES §6</span>).</p>
+  </div>
+
+  <div class="sheet-callout is-warn">
+    <p class="bodyRegular30"><strong>Never set <span class="mono">font-size</span>, <span class="mono">font-weight</span> or <span class="mono">line-height</span></strong> (<span class="mono">RULES §2</span>). And write display text in title case — a caps face has it baked into the font, so a hardcoded <span class="mono">"BUY"</span> breaks every theme on a face that renders as drawn (<span class="mono">RULES §5</span>).</p>
+  </div>
+
+  <section class="sheet-section" id="display">
+    <div class="sheet-section-head">
+      <h2 class="display300">Display</h2>
+      <span class="labelRegular10 text-secondary mono">theme display face · screen titles, brand name, big numbers</span>
+    </div>
+    <div class="sheet-grid sheet-grid-1">
+      <div class="spec">
+        <div class="spec-stage is-plain"><span class="display900" data-type-sample="display900">Gameday</span></div>
+        <div class="spec-label"><span class="labelRegular10 mono spec-code">.display900</span><span class="labelRegular10 spec-meta" data-type-metrics="display900"></span></div>
+      </div>
+      <div class="spec">
+        <div class="spec-stage is-plain"><span class="display800" data-type-sample="display800">Gameday</span></div>
+        <div class="spec-label"><span class="labelRegular10 mono spec-code">.display800</span><span class="labelRegular10 spec-meta" data-type-metrics="display800"></span></div>
+      </div>
+      <div class="spec">
+        <div class="spec-stage is-plain"><span class="display700" data-type-sample="display700">Gameday</span></div>
+        <div class="spec-label"><span class="labelRegular10 mono spec-code">.display700</span><span class="labelRegular10 spec-meta" data-type-metrics="display700"></span></div>
+      </div>
+      <div class="spec">
+        <div class="spec-stage is-plain"><span class="display600" data-type-sample="display600">Gameday</span></div>
+        <div class="spec-label"><span class="labelRegular10 mono spec-code">.display600</span><span class="labelRegular10 spec-meta" data-type-metrics="display600"></span></div>
+      </div>
+      <div class="spec">
+        <div class="spec-stage is-plain"><span class="display500" data-type-sample="display500">Gameday</span></div>
+        <div class="spec-label"><span class="labelRegular10 mono spec-code">.display500</span><span class="labelRegular10 spec-meta" data-type-metrics="display500"></span></div>
+      </div>
+      <div class="spec">
+        <div class="spec-stage is-plain"><span class="display400" data-type-sample="display400">Gameday</span></div>
+        <div class="spec-label"><span class="labelRegular10 mono spec-code">.display400</span><span class="labelRegular10 spec-meta" data-type-metrics="display400"></span></div>
+      </div>
+      <div class="spec">
+        <div class="spec-stage is-plain"><span class="display300" data-type-sample="display300">Gameday</span></div>
+        <div class="spec-label"><span class="labelRegular10 mono spec-code">.display300</span><span class="labelRegular10 spec-meta" data-type-metrics="display300"></span></div>
+      </div>
+      <div class="spec">
+        <div class="spec-stage is-plain"><span class="display200" data-type-sample="display200">Gameday</span></div>
+        <div class="spec-label"><span class="labelRegular10 mono spec-code">.display200</span><span class="labelRegular10 spec-meta" data-type-metrics="display200"></span></div>
+      </div>
+      <div class="spec">
+        <div class="spec-stage is-plain"><span class="display100" data-type-sample="display100">Gameday</span></div>
+        <div class="spec-label"><span class="labelRegular10 mono spec-code">.display100</span><span class="labelRegular10 spec-meta" data-type-metrics="display100"></span></div>
+      </div>
+    </div>
+
+    <div class="sheet-sub"><span class="title50">The ramp behind it</span><span class="labelRegular10 text-secondary">per theme — a font and its nine sizes travel together</span></div>
+    <div class="token-list">
+        <div class="token-row no-chip" data-token="--display-font">
+          <span class="labelBold20 mono">--display-font</span>
+          <span class="labelRegular10 token-value mono" data-token-value></span>
+        </div>
+        <div class="token-row no-chip" data-token="--display-weight">
+          <span class="labelBold20 mono">--display-weight</span>
+          <span class="labelRegular10 token-value mono" data-token-value></span>
+        </div>
+        <div class="token-row no-chip" data-token="--display-letter-spacing">
+          <span class="labelBold20 mono">--display-letter-spacing</span>
+          <span class="labelRegular10 token-value mono" data-token-value></span>
+        </div>
+        <div class="token-row no-chip" data-token="--display-size-900">
+          <span class="labelBold20 mono">--display-size-900</span>
+          <span class="labelRegular10 token-value mono" data-token-value></span>
+        </div>
+        <div class="token-row no-chip" data-token="--display-size-800">
+          <span class="labelBold20 mono">--display-size-800</span>
+          <span class="labelRegular10 token-value mono" data-token-value></span>
+        </div>
+        <div class="token-row no-chip" data-token="--display-size-700">
+          <span class="labelBold20 mono">--display-size-700</span>
+          <span class="labelRegular10 token-value mono" data-token-value></span>
+        </div>
+        <div class="token-row no-chip" data-token="--display-size-600">
+          <span class="labelBold20 mono">--display-size-600</span>
+          <span class="labelRegular10 token-value mono" data-token-value></span>
+        </div>
+        <div class="token-row no-chip" data-token="--display-size-500">
+          <span class="labelBold20 mono">--display-size-500</span>
+          <span class="labelRegular10 token-value mono" data-token-value></span>
+        </div>
+        <div class="token-row no-chip" data-token="--display-size-400">
+          <span class="labelBold20 mono">--display-size-400</span>
+          <span class="labelRegular10 token-value mono" data-token-value></span>
+        </div>
+        <div class="token-row no-chip" data-token="--display-size-300">
+          <span class="labelBold20 mono">--display-size-300</span>
+          <span class="labelRegular10 token-value mono" data-token-value></span>
+        </div>
+        <div class="token-row no-chip" data-token="--display-size-200">
+          <span class="labelBold20 mono">--display-size-200</span>
+          <span class="labelRegular10 token-value mono" data-token-value></span>
+        </div>
+        <div class="token-row no-chip" data-token="--display-size-100">
+          <span class="labelBold20 mono">--display-size-100</span>
+          <span class="labelRegular10 token-value mono" data-token-value></span>
+        </div>
+    </div>
+  </section>
+
+  <section class="sheet-section" id="title">
+    <div class="sheet-section-head">
+      <h2 class="display300">Title</h2>
+      <span class="labelRegular10 text-secondary mono">Inter 700 · section headings</span>
+    </div>
+    <div class="sheet-grid sheet-grid-1">
+      <div class="spec">
+        <div class="spec-stage is-plain"><span class="title90" data-type-sample="title90">Section heading</span></div>
+        <div class="spec-label"><span class="labelRegular10 mono spec-code">.title90</span><span class="labelRegular10 spec-meta" data-type-metrics="title90"></span></div>
+      </div>
+      <div class="spec">
+        <div class="spec-stage is-plain"><span class="title80" data-type-sample="title80">Section heading</span></div>
+        <div class="spec-label"><span class="labelRegular10 mono spec-code">.title80</span><span class="labelRegular10 spec-meta" data-type-metrics="title80"></span></div>
+      </div>
+      <div class="spec">
+        <div class="spec-stage is-plain"><span class="title70" data-type-sample="title70">Section heading</span></div>
+        <div class="spec-label"><span class="labelRegular10 mono spec-code">.title70</span><span class="labelRegular10 spec-meta" data-type-metrics="title70"></span></div>
+      </div>
+      <div class="spec">
+        <div class="spec-stage is-plain"><span class="title60" data-type-sample="title60">Section heading</span></div>
+        <div class="spec-label"><span class="labelRegular10 mono spec-code">.title60</span><span class="labelRegular10 spec-meta" data-type-metrics="title60"></span></div>
+      </div>
+      <div class="spec">
+        <div class="spec-stage is-plain"><span class="title50" data-type-sample="title50">Section heading</span></div>
+        <div class="spec-label"><span class="labelRegular10 mono spec-code">.title50</span><span class="labelRegular10 spec-meta" data-type-metrics="title50"></span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sheet-section" id="label">
+    <div class="sheet-section-head">
+      <h2 class="display300">Label</h2>
+      <span class="labelRegular10 text-secondary mono">tight leading · UI text — buttons, rows, tags</span>
+    </div>
+    <p class="sheet-note bodyRegular30">The choice people get wrong: anything on one line inside a control takes a <span class="mono">.label*</span>; anything that wraps and is <em>read</em> takes a <span class="mono">.body*</span>.</p>
+
+    <div class="sheet-sub"><span class="title50">Label Bold</span></div>
+    <div class="sheet-grid sheet-grid-1">
+      <div class="spec">
+        <div class="spec-stage is-plain"><span class="labelBold50" data-type-sample="labelBold50">Buy Tickets</span></div>
+        <div class="spec-label"><span class="labelRegular10 mono spec-code">.labelBold50</span><span class="labelRegular10 spec-meta" data-type-metrics="labelBold50"></span></div>
+      </div>
+      <div class="spec">
+        <div class="spec-stage is-plain"><span class="labelBold40" data-type-sample="labelBold40">Buy Tickets</span></div>
+        <div class="spec-label"><span class="labelRegular10 mono spec-code">.labelBold40</span><span class="labelRegular10 spec-meta" data-type-metrics="labelBold40"></span></div>
+      </div>
+      <div class="spec">
+        <div class="spec-stage is-plain"><span class="labelBold30" data-type-sample="labelBold30">Buy Tickets</span></div>
+        <div class="spec-label"><span class="labelRegular10 mono spec-code">.labelBold30</span><span class="labelRegular10 spec-meta" data-type-metrics="labelBold30"></span></div>
+      </div>
+      <div class="spec">
+        <div class="spec-stage is-plain"><span class="labelBold20" data-type-sample="labelBold20">Buy Tickets</span></div>
+        <div class="spec-label"><span class="labelRegular10 mono spec-code">.labelBold20</span><span class="labelRegular10 spec-meta" data-type-metrics="labelBold20"></span></div>
+      </div>
+      <div class="spec">
+        <div class="spec-stage is-plain"><span class="labelBold10" data-type-sample="labelBold10">Buy Tickets</span></div>
+        <div class="spec-label"><span class="labelRegular10 mono spec-code">.labelBold10</span><span class="labelRegular10 spec-meta" data-type-metrics="labelBold10"></span></div>
+      </div>
+      <div class="spec">
+        <div class="spec-stage is-plain"><span class="labelBold5" data-type-sample="labelBold5">Buy Tickets</span></div>
+        <div class="spec-label"><span class="labelRegular10 mono spec-code">.labelBold5</span><span class="labelRegular10 spec-meta" data-type-metrics="labelBold5"></span></div>
+      </div>
+    </div>
+
+    <div class="sheet-sub"><span class="title50">Label Regular</span></div>
+    <div class="sheet-grid sheet-grid-1">
+      <div class="spec">
+        <div class="spec-stage is-plain"><span class="labelRegular50" data-type-sample="labelRegular50">Sat, Mar 15 · 7:00 PM</span></div>
+        <div class="spec-label"><span class="labelRegular10 mono spec-code">.labelRegular50</span><span class="labelRegular10 spec-meta" data-type-metrics="labelRegular50"></span></div>
+      </div>
+      <div class="spec">
+        <div class="spec-stage is-plain"><span class="labelRegular40" data-type-sample="labelRegular40">Sat, Mar 15 · 7:00 PM</span></div>
+        <div class="spec-label"><span class="labelRegular10 mono spec-code">.labelRegular40</span><span class="labelRegular10 spec-meta" data-type-metrics="labelRegular40"></span></div>
+      </div>
+      <div class="spec">
+        <div class="spec-stage is-plain"><span class="labelRegular30" data-type-sample="labelRegular30">Sat, Mar 15 · 7:00 PM</span></div>
+        <div class="spec-label"><span class="labelRegular10 mono spec-code">.labelRegular30</span><span class="labelRegular10 spec-meta" data-type-metrics="labelRegular30"></span></div>
+      </div>
+      <div class="spec">
+        <div class="spec-stage is-plain"><span class="labelRegular20" data-type-sample="labelRegular20">Sat, Mar 15 · 7:00 PM</span></div>
+        <div class="spec-label"><span class="labelRegular10 mono spec-code">.labelRegular20</span><span class="labelRegular10 spec-meta" data-type-metrics="labelRegular20"></span></div>
+      </div>
+      <div class="spec">
+        <div class="spec-stage is-plain"><span class="labelRegular10" data-type-sample="labelRegular10">Sat, Mar 15 · 7:00 PM</span></div>
+        <div class="spec-label"><span class="labelRegular10 mono spec-code">.labelRegular10</span><span class="labelRegular10 spec-meta" data-type-metrics="labelRegular10"></span></div>
+      </div>
+      <div class="spec">
+        <div class="spec-stage is-plain"><span class="labelRegular5" data-type-sample="labelRegular5">Sat, Mar 15 · 7:00 PM</span></div>
+        <div class="spec-label"><span class="labelRegular10 mono spec-code">.labelRegular5</span><span class="labelRegular10 spec-meta" data-type-metrics="labelRegular5"></span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sheet-section" id="body">
+    <div class="sheet-section-head">
+      <h2 class="display300">Body</h2>
+      <span class="labelRegular10 text-secondary mono">loose leading · sentences meant to be read</span>
+    </div>
+
+    <div class="sheet-sub"><span class="title50">Body Bold</span></div>
+    <div class="sheet-grid sheet-grid-1">
+      <div class="spec">
+        <div class="spec-stage is-plain"><span class="bodyBold40" data-type-sample="bodyBold40">Members get first access to every home game, plus priority on playoffs.</span></div>
+        <div class="spec-label"><span class="labelRegular10 mono spec-code">.bodyBold40</span><span class="labelRegular10 spec-meta" data-type-metrics="bodyBold40"></span></div>
+      </div>
+      <div class="spec">
+        <div class="spec-stage is-plain"><span class="bodyBold30" data-type-sample="bodyBold30">Members get first access to every home game, plus priority on playoffs.</span></div>
+        <div class="spec-label"><span class="labelRegular10 mono spec-code">.bodyBold30</span><span class="labelRegular10 spec-meta" data-type-metrics="bodyBold30"></span></div>
+      </div>
+      <div class="spec">
+        <div class="spec-stage is-plain"><span class="bodyBold20" data-type-sample="bodyBold20">Members get first access to every home game, plus priority on playoffs.</span></div>
+        <div class="spec-label"><span class="labelRegular10 mono spec-code">.bodyBold20</span><span class="labelRegular10 spec-meta" data-type-metrics="bodyBold20"></span></div>
+      </div>
+    </div>
+
+    <div class="sheet-sub"><span class="title50">Body Regular</span></div>
+    <div class="sheet-grid sheet-grid-1">
+      <div class="spec">
+        <div class="spec-stage is-plain"><span class="bodyRegular40" data-type-sample="bodyRegular40">Members get first access to every home game, plus priority on playoffs.</span></div>
+        <div class="spec-label"><span class="labelRegular10 mono spec-code">.bodyRegular40</span><span class="labelRegular10 spec-meta" data-type-metrics="bodyRegular40"></span></div>
+      </div>
+      <div class="spec">
+        <div class="spec-stage is-plain"><span class="bodyRegular30" data-type-sample="bodyRegular30">Members get first access to every home game, plus priority on playoffs.</span></div>
+        <div class="spec-label"><span class="labelRegular10 mono spec-code">.bodyRegular30</span><span class="labelRegular10 spec-meta" data-type-metrics="bodyRegular30"></span></div>
+      </div>
+      <div class="spec">
+        <div class="spec-stage is-plain"><span class="bodyRegular20" data-type-sample="bodyRegular20">Members get first access to every home game, plus priority on playoffs.</span></div>
+        <div class="spec-label"><span class="labelRegular10 mono spec-code">.bodyRegular20</span><span class="labelRegular10 spec-meta" data-type-metrics="bodyRegular20"></span></div>
+      </div>
+    </div>
+
+    <div class="sheet-sub"><span class="title50">Ideal Regular</span><span class="labelRegular10 text-secondary">one step, for long-form reading measure</span></div>
+    <div class="sheet-grid sheet-grid-1">
+      <div class="spec">
+        <div class="spec-stage is-plain"><span class="idealRegular40" data-type-sample="idealRegular40">Members get first access to every home game, plus priority on playoffs.</span></div>
+        <div class="spec-label"><span class="labelRegular10 mono spec-code">.idealRegular40</span><span class="labelRegular10 spec-meta" data-type-metrics="idealRegular40"></span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sheet-section" id="responsive">
+    <div class="sheet-section-head">
+      <h2 class="display300">Responsive pairs</h2>
+      <span class="labelRegular10 text-secondary mono">-r suffix</span>
+    </div>
+    <p class="sheet-note bodyRegular30">Stepping type down on mobile is a <span class="mono">-r</span> pair, not a media query. <span class="mono">.title50-r</span> is 20px/700 on desktop and 16px/600 below 500px. Narrow the window and the metrics below change. Adding a <span class="mono">font-size</span> override in a template is always wrong — add a pair to <span class="mono">text-styles-system.css</span> instead (<span class="mono">RULES §5</span>).</p>
+    <div class="sheet-grid sheet-grid-1">
+      <div class="spec">
+        <div class="spec-stage is-plain"><span class="title50-r" data-type-sample="title50-r">Section heading that steps down</span></div>
+        <div class="spec-label"><span class="labelRegular10 mono spec-code">.title50-r</span><span class="labelRegular10 spec-meta" data-type-metrics="title50-r"></span></div>
+      </div>
+      <div class="spec">
+        <div class="spec-stage is-plain"><span class="labelRegular20-r" data-type-sample="labelRegular20-r">Metadata that steps down</span></div>
+        <div class="spec-label"><span class="labelRegular10 mono spec-code">.labelRegular20-r</span><span class="labelRegular10 spec-meta" data-type-metrics="labelRegular20-r"></span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sheet-section" id="pairs">
+    <div class="sheet-section-head">
+      <h2 class="display300">Text pairs</h2>
+      <span class="labelRegular10 text-secondary mono">.card-text-pair · .list-row-text-pair</span>
+    </div>
+    <p class="sheet-note bodyRegular30">A label with a sublabel is always wrapped — <span class="mono">.card-text-pair</span> everywhere, <span class="mono">.list-row-text-pair</span> inside a list row (<span class="mono">RULES §4</span>). Sublabels take <span class="mono">.text-secondary</span>. Ten scales, one per context:</p>
+    <div class="sheet-grid sheet-grid-wide">
+      <div class="spec"><div class="spec-stage is-block"><div class="card-text-pair"><h1 class="display600">Hero Headline</h1><p class="labelRegular50 text-secondary">Supporting message</p></div></div><div class="spec-label"><span class="labelRegular10 mono spec-code">9000</span><span class="labelRegular10 spec-meta">Hero / landing · display600 + labelRegular50</span></div></div>
+      <div class="spec"><div class="spec-stage is-block"><div class="card-text-pair"><h1 class="display500">Page Header</h1><p class="labelRegular40 text-secondary">Supporting message</p></div></div><div class="spec-label"><span class="labelRegular10 mono spec-code">8000</span><span class="labelRegular10 spec-meta">Page header · display500 + labelRegular40</span></div></div>
+      <div class="spec"><div class="spec-stage is-block"><div class="card-text-pair"><h2 class="display400">Upcoming Games</h2><p class="labelRegular30 text-secondary">Next 7 days</p></div></div><div class="spec-label"><span class="labelRegular10 mono spec-code">7000</span><span class="labelRegular10 spec-meta">Section header · display400 + labelRegular30</span></div></div>
+      <div class="spec"><div class="spec-stage is-block"><div class="card-text-pair"><h2 class="display300">Component Header</h2><p class="labelRegular20 text-secondary">Supporting message</p></div></div><div class="spec-label"><span class="labelRegular10 mono spec-code">6000</span><span class="labelRegular10 spec-meta">Component header · display300 + labelRegular20</span></div></div>
+      <div class="spec"><div class="spec-stage is-block"><div class="card-text-pair"><h3 class="title50">Card Title</h3><p class="labelRegular20 text-secondary">Metadata or date</p></div></div><div class="spec-label"><span class="labelRegular10 mono spec-code">5000</span><span class="labelRegular10 spec-meta">Card header — most common · title50 + labelRegular20</span></div></div>
+      <div class="spec"><div class="spec-stage is-block"><div class="card-text-pair"><span class="labelBold40">Section 113</span><span class="labelRegular20 text-secondary">Row F</span></div></div><div class="spec-label"><span class="labelRegular10 mono spec-code">4000</span><span class="labelRegular10 spec-meta">Small card · labelBold40 + labelRegular20</span></div></div>
+      <div class="spec"><div class="spec-stage is-block"><div class="card-text-pair"><span class="labelBold30">Section 113</span><span class="labelRegular10 text-secondary">Row F</span></div></div><div class="spec-label"><span class="labelRegular10 mono spec-code">3000</span><span class="labelRegular10 spec-meta">Dense / compact · labelBold30 + labelRegular10</span></div></div>
+      <div class="spec"><div class="spec-stage is-block"><div class="card-text-pair"><span class="labelBold20">Section 113</span><span class="labelRegular10 text-secondary">Row F</span></div></div><div class="spec-label"><span class="labelRegular10 mono spec-code">2000</span><span class="labelRegular10 spec-meta">Badges, small components · labelBold20 + labelRegular10</span></div></div>
+      <div class="spec"><div class="spec-stage is-block"><div class="card-text-pair"><span class="labelBold10">Section 113</span><span class="labelRegular10 text-secondary">Row F</span></div></div><div class="spec-label"><span class="labelRegular10 mono spec-code">1000</span><span class="labelRegular10 spec-meta">Inline metadata · labelBold10 + labelRegular10</span></div></div>
+      <div class="spec"><div class="spec-stage is-block"><div class="list-row-text-pair"><span class="labelBold30">Label</span><span class="labelRegular10 text-secondary">Sublabel</span></div></div><div class="spec-label"><span class="labelRegular10 mono spec-code">.list-row-text-pair</span><span class="labelRegular10 spec-meta">list rows only · labelBold30 + labelRegular10</span></div></div>
+    </div>
+  </section>
+
+  <section class="sheet-section" id="utilities">
+    <div class="sheet-section-head">
+      <h2 class="display300">Text utilities</h2>
+      <span class="labelRegular10 text-secondary mono">text-styles-system.css</span>
+    </div>
+
+    <div class="sheet-sub"><span class="title50">Alignment</span></div>
+    <div class="sheet-grid">
+      <div class="spec"><div class="spec-stage is-block"><p class="bodyRegular30 text-left">Left aligned</p></div><div class="spec-label"><span class="labelRegular10 mono spec-code">.text-left</span></div></div>
+      <div class="spec"><div class="spec-stage is-block"><p class="bodyRegular30 text-center">Centered</p></div><div class="spec-label"><span class="labelRegular10 mono spec-code">.text-center</span></div></div>
+      <div class="spec"><div class="spec-stage is-block"><p class="bodyRegular30 text-right">Right aligned</p></div><div class="spec-label"><span class="labelRegular10 mono spec-code">.text-right</span></div></div>
+      <div class="spec"><div class="spec-stage is-block"><p class="bodyRegular30 text-justify">Justified copy sets flush on both edges, which needs enough words to be worth it.</p></div><div class="spec-label"><span class="labelRegular10 mono spec-code">.text-justify</span></div></div>
+    </div>
+
+    <div class="sheet-sub"><span class="title50">Transform</span><span class="labelRegular10 text-secondary">there are none, and that is deliberate</span></div>
+    <div class="sheet-callout is-warn">
+      <p class="bodyRegular30"><strong>Never force letter case</strong> (<span class="mono">RULES §2</span>). Case belongs to the copy and to the theme's display font, which bakes it in — which is why every text class above sets <span class="mono">text-transform: none</span>. Four case utilities used to live here; they carried <span class="mono">!important</span> and overrode that for every theme at once, so an uppercase heading shouted in every theme whose face does not render caps. They were removed. Write the string the way it should read.</p>
+    </div>
+    <div class="sheet-grid">
+      <div class="spec"><div class="spec-stage is-block"><p class="display300">Buy Tickets</p></div><div class="spec-label"><span class="labelRegular10 spec-meta">the same string on a caps face and a face that renders as drawn — switch face and watch it change. That is the font deciding, not CSS.</span></div></div>
+    </div>
+
+    <div class="sheet-sub"><span class="title50">Decoration</span></div>
+    <div class="sheet-grid">
+      <div class="spec"><div class="spec-stage is-block"><p class="bodyRegular30 text-underline">Underlined</p></div><div class="spec-label"><span class="labelRegular10 mono spec-code">.text-underline</span></div></div>
+      <div class="spec"><div class="spec-stage is-block"><p class="bodyRegular30 text-line-through">Struck through</p></div><div class="spec-label"><span class="labelRegular10 mono spec-code">.text-line-through</span></div></div>
+      <div class="spec"><div class="spec-stage is-block"><a class="bodyRegular30 text-no-underline" href="#utilities">Link with no underline</a></div><div class="spec-label"><span class="labelRegular10 mono spec-code">.text-no-underline</span></div></div>
+    </div>
+
+    <div class="sheet-sub"><span class="title50">Truncation</span></div>
+    <div class="sheet-grid">
+      <div class="spec"><div class="spec-stage is-block"><p class="bodyRegular30 text-truncate">One line only, and the rest is clipped with an ellipsis no matter how long the sentence runs on.</p></div><div class="spec-label"><span class="labelRegular10 mono spec-code">.text-truncate</span></div></div>
+      <div class="spec"><div class="spec-stage is-block"><p class="bodyRegular30 text-truncate-2">Two lines, then an ellipsis. Useful for a card description that must not push the card taller than its neighbours in a grid.</p></div><div class="spec-label"><span class="labelRegular10 mono spec-code">.text-truncate-2</span></div></div>
+      <div class="spec"><div class="spec-stage is-block"><p class="bodyRegular30 text-truncate-3">Three lines, then an ellipsis. Useful for a card description that must not push the card taller than its neighbours in a grid, but has more to say than a two-line clamp allows.</p></div><div class="spec-label"><span class="labelRegular10 mono spec-code">.text-truncate-3</span></div></div>
+    </div>
+  </section>
+
+  <footer class="sheet-footer">
+    <p class="labelRegular10">Generated against <span class="mono">docs/css-api.json</span>. Every class shown here exists in the system — run <span class="mono">npm run check:demo</span> to verify the sheets still cover it.</p>
+  </footer>
+
+</main>
+
+<script src="sheet.js"></script>
+</body>
+</html>

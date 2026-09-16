@@ -1,0 +1,727 @@
+/* ============================================================
+   platform-tokens.css
+   ============================================================
+   The web/app platform switch: phone frame, iOS system chrome, safe-area tokens and review chrome.
+
+   What's inside
+   - --safe-area-top, --safe-area-bottom, --ios-tab-bar-clearance — safe-area insets
+   - [data-platform="app"] backdrop and phone frame (393×852, iPhone 15 Pro)
+   - .ios-status-bar, .ios-safe-area-top, .ios-home-indicator, .ios-content —
+     iOS system chrome
+   - .app-device-controls (+ .device-control-label, .mode-toggle) — app-mode
+     theme/mode controls in the Dynamic Island
+   - .template-fab*, .template-platform-link — the web review chrome injected
+     by prototype-harness.js
+
+   Notes
+   - Set data-platform="web" (default) or "app" on <html>. See RULES §1.
+   - In app mode <html> is the backdrop and <body> is the phone screen, so
+     position: sticky anchors to the body scroll container — correct for
+     in-phone navigation.
+   - Safe areas are 0px on web; below 500px the frame disappears and content
+     goes full-bleed. See RULES §9.
+   ============================================================ */
+
+/* ============================================================
+   SAFE AREA TOKENS
+   ============================================================
+   Available in both modes so prototypes can reference them,
+   but only meaningful in app mode.
+   ============================================================ */
+
+:root {
+  --safe-area-top: 0px;
+  --ios-tab-bar-clearance: 0px;
+  --safe-area-bottom: 0px;
+}
+
+[data-platform="app"] {
+  --safe-area-top: 59px;
+  --ios-tab-bar-clearance: 95px;   /* tab bar height — content scrolls behind it */
+  --safe-area-bottom: 34px;
+}
+
+/* ============================================================
+   APP PLATFORM — BACKDROP
+   ============================================================ */
+
+[data-platform="app"] {
+  background: #000;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: auto;
+}
+
+/* ============================================================
+   APP PLATFORM — PHONE FRAME
+   ============================================================ */
+
+[data-platform="app"] body {
+  width: 393px;
+  max-width: 393px;
+  min-width: 393px;
+  height: 852px;
+  max-height: 852px;
+  min-height: 852px;
+  overflow: hidden;
+  position: relative;
+  border-radius: 44px;
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.12),
+    0 20px 60px rgba(0, 0, 0, 0.6),
+    0 0 120px rgba(0, 0, 0, 0.3);
+  flex-shrink: 0;
+}
+
+/* ============================================================
+   iOS SYSTEM CHROME — STATUS BAR
+   ============================================================
+   Sticky bar at the top of the phone frame.
+   Uses a full-width SVG exported from Figma with
+   time, cellular, wifi, and battery pre-positioned.
+
+   The SVG uses currentColor so it adapts to light/dark mode.
+
+   HTML pattern:
+   <div class="ios-status-bar">
+     <svg width="393" height="59" viewBox="0 0 393 59" fill="none" xmlns="http://www.w3.org/2000/svg">
+       <path d="M59.2666 24.2231C59.9085..." fill="currentColor"/>
+       ... (the full SVG is in any .native.html template under templates/)
+     </svg>
+   </div>
+   ============================================================ */
+
+.ios-status-bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 9999;
+  height: var(--safe-area-top);
+  background: transparent;
+  color: var(--text-primary);
+  pointer-events: none;
+}
+
+/* --- Safe area spacer ---
+   Empty block the same height as the status bar.
+   Place inside scroll containers to push content below the status bar
+   without coupling layout to the status bar element itself.
+
+   HTML: <div class="ios-safe-area-top"></div>
+*/
+.ios-safe-area-top {
+  height: var(--safe-area-top);
+  flex-shrink: 0;
+}
+
+.ios-status-bar svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+/* ============================================================
+   iOS SYSTEM CHROME — HOME INDICATOR
+   ============================================================
+   Sticky bar at the bottom of the phone frame
+   showing the iOS home indicator pill.
+
+   HTML pattern:
+   <div class="ios-home-indicator"></div>
+   ============================================================ */
+
+.ios-home-indicator {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 9999;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  height: 34px;
+  padding-bottom: 8px;
+  background: transparent;
+  pointer-events: none;
+}
+
+.ios-home-indicator::after {
+  content: '';
+  width: 134px;
+  height: 5px;
+  border-radius: 100px;
+  background: var(--neutral-1000);
+  animation: ios-home-indicator-fade 1.2s ease-out forwards;
+}
+
+@keyframes ios-home-indicator-fade {
+  0%, 60% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+/* ============================================================
+   iOS CONTENT WRAPPER
+   ============================================================
+   Optional wrapper for prototype content between
+   the status bar and home indicator. Ensures the
+   home indicator sits at the bottom of the phone
+   frame even when content is short.
+
+   HTML pattern:
+   <body>
+     <div class="ios-status-bar">...</div>
+     <div class="ios-content">
+       <!-- prototype content here -->
+     </div>
+     <div class="ios-home-indicator"></div>
+   </body>
+   ============================================================ */
+
+/* Content fills entire frame, scrolls behind chrome overlays */
+[data-platform="app"] .ios-content {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  min-height: 0; /* allows flex child to shrink and scroll */
+}
+
+[data-platform="app"] .ios-content::-webkit-scrollbar {
+  display: none;
+}
+
+/* --- The phone frame is mobile, whatever the viewport says ---------------
+   The responsive spacing tokens are pinned to their phone values in app mode.
+   That lives in spacing-tokens.css, which owns those tokens — a custom
+   property may only be defined in one stylesheet (npm run check enforces it),
+   so its value across every context, this one included, is declared there. */
+
+/* --- Event rows keep phone spacing inside the frame ---
+   list-row-components.css bumps .event-row-top / .event-row-bottom padding
+   to desktop values at @media (min-width: 500px). Those are literal paddings
+   rather than tokens, so the block above does not reach them. */
+[data-platform="app"] .event-row-top {
+  padding: var(--spacing-200); /* 16px */
+}
+[data-platform="app"] .event-row-bottom {
+  padding: var(--spacing-150) var(--spacing-200); /* 12px 16px */
+}
+
+/* ============================================================
+   APP PLATFORM — DEVICE CONTROLS
+   ============================================================
+   Floating toolbar below the phone frame for
+   switching theme and light/dark mode.
+   Only visible in app mode. Uses position:fixed
+   so it escapes the phone body container.
+
+   HTML pattern (place inside <body>, anywhere):
+   <div class="app-device-controls">
+     <select onchange="document.documentElement.setAttribute('data-mode', this.value)">
+       <option value="light">Light</option>
+       <option value="dark">Dark</option>
+     </select>
+     <select onchange="document.documentElement.setAttribute('data-theme', this.value)">
+       <option value="slate">Slate</option>
+       ...
+     </select>
+   </div>
+   ============================================================ */
+
+.app-device-controls {
+  display: none;
+}
+
+/* --- Dynamic Island device controls ---
+   Positioned as a pill overlay at the top of the phone frame,
+   mimicking the iPhone Dynamic Island. Contains mode toggle
+   and theme selector for prototype testing. */
+
+[data-platform="app"] .app-device-controls {
+  display: flex;
+  position: absolute;
+  top: 11px;
+  left: 50%;
+  transform: translateX(-50%);
+  /* Hug the controls, but never shrink below a real Dynamic Island (125×37pt on
+     iPhone 15 Pro) — so the pill still reads as hardware when it holds only a
+     control or two, and grows from there for longer theme names or extra controls. */
+  min-width: 125px;
+  height: 37px;
+  justify-content: center;
+  gap: 0;
+  align-items: center;
+  z-index: 99999;
+  font-family: system-ui, -apple-system, sans-serif;
+  background: #000;
+  border: 1px solid var(--white-100);
+  border-radius: 19px;
+  padding: 0 4px;
+}
+
+[data-platform="app"] .app-device-controls label {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1px;
+  border: none;
+  border-radius: 0;
+  padding: 0 8px 0 10px;
+  cursor: pointer;
+  background: transparent;
+  height: 100%;
+  flex: 0 1 auto; /* hug the theme name so the pill sizes to its contents */
+  min-width: 0;
+  position: relative;
+  overflow: hidden;
+  pointer-events: auto;
+}
+
+[data-platform="app"] .app-device-controls label:hover select,
+[data-platform="app"] .app-device-controls label:hover .material-symbols-rounded,
+[data-platform="app"] .app-device-controls label:hover .device-control-label {
+  color: var(--white-1000);
+}
+
+[data-platform="app"] .app-device-controls select {
+  appearance: none;
+  -webkit-appearance: none;
+  background: transparent;
+  border: none;
+  color: var(--white-300);
+  font-size: 11px;
+  font-weight: 600;
+  font-family: inherit;
+  cursor: pointer;
+  outline: none;
+  padding: 0;
+  width: auto;
+}
+
+[data-platform="app"] .app-device-controls .material-symbols-rounded {
+  font-size: 16px;
+  color: var(--white-300);
+}
+
+/* Mode toggle button — icon only */
+[data-platform="app"] .app-device-controls .mode-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  border-radius: 0;
+  padding: 0 8px;
+  cursor: pointer;
+  background: transparent;
+  color: var(--white-300);
+  font-family: inherit;
+  height: 100%;
+}
+
+[data-platform="app"] .app-device-controls .mode-toggle .material-symbols-rounded {
+  font-size: 16px;
+  color: inherit;
+}
+
+[data-platform="app"] .app-device-controls:hover {
+  border-color: var(--white-200);
+}
+
+[data-platform="app"] .app-device-controls .mode-toggle:hover {
+  color: var(--white-1000);
+}
+
+/* Divider between controls */
+[data-platform="app"] .app-device-controls .mode-toggle + label::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 25%;
+  height: 50%;
+  width: 1px;
+  background: var(--white-200);
+}
+
+[data-platform="app"] .app-device-controls label select {
+  pointer-events: auto;
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  cursor: pointer;
+  font-size: 16px; /* prevent iOS zoom */
+}
+[data-platform="app"] .app-device-controls label .device-control-label {
+  color: var(--white-300);
+  font-size: 11px;
+  font-weight: 600;
+  pointer-events: none;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* ============================================================
+   APP PLATFORM — MOBILE RESPONSIVE
+   ============================================================
+   On small viewports (real phones), strip the
+   phone frame and show content full-screen.
+   The status bar, content, and home indicator
+   still render — only the frame disappears.
+   ============================================================ */
+
+@media (max-width: 500px) {
+  [data-platform="app"] {
+    --safe-area-top: 8px;
+    --safe-area-bottom: 0px;
+    background: none;
+    display: block;
+    padding: 0;
+    overflow: visible;
+  }
+
+  [data-platform="app"] body {
+    width: 100%;
+    max-width: 100%;
+    min-width: 100%;
+    height: auto;
+    max-height: none;
+    min-height: 100vh;
+    border-radius: 0;
+    box-shadow: none;
+    overflow: visible;
+  }
+
+  [data-platform="app"] .ios-content {
+    position: static;
+    overflow: visible;
+    min-height: 100vh;
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+
+  /* Status bar becomes an 8px spacer on mobile */
+  [data-platform="app"] .ios-status-bar {
+    height: 8px !important;
+    overflow: hidden;
+  }
+  [data-platform="app"] .ios-status-bar svg {
+    display: none;
+  }
+
+  [data-platform="app"] .ios-home-indicator {
+    display: none !important;
+  }
+
+  /* Mobile: device controls become a centered popup, hidden by default */
+  [data-platform="app"] .app-device-controls {
+    all: unset !important;
+    display: flex !important;
+    position: fixed !important;
+    top: 50% !important;
+    left: 50% !important;
+    transform: translate(-50%, -50%) !important;
+    align-items: center !important;
+    gap: 0 !important;
+    height: 44px !important;
+    border-radius: 22px !important;
+    padding: 0 6px !important;
+    background: rgba(0, 0, 0, 0.9) !important;
+    backdrop-filter: blur(20px) !important;
+    -webkit-backdrop-filter: blur(20px) !important;
+    border: 1px solid var(--white-200) !important;
+    z-index: 999999 !important;
+    font-family: system-ui, -apple-system, sans-serif !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+    transition: opacity 0.2s ease !important;
+  }
+  [data-platform="app"] .app-device-controls.is-open {
+    opacity: 1 !important;
+    pointer-events: auto !important;
+  }
+
+  /* Mode toggle */
+  [data-platform="app"] .app-device-controls .mode-toggle {
+    all: unset !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 0 12px !important;
+    height: 100% !important;
+    cursor: pointer !important;
+    color: var(--white-300) !important;
+  }
+  [data-platform="app"] .app-device-controls .mode-toggle .material-symbols-rounded {
+    font-size: 20px !important;
+    color: inherit !important;
+  }
+
+  /* Theme label */
+  [data-platform="app"] .app-device-controls label {
+    all: unset !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 4px !important;
+    padding: 0 12px !important;
+    height: 100% !important;
+    cursor: pointer !important;
+    position: relative !important;
+    overflow: hidden !important;
+  }
+  [data-platform="app"] .app-device-controls label .device-control-label {
+    color: var(--white-300) !important;
+    font-size: 14px !important;
+    font-weight: 600 !important;
+    pointer-events: none !important;
+  }
+  [data-platform="app"] .app-device-controls label .material-symbols-rounded {
+    font-size: 18px !important;
+    color: var(--white-300) !important;
+  }
+  [data-platform="app"] .app-device-controls label select {
+    position: absolute !important;
+    inset: 0 !important;
+    opacity: 0 !important;
+    cursor: pointer !important;
+    font-size: 16px !important;
+    width: 100% !important;
+    height: 100% !important;
+    pointer-events: none !important;
+  }
+  [data-platform="app"] .app-device-controls.is-open label select {
+    pointer-events: auto !important;
+  }
+
+  /* Divider */
+  [data-platform="app"] .app-device-controls .mode-toggle + label::before {
+    content: '' !important;
+    position: absolute !important;
+    left: 0 !important;
+    top: 25% !important;
+    height: 50% !important;
+    width: 1px !important;
+    background: var(--white-200) !important;
+  }
+
+  /* ios-scroll / ios-chrome-top / ios-chrome-bottom pattern:
+     On mobile the phone frame is gone, so convert to normal flow layout. */
+  [data-platform="app"] .ios-chrome-top {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    pointer-events: none;
+  }
+  [data-platform="app"] .ios-chrome-top > * {
+    pointer-events: auto;
+  }
+
+  [data-platform="app"] .ios-chrome-bottom {
+    position: fixed;
+    bottom: env(safe-area-inset-bottom, 0px);
+    left: 0;
+    right: 0;
+    z-index: 100;
+    pointer-events: none;
+  }
+  [data-platform="app"] .ios-chrome-bottom > * {
+    pointer-events: auto;
+  }
+
+  [data-platform="app"] .ios-scroll {
+    position: static;
+    overflow: visible;
+    height: auto;
+  }
+
+  /* Override JS-set margin (measured for phone frame, wrong on mobile) */
+  [data-platform="app"] .ios-scroll-inner {
+    margin-top: 0 !important;
+    padding-bottom: 0 !important;
+  }
+
+  /* Page nav sticks just below the 8px status bar spacer */
+  [data-platform="app"] .ios-nav-page {
+    top: 8px;
+  }
+
+  [data-platform="app"] .ios-nav-page::before,
+  [data-platform="app"] .ios-nav-page::after {
+    top: -8px;
+  }
+}
+
+/* ============================================================
+   PROTOTYPE REVIEW CHROME
+   ============================================================
+   The floating theme/mode switcher (web) and the "view the other platform" link
+   that appear on templates and sandbox prototypes.
+
+   This is REVIEW CHROME, not product UI. It is deliberately compact — it does
+   not use `.input-field` / `.input-select`, because a full design system input
+   would dwarf the panel it lives in.
+
+   That exception is exactly why this CSS lives HERE, in the design system,
+   instead of inline in each template. Agents read templates as worked examples
+   of how to build screens with this system; chrome that bends the rules must not sit in
+   those files modelling the wrong patterns. Markup and behaviour are injected
+   by `css/prototype-harness.js` — one script tag per prototype.
+
+   Companion: `.app-device-controls` (above) is the app-mode equivalent.
+
+   Pixel values below are chrome geometry — a 48px circular trigger, a hairline
+   hover border — not product spacing. Product spacing uses tokens.
+   ============================================================ */
+
+.template-fab {
+  position: fixed;
+  bottom: var(--spacing-300);
+  right: var(--spacing-300);
+  z-index: 99999;
+}
+
+.template-fab-trigger {
+  width: 48px;   /* chrome geometry: fixed circular target */
+  height: 48px;
+  border-radius: 50%;
+  border: var(--border-weight-100) solid var(--neutral-200);
+  background: var(--bg-surface);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  color: var(--text-secondary);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: border-color 0.15s ease, color 0.15s ease;
+}
+
+.template-fab-trigger:hover {
+  border-color: var(--neutral-300);
+  color: var(--text-primary);
+}
+
+.template-fab-trigger:focus-visible {
+  outline: var(--border-weight-200) solid var(--color-interactive);
+  outline-offset: var(--spacing-25);
+}
+
+.template-fab-trigger .material-symbols-rounded {
+  font-size: 22px;   /* chrome geometry: optical match to the 48px trigger */
+}
+
+.template-fab-panel {
+  display: none;
+  flex-direction: column;
+  gap: var(--spacing-100);
+  position: absolute;
+  bottom: var(--spacing-700);
+  right: 0;
+  min-width: 180px;
+  padding: var(--spacing-150);
+  background: var(--bg-surface);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: var(--border-weight-100) solid var(--neutral-200);
+  border-radius: var(--border-radius-200);
+}
+
+.template-fab.open .template-fab-panel {
+  display: flex;
+}
+
+.template-fab-panel label {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-100);
+}
+
+.template-fab-panel label > span {
+  color: var(--text-secondary);
+  white-space: nowrap;
+}
+
+.template-fab-panel select {
+  appearance: none;
+  -webkit-appearance: none;
+  background: var(--bg-base);
+  border: var(--border-weight-100) solid var(--neutral-200);
+  border-radius: var(--border-radius-50);
+  color: var(--text-primary);
+  font-family: inherit;
+  cursor: pointer;
+  outline: none;
+  min-width: 100px;
+  padding: var(--spacing-50) var(--spacing-100);
+}
+
+.template-fab-panel select:hover {
+  border-color: var(--neutral-300);
+}
+
+.template-fab-panel select:focus-visible {
+  border-color: var(--color-interactive);
+}
+
+/* Cross-platform link inside the web panel */
+.template-fab-link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-100);
+  margin-top: var(--spacing-50);
+  padding-top: var(--spacing-75);
+  border-top: var(--border-weight-100) solid var(--neutral-200);
+  color: var(--text-secondary);
+  text-decoration: none;
+  white-space: nowrap;
+  transition: color 0.15s ease;
+}
+
+.template-fab-link:hover {
+  color: var(--text-primary);
+}
+
+.template-fab-link .material-symbols-rounded {
+  font-size: 16px;   /* chrome geometry: inline icon, optical match to 12px label */
+}
+
+/* Standalone "View as Web" pill shown below the phone frame in app mode */
+.template-platform-link {
+  position: fixed;
+  bottom: var(--spacing-300);
+  right: var(--spacing-300);
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-75);
+  padding: var(--spacing-100) var(--spacing-200);
+  background: var(--bg-surface);
+  border: var(--border-weight-100) solid var(--neutral-200);
+  border-radius: 100px;
+  color: var(--text-secondary);
+  text-decoration: none;
+  white-space: nowrap;
+  z-index: 99999;
+  transition: color 0.15s ease, border-color 0.15s ease;
+}
+
+.template-platform-link:hover {
+  color: var(--text-primary);
+  border-color: var(--neutral-300);
+}
+
+.template-platform-link .material-symbols-rounded {
+  font-size: 16px;   /* chrome geometry: inline icon, optical match to 12px label */
+}
+
+/* Real phones get the prototype, not the review chrome */
+@media (max-width: 500px) {
+  .template-fab,
+  .template-platform-link {
+    display: none;
+  }
+}

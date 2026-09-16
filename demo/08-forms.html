@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="signal" data-mode="light" data-platform="web">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Forms — Design System Sticker Sheet</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap" rel="stylesheet">
+
+  <script src="../css/ds-loader.js"></script>
+  <script src="demo-content.js"></script>
+  <script src="../css/prototype-harness.js"></script>
+  <link rel="stylesheet" href="sheet.css">
+</head>
+<body>
+
+<nav data-sheet-nav></nav>
+
+<main class="container-extra-wide">
+
+  <header class="sheet-head">
+    <div class="card-text-pair">
+      <h1 class="display500">Forms</h1>
+      <p class="labelRegular40 text-secondary">Every input state and the select, with the JS helpers that keep them in sync.</p>
+    </div>
+  </header>
+
+  <div class="sheet-callout">
+    <p class="bodyRegular30">One structure, every time: <span class="mono">.input-field</span> &gt; optional <span class="mono">.input-label-row</span> + <span class="mono">.input-and-message</span> &gt; <span class="mono">.input-control</span>. State classes go on <span class="mono">.input-field</span>. A bare <span class="mono">&lt;input&gt;</span> or <span class="mono">&lt;select&gt;</span> never appears without this wrapper — demos and utility controls are not exempt (<span class="mono">RULES §2</span>).</p>
+  </div>
+
+  <section class="sheet-section" id="text-inputs">
+    <div class="sheet-section-head">
+      <h2 class="display300">Text inputs</h2>
+      <span class="labelRegular10 text-secondary mono">input-components.css</span>
+    </div>
+    <div class="sheet-grid sheet-grid-wide">
+
+      <div class="spec">
+        <div class="spec-stage is-block">
+          <div class="input-field">
+            <div class="input-and-message">
+              <div class="input-control"><input type="text" placeholder="Placeholder"></div>
+            </div>
+          </div>
+        </div>
+        <div class="spec-label"><span class="labelRegular10 mono spec-code">.input-field &gt; .input-and-message &gt; .input-control</span><span class="labelRegular10 spec-meta">the minimum</span></div>
+      </div>
+
+      <div class="spec">
+        <div class="spec-stage is-block">
+          <div class="input-field">
+            <div class="input-label-row"><label class="input-label" for="f-email">Email</label></div>
+            <div class="input-and-message">
+              <div class="input-control">
+                <span class="input-icon material-symbols-rounded">mail</span>
+                <input type="email" id="f-email" placeholder="you@example.com">
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="spec-label"><span class="labelRegular10 mono spec-code">.input-label</span><span class="labelRegular10 mono spec-code">.input-icon</span></div>
+      </div>
+
+      <div class="spec">
+        <div class="spec-stage is-block">
+          <div class="input-field" id="f-search">
+            <div class="input-label-row"><label class="input-label" for="i-search">Search</label></div>
+            <div class="input-and-message">
+              <div class="input-control">
+                <input type="text" id="i-search" placeholder="Type to search" oninput="syncHasValue('f-search', this)">
+                <button class="input-clear material-symbols-rounded" type="button" onclick="clearInput('f-search', 'i-search')">close</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="spec-label"><span class="labelRegular10 mono spec-code">.input-clear</span><span class="labelRegular10 mono spec-code">.has-value</span><span class="labelRegular10 spec-meta">type something — the clear button appears</span></div>
+      </div>
+
+      <div class="spec">
+        <div class="spec-stage is-block">
+          <div class="input-field">
+            <div class="input-label-row">
+              <label class="input-label" for="f-pw">Password</label>
+              <a class="input-link" href="#text-inputs">Forgot password?</a>
+            </div>
+            <div class="input-and-message">
+              <div class="input-control"><input type="password" id="f-pw" placeholder="Enter password"></div>
+            </div>
+          </div>
+        </div>
+        <div class="spec-label"><span class="labelRegular10 mono spec-code">.input-link</span><span class="labelRegular10 spec-meta">trailing the label</span></div>
+      </div>
+
+      <div class="spec">
+        <div class="spec-stage is-block">
+          <div class="input-field">
+            <div class="input-label-row"><label class="input-label" for="f-user">Username</label></div>
+            <div class="input-and-message">
+              <div class="input-control"><input type="text" id="f-user" placeholder="@username"></div>
+              <p class="input-message">Must be unique. Letters and numbers only.</p>
+            </div>
+          </div>
+        </div>
+        <div class="spec-label"><span class="labelRegular10 mono spec-code">.input-message</span><span class="labelRegular10 spec-meta">helper text</span></div>
+      </div>
+
+      <div class="spec">
+        <div class="spec-stage is-block">
+          <div class="input-field is-error has-value">
+            <div class="input-label-row"><label class="input-label" for="f-err">Email</label></div>
+            <div class="input-and-message">
+              <div class="input-control">
+                <span class="input-icon material-symbols-rounded">mail</span>
+                <input type="email" id="f-err" value="not-an-email">
+              </div>
+              <p class="input-message">Please enter a valid email address.</p>
+            </div>
+          </div>
+        </div>
+        <div class="spec-label"><span class="labelRegular10 mono spec-code">.is-error</span><span class="labelRegular10 spec-meta">on .input-field — colours the label, border and message</span></div>
+      </div>
+
+      <div class="spec">
+        <div class="spec-stage is-block">
+          <div class="input-field is-disabled">
+            <div class="input-label-row"><label class="input-label" for="f-dis">Label</label></div>
+            <div class="input-and-message">
+              <div class="input-control"><input type="text" id="f-dis" placeholder="Placeholder" disabled></div>
+            </div>
+          </div>
+        </div>
+        <div class="spec-label"><span class="labelRegular10 mono spec-code">.is-disabled</span><span class="labelRegular10 spec-meta">class on the field, attribute on the input</span></div>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="sheet-section" id="select">
+    <div class="sheet-section-head">
+      <h2 class="display300">Select</h2>
+      <span class="labelRegular10 text-secondary mono">.input-field.input-select</span>
+    </div>
+    <p class="sheet-note bodyRegular30">The native <span class="mono">&lt;select&gt;</span> sits invisibly over a display span the helpers keep in sync. The chevron is <span class="mono">arrow_drop_down</span>, never <span class="mono">expand_more</span>.</p>
+    <div class="sheet-grid sheet-grid-wide">
+
+      <div class="spec">
+        <div class="spec-stage is-block">
+          <div class="input-field input-select" id="s-sport">
+            <div class="input-label-row"><label class="input-label" for="sel-sport">Sport</label></div>
+            <div class="input-and-message">
+              <div class="input-control">
+                <span class="input-select-display is-placeholder" id="s-sport-display">Choose a sport</span>
+                <span class="input-select-chevron material-symbols-rounded">arrow_drop_down</span>
+                <select id="sel-sport" onchange="syncSelect('s-sport','s-sport-display',this)" onfocus="openSelect('s-sport')" onblur="closeSelect('s-sport')">
+                  <option value="" disabled selected>Choose a sport</option>
+                  <option value="basketball">Basketball</option>
+                  <option value="soccer">Soccer</option>
+                  <option value="hockey">Hockey</option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="spec-label"><span class="labelRegular10 mono spec-code">.input-select</span><span class="labelRegular10 mono spec-code">.input-select-display.is-placeholder</span><span class="labelRegular10 mono spec-code">.input-select-chevron</span><span class="labelRegular10 spec-meta">open it — .is-open flips the chevron</span></div>
+      </div>
+
+      <div class="spec">
+        <div class="spec-stage is-block">
+          <div class="filter-bar">
+            <div class="input-field input-select" id="s-a">
+              <div class="input-and-message"><div class="input-control">
+                <span class="input-select-display is-placeholder" id="s-a-display">Sport</span>
+                <span class="input-select-chevron material-symbols-rounded">arrow_drop_down</span>
+                <select id="sel-a" onchange="syncSelect('s-a','s-a-display',this)" onfocus="openSelect('s-a')" onblur="closeSelect('s-a')">
+                  <option value="" disabled selected>Sport</option><option value="b">Basketball</option><option value="s">Soccer</option>
+                </select>
+              </div></div>
+            </div>
+            <div class="input-field input-select" id="s-b">
+              <div class="input-and-message"><div class="input-control">
+                <span class="input-select-display is-placeholder" id="s-b-display">Date</span>
+                <span class="input-select-chevron material-symbols-rounded">arrow_drop_down</span>
+                <select id="sel-b" onchange="syncSelect('s-b','s-b-display',this)" onfocus="openSelect('s-b')" onblur="closeSelect('s-b')">
+                  <option value="" disabled selected>Date</option><option value="w">This Week</option><option value="m">This Month</option>
+                </select>
+              </div></div>
+            </div>
+          </div>
+        </div>
+        <div class="spec-label"><span class="labelRegular10 mono spec-code">.filter-bar</span><span class="labelRegular10 spec-meta">page CSS — two selects, each flexing</span></div>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="sheet-section" id="assembled">
+    <div class="sheet-section-head">
+      <h2 class="display300">Assembled — a login form</h2>
+      <span class="labelRegular10 text-secondary mono">.form-stack is the page's own class, one flex column</span>
+    </div>
+    <div class="spec-stage is-base is-block">
+      <form class="container-compact py-large">
+        <div class="card-text-pair mb-400">
+          <h1 class="display400">Sign In</h1>
+          <p class="labelRegular30 text-secondary">Welcome back</p>
+        </div>
+        <div class="form-stack">
+          <div class="input-field">
+            <div class="input-label-row"><label class="input-label" for="login-email">Email</label></div>
+            <div class="input-and-message"><div class="input-control">
+              <span class="input-icon material-symbols-rounded">mail</span>
+              <input type="email" id="login-email" placeholder="you@example.com">
+            </div></div>
+          </div>
+          <div class="input-field">
+            <div class="input-label-row">
+              <label class="input-label" for="login-password">Password</label>
+              <a class="input-link" href="#assembled">Forgot password?</a>
+            </div>
+            <div class="input-and-message"><div class="input-control">
+              <input type="password" id="login-password" placeholder="Enter password">
+            </div></div>
+          </div>
+        </div>
+        <div class="mt-300">
+          <button class="btn btn-primary btn-700 btn-fill" type="button">Sign In</button>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <script>
+    /* The helpers every page with a clear button or a select needs
+       (design-guide § Inputs). */
+    function syncHasValue(fieldId, input) {
+      document.getElementById(fieldId).classList.toggle('has-value', input.value.trim() !== '');
+    }
+    function clearInput(fieldId, inputId) {
+      const field = document.getElementById(fieldId);
+      const input = document.getElementById(inputId);
+      input.value = '';
+      field.classList.remove('has-value', 'is-error');
+      const msg = field.querySelector('.input-message');
+      if (msg) msg.hidden = true;
+      input.focus();
+    }
+    function syncSelect(fieldId, displayId, selectEl) {
+      const display = document.getElementById(displayId);
+      const chosen = selectEl.options[selectEl.selectedIndex];
+      display.textContent = chosen.text;
+      display.classList.toggle('is-placeholder', !chosen.value);
+    }
+    function openSelect(fieldId) { document.getElementById(fieldId).classList.add('is-open'); }
+    function closeSelect(fieldId) { document.getElementById(fieldId).classList.remove('is-open'); }
+  </script>
+
+  <footer class="sheet-footer">
+    <p class="labelRegular10">Generated against <span class="mono">docs/css-api.json</span>. Every class shown here exists in the system — run <span class="mono">npm run check:demo</span> to verify the sheets still cover it.</p>
+  </footer>
+
+</main>
+
+<script src="sheet.js"></script>
+</body>
+</html>

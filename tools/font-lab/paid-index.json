@@ -1,0 +1,5050 @@
+{
+ "Helvetica": {
+  "cluster": "S01",
+  "tier": 1,
+  "confidence": "high",
+  "foundry": "Linotype",
+  "library": "monotype",
+  "note": "The reference neo-grotesk; closed apertures, horizontal terminals."
+ },
+ "Helvetica Neue": {
+  "cluster": "S01",
+  "tier": 1,
+  "confidence": "high",
+  "foundry": "Linotype",
+  "library": "monotype",
+  "note": "Rationalised Helvetica with a consistent width and weight system."
+ },
+ "Helvetica Now": {
+  "cluster": "S01",
+  "tier": 1,
+  "confidence": "high",
+  "foundry": "Monotype",
+  "library": "monotype",
+  "note": "Modern three-optical-size rebuild of Helvetica."
+ },
+ "Neue Haas Grotesk": {
+  "cluster": "S01",
+  "tier": 1,
+  "confidence": "high",
+  "foundry": "Monotype",
+  "library": "adobe",
+  "note": "Schwartz’s restoration of the pre-Helvetica original; the most faithful of the family."
+ },
+ "Akzidenz-Grotesk": {
+  "cluster": "S01",
+  "tier": 1,
+  "confidence": "high",
+  "foundry": "Berthold",
+  "library": "retail",
+  "note": "The 19th-century grotesk Helvetica was drawn against."
+ },
+ "Söhne": {
+  "cluster": "S01",
+  "tier": 1,
+  "confidence": "high",
+  "foundry": "Klim",
+  "library": "retail",
+  "note": "Neue Haas by way of 1980s Swiss signage; the current default for this look."
+ },
+ "Untitled Sans": {
+  "cluster": "S01",
+  "tier": 1,
+  "confidence": "high",
+  "foundry": "Klim",
+  "library": "retail",
+  "note": "Deliberately plain grotesk built from ordinary reference material."
+ },
+ "Aeonik": {
+  "cluster": "S01",
+  "tier": 1,
+  "confidence": "medium",
+  "foundry": "CoType",
+  "library": "retail",
+  "note": "Geometric-leaning neutral sans; between this and the Gotham lineage.",
+  "cluster2": "S04",
+  "cluster2Via": "knowledge",
+  "cluster2Why": "Sits between neutral grotesk and geometric; the index note already said as much."
+ },
+ "Suisse Int’l": {
+  "cluster": "S01",
+  "tier": 1,
+  "confidence": "high",
+  "foundry": "Swiss Typefaces",
+  "library": "retail",
+  "note": "Tight, cool Swiss grotesk in the Helvetica line."
+ },
+ "Inter": {
+  "cluster": "S01",
+  "tier": 1,
+  "confidence": "high",
+  "foundry": "Rasmus Andersson",
+  "library": "adobe",
+  "note": "Open-source UI grotesk tuned for screens; already in your library."
+ },
+ "Roboto": {
+  "cluster": "S01",
+  "tier": 1,
+  "confidence": "medium",
+  "foundry": "Google",
+  "library": "adobe",
+  "note": "Grotesk skeleton with humanist curves; Android’s system face."
+ },
+ "Arial": {
+  "cluster": "S01",
+  "tier": 1,
+  "confidence": "high",
+  "foundry": "Monotype",
+  "library": "bundled",
+  "note": "Helvetica-metric grotesk with humanist terminal cuts."
+ },
+ "Univers": {
+  "cluster": "S01",
+  "tier": 1,
+  "confidence": "high",
+  "foundry": "Linotype",
+  "library": "monotype",
+  "note": "Frutiger’s systematic grotesk; the origin of numbered width systems."
+ },
+ "Univers Next": {
+  "cluster": "S01",
+  "tier": 1,
+  "confidence": "high",
+  "foundry": "Linotype",
+  "library": "monotype",
+  "note": "Current digital Univers, with the numbering preserved."
+ },
+ "Monotype Grotesque": {
+  "cluster": "S01",
+  "tier": 1,
+  "confidence": "medium",
+  "foundry": "Monotype",
+  "library": "monotype",
+  "note": "Idiosyncratic early grotesk; less even than Helvetica."
+ },
+ "Nimbus Sans": {
+  "cluster": "S01",
+  "tier": 1,
+  "confidence": "medium",
+  "foundry": "URW",
+  "library": "retail",
+  "note": "Helvetica-metric clone; useful where licensing forbids the original."
+ },
+ "Unica": {
+  "cluster": "S01",
+  "tier": 1,
+  "confidence": "high",
+  "foundry": "Lineto",
+  "library": "retail",
+  "note": "Deliberate synthesis of Helvetica and Univers."
+ },
+ "Zurich": {
+  "cluster": "S01",
+  "tier": 1,
+  "confidence": "medium",
+  "foundry": "Bitstream",
+  "library": "retail",
+  "note": "Univers-metric alternative."
+ },
+ "Post Grotesk": {
+  "cluster": "S01",
+  "tier": 1,
+  "confidence": "medium",
+  "foundry": "Sharp Type",
+  "library": "retail",
+  "note": "Contemporary grotesk with a slightly warmer skeleton."
+ },
+ "Residence Grotesque": {
+  "cluster": "S01",
+  "tier": 1,
+  "confidence": "medium",
+  "foundry": "Sharp Type",
+  "library": "retail",
+  "note": "Neutral grotesk with subtle idiosyncrasy in the details."
+ },
+ "Die Grotesk": {
+  "cluster": "S01",
+  "tier": 1,
+  "confidence": "medium",
+  "foundry": "Klim",
+  "library": "retail",
+  "note": "Contemporary grotesk with a display-weighted range."
+ },
+ "Neue Montreal": {
+  "cluster": "S01",
+  "tier": 1,
+  "confidence": "medium",
+  "foundry": "Pangram Pangram",
+  "library": "retail",
+  "note": "Widely used neutral grotesk in brand work."
+ },
+ "Frutiger": {
+  "cluster": "S02",
+  "tier": 1,
+  "confidence": "high",
+  "foundry": "Linotype",
+  "library": "monotype",
+  "note": "The signage humanist: open apertures, generous counters."
+ },
+ "Frutiger Neue": {
+  "cluster": "S02",
+  "tier": 1,
+  "confidence": "high",
+  "foundry": "Linotype",
+  "library": "monotype",
+  "note": "Current Frutiger with an extended weight range."
+ },
+ "Myriad": {
+  "cluster": "S02",
+  "tier": 1,
+  "confidence": "high",
+  "foundry": "Adobe",
+  "library": "adobe",
+  "note": "Adobe’s humanist workhorse; open and unfussy."
+ },
+ "Segoe UI": {
+  "cluster": "S02",
+  "tier": 1,
+  "confidence": "medium",
+  "foundry": "Microsoft",
+  "library": "bundled",
+  "note": "Frutiger-descended UI face; Windows’ system sans."
+ },
+ "Syntax": {
+  "cluster": "S02",
+  "tier": 1,
+  "confidence": "high",
+  "foundry": "Linotype",
+  "library": "monotype",
+  "note": "Humanist sans drawn with the tension of a serif roman."
+ },
+ "FF Meta": {
+  "cluster": "S02",
+  "tier": 1,
+  "confidence": "high",
+  "foundry": "FontFont",
+  "library": "adobe",
+  "note": "Spiekermann’s humanist workhorse for small sizes."
+ },
+ "FF Meta Serif": {
+  "cluster": "R06",
+  "tier": 1,
+  "confidence": "medium",
+  "foundry": "FontFont",
+  "library": "adobe",
+  "note": "Slab-serif companion to FF Meta."
+ },
+ "FF Unit": {
+  "cluster": "S02",
+  "tier": 1,
+  "confidence": "high",
+  "foundry": "FontFont",
+  "library": "adobe",
+  "note": "Meta rationalised into a cleaner, more neutral grotesk."
+ },
+ "ITC Officina Sans": {
+  "cluster": "S02",
+  "tier": 1,
+  "confidence": "medium",
+  "foundry": "ITC",
+  "library": "adobe",
+  "note": "Office-typewriter humanist with sturdy joins."
+ },
+ "Fira Sans": {
+  "cluster": "S02",
+  "tier": 1,
+  "confidence": "high",
+  "foundry": "Mozilla / Carrois",
+  "library": "adobe",
+  "note": "Humanist UI sans with a very wide weight range."
+ },
+ "IBM Plex Sans": {
+  "cluster": "S02",
+  "tier": 1,
+  "confidence": "high",
+  "foundry": "IBM",
+  "library": "adobe",
+  "note": "Corporate humanist grotesk with engineered details."
+ },
+ "Lato": {
+  "cluster": "S02",
+  "tier": 1,
+  "confidence": "medium",
+  "foundry": "Łukasz Dziedzic",
+  "library": "adobe",
+  "note": "Warm humanist sans, very widely deployed."
+ },
+ "Open Sans": {
+  "cluster": "S02",
+  "tier": 1,
+  "confidence": "medium",
+  "foundry": "Steve Matteson",
+  "library": "adobe",
+  "note": "Neutral humanist UI face descended from Droid."
+ },
+ "Source Sans Pro": {
+  "cluster": "S02",
+  "tier": 1,
+  "confidence": "high",
+  "foundry": "Adobe",
+  "library": "adobe",
+  "note": "Adobe’s open humanist sans, News Gothic informed."
+ },
+ "Skolar Sans": {
+  "cluster": "S02",
+  "tier": 1,
+  "confidence": "medium",
+  "foundry": "Rosetta",
+  "library": "retail",
+  "note": "Humanist sans with broad script coverage."
+ },
+ "PT Sans": {
+  "cluster": "S02",
+  "tier": 1,
+  "confidence": "medium",
+  "foundry": "ParaType",
+  "library": "adobe",
+  "note": "Humanist sans with strong Cyrillic."
+ },
+ "Thesis Sans": {
+  "cluster": "S02",
+  "tier": 1,
+  "confidence": "medium",
+  "foundry": "LucasFonts",
+  "library": "retail",
+  "note": "Large humanist superfamily."
+ },
+ "FF Dax": {
+  "cluster": "S12",
+  "tier": 1,
+  "confidence": "medium",
+  "foundry": "FontFont",
+  "library": "adobe",
+  "note": "Narrow humanist sans with a distinct condensed voice."
+ },
+ "Optima": {
+  "cluster": "R08",
+  "tier": 1,
+  "confidence": "high",
+  "foundry": "Linotype",
+  "library": "monotype",
+  "note": "Flared glyphic sans; sits with inscriptional letterforms, not grotesks.",
+  "cluster2": "S02",
+  "cluster2Via": "knowledge",
+  "cluster2Why": "Flared glyphic, but functions as a humanist sans in text."
+ },
+ "Optima Nova": {
+  "cluster": "R08",
+  "tier": 1,
+  "confidence": "high",
+  "foundry": "Linotype",
+  "library": "monotype",
+  "note": "Revised Optima with a proper italic."
+ },
+ "Franklin Gothic": {
+  "cluster": "S03",
+  "tier": 1,
+  "confidence": "high",
+  "foundry": "ITC / Monotype",
+  "library": "adobe",
+  "note": "The American gothic; sturdy, slightly irregular."
+ },
+ "News Gothic": {
+  "cluster": "S03",
+  "tier": 1,
+  "confidence": "high",
+  "foundry": "Monotype",
+  "library": "adobe",
+  "note": "Lighter Benton gothic built for newspaper text."
+ },
+ "Trade Gothic": {
+  "cluster": "S03",
+  "tier": 1,
+  "confidence": "high",
+  "foundry": "Linotype",
+  "library": "monotype",
+  "note": "Warmer, more irregular American gothic; a newsroom staple."
+ },
+ "Trade Gothic Next": {
+  "cluster": "S03",
+  "tier": 1,
+  "confidence": "high",
+  "foundry": "Linotype",
+  "library": "adobe",
+  "note": "Current Trade Gothic with a fuller width and weight system."
+ },
+ "Acumin": {
+  "cluster": "S03",
+  "tier": 1,
+  "confidence": "high",
+  "foundry": "Adobe",
+  "library": "adobe",
+  "note": "Neutral American grotesk superfamily across widths and weights.",
+  "cluster2": "S08",
+  "cluster2Via": "knowledge",
+  "cluster2Why": "Four widths across five optical weights."
+ },
+ "GT America": {
+  "cluster": "S03",
+  "tier": 1,
+  "confidence": "high",
+  "foundry": "Grilli Type",
+  "library": "retail",
+  "note": "Explicit American-gothic and Swiss-grotesk hybrid across six widths.",
+  "cluster2": "S08",
+  "cluster2Via": "knowledge",
+  "cluster2Why": "Six widths — a width system as much as an American grotesk."
+ },
+ "Graphik": {
+  "cluster": "S03",
+  "tier": 1,
+  "confidence": "high",
+  "foundry": "Commercial Type",
+  "library": "retail",
+  "note": "Plain editorial grotesk; the magazine default of the last decade.",
+  "cluster2": "S04",
+  "cluster2Via": "external",
+  "cluster2Why": "Filed as American editorial grotesk, but plain and geometric enough that the external mapping reaches for Poppins."
+ },
+ "Benton Gothic": {
+  "cluster": "S03",
+  "tier": 1,
+  "confidence": "high",
+  "foundry": "Font Bureau",
+  "library": "retail",
+  "note": "Digitisation of the original ATF gothics."
+ },
+ "Benton Sans": {
+  "cluster": "S03",
+  "tier": 1,
+  "confidence": "high",
+  "foundry": "Font Bureau",
+  "library": "retail",
+  "note": "Benton Gothic rebuilt as a broad editorial system."
+ },
+ "Griffith Gothic": {
+  "cluster": "S03",
+  "tier": 1,
+  "confidence": "high",
+  "foundry": "Frere-Jones",
+  "library": "retail",
+  "note": "Revival of Ionic-era news gothic with tight fit."
+ },
+ "Interstate": {
+  "cluster": "S09",
+  "tier": 1,
+  "confidence": "high",
+  "foundry": "Frere-Jones",
+  "library": "adobe",
+  "note": "Drawn from US highway signage; sits with the industrial signage faces.",
+  "cluster2": "S03",
+  "cluster2Via": "knowledge",
+  "cluster2Why": "Signage face with American gothic bones."
+ },
+ "Amplitude": {
+  "cluster": "S03",
+  "tier": 1,
+  "confidence": "medium",
+  "foundry": "Font Bureau",
+  "library": "retail",
+  "note": "News gothic engineered for small sizes and rough printing."
+ },
+ "Whitney": {
+  "cluster": "S03",
+  "tier": 1,
+  "confidence": "high",
+  "foundry": "Hoefler&Co",
+  "library": "retail",
+  "note": "Wayfinding gothic with humanist warmth; a museum-signage staple."
+ },
+ "Ideal Sans": {
+  "cluster": "S03",
+  "tier": 1,
+  "confidence": "medium",
+  "foundry": "Hoefler&Co",
+  "library": "retail",
+  "note": "Hand-drawn humanist gothic; softer than Whitney."
+ },
+ "Mallory": {
+  "cluster": "S03",
+  "tier": 1,
+  "confidence": "medium",
+  "foundry": "Frere-Jones Type",
+  "library": "retail",
+  "note": "American-British hybrid gothic."
+ },
+ "Atlas": {
+  "cluster": "S03",
+  "tier": 1,
+  "confidence": "medium",
+  "foundry": "Commercial Type",
+  "library": "retail",
+  "note": "Grotesk with a mid-century American cast."
+ },
+ "Archivo": {
+  "cluster": "S03",
+  "tier": 1,
+  "confidence": "high",
+  "foundry": "Omnibus Type",
+  "library": "adobe",
+  "note": "Open grotesk on the American editorial model; already in your library."
+ },
+ "Libre Franklin": {
+  "cluster": "S03",
+  "tier": 1,
+  "confidence": "high",
+  "foundry": "Impallari",
+  "library": "adobe",
+  "note": "Open Franklin Gothic interpretation; already in your library."
+ },
+ "Nobel": {
+  "cluster": "S03",
+  "tier": 1,
+  "confidence": "medium",
+  "foundry": "Font Bureau",
+  "library": "retail",
+  "note": "Dutch geometric-leaning gothic."
+ },
+ "Bell Gothic": {
+  "cluster": "S03",
+  "tier": 1,
+  "confidence": "high",
+  "foundry": "Linotype",
+  "library": "monotype",
+  "note": "Phone-directory gothic; extremely economical."
+ },
+ "Bell Centennial": {
+  "cluster": "S03",
+  "tier": 1,
+  "confidence": "high",
+  "foundry": "Linotype",
+  "library": "monotype",
+  "note": "Matthew Carter’s replacement for Bell Gothic."
+ },
+ "Ringside": {
+  "cluster": "S03",
+  "tier": 1,
+  "confidence": "medium",
+  "foundry": "Hoefler&Co",
+  "library": "retail",
+  "note": "Gothic family with distinct optical sizes for signage."
+ },
+ "Gotham": {
+  "cluster": "S04",
+  "tier": 1,
+  "confidence": "high",
+  "foundry": "Hoefler&Co",
+  "library": "retail",
+  "note": "The reference: New York architectural lettering made systematic."
+ },
+ "Gotham Rounded": {
+  "cluster": "S06",
+  "tier": 1,
+  "confidence": "high",
+  "foundry": "Hoefler&Co",
+  "library": "retail",
+  "note": "Rounded-terminal Gotham; sits with the soft sans."
+ },
+ "Proxima Nova": {
+  "cluster": "S04",
+  "tier": 1,
+  "confidence": "high",
+  "foundry": "Mark Simonson",
+  "library": "adobe",
+  "note": "Geometric skeleton with grotesk proportions; the web’s Gotham stand-in.",
+  "cluster2": "S03",
+  "cluster2Via": "external",
+  "cluster2Why": "Geometric skeleton on grotesk proportions. Our own note says so; the external mapping pairs it with Roboto."
+ },
+ "Circular": {
+  "cluster": "S04",
+  "tier": 1,
+  "confidence": "high",
+  "foundry": "Lineto",
+  "library": "retail",
+  "note": "Warm geometric sans; the branding default of the 2010s.",
+  "cluster2": "S05",
+  "cluster2Via": "external",
+  "cluster2Why": "Geometric sans warm enough to read in the Futura lineage as well."
+ },
+ "Brandon Grotesque": {
+  "cluster": "S04",
+  "tier": 1,
+  "confidence": "high",
+  "foundry": "HVD",
+  "library": "adobe",
+  "note": "1920s geometric with a small x-height and soft finish."
+ },
+ "Sofia Pro": {
+  "cluster": "S04",
+  "tier": 1,
+  "confidence": "medium",
+  "foundry": "Mostardesign",
+  "library": "adobe",
+  "note": "Rounded geometric sans, widely licensed."
+ },
+ "Montserrat": {
+  "cluster": "S04",
+  "tier": 1,
+  "confidence": "high",
+  "foundry": "Julieta Ulanovsky",
+  "library": "adobe",
+  "note": "Buenos Aires signage geometric; already in your library."
+ },
+ "Poppins": {
+  "cluster": "S04",
+  "tier": 1,
+  "confidence": "high",
+  "foundry": "Indian Type Foundry",
+  "library": "adobe",
+  "note": "Strictly geometric monolinear sans; already in your library."
+ },
+ "Centra No.1": {
+  "cluster": "S04",
+  "tier": 1,
+  "confidence": "medium",
+  "foundry": "Sharp Type",
+  "library": "retail",
+  "note": "Geometric sans with a sharpened, contemporary finish."
+ },
+ "Centra No.2": {
+  "cluster": "S04",
+  "tier": 1,
+  "confidence": "medium",
+  "foundry": "Sharp Type",
+  "library": "retail",
+  "note": "Wider-aperture companion to Centra No.1."
+ },
+ "GT Walsheim": {
+  "cluster": "S04",
+  "tier": 1,
+  "confidence": "high",
+  "foundry": "Grilli Type",
+  "library": "retail",
+  "note": "Geometric sans with hand-drawn irregularity."
+ },
+ "Sharp Sans": {
+  "cluster": "S04",
+  "tier": 1,
+  "confidence": "high",
+  "foundry": "Sharp Type",
+  "library": "retail",
+  "note": "Geometric sans built for brand systems."
+ },
+ "Beatrice Standard": {
+  "cluster": "S11",
+  "tier": 1,
+  "confidence": "medium",
+  "foundry": "Sharp Type",
+  "library": "retail",
+  "note": "Contemporary sans with deliberately odd proportions."
+ },
+ "Halyard": {
+  "cluster": "S04",
+  "tier": 1,
+  "confidence": "medium",
+  "foundry": "Darden Studio",
+  "library": "adobe",
+  "note": "Geometric-humanist hybrid across three optical widths."
+ },
+ "Termina": {
+  "cluster": "S10",
+  "tier": 1,
+  "confidence": "medium",
+  "foundry": "Fontfabric",
+  "library": "adobe",
+  "note": "Squared geometric with a technical cast."
+ },
+ "Geograph": {
+  "cluster": "S02",
+  "tier": 1,
+  "confidence": "medium",
+  "foundry": "Klim",
+  "library": "retail",
+  "note": "Humanist sans drawn for small-size legibility."
+ },
+ "Calibre": {
+  "cluster": "S04",
+  "tier": 1,
+  "confidence": "high",
+  "foundry": "Klim",
+  "library": "retail",
+  "note": "Geometric sans with squared-off terminals.",
+  "cluster2": "S01",
+  "cluster2Via": "knowledge",
+  "cluster2Why": "Geometric sans with squared terminals and grotesk neutrality."
+ },
+ "Metric": {
+  "cluster": "S09",
+  "tier": 1,
+  "confidence": "high",
+  "foundry": "Klim",
+  "library": "retail",
+  "note": "Geometric sans from Berlin signage lettering.",
+  "cluster2": "S04",
+  "cluster2Via": "knowledge",
+  "cluster2Why": "Signage geometric that behaves like a DIN in use."
+ },
+ "Karbon": {
+  "cluster": "S04",
+  "tier": 1,
+  "confidence": "medium",
+  "foundry": "Klim",
+  "library": "retail",
+  "note": "Technical geometric sans."
+ },
+ "Century Gothic": {
+  "cluster": "S05",
+  "tier": 1,
+  "confidence": "high",
+  "foundry": "Monotype",
+  "library": "monotype",
+  "note": "Monoline geometric on the Futura model."
+ },
+ "Futura": {
+  "cluster": "S05",
+  "tier": 1,
+  "confidence": "high",
+  "foundry": "Bauer / Neufville",
+  "library": "monotype",
+  "note": "The Bauhaus geometric; circular bowls, pointed apexes."
+ },
+ "Futura PT": {
+  "cluster": "S05",
+  "tier": 1,
+  "confidence": "high",
+  "foundry": "ParaType",
+  "library": "adobe",
+  "note": "Widely licensed Futura with a full weight range."
+ },
+ "ITC Avant Garde Gothic": {
+  "cluster": "S05",
+  "tier": 1,
+  "confidence": "high",
+  "foundry": "ITC",
+  "library": "adobe",
+  "note": "Geometric with the famous tight-fitting ligatures."
+ },
+ "Kabel": {
+  "cluster": "S05",
+  "tier": 1,
+  "confidence": "high",
+  "foundry": "Linotype",
+  "library": "monotype",
+  "note": "Koch’s geometric with an idiosyncratic humanist streak."
+ },
+ "Twentieth Century": {
+  "cluster": "S05",
+  "tier": 1,
+  "confidence": "high",
+  "foundry": "Monotype",
+  "library": "monotype",
+  "note": "Monotype’s answer to Futura."
+ },
+ "Bauhaus": {
+  "cluster": "S05",
+  "tier": 1,
+  "confidence": "medium",
+  "foundry": "ITC",
+  "library": "adobe",
+  "note": "Geometric derived from Bayer’s universal alphabet."
+ },
+ "Neuzeit S": {
+  "cluster": "S05",
+  "tier": 1,
+  "confidence": "medium",
+  "foundry": "Linotype",
+  "library": "monotype",
+  "note": "Geometric grotesk hybrid used for signage."
+ },
+ "GT Eesti": {
+  "cluster": "S05",
+  "tier": 1,
+  "confidence": "medium",
+  "foundry": "Grilli Type",
+  "library": "retail",
+  "note": "Geometric sans with a Soviet-era reference."
+ },
+ "VAG Rounded": {
+  "cluster": "S06",
+  "tier": 1,
+  "confidence": "high",
+  "foundry": "Linotype",
+  "library": "adobe",
+  "note": "Volkswagen’s rounded grotesk; the reference rounded sans."
+ },
+ "Proxima Soft": {
+  "cluster": "S06",
+  "tier": 1,
+  "confidence": "high",
+  "foundry": "Mark Simonson",
+  "library": "adobe",
+  "note": "Rounded Proxima Nova."
+ },
+ "Haboro Soft": {
+  "cluster": "S06",
+  "tier": 1,
+  "confidence": "medium",
+  "foundry": "InsigneDesign",
+  "library": "adobe",
+  "note": "Rounded slab-sans with a soft finish."
+ },
+ "GT Maru": {
+  "cluster": "S06",
+  "tier": 1,
+  "confidence": "medium",
+  "foundry": "Grilli Type",
+  "library": "retail",
+  "note": "Rounded sans built from a circular pen."
+ },
+ "Omnes": {
+  "cluster": "S06",
+  "tier": 1,
+  "confidence": "medium",
+  "foundry": "Darden Studio",
+  "library": "adobe",
+  "note": "Soft rounded humanist sans."
+ },
+ "Knockout": {
+  "cluster": "S07",
+  "tier": 1,
+  "confidence": "high",
+  "foundry": "Hoefler&Co",
+  "library": "retail",
+  "note": "Nine widths of wood-type gothic; the sports-poster reference."
+ },
+ "Druk": {
+  "cluster": "S07",
+  "tier": 1,
+  "confidence": "high",
+  "foundry": "Commercial Type",
+  "library": "retail",
+  "note": "Extreme-contrast condensed display gothic."
+ },
+ "Druk Condensed": {
+  "cluster": "S07",
+  "tier": 1,
+  "confidence": "high",
+  "foundry": "Commercial Type",
+  "library": "retail",
+  "note": "The narrower Druk cuts."
+ },
+ "Tungsten": {
+  "cluster": "S07",
+  "tier": 1,
+  "confidence": "high",
+  "foundry": "Hoefler&Co",
+  "library": "retail",
+  "note": "Compact condensed gothic built for headlines and scoreboards."
+ },
+ "Champion Gothic": {
+  "cluster": "S07",
+  "tier": 1,
+  "confidence": "high",
+  "foundry": "Hoefler&Co",
+  "library": "retail",
+  "note": "Six wood-type condensed cuts named after boxing weights."
+ },
+ "Titling Gothic": {
+  "cluster": "S07",
+  "tier": 1,
+  "confidence": "high",
+  "foundry": "Font Bureau",
+  "library": "retail",
+  "note": "Very large condensed gothic width-and-weight matrix."
+ },
+ "Acumin Condensed": {
+  "cluster": "S07",
+  "tier": 1,
+  "confidence": "high",
+  "foundry": "Adobe",
+  "library": "adobe",
+  "note": "The condensed widths of the Acumin system."
+ },
+ "Trade Gothic Condensed": {
+  "cluster": "S07",
+  "tier": 1,
+  "confidence": "high",
+  "foundry": "Linotype",
+  "library": "monotype",
+  "note": "The condensed Trade Gothic cuts; a newsroom and sports standard."
+ },
+ "Compacta": {
+  "cluster": "S07",
+  "tier": 1,
+  "confidence": "high",
+  "foundry": "Letraset",
+  "library": "monotype",
+  "note": "Very tight condensed grotesk from the Letraset era."
+ },
+ "Haettenschweiler": {
+  "cluster": "S07",
+  "tier": 1,
+  "confidence": "high",
+  "foundry": "Monotype",
+  "library": "bundled",
+  "note": "Extremely condensed poster gothic."
+ },
+ "Impact": {
+  "cluster": "D06",
+  "tier": 1,
+  "confidence": "high",
+  "foundry": "Monotype",
+  "library": "bundled",
+  "note": "Ultra-heavy poster gothic; heavier than it is condensed."
+ },
+ "Agency FB": {
+  "cluster": "S07",
+  "tier": 1,
+  "confidence": "medium",
+  "foundry": "Font Bureau",
+  "library": "adobe",
+  "note": "Geometric condensed titling face."
+ },
+ "Garage Gothic": {
+  "cluster": "S07",
+  "tier": 1,
+  "confidence": "high",
+  "foundry": "Frere-Jones",
+  "library": "retail",
+  "note": "Condensed gothic drawn from parking-garage tickets."
+ },
+ "Sharp Sans Condensed": {
+  "cluster": "S07",
+  "tier": 1,
+  "confidence": "medium",
+  "foundry": "Sharp Type",
+  "library": "retail",
+  "note": "Condensed cuts of Sharp Sans."
+ },
+ "Mānuka": {
+  "cluster": "D06",
+  "tier": 1,
+  "confidence": "high",
+  "foundry": "Klim",
+  "library": "retail",
+  "note": "Very heavy display sans with a New Zealand wood-type feel."
+ },
+ "Conductor": {
+  "cluster": "S07",
+  "tier": 1,
+  "confidence": "medium",
+  "foundry": "Frere-Jones Type",
+  "library": "retail",
+  "note": "Condensed display gothic in many widths."
+ },
+ "National": {
+  "cluster": "S03",
+  "tier": 1,
+  "confidence": "high",
+  "foundry": "Klim",
+  "library": "retail",
+  "note": "Grotesk with American gothic proportions."
+ },
+ "National 2": {
+  "cluster": "S03",
+  "tier": 1,
+  "confidence": "high",
+  "foundry": "Klim",
+  "library": "retail",
+  "note": "Rebuilt National with a wider range."
+ },
+ "Acumin family": {
+  "cluster": "S08",
+  "tier": 1,
+  "confidence": "high",
+  "foundry": "Adobe",
+  "library": "adobe",
+  "note": "Ninety cuts across four widths and five optical weights."
+ },
+ "GT America Intl": {
+  "cluster": "S08",
+  "tier": 1,
+  "confidence": "high",
+  "foundry": "Grilli Type",
+  "library": "retail",
+  "note": "GT America extended for non-Latin scripts."
+ },
+ "Sharp Grotesk": {
+  "cluster": "S08",
+  "tier": 1,
+  "confidence": "high",
+  "foundry": "Sharp Type",
+  "library": "retail",
+  "note": "One of the largest width systems in retail type.",
+  "cluster2": "S01",
+  "cluster2Via": "knowledge",
+  "cluster2Why": "A width system built on a neutral grotesk skeleton."
+ },
+ "Roboto Flex": {
+  "cluster": "S08",
+  "tier": 1,
+  "confidence": "high",
+  "foundry": "Google",
+  "library": "adobe",
+  "note": "Variable superfamily with width, weight and optical size; in your library.",
+  "cluster2": "S01",
+  "cluster2Via": "knowledge",
+  "cluster2Why": "Variable width system on a neo-grotesk skeleton."
+ },
+ "Helvetica Now Variable": {
+  "cluster": "S08",
+  "tier": 1,
+  "confidence": "medium",
+  "foundry": "Monotype",
+  "library": "monotype",
+  "note": "Variable Helvetica across width and optical size."
+ },
+ "FF DIN": {
+  "cluster": "S09",
+  "tier": 1,
+  "confidence": "high",
+  "foundry": "FontFont",
+  "library": "adobe",
+  "note": "The retail DIN; engineered curves and compact rhythm."
+ },
+ "FF DIN Paneuropean": {
+  "cluster": "S09",
+  "tier": 1,
+  "confidence": "high",
+  "foundry": "FontFont",
+  "library": "adobe",
+  "note": "FF DIN with extended script coverage."
+ },
+ "DIN 1451": {
+  "cluster": "S09",
+  "tier": 1,
+  "confidence": "high",
+  "foundry": "German standards",
+  "library": "retail",
+  "note": "The original signage standard the whole lineage descends from."
+ },
+ "DIN Next": {
+  "cluster": "S09",
+  "tier": 1,
+  "confidence": "high",
+  "foundry": "Monotype",
+  "library": "monotype",
+  "note": "Monotype’s DIN with a wider range and rounded variants."
+ },
+ "Klavika": {
+  "cluster": "S09",
+  "tier": 1,
+  "confidence": "high",
+  "foundry": "Process Type",
+  "library": "retail",
+  "note": "Squared industrial sans; Facebook’s former brand face."
+ },
+ "Industry": {
+  "cluster": "S10",
+  "tier": 1,
+  "confidence": "medium",
+  "foundry": "Fort Foundry",
+  "library": "adobe",
+  "note": "Tough squared display sans."
+ },
+ "Utility Pro": {
+  "cluster": "S09",
+  "tier": 1,
+  "confidence": "medium",
+  "foundry": "Adobe",
+  "library": "adobe",
+  "note": "Industrial signage sans with a utilitarian finish."
+ },
+ "Transport": {
+  "cluster": "S09",
+  "tier": 1,
+  "confidence": "high",
+  "foundry": "UK road signs",
+  "library": "retail",
+  "note": "British road signage alphabet."
+ },
+ "Highway Gothic": {
+  "cluster": "S09",
+  "tier": 1,
+  "confidence": "high",
+  "foundry": "FHWA",
+  "library": "retail",
+  "note": "US highway signage alphabet."
+ },
+ "Rail Alphabet": {
+  "cluster": "S09",
+  "tier": 1,
+  "confidence": "high",
+  "foundry": "Kinneir Calvert",
+  "library": "retail",
+  "note": "British Rail signage face."
+ },
+ "GT Pressura": {
+  "cluster": "S09",
+  "tier": 1,
+  "confidence": "medium",
+  "foundry": "Grilli Type",
+  "library": "retail",
+  "note": "Industrial sans drawn from stencilled packaging."
+ },
+ "FF Oxide": {
+  "cluster": "D07",
+  "tier": 1,
+  "confidence": "medium",
+  "foundry": "FontFont",
+  "library": "adobe",
+  "note": "Stencil-cut industrial display face."
+ },
+ "Eurostile": {
+  "cluster": "S10",
+  "tier": 1,
+  "confidence": "high",
+  "foundry": "Nebiolo / Linotype",
+  "library": "monotype",
+  "note": "Squared bowls and wide capitals; the reference techno face."
+ },
+ "Eurostile Next": {
+  "cluster": "S10",
+  "tier": 1,
+  "confidence": "high",
+  "foundry": "Linotype",
+  "library": "monotype",
+  "note": "Current Eurostile with a fuller range."
+ },
+ "Microgramma": {
+  "cluster": "S10",
+  "tier": 1,
+  "confidence": "high",
+  "foundry": "Nebiolo",
+  "library": "monotype",
+  "note": "Eurostile’s caps-only predecessor."
+ },
+ "Bank Gothic": {
+  "cluster": "S10",
+  "tier": 1,
+  "confidence": "high",
+  "foundry": "Lanston / Monotype",
+  "library": "adobe",
+  "note": "Sparse squared caps; a sports and film-title staple."
+ },
+ "Handel Gothic": {
+  "cluster": "S10",
+  "tier": 1,
+  "confidence": "medium",
+  "foundry": "ITC",
+  "library": "adobe",
+  "note": "Rounded-square display sans of the 1960s."
+ },
+ "Industry Inc": {
+  "cluster": "S10",
+  "tier": 1,
+  "confidence": "medium",
+  "foundry": "Fort Foundry",
+  "library": "adobe",
+  "note": "Inline and stencil variants of Industry."
+ },
+ "GT Zirkon": {
+  "cluster": "S11",
+  "tier": 1,
+  "confidence": "medium",
+  "foundry": "Grilli Type",
+  "library": "retail",
+  "note": "Grotesk with deliberately awkward, technical details."
+ },
+ "Maelstrom": {
+  "cluster": "S11",
+  "tier": 1,
+  "confidence": "medium",
+  "foundry": "Klim",
+  "library": "retail",
+  "note": "Display grotesk with wilful, high-contrast details."
+ },
+ "GT Flexa": {
+  "cluster": "S11",
+  "tier": 1,
+  "confidence": "medium",
+  "foundry": "Grilli Type",
+  "library": "retail",
+  "note": "Grotesk with an exaggerated variable width."
+ },
+ "Simula": {
+  "cluster": "S11",
+  "tier": 1,
+  "confidence": "medium",
+  "foundry": "Sharp Type",
+  "library": "retail",
+  "note": "Serif-grotesk hybrid with deliberate distortion."
+ },
+ "Doyle": {
+  "cluster": "S11",
+  "tier": 1,
+  "confidence": "medium",
+  "foundry": "Sharp Type",
+  "library": "retail",
+  "note": "Contemporary sans with irregular, drawn details."
+ },
+ "Local Gothic": {
+  "cluster": "S11",
+  "tier": 1,
+  "confidence": "loose",
+  "foundry": "Christian Schwartz",
+  "library": "retail",
+  "note": "Deliberately mismatched gothic, sampled from many sources."
+ },
+ "Neutraface": {
+  "cluster": "S12",
+  "tier": 1,
+  "confidence": "high",
+  "foundry": "House Industries",
+  "library": "retail",
+  "note": "Neutra-derived geometric with a very small x-height.",
+  "cluster2": "S04",
+  "cluster2Via": "knowledge",
+  "cluster2Why": "Geometric with a very small x-height; reads with the Gotham lineage at display sizes."
+ },
+ "Neutraface Display": {
+  "cluster": "S12",
+  "tier": 1,
+  "confidence": "high",
+  "foundry": "House Industries",
+  "library": "retail",
+  "note": "The display cuts, with the tightest proportions."
+ },
+ "Gilroy": {
+  "cluster": "S12",
+  "tier": 1,
+  "confidence": "medium",
+  "foundry": "Radomir Tinkov",
+  "library": "retail",
+  "note": "Geometric sans with a wide weight range."
+ },
+ "GT Sectra": {
+  "cluster": "R05",
+  "tier": 1,
+  "confidence": "medium",
+  "foundry": "Grilli Type",
+  "library": "retail",
+  "note": "Broad-nib serif with calligraphic cuts."
+ },
+ "Garamond Premier": {
+  "cluster": "R01",
+  "tier": 1,
+  "confidence": "high",
+  "foundry": "Adobe",
+  "library": "adobe",
+  "note": "Slimbach’s Garamond from Granjon’s originals."
+ },
+ "Adobe Garamond": {
+  "cluster": "R01",
+  "tier": 1,
+  "confidence": "high",
+  "foundry": "Adobe",
+  "library": "adobe",
+  "note": "The widely licensed Garamond revival."
+ },
+ "Minion": {
+  "cluster": "R01",
+  "tier": 1,
+  "confidence": "high",
+  "foundry": "Adobe",
+  "library": "adobe",
+  "note": "Neutral, systematic Renaissance serif."
+ },
+ "Minion 3": {
+  "cluster": "R01",
+  "tier": 1,
+  "confidence": "high",
+  "foundry": "Adobe",
+  "library": "adobe",
+  "note": "Current Minion with a broader range."
+ },
+ "Sabon": {
+  "cluster": "R01",
+  "tier": 1,
+  "confidence": "high",
+  "foundry": "Linotype",
+  "library": "monotype",
+  "note": "Tschichold’s Garamond for machine composition."
+ },
+ "Bembo": {
+  "cluster": "R01",
+  "tier": 1,
+  "confidence": "high",
+  "foundry": "Monotype",
+  "library": "monotype",
+  "note": "Aldine roman; the model for much book typography."
+ },
+ "Centaur": {
+  "cluster": "R01",
+  "tier": 1,
+  "confidence": "high",
+  "foundry": "Monotype",
+  "library": "monotype",
+  "note": "Rogers’s Jenson revival."
+ },
+ "Adobe Jenson": {
+  "cluster": "R01",
+  "tier": 1,
+  "confidence": "high",
+  "foundry": "Adobe",
+  "library": "adobe",
+  "note": "Venetian oldstyle with a strong calligraphic stress."
+ },
+ "Granjon": {
+  "cluster": "R01",
+  "tier": 1,
+  "confidence": "high",
+  "foundry": "Linotype",
+  "library": "monotype",
+  "note": "Garamond revival with a smaller x-height."
+ },
+ "Lyon Text": {
+  "cluster": "R01",
+  "tier": 1,
+  "confidence": "high",
+  "foundry": "Commercial Type",
+  "library": "retail",
+  "note": "Contemporary Renaissance serif for editorial text."
+ },
+ "Galliard": {
+  "cluster": "R01",
+  "tier": 1,
+  "confidence": "high",
+  "foundry": "Carter & Cone",
+  "library": "adobe",
+  "note": "Granjon-derived roman with sharp, energetic serifs."
+ },
+ "Heldane": {
+  "cluster": "R01",
+  "tier": 1,
+  "confidence": "high",
+  "foundry": "Klim",
+  "library": "retail",
+  "note": "Contemporary Renaissance serif with display cuts."
+ },
+ "Newzald": {
+  "cluster": "R01",
+  "tier": 1,
+  "confidence": "medium",
+  "foundry": "Klim",
+  "library": "retail",
+  "note": "Oldstyle with a Dutch bite."
+ },
+ "Trinité": {
+  "cluster": "R01",
+  "tier": 1,
+  "confidence": "high",
+  "foundry": "Enschedé",
+  "library": "retail",
+  "note": "Van Blokland’s Renaissance serif with three descender lengths."
+ },
+ "Arno": {
+  "cluster": "R01",
+  "tier": 1,
+  "confidence": "high",
+  "foundry": "Adobe",
+  "library": "adobe",
+  "note": "Slimbach’s humanist book serif."
+ },
+ "Adobe Caslon": {
+  "cluster": "R02",
+  "tier": 1,
+  "confidence": "high",
+  "foundry": "Adobe",
+  "library": "adobe",
+  "note": "The standard Caslon revival."
+ },
+ "Williams Caslon Text": {
+  "cluster": "R02",
+  "tier": 1,
+  "confidence": "high",
+  "foundry": "Font Bureau",
+  "library": "retail",
+  "note": "Caslon rebuilt for contemporary text setting."
+ },
+ "King’s Caslon": {
+  "cluster": "R02",
+  "tier": 1,
+  "confidence": "high",
+  "foundry": "Dalton Maag",
+  "library": "adobe",
+  "note": "Caslon for display and text with a modern finish."
+ },
+ "Big Caslon": {
+  "cluster": "R02",
+  "tier": 1,
+  "confidence": "high",
+  "foundry": "Carter & Cone",
+  "library": "bundled",
+  "note": "Caslon’s display sizes, where the quirks belong."
+ },
+ "Caslon": {
+  "cluster": "R02",
+  "tier": 1,
+  "confidence": "high",
+  "foundry": "various",
+  "library": "monotype",
+  "note": "The English oldstyle original."
+ },
+ "Baskerville": {
+  "cluster": "R03",
+  "tier": 1,
+  "confidence": "high",
+  "foundry": "Monotype",
+  "library": "monotype",
+  "note": "The transitional reference; vertical stress, crisp contrast."
+ },
+ "Miller": {
+  "cluster": "R03",
+  "tier": 1,
+  "confidence": "high",
+  "foundry": "Carter & Cone",
+  "library": "retail",
+  "note": "Scotch roman for newspapers and books."
+ },
+ "Miller Text": {
+  "cluster": "R03",
+  "tier": 1,
+  "confidence": "high",
+  "foundry": "Carter & Cone",
+  "library": "adobe",
+  "note": "The text cuts of Miller."
+ },
+ "Miller Display": {
+  "cluster": "R04",
+  "tier": 1,
+  "confidence": "high",
+  "foundry": "Carter & Cone",
+  "library": "adobe",
+  "note": "Miller’s high-contrast display sizes."
+ },
+ "Tiempos Text": {
+  "cluster": "R03",
+  "tier": 1,
+  "confidence": "high",
+  "foundry": "Klim",
+  "library": "retail",
+  "note": "Times reworked for contemporary editorial setting."
+ },
+ "Tiempos Headline": {
+  "cluster": "R04",
+  "tier": 1,
+  "confidence": "high",
+  "foundry": "Klim",
+  "library": "retail",
+  "note": "The high-contrast display cuts of Tiempos."
+ },
+ "Times New Roman": {
+  "cluster": "R03",
+  "tier": 1,
+  "confidence": "high",
+  "foundry": "Monotype",
+  "library": "bundled",
+  "note": "The newspaper transitional everyone knows."
+ },
+ "Plantin": {
+  "cluster": "R03",
+  "tier": 1,
+  "confidence": "high",
+  "foundry": "Monotype",
+  "library": "monotype",
+  "note": "Sturdy oldstyle-transitional; Times’s direct ancestor."
+ },
+ "Georgia": {
+  "cluster": "R03",
+  "tier": 1,
+  "confidence": "high",
+  "foundry": "Microsoft",
+  "library": "bundled",
+  "note": "Scotch roman drawn for screens."
+ },
+ "Financier": {
+  "cluster": "R03",
+  "tier": 1,
+  "confidence": "high",
+  "foundry": "Klim",
+  "library": "retail",
+  "note": "Newspaper serif with sharp, economical details."
+ },
+ "Publico": {
+  "cluster": "R03",
+  "tier": 1,
+  "confidence": "high",
+  "foundry": "Commercial Type",
+  "library": "retail",
+  "note": "Editorial serif system across text and display."
+ },
+ "Farnham": {
+  "cluster": "R03",
+  "tier": 1,
+  "confidence": "high",
+  "foundry": "Font Bureau",
+  "library": "retail",
+  "note": "Fleischmann-derived transitional with lively details."
+ },
+ "Utopia": {
+  "cluster": "R03",
+  "tier": 1,
+  "confidence": "high",
+  "foundry": "Adobe",
+  "library": "adobe",
+  "note": "Transitional serif drawn for digital production."
+ },
+ "Charter": {
+  "cluster": "R03",
+  "tier": 1,
+  "confidence": "medium",
+  "foundry": "Bitstream",
+  "library": "adobe",
+  "note": "Economical transitional built for low-resolution output."
+ },
+ "Kepler": {
+  "cluster": "R03",
+  "tier": 1,
+  "confidence": "high",
+  "foundry": "Adobe",
+  "library": "adobe",
+  "note": "Modern-face serif with optical sizes."
+ },
+ "Didot": {
+  "cluster": "R04",
+  "tier": 1,
+  "confidence": "high",
+  "foundry": "Linotype",
+  "library": "monotype",
+  "note": "The French modern face; hairline serifs, extreme contrast."
+ },
+ "Bodoni": {
+  "cluster": "R04",
+  "tier": 1,
+  "confidence": "high",
+  "foundry": "various",
+  "library": "monotype",
+  "note": "The Italian modern face."
+ },
+ "Bauer Bodoni": {
+  "cluster": "R04",
+  "tier": 1,
+  "confidence": "high",
+  "foundry": "Bauer",
+  "library": "monotype",
+  "note": "The sharpest and most delicate Bodoni."
+ },
+ "Canela": {
+  "cluster": "R04",
+  "tier": 1,
+  "confidence": "high",
+  "foundry": "Commercial Type",
+  "library": "retail",
+  "note": "Serif-to-flare display face for magazine covers."
+ },
+ "Ogg": {
+  "cluster": "R04",
+  "tier": 1,
+  "confidence": "high",
+  "foundry": "Sharp Type",
+  "library": "retail",
+  "note": "Calligraphic display serif drawn from hand-lettered book jackets."
+ },
+ "Chronicle Display": {
+  "cluster": "R04",
+  "tier": 1,
+  "confidence": "high",
+  "foundry": "Hoefler&Co",
+  "library": "retail",
+  "note": "Scotch display serif in four grades."
+ },
+ "Domaine Display": {
+  "cluster": "R04",
+  "tier": 1,
+  "confidence": "high",
+  "foundry": "Klim",
+  "library": "retail",
+  "note": "High-contrast display serif with sharp bracketing."
+ },
+ "IvyPresto Display": {
+  "cluster": "R04",
+  "tier": 1,
+  "confidence": "high",
+  "foundry": "IvyFoundry",
+  "library": "adobe",
+  "note": "Didone display with fine hairlines."
+ },
+ "Playfair Display": {
+  "cluster": "R04",
+  "tier": 1,
+  "confidence": "high",
+  "foundry": "Claus Eggers Sørensen",
+  "library": "adobe",
+  "note": "Open high-contrast display serif; already in your library."
+ },
+ "Quarto": {
+  "cluster": "R04",
+  "tier": 1,
+  "confidence": "high",
+  "foundry": "Hoefler&Co",
+  "library": "retail",
+  "note": "Renaissance-derived display serif with sharp entry strokes."
+ },
+ "Portrait": {
+  "cluster": "R04",
+  "tier": 1,
+  "confidence": "high",
+  "foundry": "Commercial Type",
+  "library": "retail",
+  "note": "Display serif with a sixteenth-century French reference."
+ },
+ "Le Jeune": {
+  "cluster": "R04",
+  "tier": 1,
+  "confidence": "high",
+  "foundry": "Commercial Type",
+  "library": "retail",
+  "note": "Fashion-magazine didone across optical sizes."
+ },
+ "Recoleta": {
+  "cluster": "R05",
+  "tier": 1,
+  "confidence": "high",
+  "foundry": "Latinotype",
+  "library": "adobe",
+  "note": "Soft 1970s-flavoured serif; the current branding favourite."
+ },
+ "Bookmania": {
+  "cluster": "R05",
+  "tier": 1,
+  "confidence": "high",
+  "foundry": "Mark Simonson",
+  "library": "adobe",
+  "note": "Bookman revival with the swash range intact."
+ },
+ "Souvenir": {
+  "cluster": "R05",
+  "tier": 1,
+  "confidence": "high",
+  "foundry": "ITC",
+  "library": "adobe",
+  "note": "The soft 1970s serif."
+ },
+ "Chantal": {
+  "cluster": "R05",
+  "tier": 1,
+  "confidence": "medium",
+  "foundry": "Adobe",
+  "library": "adobe",
+  "note": "Soft contemporary display serif."
+ },
+ "Beatrice Display": {
+  "cluster": "R04",
+  "tier": 1,
+  "confidence": "medium",
+  "foundry": "Sharp Type",
+  "library": "retail",
+  "note": "Contrast-heavy display serif-sans hybrid."
+ },
+ "Signifier": {
+  "cluster": "R05",
+  "tier": 1,
+  "confidence": "medium",
+  "foundry": "Klim",
+  "library": "retail",
+  "note": "Serif with a deliberately eroded, drawn quality."
+ },
+ "Epicene": {
+  "cluster": "R04",
+  "tier": 1,
+  "confidence": "high",
+  "foundry": "Klim",
+  "library": "retail",
+  "note": "Display serif with an eighteenth-century English reference."
+ },
+ "Adelle": {
+  "cluster": "R06",
+  "tier": 1,
+  "confidence": "high",
+  "foundry": "TypeTogether",
+  "library": "adobe",
+  "note": "Slab superfamily built for newspaper text."
+ },
+ "Chaparral": {
+  "cluster": "R06",
+  "tier": 1,
+  "confidence": "high",
+  "foundry": "Adobe",
+  "library": "adobe",
+  "note": "Humanist slab with a soft, readable finish."
+ },
+ "Rockwell": {
+  "cluster": "R06",
+  "tier": 1,
+  "confidence": "high",
+  "foundry": "Monotype",
+  "library": "monotype",
+  "note": "Geometric slab; blunt and even."
+ },
+ "Rockwell Nova": {
+  "cluster": "R06",
+  "tier": 1,
+  "confidence": "high",
+  "foundry": "Monotype",
+  "library": "monotype",
+  "note": "Current Rockwell with a fuller range."
+ },
+ "Sentinel": {
+  "cluster": "R06",
+  "tier": 1,
+  "confidence": "high",
+  "foundry": "Hoefler&Co",
+  "library": "retail",
+  "note": "Clarendon-derived slab that works at text sizes."
+ },
+ "Archer": {
+  "cluster": "R06",
+  "tier": 1,
+  "confidence": "high",
+  "foundry": "Hoefler&Co",
+  "library": "retail",
+  "note": "Ball-terminal slab; friendlier than Sentinel."
+ },
+ "Clarendon": {
+  "cluster": "R06",
+  "tier": 1,
+  "confidence": "high",
+  "foundry": "Monotype",
+  "library": "monotype",
+  "note": "The bracketed Egyptian everything else references."
+ },
+ "Stag": {
+  "cluster": "R06",
+  "tier": 1,
+  "confidence": "high",
+  "foundry": "Commercial Type",
+  "library": "retail",
+  "note": "Tight, sharp slab drawn for magazine headlines."
+ },
+ "Vitesse": {
+  "cluster": "S10",
+  "tier": 1,
+  "confidence": "medium",
+  "foundry": "Hoefler&Co",
+  "library": "retail",
+  "note": "Squared slab with a technical feel.",
+  "cluster2": "R06",
+  "cluster2Via": "knowledge",
+  "cluster2Why": "Squared slab — technical in feel, Egyptian in construction."
+ },
+ "Guardian Egyptian": {
+  "cluster": "R06",
+  "tier": 1,
+  "confidence": "high",
+  "foundry": "Commercial Type",
+  "library": "retail",
+  "note": "The newspaper slab system."
+ },
+ "Freight": {
+  "cluster": "R06",
+  "tier": 1,
+  "confidence": "medium",
+  "foundry": "Darden Studio",
+  "library": "adobe",
+  "note": "Large slab-to-serif superfamily."
+ },
+ "Serifa": {
+  "cluster": "R06",
+  "tier": 1,
+  "confidence": "high",
+  "foundry": "Linotype",
+  "library": "monotype",
+  "note": "Univers with slab serifs attached."
+ },
+ "Memphis": {
+  "cluster": "R06",
+  "tier": 1,
+  "confidence": "high",
+  "foundry": "Linotype",
+  "library": "monotype",
+  "note": "1930s geometric slab."
+ },
+ "Sharp Slab": {
+  "cluster": "R06",
+  "tier": 1,
+  "confidence": "medium",
+  "foundry": "Sharp Type",
+  "library": "retail",
+  "note": "Contemporary slab with sharp cut serifs."
+ },
+ "Sutro": {
+  "cluster": "R07",
+  "tier": 1,
+  "confidence": "high",
+  "foundry": "Parkinson",
+  "library": "adobe",
+  "note": "Fat Victorian display slab with shaded variants."
+ },
+ "ITC Benguiat": {
+  "cluster": "R07",
+  "tier": 1,
+  "confidence": "high",
+  "foundry": "ITC",
+  "library": "adobe",
+  "note": "Art Nouveau-inflected display serif."
+ },
+ "Cheltenham": {
+  "cluster": "R07",
+  "tier": 1,
+  "confidence": "medium",
+  "foundry": "ITC",
+  "library": "adobe",
+  "note": "Sturdy American display serif."
+ },
+ "Abolition": {
+  "cluster": "R07",
+  "tier": 1,
+  "confidence": "medium",
+  "foundry": "Fort Foundry",
+  "library": "adobe",
+  "note": "Condensed collegiate slab."
+ },
+ "Trajan": {
+  "cluster": "R08",
+  "tier": 1,
+  "confidence": "high",
+  "foundry": "Adobe",
+  "library": "adobe",
+  "note": "Roman inscriptional capitals; the movie-poster face."
+ },
+ "Albertus": {
+  "cluster": "R08",
+  "tier": 1,
+  "confidence": "high",
+  "foundry": "Monotype",
+  "library": "monotype",
+  "note": "Glyphic with flared, chiselled terminals."
+ },
+ "Friz Quadrata": {
+  "cluster": "R08",
+  "tier": 1,
+  "confidence": "high",
+  "foundry": "ITC",
+  "library": "adobe",
+  "note": "Glyphic serif with sharply cut terminals."
+ },
+ "Perpetua": {
+  "cluster": "R08",
+  "tier": 1,
+  "confidence": "high",
+  "foundry": "Monotype",
+  "library": "monotype",
+  "note": "Gill’s inscriptional roman."
+ },
+ "Copperplate Gothic": {
+  "cluster": "R08",
+  "tier": 1,
+  "confidence": "high",
+  "foundry": "Monotype",
+  "library": "adobe",
+  "note": "Tiny-serifed engraving capitals."
+ },
+ "Acumin Black": {
+  "cluster": "D06",
+  "tier": 1,
+  "confidence": "high",
+  "foundry": "Adobe",
+  "library": "adobe",
+  "note": "The heaviest Acumin cuts."
+ },
+ "Obviously": {
+  "cluster": "D06",
+  "tier": 1,
+  "confidence": "medium",
+  "foundry": "OH no Type",
+  "library": "retail",
+  "note": "Display sans across a wide width and weight matrix."
+ },
+ "Monument Extended": {
+  "cluster": "D06",
+  "tier": 1,
+  "confidence": "high",
+  "foundry": "Pangram Pangram",
+  "library": "retail",
+  "note": "Very wide heavy display sans; a sports-brand staple."
+ },
+ "Archivo Black": {
+  "cluster": "D06",
+  "tier": 1,
+  "confidence": "high",
+  "foundry": "Omnibus Type",
+  "library": "adobe",
+  "note": "Heavy grotesk; already in your library."
+ },
+ "GT Super": {
+  "cluster": "R04",
+  "tier": 1,
+  "confidence": "medium",
+  "foundry": "Grilli Type",
+  "library": "retail",
+  "note": "1970s-flavoured display serif across optical sizes."
+ },
+ "Brothers": {
+  "cluster": "D07",
+  "tier": 1,
+  "confidence": "high",
+  "foundry": "Emigre",
+  "library": "retail",
+  "note": "Athletic block lettering with stencil cuts."
+ },
+ "Rig Solid": {
+  "cluster": "D07",
+  "tier": 1,
+  "confidence": "medium",
+  "foundry": "Jamie Clarke",
+  "library": "retail",
+  "note": "Layered wood-type display with shadow and inline."
+ },
+ "Idlewild": {
+  "cluster": "D07",
+  "tier": 1,
+  "confidence": "medium",
+  "foundry": "Hoefler&Co",
+  "library": "retail",
+  "note": "Wide geometric titling face for signage."
+ },
+ "Decimal": {
+  "cluster": "S10",
+  "tier": 1,
+  "confidence": "medium",
+  "foundry": "Hoefler&Co",
+  "library": "retail",
+  "note": "Watch-dial lettering made into a typeface."
+ },
+ "Cooper Black": {
+  "cluster": "D05",
+  "tier": 1,
+  "confidence": "high",
+  "foundry": "various",
+  "library": "adobe",
+  "note": "The soft fat face; bulbous curves and low counters."
+ },
+ "Ohno Fatface": {
+  "cluster": "D05",
+  "tier": 1,
+  "confidence": "high",
+  "foundry": "OH no Type",
+  "library": "retail",
+  "note": "Contemporary fat face with extreme contrast."
+ },
+ "Buffo": {
+  "cluster": "D05",
+  "tier": 1,
+  "confidence": "medium",
+  "foundry": "Adobe",
+  "library": "adobe",
+  "note": "Rounded fat display serif."
+ },
+ "Goodlife": {
+  "cluster": "D05",
+  "tier": 1,
+  "confidence": "medium",
+  "foundry": "Adobe",
+  "library": "adobe",
+  "note": "Retro display family with multiple layered styles."
+ },
+ "Mostra Nuova": {
+  "cluster": "D04",
+  "tier": 1,
+  "confidence": "high",
+  "foundry": "Adobe",
+  "library": "adobe",
+  "note": "Art Deco geometric display with alternate caps."
+ },
+ "LTC Broadway": {
+  "cluster": "D04",
+  "tier": 1,
+  "confidence": "high",
+  "foundry": "Lanston",
+  "library": "adobe",
+  "note": "The Art Deco display face."
+ },
+ "HWT Geometric": {
+  "cluster": "D04",
+  "tier": 1,
+  "confidence": "medium",
+  "foundry": "Hamilton Wood Type",
+  "library": "adobe",
+  "note": "Wood-type geometric display."
+ },
+ "Area": {
+  "cluster": "D04",
+  "tier": 1,
+  "confidence": "medium",
+  "foundry": "Adobe",
+  "library": "adobe",
+  "note": "Deco-flavoured geometric display."
+ },
+ "Ponderosa": {
+  "cluster": "D03",
+  "tier": 1,
+  "confidence": "high",
+  "foundry": "Adobe",
+  "library": "adobe",
+  "note": "Slab-serifed western wood type."
+ },
+ "Hamilton Wood Type Collection": {
+  "cluster": "D03",
+  "tier": 1,
+  "confidence": "high",
+  "foundry": "Hamilton",
+  "library": "adobe",
+  "note": "Digitisations from the Hamilton wood-type museum."
+ },
+ "Fette Fraktur": {
+  "cluster": "D02",
+  "tier": 1,
+  "confidence": "high",
+  "foundry": "Linotype",
+  "library": "monotype",
+  "note": "The heavy German fraktur."
+ },
+ "FF Brokenscript": {
+  "cluster": "D02",
+  "tier": 1,
+  "confidence": "high",
+  "foundry": "FontFont",
+  "library": "adobe",
+  "note": "Contemporary blackletter with a rough edge."
+ },
+ "Canela Blackletter": {
+  "cluster": "D02",
+  "tier": 1,
+  "confidence": "medium",
+  "foundry": "Commercial Type",
+  "library": "retail",
+  "note": "Blackletter drawn with Canela’s flared logic."
+ },
+ "Old English Text": {
+  "cluster": "D02",
+  "tier": 1,
+  "confidence": "high",
+  "foundry": "Monotype",
+  "library": "monotype",
+  "note": "The textura everyone recognises."
+ },
+ "Operator": {
+  "cluster": "M01",
+  "tier": 1,
+  "confidence": "high",
+  "foundry": "Hoefler&Co",
+  "library": "retail",
+  "note": "Typewriter-derived mono with a genuine italic."
+ },
+ "Operator Mono": {
+  "cluster": "M01",
+  "tier": 1,
+  "confidence": "high",
+  "foundry": "Hoefler&Co",
+  "library": "retail",
+  "note": "The code-editor cut of Operator."
+ },
+ "Nitti": {
+  "cluster": "M01",
+  "tier": 1,
+  "confidence": "high",
+  "foundry": "Bold Monday",
+  "library": "adobe",
+  "note": "Contemporary mono with a drawn quality."
+ },
+ "Pitch": {
+  "cluster": "M01",
+  "tier": 1,
+  "confidence": "high",
+  "foundry": "Klim",
+  "library": "retail",
+  "note": "Typewriter-referenced mono for text and code."
+ },
+ "Input Mono": {
+  "cluster": "M01",
+  "tier": 1,
+  "confidence": "high",
+  "foundry": "Font Bureau",
+  "library": "adobe",
+  "note": "Highly configurable coding mono."
+ },
+ "Source Code Pro": {
+  "cluster": "M01",
+  "tier": 1,
+  "confidence": "high",
+  "foundry": "Adobe",
+  "library": "adobe",
+  "note": "Adobe’s open coding mono."
+ },
+ "IBM Plex Mono": {
+  "cluster": "M01",
+  "tier": 1,
+  "confidence": "high",
+  "foundry": "IBM",
+  "library": "adobe",
+  "note": "The mono cut of the Plex system."
+ },
+ "GT America Mono": {
+  "cluster": "M01",
+  "tier": 1,
+  "confidence": "medium",
+  "foundry": "Grilli Type",
+  "library": "retail",
+  "note": "Monospaced GT America."
+ },
+ "Centra Mono": {
+  "cluster": "M01",
+  "tier": 1,
+  "confidence": "medium",
+  "foundry": "Sharp Type",
+  "library": "retail",
+  "note": "Monospaced Centra."
+ },
+ "Nitti Typewriter": {
+  "cluster": "M02",
+  "tier": 1,
+  "confidence": "high",
+  "foundry": "Bold Monday",
+  "library": "adobe",
+  "note": "Deliberately inked typewriter mono."
+ },
+ "American Typewriter": {
+  "cluster": "M02",
+  "tier": 1,
+  "confidence": "high",
+  "foundry": "ITC",
+  "library": "adobe",
+  "note": "Softened typewriter slab."
+ },
+ "Courier": {
+  "cluster": "M02",
+  "tier": 1,
+  "confidence": "high",
+  "foundry": "various",
+  "library": "bundled",
+  "note": "The typewriter mono."
+ },
+ "Lo-Res": {
+  "cluster": "M02",
+  "tier": 1,
+  "confidence": "high",
+  "foundry": "Emigre",
+  "library": "adobe",
+  "note": "Bitmap and pixel display family."
+ },
+ "P22 Typewriter": {
+  "cluster": "M02",
+  "tier": 1,
+  "confidence": "medium",
+  "foundry": "P22",
+  "library": "adobe",
+  "note": "Distressed typewriter face."
+ },
+ "Prestige Elite": {
+  "cluster": "M02",
+  "tier": 1,
+  "confidence": "high",
+  "foundry": "Linotype",
+  "library": "monotype",
+  "note": "IBM typewriter face."
+ },
+ "Brush Script": {
+  "cluster": "H04",
+  "tier": 1,
+  "confidence": "high",
+  "foundry": "Monotype",
+  "library": "adobe",
+  "note": "The connected brush script."
+ },
+ "SignPainter": {
+  "cluster": "H04",
+  "tier": 1,
+  "confidence": "high",
+  "foundry": "House Industries",
+  "library": "retail",
+  "note": "Sign-painter lettering made systematic."
+ },
+ "Thirsty Script": {
+  "cluster": "H04",
+  "tier": 1,
+  "confidence": "medium",
+  "foundry": "Yellow Design",
+  "library": "adobe",
+  "note": "Retro connected script with layered styles."
+ },
+ "Sant’Elia Script": {
+  "cluster": "H04",
+  "tier": 1,
+  "confidence": "medium",
+  "foundry": "Yellow Design",
+  "library": "adobe",
+  "note": "Brush script with rough and layered cuts."
+ },
+ "Permanent Marker Pro": {
+  "cluster": "H03",
+  "tier": 1,
+  "confidence": "medium",
+  "foundry": "Adobe",
+  "library": "adobe",
+  "note": "Marker lettering with a genuine ink edge."
+ },
+ "Rock Salt Pro": {
+  "cluster": "H03",
+  "tier": 1,
+  "confidence": "medium",
+  "foundry": "Adobe",
+  "library": "adobe",
+  "note": "Rough hand lettering."
+ },
+ "Felt Tip Roman": {
+  "cluster": "H03",
+  "tier": 1,
+  "confidence": "medium",
+  "foundry": "House Industries",
+  "library": "retail",
+  "note": "Marker-drawn roman."
+ },
+ "Mistral": {
+  "cluster": "H03",
+  "tier": 1,
+  "confidence": "high",
+  "foundry": "Linotype",
+  "library": "monotype",
+  "note": "Brush-drawn connected script."
+ },
+ "Bickham Script": {
+  "cluster": "H05",
+  "tier": 1,
+  "confidence": "high",
+  "foundry": "Adobe",
+  "library": "adobe",
+  "note": "Copperplate engraving script with extensive swashes."
+ },
+ "Sloop Script": {
+  "cluster": "H05",
+  "tier": 1,
+  "confidence": "high",
+  "foundry": "Font Bureau",
+  "library": "adobe",
+  "note": "Formal pointed-pen script in three degrees."
+ },
+ "Champion Script": {
+  "cluster": "H05",
+  "tier": 1,
+  "confidence": "high",
+  "foundry": "Monotype",
+  "library": "monotype",
+  "note": "Formal calligraphic script."
+ },
+ "Zapfino": {
+  "cluster": "H05",
+  "tier": 1,
+  "confidence": "high",
+  "foundry": "Linotype",
+  "library": "monotype",
+  "note": "Zapf’s calligraphic tour de force."
+ },
+ "Blambot": {
+  "cluster": "H02",
+  "tier": 1,
+  "confidence": "high",
+  "foundry": "Blambot",
+  "library": "retail",
+  "note": "The comic-lettering catalogue."
+ },
+ "Comicraft": {
+  "cluster": "H02",
+  "tier": 1,
+  "confidence": "high",
+  "foundry": "Comicraft",
+  "library": "retail",
+  "note": "The other comic-lettering catalogue."
+ },
+ "Cheee": {
+  "cluster": "D09",
+  "tier": 1,
+  "confidence": "high",
+  "foundry": "OH no Type",
+  "library": "adobe",
+  "note": "Variable display face built to distort."
+ },
+ "Tomarik": {
+  "cluster": "D09",
+  "tier": 1,
+  "confidence": "medium",
+  "foundry": "Adobe",
+  "library": "adobe",
+  "note": "Rough-edged display serif and sans."
+ },
+ "Digestive": {
+  "cluster": "D09",
+  "tier": 1,
+  "confidence": "high",
+  "foundry": "OH no Type",
+  "library": "retail",
+  "note": "Wilfully distorted display face."
+ },
+ "Eckmannpsych": {
+  "cluster": "D09",
+  "tier": 1,
+  "confidence": "high",
+  "foundry": "OH no Type",
+  "library": "retail",
+  "note": "Art Nouveau by way of psychedelic poster lettering."
+ },
+ "Sharp Earth": {
+  "cluster": "D09",
+  "tier": 1,
+  "confidence": "medium",
+  "foundry": "Sharp Type",
+  "library": "retail",
+  "note": "Experimental display with an organic distortion."
+ },
+ "Akzidenz Grotesk": {
+  "cluster": "S01",
+  "tier": 1,
+  "confidence": "high",
+  "foundry": "Berthold",
+  "library": "retail",
+  "note": "Alternate spelling of the Berthold original."
+ },
+ "Aktiv Grotesk": {
+  "cluster": "S01",
+  "tier": 1,
+  "confidence": "high",
+  "foundry": "Dalton Maag",
+  "library": "retail",
+  "note": "Deliberate middle ground between Helvetica and Univers."
+ },
+ "Apercu": {
+  "cluster": "S01",
+  "tier": 1,
+  "confidence": "high",
+  "foundry": "Colophon",
+  "library": "retail",
+  "note": "Grotesk with humanist irregularity; a branding staple of the 2010s."
+ },
+ "Apercu Mono": {
+  "cluster": "M01",
+  "tier": 1,
+  "confidence": "high",
+  "foundry": "Colophon",
+  "library": "retail",
+  "note": "Monospaced Apercu."
+ },
+ "Maison Neue": {
+  "cluster": "S01",
+  "tier": 1,
+  "confidence": "high",
+  "foundry": "Milieu Grotesque",
+  "library": "retail",
+  "note": "Neutral Swiss grotesk with a technical finish."
+ },
+ "Swiss 721": {
+  "cluster": "S01",
+  "tier": 1,
+  "confidence": "high",
+  "foundry": "Bitstream",
+  "library": "retail",
+  "note": "Helvetica-metric clone."
+ },
+ "Effra": {
+  "cluster": "S02",
+  "tier": 1,
+  "confidence": "medium",
+  "foundry": "Dalton Maag",
+  "library": "retail",
+  "note": "Humanist sans drawn from Caslon’s sans capitals."
+ },
+ "Lucida Grande": {
+  "cluster": "S02",
+  "tier": 1,
+  "confidence": "medium",
+  "foundry": "Bigelow & Holmes",
+  "library": "bundled",
+  "note": "Humanist UI sans; macOS’s former system face."
+ },
+ "Gibson": {
+  "cluster": "S02",
+  "tier": 1,
+  "confidence": "medium",
+  "foundry": "Canada Type",
+  "library": "adobe",
+  "note": "Humanist sans on a geometric frame."
+ },
+ "Adelle Sans": {
+  "cluster": "S02",
+  "tier": 1,
+  "confidence": "high",
+  "foundry": "TypeTogether",
+  "library": "adobe",
+  "note": "The sans companion to Adelle."
+ },
+ "Museo Sans": {
+  "cluster": "S02",
+  "tier": 1,
+  "confidence": "medium",
+  "foundry": "exljbris",
+  "library": "retail",
+  "note": "Semi-geometric humanist sans."
+ },
+ "Museo Sans Rounded": {
+  "cluster": "S06",
+  "tier": 1,
+  "confidence": "medium",
+  "foundry": "exljbris",
+  "library": "retail",
+  "note": "Rounded Museo Sans."
+ },
+ "Museo": {
+  "cluster": "R06",
+  "tier": 1,
+  "confidence": "medium",
+  "foundry": "exljbris",
+  "library": "retail",
+  "note": "Slab-serif display family."
+ },
+ "Museo Slab": {
+  "cluster": "R06",
+  "tier": 1,
+  "confidence": "medium",
+  "foundry": "exljbris",
+  "library": "retail",
+  "note": "The slab cut of the Museo system."
+ },
+ "Avenir": {
+  "cluster": "S04",
+  "tier": 1,
+  "confidence": "high",
+  "foundry": "Linotype",
+  "library": "monotype",
+  "note": "Geometric humanised — Frutiger’s answer to Futura."
+ },
+ "Avenir Next": {
+  "cluster": "S04",
+  "tier": 1,
+  "confidence": "high",
+  "foundry": "Monotype",
+  "library": "monotype",
+  "note": "Current Avenir with a fuller range."
+ },
+ "Avenir Next Pro": {
+  "cluster": "S04",
+  "tier": 1,
+  "confidence": "high",
+  "foundry": "Monotype",
+  "library": "monotype",
+  "note": "The extended Avenir Next release."
+ },
+ "Nexa": {
+  "cluster": "S04",
+  "tier": 1,
+  "confidence": "medium",
+  "foundry": "Fontfabric",
+  "library": "retail",
+  "note": "Geometric sans widely used in branding."
+ },
+ "Campton": {
+  "cluster": "S04",
+  "tier": 1,
+  "confidence": "medium",
+  "foundry": "René Bieder",
+  "library": "retail",
+  "note": "Geometric sans on the Futura model."
+ },
+ "Cera Pro": {
+  "cluster": "S04",
+  "tier": 1,
+  "confidence": "medium",
+  "foundry": "TypeMates",
+  "library": "retail",
+  "note": "Geometric sans with softened joints."
+ },
+ "TT Norms Pro": {
+  "cluster": "S04",
+  "tier": 1,
+  "confidence": "medium",
+  "foundry": "TypeType",
+  "library": "retail",
+  "note": "Neutral geometric sans with a very wide range."
+ },
+ "Cerebri Sans": {
+  "cluster": "S04",
+  "tier": 1,
+  "confidence": "medium",
+  "foundry": "Hanken",
+  "library": "retail",
+  "note": "Geometric sans with subtle humanist detail."
+ },
+ "Brown": {
+  "cluster": "S04",
+  "tier": 1,
+  "confidence": "medium",
+  "foundry": "Lineto",
+  "library": "retail",
+  "note": "Geometric sans with a compact, technical finish."
+ },
+ "Azo Sans": {
+  "cluster": "S04",
+  "tier": 1,
+  "confidence": "medium",
+  "foundry": "Rui Abreu",
+  "library": "retail",
+  "note": "Geometric sans with wide apertures."
+ },
+ "Centrale Sans": {
+  "cluster": "S04",
+  "tier": 1,
+  "confidence": "medium",
+  "foundry": "Typedepot",
+  "library": "retail",
+  "note": "Geometric sans for corporate systems."
+ },
+ "Larsseit": {
+  "cluster": "S04",
+  "tier": 1,
+  "confidence": "medium",
+  "foundry": "Type Dynamic",
+  "library": "retail",
+  "note": "Geometric sans with a slightly condensed cast."
+ },
+ "Averta": {
+  "cluster": "S04",
+  "tier": 1,
+  "confidence": "medium",
+  "foundry": "Intelligent Design",
+  "library": "retail",
+  "note": "Geometric sans with a neutral finish."
+ },
+ "Uni Sans": {
+  "cluster": "S04",
+  "tier": 1,
+  "confidence": "medium",
+  "foundry": "Fontfabric",
+  "library": "retail",
+  "note": "Geometric display sans."
+ },
+ "Zona Pro": {
+  "cluster": "S04",
+  "tier": 1,
+  "confidence": "medium",
+  "foundry": "Fontfabric",
+  "library": "retail",
+  "note": "Rounded geometric display sans."
+ },
+ "Pluto Sans": {
+  "cluster": "S04",
+  "tier": 1,
+  "confidence": "medium",
+  "foundry": "HVD",
+  "library": "retail",
+  "note": "Geometric sans, the upright companion to Pluto."
+ },
+ "Glober": {
+  "cluster": "S04",
+  "tier": 1,
+  "confidence": "medium",
+  "foundry": "Fontfabric",
+  "library": "retail",
+  "note": "Geometric sans with rounded terminals."
+ },
+ "Intro": {
+  "cluster": "D06",
+  "tier": 1,
+  "confidence": "medium",
+  "foundry": "Fontfabric",
+  "library": "retail",
+  "note": "Heavy geometric display sans in many layered styles."
+ },
+ "Block Berthold": {
+  "cluster": "D06",
+  "tier": 1,
+  "confidence": "medium",
+  "foundry": "Berthold",
+  "library": "retail",
+  "note": "Heavy, irregular poster face with rough edges."
+ },
+ "Brandon Text": {
+  "cluster": "S04",
+  "tier": 1,
+  "confidence": "high",
+  "foundry": "HVD",
+  "library": "adobe",
+  "note": "The text-size companion to Brandon Grotesque."
+ },
+ "Proxima Nova Soft": {
+  "cluster": "S06",
+  "tier": 1,
+  "confidence": "high",
+  "foundry": "Mark Simonson",
+  "library": "adobe",
+  "note": "Rounded Proxima Nova."
+ },
+ "League Gothic": {
+  "cluster": "S07",
+  "tier": 1,
+  "confidence": "high",
+  "foundry": "The League of Moveable Type",
+  "library": "retail",
+  "note": "Open revival of Alternate Gothic."
+ },
+ "Bebas Neue": {
+  "cluster": "S07",
+  "tier": 1,
+  "confidence": "high",
+  "foundry": "Dharma Type",
+  "library": "adobe",
+  "note": "Condensed caps display face; also free on Google Fonts."
+ },
+ "Calluna": {
+  "cluster": "R01",
+  "tier": 1,
+  "confidence": "medium",
+  "foundry": "exljbris",
+  "library": "retail",
+  "note": "Oldstyle text serif with slab-ish serifs."
+ },
+ "FF Tisa": {
+  "cluster": "R06",
+  "tier": 1,
+  "confidence": "medium",
+  "foundry": "FontFont",
+  "library": "adobe",
+  "note": "Slab serif drawn for editorial text."
+ },
+ "Freight Text": {
+  "cluster": "R03",
+  "tier": 1,
+  "confidence": "medium",
+  "foundry": "Darden Studio",
+  "library": "adobe",
+  "note": "The text cuts of the Freight superfamily."
+ },
+ "Freight Display": {
+  "cluster": "R04",
+  "tier": 1,
+  "confidence": "medium",
+  "foundry": "Darden Studio",
+  "library": "adobe",
+  "note": "The high-contrast display cuts of Freight."
+ },
+ "Bodoni Poster": {
+  "cluster": "R04",
+  "tier": 1,
+  "confidence": "high",
+  "foundry": "various",
+  "library": "adobe",
+  "note": "The ultra-heavy display Bodoni."
+ },
+ "Fairfield": {
+  "cluster": "R03",
+  "tier": 1,
+  "confidence": "medium",
+  "foundry": "Linotype",
+  "library": "monotype",
+  "note": "Transitional text serif with fine serifs."
+ },
+ "P22 Underground": {
+  "cluster": "S05",
+  "tier": 1,
+  "confidence": "high",
+  "foundry": "P22",
+  "library": "adobe",
+  "note": "Johnston’s London Underground alphabet."
+ },
+ "Minion Pro": {
+  "cluster": "R01",
+  "tier": 1,
+  "confidence": "high",
+  "foundry": "Adobe",
+  "library": "adobe",
+  "note": "The OpenType release of Minion."
+ },
+ "Myriad Pro": {
+  "cluster": "S02",
+  "tier": 1,
+  "confidence": "high",
+  "foundry": "Adobe",
+  "library": "adobe",
+  "note": "The OpenType release of Myriad."
+ },
+ "Acumin Pro": {
+  "cluster": "S03",
+  "tier": 1,
+  "confidence": "high",
+  "foundry": "Adobe",
+  "library": "adobe",
+  "note": "The retail name for the Acumin system."
+ },
+ "Copperplate": {
+  "cluster": "R08",
+  "tier": 1,
+  "confidence": "high",
+  "foundry": "Monotype",
+  "library": "bundled",
+  "note": "Short form of Copperplate Gothic."
+ },
+ "Neue Helvetica": {
+  "cluster": "S01",
+  "tier": 1,
+  "confidence": "high",
+  "foundry": "Linotype",
+  "library": "monotype",
+  "note": "Alternate name for Helvetica Neue."
+ },
+ "Aldus": {
+  "cluster": "R01",
+  "tier": 2,
+  "confidence": null,
+  "foundry": null,
+  "library": null,
+  "note": "",
+  "via": "classification:serif-oldstyle"
+ },
+ "Algerian": {
+  "cluster": "R01",
+  "tier": 2,
+  "confidence": null,
+  "foundry": null,
+  "library": null,
+  "note": "",
+  "via": "classification:serif-oldstyle"
+ },
+ "Amelia": {
+  "cluster": "R01",
+  "tier": 2,
+  "confidence": null,
+  "foundry": null,
+  "library": null,
+  "note": "",
+  "via": "classification:serif-oldstyle"
+ },
+ "Antiqua": {
+  "cluster": "R01",
+  "tier": 2,
+  "confidence": null,
+  "foundry": null,
+  "library": null,
+  "note": "",
+  "via": "classification:serif-oldstyle"
+ },
+ "Aster": {
+  "cluster": "R01",
+  "tier": 2,
+  "confidence": null,
+  "foundry": null,
+  "library": null,
+  "note": "",
+  "via": "classification:serif-oldstyle"
+ },
+ "Aurora": {
+  "cluster": "R01",
+  "tier": 2,
+  "confidence": null,
+  "foundry": null,
+  "library": null,
+  "note": "",
+  "via": "classification:serif-oldstyle"
+ },
+ "Bell": {
+  "cluster": "R01",
+  "tier": 2,
+  "confidence": null,
+  "foundry": null,
+  "library": null,
+  "note": "",
+  "via": "classification:serif-oldstyle"
+ },
+ "Belwe Roman": {
+  "cluster": "R01",
+  "tier": 2,
+  "confidence": null,
+  "foundry": null,
+  "library": null,
+  "note": "",
+  "via": "classification:serif-oldstyle"
+ },
+ "Bernhard Modern": {
+  "cluster": "R01",
+  "tier": 2,
+  "confidence": null,
+  "foundry": null,
+  "library": null,
+  "note": "",
+  "via": "classification:serif-oldstyle"
+ },
+ "Bitstream Charter": {
+  "cluster": "R01",
+  "tier": 2,
+  "confidence": null,
+  "foundry": null,
+  "library": null,
+  "note": "",
+  "via": "classification:serif-oldstyle"
+ },
+ "Bookman": {
+  "cluster": "R01",
+  "tier": 2,
+  "confidence": null,
+  "foundry": null,
+  "library": null,
+  "note": "",
+  "via": "classification:serif-oldstyle"
+ },
+ "Bulmer": {
+  "cluster": "R01",
+  "tier": 2,
+  "confidence": null,
+  "foundry": "Monotype",
+  "library": null,
+  "note": "",
+  "via": "classification:serif-oldstyle"
+ },
+ "Caledonia": {
+  "cluster": "R01",
+  "tier": 2,
+  "confidence": null,
+  "foundry": null,
+  "library": null,
+  "note": "",
+  "via": "classification:serif-oldstyle"
+ },
+ "Calisto MT": {
+  "cluster": "R01",
+  "tier": 2,
+  "confidence": null,
+  "foundry": null,
+  "library": null,
+  "note": "",
+  "via": "classification:serif-oldstyle"
+ },
+ "Cambria": {
+  "cluster": "R01",
+  "tier": 2,
+  "confidence": null,
+  "foundry": null,
+  "library": null,
+  "note": "",
+  "via": "classification:serif-oldstyle"
+ },
+ "Capitals": {
+  "cluster": "R01",
+  "tier": 2,
+  "confidence": null,
+  "foundry": null,
+  "library": null,
+  "note": "",
+  "via": "classification:serif-oldstyle"
+ },
+ "Cartier": {
+  "cluster": "R01",
+  "tier": 2,
+  "confidence": null,
+  "foundry": null,
+  "library": null,
+  "note": "",
+  "via": "classification:serif-oldstyle"
+ },
+ "Caslon Antique": {
+  "cluster": "R02",
+  "tier": 2,
+  "confidence": null,
+  "foundry": null,
+  "library": null,
+  "note": "",
+  "via": "classification:serif-oldstyle"
+ },
+ "Century": {
+  "cluster": "R01",
+  "tier": 2,
+  "confidence": null,
+  "foundry": null,
+  "library": null,
+  "note": "",
+  "via": "classification:serif-oldstyle"
+ },
+ "Charis SIL": {
+  "cluster": "R01",
+  "tier": 2,
+  "confidence": null,
+  "foundry": null,
+  "library": null,
+  "note": "",
+  "via": "classification:serif-oldstyle"
+ },
+ "Gloucester": {
+  "cluster": "R01",
+  "tier": 2,
+  "confidence": null,
+  "foundry": null,
+  "library": null,
+  "note": "",
+  "via": "classification:serif-oldstyle"
+ },
+ "Clearface": {
+  "cluster": "R01",
+  "tier": 2,
+  "confidence": null,
+  "foundry": null,
+  "library": null,
+  "note": "",
+  "via": "classification:serif-oldstyle"
+ },
+ "Cloister Black": {
+  "cluster": "R01",
+  "tier": 2,
+  "confidence": null,
+  "foundry": null,
+  "library": null,
+  "note": "",
+  "via": "classification:serif-oldstyle"
+ },
+ "Cochin": {
+  "cluster": "R01",
+  "tier": 2,
+  "confidence": null,
+  "foundry": null,
+  "library": null,
+  "note": "",
+  "via": "classification:serif-oldstyle"
+ },
+ "Computer Modern": {
+  "cluster": "R01",
+  "tier": 2,
+  "confidence": null,
+  "foundry": null,
+  "library": null,
+  "note": "",
+  "via": "classification:serif-oldstyle"
+ },
+ "Concrete Roman": {
+  "cluster": "R01",
+  "tier": 2,
+  "confidence": null,
+  "foundry": null,
+  "library": null,
+  "note": "",
+  "via": "classification:serif-oldstyle"
+ },
+ "Constantia": {
+  "cluster": "R01",
+  "tier": 2,
+  "confidence": null,
+  "foundry": null,
+  "library": null,
+  "note": "",
+  "via": "classification:serif-oldstyle"
+ },
+ "Emerson": {
+  "cluster": "R01",
+  "tier": 2,
+  "confidence": null,
+  "foundry": "Monotype",
+  "library": null,
+  "note": "",
+  "via": "classification:serif-oldstyle"
+ },
+ "FF Scala": {
+  "cluster": "R01",
+  "tier": 2,
+  "confidence": null,
+  "foundry": null,
+  "library": null,
+  "note": "",
+  "via": "classification:serif-oldstyle"
+ },
+ "Footlight": {
+  "cluster": "R01",
+  "tier": 2,
+  "confidence": null,
+  "foundry": null,
+  "library": null,
+  "note": "",
+  "via": "classification:serif-oldstyle"
+ },
+ "Garamond": {
+  "cluster": "R01",
+  "tier": 2,
+  "confidence": null,
+  "foundry": null,
+  "library": null,
+  "note": "",
+  "via": "classification:serif-oldstyle"
+ },
+ "Gentium": {
+  "cluster": "R01",
+  "tier": 2,
+  "confidence": null,
+  "foundry": null,
+  "library": null,
+  "note": "",
+  "via": "classification:serif-oldstyle"
+ },
+ "Goudy Old Style": {
+  "cluster": "R01",
+  "tier": 2,
+  "confidence": null,
+  "foundry": "Monotype",
+  "library": null,
+  "note": "",
+  "via": "classification:serif-oldstyle"
+ },
+ "Goudy": {
+  "cluster": "R01",
+  "tier": 2,
+  "confidence": null,
+  "foundry": null,
+  "library": null,
+  "note": "",
+  "via": "classification:serif-oldstyle"
+ },
+ "Hightower Text": {
+  "cluster": "R01",
+  "tier": 2,
+  "confidence": null,
+  "foundry": "Hoefler&Co / Frere-Jones",
+  "library": null,
+  "note": "",
+  "via": "classification:serif-oldstyle"
+ },
+ "Hoefler Text": {
+  "cluster": "R01",
+  "tier": 2,
+  "confidence": null,
+  "foundry": "Hoefler&Co / Frere-Jones",
+  "library": null,
+  "note": "",
+  "via": "classification:serif-oldstyle"
+ },
+ "IBM Plex Serif": {
+  "cluster": "R03",
+  "tier": 2,
+  "confidence": null,
+  "foundry": null,
+  "library": null,
+  "note": "",
+  "via": "classification:serif-oldstyle"
+ },
+ "Imprint": {
+  "cluster": "R01",
+  "tier": 2,
+  "confidence": null,
+  "foundry": "Monotype",
+  "library": null,
+  "note": "",
+  "via": "classification:serif-oldstyle"
+ },
+ "Janson": {
+  "cluster": "R01",
+  "tier": 2,
+  "confidence": null,
+  "foundry": null,
+  "library": null,
+  "note": "",
+  "via": "classification:serif-oldstyle"
+ },
+ "Joanna": {
+  "cluster": "R01",
+  "tier": 2,
+  "confidence": null,
+  "foundry": "Monotype",
+  "library": null,
+  "note": "",
+  "via": "classification:serif-oldstyle"
+ },
+ "Korinna": {
+  "cluster": "R01",
+  "tier": 2,
+  "confidence": null,
+  "foundry": null,
+  "library": null,
+  "note": "",
+  "via": "classification:serif-oldstyle"
+ },
+ "Lexicon": {
+  "cluster": "R01",
+  "tier": 2,
+  "confidence": null,
+  "foundry": null,
+  "library": null,
+  "note": "",
+  "via": "classification:serif-oldstyle"
+ },
+ "Lucida Bright": {
+  "cluster": "R01",
+  "tier": 2,
+  "confidence": null,
+  "foundry": null,
+  "library": null,
+  "note": "",
+  "via": "classification:serif-oldstyle"
+ },
+ "Matrix": {
+  "cluster": "R01",
+  "tier": 2,
+  "confidence": null,
+  "foundry": null,
+  "library": null,
+  "note": "",
+  "via": "classification:serif-oldstyle"
+ },
+ "Mrs Eaves": {
+  "cluster": "R01",
+  "tier": 2,
+  "confidence": null,
+  "foundry": null,
+  "library": null,
+  "note": "",
+  "via": "classification:serif-oldstyle"
+ },
+ "Melior": {
+  "cluster": "R01",
+  "tier": 2,
+  "confidence": null,
+  "foundry": null,
+  "library": null,
+  "note": "",
+  "via": "classification:serif-oldstyle"
+ },
+ "Nimbus Roman": {
+  "cluster": "R01",
+  "tier": 2,
+  "confidence": null,
+  "foundry": null,
+  "library": null,
+  "note": "",
+  "via": "classification:serif-oldstyle"
+ },
+ "Noto Serif": {
+  "cluster": "R03",
+  "tier": 2,
+  "confidence": null,
+  "foundry": null,
+  "library": null,
+  "note": "",
+  "via": "classification:serif-oldstyle"
+ },
+ "Palatino": {
+  "cluster": "R01",
+  "tier": 2,
+  "confidence": null,
+  "foundry": null,
+  "library": null,
+  "note": "",
+  "via": "classification:serif-oldstyle"
+ },
+ "Book Antiqua": {
+  "cluster": "R01",
+  "tier": 2,
+  "confidence": null,
+  "foundry": null,
+  "library": null,
+  "note": "",
+  "via": "classification:serif-oldstyle"
+ },
+ "PT Serif": {
+  "cluster": "R03",
+  "tier": 2,
+  "confidence": null,
+  "foundry": null,
+  "library": null,
+  "note": "",
+  "via": "classification:serif-oldstyle"
+ },
+ "Requiem": {
+  "cluster": "R01",
+  "tier": 2,
+  "confidence": null,
+  "foundry": "Hoefler&Co / Frere-Jones",
+  "library": null,
+  "note": "",
+  "via": "classification:serif-oldstyle"
+ },
+ "Rotis": {
+  "cluster": "R01",
+  "tier": 2,
+  "confidence": null,
+  "foundry": null,
+  "library": null,
+  "note": "",
+  "via": "classification:serif-oldstyle"
+ },
+ "Source Serif": {
+  "cluster": "R03",
+  "tier": 2,
+  "confidence": null,
+  "foundry": null,
+  "library": null,
+  "note": "",
+  "via": "classification:serif-oldstyle"
+ },
+ "Stempel Schneidler": {
+  "cluster": "R01",
+  "tier": 2,
+  "confidence": null,
+  "foundry": null,
+  "library": null,
+  "note": "",
+  "via": "classification:serif-oldstyle"
+ },
+ "Sylfaen": {
+  "cluster": "R01",
+  "tier": 2,
+  "confidence": null,
+  "foundry": null,
+  "library": null,
+  "note": "",
+  "via": "classification:serif-oldstyle"
+ },
+ "Theano Didot": {
+  "cluster": "R04",
+  "tier": 2,
+  "confidence": null,
+  "foundry": null,
+  "library": null,
+  "note": "",
+  "via": "classification:serif-oldstyle"
+ },
+ "Times": {
+  "cluster": "R01",
+  "tier": 2,
+  "confidence": null,
+  "foundry": null,
+  "library": null,
+  "note": "",
+  "via": "classification:serif-oldstyle"
+ },
+ "Trump Mediaeval": {
+  "cluster": "R01",
+  "tier": 2,
+  "confidence": null,
+  "foundry": null,
+  "library": null,
+  "note": "",
+  "via": "classification:serif-oldstyle"
+ },
+ "Berkeley Old Style": {
+  "cluster": "R01",
+  "tier": 2,
+  "confidence": null,
+  "foundry": null,
+  "library": null,
+  "note": "",
+  "via": "classification:serif-oldstyle"
+ },
+ "Californian FB": {
+  "cluster": "R01",
+  "tier": 2,
+  "confidence": null,
+  "foundry": null,
+  "library": null,
+  "note": "",
+  "via": "classification:serif-oldstyle"
+ },
+ "Walbaum": {
+  "cluster": "R01",
+  "tier": 2,
+  "confidence": null,
+  "foundry": "Monotype",
+  "library": null,
+  "note": "",
+  "via": "classification:serif-oldstyle"
+ },
+ "Windsor": {
+  "cluster": "R01",
+  "tier": 2,
+  "confidence": null,
+  "foundry": null,
+  "library": null,
+  "note": "",
+  "via": "classification:serif-oldstyle"
+ },
+ "Alexandria": {
+  "cluster": "R06",
+  "tier": 2,
+  "confidence": null,
+  "foundry": null,
+  "library": null,
+  "note": "",
+  "via": "classification:slab"
+ },
+ "Athens": {
+  "cluster": "R06",
+  "tier": 2,
+  "confidence": null,
+  "foundry": null,
+  "library": null,
+  "note": "",
+  "via": "classification:slab"
+ },
+ "Candida": {
+  "cluster": "R06",
+  "tier": 2,
+  "confidence": null,
+  "foundry": null,
+  "library": null,
+  "note": "",
+  "via": "classification:slab"
+ },
+ "Cholla Slab": {
+  "cluster": "R06",
+  "tier": 2,
+  "confidence": null,
+  "foundry": null,
+  "library": null,
+  "note": "",
+  "via": "classification:slab"
+ },
+ "City": {
+  "cluster": "R06",
+  "tier": 2,
+  "confidence": null,
+  "foundry": null,
+  "library": null,
+  "note": "",
+  "via": "classification:slab"
+ },
+ "Egyptienne": {
+  "cluster": "R06",
+  "tier": 2,
+  "confidence": null,
+  "foundry": null,
+  "library": null,
+  "note": "",
+  "via": "classification:slab"
+ },
+ "Lexia": {
+  "cluster": "R06",
+  "tier": 2,
+  "confidence": null,
+  "foundry": null,
+  "library": null,
+  "note": "",
+  "via": "classification:slab"
+ },
+ "Nilland": {
+  "cluster": "R06",
+  "tier": 2,
+  "confidence": null,
+  "foundry": null,
+  "library": null,
+  "note": "",
+  "via": "classification:slab"
+ },
+ "Roboto Slab": {
+  "cluster": "R06",
+  "tier": 2,
+  "confidence": null,
+  "foundry": null,
+  "library": null,
+  "note": "",
+  "via": "classification:slab"
+ },
+ "Schadow": {
+  "cluster": "R06",
+  "tier": 2,
+  "confidence": null,
+  "foundry": null,
+  "library": null,
+  "note": "",
+  "via": "classification:slab"
+ },
+ "Tower": {
+  "cluster": "R06",
+  "tier": 2,
+  "confidence": null,
+  "foundry": null,
+  "library": null,
+  "note": "",
+  "via": "classification:slab"
+ },
+ "Andalé Sans": {
+  "cluster": "S01",
+  "tier": 2,
+  "confidence": null,
+  "foundry": null,
+  "library": null,
+  "note": "",
+  "via": "classification:sans"
+ },
+ "Antique Olive": {
+  "cluster": "S01",
+  "tier": 2,
+  "confidence": null,
+  "foundry": null,
+  "library": null,
+  "note": "",
+  "via": "classification:sans"
+ },
+ "Aptos": {
+  "cluster": "S01",
+  "tier": 2,
+  "confidence": null,
+  "foundry": null,
+  "library": null,
+  "note": "",
+  "via": "classification:sans"
+ },
+ "Avant Garde Gothic": {
+  "cluster": "S03",
+  "tier": 2,
+  "confidence": null,
+  "foundry": null,
+  "library": null,
+  "note": "",
+  "via": "classification:sans"
+ },
+ "Benguiat Gothic": {
+  "cluster": "S03",
+  "tier": 2,
+  "confidence": null,
+  "foundry": null,
+  "library": null,
+  "note": "",
+  "via": "classification:sans"
+ },
+ "Berlin Sans": {
+  "cluster": "S01",
+  "tier": 2,
+  "confidence": null,
+  "foundry": null,
+  "library": null,
+  "note": "",
+  "via": "classification:sans"
+ },
+ "Calibri": {
+  "cluster": "S01",
+  "tier": 2,
+  "confidence": null,
+  "foundry": null,
+  "library": null,
+  "note": "",
+  "via": "classification:sans"
+ },
+ "Charcoal": {
+  "cluster": "S01",
+  "tier": 2,
+  "confidence": null,
+  "foundry": null,
+  "library": null,
+  "note": "",
+  "via": "classification:sans"
+ },
+ "Chicago": {
+  "cluster": "S01",
+  "tier": 2,
+  "confidence": null,
+  "foundry": null,
+  "library": null,
+  "note": "",
+  "via": "classification:sans"
+ },
+ "Clearview": {
+  "cluster": "S01",
+  "tier": 2,
+  "confidence": null,
+  "foundry": null,
+  "library": null,
+  "note": "",
+  "via": "classification:sans"
+ },
+ "Comic Sans": {
+  "cluster": "S01",
+  "tier": 2,
+  "confidence": null,
+  "foundry": null,
+  "library": null,
+  "note": "",
+  "via": "classification:sans"
+ },
+ "Corbel": {
+  "cluster": "S01",
+  "tier": 2,
+  "confidence": null,
+  "foundry": null,
+  "library": null,
+  "note": "",
+  "via": "classification:sans"
+ },
+ "Droid Sans": {
+  "cluster": "S01",
+  "tier": 2,
+  "confidence": null,
+  "foundry": null,
+  "library": null,
+  "note": "",
+  "via": "classification:sans"
+ },
+ "Eras": {
+  "cluster": "S01",
+  "tier": 2,
+  "confidence": null,
+  "foundry": null,
+  "library": null,
+  "note": "",
+  "via": "classification:sans"
+ },
+ "FF Scala Sans": {
+  "cluster": "S01",
+  "tier": 2,
+  "confidence": null,
+  "foundry": null,
+  "library": null,
+  "note": "",
+  "via": "classification:sans"
+ },
+ "Folio": {
+  "cluster": "S01",
+  "tier": 2,
+  "confidence": null,
+  "foundry": null,
+  "library": null,
+  "note": "",
+  "via": "classification:sans"
+ },
+ "Geneva": {
+  "cluster": "S01",
+  "tier": 2,
+  "confidence": null,
+  "foundry": null,
+  "library": null,
+  "note": "",
+  "via": "classification:sans"
+ },
+ "Gill Sans": {
+  "cluster": "S01",
+  "tier": 2,
+  "confidence": null,
+  "foundry": "Monotype",
+  "library": null,
+  "note": "",
+  "via": "classification:sans"
+ },
+ "Industria": {
+  "cluster": "S01",
+  "tier": 2,
+  "confidence": null,
+  "foundry": null,
+  "library": null,
+  "note": "",
+  "via": "classification:sans"
+ },
+ "Johnston": {
+  "cluster": "S01",
+  "tier": 2,
+  "confidence": null,
+  "foundry": null,
+  "library": null,
+  "note": "",
+  "via": "classification:sans"
+ },
+ "Lucida": {
+  "cluster": "S01",
+  "tier": 2,
+  "confidence": null,
+  "foundry": null,
+  "library": null,
+  "note": "",
+  "via": "classification:sans"
+ },
+ "Lydian": {
+  "cluster": "S01",
+  "tier": 2,
+  "confidence": null,
+  "foundry": null,
+  "library": null,
+  "note": "",
+  "via": "classification:sans"
+ },
+ "Motorway": {
+  "cluster": "S01",
+  "tier": 2,
+  "confidence": null,
+  "foundry": null,
+  "library": null,
+  "note": "",
+  "via": "classification:sans"
+ },
+ "Overpass": {
+  "cluster": "S01",
+  "tier": 2,
+  "confidence": null,
+  "foundry": null,
+  "library": null,
+  "note": "",
+  "via": "classification:sans"
+ },
+ "Parisine": {
+  "cluster": "S01",
+  "tier": 2,
+  "confidence": null,
+  "foundry": null,
+  "library": null,
+  "note": "",
+  "via": "classification:sans"
+ },
+ "Product Sans": {
+  "cluster": "S01",
+  "tier": 2,
+  "confidence": null,
+  "foundry": null,
+  "library": null,
+  "note": "",
+  "via": "classification:sans"
+ },
+ "Rotis Sans": {
+  "cluster": "S01",
+  "tier": 2,
+  "confidence": null,
+  "foundry": null,
+  "library": null,
+  "note": "",
+  "via": "classification:sans"
+ },
+ "San Francisco": {
+  "cluster": "S01",
+  "tier": 2,
+  "confidence": null,
+  "foundry": null,
+  "library": null,
+  "note": "",
+  "via": "classification:sans"
+ },
+ "SST": {
+  "cluster": "S01",
+  "tier": 2,
+  "confidence": null,
+  "foundry": null,
+  "library": null,
+  "note": "",
+  "via": "classification:sans"
+ },
+ "Tahoma": {
+  "cluster": "S01",
+  "tier": 2,
+  "confidence": null,
+  "foundry": null,
+  "library": null,
+  "note": "",
+  "via": "classification:sans"
+ },
+ "Template Gothic": {
+  "cluster": "S03",
+  "tier": 2,
+  "confidence": null,
+  "foundry": null,
+  "library": null,
+  "note": "",
+  "via": "classification:sans"
+ },
+ "Trebuchet MS": {
+  "cluster": "S01",
+  "tier": 2,
+  "confidence": null,
+  "foundry": null,
+  "library": null,
+  "note": "",
+  "via": "classification:sans"
+ },
+ "Ubuntu": {
+  "cluster": "S01",
+  "tier": 2,
+  "confidence": null,
+  "foundry": null,
+  "library": null,
+  "note": "",
+  "via": "classification:sans"
+ },
+ "Verdana": {
+  "cluster": "S01",
+  "tier": 2,
+  "confidence": null,
+  "foundry": null,
+  "library": null,
+  "note": "",
+  "via": "classification:sans"
+ },
+ "Akkurat": {
+  "cluster": "S01",
+  "tier": 2,
+  "confidence": null,
+  "foundry": null,
+  "library": null,
+  "note": "",
+  "via": "classification:sans"
+ },
+ "APHont": {
+  "cluster": "S01",
+  "tier": 2,
+  "confidence": null,
+  "foundry": null,
+  "library": null,
+  "note": "",
+  "via": "classification:sans"
+ },
+ "Barlow": {
+  "cluster": "S01",
+  "tier": 2,
+  "confidence": null,
+  "foundry": null,
+  "library": null,
+  "note": "",
+  "via": "classification:sans"
+ },
+ "FF Clan": {
+  "cluster": "S01",
+  "tier": 2,
+  "confidence": null,
+  "foundry": null,
+  "library": null,
+  "note": "",
+  "via": "classification:sans"
+ },
+ "Encode Sans": {
+  "cluster": "S01",
+  "tier": 2,
+  "confidence": null,
+  "foundry": null,
+  "library": null,
+  "note": "",
+  "via": "classification:sans"
+ },
+ "Espy Sans": {
+  "cluster": "S01",
+  "tier": 2,
+  "confidence": null,
+  "foundry": null,
+  "library": null,
+  "note": "",
+  "via": "classification:sans"
+ },
+ "Greycliff": {
+  "cluster": "S01",
+  "tier": 2,
+  "confidence": null,
+  "foundry": null,
+  "library": null,
+  "note": "",
+  "via": "classification:sans"
+ },
+ "Spline Sans": {
+  "cluster": "S01",
+  "tier": 2,
+  "confidence": null,
+  "foundry": null,
+  "library": null,
+  "note": "",
+  "via": "classification:sans"
+ },
+ "Triplex": {
+  "cluster": "S01",
+  "tier": 2,
+  "confidence": null,
+  "foundry": null,
+  "library": null,
+  "note": "",
+  "via": "classification:sans"
+ },
+ "Andalé Mono": {
+  "cluster": "M01",
+  "tier": 2,
+  "confidence": null,
+  "foundry": null,
+  "library": null,
+  "note": "",
+  "via": "classification:mono"
+ },
+ "Consolas": {
+  "cluster": "M01",
+  "tier": 2,
+  "confidence": null,
+  "foundry": null,
+  "library": null,
+  "note": "",
+  "via": "classification:mono"
+ },
+ "DejaVu Sans Mono": {
+  "cluster": "M01",
+  "tier": 2,
+  "confidence": null,
+  "foundry": null,
+  "library": null,
+  "note": "",
+  "via": "classification:mono"
+ },
+ "Fira Mono": {
+  "cluster": "M01",
+  "tier": 2,
+  "confidence": null,
+  "foundry": null,
+  "library": null,
+  "note": "",
+  "via": "classification:mono"
+ },
+ "Fira Code": {
+  "cluster": "M01",
+  "tier": 2,
+  "confidence": null,
+  "foundry": null,
+  "library": null,
+  "note": "",
+  "via": "classification:mono"
+ },
+ "Fixedsys": {
+  "cluster": "M01",
+  "tier": 2,
+  "confidence": null,
+  "foundry": null,
+  "library": null,
+  "note": "",
+  "via": "classification:mono"
+ },
+ "Inconsolata": {
+  "cluster": "M01",
+  "tier": 2,
+  "confidence": null,
+  "foundry": null,
+  "library": null,
+  "note": "",
+  "via": "classification:mono"
+ },
+ "Iosevka": {
+  "cluster": "M01",
+  "tier": 2,
+  "confidence": null,
+  "foundry": null,
+  "library": null,
+  "note": "",
+  "via": "classification:mono"
+ },
+ "Letter Gothic": {
+  "cluster": "S03",
+  "tier": 2,
+  "confidence": null,
+  "foundry": null,
+  "library": null,
+  "note": "",
+  "via": "classification:mono"
+ },
+ "Lucida Console": {
+  "cluster": "M01",
+  "tier": 2,
+  "confidence": null,
+  "foundry": null,
+  "library": null,
+  "note": "",
+  "via": "classification:mono"
+ },
+ "Lucida Sans Typewriter": {
+  "cluster": "M01",
+  "tier": 2,
+  "confidence": null,
+  "foundry": null,
+  "library": null,
+  "note": "",
+  "via": "classification:mono"
+ },
+ "Menlo": {
+  "cluster": "M01",
+  "tier": 2,
+  "confidence": null,
+  "foundry": null,
+  "library": null,
+  "note": "",
+  "via": "classification:mono"
+ },
+ "Monaco": {
+  "cluster": "M01",
+  "tier": 2,
+  "confidence": null,
+  "foundry": null,
+  "library": null,
+  "note": "",
+  "via": "classification:mono"
+ },
+ "OCR-A": {
+  "cluster": "M01",
+  "tier": 2,
+  "confidence": null,
+  "foundry": null,
+  "library": null,
+  "note": "",
+  "via": "classification:mono"
+ },
+ "OCR-B": {
+  "cluster": "M01",
+  "tier": 2,
+  "confidence": null,
+  "foundry": "Monotype",
+  "library": null,
+  "note": "",
+  "via": "classification:mono"
+ },
+ "PragmataPro": {
+  "cluster": "M01",
+  "tier": 2,
+  "confidence": null,
+  "foundry": null,
+  "library": null,
+  "note": "",
+  "via": "classification:mono"
+ },
+ "ProFont": {
+  "cluster": "M01",
+  "tier": 2,
+  "confidence": null,
+  "foundry": null,
+  "library": null,
+  "note": "",
+  "via": "classification:mono"
+ },
+ "Roboto Mono": {
+  "cluster": "M01",
+  "tier": 2,
+  "confidence": null,
+  "foundry": null,
+  "library": null,
+  "note": "",
+  "via": "classification:mono"
+ },
+ "Ubuntu Mono": {
+  "cluster": "M01",
+  "tier": 2,
+  "confidence": null,
+  "foundry": null,
+  "library": null,
+  "note": "",
+  "via": "classification:mono"
+ },
+ "Balloon": {
+  "cluster": "H04",
+  "tier": 2,
+  "confidence": null,
+  "foundry": null,
+  "library": null,
+  "note": "",
+  "via": "classification:script-informal"
+ },
+ "Choc": {
+  "cluster": "H04",
+  "tier": 2,
+  "confidence": null,
+  "foundry": null,
+  "library": null,
+  "note": "",
+  "via": "classification:script-informal"
+ },
+ "Dom Casual": {
+  "cluster": "H04",
+  "tier": 2,
+  "confidence": null,
+  "foundry": null,
+  "library": null,
+  "note": "",
+  "via": "classification:script-informal"
+ },
+ "Papyrus": {
+  "cluster": "H04",
+  "tier": 2,
+  "confidence": null,
+  "foundry": null,
+  "library": null,
+  "note": "",
+  "via": "classification:script-informal"
+ },
+ "Segoe Script": {
+  "cluster": "H04",
+  "tier": 2,
+  "confidence": null,
+  "foundry": null,
+  "library": null,
+  "note": "",
+  "via": "classification:script-informal"
+ },
+ "Reiner Script": {
+  "cluster": "H04",
+  "tier": 2,
+  "confidence": null,
+  "foundry": null,
+  "library": null,
+  "note": "",
+  "via": "classification:script-informal"
+ },
+ "Welo Script": {
+  "cluster": "H04",
+  "tier": 2,
+  "confidence": null,
+  "foundry": null,
+  "library": null,
+  "note": "",
+  "via": "classification:script-informal"
+ },
+ "Cordier Script": {
+  "cluster": "H04",
+  "tier": 2,
+  "confidence": null,
+  "foundry": "Sharp Type",
+  "library": null,
+  "note": "",
+  "via": "classification:script-informal"
+ },
+ "Ashley Script": {
+  "cluster": "H04",
+  "tier": 2,
+  "confidence": null,
+  "foundry": "Monotype",
+  "library": null,
+  "note": "",
+  "via": "classification:script-informal"
+ },
+ "Mercurius Script": {
+  "cluster": "H04",
+  "tier": 2,
+  "confidence": null,
+  "foundry": "Monotype",
+  "library": null,
+  "note": "",
+  "via": "classification:script-informal"
+ },
+ "American Scribe": {
+  "cluster": "H05",
+  "tier": 2,
+  "confidence": null,
+  "foundry": null,
+  "library": null,
+  "note": "",
+  "via": "classification:script-formal"
+ },
+ "Apple Chancery": {
+  "cluster": "H05",
+  "tier": 2,
+  "confidence": null,
+  "foundry": null,
+  "library": null,
+  "note": "",
+  "via": "classification:script-formal"
+ },
+ "Forte": {
+  "cluster": "H05",
+  "tier": 2,
+  "confidence": null,
+  "foundry": "Monotype",
+  "library": null,
+  "note": "",
+  "via": "classification:script-formal"
+ },
+ "French Script": {
+  "cluster": "H04",
+  "tier": 2,
+  "confidence": null,
+  "foundry": null,
+  "library": null,
+  "note": "",
+  "via": "classification:script-formal"
+ },
+ "ITC Zapf Chancery": {
+  "cluster": "H05",
+  "tier": 2,
+  "confidence": null,
+  "foundry": null,
+  "library": null,
+  "note": "",
+  "via": "classification:script-formal"
+ },
+ "Kuenstler Script": {
+  "cluster": "H04",
+  "tier": 2,
+  "confidence": null,
+  "foundry": null,
+  "library": null,
+  "note": "",
+  "via": "classification:script-formal"
+ },
+ "Monotype Corsiva": {
+  "cluster": "H05",
+  "tier": 2,
+  "confidence": null,
+  "foundry": null,
+  "library": null,
+  "note": "",
+  "via": "classification:script-formal"
+ },
+ "Old English Text MT": {
+  "cluster": "H05",
+  "tier": 2,
+  "confidence": null,
+  "foundry": null,
+  "library": null,
+  "note": "",
+  "via": "classification:script-formal"
+ },
+ "Breitkopf Fraktur": {
+  "cluster": "D02",
+  "tier": 2,
+  "confidence": null,
+  "foundry": null,
+  "library": null,
+  "note": "",
+  "via": "classification:blackletter"
+ },
+ "Fraktur": {
+  "cluster": "D02",
+  "tier": 2,
+  "confidence": null,
+  "foundry": null,
+  "library": null,
+  "note": "",
+  "via": "classification:blackletter"
+ },
+ "Lucida Blackletter": {
+  "cluster": "D02",
+  "tier": 2,
+  "confidence": null,
+  "foundry": null,
+  "library": null,
+  "note": "",
+  "via": "classification:blackletter"
+ },
+ "Schwabacher": {
+  "cluster": "D02",
+  "tier": 2,
+  "confidence": null,
+  "foundry": null,
+  "library": null,
+  "note": "",
+  "via": "classification:blackletter"
+ },
+ "Tannenberg": {
+  "cluster": "D02",
+  "tier": 2,
+  "confidence": null,
+  "foundry": null,
+  "library": null,
+  "note": "",
+  "via": "classification:blackletter"
+ },
+ "Textura": {
+  "cluster": "D02",
+  "tier": 2,
+  "confidence": null,
+  "foundry": null,
+  "library": null,
+  "note": "",
+  "via": "classification:blackletter"
+ },
+ "Wallau": {
+  "cluster": "D02",
+  "tier": 2,
+  "confidence": null,
+  "foundry": null,
+  "library": null,
+  "note": "",
+  "via": "classification:blackletter"
+ },
+ "Curlz": {
+  "cluster": "D09",
+  "tier": 2,
+  "confidence": null,
+  "foundry": null,
+  "library": null,
+  "note": "",
+  "via": "classification:decorative"
+ },
+ "Gravura": {
+  "cluster": "D09",
+  "tier": 2,
+  "confidence": null,
+  "foundry": null,
+  "library": null,
+  "note": "",
+  "via": "classification:decorative"
+ },
+ "Wiesbaden Swing": {
+  "cluster": "D09",
+  "tier": 2,
+  "confidence": null,
+  "foundry": null,
+  "library": null,
+  "note": "",
+  "via": "classification:decorative"
+ },
+ "Lithos": {
+  "cluster": "D09",
+  "tier": 2,
+  "confidence": null,
+  "foundry": null,
+  "library": null,
+  "note": "",
+  "via": "classification:decorative"
+ },
+ "Höfðaletur": {
+  "cluster": "D09",
+  "tier": 2,
+  "confidence": null,
+  "foundry": null,
+  "library": null,
+  "note": "",
+  "via": "classification:decorative"
+ },
+ "Sans forgetica": {
+  "cluster": "S01",
+  "tier": 2,
+  "confidence": null,
+  "foundry": null,
+  "library": null,
+  "note": "",
+  "via": "classification:decorative"
+ },
+ "Jokerman": {
+  "cluster": "D09",
+  "tier": 2,
+  "confidence": null,
+  "foundry": null,
+  "library": null,
+  "note": "",
+  "via": "classification:decorative"
+ },
+ "Matura": {
+  "cluster": "D09",
+  "tier": 2,
+  "confidence": null,
+  "foundry": "Monotype",
+  "library": null,
+  "note": "",
+  "via": "classification:decorative"
+ },
+ "Klang": {
+  "cluster": "D09",
+  "tier": 2,
+  "confidence": null,
+  "foundry": "Monotype",
+  "library": null,
+  "note": "",
+  "via": "classification:decorative"
+ },
+ "Pepita": {
+  "cluster": "D09",
+  "tier": 2,
+  "confidence": null,
+  "foundry": "Monotype",
+  "library": null,
+  "note": "",
+  "via": "classification:decorative"
+ },
+ "Surveyor": {
+  "cluster": "R03",
+  "tier": 1,
+  "confidence": "medium",
+  "foundry": "Hoefler&Co / Frere-Jones",
+  "library": null,
+  "note": "Drawn from engraved map lettering; fine and high-contrast."
+ },
+ "Verlag": {
+  "cluster": "S04",
+  "tier": 1,
+  "confidence": "high",
+  "foundry": "Hoefler&Co / Frere-Jones",
+  "library": null,
+  "note": "Geometric sans from Guggenheim building lettering."
+ },
+ "Mercury": {
+  "cluster": "R03",
+  "tier": 1,
+  "confidence": "high",
+  "foundry": "Hoefler&Co / Frere-Jones",
+  "library": null,
+  "note": "News serif engineered for rough printing."
+ },
+ "Obsidian": {
+  "cluster": "R04",
+  "tier": 1,
+  "confidence": "high",
+  "foundry": "Hoefler&Co / Frere-Jones",
+  "library": null,
+  "note": "Engraved didone display with sculpted shading."
+ },
+ "Inkwell": {
+  "cluster": "H01",
+  "tier": 1,
+  "confidence": "high",
+  "foundry": "Hoefler&Co / Frere-Jones",
+  "library": null,
+  "note": "Hand-lettering superfamily across serif, sans and script."
+ },
+ "Chronicle": {
+  "cluster": "R03",
+  "tier": 1,
+  "confidence": "high",
+  "foundry": "Hoefler&Co / Frere-Jones",
+  "library": null,
+  "note": "Scotch-derived newspaper serif across four grades."
+ },
+ "Exchange": {
+  "cluster": "R03",
+  "tier": 1,
+  "confidence": "high",
+  "foundry": "Hoefler&Co / Frere-Jones",
+  "library": null,
+  "note": "News serif drawn for financial tables and dense text."
+ },
+ "Monarch": {
+  "cluster": "R04",
+  "tier": 1,
+  "confidence": "high",
+  "foundry": "Hoefler&Co / Frere-Jones",
+  "library": null,
+  "note": "High-contrast didone display serif."
+ },
+ "Dulcet": {
+  "cluster": "S02",
+  "tier": 1,
+  "confidence": "medium",
+  "foundry": "Hoefler&Co / Frere-Jones",
+  "library": null,
+  "note": "Humanist sans for small-size text."
+ },
+ "Empirica": {
+  "cluster": "R03",
+  "tier": 1,
+  "confidence": "medium",
+  "foundry": "Hoefler&Co / Frere-Jones",
+  "library": null,
+  "note": "Text serif with sharp, economical detailing."
+ },
+ "Seaford": {
+  "cluster": "S02",
+  "tier": 1,
+  "confidence": "medium",
+  "foundry": "Hoefler&Co / Frere-Jones",
+  "library": null,
+  "note": "Humanist sans with an English cast."
+ },
+ "Retina": {
+  "cluster": "S03",
+  "tier": 1,
+  "confidence": "high",
+  "foundry": "Hoefler&Co / Frere-Jones",
+  "library": null,
+  "note": "Agate gothic drawn for stock tables at tiny sizes."
+ },
+ "Nitro": {
+  "cluster": "D07",
+  "tier": 1,
+  "confidence": "medium",
+  "foundry": "Hoefler&Co / Frere-Jones",
+  "library": null,
+  "note": "Italic speed-lettering display."
+ },
+ "Landmark": {
+  "cluster": "D04",
+  "tier": 1,
+  "confidence": "medium",
+  "foundry": "Hoefler&Co / Frere-Jones",
+  "library": null,
+  "note": "Inline engraved display face."
+ },
+ "Benton Modern": {
+  "cluster": "R03",
+  "tier": 1,
+  "confidence": "high",
+  "foundry": "Hoefler&Co / Frere-Jones",
+  "library": null,
+  "note": "Benton’s news roman revived for contemporary papers."
+ },
+ "Poynter Oldstyle": {
+  "cluster": "R03",
+  "tier": 1,
+  "confidence": "medium",
+  "foundry": "Hoefler&Co / Frere-Jones",
+  "library": null,
+  "note": "Newspaper oldstyle from the Poynter series."
+ },
+ "Cafeteria": {
+  "cluster": "H01",
+  "tier": 1,
+  "confidence": "medium",
+  "foundry": "Hoefler&Co / Frere-Jones",
+  "library": null,
+  "note": "Casual hand lettering."
+ },
+ "Niagara": {
+  "cluster": "S12",
+  "tier": 1,
+  "confidence": "high",
+  "foundry": "Hoefler&Co / Frere-Jones",
+  "library": null,
+  "note": "Extremely light, narrow geometric display sans."
+ },
+ "Asphalt": {
+  "cluster": "D07",
+  "tier": 1,
+  "confidence": "medium",
+  "foundry": "Hoefler&Co / Frere-Jones",
+  "library": null,
+  "note": "Rough industrial display."
+ },
+ "Armada": {
+  "cluster": "S07",
+  "tier": 1,
+  "confidence": "medium",
+  "foundry": "Hoefler&Co / Frere-Jones",
+  "library": null,
+  "note": "Condensed gothic in the wood-type line."
+ },
+ "Dolores": {
+  "cluster": "H02",
+  "tier": 1,
+  "confidence": "medium",
+  "foundry": "Hoefler&Co / Frere-Jones",
+  "library": null,
+  "note": "Cartoon display lettering."
+ },
+ "Epitaph": {
+  "cluster": "D02",
+  "tier": 1,
+  "confidence": "medium",
+  "foundry": "Hoefler&Co / Frere-Jones",
+  "library": null,
+  "note": "Blackletter-derived display."
+ },
+ "Stereo": {
+  "cluster": "D04",
+  "tier": 1,
+  "confidence": "medium",
+  "foundry": "Hoefler&Co / Frere-Jones",
+  "library": null,
+  "note": "Deco inline display."
+ },
+ "Grand Central": {
+  "cluster": "R08",
+  "tier": 1,
+  "confidence": "medium",
+  "foundry": "Hoefler&Co / Frere-Jones",
+  "library": null,
+  "note": "Inscriptional display drawn from terminal signage."
+ },
+ "Mercury Text": {
+  "cluster": "R03",
+  "tier": 1,
+  "confidence": "high",
+  "foundry": "Hoefler&Co / Frere-Jones",
+  "library": null,
+  "note": "The text cuts of Mercury."
+ },
+ "Community Gothic": {
+  "cluster": "S03",
+  "tier": 2,
+  "confidence": null,
+  "foundry": "Hoefler&Co / Frere-Jones",
+  "library": null,
+  "note": "",
+  "via": "foundry:Hoefler&Co / Frere-Jones"
+ },
+ "American Grotesk": {
+  "cluster": "S03",
+  "tier": 2,
+  "confidence": null,
+  "foundry": "Klim",
+  "library": null,
+  "note": "",
+  "via": "foundry:Klim"
+ },
+ "Domaine": {
+  "cluster": "R04",
+  "tier": 1,
+  "confidence": "high",
+  "foundry": "Klim",
+  "library": null,
+  "note": "High-contrast display serif; the Domaine system."
+ },
+ "Domaine Sans": {
+  "cluster": "S01",
+  "tier": 2,
+  "confidence": null,
+  "foundry": "Klim",
+  "library": null,
+  "note": "",
+  "via": "foundry:Klim"
+ },
+ "Family": {
+  "cluster": "S11",
+  "tier": 1,
+  "confidence": "medium",
+  "foundry": "Klim",
+  "library": null,
+  "note": "Display sans with deliberately mixed reference."
+ },
+ "Feijoa": {
+  "cluster": "R05",
+  "tier": 1,
+  "confidence": "high",
+  "foundry": "Klim",
+  "library": null,
+  "note": "Soft serif drawn with no straight lines."
+ },
+ "Founders Grotesk": {
+  "cluster": "S03",
+  "tier": 2,
+  "confidence": null,
+  "foundry": "Klim",
+  "library": null,
+  "note": "",
+  "via": "foundry:Klim",
+  "cluster2": "S01",
+  "cluster2Via": "external",
+  "cluster2Why": "American gothic proportions with a neutral Swiss finish."
+ },
+ "Martina Plantijn": {
+  "cluster": "R01",
+  "tier": 1,
+  "confidence": "high",
+  "foundry": "Klim",
+  "library": null,
+  "note": "Plantin-derived oldstyle."
+ },
+ "The Future": {
+  "cluster": "S05",
+  "tier": 1,
+  "confidence": "medium",
+  "foundry": "Klim",
+  "library": null,
+  "note": "Geometric sans in the Futura line."
+ },
+ "Tiempos": {
+  "cluster": "R03",
+  "tier": 1,
+  "confidence": "high",
+  "foundry": "Klim",
+  "library": null,
+  "note": "Times reworked for contemporary setting."
+ },
+ "GT Alpina": {
+  "cluster": "R05",
+  "tier": 1,
+  "confidence": "high",
+  "foundry": "Grilli Type",
+  "library": null,
+  "note": "Contemporary serif spanning text and display."
+ },
+ "GT Canon": {
+  "cluster": "R04",
+  "tier": 1,
+  "confidence": "medium",
+  "foundry": "Grilli Type",
+  "library": null,
+  "note": "High-contrast display serif."
+ },
+ "GT Cinetype": {
+  "cluster": "M02",
+  "tier": 1,
+  "confidence": "medium",
+  "foundry": "Grilli Type",
+  "library": null,
+  "note": "Drawn from film subtitle lettering."
+ },
+ "GT Era": {
+  "cluster": "S05",
+  "tier": 1,
+  "confidence": "medium",
+  "foundry": "Grilli Type",
+  "library": null,
+  "note": "Geometric sans in the interwar line."
+ },
+ "GT Flaire": {
+  "cluster": "R08",
+  "tier": 1,
+  "confidence": "medium",
+  "foundry": "Grilli Type",
+  "library": null,
+  "note": "Flared glyphic display."
+ },
+ "GT Haptik": {
+  "cluster": "S04",
+  "tier": 1,
+  "confidence": "medium",
+  "foundry": "Grilli Type",
+  "library": null,
+  "note": "Geometric sans with rounded, tactile joins."
+ },
+ "GT Mechanik": {
+  "cluster": "S09",
+  "tier": 1,
+  "confidence": "medium",
+  "foundry": "Grilli Type",
+  "library": null,
+  "note": "Technical grotesk with engineered curves."
+ },
+ "GT Pantheon": {
+  "cluster": "R08",
+  "tier": 1,
+  "confidence": "medium",
+  "foundry": "Grilli Type",
+  "library": null,
+  "note": "Inscriptional serif after Roman capitals."
+ },
+ "GT Planar": {
+  "cluster": "S11",
+  "tier": 1,
+  "confidence": "medium",
+  "foundry": "Grilli Type",
+  "library": null,
+  "note": "Grotesk with a variable optical slant."
+ },
+ "GT Standard": {
+  "cluster": "S03",
+  "tier": 1,
+  "confidence": "medium",
+  "foundry": "Grilli Type",
+  "library": null,
+  "note": "Grotesk with American gothic proportions."
+ },
+ "GT Ultra": {
+  "cluster": "R04",
+  "tier": 1,
+  "confidence": "medium",
+  "foundry": "Grilli Type",
+  "library": null,
+  "note": "Contrast display family."
+ },
+ "Alpes": {
+  "cluster": "R05",
+  "tier": 1,
+  "confidence": "medium",
+  "foundry": "Sharp Type",
+  "library": null,
+  "note": "Contemporary serif with soft display cuts."
+ },
+ "Alpes Mono": {
+  "cluster": "M01",
+  "tier": 2,
+  "confidence": null,
+  "foundry": "Sharp Type",
+  "library": null,
+  "note": "",
+  "via": "foundry:Sharp Type"
+ },
+ "Ghost Display": {
+  "cluster": "S11",
+  "tier": 1,
+  "confidence": "medium",
+  "foundry": "Sharp Type",
+  "library": null,
+  "note": "Contemporary display sans with deliberate irregularity."
+ },
+ "Ghost Text": {
+  "cluster": "S11",
+  "tier": 1,
+  "confidence": "medium",
+  "foundry": "Sharp Type",
+  "library": null,
+  "note": "Text companion to Ghost Display."
+ },
+ "Residence Nouveau": {
+  "cluster": "S11",
+  "tier": 1,
+  "confidence": "medium",
+  "foundry": "Sharp Type",
+  "library": null,
+  "note": "Grotesk with art-nouveau-inflected detail."
+ },
+ "Sharp Freehand": {
+  "cluster": "H03",
+  "tier": 1,
+  "confidence": "medium",
+  "foundry": "Sharp Type",
+  "library": null,
+  "note": "Drawn, brush-inflected display."
+ },
+ "Sharp Roman": {
+  "cluster": "R01",
+  "tier": 1,
+  "confidence": "medium",
+  "foundry": "Sharp Type",
+  "library": null,
+  "note": "Renaissance-derived roman."
+ },
+ "Sharp Serif Text": {
+  "cluster": "R03",
+  "tier": 2,
+  "confidence": null,
+  "foundry": "Sharp Type",
+  "library": null,
+  "note": "",
+  "via": "foundry:Sharp Type"
+ },
+ "Sharp Serif Display": {
+  "cluster": "R03",
+  "tier": 2,
+  "confidence": null,
+  "foundry": "Sharp Type",
+  "library": null,
+  "note": "",
+  "via": "foundry:Sharp Type"
+ },
+ "Tarnac Sans": {
+  "cluster": "S01",
+  "tier": 2,
+  "confidence": null,
+  "foundry": "Sharp Type",
+  "library": null,
+  "note": "",
+  "via": "foundry:Sharp Type"
+ },
+ "Beatrice Headline": {
+  "cluster": "R04",
+  "tier": 1,
+  "confidence": "medium",
+  "foundry": "Sharp Type",
+  "library": null,
+  "note": "High-contrast display cut of Beatrice."
+ },
+ "Beatrice Deck": {
+  "cluster": "R04",
+  "tier": 1,
+  "confidence": "medium",
+  "foundry": "Sharp Type",
+  "library": null,
+  "note": "Mid-size optical cut of Beatrice."
+ },
+ "Ogg Text": {
+  "cluster": "R04",
+  "tier": 1,
+  "confidence": "high",
+  "foundry": "Sharp Type",
+  "library": null,
+  "note": "The text cuts of Ogg."
+ },
+ "Sharp Sans Display No.1": {
+  "cluster": "S01",
+  "tier": 2,
+  "confidence": null,
+  "foundry": "Sharp Type",
+  "library": null,
+  "note": "",
+  "via": "foundry:Sharp Type"
+ },
+ "Sharp Sans Display No.2": {
+  "cluster": "S01",
+  "tier": 2,
+  "confidence": null,
+  "foundry": "Sharp Type",
+  "library": null,
+  "note": "",
+  "via": "foundry:Sharp Type"
+ },
+ "FF Bau": {
+  "cluster": "S01",
+  "tier": 1,
+  "confidence": "high",
+  "foundry": "Christian Schwartz",
+  "library": null,
+  "note": "Akzidenz-Grotesk revived and systematised."
+ },
+ "Houston": {
+  "cluster": "D03",
+  "tier": 1,
+  "confidence": "medium",
+  "foundry": "Christian Schwartz",
+  "library": null,
+  "note": "Western wood-type display."
+ },
+ "FF Kievit": {
+  "cluster": "S02",
+  "tier": 1,
+  "confidence": "high",
+  "foundry": "Christian Schwartz",
+  "library": null,
+  "note": "Humanist sans with open apertures."
+ },
+ "Luxury": {
+  "cluster": "R04",
+  "tier": 1,
+  "confidence": "medium",
+  "foundry": "Christian Schwartz",
+  "library": null,
+  "note": "Fashion display set spanning several registers."
+ },
+ "FF Meta Headline": {
+  "cluster": "S02",
+  "tier": 1,
+  "confidence": "high",
+  "foundry": "Christian Schwartz",
+  "library": null,
+  "note": "Display cuts of FF Meta."
+ },
+ "Neutraface Slab": {
+  "cluster": "R06",
+  "tier": 2,
+  "confidence": null,
+  "foundry": "Christian Schwartz",
+  "library": null,
+  "note": "",
+  "via": "foundry:Christian Schwartz"
+ },
+ "Berliner Grotesk": {
+  "cluster": "S03",
+  "tier": 2,
+  "confidence": null,
+  "foundry": "Erik Spiekermann",
+  "library": null,
+  "note": "",
+  "via": "foundry:Erik Spiekermann"
+ },
+ "Lo-Type": {
+  "cluster": "D04",
+  "tier": 1,
+  "confidence": "medium",
+  "foundry": "Erik Spiekermann",
+  "library": null,
+  "note": "Berlin poster face from the deco era."
+ },
+ "ITC Officina Serif": {
+  "cluster": "R03",
+  "tier": 2,
+  "confidence": null,
+  "foundry": "Erik Spiekermann",
+  "library": null,
+  "note": "",
+  "via": "foundry:Erik Spiekermann"
+ },
+ "FF Info": {
+  "cluster": "S02",
+  "tier": 1,
+  "confidence": "high",
+  "foundry": "Erik Spiekermann",
+  "library": null,
+  "note": "Signage humanist sans."
+ },
+ "Nokia Sans": {
+  "cluster": "S01",
+  "tier": 2,
+  "confidence": null,
+  "foundry": "Erik Spiekermann",
+  "library": null,
+  "note": "",
+  "via": "foundry:Erik Spiekermann"
+ },
+ "FF Unit Slab": {
+  "cluster": "R06",
+  "tier": 2,
+  "confidence": null,
+  "foundry": "Erik Spiekermann",
+  "library": null,
+  "note": "",
+  "via": "foundry:Erik Spiekermann"
+ },
+ "FF Real": {
+  "cluster": "S01",
+  "tier": 1,
+  "confidence": "high",
+  "foundry": "Erik Spiekermann",
+  "library": null,
+  "note": "Grotesk with a contemporary neutral finish."
+ },
+ "Albertina": {
+  "cluster": "R01",
+  "tier": 1,
+  "confidence": "high",
+  "foundry": "Monotype",
+  "library": null,
+  "note": "Dutch oldstyle by Chris Brand."
+ },
+ "Albion": {
+  "cluster": "R03",
+  "tier": 1,
+  "confidence": "medium",
+  "foundry": "Monotype",
+  "library": null,
+  "note": "Victorian-era English transitional."
+ },
+ "Ashley Crawford": {
+  "cluster": "H03",
+  "tier": 1,
+  "confidence": "medium",
+  "foundry": "Monotype",
+  "library": null,
+  "note": "Brush-drawn display lettering."
+ },
+ "Blado": {
+  "cluster": "R01",
+  "tier": 1,
+  "confidence": "high",
+  "foundry": "Monotype",
+  "library": null,
+  "note": "The italic companion to Poliphilus; Aldine."
+ },
+ "Castellar": {
+  "cluster": "R08",
+  "tier": 1,
+  "confidence": "high",
+  "foundry": "Monotype",
+  "library": null,
+  "note": "Inscribed, outlined Roman capitals."
+ },
+ "Dante": {
+  "cluster": "R01",
+  "tier": 1,
+  "confidence": "high",
+  "foundry": "Monotype",
+  "library": null,
+  "note": "Mardersteig’s Aldine roman."
+ },
+ "Dubai": {
+  "cluster": "A02",
+  "tier": 1,
+  "confidence": "medium",
+  "foundry": "Monotype",
+  "library": null,
+  "note": "Arabic and Latin sans for the Dubai identity."
+ },
+ "Ehrhardt": {
+  "cluster": "R01",
+  "tier": 1,
+  "confidence": "high",
+  "foundry": "Monotype",
+  "library": null,
+  "note": "Janson-derived Dutch oldstyle."
+ },
+ "Engravers": {
+  "cluster": "R08",
+  "tier": 1,
+  "confidence": "high",
+  "foundry": "Monotype",
+  "library": null,
+  "note": "Engraving capitals with fine serifs."
+ },
+ "Felix Titling": {
+  "cluster": "R08",
+  "tier": 1,
+  "confidence": "high",
+  "foundry": "Monotype",
+  "library": null,
+  "note": "Inscriptional titling capitals."
+ },
+ "Fournier": {
+  "cluster": "R03",
+  "tier": 1,
+  "confidence": "high",
+  "foundry": "Monotype",
+  "library": null,
+  "note": "Transitional after Pierre-Simon Fournier."
+ },
+ "Horley Old Style": {
+  "cluster": "R01",
+  "tier": 1,
+  "confidence": "high",
+  "foundry": "Monotype",
+  "library": null,
+  "note": "English oldstyle with a large x-height."
+ },
+ "Menhart": {
+  "cluster": "R01",
+  "tier": 1,
+  "confidence": "medium",
+  "foundry": "Monotype",
+  "library": null,
+  "note": "Czech oldstyle with calligraphic stress."
+ },
+ "Octavian": {
+  "cluster": "R01",
+  "tier": 1,
+  "confidence": "high",
+  "foundry": "Monotype",
+  "library": null,
+  "note": "Oldstyle with inscriptional influence."
+ },
+ "Pastonchi": {
+  "cluster": "R01",
+  "tier": 1,
+  "confidence": "medium",
+  "foundry": "Monotype",
+  "library": null,
+  "note": "Italian book roman."
+ },
+ "Pegasus": {
+  "cluster": "R01",
+  "tier": 1,
+  "confidence": "medium",
+  "foundry": "Monotype",
+  "library": null,
+  "note": "English oldstyle with sharp serifs."
+ },
+ "Photina": {
+  "cluster": "R03",
+  "tier": 1,
+  "confidence": "high",
+  "foundry": "Monotype",
+  "library": null,
+  "note": "Transitional drawn for photocomposition."
+ },
+ "Poliphilus": {
+  "cluster": "R01",
+  "tier": 1,
+  "confidence": "high",
+  "foundry": "Monotype",
+  "library": null,
+  "note": "Aldine roman from the Hypnerotomachia."
+ },
+ "Solus": {
+  "cluster": "R06",
+  "tier": 1,
+  "confidence": "medium",
+  "foundry": "Monotype",
+  "library": null,
+  "note": "Gill’s slab serif."
+ },
+ "Spectrum": {
+  "cluster": "R01",
+  "tier": 1,
+  "confidence": "high",
+  "foundry": "Monotype",
+  "library": null,
+  "note": "Van Krimpen’s book roman."
+ },
+ "Tempest Titling": {
+  "cluster": "R08",
+  "tier": 1,
+  "confidence": "medium",
+  "foundry": "Monotype",
+  "library": null,
+  "note": "Engraved titling capitals."
+ },
+ "Van Dijck": {
+  "cluster": "R01",
+  "tier": 1,
+  "confidence": "high",
+  "foundry": "Monotype",
+  "library": null,
+  "note": "Dutch oldstyle after Christoffel van Dijck."
+ },
+ "Gill Sans Nova": {
+  "cluster": "S01",
+  "tier": 2,
+  "confidence": null,
+  "foundry": "Monotype",
+  "library": null,
+  "note": "",
+  "via": "foundry:Monotype"
+ },
+ "Walbaum Now": {
+  "cluster": "R04",
+  "tier": 1,
+  "confidence": "high",
+  "foundry": "Monotype",
+  "library": null,
+  "note": "Current Walbaum; German modern face."
+ },
+ "Madera": {
+  "cluster": "S04",
+  "tier": 1,
+  "confidence": "medium",
+  "foundry": "Monotype",
+  "library": null,
+  "note": "Geometric sans for corporate systems."
+ },
+ "Ambroise": {
+  "cluster": "R04",
+  "tier": 1,
+  "confidence": "high",
+  "foundry": "Monotype",
+  "library": null,
+  "note": "Didot-family display in the French modern line."
+ }
+}

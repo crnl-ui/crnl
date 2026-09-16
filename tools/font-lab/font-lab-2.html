@@ -1,0 +1,1006 @@
+<!DOCTYPE html>
+<html lang="en" data-mode="light" data-platform="web">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Font Lab 2 — display spec refinement</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap" rel="stylesheet">
+  <script src="../../css/ds-loader.js"></script>
+  <script src="theme-ramps.js"></script>
+  <script src="library.js"></script>
+</head>
+<body>
+<!--
+@title: Font Lab 2
+@author: Cornelius Hegeman
+@tags: typography, desktop, experiment
+@description: Refinement tool for the 145 confirmed display families — name the token family, tune the display ramp, and preview it on real app screens.
+@status: draft
+-->
+<style>
+  /* ── Font Lab 2 shell — same chrome as Font Lab 1 ── */
+  body { margin: 0; background: var(--bg-base); color: var(--text-primary); font-family: 'Inter', sans-serif; height: 100vh; overflow: hidden; }
+  .fl-app { display: grid; grid-template-columns: 340px 1fr; height: 100vh; }
+
+  /* Sidebar — inverted rail */
+  .fl-side { display: flex; flex-direction: column; min-height: 0; background: var(--neutral-1000); }
+  .fl-side-head { padding: var(--spacing-200); display: flex; flex-direction: column; gap: var(--spacing-300); }
+  .fl-brand { display: flex; align-items: center; justify-content: space-between; }
+  .fl-logo { font-family: var(--display-font); font-size: var(--display-size-500); font-weight: var(--display-weight); letter-spacing: var(--display-letter-spacing); line-height: 1; color: var(--inverted-1000); }
+  .fl-side .fl-mini { border-color: var(--inverted-200); color: var(--inverted-700); }
+  .fl-side .fl-mini:hover { color: var(--inverted-1000); }
+  .fl-search { background: var(--inverted-100); color: var(--inverted-1000); border: 1px solid var(--inverted-200); border-radius: 100px; padding: 9px 14px; font-family: inherit; font-size: 14px; }
+  .fl-search::placeholder { color: var(--inverted-700); }
+  .fl-chips { display: flex; flex-wrap: wrap; gap: var(--spacing-50); }
+  .fl-chip { border: 1px solid var(--inverted-200); background: none; color: var(--inverted-1000); border-radius: 100px; padding: 0 14px; height: 32px; display: inline-flex; align-items: center; font-family: inherit; font-size: 12px; font-weight: 600; cursor: pointer; }
+  .fl-chip.is-on { background: var(--inverted-1000); color: var(--neutral-1000); border-color: transparent; }
+  .fl-count { padding: var(--spacing-100) var(--spacing-200); font-size: 10px; color: var(--inverted-700); display: flex; align-items: center; justify-content: space-between; }
+  .fl-count strong { color: var(--inverted-1000); font-weight: 600; }
+  .fl-list { flex: 1; overflow-y: auto; min-height: 0; padding: 0 var(--spacing-200); }
+  .fl-group { padding: var(--spacing-200) var(--spacing-100) var(--spacing-50); font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--inverted-500); }
+  .fl-row { background: var(--inverted-100); border-radius: 16px; padding: var(--spacing-200); margin-bottom: var(--spacing-50); cursor: pointer; position: relative; }
+  .fl-row:hover { background: var(--inverted-200); }
+  .fl-row.is-sel { box-shadow: inset 0 0 0 2px var(--brand-inverted); }
+  .fl-row-meta { display: flex; align-items: center; justify-content: space-between; gap: var(--spacing-100); margin-bottom: var(--spacing-150); }
+  .fl-row-name { font-size: 14px; font-weight: 600; color: var(--inverted-1000); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .fl-row-src { font-size: 11px; color: var(--inverted-700); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .fl-row-badge { font-size: 12px; padding: 3px 8px; border-radius: 4px; white-space: nowrap; border: 1px solid var(--inverted-200); color: var(--inverted-700); flex-shrink: 0; }
+  .fl-row-badge.is-saved { background: var(--brand-inverted); color: var(--black-1000); border-color: transparent; font-weight: 600; }
+  .fl-row-badge.is-dirty { color: var(--brand-inverted); border-color: var(--brand-inverted); font-weight: 600; }
+  .fl-row-badge.is-metrics { color: var(--status-warning); border-color: var(--status-warning); font-weight: 600; }
+  .fl-row-meta { flex-wrap: wrap; }
+  .fl-row-sample { font-size: 24px; line-height: 1.2; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-height: 29px; color: var(--inverted-1000); }
+  .fl-side-foot { padding: var(--spacing-200); display: flex; gap: var(--spacing-100); border-top: 1px solid var(--inverted-200); }
+
+  /* Main — content column + persistent control rail */
+  .fl-main { display: grid; grid-template-columns: minmax(0,1fr) 320px; min-height: 0; min-width: 0; }
+  /* Screens needs the full width — four 405px phones do not fit beside a 320px rail */
+  .fl-main.is-wide { grid-template-columns: minmax(0,1fr); }
+  .fl-main.is-wide .fl-panel { display: none; }
+  .fl-content { display: flex; flex-direction: column; min-height: 0; min-width: 0; }
+  .fl-mainhead { border-bottom: 1px solid var(--border-default); flex-shrink: 0; }
+  .fl-headrow { padding: var(--spacing-200) var(--spacing-400) var(--spacing-100); display: flex; align-items: center; gap: var(--spacing-200); }
+  .fl-curfont { font-size: 40px; line-height: 1.2; color: var(--text-primary); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; flex: 1; min-width: 0; }
+  .fl-cursrc { font-size: 13px; color: var(--text-secondary); white-space: nowrap; flex-shrink: 0; }
+  .fl-headacts { display: flex; gap: var(--spacing-100); flex-shrink: 0; }
+  .fl-substrip { padding: 0 var(--spacing-400) var(--spacing-100); font-size: 12px; color: var(--text-secondary); display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+  .fl-tabs { display: flex; padding: 0 var(--spacing-200); }
+  .fl-tab { background: none; border: none; border-bottom: 4px solid transparent; color: var(--text-secondary); font-family: inherit; font-size: 16px; font-weight: 400; padding: 12px 16px; cursor: pointer; }
+  .fl-tab.is-on { color: var(--color-interactive); font-weight: 600; border-bottom-color: var(--color-interactive); }
+  .fl-view { flex: 1; overflow-y: auto; min-height: 0; display: none; }
+  .fl-view.is-on { display: block; }
+  #view-screens { overflow: hidden; }
+
+  /* Control rail */
+  .fl-panel { border-left: 1px solid var(--border-default); padding: var(--spacing-300); display: flex; flex-direction: column; gap: var(--spacing-250); background: var(--bg-surface); overflow-y: auto; min-height: 0; }
+  .fl-ctl { display: flex; flex-direction: column; gap: 6px; }
+  .fl-ctl[hidden] { display: none; }
+  .fl-ctl-head { display: flex; justify-content: space-between; align-items: baseline; }
+  .fl-ctl label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--text-secondary); }
+  .fl-ctl-val { font-size: 12px; color: var(--text-primary); font-variant-numeric: tabular-nums; }
+  .fl-ctl input[type=range] { width: 100%; accent-color: var(--color-interactive); }
+  .fl-ctl select, .fl-ctl input[type=number], .fl-ctl input[type=text], .fl-ctl textarea {
+    background: var(--bg-input, var(--bg-base)); color: var(--text-primary); border: 1px solid var(--border-default);
+    border-radius: 8px; padding: 8px 10px; font-family: inherit; font-size: 13px;
+  }
+  .fl-ctl textarea { font-family: ui-monospace, Menlo, monospace; font-size: 11px; line-height: 1.6; min-height: 96px; resize: vertical; }
+  .fl-name-input { font-size: 16px !important; font-weight: 700; }
+  .fl-name-input:placeholder-shown { border-color: var(--status-warning) !important; }
+  .fl-seg { display: flex; border: 1px solid var(--border-default); border-radius: 8px; overflow: hidden; }
+  .fl-seg button { flex: 1; background: none; border: none; color: var(--text-secondary); font-family: inherit; font-size: 12px; font-weight: 600; padding: 7px 0; cursor: pointer; }
+  .fl-seg button.is-on { background: var(--interactive-primary); color: var(--interactive-primary-text); }
+  .fl-btn { background: var(--interactive-primary); color: var(--interactive-primary-text); border: none; border-radius: 100px; padding: 10px 16px; font-family: inherit; font-size: 13px; font-weight: 700; cursor: pointer; }
+  .fl-btn.ghost { background: none; color: var(--interactive-secondary-text); border: 1px solid var(--border-default); }
+  .fl-btn:disabled { opacity: .4; cursor: default; }
+  .fl-btn:active:not(:disabled) { transform: scale(0.98); }
+  .fl-mini { background: none; border: 1px solid var(--border-default); color: var(--text-secondary); border-radius: 100px; padding: 5px 12px; font-family: inherit; font-size: 11px; font-weight: 600; cursor: pointer; }
+  .fl-mini:hover { color: var(--text-primary); }
+  .fl-check { display: flex; align-items: center; gap: var(--spacing-100); font-size: 12px; font-weight: 600; color: var(--text-secondary); cursor: pointer; padding: 2px 0; }
+  .fl-check input { accent-color: var(--color-interactive); width: 16px; height: 16px; margin: 0; }
+  .fl-hint { margin: 6px 0 0; font-size: 11px; line-height: 1.45; color: var(--text-secondary); }
+  .fl-btnrow { display: flex; gap: var(--spacing-100); margin-top: 4px; }
+  .fl-btnrow .fl-mini { flex: 1; }
+  /* The nudge shifts the letters, not the box — the grey band and the amber
+     centre line have to stay put or there is nothing to judge against. */
+  .fl-shift { position: relative; top: var(--nudge, 0px); }
+  .fl-note { font-size: 12px; color: var(--text-secondary); line-height: 1.5; }
+  .fl-note code { background: var(--bg-base); border-radius: 4px; padding: 1px 5px; }
+
+  /* Letter-spacing stepper. Selectors are scoped under .fl-ctl so they outrank
+     the generic `.fl-ctl input[type=number]` field styling above — otherwise the
+     input keeps its own border, radius and background and renders as a pill
+     floating inside the stepper. */
+  .fl-ctl .fl-step { display: flex; align-items: stretch; border: 1px solid var(--border-default); border-radius: 8px; overflow: hidden; background: var(--bg-input, var(--bg-base)); }
+  .fl-ctl .fl-step button { flex: none; width: 38px; background: none; border: none; color: var(--text-primary); font-family: inherit; font-size: 18px; line-height: 1; font-weight: 600; cursor: pointer; }
+  .fl-ctl .fl-step button:hover { background: var(--bg-surface); }
+  .fl-ctl .fl-step button:active { background: var(--interactive-primary); color: var(--interactive-primary-text); }
+  /* Centred on the whole control, not just the input box: the input carries a
+     left pad equal to the unit's width, so the number lands on the true midpoint
+     between the two buttons rather than being pushed left by the "em". */
+  .fl-ctl .fl-step input[type=number] { flex: 1; min-width: 0; border: 0; border-radius: 0; background: none; padding: 8px 0 8px 30px; color: var(--text-primary); font-family: inherit; font-size: 13px; text-align: center; font-variant-numeric: tabular-nums; }
+  .fl-ctl .fl-step input[type=number]::-webkit-outer-spin-button,
+  .fl-ctl .fl-step input[type=number]::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+  .fl-ctl .fl-step input[type=number] { -moz-appearance: textfield; }
+  .fl-ctl .fl-step .unit { flex: none; width: 30px; display: flex; align-items: center; justify-content: flex-start; padding: 0 0 0 4px; color: var(--text-secondary); font-size: 12px; }
+  .fl-ctl .fl-step:focus-within { border-color: var(--color-interactive); }
+  .fl-ctl .fl-step input[type=number]:focus-visible { outline: none; }
+
+  /* Ramp — identical geometry to Font Lab 1, including the line-height band */
+  #view-ramp { overflow-y: auto; }
+  .fl-ramp-main { padding: var(--spacing-300) var(--spacing-400) var(--spacing-500); min-width: 0; }
+  .fl-ramp-rows { display: flex; flex-direction: column; }
+  .fl-ramp-row { display: grid; grid-template-columns: 56px 76px 90px 1fr; gap: var(--spacing-200); align-items: center; padding: var(--spacing-100) 0; border-bottom: 1px solid var(--border-default); }
+  .fl-ramp-step { font-size: 12px; font-weight: 700; color: var(--text-secondary); }
+  .fl-ramp-lh { font-size: 11px; color: var(--text-secondary); font-variant-numeric: tabular-nums; }
+  .fl-ramp-row input[type=number] { width: 70px; background: var(--bg-input, var(--bg-base)); color: var(--text-primary); border: 1px solid var(--border-default); border-radius: 6px; padding: 5px 6px; font-family: inherit; font-size: 13px; }
+  .fl-ramp-row.is-over input[type=number] { border-color: var(--status-error); color: var(--status-error); }
+  /* The grey band is the true line-height box, so size-vs-line-height is visible */
+  .fl-ramp-preview { overflow: hidden; white-space: nowrap; background: linear-gradient(var(--bg-surface), var(--bg-surface)) left center / 100% var(--lh, 0px) no-repeat; }
+  /* Two hairlines: amber = middle of the line box, blue = middle of the glyph block.
+     The gap between them IS the vertical-metrics offset the panel reports. */
+  .fl-ramp-rows.show-centre .fl-ramp-preview {
+    background:
+      linear-gradient(var(--brand-interactive), var(--brand-interactive)) left calc(50% + var(--blockoff, 0px)) / 100% 1px no-repeat,
+      linear-gradient(var(--status-warning), var(--status-warning)) left center / 100% 1px no-repeat,
+      linear-gradient(var(--bg-surface), var(--bg-surface)) left center / 100% var(--lh, 0px) no-repeat;
+  }
+  .fl-ramp-warn { font-size: 11px; color: var(--status-error); }
+  .fl-caps-split { display: grid; grid-template-columns: 1fr 1fr; gap: var(--spacing-200); margin-top: var(--spacing-300); }
+  .fl-caps-split > div { background: var(--bg-surface); border-radius: 12px; padding: var(--spacing-200); overflow: hidden; }
+  .fl-caps-split h4 { margin: 0 0 6px; font-size: 10px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--text-secondary); font-weight: 700; }
+  .fl-caps-split p { margin: 0; white-space: nowrap; line-height: 1.1; }
+
+  /* Screens — full height, phones never clipped */
+  .fl-screens { display: flex; flex-direction: column; height: 100%; min-height: 0; }
+  .fl-screens-panel { flex: 1; min-height: 0; margin: var(--spacing-300) var(--spacing-400) var(--spacing-100); background: var(--black-1000); border-radius: var(--border-radius-200, 16px); display: flex; }
+  .fl-screens-row { flex: 1; min-height: 0; overflow: auto; display: flex; gap: var(--spacing-500); padding: var(--spacing-400); align-items: safe center; justify-content: safe center; }
+  .fl-phone-wrap { display: flex; flex-direction: column; align-items: center; gap: var(--spacing-150); flex-shrink: 0; }
+  .fl-phone-label { color: var(--white-700); text-align: center; font-size: 11px; }
+  .fl-phone { width: 405px; height: 852px; overflow: hidden; background: transparent; }
+  .fl-phone iframe { width: 501px; height: 852px; margin-left: -48px; border: 0; display: block; background: transparent; }
+  .fl-screens-bar { padding: 0 var(--spacing-400) var(--spacing-300); flex-shrink: 0; }
+  .fl-screens-panel.is-blocked { align-items: center; justify-content: center; background: var(--bg-surface); border: 1px solid var(--border-default); }
+  .fl-blocked { max-width: 560px; padding: var(--spacing-500); color: var(--text-secondary); font-size: 14px; line-height: 1.6; }
+  .fl-blocked-title { font-size: 20px; font-weight: 700; color: var(--text-primary); margin-bottom: var(--spacing-200); }
+  .fl-blocked p { margin: 0 0 var(--spacing-200); }
+  .fl-blocked code { background: var(--bg-base); border: 1px solid var(--border-default); border-radius: 6px; padding: 2px 6px; font-family: ui-monospace, Menlo, monospace; font-size: 12.5px; color: var(--text-primary); }
+  .fl-blocked-cmd { display: flex; align-items: center; gap: var(--spacing-150); margin-bottom: var(--spacing-200); }
+
+  .fl-empty { padding: var(--spacing-600) var(--spacing-400); color: var(--text-secondary); }
+  .fl-toast { position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); background: var(--interactive-primary); color: var(--interactive-primary-text); font-weight: 700; padding: 9px 18px; border-radius: 100px; font-size: 13px; opacity: 0; transition: opacity .18s; pointer-events: none; z-index: 60; }
+  .fl-toast.is-on { opacity: 1; }
+  @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+
+<div class="fl-app">
+  <aside class="fl-side">
+    <div class="fl-side-head">
+      <div class="fl-brand">
+        <div class="fl-logo">Font Lab 2</div>
+        <button class="fl-mini" id="btnMode">Mode</button>
+      </div>
+      <input class="fl-search" type="search" id="q" placeholder="Search 145 confirmed fonts">
+      <div class="fl-chips" id="catf">
+        <button class="fl-chip is-on" data-c="all">All</button>
+        <button class="fl-chip" data-c="Display">Display</button>
+        <button class="fl-chip" data-c="Sans-serif">Sans</button>
+        <button class="fl-chip" data-c="Serif">Serif</button>
+      </div>
+      <div class="fl-chips" id="savedf">
+        <button class="fl-chip is-on" data-s="all">Every</button>
+        <button class="fl-chip" data-s="unsaved">Needs spec</button>
+        <button class="fl-chip" data-s="saved">Specced</button>
+        <button class="fl-chip" data-s="metrics">Metrics</button>
+      </div>
+    </div>
+    <div class="fl-count"><span><strong id="cShown">0</strong> shown</span><span><strong id="cSpecced">0</strong> specced</span></div>
+    <div class="fl-list" id="list"></div>
+    <div class="fl-side-foot">
+      <button class="fl-mini" id="btnExportAll">Export all specs</button>
+      <button class="fl-mini" id="btnImport">Import…</button>
+      <input type="file" id="fileIn" accept="application/json" hidden>
+    </div>
+  </aside>
+
+  <div class="fl-main">
+    <div class="fl-content">
+      <div class="fl-mainhead">
+        <div class="fl-headrow">
+          <div class="fl-curfont" id="curFont">Select a font</div>
+          <span class="fl-cursrc" id="curSrc"></span>
+          <div class="fl-headacts">
+            <button class="fl-btn ghost" id="btnRevert">Revert</button>
+            <button class="fl-btn" id="btnSave" disabled>Save spec</button>
+          </div>
+        </div>
+        <div class="fl-substrip" id="curMeta"></div>
+        <div class="fl-tabs">
+          <button class="fl-tab is-on" data-view="ramp">Display ramp</button>
+          <button class="fl-tab" data-view="screens">Screens</button>
+        </div>
+      </div>
+
+      <section class="fl-view is-on" id="view-ramp">
+        <div class="fl-ramp-main">
+          <div class="fl-ramp-rows" id="rampRows"></div>
+          <div id="capsSplit"></div>
+        </div>
+      </section>
+
+      <section class="fl-view" id="view-screens">
+        <div class="fl-screens">
+          <div class="fl-screens-panel"><div class="fl-screens-row" id="screensRow"></div></div>
+          <div class="fl-screens-bar"><p class="fl-note" id="screensNote" style="margin:0"></p></div>
+        </div>
+      </section>
+    </div>
+
+    <aside class="fl-panel" id="panel"></aside>
+  </div>
+</div>
+<div class="fl-toast" id="toast"></div>
+<script>
+'use strict';
+const FONTS = window.FL2_FONTS || [];
+const LH    = window.FL2_LH || {};
+const TEAMS = window.THEME_RAMPS || {};
+const SEED  = window.FL2_SEED || {};
+const NAMES = window.FL2_NAMES || {};
+const STEPS = ['900','800','700','600','500','400','300','200','100'];
+const byName = Object.fromEntries(FONTS.map(f => [f.n, f]));
+const $ = id => document.getElementById(id);
+const LSKEY = 'fontlab2-specs-v1';
+const LS_STEP = 0.001;                       // shift multiplies by 10
+const AXES = ['wdth', 'slnt'];               // width + tilt; optical size has no place in the display spec
+const AXIS_META = { wdth: { label: 'Width', unit: '%', dflt: 100, step: 0.5 },
+                    slnt: { label: 'Tilt',  unit: '°', dflt: 0, step: 1 } };
+const axisOf = f => AXES.filter(a => f.axes && f.axes[a]);
+const clampAxis = (f, a, v) => Math.min(Math.max(v, f.axes[a][0]), f.axes[a][1]);
+
+let saved = {};
+try { saved = JSON.parse(localStorage.getItem(LSKEY) || '{}'); } catch (e) { saved = {}; }
+Object.values(saved).forEach(sp => { if (sp && sp.axes) delete sp.axes.opsz; });
+let current = null, draft = null, view = 'ramp';
+let sampleText = 'Boxy MVP waltzed quick jabs from the wing.';
+let filterCat = 'all', filterSaved = 'all', query = '';
+
+function esc(s) { return String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])); }
+function defaultSpec(f) {
+  const sizes = {}; STEPS.forEach(s => sizes[s] = LH[s]);
+  /* Seed from the style already named in the library — its weight, tracking, case
+     and width are a better starting point than blank defaults. */
+  const seed = SEED[f.n], axes = {};
+  for (const a of axisOf(f)) {
+    const fromSeed = seed && seed.axes && seed.axes[a];
+    axes[a] = clampAxis(f, a, fromSeed != null ? fromSeed : AXIS_META[a].dflt);
+  }
+  return { name: NAMES[f.n] || '', weight: seed ? seed.weight : f.w,
+           ls: seed ? seed.ls : 0, caps: seed ? seed.caps : 'none',
+           sizes, axes, linked: true, needsMetrics: false, metricsNote: '',
+           nudge: 0, nudgeAuto: true, seeded: !!seed };
+}
+const clone = o => JSON.parse(JSON.stringify(o));
+const specOf = n => saved[n] ? Object.assign(defaultSpec(byName[n]), clone(saved[n])) : defaultSpec(byName[n]);
+function bare(o) { if (!o) return null; const { updated, seeded, nudgeAuto, ...rest } = o; return JSON.stringify(rest); }
+const isDirty = () => !!current && bare(draft) !== bare(saved[current] ? Object.assign(defaultSpec(byName[current]), saved[current]) : null);
+function persist() {
+  try { localStorage.setItem(LSKEY, JSON.stringify(saved)); } catch (e) { toast('Could not write to localStorage'); }
+}
+let toastT;
+function toast(msg) {
+  const t = $('toast'); t.textContent = msg; t.classList.add('is-on');
+  clearTimeout(toastT); toastT = setTimeout(() => t.classList.remove('is-on'), 1700);
+}
+
+/* ── font loading ── */
+const loaded = new Set();
+function css2Url(name, weight) {
+  const f = byName[name]; if (!f) return '';
+  const w = weight || f.w;
+  /* css2 pins any axis you do not request, so width and tilt need their full
+     ranges here or the controls would move nothing. Tags alphabetical, values
+     in the same order. */
+  const tags = axisOf(f).concat('wght').sort();
+  const vals = tags.map(t => t === 'wght' ? String(w) : f.axes[t][0] + '..' + f.axes[t][1]);
+  return 'https://fonts.googleapis.com/css2?family=' + encodeURIComponent(name).replace(/%20/g, '+') +
+         ':' + tags.join(',') + '@' + vals.join(',') + '&display=swap';
+}
+function loadFont(name, weight) {
+  const url = css2Url(name, weight);
+  if (!url || loaded.has(url)) return;
+  loaded.add(url);
+  const l = document.createElement('link'); l.rel = 'stylesheet'; l.href = url;
+  document.head.appendChild(l);
+}
+/* Mirrors the .display* rule — nothing the system cannot apply. */
+function typeCSS(spec, sizePx, capsOverride) {
+  const a = spec.axes || {};
+  return {
+    fontFamily: "'" + current.replace(/['"]/g, '') + "', sans-serif",
+    fontWeight: spec.weight,
+    fontSize: sizePx + 'px',
+    letterSpacing: spec.ls + 'em',
+    textTransform: capsOverride !== undefined ? capsOverride : (spec.caps === 'caps' ? 'uppercase' : 'none'),
+    fontStretch: a.wdth != null ? a.wdth + '%' : '',
+    fontVariationSettings: a.slnt != null ? '"slnt" ' + a.slnt : '',
+  };
+}
+
+/* == vertical metrics ==
+   The display line heights are fixed, so where a font's glyphs sit inside that box is
+   decided by the font's own ascent/descent, not by anything CSS can reach. A face
+   whose glyphs ride high or low is off-centre in every component at every step,
+   and the only real fix is editing the font file's vertical metrics.
+
+   What gets measured matters. Two rules, both learned the hard way:
+
+   1. Measure the case that ships. The ramp renders all-caps when the spec says
+      caps; measuring the mixed-case sample instead counts descenders that are
+      not on screen and drags the answer down by several px.
+   2. Measure the block the eye reads, not the ink bounding box. In
+      "BOXY MVP WALTZED QUICK JABS", the Q tail and the J dip below the baseline.
+      That is a few pixels of ink, but it moves the ink-box centre a long way
+      down, so a face whose caps sit visibly high reports as "low".
+
+   So: probe with a descender-free string in the shipping case, take the CSS
+   baseline from the live DOM (exact, not estimated from fontBoundingBox) and the
+   block top from canvas, then compare the middle of that block against the middle
+   of the line box. Positive = the block sits below centre. An indicator, not a
+   substitute for opening the file - hence the manual flag beside it. */
+const metricCx = document.createElement('canvas').getContext('2d');
+/* flat-sided letters only - round overshoot would fake a px of descent */
+const PROBE_CAPS = 'HEBI', PROBE_MIXED = 'Hbkl';
+let probeEl = null;
+function blockMetrics(sizePx, lhPx) {
+  if (!current) return null;
+  const text = draft.caps === 'caps' ? PROBE_CAPS : PROBE_MIXED;
+  if (!probeEl) {
+    probeEl = document.createElement('div');
+    probeEl.style.cssText = 'position:absolute;left:-9999px;top:0;white-space:nowrap;visibility:hidden';
+    document.body.appendChild(probeEl);
+  }
+  Object.assign(probeEl.style, typeCSS(draft, sizePx, 'none'));
+  probeEl.style.lineHeight = lhPx + 'px';
+  probeEl.textContent = text;
+  const mark = document.createElement('span');
+  mark.style.cssText = 'display:inline-block;width:0;height:0;vertical-align:baseline';
+  probeEl.appendChild(mark);
+  const box = probeEl.getBoundingClientRect(), mb = mark.getBoundingClientRect();
+  const baseline = mb.bottom - box.top;
+  metricCx.font = draft.weight + ' ' + sizePx + 'px "' + current.replace(/"/g, '') + '"';
+  const m = metricCx.measureText(text);
+  if (m.actualBoundingBoxAscent == null || !isFinite(baseline)) return null;
+  const top = baseline - m.actualBoundingBoxAscent;
+  const bottom = baseline + Math.max(0, m.actualBoundingBoxDescent);
+  return { top, bottom, centre: (top + bottom) / 2, off: (top + bottom) / 2 - lhPx / 2, probe: text };
+}
+function verticalOffset(sizePx, lhPx) {
+  const b = blockMetrics(sizePx, lhPx);
+  return b ? b.off : null;
+}
+/* The nudge is a recorded correction, not a token in the system: nothing in .display*
+   reads it, so a font shipped with a nudge still renders off-centre in the app
+   until someone edits its vertical metrics. Font Lab applies it to the previews
+   so the value can be found by eye; the export carries it as a spec note. Unit is
+   a percentage of the line height, so one number holds across all nine steps.
+   Negative moves the letters up. metricsReading() stays deliberately un-nudged —
+   it describes the font file, which is the thing the number is instructions for. */
+const NUDGE_STEP = 0.5, NUDGE_MAX = 15;
+const nudgePct = () => +(draft && draft.nudge) || 0;
+const nudgePx = lhPx => lhPx * nudgePct() / 100;
+function applyAutoNudge() {
+  if (!current || !draft || !draft.nudgeAuto) return;
+  draft.nudgeAuto = false;
+  const r = metricsReading();
+  if (!r.off) return;
+  const v = Math.max(-NUDGE_MAX, Math.min(NUDGE_MAX,
+    Math.round(-r.pct / NUDGE_STEP) * NUDGE_STEP));
+  if (!v) return;
+  draft.nudge = v;
+  const inp = $('nudgeIn'); if (inp) inp.value = v.toFixed(1);
+  repaint();
+}
+/* Metrics read as the fallback face until the webfont actually lands, so the
+   prefill waits rather than banking a number measured against Arial. */
+function autoNudgeWhenReady(name) {
+  const t0 = Date.now();
+  (function wait() {
+    if (current !== name || !draft || !draft.nudgeAuto) return;
+    try {
+      if (document.fonts.check(draft.weight + ' 76px "' + name + '"')) return applyAutoNudge();
+    } catch (e) { return; }
+    if (Date.now() - t0 < 6000) setTimeout(wait, 120);
+  })();
+}
+function metricsReading() {
+  const size = draft.sizes['900'] ?? LH['900'], lh = LH['900'];
+  const off = verticalOffset(size, lh);
+  if (off == null) return { text: 'not measurable', pct: 0, off: 0 };
+  const pct = (off / lh) * 100;
+  const dir = off > 0 ? 'below centre' : 'above centre';
+  return { off, pct, text: Math.abs(off) < 0.5 ? 'centred (\u00b10.5px)'
+    : Math.abs(off).toFixed(1) + 'px ' + dir + ' (' + Math.abs(pct).toFixed(1) + '% of the line box)' };
+}
+
+/* ── sidebar ── */
+const CATS = ['Display', 'Sans-serif', 'Serif'];
+function railList() {
+  const q = query.trim().toLowerCase();
+  const rows = FONTS.slice()
+    .sort((a, b) => (CATS.indexOf(a.cat) - CATS.indexOf(b.cat)) || a.n.localeCompare(b.n))
+    .filter(f => {
+      if (filterCat !== 'all' && f.cat !== filterCat) return false;
+      if (filterSaved === 'saved' && !saved[f.n]) return false;
+      if (filterSaved === 'unsaved' && saved[f.n]) return false;
+      if (filterSaved === 'metrics' && !(saved[f.n] && saved[f.n].needsMetrics)) return false;
+      const tok = (saved[f.n] && saved[f.n].name) || NAMES[f.n] || '';
+      if (q && !f.n.toLowerCase().includes(q) && !tok.toLowerCase().includes(q)) return false;
+      return true;
+    });
+  let html = '', lastCat = null;
+  for (const f of rows) {
+    if (f.cat !== lastCat) { html += '<div class="fl-group">' + f.cat + '</div>'; lastCat = f.cat; }
+    const tok = (current === f.n && draft ? draft.name : null) || (saved[f.n] && saved[f.n].name) || NAMES[f.n] || f.n;
+    const dirty = current === f.n && isDirty();
+    const flagged = (current === f.n && draft) ? draft.needsMetrics : (saved[f.n] && saved[f.n].needsMetrics);
+    const badge = (flagged ? '<span class="fl-row-badge is-metrics" title="Needs vertical metrics work">Metrics</span>' : '') +
+      (dirty ? '<span class="fl-row-badge is-dirty" data-status>Unsaved</span>'
+             : saved[f.n] ? '<span class="fl-row-badge is-saved" data-status>Saved</span>' : '');
+    const w = (saved[f.n] && saved[f.n].weight) || (SEED[f.n] && SEED[f.n].weight) || f.w;
+    html += '<div class="fl-row' + (current === f.n ? ' is-sel' : '') + '" data-f="' + esc(f.n) + '">' +
+      '<div class="fl-row-meta"><span class="fl-row-name">' + esc(tok) + '</span>' + badge + '</div>' +
+      '<div class="fl-row-src">' + esc(f.n) + '</div>' +
+      '<div class="fl-row-sample" data-sample="' + esc(f.n) + '" style="font-family:\'' + esc(f.n) + '\';font-weight:' + w + '">' + esc(sampleText) + '</div>' +
+      '</div>';
+  }
+  $('list').innerHTML = html || '<div class="fl-group">No matches.</div>';
+  $('cShown').textContent = rows.length;
+  $('cSpecced').textContent = Object.keys(saved).length + ' / ' + FONTS.length;
+  rows.slice(0, 40).forEach(f => loadFont(f.n, (saved[f.n] && saved[f.n].weight) || (SEED[f.n] && SEED[f.n].weight) || f.w));
+}
+$('list').addEventListener('click', e => {
+  const row = e.target.closest('.fl-row'); if (row) select(row.dataset.f);
+});
+$('q').addEventListener('input', e => { query = e.target.value; railList(); });
+function chips(id, fn) {
+  $(id).addEventListener('click', e => {
+    const b = e.target.closest('.fl-chip'); if (!b) return;
+    [...e.currentTarget.children].forEach(x => x.classList.toggle('is-on', x === b));
+    fn(b.dataset); railList();
+  });
+}
+chips('catf', d => filterCat = d.c);
+chips('savedf', d => filterSaved = d.s);
+function select(name) {
+  if (!byName[name]) return;
+  current = name; draft = specOf(name);
+  if (saved[name]) draft.nudgeAuto = false;   // a saved spec is a decision, not a blank
+  loadFont(name, draft.weight);
+  renderAll();
+  autoNudgeWhenReady(name);
+}
+
+/* ── control rail ── */
+function panelHTML(f) {
+  const lo = f.axes && f.axes.wght ? f.axes.wght[0] : null;
+  const hi = f.axes && f.axes.wght ? f.axes.wght[1] : null;
+  /* Standard 100-step stops inside the axis range — stepping from the raw axis
+     minimum gives nonsense like 1/101/201 on families whose wght starts at 1. */
+  let wOpts;
+  if (lo != null) {
+    wOpts = [];
+    for (let w = 100; w <= 1000; w += 100) if (w >= lo && w <= hi) wOpts.push(w);
+    const cur = Math.round(draft.weight);
+    if (!wOpts.includes(cur)) wOpts.push(cur);
+    wOpts = [...new Set(wOpts)].sort((a, b) => a - b);
+  } else wOpts = f.ws;
+
+  const axisCtls = axisOf(f).map(a => {
+    const m = AXIS_META[a], r = f.axes[a], v = draft.axes[a];
+    return '<div class="fl-ctl"><div class="fl-ctl-head"><label>' + m.label + '</label>' +
+      '<span class="fl-ctl-val" id="axv-' + a + '">' + v + m.unit + '</span></div>' +
+      '<input type="range" data-ax="' + a + '" min="' + r[0] + '" max="' + r[1] + '" step="' + m.step + '" value="' + v + '">' +
+      '</div>';
+  }).join('');
+
+  const teamOpts = ['<option value="">Prefill from a team ramp…</option>']
+    .concat(Object.entries(TEAMS).map(([k, t]) => '<option value="' + k + '">' + esc(t.name) + ' — ' + esc(t.font) + '</option>')).join('');
+
+  return '' +
+  '<div class="fl-ctl"><label for="tokenName">Display token family</label>' +
+    '<input class="fl-name-input" type="text" id="tokenName" value="' + esc(draft.name || '') + '" placeholder="Name this family…" spellcheck="false">' +
+    '<span class="fl-note">Renders <strong>' + esc(f.n) + '</strong></span></div>' +
+  '<div class="fl-ctl"><label for="wsel">Weight</label><select id="wsel">' +
+    wOpts.map(w => '<option value="' + w + '"' + (+draft.weight === +w ? ' selected' : '') + '>' + w + '</option>').join('') +
+  '</select></div>' +
+  '<div class="fl-ctl"><label for="lsIn">Letter spacing</label>' +
+    '<div class="fl-step"><button type="button" id="lsDown" aria-label="Decrease">−</button>' +
+    '<input type="number" id="lsIn" step="' + LS_STEP + '" value="' + draft.ls.toFixed(3) + '">' +
+    '<span class="unit">em</span><button type="button" id="lsUp" aria-label="Increase">+</button></div>' +
+    '<span class="fl-note">Steps 0.001 — hold shift for 0.01</span></div>' +
+  '<div class="fl-ctl"><label>Case</label><div class="fl-seg" id="capsSeg">' +
+    [['none','As drawn'],['caps','All caps'],['both','Both']].map(([v, l]) =>
+      '<button data-v="' + v + '"' + (draft.caps === v ? ' class="is-on"' : '') + '>' + l + '</button>').join('') +
+  '</div></div>' +
+  axisCtls +
+  '<div class="fl-ctl"><label>Ramp</label>' +
+    '<label class="fl-check"><input type="checkbox" id="linked"' + (draft.linked !== false ? ' checked' : '') + '> Scale all steps together</label>' +
+    '<select id="teamSel">' + teamOpts + '</select>' +
+    '<button class="fl-mini" id="btnResetRamp" style="margin-top:4px">Reset to line heights</button></div>' +
+  '<div class="fl-ctl"><div class="fl-ctl-head"><label>Vertical metrics</label>' +
+    '<span class="fl-ctl-val" id="metricVal"></span></div>' +
+    '<label class="fl-check"><input type="checkbox" id="needsMetrics"' + (draft.needsMetrics ? ' checked' : '') + '> Needs metrics work</label>' +
+    '<input type="text" id="metricsNote" placeholder="What needs doing…" value="' + esc(draft.metricsNote || '') + '"' +
+      (draft.needsMetrics ? '' : ' hidden') + '>' +
+    '<label class="fl-check"><input type="checkbox" id="centreGuide"> Show centre guides on ramp</label>' +
+    '<p class="fl-hint">Amber line = middle of the line box. Blue line = middle of the letters. ' +
+      'The reading is the gap between them, measured on ' +
+      (draft.caps === 'caps' ? 'all-caps' : 'as-drawn') + ' letters with no descenders.</p></div>' +
+  '<div class="fl-ctl"><div class="fl-ctl-head"><label for="nudgeIn">Nudge</label>' +
+    '<span class="fl-ctl-val" id="nudgeVal"></span></div>' +
+    '<div class="fl-step"><button type="button" id="nDown" aria-label="Nudge up">−</button>' +
+    '<input type="number" id="nudgeIn" step="' + NUDGE_STEP + '" value="' + (+draft.nudge || 0).toFixed(1) + '">' +
+    '<span class="unit">%</span><button type="button" id="nUp" aria-label="Nudge down">+</button></div>' +
+    '<span class="fl-note">Steps 0.5 — hold shift for 2. Negative moves up.</span>' +
+    '<div class="fl-btnrow"><button class="fl-mini" id="btnNudgeAuto">Centre it</button>' +
+      '<button class="fl-mini" id="btnNudgeZero">Reset to 0</button></div>' +
+    '<p class="fl-hint">Percentage of the line height, so one value holds across all nine steps. ' +
+      'Prefilled with the correction that centres this face — adjust by eye against the guides. ' +
+      'Recorded in the export only: the system has no nudge token, so this is the instruction for the ' +
+      'font file\u2019s vertical metrics.</p></div>' +
+  '<div class="fl-ctl"><label for="rampSample">Sample</label>' +
+    '<input type="text" id="rampSample" value="' + esc(sampleText) + '"></div>' +
+  '<div class="fl-ctl"><label>Export — CSS tokens</label><textarea id="expCSS" readonly></textarea>' +
+    '<button class="fl-mini" data-copy="expCSS">Copy CSS</button></div>' +
+  '<div class="fl-ctl"><label>Export — Sanity / team JSON</label><textarea id="expJSON" readonly></textarea>' +
+    '<button class="fl-mini" data-copy="expJSON">Copy JSON</button></div>';
+}
+
+function wirePanel() {
+  const nm = $('tokenName');
+  nm.addEventListener('input', e => {          // in place — a re-render would drop focus
+    draft.name = e.target.value; syncSaveBtn(); paintHead(); railList();
+  });
+  $('wsel').addEventListener('change', e => {
+    draft.weight = +e.target.value; loadFont(current, draft.weight); repaint();
+  });
+  const step = e => LS_STEP * (e.shiftKey ? 10 : 1);
+  const setLS = v => {
+    draft.ls = Math.round(Math.max(-0.2, Math.min(0.5, v)) * 1000) / 1000;
+    $('lsIn').value = draft.ls.toFixed(3);
+    repaint();
+  };
+  $('lsDown').addEventListener('click', e => setLS(draft.ls - step(e)));
+  $('lsUp').addEventListener('click', e => setLS(draft.ls + step(e)));
+  $('lsIn').addEventListener('change', e => setLS(parseFloat(e.target.value) || 0));
+  $('lsIn').addEventListener('keydown', e => {
+    if (e.key === 'ArrowUp')   { e.preventDefault(); setLS(draft.ls + step(e)); }
+    if (e.key === 'ArrowDown') { e.preventDefault(); setLS(draft.ls - step(e)); }
+  });
+  $('capsSeg').addEventListener('click', e => {
+    const b = e.target.closest('button'); if (!b) return;
+    [...e.currentTarget.children].forEach(x => x.classList.toggle('is-on', x === b));
+    draft.caps = b.dataset.v; renderRamp(); repaint();
+  });
+  document.querySelectorAll('[data-ax]').forEach(sl => sl.addEventListener('input', e => {
+    const a = e.target.dataset.ax;
+    draft.axes[a] = Math.round(clampAxis(byName[current], a, +e.target.value) * 10) / 10;
+    $('axv-' + a).textContent = draft.axes[a] + AXIS_META[a].unit;
+    repaint();
+  }));
+  const nStep = e => (e.shiftKey ? 4 : 1) * NUDGE_STEP;
+  const setNudge = v => {
+    draft.nudge = Math.round(Math.max(-NUDGE_MAX, Math.min(NUDGE_MAX, v)) * 100) / 100;
+    draft.nudgeAuto = false;
+    $('nudgeIn').value = draft.nudge.toFixed(1);
+    repaint();
+  };
+  $('nDown').addEventListener('click', e => setNudge(nudgePct() - nStep(e)));
+  $('nUp').addEventListener('click', e => setNudge(nudgePct() + nStep(e)));
+  $('nudgeIn').addEventListener('change', e => setNudge(parseFloat(e.target.value) || 0));
+  $('nudgeIn').addEventListener('keydown', e => {
+    if (e.key === 'ArrowUp')   { e.preventDefault(); setNudge(nudgePct() + nStep(e)); }
+    if (e.key === 'ArrowDown') { e.preventDefault(); setNudge(nudgePct() - nStep(e)); }
+  });
+  $('btnNudgeZero').addEventListener('click', () => setNudge(0));
+  /* Case and weight both move the measurement, so the prefill goes stale the
+     moment either changes — this recomputes it against the spec as it stands. */
+  $('btnNudgeAuto').addEventListener('click', () => {
+    const r = metricsReading();
+    setNudge(Math.round(-r.pct / NUDGE_STEP) * NUDGE_STEP);
+  });
+  $('needsMetrics').addEventListener('change', e => {
+    draft.needsMetrics = e.target.checked;
+    $('metricsNote').hidden = !e.target.checked;
+    if (!e.target.checked) { draft.metricsNote = ''; $('metricsNote').value = ''; }
+    paintExports(); syncSaveBtn(); railList();
+  });
+  $('metricsNote').addEventListener('input', e => {
+    draft.metricsNote = e.target.value; paintExports(); syncSaveBtn();
+  });
+  $('centreGuide').addEventListener('change', e => {
+    $('rampRows').classList.toggle('show-centre', e.target.checked);
+  });
+  $('linked').addEventListener('change', e => { draft.linked = e.target.checked; syncSaveBtn(); });
+  $('teamSel').addEventListener('change', e => {
+    const t = TEAMS[e.target.value]; if (!t) return;
+    STEPS.forEach(s => draft.sizes[s] = t.sizes[s]);
+    const ls = parseFloat(t.letterSpacing); if (!isNaN(ls)) draft.ls = ls;
+    renderPanel(); renderRamp(); repaint(); toast('Prefilled from ' + t.name);
+  });
+  $('btnResetRamp').addEventListener('click', () => {
+    STEPS.forEach(s => draft.sizes[s] = LH[s]); renderRamp(); repaint();
+  });
+  $('rampSample').addEventListener('input', e => { sampleText = e.target.value || ' '; repaint(); railList(); });
+  document.querySelectorAll('[data-copy]').forEach(b => b.addEventListener('click', () => {
+    navigator.clipboard.writeText($(b.dataset.copy).value).then(() => toast('Copied'), () => toast('Copy failed'));
+  }));
+}
+
+/* ── ramp ── */
+function renderRamp() {
+  if (!current) { $('rampRows').innerHTML = ''; $('capsSplit').innerHTML = ''; return; }
+  $('rampRows').innerHTML = STEPS.map(s => {
+    const lh = LH[s], size = draft.sizes[s] ?? lh, over = size > lh;
+    return '<div class="fl-ramp-row' + (over ? ' is-over' : '') + '" data-step="' + s + '">' +
+      '<span class="fl-ramp-step">' + s + '</span>' +
+      '<span class="fl-ramp-lh">lh ' + lh + 'px</span>' +
+      '<span><input type="number" min="8" max="160" value="' + size + '" data-size="' + s + '">' +
+        (over ? '<div class="fl-ramp-warn">&gt; lh</div>' : '') + '</span>' +
+      '<div class="fl-ramp-preview" data-prev="' + s + '" style="--lh:' + lh + 'px"></div></div>';
+  }).join('');
+  $('capsSplit').innerHTML = draft.caps === 'both'
+    ? '<div class="fl-caps-split"><div><h4>As drawn</h4><p id="cs-none"></p></div>' +
+      '<div><h4>All caps</h4><p id="cs-caps"></p></div></div>' : '';
+  document.querySelectorAll('[data-size]').forEach(inp => inp.addEventListener('input', e => {
+    const st = e.target.dataset.size, v = +e.target.value || 0;
+    draft.sizes[st] = v;
+    if (draft.linked !== false && v > 0) {
+      const ratio = v / LH[st];
+      STEPS.forEach(x => draft.sizes[x] = Math.max(1, Math.round(ratio * LH[x])));
+      draft.sizes[st] = v;
+      document.querySelectorAll('[data-size]').forEach(o => { if (o !== e.target) o.value = draft.sizes[o.dataset.size]; });
+    }
+    STEPS.forEach(x => {
+      const row = document.querySelector('.fl-ramp-row[data-step="' + x + '"]');
+      if (row) row.classList.toggle('is-over', (draft.sizes[x] ?? LH[x]) > LH[x]);
+    });
+    repaint();
+  }));
+}
+function paintRamp() {
+  if (!current) return;
+  STEPS.forEach(s => {
+    const el = document.querySelector('[data-prev="' + s + '"]'); if (!el) return;
+    const lh = LH[s], size = draft.sizes[s] ?? lh;
+    el.textContent = '';
+    const sp = document.createElement('span');
+    sp.className = 'fl-shift'; sp.textContent = sampleText;
+    el.appendChild(sp);
+    Object.assign(el.style, typeCSS(draft, size, draft.caps === 'both' ? 'none' : undefined));
+    el.style.lineHeight = lh + 'px';
+    el.style.setProperty('--lh', lh + 'px');
+    const nud = nudgePx(lh);
+    sp.style.setProperty('--nudge', nud.toFixed(2) + 'px');
+    /* blue guide tracks where the letters END UP, so dialling the nudge until the
+       two lines merge is the whole interaction */
+    const bm = blockMetrics(size, lh);
+    el.style.setProperty('--blockoff', (bm ? (bm.off + nud).toFixed(2) : 0) + 'px');
+  });
+  if (draft.caps === 'both') {
+    [['cs-none','none'],['cs-caps','uppercase']].forEach(([id, tr]) => {
+      const el = $(id); if (!el) return;
+      const size = draft.sizes['500'] ?? LH['500'];
+      el.textContent = '';
+      const sp = document.createElement('span');
+      sp.className = 'fl-shift'; sp.textContent = sampleText;
+      sp.style.setProperty('--nudge', nudgePx(size * 1.1).toFixed(2) + 'px');
+      el.appendChild(sp);
+      Object.assign(el.style, typeCSS(draft, size, tr));
+    });
+  }
+}
+function paintMetrics() {
+  const el = $('metricVal');
+  const r = metricsReading();
+  if (el) {
+    el.textContent = r.text;
+    el.style.color = Math.abs(r.pct) >= 2 ? 'var(--status-warning)' : 'var(--text-primary)';
+  }
+  const nv = $('nudgeVal');
+  if (nv) {
+    const resid = r.pct + nudgePct();      // where the letters land once nudged
+    nv.textContent = !nudgePct() ? 'none'
+      : (nudgePct() > 0 ? '+' : '') + nudgePx(LH['900']).toFixed(1) + 'px at 900 · ' +
+        (Math.abs(resid) < 0.4 ? 'centred'
+          : Math.abs(resid).toFixed(1) + '% ' + (resid > 0 ? 'below' : 'above'));
+    nv.style.color = nudgePct() && Math.abs(resid) >= 2 ? 'var(--status-warning)' : 'var(--text-secondary)';
+  }
+}
+function paintExports() {
+  if (!current || !$('expCSS')) return;
+  const ax = draft.axes || {};
+  const hasW = ax.wdth != null && ax.wdth !== 100, hasS = ax.slnt != null && ax.slnt !== 0;
+  $('expCSS').value = '/* ' + (draft.name || 'unnamed') + ' — ' + current + ' (Google Fonts) */\n' +
+    "--display-font: '" + current + "', sans-serif;\n" +
+    '--display-weight: ' + draft.weight + ';\n' +
+    '--display-letter-spacing: ' + draft.ls + 'em;\n' +
+    (hasW ? '--display-width: ' + ax.wdth + '%;\n' : '') +
+    (hasS ? '--display-slant: ' + ax.slnt + ';\n' : '') +
+    '/* case: ' + ({none:'as drawn', caps:'all caps', both:'ships both'}[draft.caps]) + ' */\n' +
+    (draft.needsMetrics ? '/* NEEDS VERTICAL METRICS WORK' +
+      (draft.metricsNote ? ': ' + draft.metricsNote : '') + ' — ' + metricsReading().text + ' */\n' : '') +
+    (nudgePct() ? '/* vertical nudge: ' + (nudgePct() > 0 ? '+' : '') + nudgePct() +
+      '% of line height (' + nudgePx(LH['900']).toFixed(1) + 'px at display-900). ' +
+      'Not an the design system token — apply in the font file. */\n' : '') +
+    STEPS.map(s => '--display-size-' + s + ': ' + (draft.sizes[s] ?? LH[s]) + 'px;').join('\n');
+  const json = { displayFont: draft.name || current, displaySource: current,
+                 displayWeight: String(draft.weight), displayLetterSpacing: draft.ls + 'em',
+                 displayCase: draft.caps };
+  if (draft.needsMetrics) {
+    json.displayNeedsMetrics = true;
+    json.displayMetricsOffset = metricsReading().text;
+    if (draft.metricsNote) json.displayMetricsNote = draft.metricsNote;
+  }
+  /* Spelled out rather than a bare number, so nobody downstream mistakes a
+     recorded correction for a token the app already applies. */
+  if (nudgePct()) json.displayNudge = (nudgePct() > 0 ? '+' : '') + nudgePct() + '% of line height (recorded — not applied by the design system)';
+  if (hasW) json.displayWidth = ax.wdth + '%';
+  if (hasS) json.displaySlant = String(ax.slnt);
+  STEPS.slice().reverse().forEach(s => json['displaySize' + s] = (draft.sizes[s] ?? LH[s]) + 'px');
+  $('expJSON').value = JSON.stringify(json, null, 2);
+}
+
+/* ── Screens: live in-context preview (ported from Font Lab 1) ──────────────
+   Each curated native template loads in a phone-sized iframe. the design system display
+   tokens are set inline on the iframe's :root — inline beats the team
+   stylesheet with no specificity fight — and the font is injected into its head.
+   To add a screen, add a row whose path points at any app-mode page
+   containing an index.native.html. If a screen renders display type via its own
+   class (like event-details' .nav-title) rather than .display*, add it to
+   DISP_SEL. Content only renders over http:// — content-loader uses fetch.   */
+/* The screens a face is previewed against. Any app-mode page in this repo works —
+   these are the iOS prototypes plus the demo sheet's phone frame. Add a
+   { path, name } and it appears. */
+const CURATED_SCREENS = [
+  { path: '../ios-prototypes/ios-nav-page-demo.html', name: 'Nav Page' },
+  { path: '../ios-prototypes/ios-nav-demo.html',      name: 'Tab Bar' },
+  { path: '../ios-prototypes/ios-modal-demo.html',    name: 'Modal Sheet' },
+  { path: '../../demo/11-ios-frame.html',             name: 'iOS Chrome' },
+];
+const DISP_SEL = STEPS.map(x => '.display' + x).join(',') + ',.nav-title';
+let screensBuilt = false, screenFrames = [], screensBlocked = false;
+
+/* The template's ≤500px "real phone" breakpoint strips the status bar and home
+   indicator because a device's OS draws them; our frame has no OS chrome. */
+function restoreScreenChrome(doc) {
+  if (!doc || !doc.documentElement || doc.getElementById('fl-chrome')) return;
+  const st = doc.createElement('style'); st.id = 'fl-chrome';
+  st.textContent = '@media (max-width:500px){' +
+    '[data-platform="app"]{--safe-area-top:59px!important;--safe-area-bottom:34px!important;background:var(--bg-base)!important;}' +
+    '[data-platform="app"] .ios-status-bar{height:59px!important;overflow:visible!important;position:fixed!important;top:0!important;left:0!important;right:0!important;}' +
+    '[data-platform="app"] .ios-status-bar svg{display:block!important;}' +
+    '[data-platform="app"] .ios-home-indicator{display:flex!important;position:fixed!important;bottom:0!important;left:0!important;right:0!important;}' +
+    '[data-platform="app"] .ios-nav-page{top:var(--safe-area-top)!important;}' +
+    '[data-platform="app"] .ios-nav-page::before,[data-platform="app"] .ios-nav-page::after{top:calc(-1 * var(--safe-area-top))!important;}' +
+    'html[data-platform="app"] .app-device-controls{position:fixed!important;top:11px!important;left:50%!important;transform:translateX(-50%)!important;min-width:126px!important;height:37px!important;border-radius:19px!important;padding:0 4px!important;background:#000!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important;border:1px solid var(--white-100)!important;opacity:1!important;pointer-events:auto!important;justify-content:center!important;align-items:center!important;gap:0!important;}' +
+    'html[data-platform="app"] .app-device-controls .mode-toggle{padding:0 8px!important;}' +
+    'html[data-platform="app"] .app-device-controls .mode-toggle .material-symbols-rounded{font-size:16px!important;}' +
+    'html[data-platform="app"] .app-device-controls label{padding:0 8px 0 10px!important;gap:1px!important;}' +
+    'html[data-platform="app"] .app-device-controls label .device-control-label{font-size:11px!important;}' +
+    'html[data-platform="app"] .app-device-controls label .material-symbols-rounded{font-size:16px!important;}' +
+    'html[data-platform="app"] .app-device-controls label select{pointer-events:auto!important;}}';
+  (doc.head || doc.documentElement).appendChild(st);
+}
+function screenOverride(doc) {
+  if (!doc || !doc.documentElement || !current) return;
+  restoreScreenChrome(doc);
+  let hide = doc.getElementById('fl-hide');
+  if (!hide) {
+    hide = doc.createElement('style'); hide.id = 'fl-hide';
+    /* Hide the template-authoring "View as Web" link, and give .nav-title a
+       size-relative line-height — its 20px box is tuned for all-caps team faces
+       and clips descenders on anything with a g or y. */
+    hide.textContent = '.template-platform-link{display:none!important;}.nav-title{line-height:1.3!important;}';
+    (doc.head || doc.documentElement).appendChild(hide);
+  }
+  let link = doc.getElementById('fl-font');
+  if (!link) { link = doc.createElement('link'); link.id = 'fl-font'; link.rel = 'stylesheet'; (doc.head || doc.documentElement).appendChild(link); }
+  const url = css2Url(current, draft.weight);
+  if (link.getAttribute('href') !== url) link.setAttribute('href', url);
+
+  const r = doc.documentElement.style;
+  r.setProperty('--display-font', "'" + current + "', sans-serif");
+  r.setProperty('--display-weight', draft.weight);
+  r.setProperty('--display-letter-spacing', draft.ls + 'em');
+  STEPS.forEach(x => r.setProperty('--display-size-' + x, (draft.sizes[x] ?? LH[x]) + 'px'));
+  const ax = draft.axes || {};
+  if (ax.wdth != null) r.setProperty('--display-width', ax.wdth + '%');
+  if (ax.slnt != null) r.setProperty('--display-slant', ax.slnt);
+
+  /* .display* has no transform hook — autocaps teams bake caps into the font —
+     so all-caps is simulated. "Both" previews as drawn; the caps cut ships separately. */
+  let caps = doc.getElementById('fl-caps');
+  if (!caps) { caps = doc.createElement('style'); caps.id = 'fl-caps'; (doc.head || doc.documentElement).appendChild(caps); }
+  caps.textContent = draft.caps === 'caps' ? DISP_SEL + '{text-transform:uppercase!important;}' : '';
+
+  const decls = [
+    ax.wdth != null ? 'font-stretch:' + ax.wdth + '%!important' : '',
+    ax.slnt != null ? 'font-variation-settings:"slnt" ' + ax.slnt + '!important' : '',
+  ].filter(Boolean).join(';');
+  /* Preview only — .display* has no nudge token, so it is simulated per class.
+     Each step knows its own fixed line height, which is what turns one percentage
+     into nine pixel offsets; .nav-title is size-relative (1.3) so it goes in em. */
+  const nud = nudgePct();
+  const nudCSS = !nud ? '' :
+    STEPS.map(x => '.display' + x + '{position:relative!important;top:' +
+      (LH[x] * nud / 100).toFixed(2) + 'px!important;}').join('') +
+    '.nav-title{position:relative!important;top:' + (1.3 * nud / 100).toFixed(4) + 'em!important;}';
+  let typo = doc.getElementById('fl-typo');
+  if (!typo) { typo = doc.createElement('style'); typo.id = 'fl-typo'; (doc.head || doc.documentElement).appendChild(typo); }
+  typo.textContent = (decls ? DISP_SEL + '{' + decls + '}' : '') + nudCSS;
+}
+/* On file:// Chrome gives every document an opaque origin, so contentDocument is
+   null and the tokens can never reach the iframes. The templates ship default
+   markup, so the screens still LOOK populated — which makes a small footnote easy
+   to miss. Replace the stage outright rather than show four screens in the wrong
+   font under a warning nobody reads. */
+const SERVE_CMD = 'python3 -m http.server';
+const SERVE_URL = 'http://localhost:8000/tools/font-lab/font-lab-2.html';
+function markScreensBlocked() {
+  if (screensBlocked) return; screensBlocked = true;
+  const panel = document.querySelector('.fl-screens-panel');
+  if (panel) {
+    panel.classList.add('is-blocked');
+    panel.innerHTML =
+      '<div class="fl-blocked">' +
+        '<div class="fl-blocked-title">These screens need a local server</div>' +
+        '<p>You are on <code>file://</code>. The browser gives each file its own origin, so Font Lab ' +
+        'cannot reach into the screens to apply your font — they fall back to each template’s own team face. ' +
+        'The ramp tab works fine either way.</p>' +
+        '<p>From the repo root:</p>' +
+        '<div class="fl-blocked-cmd"><code>' + SERVE_CMD + '</code>' +
+          '<button class="fl-mini" id="btnCopyCmd">Copy</button></div>' +
+        '<p>then open <code>' + SERVE_URL + '</code></p>' +
+      '</div>';
+    const cp = $('btnCopyCmd');
+    if (cp) cp.addEventListener('click', () => {
+      navigator.clipboard.writeText(SERVE_CMD).then(() => toast('Copied'), () => toast('Copy failed'));
+    });
+  }
+  const note = $('screensNote');
+  if (note) { note.style.color = 'var(--status-warning)';
+    note.innerHTML = '⚠ Preview disabled on <code>file://</code> — serve the repo over http to use this tab.'; }
+}
+function buildScreens() {
+  if (screensBuilt) return; screensBuilt = true;
+  const row = $('screensRow');
+  CURATED_SCREENS.forEach(sc => {
+    const wrap = document.createElement('div'); wrap.className = 'fl-phone-wrap';
+    wrap.innerHTML = '<div class="fl-phone"><iframe src="' + sc.path +
+      '" title="' + sc.name + '"></iframe></div>' +
+      '<div class="fl-phone-label">' + sc.name + '</div>';
+    const fr = wrap.querySelector('iframe');
+    fr.addEventListener('load', () => {
+      let doc = null;
+      try { doc = fr.contentDocument; if (doc) void doc.documentElement.className; } catch (e) { doc = null; }
+      if (!doc) { markScreensBlocked(); return; }   // file:// blocks parent → iframe access
+      try { screenOverride(doc); } catch (e) { markScreensBlocked(); }
+    });
+    screenFrames.push(fr);
+    row.appendChild(wrap);
+  });
+}
+function refreshScreens() {
+  if (!screensBuilt || !current) return;
+  screenFrames.forEach(fr => { try { screenOverride(fr.contentDocument); } catch (e) {} });
+  const note = $('screensNote');
+  if (note && !screensBlocked) {
+    note.innerHTML = 'Previewing <strong>' + esc(draft.name || current) + '</strong> · ' + esc(current) +
+      ' · weight ' + draft.weight + ' · ' + draft.ls + 'em, using this spec’s size ramp. ' +
+      '<span style="opacity:.8">Change team &amp; mode per screen from its dynamic island. Tune the spec on the Display ramp tab.</span>';
+  }
+}
+
+/* ── render ── */
+function paintHead() {
+  if (!current) { $('curFont').textContent = 'Select a font'; $('curSrc').textContent = ''; $('curMeta').textContent = ''; return; }
+  const f = byName[current];
+  $('curFont').textContent = draft.name || f.n;
+  $('curFont').style.fontFamily = "'" + f.n + "', sans-serif";
+  $('curFont').style.fontWeight = draft.weight;
+  $('curSrc').textContent = f.n;
+  $('curMeta').innerHTML = esc(f.cat) + ' · ' + esc(f.lane) + ' · ' + esc(f.src) +
+    (f.styles.length ? ' · styles: ' + f.styles.map(esc).join(', ') : '') +
+    ' — ' + (saved[current] ? 'saved spec loaded' : draft.seeded ? 'seeded from your existing style' : 'defaults');
+}
+function syncSaveBtn() {
+  const named = !!(draft && draft.name && draft.name.trim());
+  $('btnSave').disabled = !isDirty() || !named;
+  $('btnSave').title = named ? '' : 'Give the family a token name first';
+  /* Select the status badge by its own hook — a plain .fl-row-badge lookup grabs
+     the Metrics badge when one is present and overwrites it. */
+  const badge = document.querySelector('.fl-row.is-sel .fl-row-badge[data-status]');
+  if (badge && current) {
+    const d = isDirty();
+    badge.className = 'fl-row-badge ' + (d ? 'is-dirty' : 'is-saved');
+    badge.textContent = d ? 'Unsaved' : 'Saved';
+  }
+}
+function repaint() { paintRamp(); paintMetrics(); paintExports(); paintHead(); if (view === 'screens') refreshScreens(); syncSaveBtn(); }
+function renderPanel() { if (!current) { $('panel').innerHTML = ''; return; } $('panel').innerHTML = panelHTML(byName[current]); wirePanel(); }
+function renderAll() {
+  if (!current) {
+    $('panel').innerHTML = '';
+    $('rampRows').innerHTML = '<div class="fl-empty">Pick a font from the rail to spec it.</div>';
+    paintHead(); railList(); return;
+  }
+  renderPanel(); renderRamp(); repaint(); railList();
+}
+function switchView(v) {
+  view = v;
+  document.querySelector('.fl-main').classList.toggle('is-wide', v === 'screens');
+  document.querySelectorAll('.fl-tab').forEach(t => t.classList.toggle('is-on', t.dataset.view === v));
+  document.querySelectorAll('.fl-view').forEach(x => x.classList.toggle('is-on', x.id === 'view-' + v));
+  if (v === 'screens') { buildScreens(); refreshScreens(); }
+  if (history.replaceState) history.replaceState(null, '', '#' + v);
+}
+document.querySelectorAll('.fl-tab').forEach(t => t.addEventListener('click', () => switchView(t.dataset.view)));
+
+/* ── save / revert / import / export ── */
+function doSave() {
+  if (!current) return;
+  if (!draft.name || !draft.name.trim()) { toast('Name the family first'); $('tokenName').focus(); return; }
+  draft.name = draft.name.trim();
+  saved[current] = clone(draft);
+  saved[current].updated = new Date().toISOString();
+  persist(); railList(); syncSaveBtn(); paintHead();
+  toast('Saved ' + draft.name);
+}
+function doRevert() {
+  if (!current) return;
+  draft = specOf(current); renderAll();
+  toast(saved[current] ? 'Reverted to saved spec' : 'Reset to defaults');
+}
+$('btnSave').addEventListener('click', doSave);
+$('btnRevert').addEventListener('click', doRevert);
+window.addEventListener('keydown', e => {
+  if ((e.metaKey || e.ctrlKey) && e.key === 's') { e.preventDefault(); if (!$('btnSave').disabled) doSave(); }
+});
+$('btnExportAll').addEventListener('click', () => {
+  const payload = { tool: 'font-lab-2', exported: new Date().toISOString(), lineHeights: LH,
+                    count: Object.keys(saved).length, specs: saved };
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(new Blob([JSON.stringify(payload, null, 2)], { type: 'application/json' }));
+  a.download = 'display-specs.json';
+  document.body.append(a); a.click(); a.remove();
+  setTimeout(() => URL.revokeObjectURL(a.href), 4000);
+});
+$('btnImport').addEventListener('click', () => $('fileIn').click());
+$('fileIn').addEventListener('change', e => {
+  const file = e.target.files[0]; if (!file) return;
+  const r = new FileReader();
+  r.onload = () => {
+    try {
+      const j = JSON.parse(r.result), incoming = j.specs || j;
+      let n = 0;
+      for (const [k, v] of Object.entries(incoming)) if (byName[k]) { if (v.axes) delete v.axes.opsz; saved[k] = v; n++; }
+      persist(); if (current) draft = specOf(current);
+      renderAll(); toast('Imported ' + n + ' specs');
+    } catch (err) { toast('Bad JSON: ' + err.message); }
+  };
+  r.readAsText(file); e.target.value = '';
+});
+$('btnMode').addEventListener('click', () => {
+  const el = document.documentElement;
+  el.setAttribute('data-mode', el.getAttribute('data-mode') === 'dark' ? 'light' : 'dark');
+});
+
+if (location.hash === '#screens') switchView('screens');
+railList();
+renderAll();
+</script>
+</body>
+</html>

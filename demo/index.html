@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="signal" data-mode="light" data-platform="web">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Overview — Design System Sticker Sheet</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap" rel="stylesheet">
+
+  <script src="../css/ds-loader.js"></script>
+  <script src="demo-content.js"></script>
+  <script src="../css/prototype-harness.js"></script>
+  <link rel="stylesheet" href="sheet.css">
+</head>
+<body>
+
+<!-- Gallery metadata
+ @title: Design System Sticker Sheet
+ @author: Cornelius Hegeman
+ @tags: design-system, reference, documentation
+ @description: Every class and token the system ships, rendered live across eleven sheets, with a coverage checker that fails when the system and the sheets drift.
+ @status: ready
+-->
+
+<nav data-sheet-nav></nav>
+
+<main class="container-extra-wide">
+
+  <header class="sheet-head">
+    <div class="card-text-pair">
+      <h1 class="display500">Design System Sticker Sheet</h1>
+      <p class="labelRegular40 text-secondary">Every class and every token in the system, rendered live, on one set of pages.</p>
+    </div>
+  </header>
+
+  <div class="sheet-callout">
+    <p class="bodyRegular30">Eleven sheets showing <strong>every class and every token the system ships</strong> — 751 classes and 182 tokens, checked against <span class="mono">docs/css-api.json</span> by <span class="mono">check-coverage.mjs</span>. Nothing here is a mockup: each specimen is the real class, so what you see is what a prototype gets.</p>
+  </div>
+
+  <div class="sheet-callout">
+    <p class="bodyRegular30">Use the theme and mode switcher in the corner — it is the standard prototype harness, and it re-themes every sheet. Token values, type metrics and safe areas are all read live out of <span class="mono">getComputedStyle</span>, so they change with it. Check one theme on a caps display face and one on a face that renders as drawn, and check both modes — that is <span class="mono">RULES §10</span>.</p>
+  </div>
+
+  <section class="sheet-section" id="sheets">
+    <div class="sheet-section-head">
+      <h2 class="display300">The sheets</h2>
+      <span class="labelRegular10 text-secondary mono">in the order the CSS loads</span>
+    </div>
+    <div class="card-grid grid-cols-3-desktop grid-cols-2-tablet grid-cols-1-mobile">
+
+      <a class="card-closed-interactive surface-card scale-700 text-no-underline" href="01-color.html" style="color: inherit;">
+        <div class="card-closed-header"><div class="card-text-pair">
+          <h3 class="title50">Color</h3>
+          <p class="labelRegular20 text-secondary">105 tokens, resolved live</p>
+        </div></div>
+        <div class="card-closed-footer"><p class="bodyRegular20 text-secondary">Backgrounds and the elevation ladder · text · borders · brand · the mode-aware interactive pair · status · all four alpha scales · scrims · the org plumbing you should never touch.</p></div>
+      </a>
+
+      <a class="card-closed-interactive surface-card scale-700 text-no-underline" href="02-type.html" style="color: inherit;">
+        <div class="card-closed-header"><div class="card-text-pair">
+          <h3 class="title50">Type</h3>
+          <p class="labelRegular20 text-secondary">63 classes, with metrics</p>
+        </div></div>
+        <div class="card-closed-footer"><p class="bodyRegular20 text-secondary">Display, title, label and body at every step · the ten text-pair scales · responsive <span class="mono">-r</span> pairs · alignment, transform, decoration and truncation.</p></div>
+      </a>
+
+      <a class="card-closed-interactive surface-card scale-700 text-no-underline" href="03-space.html" style="color: inherit;">
+        <div class="card-closed-header"><div class="card-text-pair">
+          <h3 class="title50">Space &amp; Layout</h3>
+          <p class="labelRegular20 text-secondary">the 8px scale and every utility</p>
+        </div></div>
+        <div class="card-closed-footer"><p class="bodyRegular20 text-secondary">Spacing, responsive spacing, all 300+ margin/padding/gap utilities · containers · radius · borders and shadows · grids · visibility · icons.</p></div>
+      </a>
+
+      <a class="card-closed-interactive surface-card scale-700 text-no-underline" href="04-buttons.html" style="color: inherit;">
+        <div class="card-closed-header"><div class="card-text-pair">
+          <h3 class="title50">Buttons</h3>
+          <p class="labelRegular20 text-secondary">every type × every size</p>
+        </div></div>
+        <div class="card-closed-footer"><p class="bodyRegular20 text-secondary">Nine types at three sizes with their disabled state · icon placement · fill · groups · the full circle-button matrix · the one vendor control.</p></div>
+      </a>
+
+      <a class="card-closed-interactive surface-card scale-700 text-no-underline" href="05-surfaces.html" style="color: inherit;">
+        <div class="card-closed-header"><div class="card-text-pair">
+          <h3 class="title50">Surfaces</h3>
+          <p class="labelRegular20 text-secondary">13 surfaces × 3 scale tiers</p>
+        </div></div>
+        <div class="card-closed-footer"><p class="bodyRegular20 text-secondary">The hover and press mechanism, live. Each subtle surface twice — on the page and on a card — because that is the choice you are actually making.</p></div>
+      </a>
+
+      <a class="card-closed-interactive surface-card scale-700 text-no-underline" href="06-cards.html" style="color: inherit;">
+        <div class="card-closed-header"><div class="card-text-pair">
+          <h3 class="title50">Cards &amp; Tiles</h3>
+          <p class="labelRegular20 text-secondary">closed, open, grid, tile</p>
+        </div></div>
+        <div class="card-closed-footer"><p class="bodyRegular20 text-secondary">Card sections and actions · three grid rhythms · logo blocks and the matchup · the tile, and its one interactivity rule.</p></div>
+      </a>
+
+      <a class="card-closed-interactive surface-card scale-700 text-no-underline" href="07-rows.html" style="color: inherit;">
+        <div class="card-closed-header"><div class="card-text-pair">
+          <h3 class="title50">Rows, Tags &amp; Controls</h3>
+          <p class="labelRegular20 text-secondary">the biggest sheet</p>
+        </div></div>
+        <div class="card-closed-footer"><p class="bodyRegular20 text-secondary">Every leading and trailing slot with its gap · content blocks · row states and containers · the selector · the event row in all five offer states · tags, chips, switches, steppers.</p></div>
+      </a>
+
+      <a class="card-closed-interactive surface-card scale-700 text-no-underline" href="08-forms.html" style="color: inherit;">
+        <div class="card-closed-header"><div class="card-text-pair">
+          <h3 class="title50">Forms</h3>
+          <p class="labelRegular20 text-secondary">every input state</p>
+        </div></div>
+        <div class="card-closed-footer"><p class="bodyRegular20 text-secondary">Label, icon, clear button, helper message, error, disabled · the select and the filter bar · the JS helpers that keep them in sync.</p></div>
+      </a>
+
+      <a class="card-closed-interactive surface-card scale-700 text-no-underline" href="09-nav.html" style="color: inherit;">
+        <div class="card-closed-header"><div class="card-text-pair">
+          <h3 class="title50">Nav &amp; Patterns</h3>
+          <p class="labelRegular20 text-secondary">page structure</p>
+        </div></div>
+        <div class="card-closed-footer"><p class="bodyRegular20 text-secondary">Top bar · tabs · steps · page headers · the site footer · and every composite product pattern, from the context header to the crest placeholder.</p></div>
+      </a>
+
+      <a class="card-closed-interactive surface-card scale-700 text-no-underline" href="10-tables.html" style="color: inherit;">
+        <div class="card-closed-header"><div class="card-text-pair">
+          <h3 class="title50">Stat Table</h3>
+          <p class="labelRegular20 text-secondary">standings, with a pinned column</p>
+        </div></div>
+        <div class="card-closed-footer"><p class="bodyRegular20 text-secondary">Every cell and row state · the featured row and why it drops the win/loss colours · retuning the leading column.</p></div>
+      </a>
+
+      <a class="card-closed-interactive surface-card scale-700 text-no-underline" href="11-ios.html" style="color: inherit;">
+        <div class="card-closed-header"><div class="card-text-pair">
+          <h3 class="title50">iOS &amp; App</h3>
+          <p class="labelRegular20 text-secondary">the phone frame, running</p>
+        </div></div>
+        <div class="card-closed-footer"><p class="bodyRegular20 text-secondary">A live 393×852 frame with the whole three-layer chrome stack — nav bars, subtabs, tab bar, modal — plus the safe-area tokens and every iOS class.</p></div>
+      </a>
+
+    </div>
+  </section>
+
+  <section class="sheet-section" id="never">
+    <div class="sheet-section-head">
+      <h2 class="display300">The nine nevers</h2>
+      <span class="labelRegular10 text-secondary mono">RULES §2 — the short version</span>
+    </div>
+    <p class="sheet-note bodyRegular30">A sticker sheet shows you what exists. These are the things that don't, no matter how natural they feel to write. Full text in <span class="mono">RULES.md</span>.</p>
+    <div class="list-gap-tight">
+      <div class="row-wrap"><div class="list-row not-tappable">
+        <div class="leading leading-gap-md"><span class="icon icon-200">palette</span></div>
+        <div class="list-row-content"><div class="list-row-text-pair"><span class="labelBold30">Never hardcode a colour</span><span class="labelRegular10 text-secondary">No #hex, no rgb(), no rgba(). A literal as a var() fallback is fine.</span></div></div>
+      </div></div>
+      <div class="row-wrap"><div class="list-row not-tappable">
+        <div class="leading leading-gap-md"><span class="icon icon-200">format_size</span></div>
+        <div class="list-row-content"><div class="list-row-text-pair"><span class="labelBold30">Never set font-size, font-weight or line-height</span><span class="labelRegular10 text-secondary">Use a text class. Stepping down on mobile is a -r pair, not a media query.</span></div></div>
+      </div></div>
+      <div class="row-wrap"><div class="list-row not-tappable">
+        <div class="leading leading-gap-md"><span class="icon icon-200">straighten</span></div>
+        <div class="list-row-content"><div class="list-row-text-pair"><span class="labelBold30">Never hardcode spacing</span><span class="labelRegular10 text-secondary">No raw px, em or rem. A spacing token or a utility class.</span></div></div>
+      </div></div>
+      <div class="row-wrap"><div class="list-row not-tappable">
+        <div class="leading leading-gap-md"><span class="icon icon-200">touch_app</span></div>
+        <div class="list-row-content"><div class="list-row-text-pair"><span class="labelBold30">Never write :hover or :active</span><span class="labelRegular10 text-secondary">A .surface-* and a .scale-* on the same element are the mechanism.</span></div></div>
+      </div></div>
+      <div class="row-wrap"><div class="list-row not-tappable">
+        <div class="leading leading-gap-md"><span class="icon icon-200">layers</span></div>
+        <div class="list-row-content"><div class="list-row-text-pair"><span class="labelBold30">Never sit a solid surface on another solid surface</span><span class="labelRegular10 text-secondary">Base → surface → sheet is a ladder you climb once. On a card, use a wash.</span></div></div>
+      </div></div>
+      <div class="row-wrap"><div class="list-row not-tappable">
+        <div class="leading leading-gap-md"><span class="icon icon-200">crop_free</span></div>
+        <div class="list-row-content"><div class="list-row-text-pair"><span class="labelBold30">Never put a border on a card</span><span class="labelRegular10 text-secondary">--bg-surface against --bg-base is the edge.</span></div></div>
+      </div></div>
+      <div class="row-wrap"><div class="list-row not-tappable">
+        <div class="leading leading-gap-md"><span class="icon icon-200">smart_button</span></div>
+        <div class="list-row-content"><div class="list-row-text-pair"><span class="labelBold30">Never use a bare button, select or input</span><span class="labelRegular10 text-secondary">Demos and utility controls are not exempt. Every button carries a DS class.</span></div></div>
+      </div></div>
+      <div class="row-wrap"><div class="list-row not-tappable">
+        <div class="leading leading-gap-md"><span class="icon icon-200">contrast</span></div>
+        <div class="list-row-content"><div class="list-row-text-pair"><span class="labelBold30">Never use --brand-interactive or --brand-inverted in a component</span><span class="labelRegular10 text-secondary">They are mode-stable, so one mode renders dark on dark. Use --color-interactive / --color-inverted.</span></div></div>
+      </div></div>
+      <div class="row-wrap"><div class="list-row not-tappable">
+        <div class="leading leading-gap-md"><span class="icon icon-200">database</span></div>
+        <div class="list-row-content"><div class="list-row-text-pair"><span class="labelBold30">Never hardcode names, dates, prices or fixtures</span><span class="labelRegular10 text-secondary">It comes from the project’s own content layer — on these sheets, the synthetic one in demo-content.js.</span></div></div>
+      </div></div>
+    </div>
+  </section>
+
+  <section class="sheet-section" id="keeping-current">
+    <div class="sheet-section-head">
+      <h2 class="display300">Keeping it honest</h2>
+      <span class="labelRegular10 text-secondary mono">check-coverage.mjs</span>
+    </div>
+    <p class="sheet-note bodyRegular30">A sticker sheet is only worth something if it is complete, and it stops being complete the moment somebody adds a class. So completeness is checked, not claimed:</p>
+    <div class="spec-stage is-block">
+      <pre class="labelRegular10 mono" style="margin: 0; overflow-x: auto;">npm run check:demo</pre>
+    </div>
+    <p class="bodyRegular30 mt-300">It reads <span class="mono">docs/css-api.json</span> — the generated index of what the CSS actually ships — and reports two kinds of drift. <strong>Missing</strong>: a class or token in the CSS that appears on no sheet, which means new system surface nobody has documented. <strong>Unknown</strong>: a class used on a sheet that is not in the CSS, which means either an invented class or scaffolding that needs declaring. It exits non-zero on either, so it can gate a build.</p>
+    <p class="bodyRegular30 mt-200">Two ways a class counts as covered: a live specimen, or its name printed in the page copy. Both are legitimate — a listing is how 300-odd spacing utilities get shown without 300 identical boxes.</p>
+  </section>
+
+  <footer class="sheet-footer">
+    <p class="labelRegular10">Generated against <span class="mono">docs/css-api.json</span>. Every class shown here exists in the system — run <span class="mono">npm run check:demo</span> to verify the sheets still cover it.</p>
+  </footer>
+
+</main>
+
+<script src="sheet.js"></script>
+</body>
+</html>

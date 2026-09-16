@@ -1,0 +1,1020 @@
+/* ============================================================
+   ios-nav-components.css
+   ============================================================
+   iOS navigation chrome for app-mode prototypes: nav bars, tab bar, modal sheet and glass surface.
+
+   What's inside
+   - .ios-nav-btn (+ .ios-nav-btn-brand) — 44px frosted glass circle button
+   - .ios-nav-maintab, .ios-nav-controls — home nav bar with display title
+   - .ios-nav-subtabs* — the segmented control under the home nav bar
+   - .ios-chrome-top, .ios-chrome-bottom, .ios-scroll, .ios-scroll-inner —
+     floating chrome layers and the scrollport beneath them
+   - .ios-nav-page (+ -row, -title, -left, -right) — interior page nav bar
+   - .ios-modal-backdrop, .ios-modal-stack, .ios-modal-sheet, .ios-nav-modal,
+     .ios-modal-content — bottom-sheet modal
+   - .ios-tab-bar, .ios-tab (+ .is-active, .ios-tab-label, .ios-tab-brand-icon)
+     — 5-tab bottom bar
+   - .ios-glass — the frosted glass surface token
+   - .ios-content.has-ios-tab-bar — content clearance for the tab bar
+   - --brand-tab-icon, --ios-modal-stack-bg — themeable tab icon and the sheet backdrop
+
+   Notes
+   - Designed for the data-platform="app" phone frame (platform-tokens.css);
+     safe areas come from --safe-area-top / --safe-area-bottom. See RULES §9.
+   - The active tab pill uses --ios-selected-tab-bg, not --bg-input (which is
+     transparent in dark mode).
+   - These .ios-* controls are the design system wrapper for a <button> in app
+     chrome. See RULES §2.
+   ============================================================ */
+
+:root {
+  /* Grey stack behind a modal sheet. Mode-stable: it reads as the dimmed
+     screen behind the sheet, not as page surface. */
+  --ios-modal-stack-bg: linear-gradient(
+    to bottom,
+    rgba(100, 100, 100, 0.5),
+    rgba(70, 70, 70, 0.35)
+  );
+}
+
+
+
+/* ============================================================
+   BRAND ICON TOKEN
+   ============================================================
+   Monochrome mark for the brand tab in the bottom bar, as a mask-image URL so
+   the icon inherits the current text colour.
+
+   A theme points it at its own SVG:
+
+     [data-theme="acme"] { --brand-tab-icon: url('../images/acme-mark.svg'); }
+
+   Unset, it falls back to a neutral placeholder — a plausible shape in the tab
+   rather than an empty slot. Never let a theme borrow another theme's mark:
+   a neutral placeholder reads as "no icon yet", someone else's mark reads as a bug.
+   ============================================================ */
+:root { --brand-tab-icon: url('../images/placeholder-logo.svg'); }
+
+
+/* ============================================================
+   iOS GLASS CIRCLE BUTTON
+   ============================================================
+   44×44 frosted glass circle button for iOS nav bars.
+   Approximates Figma's "Liquid Glass - Circle" component.
+
+   Variants:
+     .ios-nav-btn              — Translucent glass with icon
+     .ios-nav-btn.ios-nav-btn-brand — Solid brand color with letter
+
+   HTML patterns:
+     <button class="ios-nav-btn">
+       <span class="icon">arrow_back</span>
+     </button>
+
+     <button class="ios-nav-btn ios-nav-btn-brand">
+       <span>A</span>
+     </button>
+   ============================================================ */
+
+.ios-nav-btn {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  padding: 0;
+  font-family: inherit;
+  color: var(--text-primary);
+  transition: opacity 0.15s;
+  /* Glass effect via .ios-glass class in HTML */
+}
+
+.ios-nav-btn:hover  { opacity: 0.8; }
+.ios-nav-btn:active { opacity: 0.6; }
+
+/* Glass-specific tap interaction — scales up + light wash overlay.
+   Overrides the default opacity-based :active when .ios-glass is present.
+   Matches iOS native glass button behavior. */
+.ios-nav-btn.ios-glass {
+  transition: transform 0.15s cubic-bezier(0.32, 0.72, 0, 1), opacity 0.15s;
+}
+.ios-nav-btn.ios-glass:hover {
+  opacity: 1;
+}
+.ios-nav-btn.ios-glass:active {
+  opacity: 1;
+  transform: scale(1.15);
+}
+/* Light wash on tap — uses the existing ::before pseudo but brightens it */
+.ios-nav-btn.ios-glass:active::before {
+  background: linear-gradient(
+    to bottom,
+    var(--white-300),
+    var(--white-100)
+  );
+}
+
+.ios-nav-btn .icon {
+  font-size: 24px;
+}
+
+/* Brand variant — solid brand color, glass border + shadow only.
+   Pseudo-elements hidden so the gradient overlay doesn't wash out the color.
+   Border ring and outer shadow applied via box-shadow instead. */
+.ios-nav-btn-brand {
+  background: var(--interactive-primary) !important;
+  color: var(--interactive-primary-text);
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  box-shadow:
+    inset 0.5px 1px 3px rgba(255, 255, 255, 0.25),
+    inset -0.5px -1px 2px rgba(0, 0, 0, 0.2),
+    0px 2px 40px rgba(0, 0, 0, 0.2);
+  transition: transform 0.15s cubic-bezier(0.32, 0.72, 0, 1), opacity 0.15s;
+}
+
+.ios-nav-btn-brand:hover { opacity: 1; }
+.ios-nav-btn-brand:active {
+  opacity: 1;
+  transform: scale(1.15);
+}
+
+/* Brand variant hides both glass pseudo-elements */
+.ios-nav-btn-brand::before,
+.ios-nav-btn-brand::after {
+  display: none !important;
+}
+
+.ios-nav-btn-brand > span:not(.icon) {
+  font-weight: 700;
+  font-size: 17px;
+  line-height: 1;
+  letter-spacing: -0.32px;
+}
+
+
+/* ============================================================
+   iOS HOME NAV BAR
+   ============================================================
+   Home screen header: large display title on the left,
+   action buttons on the right (notification + avatar).
+   Sticky below the iOS status bar.
+
+   Figma: "Top Nav - Tab" → Tab=Home header area
+
+   HTML pattern:
+     <header class="ios-nav-maintab">
+       <span class="display500">HOME</span>
+       <div class="ios-nav-controls">
+         <button class="ios-nav-btn">
+           <span class="icon">notifications</span>
+         </button>
+         <button class="ios-nav-btn ios-nav-btn-brand">
+           <span>A</span>
+         </button>
+       </div>
+     </header>
+   ============================================================ */
+
+.ios-nav-maintab {
+  position: relative;
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  min-height: 52px;
+  padding: 0 var(--spacing-200) 6px;
+  box-sizing: border-box;
+}
+
+/* orgBase gradient fade — inverted version of tab bar gradient
+   Covers status bar + nav bar area, fades downward.
+   Two layers: blur layer + color layer, both masked. */
+.ios-nav-maintab::before,
+.ios-nav-maintab::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: calc(-1 * var(--safe-area-top)); /* extend up to cover status bar */
+  bottom: -36px; /* extend slightly below nav bar */
+  pointer-events: none;
+  z-index: -1;
+  -webkit-mask-image: linear-gradient(to top,
+    transparent 0%,
+    rgba(0,0,0,0.15) 15%,
+    rgba(0,0,0,0.35) 30%,
+    rgba(0,0,0,0.55) 45%,
+    rgba(0,0,0,0.8) 60%,
+    rgba(0,0,0,0.95) 78%,
+    black 100%
+  );
+  mask-image: linear-gradient(to top,
+    transparent 0%,
+    rgba(0,0,0,0.15) 15%,
+    rgba(0,0,0,0.35) 30%,
+    rgba(0,0,0,0.55) 45%,
+    rgba(0,0,0,0.8) 60%,
+    rgba(0,0,0,0.95) 78%,
+    black 100%
+  );
+}
+
+/* Blur layer */
+.ios-nav-maintab::before {
+  backdrop-filter: blur(25px);
+  -webkit-backdrop-filter: blur(25px);
+}
+
+/* Color layer */
+.ios-nav-maintab::after {
+  background: var(--bg-base);
+  opacity: 0.9;
+}
+
+.ios-nav-controls {
+  display: flex;
+  align-items: center;
+  gap: 10px; /* Figma spec — doesn't align to 8px grid, iOS-specific */
+  flex-shrink: 0;
+}
+
+/* Chrome top container — 8px bottom padding below the last nav element
+   (nav bar, subtabs, or page nav). Always at the bottom of the unit. */
+
+/* ============================================================
+   CHROME LAYERS & SCROLLPORT
+   ============================================================
+   The floating top/bottom chrome and the scrollport they float over. They are
+   structural to every app-mode screen, so they live here — a template's own
+   <style> block holds product CSS only.
+
+   Structure:
+     .ios-chrome-top      nav bar + subtabs, pinned to the top
+     .ios-chrome-bottom   tab bar, pinned to the bottom
+     .ios-scroll          the scrolling content, filling the frame beneath them
+       .ios-scroll-inner  marginTop set by measureChrome() to clear the top
+   ============================================================ */
+
+.ios-chrome-top,
+.ios-chrome-bottom {
+  position: absolute;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  /* The layers span the frame, so let taps fall through the empty parts... */
+  pointer-events: none;
+}
+
+/* ...and re-enable them on the actual controls. */
+.ios-chrome-top > *,
+.ios-chrome-bottom > * {
+  pointer-events: auto;
+}
+
+.ios-chrome-bottom {
+  bottom: 0;
+}
+
+.ios-scroll {
+  position: absolute;
+  inset: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  z-index: 1;
+}
+
+.ios-scroll::-webkit-scrollbar {
+  display: none;
+}
+
+/* Clear the tab bar so the last row isn't trapped underneath it. */
+.ios-scroll-inner {
+  padding-bottom: var(--ios-tab-bar-clearance);
+}
+
+/* The status bar tints with the surface behind it. */
+.ios-status-bar {
+  transition: color 0.3s;
+}
+
+.ios-chrome-top {
+  top: 0;
+  padding-bottom: 8px;
+}
+
+/* Subtabs container — holds the segmented control below the home nav bar */
+.ios-nav-subtabs-container {
+  padding: 8px 12px 8px;
+}
+
+/* Segmented control (subtabs) — the pill-style tab switcher inside the
+   subtabs container, shared by every template. The active pill uses
+   --ios-selected-tab-bg (visible in both light and dark; --bg-input is
+   transparent in dark, which makes the pill disappear). JS toggles .is-active
+   and hides the separators adjacent to the active tab. */
+.ios-nav-subtabs {
+  display: flex;
+  align-items: center;
+  padding: 4px 8px;
+  border-radius: 100px;
+  height: 40px;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.ios-nav-subtabs::-webkit-scrollbar { display: none; }
+.ios-nav-subtab {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 32px;
+  padding: 3px 10px;
+  border: none;
+  border-radius: 7px;
+  background: none;
+  color: var(--text-primary);
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: -0.28px;
+  white-space: nowrap;
+  cursor: pointer;
+  position: relative;
+  transition: color 0.15s;
+}
+.ios-nav-subtab.is-active {
+  color: var(--interactive-primary);
+  background: var(--ios-selected-tab-bg);
+  border-radius: 20px;
+  margin: 0 -4px;
+  padding: 3px 14px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+.ios-nav-subtab-sep {
+  width: 1px;
+  height: 16px;
+  background: var(--border-default);
+  flex-shrink: 0;
+  align-self: center;
+}
+
+/* The separators on either side of the selected pill are hidden — the pill's
+   own edge is the divider there.
+
+   Nothing implemented this before, even though the docs described it. It only
+   *looked* right because the active pill's `margin: 0 -4px` and drop shadow
+   happened to cover the separator beside it, which works while the first tab
+   is selected and leaves a stray hairline against the pill as soon as the
+   selection moves. `visibility` rather than `display`, so the separator keeps
+   its 1px of layout and the pills never shift as you switch tabs. */
+.ios-nav-subtab.is-active + .ios-nav-subtab-sep,
+.ios-nav-subtab-sep:has(+ .ios-nav-subtab.is-active) {
+  visibility: hidden;
+}
+
+
+/* ============================================================
+   iOS PAGE NAV BAR
+   ============================================================
+   Interior page header: back button left, centered title,
+   optional trailing action right. Sticky below status bar.
+
+   Title stays perfectly centered regardless of button count
+   via absolute button positioning.
+
+   Figma: "Top" component · "Nav Bars / Standard iOS Nav Bar"
+
+   HTML patterns:
+     <header class="ios-nav-page">
+       <button class="ios-nav-btn ios-glass ios-nav-page-left">
+         <span class="icon">arrow_back</span>
+       </button>
+       <span class="ios-nav-page-title">Page Title</span>
+       <button class="ios-nav-btn ios-glass ios-nav-page-right">
+         <span class="icon">ios_share</span>
+       </button>
+     </header>
+
+   Without trailing action:
+     <header class="ios-nav-page">
+       <button class="ios-nav-btn ios-glass ios-nav-page-left">
+         <span class="icon">arrow_back</span>
+       </button>
+       <span class="ios-nav-page-title">Page Title</span>
+     </header>
+   ============================================================ */
+
+/* Page nav is a flex column so it can hold:
+   1. Nav row (buttons + title, 44px)
+   2. Optional subtabs / segmented control
+   3. 10px bottom spacing
+   All as one sticky navigational unit. */
+.ios-nav-page {
+  position: sticky;
+  top: var(--safe-area-top);
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 10px;
+}
+
+/* Nav row — holds the absolute buttons and centered title */
+.ios-nav-page-row {
+  position: relative;
+  display: flex;
+  align-items: center;
+  min-height: 44px;
+}
+
+/* Same gradient fade as ios-nav-maintab — blur layer + color layer, masked.
+   Fade compresses into the bottom 40px extension so it only goes transparent
+   right at the nav bar's bottom edge, staying fully opaque through the nav area. */
+.ios-nav-page::before,
+.ios-nav-page::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: calc(-1 * var(--safe-area-top)); /* extend up to cover status bar */
+  bottom: -36px; /* extend slightly below nav bar */
+  pointer-events: none;
+  z-index: -1;
+  -webkit-mask-image: linear-gradient(to top,
+    transparent 0%,
+    rgba(0,0,0,0.2) 20%,
+    rgba(0,0,0,0.7) 32%,
+    rgba(0,0,0,0.95) 42%,
+    rgba(0,0,0,0.95) 52%
+  );
+  mask-image: linear-gradient(to top,
+    transparent 0%,
+    rgba(0,0,0,0.2) 20%,
+    rgba(0,0,0,0.7) 32%,
+    rgba(0,0,0,0.95) 42%,
+    rgba(0,0,0,0.95) 52%
+  );
+}
+
+/* Blur layer */
+.ios-nav-page::before {
+  backdrop-filter: blur(25px);
+  -webkit-backdrop-filter: blur(25px);
+}
+
+/* Color layer */
+.ios-nav-page::after {
+  background: var(--bg-base);
+  opacity: 0.9;
+}
+
+/* Centered title — padding clears the absolute buttons */
+.ios-nav-page-title {
+  flex: 1;
+  text-align: center;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 1.2;
+  letter-spacing: -0.4px;
+  color: var(--text-primary);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  padding: 0 var(--spacing-600); /* 48px — clears 44px buttons + gap */
+  pointer-events: none; /* let clicks pass through to absolute buttons */
+}
+
+/* Button slots — absolute within the nav to keep the title centered.
+   Doubled specificity (.ios-nav-page ancestor) so the later
+   `.ios-glass { position: relative }` rule can't knock the buttons back
+   into the flow — an in-flow 44px button shifts the title ~22px off-center. */
+.ios-nav-page-left,
+.ios-nav-page .ios-nav-page-left {
+  position: absolute;
+  left: var(--spacing-200);
+}
+
+.ios-nav-page-right,
+.ios-nav-page .ios-nav-page-right {
+  position: absolute;
+  right: var(--spacing-200);
+}
+
+
+/* ============================================================
+   iOS MODAL SHEET
+   ============================================================
+   Full-screen modal overlay with iOS-style bottom sheet.
+   Black backdrop, optional stack indicator, rounded sheet.
+
+   Figma: "Modal" component · page "04 iOS Navigation"
+
+   HTML pattern:
+     <div class="ios-modal-backdrop">
+       <div class="ios-modal-stack"></div>
+       <div class="ios-modal-sheet">
+         <header class="ios-nav-modal">
+           <div class="ios-nav-modal-row">
+             <button class="ios-nav-btn ios-nav-page-left">
+               <span class="icon">close</span>
+             </button>
+             <span class="ios-nav-page-title">Modal Title</span>
+             <button class="ios-nav-btn ios-nav-page-right">
+               <span class="icon">ios_share</span>
+             </button>
+           </div>
+         </header>
+         <div class="ios-modal-content">
+           <!-- scrollable content -->
+         </div>
+       </div>
+     </div>
+
+   Show/hide: toggle `.is-open` on the backdrop. That one class drives all
+   three moving parts — the backdrop fade, the sheet's slide, and the stack
+   indicator behind it — so a page needs no modal CSS of its own.
+
+     el.classList.add('is-open')      // opening: the sheet slides up
+     el.classList.remove('is-open')   // closing: it slides back down
+
+   The `hidden` attribute is honoured too (see the guard below) but skips the
+   animation in both directions, because `display: none` applies instantly.
+   Reach for it only when a modal should appear with no transition at all.
+   ============================================================ */
+
+.ios-modal-backdrop {
+  position: absolute;
+  inset: 0;
+  z-index: 9995; /* above tab bar (9998), below status bar (9999) */
+  display: flex;
+  flex-direction: column;
+  background: black;
+  padding-top: var(--safe-area-top); /* space for status bar to show through */
+}
+
+/* Closed by default; `.is-open` reveals it. This used to be the page's job:
+   the component shipped an open and closed state for the stack indicator but
+   not for the backdrop or the sheet, so every screen that used a modal wrote
+   the same four rules — four native templates carried byte-identical copies,
+   right down to the easing curve. They live here now. */
+.ios-modal-backdrop {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s cubic-bezier(0.32, 0.72, 0, 1);
+}
+
+.ios-modal-backdrop.is-open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* `display: flex` above is an author declaration, and author origin beats the
+   browser's own `[hidden] { display: none }` before specificity is even
+   considered — so without this line a modal marked `hidden` renders open,
+   covering the screen. Prefer `.is-open`, which animates; this is here so the
+   attribute cannot silently do the opposite of what it says. */
+.ios-modal-backdrop[hidden] {
+  display: none;
+}
+
+/* When modal is open, status bar goes dark */
+.ios-status-bar.ios-status-bar-modal {
+  background: transparent;
+  color: white;
+}
+
+/* Stack indicator — visual hint of the parent screen sitting behind the sheet.
+   It scales up from behind the sheet as the modal opens. */
+.ios-modal-stack {
+  flex-shrink: 0;
+  height: 60px;
+  margin: 0 16px -50px;
+  background: var(--ios-modal-stack-bg);
+  border-radius: 38px 38px 0 0;
+  box-shadow: none;
+}
+
+/* Collapsed until the backdrop opens. The delay lets the sheet begin its own
+   travel first, so the stack appears to be revealed by it rather than with it. */
+.ios-modal-backdrop .ios-modal-stack {
+  transform: scaleX(0.85) scaleY(0.5);
+  transform-origin: bottom center;
+  opacity: 0;
+  transition:
+    transform 0.35s cubic-bezier(0.32, 0.72, 0, 1) 0.3s,
+    opacity 0.3s cubic-bezier(0.32, 0.72, 0, 1) 0.3s;
+}
+
+.ios-modal-backdrop.is-open .ios-modal-stack {
+  transform: scaleX(1) scaleY(1);
+  opacity: 1;
+}
+
+/* The sheet slides up from below and back down on close. Paired with the
+   stack's delayed reveal above, the stack reads as being uncovered by the
+   sheet rather than appearing alongside it. */
+.ios-modal-backdrop .ios-modal-sheet {
+  transform: translateY(100%);
+  transition: transform 0.5s cubic-bezier(0.32, 0.72, 0, 1);
+}
+
+.ios-modal-backdrop.is-open .ios-modal-sheet {
+  transform: translateY(0);
+}
+
+/* The sheet */
+.ios-modal-sheet {
+  flex: 1;
+  min-height: 0; /* allow flex child to shrink below content size so ios-modal-content scrolls */
+  display: flex;
+  flex-direction: column;
+  background: var(--bg-base);
+  border-radius: 16px 16px 0 0;
+  overflow: hidden;
+  box-shadow:
+    0 -4px 32px rgba(0, 0, 0, 0.08),
+    0 -8px 64px rgba(0, 0, 0, 0.12);
+}
+
+/* Modal nav bar — flex layout, no absolute positioning */
+/* Modal nav is also a flex column — same structure as page nav.
+   Top padding clears the rounded sheet corners. */
+.ios-nav-modal {
+  position: relative;
+  z-index: 1; /* render gradient above adjacent ios-modal-content */
+  display: flex;
+  flex-direction: column;
+  padding: 16px 0 10px;
+  flex-shrink: 0;
+}
+
+/* Gradient fade behind modal nav — matches page nav's translucent style.
+   Color layer at 0.9 opacity + mask that tops out at 0.95, so content
+   subtly shows through even behind the nav area. */
+.ios-nav-modal::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: -36px;
+  pointer-events: none;
+  z-index: -1;
+  background: var(--bg-base);
+  opacity: 0.9;
+  -webkit-mask-image: linear-gradient(to top,
+    transparent 0%,
+    rgba(0,0,0,0.2) 10%,
+    rgba(0,0,0,0.7) 20%,
+    rgba(0,0,0,0.95) 30%,
+    rgba(0,0,0,0.95) 100%
+  );
+  mask-image: linear-gradient(to top,
+    transparent 0%,
+    rgba(0,0,0,0.2) 10%,
+    rgba(0,0,0,0.7) 20%,
+    rgba(0,0,0,0.95) 30%,
+    rgba(0,0,0,0.95) 100%
+  );
+}
+
+.ios-nav-modal-row {
+  display: flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 0 var(--spacing-200);
+}
+
+/* Drag handle at top of sheet */
+.ios-nav-modal::before {
+  content: '';
+  position: absolute;
+  top: 6px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 36px;
+  height: 5px;
+  border-radius: 100px;
+  background: var(--neutral-300);
+}
+
+/* Modal nav uses flex flow — buttons at edges, title centered */
+.ios-nav-modal .ios-nav-btn,
+.ios-nav-modal-row .ios-nav-btn {
+  position: relative;
+  z-index: 1;
+  flex-shrink: 0;
+}
+
+.ios-nav-modal .ios-nav-page-title {
+  flex: 1;
+  text-align: center;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 1;
+  letter-spacing: -0.4px;
+  color: var(--text-primary);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  padding: 0; /* reset page nav's 48px padding — flex handles centering */
+  pointer-events: auto; /* reset page nav's pointer-events: none */
+}
+
+/* Override absolute positioning from page nav when inside modal */
+.ios-nav-modal .ios-nav-page-left,
+.ios-nav-modal .ios-nav-page-right {
+  position: relative;
+  left: auto;
+  right: auto;
+}
+
+/* Scrollable content area */
+.ios-modal-content {
+  flex: 1;
+  overflow-y: auto;
+}
+
+
+/* ============================================================
+   iOS BOTTOM TAB BAR
+   ============================================================
+   5-tab navigation bar at the bottom of the phone frame.
+   Frosted glass pill containing tab buttons. Includes home
+   indicator in the safe area below the pill.
+
+   Figma: "Bottom" component · Tab=Home/Team/Gameday/Buy/Tickets
+
+   Tab icons: Material Symbols for most tabs. The brand tab
+   uses a themeable monochrome SVG icon via .ios-tab-brand-icon.
+
+   Active tab: brand color icon/label + filled icon variant.
+   The .is-active class automatically sets icon FILL to 1.
+
+   HTML pattern:
+     <nav class="ios-tab-bar">
+       <div class="ios-tab-bar-inner">
+         <button class="ios-tab is-active" data-tab="home">
+           <span class="icon">home</span>
+           <span class="ios-tab-label">Home</span>
+         </button>
+         <button class="ios-tab" data-tab="brand">
+           <span class="ios-tab-brand-icon"></span>
+           <span class="ios-tab-label">Brand</span>
+         </button>
+         <button class="ios-tab" data-tab="gameday">
+           <span class="icon">stadium</span>
+           <span class="ios-tab-label">Gameday</span>
+         </button>
+         <button class="ios-tab" data-tab="buy">
+           <span class="icon">sell</span>
+           <span class="ios-tab-label">Buy</span>
+         </button>
+         <button class="ios-tab" data-tab="tickets">
+           <span class="icon">confirmation_number</span>
+           <span class="ios-tab-label">Tickets</span>
+         </button>
+       </div>
+     </nav>
+
+   When using the tab bar, add .has-ios-tab-bar to .ios-content
+   and omit the separate .ios-home-indicator element.
+   ============================================================ */
+
+.ios-tab-bar {
+  position: relative;
+  z-index: 9998;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 8px 20px 24px;
+  background: transparent;
+  pointer-events: none; /* let scroll events pass through */
+}
+
+/* Re-enable pointer events on the interactive pill */
+.ios-tab-bar-inner {
+  pointer-events: auto;
+}
+
+/* orgBase gradient fade — matches Figma "Nav Gradient" (15004:34183)
+   215px tall, orgBase at 90% opacity, backdrop blur, non-linear luminance mask */
+.ios-tab-bar::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: -120px; /* total height ≈ 215px (120 above + 95 tab bar) */
+  background: var(--bg-base);
+  opacity: 0.9;
+  backdrop-filter: blur(25px);
+  -webkit-backdrop-filter: blur(25px);
+  -webkit-mask-image: linear-gradient(to bottom,
+    transparent 0%,
+    rgba(0,0,0,0.03) 15%,
+    rgba(0,0,0,0.1) 30%,
+    rgba(0,0,0,0.25) 45%,
+    rgba(0,0,0,0.5) 60%,
+    rgba(0,0,0,0.8) 78%,
+    black 100%
+  );
+  mask-image: linear-gradient(to bottom,
+    transparent 0%,
+    rgba(0,0,0,0.03) 15%,
+    rgba(0,0,0,0.1) 30%,
+    rgba(0,0,0,0.25) 45%,
+    rgba(0,0,0,0.5) 60%,
+    rgba(0,0,0,0.8) 78%,
+    black 100%
+  );
+  pointer-events: none;
+  z-index: -1;
+}
+
+
+/* ============================================================
+   iOS GLASS TOKEN
+   ============================================================
+   Reusable frosted glass surface for iOS navigation elements.
+   Matches Figma "Fake Glass" style token.
+   Uses system tokens so it works across every theme + light/dark.
+
+   Apply .ios-glass to any element that needs the glass effect.
+   Set border-radius on the element itself (not included here).
+
+   Layers (bottom to top):
+     1. backdrop-filter: blur(12px) — blurs content behind
+     2. background: inverted-300 + neutral-100 — translucent tint
+     3. ::before — gradient overlay (hard-light) + inner shadows
+     4. ::after — gradient border ring (143° bevel)
+
+   Outer shadow: 0 2px 40px rgba(0,0,0,0.12)
+   ============================================================ */
+
+.ios-glass {
+  position: relative;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  /* Composite of inverted-300 (luminosity) + neutral-100 (luminosity) */
+  background:
+    var(--neutral-200),
+    var(--inverted-300),
+    var(--black-200);
+  background-blend-mode: luminosity;
+}
+
+/* Gradient overlay (hard-light blend) + inner shadows */
+.ios-glass::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(
+    to bottom,
+    var(--neutral-100),
+    var(--black-200)
+  );
+  mix-blend-mode: hard-light;
+  box-shadow:
+    inset 0.5px 1px 3px rgba(255, 255, 255, 0.15),
+    inset -0.5px -1px 2px rgba(255, 255, 255, 0.1);
+  pointer-events: none;
+}
+
+/* Gradient border — 143° bevel using mask to create 1px ring */
+.ios-glass::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(175deg,
+    var(--white-300) 20.81%,
+    var(--white-200) 26.66%,
+    var(--white-100) 40.87%,
+    var(--black-200) 49.78%,
+    var(--white-100) 58.41%,
+    var(--white-100) 67.16%,
+    var(--white-200) 78.75%
+  );
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+
+/* Tab bar pill — uses .ios-glass token */
+.ios-tab-bar-inner {
+  display: flex;
+  align-items: stretch;
+  width: 100%;
+  padding: 4px;
+  border-radius: 100px;
+  min-height: 58px; /* 4px padding + 50px tab content + 4px padding */
+}
+
+/* Individual tab */
+.ios-tab {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1px;
+  padding: 5px 0 6px;
+  cursor: pointer;
+  background: none;
+  border: none;
+  border-radius: 100px;
+  position: relative;
+  color: var(--neutral-1000);
+  font-family: inherit;
+  transition: color 0.15s;
+}
+
+.ios-tab:active { opacity: 0.6; }
+
+/* Tab icons — outlined by default */
+.ios-tab .icon {
+  font-variation-settings: 'FILL' 0;
+}
+
+/* Active tab — brand color + filled icon.
+   Uses --ios-selected-tab so a theme can set a tab colour distinct from its
+   brand-interactive. Defaults to --color-interactive. */
+.ios-tab.is-active {
+  color: var(--ios-selected-tab);
+}
+
+.ios-tab.is-active .icon {
+  font-variation-settings: 'FILL' 1;
+}
+
+/* Active tab selection highlight — isolate prevents glass blend from bleeding through */
+.ios-tab.is-active {
+  isolation: isolate;
+}
+
+.ios-tab.is-active::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 100px;
+  background: var(--ios-selected-tab-bg);
+  z-index: -1;
+}
+
+/* Tab icon (Material Symbols) */
+.ios-tab .icon {
+  font-size: 28px;
+  line-height: 1;
+}
+
+/* Tab label */
+.ios-tab-label {
+  font-size: 10px;
+  font-weight: 500;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+/* Brand tab icon — themeable SVG via mask-image */
+.ios-tab-brand-icon {
+  width: 28px;
+  height: 28px;
+  background: currentColor;
+  -webkit-mask-image: var(--brand-tab-icon);
+  mask-image: var(--brand-tab-icon);
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  mask-position: center;
+  flex-shrink: 0;
+}
+
+
+
+/* ============================================================
+   iOS CONTENT — TAB BAR INTEGRATION
+   ============================================================
+   Add .has-ios-tab-bar to .ios-content when using the bottom
+   tab bar. Increases bottom padding so content clears the
+   tab bar + home indicator area.
+   ============================================================ */
+
+[data-platform="app"] .ios-content.has-ios-tab-bar {
+  padding-bottom: 95px; /* tab bar height — content scrolls behind it */
+}

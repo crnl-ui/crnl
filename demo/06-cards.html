@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="signal" data-mode="light" data-platform="web">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cards & Tiles — Design System Sticker Sheet</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap" rel="stylesheet">
+
+  <script src="../css/ds-loader.js"></script>
+  <script src="demo-content.js"></script>
+  <script src="../css/prototype-harness.js"></script>
+  <link rel="stylesheet" href="sheet.css">
+</head>
+<body>
+
+<nav data-sheet-nav></nav>
+
+<main class="container-extra-wide">
+
+  <header class="sheet-head">
+    <div class="card-text-pair">
+      <h1 class="display500">Cards &amp; Tiles</h1>
+      <p class="labelRegular40 text-secondary">Closed cards, open cards, grids, logo blocks, matchups and the tile — with its one interactivity rule.</p>
+    </div>
+  </header>
+
+  <div class="sheet-callout">
+    <p class="bodyRegular30">Two card shapes and one tile. A <strong>closed</strong> card is a filled box with divided sections. An <strong>open</strong> card is a transparent container of separated filled sections. A <strong>tile</strong> is the card for anything displayed alongside others — grids, carousels, feeds. Cards never take a border and never a hand-written hover (<span class="mono">RULES §2</span>).</p>
+  </div>
+
+  <section class="sheet-section" id="closed">
+    <div class="sheet-section-head">
+      <h2 class="display300">Closed card</h2>
+      <span class="labelRegular10 text-secondary mono">card-components.css</span>
+    </div>
+    <div class="sheet-grid sheet-grid-wide">
+      <div class="spec">
+        <div class="spec-stage is-base is-block">
+          <div class="card-closed">
+            <div class="card-closed-header">
+              <div class="card-text-pair">
+                <h3 class="title50">Season Tickets</h3>
+                <p class="labelRegular20 text-secondary">2025-26 Season</p>
+              </div>
+            </div>
+            <div class="card-closed-body">
+              <p class="bodyRegular30">Enjoy the full season with priority access and member pricing.</p>
+            </div>
+            <div class="card-closed-footer">
+              <div class="btn-group">
+                <button class="btn btn-transactional btn-300">Buy Now</button>
+                <button class="btn btn-secondary btn-300">Learn More</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="spec-label"><span class="labelRegular10 mono spec-code">.card-closed &gt; .card-closed-header + .card-closed-body + .card-closed-footer</span></div>
+      </div>
+      <div class="spec">
+        <div class="spec-stage is-base is-block">
+          <div class="card-closed">
+            <div class="card-closed-header">
+              <div class="card-text-pair">
+                <h3 class="title50">With a trailing action</h3>
+                <p class="labelRegular20 text-secondary">Header takes any content</p>
+              </div>
+              <button class="btn-circle btn-circle-300 btn-circle-neutral-tertiary" aria-label="More"><span class="btn-icon material-symbols-rounded">more_horiz</span></button>
+            </div>
+            <div class="card-closed-body">
+              <div class="card-actions card-actions-horizontal">
+                <button class="btn btn-primary btn-300">Primary</button>
+                <button class="btn btn-tertiary btn-300">Tertiary</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="spec-label"><span class="labelRegular10 mono spec-code">.card-actions .card-actions-horizontal</span><span class="labelRegular10 spec-meta">the header is a row — the text pair takes the space, the action trails</span></div>
+      </div>
+      <div class="spec">
+        <div class="spec-stage is-base is-block">
+          <div class="card-closed-interactive surface-card scale-700">
+            <div class="card-closed-body">
+              <div class="card-text-pair">
+                <h3 class="title50">Tappable card</h3>
+                <p class="labelRegular20 text-secondary">The whole card is the target, so it holds one block of content and no buttons</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="spec-label"><span class="labelRegular10 mono spec-code">.card-closed-interactive .surface-card .scale-700</span><span class="labelRegular10 spec-meta">one block, no buttons — a button here would be a target inside a target (<span class="mono">RULES §2</span>)</span></div>
+      </div>
+      <div class="spec">
+        <div class="spec-stage is-base is-block">
+          <div class="card-closed">
+            <div class="card-closed-header">
+              <div class="card-text-pair">
+                <h3 class="title50">Card with actions</h3>
+                <p class="labelRegular20 text-secondary">Inert card, so the buttons do the work</p>
+              </div>
+            </div>
+            <div class="card-closed-footer">
+              <div class="card-actions card-actions-vertical">
+                <button class="btn btn-secondary btn-300 btn-fill">Stacked</button>
+                <button class="btn btn-tertiary btn-300 btn-fill">Actions</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="spec-label"><span class="labelRegular10 mono spec-code">.card-closed</span><span class="labelRegular10 mono spec-code">.card-actions-vertical</span><span class="labelRegular10 spec-meta">no surface, no scale — the other half of the either/or</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sheet-section" id="open">
+    <div class="sheet-section-head">
+      <h2 class="display300">Open card</h2>
+      <span class="labelRegular10 text-secondary mono">transparent container, filled sections</span>
+    </div>
+    <div class="sheet-grid sheet-grid-wide">
+      <div class="spec">
+        <div class="spec-stage is-base is-block">
+          <div class="card-open">
+            <div class="card-open-header">
+              <div class="card-text-pair">
+                <h2 class="display300">Your Membership</h2>
+                <p class="labelRegular20 text-secondary">Three sections, one heading</p>
+              </div>
+            </div>
+            <div class="card-open-content">
+              <div class="card-open-section"><span class="labelBold30">Section one</span></div>
+              <div class="card-open-section"><span class="labelBold30">Section two</span></div>
+              <div class="card-open-section-interactive surface-card scale-500"><span class="labelBold30">Section three — tappable</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="spec-label"><span class="labelRegular10 mono spec-code">.card-open &gt; .card-open-header + .card-open-content &gt; .card-open-section</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sheet-section" id="grids">
+    <div class="sheet-section-head">
+      <h2 class="display300">Card grids</h2>
+      <span class="labelRegular10 text-secondary mono">pair with the grid-cols-* utilities</span>
+    </div>
+    <div class="sheet-sub"><span class="title50">.card-grid</span><span class="labelRegular10 text-secondary">--spacing-card between cards</span></div>
+    <div class="card-grid grid-cols-3-desktop grid-cols-2-tablet grid-cols-1-mobile mb-400">
+      <div class="card-open-section"><span class="labelBold30">.card-grid</span></div>
+      <div class="card-open-section"><span class="labelBold30">.card-grid</span></div>
+      <div class="card-open-section"><span class="labelBold30">.card-grid</span></div>
+    </div>
+    <div class="sheet-sub"><span class="title50">.card-grid-closed</span></div>
+    <div class="card-grid-closed grid-cols-2-desktop grid-cols-1-mobile mb-400">
+      <div class="card-closed"><div class="card-closed-body"><span class="labelBold30">.card-grid-closed</span></div></div>
+      <div class="card-closed"><div class="card-closed-body"><span class="labelBold30">.card-grid-closed</span></div></div>
+    </div>
+    <div class="sheet-sub"><span class="title50">.card-grid-open</span><span class="labelRegular10 text-secondary">--spacing-content between cards — more breathing room</span></div>
+    <div class="card-grid-open grid-cols-2-desktop grid-cols-1-mobile">
+      <div class="card-open-section"><span class="labelBold30">.card-grid-open</span></div>
+      <div class="card-open-section"><span class="labelBold30">.card-grid-open</span></div>
+    </div>
+  </section>
+
+  <section class="sheet-section" id="logo-block">
+    <div class="sheet-section-head">
+      <h2 class="display300">Logo block and matchup</h2>
+      <span class="labelRegular10 text-secondary mono">.logo-block · .matchup</span>
+    </div>
+    <p class="sheet-note bodyRegular30">Both are fluid — the parent sets the dimensions. The size modifier controls the <em>logo image</em>, not the container. The away panel takes <span class="mono">--badge-bg</span> from the opponent's colour; the home panel inherits <span class="mono">--brand-core</span>. Every logo here comes from the loader, never a path (<span class="mono">RULES §6</span>).</p>
+    <div class="sheet-grid">
+      <div class="spec">
+        <div class="spec-stage is-center"><div style="width: var(--spacing-1000); height: var(--spacing-1000);"><div class="logo-block logo-block-sm"><img data-content="brand.assets.logo" alt=""></div></div></div>
+        <div class="spec-label"><span class="labelRegular10 mono spec-code">.logo-block .logo-block-sm</span><span class="labelRegular10 spec-meta">64px logo</span></div>
+      </div>
+      <div class="spec">
+        <div class="spec-stage is-center"><div style="width: calc(var(--spacing-1000) * 1.25); height: calc(var(--spacing-1000) * 1.25);"><div class="logo-block logo-block-md"><img data-content="brand.assets.logo" alt=""></div></div></div>
+        <div class="spec-label"><span class="labelRegular10 mono spec-code">.logo-block .logo-block-md</span><span class="labelRegular10 spec-meta">80px logo</span></div>
+      </div>
+      <div class="spec">
+        <div class="spec-stage is-center"><div style="width: calc(var(--spacing-1000) * 1.6); height: calc(var(--spacing-1000) * 1.6);"><div class="logo-block logo-block-lg"><img data-content="brand.assets.logo" alt=""></div></div></div>
+        <div class="spec-label"><span class="labelRegular10 mono spec-code">.logo-block .logo-block-lg</span><span class="labelRegular10 spec-meta">104px logo</span></div>
+      </div>
+      <div class="spec">
+        <div class="spec-stage is-plain">
+          <div class="card-media rounded-100">
+            <div class="matchup">
+              <div class="matchup-panel" data-opponent-panel><img data-opponent-logo alt=""></div>
+              <div class="matchup-panel"><img data-content="brand.assets.logo" alt=""></div>
+            </div>
+          </div>
+        </div>
+        <div class="spec-label"><span class="labelRegular10 mono spec-code">.matchup &gt; .matchup-panel × 2</span><span class="labelRegular10 spec-meta">away left, home right — the matchup takes its height from the slot, so the slot is a <span class="mono">.card-media</span></span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sheet-section" id="media">
+    <div class="sheet-section-head">
+      <h2 class="display300">Card media</h2>
+      <span class="labelRegular10 text-secondary mono">.card-media · sized by ratio, never by height</span>
+    </div>
+    <p class="sheet-note bodyRegular30">Three ratios, and no fourth. A photo band set to a fixed height reads as a photo on a phone card and a letterbox slot on a web card — the ratio holds the proportion at every width. It carries <strong>no radius of its own</strong>: the card clips its children, and a rounded image inside a rounded card notches the corners where the two curves meet (<span class="mono">RULES §2</span>).</p>
+    <div class="sheet-grid sheet-grid-wide">
+      <div class="spec"><div class="spec-stage is-plain"><div class="card-media" data-demo-image></div></div><div class="spec-label"><span class="labelRegular10 mono spec-code">.card-media</span><span class="labelRegular10 spec-meta">16 / 9 — the default band</span></div></div>
+      <div class="spec"><div class="spec-stage is-plain"><div class="card-media card-media-tall" data-demo-image></div></div><div class="spec-label"><span class="labelRegular10 mono spec-code">.card-media-tall</span><span class="labelRegular10 spec-meta">4 / 3</span></div></div>
+      <div class="spec"><div class="spec-stage is-plain"><div class="card-media card-media-square" data-demo-image></div></div><div class="spec-label"><span class="labelRegular10 mono spec-code">.card-media-square</span><span class="labelRegular10 spec-meta">1 / 1</span></div></div>
+    </div>
+  </section>
+
+  <section class="sheet-section" id="tile">
+    <div class="sheet-section-head">
+      <h2 class="display300">Tile</h2>
+      <span class="labelRegular10 text-secondary mono">.tile · .tile-info · .tile-tag</span>
+    </div>
+    <p class="sheet-note bodyRegular30">One interactivity choice per set, never mixed: <strong>no button</strong> → the tile is the tap target and takes <span class="mono">surface-card scale-700</span>; <strong>a button</strong> → the button is the CTA and the tile takes neither. <span class="mono">.tile-info</span> owns its spacing — do not override it. The visual header is the only dimension the tile leaves to you.</p>
+    <div class="sheet-sub"><span class="title50">A set where the tile is the target</span><span class="labelRegular10 text-secondary">same slots in every tile, so they end the same height</span></div>
+    <div class="card-grid grid-cols-2-desktop grid-cols-1-mobile">
+
+      <div class="tile surface-card scale-700">
+        <div class="card-media">
+          <div class="matchup">
+            <div class="matchup-panel" data-opponent-panel><img data-opponent-logo alt=""></div>
+            <div class="matchup-panel"><img data-content="brand.assets.logo" alt=""></div>
+          </div>
+        </div>
+        <div class="tile-info">
+          <div class="card-text-pair">
+            <span class="labelBold30" data-opponent-name>Opponent</span>
+            <span class="labelRegular10 text-secondary" data-game-date>Date</span>
+          </div>
+          <span class="labelBold20 text-success">From $19</span>
+        </div>
+      </div>
+
+      <div class="tile surface-card scale-700">
+        <div class="card-media" data-demo-image></div>
+        <div class="tile-tag">Home</div>
+        <div class="tile-info">
+          <div class="card-text-pair">
+            <span class="labelBold30">With a tile tag</span>
+            <span class="labelRegular10 text-secondary">Frosted label, top-left</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="sheet-sub"><span class="title50">A set where the button is the CTA</span><span class="labelRegular10 text-secondary">its own set — never mixed with the one above (<span class="mono">RULES §2</span>)</span></div>
+    <div class="card-grid grid-cols-2-desktop grid-cols-1-mobile">
+
+      <div class="tile">
+        <div class="card-media">
+          <div class="matchup">
+            <div class="matchup-panel" data-opponent-panel><img data-opponent-logo alt=""></div>
+            <div class="matchup-panel"><img data-content="brand.assets.logo" alt=""></div>
+          </div>
+        </div>
+        <div class="tile-info">
+          <div class="card-text-pair">
+            <span class="labelBold30">Button is the CTA</span>
+            <span class="labelRegular10 text-secondary">So the tile takes no surface</span>
+          </div>
+          <span class="labelBold20 text-success">From $45</span>
+          <button class="btn btn-primary btn-100">Buy Tickets</button>
+        </div>
+      </div>
+
+      <div class="tile">
+        <div class="card-media">
+          <div class="matchup">
+            <div class="matchup-panel" data-opponent-panel><img data-opponent-logo alt=""></div>
+            <div class="matchup-panel"><img data-content="brand.assets.logo" alt=""></div>
+          </div>
+        </div>
+        <div class="tile-info">
+          <div class="card-text-pair">
+            <span class="labelBold30">Matched sibling</span>
+            <span class="labelRegular10 text-secondary">So the tile takes no surface</span>
+          </div>
+          <span class="labelBold20 text-success">From $28</span>
+          <button class="btn btn-primary btn-100">Buy Tickets</button>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <script>
+    /* The opponent on this page is a real reference resolved by the loader —
+       never a name, colour or crest typed into the file (RULES §6). */
+    document.addEventListener('content-loaded', e => {
+      const game = ContentLoader.featuredGame(e.detail.schedule);
+      const opp = game && game.opponent;
+      if (!opp) return;
+      document.querySelectorAll('[data-opponent-logo]').forEach(el => { el.src = opp.logo || ''; });
+      document.querySelectorAll('[data-opponent-panel]').forEach(el => {
+        el.style.setProperty('--badge-bg', opp.color || 'var(--neutral-200)');
+      });
+      document.querySelectorAll('[data-opponent-name]').forEach(el => {
+        el.textContent = 'vs. ' + (opp.short || opp.name);
+      });
+      document.querySelectorAll('[data-game-date]').forEach(el => {
+        el.textContent = ContentLoader.formatters.fmtShortDate(new Date(game.date + 'T00:00:00')) +
+                         (game.time ? '  ∙  ' + game.time : '');
+      });
+    });
+  </script>
+
+  <footer class="sheet-footer">
+    <p class="labelRegular10">Generated against <span class="mono">docs/css-api.json</span>. Every class shown here exists in the system — run <span class="mono">npm run check:demo</span> to verify the sheets still cover it.</p>
+  </footer>
+
+</main>
+
+<script src="sheet.js"></script>
+</body>
+</html>

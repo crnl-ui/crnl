@@ -1,0 +1,64 @@
+{
+  "name": "@ds/design-system",
+  "version": "1.0.0",
+  "description": "A token-based CSS design system with a typed React layer, light and dark modes, and pluggable theming",
+  "type": "module",
+  "private": true,
+  "main": "dist/index.cjs",
+  "module": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    },
+    "./style.css": "./dist/style.css"
+  },
+  "files": [
+    "dist",
+    "css",
+    "fonts",
+    "images"
+  ],
+  "scripts": {
+    "dev": "storybook dev -p 6006",
+    "build": "vite build",
+    "build-storybook": "storybook build",
+    "preview": "vite preview",
+    "check": "npm run check:themes && npm run check:demo",
+    "check:themes": "node scripts/check-themes.mjs",
+    "check:demo": "node demo/check-coverage.mjs",
+    "build:css-api": "node scripts/generate-css-reference.js",
+    "build:css-bundle": "node scripts/build-css-bundle.mjs",
+    "build:docs": "npm run build:css-api && npm run build:css-bundle",
+    "build:fonts": "python3 scripts/build-fonts.py"
+  },
+  "dependencies": {
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0"
+  },
+  "devDependencies": {
+    "@storybook/addon-essentials": "^8.4.7",
+    "@storybook/react-vite": "^8.4.7",
+    "@types/react": "^18.3.12",
+    "@types/react-dom": "^18.3.1",
+    "@vitejs/plugin-react": "^4.3.4",
+    "storybook": "^8.4.7",
+    "typescript": "^5.7.2",
+    "vite": "^6.0.5",
+    "vite-plugin-dts": "^4.3.0"
+  },
+  "peerDependencies": {
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0"
+  },
+  "keywords": [
+    "design-system",
+    "css",
+    "design-tokens",
+    "theming",
+    "react",
+    "typescript"
+  ],
+  "license": "MIT"
+}

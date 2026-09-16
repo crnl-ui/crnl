@@ -1,0 +1,2479 @@
+[
+ {
+  "family": "Alfa Slab One",
+  "lane": "Display serif & slab",
+  "craft": 5,
+  "presence": 5,
+  "athletic": 4,
+  "flags": [],
+  "verdict": "shortlist",
+  "note": "Iconic heavy slab, flawless color, collegiate punch",
+  "styles": [
+   "Collegiate Caps",
+   "Collegiate Slab"
+  ],
+  "t": 14,
+  "w": 400
+ },
+ {
+  "family": "Bungee",
+  "lane": "Wood type & western",
+  "craft": 5,
+  "presence": 5,
+  "athletic": 4,
+  "flags": [
+   "caps-only"
+  ],
+  "verdict": "shortlist",
+  "note": "Signage-grade caps, urban energy, superb engineering",
+  "styles": [
+   "Big Game Caps"
+  ],
+  "t": 14,
+  "w": 400
+ },
+ {
+  "family": "Ceviche One",
+  "lane": "Script",
+  "craft": 4,
+  "presence": 5,
+  "athletic": 5,
+  "flags": [
+   "clogs-at-tight-tracking"
+  ],
+  "verdict": "shortlist",
+  "note": "heavy brush script with genuine baseball-wordmark swagger",
+  "styles": [
+   "Wrap",
+   "Wrap Caps"
+  ],
+  "t": 14,
+  "w": 400
+ },
+ {
+  "family": "Changa One",
+  "lane": "Techno",
+  "craft": 4,
+  "presence": 5,
+  "athletic": 5,
+  "flags": [],
+  "verdict": "shortlist",
+  "note": "dense condensed slab, natural scoreboard voice",
+  "styles": [
+   "Chewy Bold",
+   "Chewy Caps"
+  ],
+  "t": 14,
+  "w": 400
+ },
+ {
+  "family": "Dela Gothic One",
+  "lane": "Wood type & western",
+  "craft": 5,
+  "presence": 5,
+  "athletic": 4,
+  "flags": [],
+  "verdict": "shortlist",
+  "note": "immaculate ultra-black boxy forms, huge headline authority",
+  "styles": [
+   "Mod",
+   "Mod Caps"
+  ],
+  "t": 14,
+  "w": 400
+ },
+ {
+  "family": "Protest Riot",
+  "lane": "Brush & marker",
+  "craft": 4,
+  "presence": 5,
+  "athletic": 5,
+  "flags": [],
+  "verdict": "shortlist",
+  "note": "punchy brush marker, even rhythm, natural sports-poster energy",
+  "styles": [
+   "Marker",
+   "Marker Caps"
+  ],
+  "t": 14,
+  "w": 400
+ },
+ {
+  "family": "Anybody",
+  "lane": "Display sans",
+  "craft": 4,
+  "presence": 4,
+  "athletic": 5,
+  "flags": [],
+  "verdict": "shortlist",
+  "note": "Wide variable athletic grotesque built for jerseys",
+  "styles": [
+   "Montana",
+   "Montana Caps"
+  ],
+  "t": 13,
+  "w": 900
+ },
+ {
+  "family": "Baloo 2",
+  "lane": "Blobby & rounded",
+  "craft": 5,
+  "presence": 4,
+  "athletic": 4,
+  "flags": [],
+  "verdict": "shortlist",
+  "note": "Impeccably drawn rounded heavy; friendly G-League voice",
+  "styles": [
+   "Huddle",
+   "Tubular"
+  ],
+  "t": 13,
+  "w": 800
+ },
+ {
+  "family": "Big Shoulders",
+  "lane": "Display sans",
+  "craft": 4,
+  "presence": 4,
+  "athletic": 5,
+  "flags": [],
+  "verdict": "shortlist",
+  "note": "Swapped back in per your review, in place of the Stencil cut",
+  "styles": [
+   "Horsecollar",
+   "Horsecollar Caps"
+  ],
+  "tag": "your call",
+  "t": 13,
+  "w": 900
+ },
+ {
+  "family": "Bowlby One SC",
+  "lane": "Display sans",
+  "craft": 4,
+  "presence": 5,
+  "athletic": 4,
+  "flags": [
+   "caps-only"
+  ],
+  "verdict": "shortlist",
+  "note": "Ultra-fat caps own the wordmark, retro collegiate",
+  "styles": [
+   "Buddy"
+  ],
+  "t": 13,
+  "w": 400
+ },
+ {
+  "family": "Carter One",
+  "lane": "Script",
+  "craft": 5,
+  "presence": 4,
+  "athletic": 4,
+  "flags": [],
+  "verdict": "shortlist",
+  "note": "confident swash script-sans, proven logo-grade drawing",
+  "styles": [
+   "Flag",
+   "Flag Caps"
+  ],
+  "t": 13,
+  "w": 400
+ },
+ {
+  "family": "Chango",
+  "lane": "Wood type & western",
+  "craft": 4,
+  "presence": 5,
+  "athletic": 4,
+  "flags": [
+   "one-trick"
+  ],
+  "verdict": "shortlist",
+  "note": "Ultra-fat spurred display, huge friendly presence",
+  "styles": [
+   "Woolie"
+  ],
+  "t": 13,
+  "w": 400
+ },
+ {
+  "family": "Coda",
+  "lane": "Techno",
+  "craft": 4,
+  "presence": 5,
+  "athletic": 4,
+  "flags": [],
+  "verdict": "shortlist",
+  "note": "massive w800 grotesque, disciplined and commanding",
+  "styles": [
+   "Big Impact Caps"
+  ],
+  "t": 13,
+  "w": 800
+ },
+ {
+  "family": "DynaPuff",
+  "lane": "Wacky & comic",
+  "craft": 4,
+  "presence": 5,
+  "athletic": 4,
+  "flags": [],
+  "verdict": "shortlist",
+  "note": "well-built puffy heavy, perfect playful G-League voice",
+  "styles": [
+   "Blimp",
+   "Blimp Caps"
+  ],
+  "t": 13,
+  "w": 700
+ },
+ {
+  "family": "Germania One",
+  "lane": "Blackletter & medieval",
+  "craft": 4,
+  "presence": 4,
+  "athletic": 5,
+  "flags": [],
+  "verdict": "shortlist",
+  "note": "Clean modern blackletter, proven sports-branding energy",
+  "styles": [
+   "Brats",
+   "Brats Caps"
+  ],
+  "t": 13,
+  "w": 400
+ },
+ {
+  "family": "Goldman",
+  "lane": "Techno",
+  "craft": 4,
+  "presence": 4,
+  "athletic": 5,
+  "flags": [],
+  "verdict": "shortlist",
+  "note": "square athletic face practically built for jerseys",
+  "styles": [
+   "Wideout",
+   "Wideout Caps"
+  ],
+  "t": 13,
+  "w": 700
+ },
+ {
+  "family": "Grandstander",
+  "lane": "Wacky & comic",
+  "craft": 4,
+  "presence": 5,
+  "athletic": 4,
+  "flags": [],
+  "verdict": "shortlist",
+  "note": "polished w900 rounded comic, spacing clean, sporty-playful",
+  "styles": [
+   "Redshirt",
+   "Redshirt Caps"
+  ],
+  "t": 13,
+  "w": 900
+ },
+ {
+  "family": "Lilita One",
+  "lane": "Wood type & western",
+  "craft": 5,
+  "presence": 4,
+  "athletic": 4,
+  "flags": [],
+  "verdict": "shortlist",
+  "note": "Polished chunky rounded, versatile playful-sport workhorse",
+  "styles": [
+   "Signbrush Caps"
+  ],
+  "t": 13,
+  "w": 400
+ },
+ {
+  "family": "Oleo Script",
+  "lane": "Script",
+  "craft": 5,
+  "presence": 4,
+  "athletic": 4,
+  "flags": [],
+  "verdict": "shortlist",
+  "note": "expertly drawn bold script, classic ballpark-wordmark material",
+  "styles": [
+   "Scribe"
+  ],
+  "t": 13,
+  "w": 700
+ },
+ {
+  "family": "Passion One",
+  "lane": "Wood type & western",
+  "craft": 4,
+  "presence": 5,
+  "athletic": 4,
+  "flags": [
+   "clogs-at-tight-tracking"
+  ],
+  "verdict": "shortlist",
+  "note": "Kept per your condition \u2014 also ships in 400/700, shown here at 700",
+  "styles": [
+   "Human"
+  ],
+  "tag": "w700 swap",
+  "w": 700,
+  "t": 13
+ },
+ {
+  "family": "Phudu",
+  "lane": "Display sans",
+  "craft": 4,
+  "presence": 5,
+  "athletic": 4,
+  "flags": [],
+  "verdict": "shortlist",
+  "note": "heavy condensed w900 punches hard, clean rhythm",
+  "styles": [
+   "A-Game Caps"
+  ],
+  "t": 13,
+  "w": 900
+ },
+ {
+  "family": "Rammetto One",
+  "lane": "Display sans",
+  "craft": 4,
+  "presence": 5,
+  "athletic": 4,
+  "flags": [],
+  "verdict": "shortlist",
+  "note": "Heavy rounded bruiser, even color, great spacing",
+  "styles": [
+   "Jumbo",
+   "Jumbo Caps"
+  ],
+  "t": 13,
+  "w": 400
+ },
+ {
+  "family": "Ranchers",
+  "lane": "Brush & marker",
+  "craft": 4,
+  "presence": 5,
+  "athletic": 4,
+  "flags": [
+   "clogs-at-tight-tracking"
+  ],
+  "verdict": "shortlist",
+  "note": "dense brush-block heft, words fuse slightly at -0.03em",
+  "styles": [
+   "Guard",
+   "Guard Caps"
+  ],
+  "t": 13,
+  "w": 400
+ },
+ {
+  "family": "Rubik Spray Paint",
+  "lane": "Distressed & rough",
+  "craft": 4,
+  "presence": 5,
+  "athletic": 4,
+  "flags": [
+   "clogs-at-tight-tracking"
+  ],
+  "verdict": "shortlist",
+  "note": "Heavy graffiti hit, credible streetball G-League voice",
+  "styles": [
+   "Overspray",
+   "Overspray Caps"
+  ],
+  "t": 13,
+  "w": 400
+ },
+ {
+  "family": "Shrikhand",
+  "lane": "Blobby & rounded",
+  "craft": 4,
+  "presence": 5,
+  "athletic": 4,
+  "flags": [
+   "one-trick"
+  ],
+  "verdict": "shortlist",
+  "note": "Juicy retro italic wordmark energy, confident drawing",
+  "styles": [
+   "Weightshift",
+   "Weightshift Caps"
+  ],
+  "t": 13,
+  "w": 400
+ },
+ {
+  "family": "Sigmar One",
+  "lane": "Wood type & western",
+  "craft": 4,
+  "presence": 5,
+  "athletic": 4,
+  "flags": [
+   "caps-only"
+  ],
+  "verdict": "shortlist",
+  "note": "Massive fat-face small caps, scoreboard-ready punch",
+  "styles": [
+   "Woah"
+  ],
+  "t": 13,
+  "w": 400
+ },
+ {
+  "family": "Staatliches",
+  "lane": "Display sans",
+  "craft": 4,
+  "presence": 4,
+  "athletic": 5,
+  "flags": [
+   "caps-only"
+  ],
+  "verdict": "shortlist",
+  "note": "Proven poster condensed, jersey-ready caps",
+  "styles": [
+   "Triple Caps"
+  ],
+  "t": 13,
+  "w": 400
+ },
+ {
+  "family": "Bangers",
+  "lane": "Display / untagged",
+  "craft": 4,
+  "presence": 4,
+  "athletic": 4,
+  "flags": [
+   "caps-only"
+  ],
+  "verdict": "shortlist",
+  "note": "confident comic italic, fits playful minor-league voice",
+  "styles": [
+   "Super Caps"
+  ],
+  "t": 12,
+  "w": 400
+ },
+ {
+  "family": "Boldonse",
+  "lane": "Display sans",
+  "craft": 3,
+  "presence": 5,
+  "athletic": 4,
+  "flags": [
+   "clogs-at-tight-tracking",
+   "poor-spacing"
+  ],
+  "verdict": "shortlist",
+  "note": "Presence 5 \u2014 its only sin was spacing, which you tune anyway",
+  "styles": [
+   "Circle",
+   "Circle Caps"
+  ],
+  "tag": "rounded up",
+  "t": 12,
+  "w": 400
+ },
+ {
+  "family": "Calistoga",
+  "lane": "Display serif & slab",
+  "craft": 4,
+  "presence": 4,
+  "athletic": 4,
+  "flags": [],
+  "verdict": "shortlist",
+  "note": "Warm retro soft slab, clean curves, minor-league charm",
+  "styles": [
+   "Esteemed"
+  ],
+  "t": 12,
+  "w": 400
+ },
+ {
+  "family": "Grenze Gotisch",
+  "lane": "Blackletter & medieval",
+  "craft": 4,
+  "presence": 4,
+  "athletic": 4,
+  "flags": [],
+  "verdict": "shortlist",
+  "note": "Sturdy gothic-flavored heavy, variable axes, real wordmark potential",
+  "styles": [
+   "Meister"
+  ],
+  "t": 12,
+  "w": 900
+ },
+ {
+  "family": "Lemon",
+  "lane": "Brush & marker",
+  "craft": 4,
+  "presence": 4,
+  "athletic": 4,
+  "flags": [],
+  "verdict": "shortlist",
+  "note": "confident retro swash chunk, vintage ballpark charm",
+  "styles": [
+   "Citrus"
+  ],
+  "t": 12,
+  "w": 400
+ },
+ {
+  "family": "Oxanium",
+  "lane": "Techno",
+  "craft": 4,
+  "presence": 4,
+  "athletic": 4,
+  "flags": [],
+  "verdict": "shortlist",
+  "note": "crisp beveled esports face, variable weight flexibility",
+  "styles": [
+   "Angular",
+   "Angular Caps"
+  ],
+  "t": 12,
+  "w": 800
+ },
+ {
+  "family": "Pirata One",
+  "lane": "Blackletter & medieval",
+  "craft": 4,
+  "presence": 4,
+  "athletic": 4,
+  "flags": [],
+  "verdict": "shortlist",
+  "note": "Cleanest blackletter after Germania; a real Raiders-register option",
+  "styles": [
+   "Map"
+  ],
+  "tag": "rounded up",
+  "t": 12,
+  "w": 400
+ },
+ {
+  "family": "Poetsen One",
+  "lane": "Script",
+  "craft": 4,
+  "presence": 4,
+  "athletic": 4,
+  "flags": [],
+  "verdict": "shortlist",
+  "note": "bold friendly semi-script, clean curves, strong minor-league voice",
+  "styles": [
+   "Flow"
+  ],
+  "t": 12,
+  "w": 400
+ },
+ {
+  "family": "Poller One",
+  "lane": "Display sans",
+  "craft": 4,
+  "presence": 5,
+  "athletic": 3,
+  "flags": [],
+  "verdict": "shortlist",
+  "note": "Fat poster grotesque with real contrast; presence 5",
+  "styles": [
+   "Box",
+   "Box Caps"
+  ],
+  "tag": "rounded up",
+  "t": 12,
+  "w": 400
+ },
+ {
+  "family": "Protest Strike",
+  "lane": "Display sans",
+  "craft": 4,
+  "presence": 4,
+  "athletic": 4,
+  "flags": [],
+  "verdict": "shortlist",
+  "note": "Bold condensed with genuine athletic snarl",
+  "styles": [
+   "Strike",
+   "Strike Caps"
+  ],
+  "t": 12,
+  "w": 400
+ },
+ {
+  "family": "Rowdies",
+  "lane": "Wood type & western",
+  "craft": 4,
+  "presence": 4,
+  "athletic": 4,
+  "flags": [],
+  "verdict": "shortlist",
+  "note": "Best all-round slab in the maybes; 4/4/4 with no real caveat",
+  "styles": [
+   "Dynamite",
+   "Dynamite Caps"
+  ],
+  "tag": "rounded up",
+  "t": 12,
+  "w": 700
+ },
+ {
+  "family": "Tektur",
+  "lane": "Techno",
+  "craft": 4,
+  "presence": 4,
+  "athletic": 4,
+  "flags": [],
+  "verdict": "shortlist",
+  "note": "chiseled w900 blocks, strong esports wordmark material",
+  "styles": [
+   "Jumbotron",
+   "Jumbotron Caps"
+  ],
+  "t": 12,
+  "w": 900
+ },
+ {
+  "family": "Caprasimo",
+  "lane": "Display serif & slab",
+  "craft": 4,
+  "presence": 4,
+  "athletic": 3,
+  "flags": [],
+  "verdict": "shortlist",
+  "note": "Well-built playful retro serif, fills a thin lane",
+  "styles": [
+   "Barrel",
+   "Barrel Caps"
+  ],
+  "tag": "rounded up",
+  "t": 11,
+  "w": 400
+ },
+ {
+  "family": "Knewave",
+  "lane": "Brush & marker",
+  "craft": 3,
+  "presence": 4,
+  "athletic": 4,
+  "flags": [
+   "clogs-at-tight-tracking"
+  ],
+  "verdict": "shortlist",
+  "note": "Best brush energy in the pile once collisions are forgiven",
+  "styles": [
+   "Commentator Caps"
+  ],
+  "tag": "rounded up",
+  "t": 11,
+  "w": 400
+ },
+ {
+  "family": "Koulen",
+  "lane": "Display sans",
+  "craft": 3,
+  "presence": 4,
+  "athletic": 4,
+  "flags": [
+   "caps-only"
+  ],
+  "verdict": "shortlist",
+  "note": "Streetwear condensed caps; rough spacing now forgiven",
+  "styles": [
+   "Noise Caps"
+  ],
+  "tag": "rounded up",
+  "t": 11,
+  "w": 400
+ },
+ {
+  "family": "Limelight",
+  "lane": "Deco, inline & shaded",
+  "craft": 4,
+  "presence": 4,
+  "athletic": 3,
+  "flags": [
+   "dated"
+  ],
+  "verdict": "shortlist",
+  "note": "Clean deco contrast \u2014 only face covering the throwback-deco voice",
+  "styles": [
+   "Lights",
+   "Lights Caps"
+  ],
+  "tag": "rounded up",
+  "t": 11,
+  "w": 400
+ },
+ {
+  "family": "Protest Revolution",
+  "lane": "Distressed & rough",
+  "craft": 3,
+  "presence": 4,
+  "athletic": 4,
+  "flags": [
+   "one-trick"
+  ],
+  "verdict": "shortlist",
+  "note": "Ultras-culture rawness nothing else in the library has",
+  "styles": [
+   "Brash"
+  ],
+  "tag": "rounded up",
+  "t": 11,
+  "w": 400
+ },
+ {
+  "family": "Rubik Bubbles",
+  "lane": "Distressed & rough",
+  "craft": 3,
+  "presence": 4,
+  "athletic": 4,
+  "flags": [
+   "clogs-at-tight-tracking"
+  ],
+  "verdict": "shortlist",
+  "note": "Fat bubbly punch; counter roughness was tracking-related",
+  "styles": [
+   "Dust",
+   "Dust Caps"
+  ],
+  "tag": "rounded up",
+  "t": 11,
+  "w": 400
+ },
+ {
+  "family": "Tillana",
+  "lane": "Distressed & rough",
+  "craft": 4,
+  "presence": 4,
+  "athletic": 3,
+  "flags": [],
+  "verdict": "shortlist",
+  "note": "Warm heavy brush script, retro-team register",
+  "styles": [
+   "Turf",
+   "Turf Caps"
+  ],
+  "tag": "rounded up",
+  "t": 11,
+  "w": 800
+ },
+ {
+  "family": "Tourney",
+  "lane": "Techno",
+  "craft": 3,
+  "presence": 4,
+  "athletic": 4,
+  "flags": [
+   "one-trick"
+  ],
+  "verdict": "shortlist",
+  "note": "The esports/pinstripe variable \u2014 width axis earns its slot",
+  "styles": [
+   "Diamond",
+   "Diamond Caps",
+   "Pinstripe Caps",
+   "Pinstripes"
+  ],
+  "tag": "rounded up",
+  "t": 11,
+  "w": 900
+ },
+ {
+  "family": "Vina Sans",
+  "lane": "Wood type & western",
+  "craft": 3,
+  "presence": 4,
+  "athletic": 4,
+  "flags": [
+   "caps-only",
+   "clogs-at-tight-tracking"
+  ],
+  "verdict": "shortlist",
+  "note": "Condensed poster punch; crowding was the only knock",
+  "styles": [
+   "Coach",
+   "Coach Caps"
+  ],
+  "tag": "rounded up",
+  "t": 11,
+  "w": 400
+ },
+ {
+  "family": "Tilt Warp",
+  "lane": "Display sans",
+  "craft": 3,
+  "presence": 3,
+  "athletic": 3,
+  "flags": [
+   "one-trick"
+  ],
+  "verdict": "shortlist",
+  "note": "Your call \u2014 works with the warp axes zeroed out",
+  "styles": [
+   "Rookie",
+   "Rookie Caps"
+  ],
+  "tag": "your call",
+  "t": 9,
+  "w": 400
+ },
+ {
+  "family": "Konkhmer Sleokchher",
+  "lane": "Display / untagged",
+  "craft": 3,
+  "presence": 3,
+  "athletic": 2,
+  "flags": [],
+  "verdict": "shortlist",
+  "note": "Your call \u2014 quietly nice drawing the blind pass undersold",
+  "styles": [
+   "Score",
+   "Score Caps"
+  ],
+  "tag": "your call",
+  "t": 8,
+  "w": 400
+ },
+ {
+  "family": "Big Shoulders Stencil",
+  "lane": "Stencil",
+  "craft": 5,
+  "presence": 5,
+  "athletic": 5,
+  "flags": [],
+  "verdict": "maybe",
+  "note": "Swapped out for plain Big Shoulders per your review",
+  "styles": [
+   "Westside Caps"
+  ],
+  "t": 15,
+  "w": 900,
+  "tag": "swapped out"
+ },
+ {
+  "family": "Bowlby One",
+  "lane": "Display sans",
+  "craft": 4,
+  "presence": 5,
+  "athletic": 3,
+  "flags": [],
+  "verdict": "maybe",
+  "note": "Fat and loud; SC version carries the brand better",
+  "styles": [
+   "Game",
+   "Game Caps"
+  ],
+  "t": 12,
+  "w": 400
+ },
+ {
+  "family": "Atma",
+  "lane": "Wacky & comic",
+  "craft": 4,
+  "presence": 4,
+  "athletic": 3,
+  "flags": [],
+  "verdict": "maybe",
+  "note": "solid bold playful, competent but low distinctiveness",
+  "styles": [
+   "Swoop",
+   "Swoop Caps"
+  ],
+  "t": 11,
+  "w": 700
+ },
+ {
+  "family": "Boogaloo",
+  "lane": "Script",
+  "craft": 4,
+  "presence": 3,
+  "athletic": 4,
+  "flags": [],
+  "verdict": "maybe",
+  "note": "clean retro casual, sporty but lighter than lane peers",
+  "styles": [
+   "Catch Caps"
+  ],
+  "t": 11,
+  "w": 400
+ },
+ {
+  "family": "Chela One",
+  "lane": "Brush & marker",
+  "craft": 4,
+  "presence": 4,
+  "athletic": 3,
+  "flags": [],
+  "verdict": "maybe",
+  "note": "tidy sign-painter brush, solid but slightly generic voice",
+  "styles": [
+   "Cheer",
+   "Cheer Caps"
+  ],
+  "t": 11,
+  "w": 400
+ },
+ {
+  "family": "Chewy",
+  "lane": "Brush & marker",
+  "craft": 4,
+  "presence": 4,
+  "athletic": 3,
+  "flags": [
+   "juvenile"
+  ],
+  "verdict": "maybe",
+  "note": "well-drawn bouncy marker, kid-league friendly",
+  "styles": [
+   "Swell",
+   "Swell Caps"
+  ],
+  "t": 11,
+  "w": 400
+ },
+ {
+  "family": "Chonburi",
+  "lane": "Display serif & slab",
+  "craft": 4,
+  "presence": 4,
+  "athletic": 3,
+  "flags": [
+   "fragile-hairlines"
+  ],
+  "verdict": "maybe",
+  "note": "Elegant fat didone; hairlines risky below 60px",
+  "styles": [],
+  "t": 11,
+  "w": 400
+ },
+ {
+  "family": "Coiny",
+  "lane": "Blobby & rounded",
+  "craft": 3,
+  "presence": 4,
+  "athletic": 4,
+  "flags": [
+   "awkward-letterforms"
+  ],
+  "verdict": "maybe",
+  "note": "Fun bounce but V reads as U at size",
+  "styles": [
+   "Pumped",
+   "Pumped Caps"
+  ],
+  "t": 11,
+  "w": 400
+ },
+ {
+  "family": "Concert One",
+  "lane": "Brush & marker",
+  "craft": 4,
+  "presence": 4,
+  "athletic": 3,
+  "flags": [],
+  "verdict": "maybe",
+  "note": "solid friendly bold, playful minor-league voice",
+  "styles": [
+   "Pitch",
+   "Pitch Caps"
+  ],
+  "t": 11,
+  "w": 400
+ },
+ {
+  "family": "Fugaz One",
+  "lane": "Display sans",
+  "craft": 3,
+  "presence": 4,
+  "athletic": 4,
+  "flags": [],
+  "verdict": "maybe",
+  "note": "Swoopy italic hustle, decent drawing, niche voice",
+  "styles": [
+   "Wave",
+   "Wave Caps"
+  ],
+  "t": 11,
+  "w": 400
+ },
+ {
+  "family": "Funnel Display",
+  "lane": "Display sans",
+  "craft": 4,
+  "presence": 4,
+  "athletic": 3,
+  "flags": [],
+  "verdict": "maybe",
+  "note": "Clean contemporary grotesque, esports-adjacent, mild voice",
+  "styles": [
+   "Offset"
+  ],
+  "t": 11,
+  "w": 800
+ },
+ {
+  "family": "Goblin One",
+  "lane": "Wood type & western",
+  "craft": 4,
+  "presence": 4,
+  "athletic": 3,
+  "flags": [],
+  "verdict": "maybe",
+  "note": "Wide latin wood type, handsome collegiate-western flavor",
+  "styles": [
+   "Sparkle"
+  ],
+  "t": 11,
+  "w": 400
+ },
+ {
+  "family": "Lemonada",
+  "lane": "Brush & marker",
+  "craft": 4,
+  "presence": 4,
+  "athletic": 3,
+  "flags": [],
+  "verdict": "maybe",
+  "note": "warm rounded semi-serif, polished but mild energy",
+  "styles": [
+   "Palace"
+  ],
+  "t": 11,
+  "w": 700
+ },
+ {
+  "family": "Luckiest Guy",
+  "lane": "Wood type & western",
+  "craft": 4,
+  "presence": 4,
+  "athletic": 3,
+  "flags": [
+   "juvenile",
+   "caps-only"
+  ],
+  "verdict": "maybe",
+  "note": "Bouncy comic caps, kids-promo more than wordmark",
+  "styles": [
+   "Animated",
+   "Animated Caps"
+  ],
+  "t": 11,
+  "w": 400
+ },
+ {
+  "family": "New Rocker",
+  "lane": "Blackletter & medieval",
+  "craft": 3,
+  "presence": 4,
+  "athletic": 4,
+  "flags": [
+   "one-trick"
+  ],
+  "verdict": "maybe",
+  "note": "Spiky rocker blackletter, decent draw, metal-adjacent team voice",
+  "styles": [
+   "Sail"
+  ],
+  "t": 11,
+  "w": 400
+ },
+ {
+  "family": "Orelega One",
+  "lane": "Display serif & slab",
+  "craft": 4,
+  "presence": 4,
+  "athletic": 3,
+  "flags": [],
+  "verdict": "maybe",
+  "note": "Sturdy warm display serif, competent but quiet",
+  "styles": [
+   "Sideline",
+   "Sideline Caps"
+  ],
+  "t": 11,
+  "w": 400
+ },
+ {
+  "family": "Racing Sans One",
+  "lane": "Display sans",
+  "craft": 3,
+  "presence": 4,
+  "athletic": 4,
+  "flags": [
+   "one-trick"
+  ],
+  "verdict": "maybe",
+  "note": "Speed-italic energy; contrast quirks limit range",
+  "styles": [],
+  "t": 11,
+  "w": 400
+ },
+ {
+  "family": "Shantell Sans",
+  "lane": "Script",
+  "craft": 4,
+  "presence": 4,
+  "athletic": 3,
+  "flags": [],
+  "verdict": "maybe",
+  "note": "contemporary marker sans, w800 holds up, playful esports fit",
+  "styles": [
+   "Niner",
+   "Niner Caps"
+  ],
+  "t": 11,
+  "w": 800
+ },
+ {
+  "family": "Slackey",
+  "lane": "Distressed & rough",
+  "craft": 4,
+  "presence": 4,
+  "athletic": 3,
+  "flags": [
+   "juvenile"
+  ],
+  "verdict": "maybe",
+  "note": "Well-drawn goofy wide cartoon, playful minor-league fit",
+  "styles": [
+   "Popfly",
+   "Popfly Caps"
+  ],
+  "t": 11,
+  "w": 400
+ },
+ {
+  "family": "Agbalumo",
+  "lane": "Brush & marker",
+  "craft": 3,
+  "presence": 4,
+  "athletic": 3,
+  "flags": [],
+  "verdict": "maybe",
+  "note": "hefty script swagger, some joins slightly lumpy",
+  "styles": [
+   "Plume"
+  ],
+  "t": 10,
+  "w": 400
+ },
+ {
+  "family": "Battambang",
+  "lane": "Display serif & slab",
+  "craft": 3,
+  "presence": 4,
+  "athletic": 3,
+  "flags": [],
+  "verdict": "maybe",
+  "note": "Solid w900 slab color, slightly generic joins",
+  "styles": [
+   "Slabtown",
+   "Slabtown Caps"
+  ],
+  "t": 10,
+  "w": 900
+ },
+ {
+  "family": "Cherry Bomb One",
+  "lane": "Wacky & comic",
+  "craft": 3,
+  "presence": 4,
+  "athletic": 3,
+  "flags": [
+   "juvenile"
+  ],
+  "verdict": "maybe",
+  "note": "bubbly rounded fun, skews cute over competitive",
+  "styles": [
+   "Pop",
+   "Pop Caps"
+  ],
+  "t": 10,
+  "w": 400
+ },
+ {
+  "family": "Cinzel Decorative",
+  "lane": "Blackletter & medieval",
+  "craft": 4,
+  "presence": 4,
+  "athletic": 2,
+  "flags": [
+   "caps-only",
+   "fragile-hairlines"
+  ],
+  "verdict": "maybe",
+  "note": "Elegant Trajan caps; luxury more than athletic",
+  "styles": [
+   "Panache Caps"
+  ],
+  "t": 10,
+  "w": 900
+ },
+ {
+  "family": "Darumadrop One",
+  "lane": "Distressed & rough",
+  "craft": 4,
+  "presence": 3,
+  "athletic": 3,
+  "flags": [
+   "juvenile"
+  ],
+  "verdict": "maybe",
+  "note": "Confident marker strokes, fun mascot-league voice",
+  "styles": [
+   "Baseline",
+   "Baseline Caps"
+  ],
+  "t": 10,
+  "w": 400
+ },
+ {
+  "family": "Gluten",
+  "lane": "Script",
+  "craft": 3,
+  "presence": 4,
+  "athletic": 3,
+  "flags": [
+   "juvenile"
+  ],
+  "verdict": "maybe",
+  "note": "blobby w900 fun, G-League plausible, curves get gummy",
+  "styles": [
+   "Mustard",
+   "Mustard Caps"
+  ],
+  "t": 10,
+  "w": 900
+ },
+ {
+  "family": "Marhey",
+  "lane": "Brush & marker",
+  "craft": 3,
+  "presence": 4,
+  "athletic": 3,
+  "flags": [],
+  "verdict": "maybe",
+  "note": "lively bold brush, some lumpy joins, wide set width",
+  "styles": [
+   "Bamboo",
+   "Bamboo Caps"
+  ],
+  "t": 10,
+  "w": 700
+ },
+ {
+  "family": "Mogra",
+  "lane": "Brush & marker",
+  "craft": 3,
+  "presence": 4,
+  "athletic": 3,
+  "flags": [],
+  "verdict": "maybe",
+  "note": "chunky rounded brush, friendly heft, rhythm a bit soft",
+  "styles": [
+   "Sox",
+   "Sox Caps"
+  ],
+  "t": 10,
+  "w": 400
+ },
+ {
+  "family": "Righteous",
+  "lane": "Techno",
+  "craft": 4,
+  "presence": 3,
+  "athletic": 3,
+  "flags": [],
+  "verdict": "maybe",
+  "note": "tidy deco-tech rounds, lacks heavyweight punch",
+  "styles": [
+   "Fever",
+   "Fever Caps"
+  ],
+  "t": 10,
+  "w": 400
+ },
+ {
+  "family": "Sigmar",
+  "lane": "Wood type & western",
+  "craft": 3,
+  "presence": 4,
+  "athletic": 3,
+  "flags": [
+   "awkward-letterforms"
+  ],
+  "verdict": "maybe",
+  "note": "Blobby ultra-heavy quirk, counters nearly fill",
+  "styles": [
+   "Paleo",
+   "Paleo Caps"
+  ],
+  "t": 10,
+  "w": 400
+ },
+ {
+  "family": "Skranji",
+  "lane": "Blackletter & medieval",
+  "craft": 3,
+  "presence": 4,
+  "athletic": 3,
+  "flags": [
+   "awkward-letterforms"
+  ],
+  "verdict": "maybe",
+  "note": "Heavy and loud but forms get lumpy up close",
+  "styles": [
+   "Scrum",
+   "Scrum Caps"
+  ],
+  "t": 10,
+  "w": 700
+ },
+ {
+  "family": "Spicy Rice",
+  "lane": "Wacky & comic",
+  "craft": 3,
+  "presence": 4,
+  "athletic": 3,
+  "flags": [
+   "one-trick"
+  ],
+  "verdict": "maybe",
+  "note": "funky heavy retro, strong color, circus flavor limits fit",
+  "styles": [
+   "Wonky",
+   "Wonky Caps"
+  ],
+  "t": 10,
+  "w": 400
+ },
+ {
+  "family": "Squada One",
+  "lane": "Display sans",
+  "craft": 3,
+  "presence": 3,
+  "athletic": 4,
+  "flags": [
+   "dated"
+  ],
+  "verdict": "maybe",
+  "note": "Scoreboard techno square; thin-ish and aging",
+  "styles": [
+   "Curve",
+   "Curve Caps"
+  ],
+  "t": 10,
+  "w": 400
+ },
+ {
+  "family": "Audiowide",
+  "lane": "Techno",
+  "craft": 3,
+  "presence": 3,
+  "athletic": 3,
+  "flags": [
+   "dated",
+   "one-trick"
+  ],
+  "verdict": "maybe",
+  "note": "Y2K rounded tech, too light for heavy headlines",
+  "styles": [
+   "Numbers - 80s Vibe"
+  ],
+  "t": 9,
+  "w": 400
+ },
+ {
+  "family": "Bahiana",
+  "lane": "Display / untagged",
+  "craft": 3,
+  "presence": 3,
+  "athletic": 3,
+  "flags": [
+   "caps-only",
+   "one-trick"
+  ],
+  "verdict": "maybe",
+  "note": "scrappy caps poster face, light stems limit punch",
+  "styles": [
+   "Punch Caps"
+  ],
+  "t": 9,
+  "w": 400
+ },
+ {
+  "family": "Bokor",
+  "lane": "Display / untagged",
+  "craft": 3,
+  "presence": 3,
+  "athletic": 3,
+  "flags": [
+   "awkward-letterforms",
+   "illegible-at-size"
+  ],
+  "verdict": "maybe",
+  "note": "blackletter flavor, V/W read ambiguously",
+  "styles": [
+   "Scribe"
+  ],
+  "t": 9,
+  "w": 400
+ },
+ {
+  "family": "Langar",
+  "lane": "Script",
+  "craft": 3,
+  "presence": 3,
+  "athletic": 3,
+  "flags": [],
+  "verdict": "maybe",
+  "note": "calligraphic brush, decent color, rhythm slightly uneven",
+  "styles": [
+   "Fold",
+   "Fold Caps"
+  ],
+  "t": 9,
+  "w": 400
+ },
+ {
+  "family": "Original Surfer",
+  "lane": "Wacky & comic",
+  "craft": 3,
+  "presence": 3,
+  "athletic": 3,
+  "flags": [
+   "dated"
+  ],
+  "verdict": "maybe",
+  "note": "retro surf charm, moderate weight limits headline punch",
+  "styles": [
+   "Flow",
+   "Flow Caps"
+  ],
+  "t": 9,
+  "w": 400
+ },
+ {
+  "family": "Salsa",
+  "lane": "Script",
+  "craft": 3,
+  "presence": 3,
+  "athletic": 3,
+  "flags": [
+   "dated"
+  ],
+  "verdict": "maybe",
+  "note": "competent casual script, reads restaurant-menu more than team",
+  "styles": [
+   "Calida"
+  ],
+  "t": 9,
+  "w": 400
+ },
+ {
+  "family": "Averia Serif Libre",
+  "lane": "Display / untagged",
+  "craft": 3,
+  "presence": 3,
+  "athletic": 2,
+  "flags": [
+   "one-trick"
+  ],
+  "verdict": "maybe",
+  "note": "soft averaged serif, gentle vintage but low energy",
+  "styles": [
+   "Blur",
+   "Blur Caps"
+  ],
+  "t": 8,
+  "w": 700
+ },
+ {
+  "family": "Miniver",
+  "lane": "Script",
+  "craft": 3,
+  "presence": 2,
+  "athletic": 3,
+  "flags": [
+   "fragile-hairlines"
+  ],
+  "verdict": "maybe",
+  "note": "retro diner monoline script, charming but thin at size",
+  "styles": [
+   "Plais"
+  ],
+  "t": 8,
+  "w": 400
+ },
+ {
+  "family": "Titan One",
+  "lane": "Display sans",
+  "craft": 4,
+  "presence": 4,
+  "athletic": 3,
+  "flags": [
+   "juvenile",
+   "one-trick"
+  ],
+  "verdict": "cut",
+  "note": "Toy-store fat rounded; Rammetto does it better",
+  "styles": [
+   "Pompous",
+   "Pompous Caps"
+  ],
+  "t": 11,
+  "w": 400
+ },
+ {
+  "family": "Angkor",
+  "lane": "Display serif & slab",
+  "craft": 3,
+  "presence": 4,
+  "athletic": 3,
+  "flags": [
+   "awkward-letterforms"
+  ],
+  "verdict": "cut",
+  "note": "Near-duplicate of Moul, same clunky latin",
+  "styles": [
+   "Stub"
+  ],
+  "t": 10,
+  "w": 400
+ },
+ {
+  "family": "Bagel Fat One",
+  "lane": "Blobby & rounded",
+  "craft": 3,
+  "presence": 4,
+  "athletic": 3,
+  "flags": [
+   "juvenile",
+   "one-trick",
+   "clogs-at-tight-tracking"
+  ],
+  "verdict": "cut",
+  "note": "Counters nearly close; sticker cute, not brand type",
+  "styles": [
+   "Pretzel"
+  ],
+  "t": 10,
+  "w": 400
+ },
+ {
+  "family": "Bakbak One",
+  "lane": "Display sans",
+  "craft": 3,
+  "presence": 4,
+  "athletic": 3,
+  "flags": [],
+  "verdict": "cut",
+  "note": "Competent geometric bold but forgettable, no voice",
+  "styles": [
+   "Backdrop"
+  ],
+  "t": 10,
+  "w": 400
+ },
+ {
+  "family": "Galindo",
+  "lane": "Wood type & western",
+  "craft": 3,
+  "presence": 4,
+  "athletic": 3,
+  "flags": [
+   "juvenile",
+   "one-trick"
+  ],
+  "verdict": "cut",
+  "note": "bouncy chunk is fun but cartoonish for branding",
+  "styles": [
+   "Fumble",
+   "Fumble Caps"
+  ],
+  "t": 10,
+  "w": 400
+ },
+ {
+  "family": "Moul",
+  "lane": "Display serif & slab",
+  "craft": 3,
+  "presence": 4,
+  "athletic": 3,
+  "flags": [
+   "awkward-letterforms"
+  ],
+  "verdict": "cut",
+  "note": "Heavy but stiff latin companion, clunky joins",
+  "styles": [
+   "Goldrush Caps"
+  ],
+  "t": 10,
+  "w": 400
+ },
+ {
+  "family": "Gabarito",
+  "lane": "Display sans",
+  "craft": 4,
+  "presence": 3,
+  "athletic": 2,
+  "flags": [],
+  "verdict": "cut",
+  "note": "UI-grade geometric, too polite for wordmarks",
+  "styles": [
+   "Nachos",
+   "Nachos Caps"
+  ],
+  "t": 9,
+  "w": 900
+ },
+ {
+  "family": "Joti One",
+  "lane": "Wacky & comic",
+  "craft": 3,
+  "presence": 3,
+  "athletic": 3,
+  "flags": [
+   "awkward-letterforms"
+  ],
+  "verdict": "cut",
+  "note": "angular brushy comic, uneven rhythm undercuts decent energy",
+  "styles": [
+   "Monument",
+   "Monument Caps"
+  ],
+  "t": 9,
+  "w": 400
+ },
+ {
+  "family": "Passero One",
+  "lane": "Techno",
+  "craft": 3,
+  "presence": 3,
+  "athletic": 3,
+  "flags": [
+   "awkward-letterforms",
+   "one-trick"
+  ],
+  "verdict": "cut",
+  "note": "notched forms turn mushy, odd glyph shapes",
+  "styles": [
+   "Set",
+   "Set Caps"
+  ],
+  "t": 9,
+  "w": 400
+ },
+ {
+  "family": "Prosto One",
+  "lane": "Techno",
+  "craft": 3,
+  "presence": 3,
+  "athletic": 3,
+  "flags": [
+   "one-trick"
+  ],
+  "verdict": "cut",
+  "note": "wide rounded quirk, too soft to command",
+  "styles": [
+   "Eagle"
+  ],
+  "t": 9,
+  "w": 400
+ },
+ {
+  "family": "Shojumaru",
+  "lane": "Wacky & comic",
+  "craft": 3,
+  "presence": 4,
+  "athletic": 2,
+  "flags": [
+   "halloween-costume",
+   "one-trick"
+  ],
+  "verdict": "cut",
+  "note": "chop-suey pastiche reads themed decoration, brand liability",
+  "styles": [
+   "Noon"
+  ],
+  "t": 9,
+  "w": 400
+ },
+ {
+  "family": "Amarante",
+  "lane": "Display sans",
+  "craft": 3,
+  "presence": 3,
+  "athletic": 2,
+  "flags": [
+   "dated",
+   "one-trick"
+  ],
+  "verdict": "cut",
+  "note": "art nouveau elegance, no heavier weight, wrong voice",
+  "styles": [
+   "Stallion",
+   "Stallion Caps"
+  ],
+  "t": 8,
+  "w": 400
+ },
+ {
+  "family": "Chelsea Market",
+  "lane": "Distressed & rough",
+  "craft": 3,
+  "presence": 3,
+  "athletic": 2,
+  "flags": [
+   "juvenile"
+  ],
+  "verdict": "cut",
+  "note": "Boutique-bakery charm, no team voice",
+  "styles": [
+   "Trade"
+  ],
+  "t": 8,
+  "w": 400
+ },
+ {
+  "family": "Chicle",
+  "lane": "Blobby & rounded",
+  "craft": 2,
+  "presence": 3,
+  "athletic": 3,
+  "flags": [
+   "poor-spacing",
+   "one-trick",
+   "clogs-at-tight-tracking"
+  ],
+  "verdict": "cut",
+  "note": "Uneven rhythm, letters crowd at tight tracking",
+  "styles": [
+   "Groovy"
+  ],
+  "t": 8,
+  "w": 400
+ },
+ {
+  "family": "Contrail One",
+  "lane": "Display sans",
+  "craft": 3,
+  "presence": 2,
+  "athletic": 3,
+  "flags": [
+   "fragile-hairlines"
+  ],
+  "verdict": "cut",
+  "note": "Light italic evaporates at heavyweight duty",
+  "styles": [
+   "Jet",
+   "Jet Caps"
+  ],
+  "t": 8,
+  "w": 400
+ },
+ {
+  "family": "Freckle Face",
+  "lane": "Distressed & rough",
+  "craft": 2,
+  "presence": 3,
+  "athletic": 3,
+  "flags": [
+   "juvenile",
+   "awkward-letterforms"
+  ],
+  "verdict": "cut",
+  "note": "Uneven marker scrawl, rhythm wobbles badly",
+  "styles": [
+   "Mudpit",
+   "Mudpit Caps"
+  ],
+  "t": 8,
+  "w": 400
+ },
+ {
+  "family": "Jaini",
+  "lane": "Blackletter & medieval",
+  "craft": 3,
+  "presence": 3,
+  "athletic": 2,
+  "flags": [
+   "awkward-letterforms"
+  ],
+  "verdict": "cut",
+  "note": "Devanagari-companion latin feels secondary, uneven rhythm",
+  "styles": [],
+  "t": 8,
+  "w": 400
+ },
+ {
+  "family": "Margarine",
+  "lane": "Brush & marker",
+  "craft": 3,
+  "presence": 3,
+  "athletic": 2,
+  "flags": [
+   "juvenile"
+  ],
+  "verdict": "cut",
+  "note": "soft marker doodle, too cute for teams",
+  "styles": [
+   "Marker",
+   "Marker Caps"
+  ],
+  "t": 8,
+  "w": 400
+ },
+ {
+  "family": "Metal Mania",
+  "lane": "Distressed & rough",
+  "craft": 3,
+  "presence": 3,
+  "athletic": 2,
+  "flags": [
+   "halloween-costume",
+   "one-trick"
+  ],
+  "verdict": "cut",
+  "note": "Band-logo pastiche, reads costume not brand",
+  "styles": [
+   "Avast"
+  ],
+  "t": 8,
+  "w": 400
+ },
+ {
+  "family": "Piedra",
+  "lane": "Distressed & rough",
+  "craft": 3,
+  "presence": 3,
+  "athletic": 2,
+  "flags": [
+   "halloween-costume",
+   "one-trick"
+  ],
+  "verdict": "cut",
+  "note": "Flintstones stone theme, decoration not identity",
+  "styles": [
+   "Scruffy Caps"
+  ],
+  "t": 8,
+  "w": 400
+ },
+ {
+  "family": "Rakkas",
+  "lane": "Display serif & slab",
+  "craft": 3,
+  "presence": 3,
+  "athletic": 2,
+  "flags": [
+   "awkward-letterforms",
+   "one-trick"
+  ],
+  "verdict": "cut",
+  "note": "Condensed quirk fights itself; uneven latin rhythm",
+  "styles": [
+   "Crisp",
+   "Crisp Caps"
+  ],
+  "t": 8,
+  "w": 400
+ },
+ {
+  "family": "Sancreek",
+  "lane": "Wood type & western",
+  "craft": 3,
+  "presence": 3,
+  "athletic": 2,
+  "flags": [
+   "fragile-hairlines",
+   "dated",
+   "halloween-costume"
+  ],
+  "verdict": "cut",
+  "note": "saloon spurs read as decoration, details clog",
+  "styles": [
+   "Cowboy",
+   "Cowboy Caps"
+  ],
+  "t": 8,
+  "w": 400
+ },
+ {
+  "family": "Simonetta",
+  "lane": "Display serif & slab",
+  "craft": 3,
+  "presence": 3,
+  "athletic": 2,
+  "flags": [
+   "awkward-letterforms"
+  ],
+  "verdict": "cut",
+  "note": "Calligraphic quirks turn lumpy at black weight",
+  "styles": [
+   "Captain",
+   "Captain Caps"
+  ],
+  "t": 8,
+  "w": 900
+ },
+ {
+  "family": "Special Elite",
+  "lane": "Distressed & rough",
+  "craft": 4,
+  "presence": 2,
+  "athletic": 2,
+  "flags": [
+   "dated",
+   "one-trick"
+  ],
+  "verdict": "cut",
+  "note": "Good typewriter, wrong job; editorial not athletic",
+  "styles": [
+   "Manifesto",
+   "Manifesto Caps"
+  ],
+  "t": 8,
+  "w": 400
+ },
+ {
+  "family": "Uncial Antiqua",
+  "lane": "Blackletter & medieval",
+  "craft": 3,
+  "presence": 3,
+  "athletic": 2,
+  "flags": [
+   "dated",
+   "one-trick"
+  ],
+  "verdict": "cut",
+  "note": "Celtic uncial reads theme-pub sign, low x-height mushes",
+  "styles": [
+   "Hibernica"
+  ],
+  "t": 8,
+  "w": 400
+ },
+ {
+  "family": "Unlock",
+  "lane": "Techno",
+  "craft": 2,
+  "presence": 3,
+  "athletic": 3,
+  "flags": [
+   "awkward-letterforms",
+   "poor-spacing"
+  ],
+  "verdict": "cut",
+  "note": "uneven angular rhythm, lumpy joins at size",
+  "styles": [
+   "Gem",
+   "Gem Caps"
+  ],
+  "t": 8,
+  "w": 400
+ },
+ {
+  "family": "Aladin",
+  "lane": "Display / untagged",
+  "craft": 3,
+  "presence": 3,
+  "athletic": 1,
+  "flags": [
+   "halloween-costume",
+   "one-trick"
+  ],
+  "verdict": "cut",
+  "note": "themed calligraphic decoration, no team could ship",
+  "styles": [
+   "Swish",
+   "Swish Caps"
+  ],
+  "t": 7,
+  "w": 400
+ },
+ {
+  "family": "Arima",
+  "lane": "Script",
+  "craft": 3,
+  "presence": 2,
+  "athletic": 2,
+  "flags": [],
+  "verdict": "cut",
+  "note": "soft gentle display, w700 still too polite for headlines",
+  "styles": [
+   "Royal",
+   "Royal Caps"
+  ],
+  "t": 7,
+  "w": 700
+ },
+ {
+  "family": "Averia Libre",
+  "lane": "Distressed & rough",
+  "craft": 3,
+  "presence": 2,
+  "athletic": 2,
+  "flags": [],
+  "verdict": "cut",
+  "note": "Soft averaged fuzz, gentle not commanding",
+  "styles": [
+   "Squint"
+  ],
+  "t": 7,
+  "w": 700
+ },
+ {
+  "family": "Averia Sans Libre",
+  "lane": "Blobby & rounded",
+  "craft": 3,
+  "presence": 2,
+  "athletic": 2,
+  "flags": [
+   "illegible-at-size"
+  ],
+  "verdict": "cut",
+  "note": "Soft averaged edges go mushy, no headline command",
+  "styles": [
+   "Photo",
+   "Photo Caps"
+  ],
+  "t": 7,
+  "w": 700
+ },
+ {
+  "family": "Bahianita",
+  "lane": "Display / untagged",
+  "craft": 3,
+  "presence": 2,
+  "athletic": 2,
+  "flags": [
+   "fragile-hairlines",
+   "juvenile"
+  ],
+  "verdict": "cut",
+  "note": "thin condensed strokes lack headline weight",
+  "styles": [
+   "Stick",
+   "Stick Caps"
+  ],
+  "t": 7,
+  "w": 400
+ },
+ {
+  "family": "Barrio",
+  "lane": "Wacky & comic",
+  "craft": 2,
+  "presence": 3,
+  "athletic": 2,
+  "flags": [
+   "awkward-letterforms",
+   "caps-only",
+   "one-trick"
+  ],
+  "verdict": "cut",
+  "note": "hand-cut irregular caps, novelty poster only",
+  "styles": [
+   "Artiste",
+   "Artiste Caps"
+  ],
+  "t": 7,
+  "w": 400
+ },
+ {
+  "family": "Caesar Dressing",
+  "lane": "Distressed & rough",
+  "craft": 2,
+  "presence": 3,
+  "athletic": 2,
+  "flags": [
+   "halloween-costume",
+   "caps-only",
+   "awkward-letterforms"
+  ],
+  "verdict": "cut",
+  "note": "Greek-taverna gimmick, crude strokes",
+  "styles": [
+   "Frat",
+   "Frat Caps"
+  ],
+  "t": 7,
+  "w": 400
+ },
+ {
+  "family": "Combo",
+  "lane": "Brush & marker",
+  "craft": 3,
+  "presence": 2,
+  "athletic": 2,
+  "flags": [
+   "fragile-hairlines",
+   "juvenile"
+  ],
+  "verdict": "cut",
+  "note": "thin monoline vanishes at headline scale",
+  "styles": [
+   "Egghead",
+   "Egghead Caps"
+  ],
+  "t": 7,
+  "w": 400
+ },
+ {
+  "family": "Hanalei Fill",
+  "lane": "Wacky & comic",
+  "craft": 2,
+  "presence": 3,
+  "athletic": 2,
+  "flags": [
+   "halloween-costume",
+   "caps-only",
+   "one-trick"
+  ],
+  "verdict": "cut",
+  "note": "tiki-bar bamboo texture, party decoration not brand type",
+  "styles": [
+   "Island Caps"
+  ],
+  "t": 7,
+  "w": 400
+ },
+ {
+  "family": "Kelly Slab",
+  "lane": "Display serif & slab",
+  "craft": 3,
+  "presence": 2,
+  "athletic": 2,
+  "flags": [
+   "dated",
+   "one-trick"
+  ],
+  "verdict": "cut",
+  "note": "Thin techno-western slab, weak at heaviest weight",
+  "styles": [
+   "Chip",
+   "Chip Caps"
+  ],
+  "t": 7,
+  "w": 400
+ },
+ {
+  "family": "Medula One",
+  "lane": "Blackletter & medieval",
+  "craft": 3,
+  "presence": 2,
+  "athletic": 2,
+  "flags": [
+   "fragile-hairlines",
+   "one-trick"
+  ],
+  "verdict": "cut",
+  "note": "Single light weight too thin to command headlines",
+  "styles": [
+   "Fleur",
+   "Fleur Caps"
+  ],
+  "t": 7,
+  "w": 400
+ },
+ {
+  "family": "Oregano",
+  "lane": "Brush & marker",
+  "craft": 3,
+  "presence": 2,
+  "athletic": 2,
+  "flags": [
+   "fragile-hairlines",
+   "dated"
+  ],
+  "verdict": "cut",
+  "note": "charming casual marker but far too light to command headlines",
+  "styles": [],
+  "t": 7,
+  "w": 400
+ },
+ {
+  "family": "Red Rose",
+  "lane": "Display sans",
+  "craft": 3,
+  "presence": 2,
+  "athletic": 2,
+  "flags": [],
+  "verdict": "cut",
+  "note": "w700 too light and polite for headlines",
+  "styles": [
+   "Quarter",
+   "Quarter Caps"
+  ],
+  "t": 7,
+  "w": 700
+ },
+ {
+  "family": "Rye",
+  "lane": "Wood type & western",
+  "craft": 3,
+  "presence": 2,
+  "athletic": 2,
+  "flags": [
+   "fragile-hairlines",
+   "dated",
+   "one-trick"
+  ],
+  "verdict": "cut",
+  "note": "Tuscan inline decoration shreds at distance",
+  "styles": [
+   "Leather"
+  ],
+  "t": 7,
+  "w": 400
+ },
+ {
+  "family": "Autour One",
+  "lane": "Script",
+  "craft": 3,
+  "presence": 2,
+  "athletic": 1,
+  "flags": [
+   "one-trick"
+  ],
+  "verdict": "cut",
+  "note": "whimsical wide storybook face, zero athletic plausibility",
+  "styles": [
+   "Single"
+  ],
+  "t": 6,
+  "w": 400
+ },
+ {
+  "family": "Crushed",
+  "lane": "Wacky & comic",
+  "craft": 2,
+  "presence": 2,
+  "athletic": 2,
+  "flags": [
+   "dated",
+   "fragile-hairlines"
+  ],
+  "verdict": "cut",
+  "note": "light unicase condensed, dated and too weak at scale",
+  "styles": [
+   "Griffin",
+   "Griffin Caps"
+  ],
+  "t": 6,
+  "w": 400
+ },
+ {
+  "family": "Forum",
+  "lane": "Display serif & slab",
+  "craft": 3,
+  "presence": 2,
+  "athletic": 1,
+  "flags": [
+   "fragile-hairlines",
+   "dated"
+  ],
+  "verdict": "cut",
+  "note": "Light inscriptional roman, zero heavyweight presence",
+  "styles": [
+   "Classical Caps"
+  ],
+  "t": 6,
+  "w": 400
+ },
+ {
+  "family": "Freehand",
+  "lane": "Brush & marker",
+  "craft": 2,
+  "presence": 2,
+  "athletic": 2,
+  "flags": [
+   "fragile-hairlines",
+   "dated"
+  ],
+  "verdict": "cut",
+  "note": "thin 90s-clipart script, hairlines vanish at wordmark scale",
+  "styles": [],
+  "t": 6,
+  "w": 400
+ },
+ {
+  "family": "Happy Monkey",
+  "lane": "Brush & marker",
+  "craft": 3,
+  "presence": 2,
+  "athletic": 1,
+  "flags": [
+   "juvenile",
+   "fragile-hairlines"
+  ],
+  "verdict": "cut",
+  "note": "thin cheerful monoline, no headline weight",
+  "styles": [
+   "Arch Caps"
+  ],
+  "t": 6,
+  "w": 400
+ },
+ {
+  "family": "Lacquer",
+  "lane": "Brush & marker",
+  "craft": 2,
+  "presence": 2,
+  "athletic": 2,
+  "flags": [
+   "caps-only",
+   "poor-spacing",
+   "illegible-at-size",
+   "halloween-costume"
+  ],
+  "verdict": "cut",
+  "note": "scratchy grunge reads as poster prop",
+  "styles": [
+   "Drippier",
+   "Drippy"
+  ],
+  "t": 6,
+  "w": 400
+ },
+ {
+  "family": "Macondo Swash Caps",
+  "lane": "Blackletter & medieval",
+  "craft": 3,
+  "presence": 2,
+  "athletic": 1,
+  "flags": [
+   "fragile-hairlines",
+   "juvenile"
+  ],
+  "verdict": "cut",
+  "note": "Whimsical thin fairytale hand, no headline weight",
+  "styles": [
+   "Extra",
+   "Extra Caps"
+  ],
+  "t": 6,
+  "w": 400
+ },
+ {
+  "family": "Risque",
+  "lane": "Wacky & comic",
+  "craft": 3,
+  "presence": 2,
+  "athletic": 1,
+  "flags": [
+   "fragile-hairlines"
+  ],
+  "verdict": "cut",
+  "note": "quirky light art-nouveau flavor, no athletic register",
+  "styles": [
+   "Glam",
+   "Glam Caps"
+  ],
+  "t": 6,
+  "w": 400
+ },
+ {
+  "family": "Smythe",
+  "lane": "Deco, inline & shaded",
+  "craft": 3,
+  "presence": 2,
+  "athletic": 1,
+  "flags": [
+   "fragile-hairlines",
+   "dated",
+   "illegible-at-size"
+  ],
+  "verdict": "cut",
+  "note": "too light and narrow, evaporates at headline size",
+  "styles": [
+   "Quill",
+   "Quill Caps"
+  ],
+  "t": 6,
+  "w": 400
+ },
+ {
+  "family": "Barriecito",
+  "lane": "Wacky & comic",
+  "craft": 2,
+  "presence": 2,
+  "athletic": 1,
+  "flags": [
+   "juvenile",
+   "awkward-letterforms"
+  ],
+  "verdict": "cut",
+  "note": "ransom-note weight wobble, no coherent headline voice",
+  "styles": [
+   "Art",
+   "Art Caps"
+  ],
+  "t": 5,
+  "w": 400
+ },
+ {
+  "family": "Dokdo",
+  "lane": "Brush & marker",
+  "craft": 2,
+  "presence": 2,
+  "athletic": 1,
+  "flags": [
+   "juvenile",
+   "awkward-letterforms",
+   "poor-spacing"
+  ],
+  "verdict": "cut",
+  "note": "childlike scrawl, gappy rhythm, no team could ship it",
+  "styles": [
+   "Cookie",
+   "Cookie Caps"
+  ],
+  "t": 5,
+  "w": 400
+ },
+ {
+  "family": "Jolly Lodger",
+  "lane": "Wacky & comic",
+  "craft": 2,
+  "presence": 2,
+  "athletic": 1,
+  "flags": [
+   "halloween-costume",
+   "illegible-at-size"
+  ],
+  "verdict": "cut",
+  "note": "spooky skinny condensed, pure seasonal novelty",
+  "styles": [
+   "Knuckle",
+   "Knuckle Caps"
+  ],
+  "t": 5,
+  "w": 400
+ },
+ {
+  "family": "Rock 3D",
+  "lane": "Distressed & rough",
+  "craft": 1,
+  "presence": 1,
+  "athletic": 1,
+  "flags": [
+   "illegible-at-size",
+   "fragile-hairlines",
+   "juvenile",
+   "poor-spacing"
+  ],
+  "verdict": "cut",
+  "note": "Doodle outlines collapse entirely, unshippable",
+  "styles": [],
+  "t": 3,
+  "w": 400
+ }
+]

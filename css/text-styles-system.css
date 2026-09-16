@@ -1,0 +1,602 @@
+/* ============================================================
+   text-styles-system.css
+   ============================================================
+   The type scale: display, title, label and body text classes, plus colour and text utilities.
+
+   What's inside
+   - .display{100…900} — the theme display face; size and tracking vary by theme
+   - .title{50…90} — Inter 700 section headings
+   - .labelBold*, .labelRegular* — Inter UI text with tight leading
+   - .bodyBold*, .bodyRegular*, .idealRegular40 — Inter reading text
+   - .text-* — colour modifiers, alignment, transform, decoration, truncation
+   - .title50-r, .labelRegular20-r — responsive pairs that step down on mobile
+
+   Notes
+   - Which family to reach for, and label vs body: see RULES §5.
+   - font-size / font-weight / line-height are set only here; templates use a
+     class. See RULES §2.
+   - Display text is written in title case; caps faces render it as caps.
+     See RULES §5.
+   ============================================================ */
+
+/* ============================================================
+   DISPLAY TEXT STYLES (theme-specific)
+   ============================================================
+   Font size and letter spacing vary by theme
+   Line height is consistent across all themes
+
+   Width and tilt are opt-in. Most display faces have neither, so both fall back
+   to their neutral value and the declaration is a no-op — including on the
+   static .woff2 faces in fonts.css, which have no axes to vary at all.
+   A theme that wants them sets the token alongside the others:
+
+     --display-width: 75%;      wdth axis, e.g. a condensed cut of Tektur
+     --display-slant: -12;      slnt axis, in degrees
+
+   The font must be loaded with those axis ranges requested, or the browser
+   pins them at the family default and the tokens do nothing. Values are
+   produced per family by the Font Lab (tools/font-lab/).
+   ============================================================ */
+
+.display900 {
+  font-family: var(--display-font);
+  font-size: var(--display-size-900);
+  font-weight: var(--display-weight);
+  letter-spacing: var(--display-letter-spacing);
+  font-stretch: var(--display-width, 100%);
+  font-variation-settings: 'slnt' var(--display-slant, 0);
+  line-height: 76px;
+  color: var(--neutral-1000);
+}
+
+.display800 {
+  font-family: var(--display-font);
+  font-size: var(--display-size-800);
+  font-weight: var(--display-weight);
+  letter-spacing: var(--display-letter-spacing);
+  font-stretch: var(--display-width, 100%);
+  font-variation-settings: 'slnt' var(--display-slant, 0);
+  line-height: 68px;
+  color: var(--neutral-1000);
+}
+
+.display700 {
+  font-family: var(--display-font);
+  font-size: var(--display-size-700);
+  font-weight: var(--display-weight);
+  letter-spacing: var(--display-letter-spacing);
+  font-stretch: var(--display-width, 100%);
+  font-variation-settings: 'slnt' var(--display-slant, 0);
+  line-height: 60px;
+  color: var(--neutral-1000);
+}
+
+.display600 {
+  font-family: var(--display-font);
+  font-size: var(--display-size-600);
+  font-weight: var(--display-weight);
+  letter-spacing: var(--display-letter-spacing);
+  font-stretch: var(--display-width, 100%);
+  font-variation-settings: 'slnt' var(--display-slant, 0);
+  line-height: 52px;
+  color: var(--neutral-1000);
+}
+
+.display500 {
+  font-family: var(--display-font);
+  font-size: var(--display-size-500);
+  font-weight: var(--display-weight);
+  letter-spacing: var(--display-letter-spacing);
+  font-stretch: var(--display-width, 100%);
+  font-variation-settings: 'slnt' var(--display-slant, 0);
+  line-height: 44px;
+  color: var(--neutral-1000);
+}
+
+.display400 {
+  font-family: var(--display-font);
+  font-size: var(--display-size-400);
+  font-weight: var(--display-weight);
+  letter-spacing: var(--display-letter-spacing);
+  font-stretch: var(--display-width, 100%);
+  font-variation-settings: 'slnt' var(--display-slant, 0);
+  line-height: 36px;
+  color: var(--neutral-1000);
+}
+
+.display300 {
+  font-family: var(--display-font);
+  font-size: var(--display-size-300);
+  font-weight: var(--display-weight);
+  letter-spacing: var(--display-letter-spacing);
+  font-stretch: var(--display-width, 100%);
+  font-variation-settings: 'slnt' var(--display-slant, 0);
+  line-height: 28px;
+  color: var(--neutral-1000);
+}
+
+.display200 {
+  font-family: var(--display-font);
+  font-size: var(--display-size-200);
+  font-weight: var(--display-weight);
+  letter-spacing: var(--display-letter-spacing);
+  font-stretch: var(--display-width, 100%);
+  font-variation-settings: 'slnt' var(--display-slant, 0);
+  line-height: 24px;
+  color: var(--neutral-1000);
+}
+
+.display100 {
+  font-family: var(--display-font);
+  font-size: var(--display-size-100);
+  font-weight: var(--display-weight);
+  letter-spacing: var(--display-letter-spacing);
+  font-stretch: var(--display-width, 100%);
+  font-variation-settings: 'slnt' var(--display-slant, 0);
+  line-height: 20px;
+  color: var(--neutral-1000);
+}
+
+/* ============================================================
+   TITLE TEXT STYLES (theme-independent)
+   ============================================================
+   Font: Inter
+   ============================================================ */
+
+.title90 {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  font-size: 36px;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1.21;
+  color: var(--text-primary);
+  text-transform: none;
+}
+
+.title80 {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  font-size: 32px;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1.21;
+  color: var(--text-primary);
+  text-transform: none;
+}
+
+.title70 {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  font-size: 28px;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1.21;
+  color: var(--text-primary);
+  text-transform: none;
+}
+
+.title60 {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1.21;
+  color: var(--text-primary);
+  text-transform: none;
+}
+
+.title50 {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1.21;
+  color: var(--text-primary);
+  text-transform: none;
+}
+
+/* ============================================================
+   LABEL BOLD TEXT STYLES (theme-independent)
+   ============================================================
+   Font: Inter Bold (600)
+   ============================================================ */
+
+.labelBold50 {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  font-size: 1.25rem; /* 20px */
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.21;
+  color: var(--text-primary);
+  text-transform: none;
+}
+
+.labelBold40 {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  font-size: 1.125rem; /* 18px */
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.21;
+  color: var(--text-primary);
+  text-transform: none;
+}
+
+.labelBold30 {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  font-size: 1rem; /* 16px */
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.21;
+  color: var(--text-primary);
+  text-transform: none;
+}
+
+.labelBold20 {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  font-size: 0.875rem; /* 14px */
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.21;
+  color: var(--text-primary);
+  text-transform: none;
+}
+
+.labelBold10 {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  font-size: 0.75rem; /* 12px */
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.21;
+  color: var(--text-primary);
+  text-transform: none;
+}
+
+.labelBold5 {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  font-size: 0.625rem; /* 10px */
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.21;
+  color: var(--text-primary);
+  text-transform: none;
+}
+
+/* ============================================================
+   LABEL REGULAR TEXT STYLES (theme-independent)
+   ============================================================
+   Font: Inter Regular (400)
+   ============================================================ */
+
+.labelRegular50 {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  font-size: 1.25rem; /* 20px */
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  line-height: 1.21;
+  color: var(--text-primary);
+  text-transform: none;
+}
+
+.labelRegular40 {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  font-size: 1.125rem; /* 18px */
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  line-height: 1.21;
+  color: var(--text-primary);
+  text-transform: none;
+}
+
+.labelRegular30 {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  font-size: 1rem; /* 16px */
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  line-height: 1.21;
+  color: var(--text-primary);
+  text-transform: none;
+}
+
+.labelRegular20 {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  font-size: 0.875rem; /* 14px */
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  line-height: 1.21;
+  color: var(--text-primary);
+  text-transform: none;
+}
+
+.labelRegular10 {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  font-size: 0.75rem; /* 12px */
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  line-height: 1.21;
+  color: var(--text-primary);
+  text-transform: none;
+}
+
+.labelRegular5 {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  font-size: 0.625rem; /* 10px */
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  line-height: 1.21;
+  color: var(--text-primary);
+  text-transform: none;
+}
+
+/* ============================================================
+   BODY BOLD TEXT STYLES (theme-independent)
+   ============================================================
+   Font: Inter Bold (600)
+   ============================================================ */
+
+.bodyBold40 {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  font-size: 1.125rem; /* 18px */
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.6;
+  color: var(--text-primary);
+  text-transform: none;
+}
+
+.bodyBold30 {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  font-size: 1rem; /* 16px */
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.6;
+  color: var(--text-primary);
+  text-transform: none;
+}
+
+.bodyBold20 {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  font-size: 0.875rem; /* 14px */
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.6;
+  color: var(--text-primary);
+  text-transform: none;
+}
+
+/* ============================================================
+   BODY REGULAR TEXT STYLES (theme-independent)
+   ============================================================
+   Font: Inter Regular (400)
+   ============================================================ */
+
+.bodyRegular40 {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  font-size: 1.125rem; /* 18px */
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  line-height: 1.6;
+  color: var(--text-primary);
+  text-transform: none;
+}
+
+.bodyRegular30 {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  font-size: 1rem; /* 16px */
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  line-height: 1.6;
+  color: var(--text-primary);
+  text-transform: none;
+}
+
+.bodyRegular20 {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  font-size: 0.875rem; /* 14px */
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  line-height: 1.6;
+  color: var(--text-primary);
+  text-transform: none;
+}
+
+/* ============================================================
+   IDEAL REGULAR TEXT STYLES (theme-independent)
+   ============================================================
+   Font: Inter Regular (400)
+   ============================================================ */
+
+.idealRegular40 {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  line-height: 1.6;
+  color: var(--text-primary);
+  text-transform: none;
+}
+
+/* ============================================================
+   COLOR MODIFIERS
+   ============================================================
+   Apply to any text style to override color
+   ============================================================ */
+
+.text-primary {
+  color: var(--neutral-1000) !important;
+}
+
+.text-secondary {
+  color: var(--neutral-700) !important;
+}
+
+.text-disabled {
+  color: var(--neutral-300) !important;
+}
+
+.text-placeholder {
+  color: var(--neutral-500) !important;
+}
+
+.text-brand-core {
+  color: var(--brand-core) !important;
+}
+
+.text-brand-light {
+  color: var(--brand-light) !important;
+}
+
+.text-brand-interactive {
+  color: var(--color-interactive) !important;
+}
+
+.text-brand-inverted {
+  color: var(--color-inverted) !important;
+}
+
+.text-interactive-tertiary {
+  color: var(--interactive-tertiary-text) !important;
+}
+
+.text-inverted {
+  color: var(--inverted-1000) !important;
+}
+
+/* Status colors */
+.text-success {
+  color: var(--status-success) !important;
+}
+
+.text-warning {
+  color: var(--status-warning) !important;
+}
+
+.text-error {
+  color: var(--status-error) !important;
+}
+
+.text-info {
+  color: var(--status-info) !important;
+}
+
+/* ============================================================
+   ALIGNMENT UTILITIES
+   ============================================================ */
+
+.text-left {
+  text-align: left !important;
+}
+
+.text-center {
+  text-align: center !important;
+}
+
+.text-right {
+  text-align: right !important;
+}
+
+.text-justify {
+  text-align: justify !important;
+}
+
+/* ============================================================
+   TEXT TRANSFORM UTILITIES — REMOVED 2026-09-10
+   ============================================================
+   .text-uppercase, .text-lowercase, .text-capitalize and .text-normal-case
+   used to live here. They are gone, and they should not come back.
+
+   Case is not a styling decision in this system. It belongs to the copy and
+   to the theme's display font, which bakes it in — that is why every text
+   class above sets `text-transform: none` explicitly. Four utilities with
+   `!important` were the only thing in the sheet able to override that, and
+   they overrode it for every theme at once: `text-transform: uppercase` shouts
+   in a theme whose display face does not render caps. It is the same mistake
+   as typing "BUY" instead of "Buy", one layer down (RULES §2, §5).
+
+   Need caps in one theme? That is the font's job — pick one of the `Caps`
+   faces in fonts/, which remap lowercase to the uppercase glyphs so kerning
+   stays correct. Need them for one string? Write the string that way, and
+   accept that it reads as caps in every theme.
+   ============================================================ */
+
+/* ============================================================
+   TEXT DECORATION UTILITIES
+   ============================================================ */
+
+.text-underline {
+  text-decoration: underline !important;
+}
+
+.text-line-through {
+  text-decoration: line-through !important;
+}
+
+.text-no-underline {
+  text-decoration: none !important;
+}
+
+/* ============================================================
+   TRUNCATION UTILITIES
+   ============================================================ */
+
+.text-truncate {
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  white-space: nowrap !important;
+}
+
+.text-truncate-2 {
+  display: -webkit-box !important;
+  -webkit-line-clamp: 2 !important;
+  -webkit-box-orient: vertical !important;
+  overflow: hidden !important;
+}
+
+.text-truncate-3 {
+  display: -webkit-box !important;
+  -webkit-line-clamp: 3 !important;
+  -webkit-box-orient: vertical !important;
+  overflow: hidden !important;
+}
+
+/* ============================================================
+   RESPONSIVE TEXT
+   ============================================================
+   A `-r` class is a *pair*: the desktop step, and the step it falls to below
+   the mobile breakpoint (500px, the same one the layout uses). It is not a
+   generic modifier — each pair is declared deliberately, because "one step
+   down" can cross families and only a person can say which pair reads right.
+
+   Add a pair when three or more screens need the same step, and name it after
+   the desktop class. Setting font-size here is legitimate: this file *is* the
+   type system. Doing it in a template is not (RULES §5).
+   ============================================================ */
+
+/* 20px/700 → 16px/600. Card and row headings that would crowd a phone. */
+.title50-r {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1.21;
+  color: var(--text-primary);
+}
+
+/* 14px → 12px. Supporting metadata under a heading. */
+.labelRegular20-r {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  font-size: 0.875rem;
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  line-height: 1.21;
+  color: var(--text-primary);
+}
+
+@media (max-width: 499px) {
+  .title50-r {
+    font-size: 1rem;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+  }
+
+  .labelRegular20-r {
+    font-size: 0.75rem;
+  }
+}

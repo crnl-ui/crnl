@@ -1,0 +1,474 @@
+/* ============================================================
+   input-components.css
+   ============================================================
+   Single-line text input and select dropdown, with their states and modifiers.
+
+   What's inside
+   - .input-field — the field wrapper; carries the state classes
+   - .input-label-row, .input-label, .input-link — label row
+   - .input-and-message, .input-control, .input-icon, .input-clear,
+     .input-message — the control shell and its parts
+   - .input-select (+ .input-select-display, .input-select-chevron, .is-open)
+     — the select variant: a native <select> overlaid on the shell
+   - .is-error, .is-disabled, .has-value, .is-placeholder — states
+
+   Notes
+   - Never a bare <input> or <select>; every one sits in .input-field. See
+     RULES §2 and §3.
+
+   --- Text input structure ---
+   .input-field
+     .input-label-row                (optional)
+       label.input-label
+       a.input-link                  (optional)
+     .input-and-message
+       .input-control
+         .input-icon                 (optional leading icon)
+         input[type="text"] / etc.
+         .input-clear                (optional trailing clear btn)
+       .input-message                (optional helper/error)
+
+   --- Select structure ---
+   .input-field.input-select
+     .input-label-row                (optional)
+       label.input-label
+       a.input-link                  (optional)
+     .input-and-message
+       .input-control
+         .input-icon                 (optional leading icon)
+         .input-select-display       (visible selected value text)
+         .input-select-chevron       (arrow_drop_down icon, always shown)
+         select                      (native, invisible overlay)
+       .input-message                (optional helper/error)
+
+   --- State classes (on .input-field) ---
+   .is-error     — red border, shake, error message color
+   .is-disabled  — 25% opacity, no pointer events
+   .has-value    — shows .input-clear (text input only)
+
+   ============================================================ */
+
+
+/* ============================================================
+   FIELD WRAPPER
+   ============================================================ */
+
+.input-field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-25);             /* 2px — label row to input+message */
+  width: 100%;
+  box-sizing: border-box;
+}
+
+
+/* ============================================================
+   LABEL ROW
+   ============================================================ */
+
+.input-label-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-100);            /* 8px */
+  padding-left: var(--spacing-100);   /* 8px */
+  padding-bottom: var(--spacing-100); /* 8px */
+}
+
+.input-label {
+  flex: 1;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  color: var(--text-primary);
+  transition: color 150ms ease;
+}
+
+/* Label turns brand color while field is focused */
+.input-field:focus-within .input-label {
+  color: var(--org-primary-button);
+}
+
+/* Error — label stays primary */
+.input-field.is-error .input-label {
+  color: var(--text-primary);
+}
+
+/* Disabled — label fades with the shell */
+.input-field.is-disabled .input-label {
+  opacity: 0.25;
+}
+
+/* Optional link in label row (e.g. "Forgot password?") */
+.input-link {
+  flex-shrink: 0;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  color: var(--color-interactive);
+  cursor: pointer;
+  padding: var(--spacing-50) var(--spacing-150); /* 4px 12px */
+  border-radius: var(--border-radius-50);
+  text-decoration: none;
+  transition: opacity 120ms ease;
+}
+
+.input-link:hover {
+  opacity: 0.75;
+}
+
+.input-field.is-disabled .input-link {
+  opacity: 0.25;
+  cursor: default;
+  pointer-events: none;
+}
+
+
+/* ============================================================
+   INPUT + MESSAGE WRAPPER
+   ============================================================ */
+
+.input-and-message {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-100);            /* 8px — input to message */
+  width: 100%;
+}
+
+
+/* ============================================================
+   INPUT CONTROL SHELL
+   ============================================================ */
+
+.input-control {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-150);            /* 12px */
+  height: 56px;
+  padding-left: var(--spacing-200);   /* 16px */
+  padding-right: var(--spacing-200);  /* 8px */
+  border-radius: var(--border-radius-100); /* 8px */
+  border: var(--border-weight-50) solid var(--neutral-300);
+  background-color: var(--bg-input);
+  box-sizing: border-box;
+  transition:
+    background-color 120ms ease,
+    border-color 120ms ease,
+    border-width 120ms ease;
+  cursor: text;
+}
+
+/* Hover */
+.input-control:hover {
+  background-color: var(--neutral-100);
+  border-color: var(--neutral-200);
+}
+
+/* Focus / Typing — 2px brand border */
+.input-control:focus-within {
+  border-width: var(--border-weight-200); /* 2px */
+  border-color: var(--org-primary-button);
+  background-color: var(--bg-input);
+}
+
+/* Hover while focused */
+.input-control:focus-within:hover {
+  background-color: var(--neutral-100);
+}
+
+/* Pressed */
+.input-control:active {
+  background-color: var(--black-300);
+}
+
+/* Error — default border */
+.input-field.is-error .input-control {
+  border-color: var(--status-error);
+}
+
+/* Error — hover */
+.input-field.is-error .input-control:hover {
+  background-color: var(--neutral-100);
+  border-color: var(--status-error);
+}
+
+/* Error — focused (2px red) */
+.input-field.is-error .input-control:focus-within {
+  border-width: var(--border-weight-200);
+  border-color: var(--status-error);
+}
+
+/* Disabled */
+.input-field.is-disabled .input-control {
+  border-color: var(--neutral-100);
+  background-color: transparent;
+  cursor: not-allowed;
+  pointer-events: none;
+  opacity: 0.25;
+}
+
+
+/* ============================================================
+   NATIVE TEXT INPUT ELEMENT
+   ============================================================ */
+
+.input-control input {
+  flex: 1;
+  min-width: 0;
+  height: 100%;
+  border: none;
+  outline: none;
+  background: transparent;
+  padding: 0;
+  margin: 0;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  color: var(--text-primary);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  cursor: text;
+}
+
+.input-control input::placeholder {
+  color: var(--text-placeholder);
+  opacity: 1; /* Firefox normalisation */
+}
+
+.input-field.is-disabled .input-control input {
+  cursor: not-allowed;
+}
+
+
+/* ============================================================
+   LEADING ICON
+   ============================================================ */
+
+.input-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+  color: var(--text-secondary);
+  pointer-events: none;
+  transition: color 150ms ease;
+}
+
+.input-icon.material-symbols-rounded {
+  font-size: 24px;
+}
+
+/* Icon picks up brand color on focus */
+.input-control:focus-within .input-icon {
+  color: var(--org-primary-button);
+}
+
+/* Error — icon stays secondary even when focused */
+.input-field.is-error .input-control:focus-within .input-icon {
+  color: var(--text-secondary);
+}
+
+
+/* ============================================================
+   TRAILING CLEAR BUTTON
+   ============================================================ */
+
+.input-clear {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  border-radius: 100px;
+  border: none;
+  background: transparent;
+  color: var(--text-secondary);
+  cursor: pointer;
+  padding: 0;
+  transition: background-color 120ms ease, transform 180ms ease-out;
+  transform: scale(1);
+}
+
+.input-clear:hover {
+  background-color: var(--neutral-100);
+  transform: scale(1.035);
+}
+
+.input-clear:active {
+  background-color: var(--neutral-200);
+  transform: scale(0.965);
+}
+
+.input-clear.material-symbols-rounded {
+  font-size: 24px;
+}
+
+/* Hidden when field is empty — JS adds .has-value to .input-field */
+.input-field:not(.has-value) .input-clear {
+  display: none;
+}
+
+.input-field.is-disabled .input-clear {
+  pointer-events: none;
+}
+
+
+/* ============================================================
+   MESSAGE / HELPER TEXT
+   ============================================================ */
+
+.input-message {
+  padding-left: var(--spacing-100);   /* 8px */
+  padding-right: var(--spacing-100);  /* 8px */
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.3;
+  letter-spacing: -0.02em;
+  color: var(--text-secondary);
+  transition: color 150ms ease;
+}
+
+.input-field.is-error .input-message {
+  color: var(--status-error);
+}
+
+.input-field.is-disabled .input-message {
+  opacity: 0.25;
+}
+
+
+/* ============================================================
+   ANIMATION — ERROR SHAKE
+   ============================================================ */
+
+@keyframes input-error-shake {
+  0%   { transform: translateX(0); }
+  20%  { transform: translateX(-4px); }
+  40%  { transform: translateX(4px); }
+  60%  { transform: translateX(-3px); }
+  80%  { transform: translateX(3px); }
+  100% { transform: translateX(0); }
+}
+
+.input-field.is-error .input-control {
+  animation: input-error-shake 0.2s ease-out;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .input-field.is-error .input-control {
+    animation: none;
+  }
+}
+
+
+/* ============================================================
+   SELECT / DROPDOWN VARIANT
+   ============================================================
+
+   Strategy: a native <select> sits as an
+   invisible full-size overlay over the
+   .input-control shell. Clicks hit the native
+   element, which opens the OS dropdown.
+   A tiny JS helper syncs the display text and
+   toggles .is-open for the chevron rotation.
+
+   — Native OS dropdown: keyboard nav, mobile,
+     screen readers — all for free
+   — All existing .input-control state rules
+     (:hover, :focus-within, .is-error,
+     .is-disabled) apply identically — no
+     duplicate CSS needed
+
+   ============================================================ */
+
+/* Pointer cursor since this acts as a button */
+.input-select .input-control {
+  position: relative; /* anchor for the <select> overlay */
+  cursor: pointer;
+}
+
+/* Visible selected-value text */
+.input-select-display {
+  flex: 1;
+  min-width: 0;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  color: var(--text-primary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  pointer-events: none; /* clicks fall through to the <select> */
+  transition: color 150ms ease;
+}
+
+/* Placeholder colour before a real value is chosen */
+.input-select-display.is-placeholder {
+  color: var(--text-secondary);
+}
+
+/* Chevron — permanent trailing icon, always visible */
+.input-select-chevron {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+  color: var(--text-secondary);
+  pointer-events: none;
+  font-size: 24px; /* for Material Symbols */
+  transition: color 150ms ease, transform 200ms ease;
+}
+
+/* Chevron picks up brand color when the select is focused */
+.input-select .input-control:focus-within .input-select-chevron {
+  color: var(--org-primary-button);
+}
+
+/* Error — chevron stays secondary even when focused */
+.input-select.is-error .input-control:focus-within .input-select-chevron {
+  color: var(--text-secondary);
+}
+
+/* Rotate chevron 180° while dropdown is open */
+.input-select.is-open .input-select-chevron {
+  transform: rotate(180deg);
+}
+
+/* Native <select> — invisible, covers the full shell */
+.input-select .input-control select {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  cursor: pointer;
+  border: none;
+  background: transparent;
+  z-index: 1; /* sits above .input-select-display and chevron */
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+/* Disabled — lock everything down */
+.input-select.is-disabled .input-control {
+  cursor: not-allowed;
+}
+
+.input-select.is-disabled .input-control select {
+  pointer-events: none;
+}

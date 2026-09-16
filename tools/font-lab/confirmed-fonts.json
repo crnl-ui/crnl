@@ -1,0 +1,1589 @@
+[
+ {
+  "f": "Germania One",
+  "cat": "Display",
+  "lane": "Blackletter & medieval",
+  "w": 400,
+  "src": "blind shortlist",
+  "n": "Clean modern blackletter, proven sports-branding energy",
+  "st": [
+   "Brats",
+   "Brats Caps"
+  ],
+  "sc": "c4 p4 a5"
+ },
+ {
+  "f": "Grenze Gotisch",
+  "cat": "Display",
+  "lane": "Blackletter & medieval",
+  "w": 900,
+  "src": "blind shortlist",
+  "n": "Sturdy gothic-flavored heavy, variable axes, real wordmark potential",
+  "st": [
+   "Meister"
+  ],
+  "sc": "c4 p4 a4"
+ },
+ {
+  "f": "Pirata One",
+  "cat": "Display",
+  "lane": "Blackletter & medieval",
+  "w": 400,
+  "src": "rounded up",
+  "n": "Cleanest blackletter after Germania; a real Raiders-register option",
+  "st": [
+   "Map"
+  ],
+  "sc": "c4 p4 a4"
+ },
+ {
+  "f": "Protest Revolution",
+  "cat": "Display",
+  "lane": "Distressed & rough",
+  "w": 400,
+  "src": "rounded up",
+  "n": "Ultras-culture rawness nothing else in the library has",
+  "st": [
+   "Brash"
+  ],
+  "sc": "c3 p4 a4"
+ },
+ {
+  "f": "Rubik Bubbles",
+  "cat": "Display",
+  "lane": "Distressed & rough",
+  "w": 400,
+  "src": "rounded up",
+  "n": "Fat bubbly punch; counter roughness was tracking-related",
+  "st": [
+   "Dust",
+   "Dust Caps"
+  ],
+  "sc": "c3 p4 a4"
+ },
+ {
+  "f": "Rubik Spray Paint",
+  "cat": "Display",
+  "lane": "Distressed & rough",
+  "w": 400,
+  "src": "blind shortlist",
+  "n": "Heavy graffiti hit, credible streetball G-League voice",
+  "st": [
+   "Overspray",
+   "Overspray Caps"
+  ],
+  "sc": "c4 p5 a4"
+ },
+ {
+  "f": "Tillana",
+  "cat": "Display",
+  "lane": "Distressed & rough",
+  "w": 800,
+  "src": "rounded up",
+  "n": "Warm heavy brush script, retro-team register",
+  "st": [
+   "Turf",
+   "Turf Caps"
+  ],
+  "sc": "c4 p4 a3"
+ },
+ {
+  "f": "Bungee",
+  "cat": "Display",
+  "lane": "Wood type & western",
+  "w": 400,
+  "src": "blind shortlist",
+  "n": "Signage-grade caps, urban energy, superb engineering",
+  "st": [
+   "Big Game Caps"
+  ],
+  "sc": "c5 p5 a4"
+ },
+ {
+  "f": "Chango",
+  "cat": "Display",
+  "lane": "Wood type & western",
+  "w": 400,
+  "src": "blind shortlist",
+  "n": "Ultra-fat spurred display, huge friendly presence",
+  "st": [
+   "Woolie"
+  ],
+  "sc": "c4 p5 a4"
+ },
+ {
+  "f": "Dela Gothic One",
+  "cat": "Display",
+  "lane": "Wood type & western",
+  "w": 400,
+  "src": "blind shortlist",
+  "n": "immaculate ultra-black boxy forms, huge headline authority",
+  "st": [
+   "Mod",
+   "Mod Caps"
+  ],
+  "sc": "c5 p5 a4"
+ },
+ {
+  "f": "Lilita One",
+  "cat": "Display",
+  "lane": "Wood type & western",
+  "w": 400,
+  "src": "blind shortlist",
+  "n": "Polished chunky rounded, versatile playful-sport workhorse",
+  "st": [
+   "Signbrush Caps"
+  ],
+  "sc": "c5 p4 a4"
+ },
+ {
+  "f": "Passion One",
+  "cat": "Display",
+  "lane": "Wood type & western",
+  "w": 700,
+  "src": "w700 swap",
+  "n": "Kept per your condition \u2014 also ships in 400/700, shown here at 700",
+  "st": [
+   "Human"
+  ],
+  "sc": "c4 p5 a4"
+ },
+ {
+  "f": "Rowdies",
+  "cat": "Display",
+  "lane": "Wood type & western",
+  "w": 700,
+  "src": "rounded up",
+  "n": "Best all-round slab in the maybes; 4/4/4 with no real caveat",
+  "st": [
+   "Dynamite",
+   "Dynamite Caps"
+  ],
+  "sc": "c4 p4 a4"
+ },
+ {
+  "f": "Sigmar One",
+  "cat": "Display",
+  "lane": "Wood type & western",
+  "w": 400,
+  "src": "blind shortlist",
+  "n": "Massive fat-face small caps, scoreboard-ready punch",
+  "st": [
+   "Woah"
+  ],
+  "sc": "c4 p5 a4"
+ },
+ {
+  "f": "Vina Sans",
+  "cat": "Display",
+  "lane": "Wood type & western",
+  "w": 400,
+  "src": "rounded up",
+  "n": "Condensed poster punch; crowding was the only knock",
+  "st": [
+   "Coach",
+   "Coach Caps"
+  ],
+  "sc": "c3 p4 a4"
+ },
+ {
+  "f": "Limelight",
+  "cat": "Display",
+  "lane": "Deco, inline & shaded",
+  "w": 400,
+  "src": "rounded up",
+  "n": "Clean deco contrast \u2014 only face covering the throwback-deco voice",
+  "st": [
+   "Lights",
+   "Lights Caps"
+  ],
+  "sc": "c4 p4 a3"
+ },
+ {
+  "f": "Changa One",
+  "cat": "Display",
+  "lane": "Techno",
+  "w": 400,
+  "src": "blind shortlist",
+  "n": "dense condensed slab, natural scoreboard voice",
+  "st": [
+   "Chewy Bold",
+   "Chewy Caps"
+  ],
+  "sc": "c4 p5 a5"
+ },
+ {
+  "f": "Coda",
+  "cat": "Display",
+  "lane": "Techno",
+  "w": 800,
+  "src": "blind shortlist",
+  "n": "massive w800 grotesque, disciplined and commanding",
+  "st": [
+   "Big Impact Caps"
+  ],
+  "sc": "c4 p5 a4"
+ },
+ {
+  "f": "Goldman",
+  "cat": "Display",
+  "lane": "Techno",
+  "w": 700,
+  "src": "blind shortlist",
+  "n": "square athletic face practically built for jerseys",
+  "st": [
+   "Wideout",
+   "Wideout Caps"
+  ],
+  "sc": "c4 p4 a5"
+ },
+ {
+  "f": "Oxanium",
+  "cat": "Display",
+  "lane": "Techno",
+  "w": 800,
+  "src": "blind shortlist",
+  "n": "crisp beveled esports face, variable weight flexibility",
+  "st": [
+   "Angular",
+   "Angular Caps"
+  ],
+  "sc": "c4 p4 a4"
+ },
+ {
+  "f": "Tektur",
+  "cat": "Display",
+  "lane": "Techno",
+  "w": 900,
+  "src": "blind shortlist",
+  "n": "chiseled w900 blocks, strong esports wordmark material",
+  "st": [
+   "Jumbotron",
+   "Jumbotron Caps"
+  ],
+  "sc": "c4 p4 a4"
+ },
+ {
+  "f": "Tourney",
+  "cat": "Display",
+  "lane": "Techno",
+  "w": 900,
+  "src": "rounded up",
+  "n": "The esports/pinstripe variable \u2014 width axis earns its slot",
+  "st": [
+   "Diamond",
+   "Diamond Caps",
+   "Pinstripe Caps",
+   "Pinstripes"
+  ],
+  "sc": "c3 p4 a4"
+ },
+ {
+  "f": "Knewave",
+  "cat": "Display",
+  "lane": "Brush & marker",
+  "w": 400,
+  "src": "rounded up",
+  "n": "Best brush energy in the pile once collisions are forgiven",
+  "st": [
+   "Commentator Caps"
+  ],
+  "sc": "c3 p4 a4"
+ },
+ {
+  "f": "Lemon",
+  "cat": "Display",
+  "lane": "Brush & marker",
+  "w": 400,
+  "src": "blind shortlist",
+  "n": "confident retro swash chunk, vintage ballpark charm",
+  "st": [
+   "Citrus"
+  ],
+  "sc": "c4 p4 a4"
+ },
+ {
+  "f": "Protest Riot",
+  "cat": "Display",
+  "lane": "Brush & marker",
+  "w": 400,
+  "src": "blind shortlist",
+  "n": "punchy brush marker, even rhythm, natural sports-poster energy",
+  "st": [
+   "Marker",
+   "Marker Caps"
+  ],
+  "sc": "c4 p5 a5"
+ },
+ {
+  "f": "Ranchers",
+  "cat": "Display",
+  "lane": "Brush & marker",
+  "w": 400,
+  "src": "blind shortlist",
+  "n": "dense brush-block heft, words fuse slightly at -0.03em",
+  "st": [
+   "Guard",
+   "Guard Caps"
+  ],
+  "sc": "c4 p5 a4"
+ },
+ {
+  "f": "Carter One",
+  "cat": "Display",
+  "lane": "Script",
+  "w": 400,
+  "src": "blind shortlist",
+  "n": "confident swash script-sans, proven logo-grade drawing",
+  "st": [
+   "Flag",
+   "Flag Caps"
+  ],
+  "sc": "c5 p4 a4"
+ },
+ {
+  "f": "Ceviche One",
+  "cat": "Display",
+  "lane": "Script",
+  "w": 400,
+  "src": "blind shortlist",
+  "n": "heavy brush script with genuine baseball-wordmark swagger",
+  "st": [
+   "Wrap",
+   "Wrap Caps"
+  ],
+  "sc": "c4 p5 a5"
+ },
+ {
+  "f": "Oleo Script",
+  "cat": "Display",
+  "lane": "Script",
+  "w": 700,
+  "src": "blind shortlist",
+  "n": "expertly drawn bold script, classic ballpark-wordmark material",
+  "st": [
+   "Scribe"
+  ],
+  "sc": "c5 p4 a4"
+ },
+ {
+  "f": "Poetsen One",
+  "cat": "Display",
+  "lane": "Script",
+  "w": 400,
+  "src": "blind shortlist",
+  "n": "bold friendly semi-script, clean curves, strong minor-league voice",
+  "st": [
+   "Flow"
+  ],
+  "sc": "c4 p4 a4"
+ },
+ {
+  "f": "DynaPuff",
+  "cat": "Display",
+  "lane": "Wacky & comic",
+  "w": 700,
+  "src": "blind shortlist",
+  "n": "well-built puffy heavy, perfect playful G-League voice",
+  "st": [
+   "Blimp",
+   "Blimp Caps"
+  ],
+  "sc": "c4 p5 a4"
+ },
+ {
+  "f": "Grandstander",
+  "cat": "Display",
+  "lane": "Wacky & comic",
+  "w": 900,
+  "src": "blind shortlist",
+  "n": "polished w900 rounded comic, spacing clean, sporty-playful",
+  "st": [
+   "Redshirt",
+   "Redshirt Caps"
+  ],
+  "sc": "c4 p5 a4"
+ },
+ {
+  "f": "Baloo 2",
+  "cat": "Display",
+  "lane": "Blobby & rounded",
+  "w": 800,
+  "src": "blind shortlist",
+  "n": "Impeccably drawn rounded heavy; friendly G-League voice",
+  "st": [
+   "Huddle",
+   "Tubular"
+  ],
+  "sc": "c5 p4 a4"
+ },
+ {
+  "f": "Shrikhand",
+  "cat": "Display",
+  "lane": "Blobby & rounded",
+  "w": 400,
+  "src": "blind shortlist",
+  "n": "Juicy retro italic wordmark energy, confident drawing",
+  "st": [
+   "Weightshift",
+   "Weightshift Caps"
+  ],
+  "sc": "c4 p5 a4"
+ },
+ {
+  "f": "Alfa Slab One",
+  "cat": "Display",
+  "lane": "Display serif & slab",
+  "w": 400,
+  "src": "blind shortlist",
+  "n": "Iconic heavy slab, flawless color, collegiate punch",
+  "st": [
+   "Collegiate Caps",
+   "Collegiate Slab"
+  ],
+  "sc": "c5 p5 a4"
+ },
+ {
+  "f": "Calistoga",
+  "cat": "Display",
+  "lane": "Display serif & slab",
+  "w": 400,
+  "src": "blind shortlist",
+  "n": "Warm retro soft slab, clean curves, minor-league charm",
+  "st": [
+   "Esteemed"
+  ],
+  "sc": "c4 p4 a4"
+ },
+ {
+  "f": "Caprasimo",
+  "cat": "Display",
+  "lane": "Display serif & slab",
+  "w": 400,
+  "src": "rounded up",
+  "n": "Well-built playful retro serif, fills a thin lane",
+  "st": [
+   "Barrel",
+   "Barrel Caps"
+  ],
+  "sc": "c4 p4 a3"
+ },
+ {
+  "f": "Anybody",
+  "cat": "Display",
+  "lane": "Display sans",
+  "w": 900,
+  "src": "blind shortlist",
+  "n": "Wide variable athletic grotesque built for jerseys",
+  "st": [
+   "Montana",
+   "Montana Caps"
+  ],
+  "sc": "c4 p4 a5"
+ },
+ {
+  "f": "Big Shoulders",
+  "cat": "Display",
+  "lane": "Display sans",
+  "w": 900,
+  "src": "your call",
+  "n": "Swapped back in per your review, in place of the Stencil cut",
+  "st": [
+   "Horsecollar",
+   "Horsecollar Caps"
+  ],
+  "sc": "c4 p4 a5"
+ },
+ {
+  "f": "Boldonse",
+  "cat": "Display",
+  "lane": "Display sans",
+  "w": 400,
+  "src": "rounded up",
+  "n": "Presence 5 \u2014 its only sin was spacing, which you tune anyway",
+  "st": [
+   "Circle",
+   "Circle Caps"
+  ],
+  "sc": "c3 p5 a4"
+ },
+ {
+  "f": "Bowlby One SC",
+  "cat": "Display",
+  "lane": "Display sans",
+  "w": 400,
+  "src": "blind shortlist",
+  "n": "Ultra-fat caps own the wordmark, retro collegiate",
+  "st": [
+   "Buddy"
+  ],
+  "sc": "c4 p5 a4"
+ },
+ {
+  "f": "Koulen",
+  "cat": "Display",
+  "lane": "Display sans",
+  "w": 400,
+  "src": "rounded up",
+  "n": "Streetwear condensed caps; rough spacing now forgiven",
+  "st": [
+   "Noise Caps"
+  ],
+  "sc": "c3 p4 a4"
+ },
+ {
+  "f": "Phudu",
+  "cat": "Display",
+  "lane": "Display sans",
+  "w": 900,
+  "src": "blind shortlist",
+  "n": "heavy condensed w900 punches hard, clean rhythm",
+  "st": [
+   "A-Game Caps"
+  ],
+  "sc": "c4 p5 a4"
+ },
+ {
+  "f": "Poller One",
+  "cat": "Display",
+  "lane": "Display sans",
+  "w": 400,
+  "src": "rounded up",
+  "n": "Fat poster grotesque with real contrast; presence 5",
+  "st": [
+   "Box",
+   "Box Caps"
+  ],
+  "sc": "c4 p5 a3"
+ },
+ {
+  "f": "Protest Strike",
+  "cat": "Display",
+  "lane": "Display sans",
+  "w": 400,
+  "src": "blind shortlist",
+  "n": "Bold condensed with genuine athletic snarl",
+  "st": [
+   "Strike",
+   "Strike Caps"
+  ],
+  "sc": "c4 p4 a4"
+ },
+ {
+  "f": "Rammetto One",
+  "cat": "Display",
+  "lane": "Display sans",
+  "w": 400,
+  "src": "blind shortlist",
+  "n": "Heavy rounded bruiser, even color, great spacing",
+  "st": [
+   "Jumbo",
+   "Jumbo Caps"
+  ],
+  "sc": "c4 p5 a4"
+ },
+ {
+  "f": "Staatliches",
+  "cat": "Display",
+  "lane": "Display sans",
+  "w": 400,
+  "src": "blind shortlist",
+  "n": "Proven poster condensed, jersey-ready caps",
+  "st": [
+   "Triple Caps"
+  ],
+  "sc": "c4 p4 a5"
+ },
+ {
+  "f": "Tilt Warp",
+  "cat": "Display",
+  "lane": "Display sans",
+  "w": 400,
+  "src": "your call",
+  "n": "Your call \u2014 works with the warp axes zeroed out",
+  "st": [
+   "Rookie",
+   "Rookie Caps"
+  ],
+  "sc": "c3 p3 a3"
+ },
+ {
+  "f": "Bangers",
+  "cat": "Display",
+  "lane": "Display / untagged",
+  "w": 400,
+  "src": "blind shortlist",
+  "n": "confident comic italic, fits playful minor-league voice",
+  "st": [
+   "Super Caps"
+  ],
+  "sc": "c4 p4 a4"
+ },
+ {
+  "f": "Konkhmer Sleokchher",
+  "cat": "Display",
+  "lane": "Display / untagged",
+  "w": 400,
+  "src": "your call",
+  "n": "Your call \u2014 quietly nice drawing the blind pass undersold",
+  "st": [
+   "Score",
+   "Score Caps"
+  ],
+  "sc": "c3 p3 a2"
+ },
+ {
+  "f": "Anton",
+  "cat": "Sans-serif",
+  "lane": "Neo-grotesque",
+  "w": 400,
+  "src": "blind shortlist",
+  "n": "Dense condensed black, tight fit; benchmark display grotesque",
+  "st": [],
+  "sc": "c5 p5 o4 a5"
+ },
+ {
+  "f": "Anton SC",
+  "cat": "Sans-serif",
+  "lane": "Neo-grotesque",
+  "w": 400,
+  "src": "blind shortlist",
+  "n": "Anton's mass in small caps; excellent all-caps wordmark texture",
+  "st": [],
+  "sc": "c5 p5 o4 a5"
+ },
+ {
+  "f": "Bebas Neue",
+  "cat": "Sans-serif",
+  "lane": "Neo-grotesque",
+  "w": 400,
+  "src": "blind shortlist",
+  "n": "Archetypal sports condensed caps; light stems but commands headlines",
+  "st": [],
+  "sc": "c4 p5 o3 a5"
+ },
+ {
+  "f": "Geist",
+  "cat": "Sans-serif",
+  "lane": "Neo-grotesque",
+  "w": 900,
+  "src": "rescued",
+  "n": "Crisp heavy black, tight spacing; brand baggage now a footnote",
+  "st": [],
+  "sc": "c5 p4 a3"
+ },
+ {
+  "f": "Golos Text",
+  "cat": "Sans-serif",
+  "lane": "Neo-grotesque",
+  "w": 900,
+  "src": "promoted",
+  "n": "38% stems deliver mass; drawing itself is generic",
+  "st": [],
+  "sc": "c4 p4 o2 a4"
+ },
+ {
+  "f": "Inter",
+  "cat": "Sans-serif",
+  "lane": "Neo-grotesque",
+  "w": 900,
+  "src": "rescued",
+  "n": "Black weight has genuine Proxima-like mass; tight, holds at 80px",
+  "st": [],
+  "sc": "c5 p4 a3",
+  "spec": {
+   "ls": -0.04,
+   "note": "Jump org spec: w900 \u00b7 \u22120.04em \u00b7 display ramp to 68px"
+  }
+ },
+ {
+  "f": "Roboto Condensed",
+  "cat": "Sans-serif",
+  "lane": "Neo-grotesque",
+  "w": 900,
+  "src": "rescued",
+  "n": "Heavy condensed is jersey vernacular; compact set, sturdy stems",
+  "st": [],
+  "sc": "c4 p4 a4"
+ },
+ {
+  "f": "Roboto Flex",
+  "cat": "Sans-serif",
+  "lane": "Neo-grotesque",
+  "w": 1000,
+  "src": "rescued",
+  "n": "w1000 mass plus width axis; real wordmark display power",
+  "st": [],
+  "sc": "c5 p4 a3"
+ },
+ {
+  "f": "Sofia Sans",
+  "cat": "Sans-serif",
+  "lane": "Neo-grotesque",
+  "w": 1000,
+  "src": "blind shortlist",
+  "n": "w1000 black at tight set; clean, muscular, well-spaced",
+  "st": [],
+  "sc": "c5 p4 o3 a4"
+ },
+ {
+  "f": "Sofia Sans Condensed",
+  "cat": "Sans-serif",
+  "lane": "Neo-grotesque",
+  "w": 1000,
+  "src": "blind shortlist",
+  "n": "w1000 at 15.4em; the sweet spot of this superfamily",
+  "st": [],
+  "sc": "c5 p5 o3 a5"
+ },
+ {
+  "f": "Sofia Sans Extra Condensed",
+  "cat": "Sans-serif",
+  "lane": "Neo-grotesque",
+  "w": 1000,
+  "src": "blind shortlist",
+  "n": "w1000 at 13.4em set; ferocious vertical energy, clean spacing",
+  "st": [],
+  "sc": "c5 p5 o4 a5"
+ },
+ {
+  "f": "Work Sans",
+  "cat": "Sans-serif",
+  "lane": "Neo-grotesque",
+  "w": 900,
+  "src": "promoted",
+  "n": "36% stems give real mass, but drawing is anonymous",
+  "st": [],
+  "sc": "c4 p4 o2 a4"
+ },
+ {
+  "f": "Zalando Sans Expanded",
+  "cat": "Sans-serif",
+  "lane": "Neo-grotesque",
+  "w": 900,
+  "src": "rescued",
+  "n": "Druk Wide energy; heavy expanded caps own a scoreboard",
+  "st": [],
+  "sc": "c4 p5 a4"
+ },
+ {
+  "f": "Archivo Black",
+  "cat": "Sans-serif",
+  "lane": "Grotesque",
+  "w": 400,
+  "src": "blind shortlist",
+  "n": "33% stems, confident curve tension; a true display grotesque",
+  "st": [],
+  "sc": "c5 p5 o3 a5"
+ },
+ {
+  "f": "BBH Bartle",
+  "cat": "Sans-serif",
+  "lane": "Grotesque",
+  "w": 400,
+  "src": "blind shortlist",
+  "n": "Massive 45% stems, squared caps; unmistakable poster presence",
+  "st": [],
+  "sc": "c4 p5 o5 a4"
+ },
+ {
+  "f": "BBH Bogle",
+  "cat": "Sans-serif",
+  "lane": "Grotesque",
+  "w": 400,
+  "src": "blind shortlist",
+  "n": "Compressed poster gothic, Druk territory, built for wordmarks",
+  "st": [],
+  "sc": "c4 p5 o4 a5"
+ },
+ {
+  "f": "BBH Hegarty",
+  "cat": "Sans-serif",
+  "lane": "Grotesque",
+  "w": 400,
+  "src": "blind shortlist",
+  "n": "41% stems at w400; genuinely fat, distinctive, headline-hungry",
+  "st": [],
+  "sc": "c4 p5 o4 a5"
+ },
+ {
+  "f": "Barlow",
+  "cat": "Sans-serif",
+  "lane": "Grotesque",
+  "w": 900,
+  "src": "promoted",
+  "n": "w900 is solid and tight-set; drawing is deliberately neutral",
+  "st": [],
+  "sc": "c4 p4 o2 a4"
+ },
+ {
+  "f": "Barlow Condensed",
+  "cat": "Sans-serif",
+  "lane": "Grotesque",
+  "w": 900,
+  "src": "blind shortlist",
+  "n": "w900 at 15.3em; jersey-number energy with even rhythm",
+  "st": [],
+  "sc": "c4 p5 o3 a5"
+ },
+ {
+  "f": "Barlow Semi Condensed",
+  "cat": "Sans-serif",
+  "lane": "Grotesque",
+  "w": 900,
+  "src": "promoted",
+  "n": "Good w900 mass and fit; drawing stays deliberately anonymous",
+  "st": [],
+  "sc": "c4 p4 o2 a4"
+ },
+ {
+  "f": "Funnel Sans",
+  "cat": "Sans-serif",
+  "lane": "Grotesque",
+  "w": 800,
+  "src": "rescued",
+  "n": "w800 boxy mass, tight fit, strong headline silhouette",
+  "st": [],
+  "sc": "c4 p4 a4"
+ },
+ {
+  "f": "Hubot Sans",
+  "cat": "Sans-serif",
+  "lane": "Grotesque",
+  "w": 900,
+  "src": "blind shortlist",
+  "n": "32% stem, muscular silhouette; counters tighten at negative tracking",
+  "st": [],
+  "sc": "c4 p5 o3 a4"
+ },
+ {
+  "f": "League Gothic",
+  "cat": "Sans-serif",
+  "lane": "Grotesque",
+  "w": 400,
+  "src": "blind shortlist",
+  "n": "10.3em set; extreme vertical compression reads unmistakably athletic",
+  "st": [],
+  "sc": "c4 p5 o4 a5"
+ },
+ {
+  "f": "Libre Franklin",
+  "cat": "Sans-serif",
+  "lane": "Grotesque",
+  "w": 900,
+  "src": "promoted",
+  "n": "Handsome w900 Franklin; editorial rather than athletic",
+  "st": [],
+  "sc": "c5 p4 o2 a3"
+ },
+ {
+  "f": "Mona Sans",
+  "cat": "Sans-serif",
+  "lane": "Grotesque",
+  "w": 900,
+  "src": "promoted",
+  "n": "Excellently drawn, but it is GitHub's voice",
+  "st": [],
+  "sc": "c5 p4 o2 a3"
+ },
+ {
+  "f": "Oswald",
+  "cat": "Sans-serif",
+  "lane": "Grotesque",
+  "w": 700,
+  "src": "blind shortlist",
+  "n": "Condensed gothic with real sports pedigree; excellent spacing",
+  "st": [],
+  "sc": "c5 p4 o3 a5"
+ },
+ {
+  "f": "Special Gothic",
+  "cat": "Sans-serif",
+  "lane": "Grotesque",
+  "w": 700,
+  "src": "blind shortlist",
+  "n": "Compact heavy gothic, tight fit, genuine headline authority",
+  "st": [],
+  "sc": "c4 p4 o3 a4"
+ },
+ {
+  "f": "Stack Sans Headline",
+  "cat": "Sans-serif",
+  "lane": "Grotesque",
+  "w": 700,
+  "src": "rescued",
+  "n": "Compact bold, huge x-height, holds tight tracking cleanly",
+  "st": [],
+  "sc": "c4 p4 a4"
+ },
+ {
+  "f": "TikTok Sans",
+  "cat": "Sans-serif",
+  "lane": "Grotesque",
+  "w": 900,
+  "src": "rescued",
+  "n": "w900 punchy grotesque; baggage aside, real wordmark power",
+  "st": [],
+  "sc": "c4 p5 a4"
+ },
+ {
+  "f": "Afacad Flux",
+  "cat": "Sans-serif",
+  "lane": "Geometric",
+  "w": 1000,
+  "src": "blind shortlist",
+  "n": "w1000 at 16.8em set: heavy, compact, headline-ready",
+  "st": [],
+  "sc": "c4 p4 o3 a4"
+ },
+ {
+  "f": "Alumni Sans",
+  "cat": "Sans-serif",
+  "lane": "Geometric",
+  "w": 900,
+  "src": "blind shortlist",
+  "n": "Ultra-compressed 12.9em set; collegiate energy, real Druk alternative",
+  "st": [],
+  "sc": "c4 p5 o4 a5"
+ },
+ {
+  "f": "Alumni Sans SC",
+  "cat": "Sans-serif",
+  "lane": "Geometric",
+  "w": 900,
+  "src": "blind shortlist",
+  "n": "Ultra-compressed small caps; jersey-and-scoreboard energy built in",
+  "st": [],
+  "sc": "c4 p5 o4 a5"
+ },
+ {
+  "f": "DM Sans",
+  "cat": "Sans-serif",
+  "lane": "Geometric",
+  "w": 1000,
+  "src": "rescued",
+  "n": "w1000 variable black; heavy, clean, holds at 80px",
+  "st": [],
+  "sc": "c4 p4 a3"
+ },
+ {
+  "f": "Gemunu Libre",
+  "cat": "Sans-serif",
+  "lane": "Geometric",
+  "w": 800,
+  "src": "blind shortlist",
+  "n": "Condensed 15.7em heavy with squared shoulders; genuinely sporting",
+  "st": [],
+  "sc": "c4 p4 o4 a5"
+ },
+ {
+  "f": "League Spartan",
+  "cat": "Sans-serif",
+  "lane": "Geometric",
+  "w": 900,
+  "src": "blind shortlist",
+  "n": "Low x-height geometric black; big confident caps, Futura lineage",
+  "st": [],
+  "sc": "c4 p4 o3 a4"
+ },
+ {
+  "f": "Montserrat",
+  "cat": "Sans-serif",
+  "lane": "Geometric",
+  "w": 900,
+  "src": "rescued",
+  "n": "34% stem black, wide caps, proven athletic wordmark use",
+  "st": [],
+  "sc": "c4 p4 a4"
+ },
+ {
+  "f": "Red Hat Display",
+  "cat": "Sans-serif",
+  "lane": "Geometric",
+  "w": 900,
+  "src": "rescued",
+  "n": "w900 black, squared geometry, strong all-caps silhouette",
+  "st": [],
+  "sc": "c4 p4 a3"
+ },
+ {
+  "f": "SUSE",
+  "cat": "Sans-serif",
+  "lane": "Geometric",
+  "w": 900,
+  "src": "promoted",
+  "n": "Tight 31.9% stem black is muscular; carries SUSE identity",
+  "st": [],
+  "sc": "c4 p4 o2 a4"
+ },
+ {
+  "f": "Tomorrow",
+  "cat": "Sans-serif",
+  "lane": "Geometric",
+  "w": 900,
+  "src": "blind shortlist",
+  "n": "50% stems, squared fat display; enormous scoreboard presence",
+  "st": [],
+  "sc": "c4 p5 o4 a5"
+ },
+ {
+  "f": "Akshar",
+  "cat": "Sans-serif",
+  "lane": "Humanist sans",
+  "w": 700,
+  "src": "rescued",
+  "n": "Compact semi-condensed, Teko-adjacent scoreboard energy, clean outlines",
+  "st": [],
+  "sc": "c4 p3 a4"
+ },
+ {
+  "f": "Alegreya Sans",
+  "cat": "Sans-serif",
+  "lane": "Humanist sans",
+  "w": 900,
+  "src": "blind shortlist",
+  "n": "Narrow 16.84em black, calligraphic tension, real personality",
+  "st": [],
+  "sc": "c5 p4 o4 a4"
+ },
+ {
+  "f": "Antonio",
+  "cat": "Sans-serif",
+  "lane": "Humanist sans",
+  "w": 700,
+  "src": "blind shortlist",
+  "n": "15.46em, x/cap 0.85; the Teko-lane candidate here",
+  "st": [],
+  "sc": "c4 p4 o4 a4"
+ },
+ {
+  "f": "Commissioner",
+  "cat": "Sans-serif",
+  "lane": "Humanist sans",
+  "w": 900,
+  "src": "blind shortlist",
+  "n": "Stem 34.7% black, crisp spacing, confident at wordmark scale",
+  "st": [],
+  "sc": "c5 p5 o4 a4"
+ },
+ {
+  "f": "Encode Sans Condensed",
+  "cat": "Sans-serif",
+  "lane": "Humanist sans",
+  "w": 900,
+  "src": "blind shortlist",
+  "n": "w900 condensed, even color, holds tight tracking well",
+  "st": [],
+  "sc": "c4 p5 o3 a4"
+ },
+ {
+  "f": "Encode Sans Semi Expanded",
+  "cat": "Sans-serif",
+  "lane": "Humanist sans",
+  "w": 900,
+  "src": "rescued",
+  "n": "Wide w900 with 31.5% stems; jersey-wordmark presence in caps",
+  "st": [],
+  "sc": "c4 p5 a4"
+ },
+ {
+  "f": "Fira Sans",
+  "cat": "Sans-serif",
+  "lane": "Humanist sans",
+  "w": 900,
+  "src": "rescued",
+  "n": "Heavy at 30% stem, tight compact black, real headline muscle",
+  "st": [],
+  "sc": "c5 p4 a4"
+ },
+ {
+  "f": "Georama",
+  "cat": "Sans-serif",
+  "lane": "Humanist sans",
+  "w": 900,
+  "src": "blind shortlist",
+  "n": "Stem 34%, width axis; grot-flavored and genuinely forceful",
+  "st": [],
+  "sc": "c4 p5 o4 a4"
+ },
+ {
+  "f": "Kanit",
+  "cat": "Sans-serif",
+  "lane": "Humanist sans",
+  "w": 900,
+  "src": "blind shortlist",
+  "n": "Stem 38.5%, muscular slab-ish sans; genuine sports energy",
+  "st": [],
+  "sc": "c4 p5 o4 a5"
+ },
+ {
+  "f": "Khand",
+  "cat": "Sans-serif",
+  "lane": "Humanist sans",
+  "w": 700,
+  "src": "blind shortlist",
+  "n": "14.86em set, x/cap 0.85; Teko-adjacent scoreboard energy",
+  "st": [],
+  "sc": "c4 p5 o4 a5"
+ },
+ {
+  "f": "Mitr",
+  "cat": "Sans-serif",
+  "lane": "Humanist sans",
+  "w": 700,
+  "src": "blind shortlist",
+  "n": "Stem 36.5% rounded geometric; bold, warm, genuinely loud",
+  "st": [],
+  "sc": "c4 p5 o4 a4"
+ },
+ {
+  "f": "Moderustic",
+  "cat": "Sans-serif",
+  "lane": "Humanist sans",
+  "w": 800,
+  "src": "rescued",
+  "n": "Clean confident w800 mass, tight silhouette holds at 80px",
+  "st": [],
+  "sc": "c4 p4 a3"
+ },
+ {
+  "f": "Noto Sans Display",
+  "cat": "Sans-serif",
+  "lane": "Humanist sans",
+  "w": 900,
+  "src": "rescued",
+  "n": "Purpose-drawn display black; anonymous but holds mass at 80px",
+  "st": [],
+  "sc": "c4 p4 a3"
+ },
+ {
+  "f": "Recursive",
+  "cat": "Sans-serif",
+  "lane": "Humanist sans",
+  "w": 1000,
+  "src": "blind shortlist",
+  "n": "w1000 stem 33.3%; distinctive casual axis, real swagger",
+  "st": [],
+  "sc": "c4 p5 o4 a4"
+ },
+ {
+  "f": "Reddit Sans Condensed",
+  "cat": "Sans-serif",
+  "lane": "Humanist sans",
+  "w": 900,
+  "src": "promoted",
+  "n": "Well-drawn heavy condensed, but reads as Reddit's face",
+  "st": [],
+  "sc": "c4 p4 o2 a4"
+ },
+ {
+  "f": "Ysabeau SC",
+  "cat": "Sans-serif",
+  "lane": "Humanist sans",
+  "w": 1000,
+  "src": "rescued",
+  "n": "Heavy small-caps w1000 reads as built-in collegiate wordmark",
+  "st": [],
+  "sc": "c4 p4 a4"
+ },
+ {
+  "f": "Cairo",
+  "cat": "Sans-serif",
+  "lane": "Superellipse",
+  "w": 1000,
+  "src": "blind shortlist",
+  "n": "w1000 delivers real headline mass; counters tighten but hold",
+  "st": [],
+  "sc": "c4 p5 o3 a4"
+ },
+ {
+  "f": "Changa",
+  "cat": "Sans-serif",
+  "lane": "Superellipse",
+  "w": 800,
+  "src": "blind shortlist",
+  "n": "Tall x-height, 33% stems, muscular and cleanly spaced",
+  "st": [],
+  "sc": "c4 p5 o4 a5"
+ },
+ {
+  "f": "Exo",
+  "cat": "Sans-serif",
+  "lane": "Superellipse",
+  "w": 900,
+  "src": "rescued",
+  "n": "w900 techno-geometric with real heavy mass, strong caps",
+  "st": [],
+  "sc": "c4 p4 a4"
+ },
+ {
+  "f": "Exo 2",
+  "cat": "Sans-serif",
+  "lane": "Superellipse",
+  "w": 900,
+  "src": "promoted",
+  "n": "Capable heavy techno sans, but overused sci-fi default",
+  "st": [],
+  "sc": "c4 p4 o2 a4"
+ },
+ {
+  "f": "Genos",
+  "cat": "Sans-serif",
+  "lane": "Superellipse",
+  "w": 900,
+  "src": "blind shortlist",
+  "n": "49% stems, 0.87 x/cap; unmistakable squared power",
+  "st": [],
+  "sc": "c4 p5 o5 a5"
+ },
+ {
+  "f": "Russo One",
+  "cat": "Sans-serif",
+  "lane": "Superellipse",
+  "w": 400,
+  "src": "blind shortlist",
+  "n": "Broad squared display; heavy despite w400 label, confident",
+  "st": [],
+  "sc": "c4 p5 o4 a5"
+ },
+ {
+  "f": "Saira",
+  "cat": "Sans-serif",
+  "lane": "Superellipse",
+  "w": 900,
+  "src": "blind shortlist",
+  "n": "Squared heavy sans, even rhythm, exactly the sports register",
+  "st": [],
+  "sc": "c5 p4 o3 a5"
+ },
+ {
+  "f": "Saira Condensed",
+  "cat": "Sans-serif",
+  "lane": "Superellipse",
+  "w": 900,
+  "src": "blind shortlist",
+  "n": "Punchy narrow heavy; strong silhouette for stacked wordmarks",
+  "st": [],
+  "sc": "c4 p5 o3 a5"
+ },
+ {
+  "f": "Saira Semi Condensed",
+  "cat": "Sans-serif",
+  "lane": "Superellipse",
+  "w": 900,
+  "src": "promoted",
+  "n": "Solid, but redundant beside Saira and Saira Condensed",
+  "st": [],
+  "sc": "c4 p4 o2 a4"
+ },
+ {
+  "f": "Teko",
+  "cat": "Sans-serif",
+  "lane": "Superellipse",
+  "w": 700,
+  "src": "blind shortlist",
+  "n": "Tall condensed scoreboard energy; proven in team contexts",
+  "st": [],
+  "sc": "c4 p5 o4 a5"
+ },
+ {
+  "f": "Asap Condensed",
+  "cat": "Sans-serif",
+  "lane": "Rounded",
+  "w": 900,
+  "src": "promoted",
+  "n": "Punchy narrow heavy; sidebearings vanish at -0.03em",
+  "st": [],
+  "sc": "c4 p4 o2 a4"
+ },
+ {
+  "f": "Nunito Sans",
+  "cat": "Sans-serif",
+  "lane": "Rounded",
+  "w": 1000,
+  "src": "rescued",
+  "n": "w1000 black is Proxima-adjacent heavy; anonymity no longer disqualifies",
+  "st": [],
+  "sc": "c5 p4 a3"
+ },
+ {
+  "f": "Farro",
+  "cat": "Sans-serif",
+  "lane": "Glyphic",
+  "w": 700,
+  "src": "blind shortlist",
+  "n": "Heavy squarish sans, tall x-height, confident at size",
+  "st": [],
+  "sc": "c4 p4 o3 a4"
+ },
+ {
+  "f": "Black Han Sans",
+  "cat": "Sans-serif",
+  "lane": "Unclassified sans",
+  "w": 400,
+  "src": "blind shortlist",
+  "n": "33% stems, brutal display mass; genuinely muscular silhouette",
+  "st": [],
+  "sc": "c4 p5 o4 a5"
+ },
+ {
+  "f": "Finlandica",
+  "cat": "Sans-serif",
+  "lane": "Unclassified sans",
+  "w": 700,
+  "src": "rescued",
+  "n": "Sturdy w700 mass, crisp angular cuts, holds headline sizes",
+  "st": [],
+  "sc": "c4 p4 a3"
+ },
+ {
+  "f": "Fira Sans Condensed",
+  "cat": "Sans-serif",
+  "lane": "Unclassified sans",
+  "w": 900,
+  "src": "promoted",
+  "n": "Excellent drawing, but Extra Condensed is the better display cut",
+  "st": [],
+  "sc": "c5 p4 o2 a4"
+ },
+ {
+  "f": "Fira Sans Extra Condensed",
+  "cat": "Sans-serif",
+  "lane": "Unclassified sans",
+  "w": 900,
+  "src": "blind shortlist",
+  "n": "Druk-adjacent w900 condensed, superb spacing; Mozilla lineage",
+  "st": [],
+  "sc": "c5 p5 o2 a4"
+ },
+ {
+  "f": "Jaro",
+  "cat": "Sans-serif",
+  "lane": "Unclassified sans",
+  "w": 400,
+  "src": "blind shortlist",
+  "n": "Muscular high x-height display sans; energetic, tight, team-ready",
+  "st": [],
+  "sc": "c4 p5 o4 a5"
+ },
+ {
+  "f": "Orbitron",
+  "cat": "Sans-serif",
+  "lane": "Unclassified sans",
+  "w": 900,
+  "src": "blind shortlist",
+  "n": "Squared techno geometry; unmistakable, esports-ready wordmark",
+  "st": [],
+  "sc": "c4 p4 o5 a4"
+ },
+ {
+  "f": "Science Gothic",
+  "cat": "Sans-serif",
+  "lane": "Unclassified sans",
+  "w": 900,
+  "src": "blind shortlist",
+  "n": "41.8% stems, blunt grotesque mass; enormous wordmark authority",
+  "st": [],
+  "sc": "c4 p5 o4 a5"
+ },
+ {
+  "f": "Tac One",
+  "cat": "Sans-serif",
+  "lane": "Unclassified sans",
+  "w": 400,
+  "src": "blind shortlist",
+  "n": "Fat seventies display; huge stems, narrow set, real wordmark punch",
+  "st": [],
+  "sc": "c4 p5 o4 a4"
+ },
+ {
+  "f": "Coustard",
+  "cat": "Serif",
+  "lane": "Transitional serif",
+  "w": 900,
+  "src": "blind shortlist",
+  "n": "Fat slab with real muscle; wide set, joints tighten up",
+  "st": [],
+  "sc": "c3 p5 o4 a4"
+ },
+ {
+  "f": "Holtwood One SC",
+  "cat": "Serif",
+  "lane": "Transitional serif",
+  "w": 400,
+  "src": "blind shortlist",
+  "n": "Massive slab caps, stem 41.7%; built for wordmarks",
+  "st": [],
+  "sc": "c4 p5 o4 a4"
+ },
+ {
+  "f": "Noto Serif",
+  "cat": "Serif",
+  "lane": "Transitional serif",
+  "w": 900,
+  "src": "rescued",
+  "n": "w900 mass at 28.5% stems; anonymous but genuinely holds huge",
+  "st": [],
+  "sc": "c4 p4 a3"
+ },
+ {
+  "f": "Spectral",
+  "cat": "Serif",
+  "lane": "Transitional serif",
+  "w": 800,
+  "src": "rescued",
+  "n": "w800 wedge-serif dark editorial punch; peer of surviving Vollkorn",
+  "st": [],
+  "sc": "c4 p4 a3"
+ },
+ {
+  "f": "Cinzel",
+  "cat": "Serif",
+  "lane": "Old style serif",
+  "w": 900,
+  "src": "blind shortlist",
+  "n": "Monumental Trajan caps at w900; collegiate wordmark energy",
+  "st": [],
+  "sc": "c4 p4 o4 a3"
+ },
+ {
+  "f": "Eczar",
+  "cat": "Serif",
+  "lane": "Old style serif",
+  "w": 800,
+  "src": "blind shortlist",
+  "n": "Stem 32%, lively cuts; genuinely energetic heavy serif",
+  "st": [],
+  "sc": "c4 p5 o4 a4"
+ },
+ {
+  "f": "Fraunces",
+  "cat": "Serif",
+  "lane": "Old style serif",
+  "w": 900,
+  "src": "blind shortlist",
+  "n": "Fat wonky display serif at w900; strong ownable silhouette",
+  "st": [],
+  "sc": "c5 p5 o4 a4"
+ },
+ {
+  "f": "Young Serif",
+  "cat": "Serif",
+  "lane": "Old style serif",
+  "w": 400,
+  "src": "blind shortlist",
+  "n": "Chunky wedge serifs drawn for display despite w400 cap",
+  "st": [],
+  "sc": "c4 p4 o4 a4"
+ },
+ {
+  "f": "Bevan",
+  "cat": "Serif",
+  "lane": "Modern / Didone",
+  "w": 400,
+  "src": "blind shortlist",
+  "n": "Fat vintage display slab; commanding silhouette, real swagger",
+  "st": [],
+  "sc": "c4 p5 o4 a4"
+ },
+ {
+  "f": "Bitter",
+  "cat": "Serif",
+  "lane": "Modern / Didone",
+  "w": 900,
+  "src": "rescued",
+  "n": "w900 low-contrast slab; dense even color, holds at 80px",
+  "st": [],
+  "sc": "c4 p4 a3"
+ },
+ {
+  "f": "Playfair Display",
+  "cat": "Serif",
+  "lane": "Modern / Didone",
+  "w": 900,
+  "src": "rescued",
+  "n": "w900 mass with crisp silhouette; hairlines hold at headline sizes",
+  "st": [],
+  "sc": "c5 p5 a2"
+ },
+ {
+  "f": "Roboto Serif",
+  "cat": "Serif",
+  "lane": "Modern / Didone",
+  "w": 900,
+  "src": "rescued",
+  "n": "w900, 35% stems; anonymous but genuine heavyweight wordmark mass",
+  "st": [],
+  "sc": "c4 p4 a3"
+ },
+ {
+  "f": "Ultra",
+  "cat": "Serif",
+  "lane": "Modern / Didone",
+  "w": 400,
+  "src": "blind shortlist",
+  "n": "40% stems, brawny fat-face; unmistakable poster power",
+  "st": [],
+  "sc": "c4 p5 o4 a5"
+ },
+ {
+  "f": "Aleo",
+  "cat": "Serif",
+  "lane": "Slab",
+  "w": 900,
+  "src": "rescued",
+  "n": "w900 modern slab, clean sturdy caps, strong headline color",
+  "st": [],
+  "sc": "c4 p4 a3"
+ },
+ {
+  "f": "Epunda Slab",
+  "cat": "Serif",
+  "lane": "Slab",
+  "w": 900,
+  "src": "blind shortlist",
+  "n": "Tight compact w900 slab, crisp joins; strong headline block",
+  "st": [],
+  "sc": "c4 p4 o4 a4"
+ },
+ {
+  "f": "Roboto Slab",
+  "cat": "Serif",
+  "lane": "Slab",
+  "w": 900,
+  "src": "rescued",
+  "n": "w900 slab with real mass; brand baggage no longer disqualifies",
+  "st": [],
+  "sc": "c4 p4 a4"
+ },
+ {
+  "f": "Rokkitt",
+  "cat": "Serif",
+  "lane": "Slab",
+  "w": 900,
+  "src": "blind shortlist",
+  "n": "Heavy narrow slab, 35% stems in tight set; genuinely punchy",
+  "st": [],
+  "sc": "c4 p5 o4 a4"
+ },
+ {
+  "f": "Grenze",
+  "cat": "Serif",
+  "lane": "Unclassified serif",
+  "w": 900,
+  "src": "blind shortlist",
+  "n": "Black condensed serif, gothic edge; strong varsity wordmark energy",
+  "st": [],
+  "sc": "c4 p5 o4 a4"
+ },
+ {
+  "f": "Rasa",
+  "cat": "Serif",
+  "lane": "Unclassified serif",
+  "w": 700,
+  "src": "rescued",
+  "n": "Compact dark w700 serif, tight fit, heritage wordmark presence",
+  "st": [],
+  "sc": "c4 p3 a3"
+ }
+]

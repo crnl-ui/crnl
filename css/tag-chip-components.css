@@ -1,0 +1,160 @@
+/* ============================================================
+   tag-chip-components.css
+   ============================================================
+   The tag (a static label badge) and the chip (an interactive filter or toggle).
+
+   What's inside
+   - .tag (+ .tag-icon-leading | .tag-icon-trailing) — static badge for
+     metadata, categories, status
+   - .chip (+ .chip-brand-color, .chip-icon-leading | .chip-icon-trailing,
+     .is-disabled) — interactive control for filter bars and selection UIs
+
+   Notes
+   - Both are 32px tall with a 4px radius and labelBold20 text; icons are 24px.
+   - A chip gets its hover/pressed states from a surface + scale pair
+     (.surface-borderNeutral or .surface-ghost, with .scale-300), not from a
+     :hover rule. See RULES §2.
+   - .tag-brand-color lives in list-row-components.css.
+   ============================================================ */
+
+
+/* ============================================================
+   SHARED BASE
+   ============================================================ */
+
+.tag,
+.chip {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 32px;
+  border-radius: 4px;
+  gap: var(--spacing-50); /* 4px between icon and label */
+  white-space: nowrap;
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  text-decoration: none;
+  flex-shrink: 0;
+  /* Tags sit on photographs as often as on flat surface — the blur keeps the
+     label legible over a busy image. Carried over from the duplicate
+     definition that used to live in list-row-components.css. */
+  backdrop-filter: blur(25px);
+  -webkit-backdrop-filter: blur(25px);
+  box-sizing: border-box;
+}
+
+/* Icon sizing inside tag/chip */
+.tag .material-symbols-rounded,
+.chip .material-symbols-rounded {
+  font-size: 16px;
+  width: 16px;
+  height: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: inherit;
+}
+
+
+/* ============================================================
+   TAG COMPONENT
+   ============================================================
+   
+   Tag is a static, non-interactive label badge.
+   
+   Icon Positions:
+     None         — px-200 (12px) on both sides
+     Leading      — pl-100 (8px) pr-200 (12px)
+     Trailing     — pl-200 (12px) pr-100 (8px)
+   ============================================================ */
+
+.tag {
+  background-color: var(--neutral-100); /* rgba(0,0,0,0.04) */
+  color: var(--text-primary);
+  padding-top: var(--spacing-50);    /* 4px */
+  padding-bottom: var(--spacing-50); /* 4px */
+  padding-left: var(--spacing-150);  /* 12px */
+  padding-right: var(--spacing-150); /* 12px */
+}
+
+/* Icon position: Leading  — icon first, then label */
+.tag.tag-icon-leading {
+  padding-left: var(--spacing-100);  /* 8px */
+  padding-right: var(--spacing-150); /* 12px */
+}
+
+/* Icon position: Trailing — label first, then icon */
+.tag.tag-icon-trailing {
+  padding-left: var(--spacing-150);  /* 12px */
+  padding-right: var(--spacing-100); /* 8px */
+}
+
+
+/* ============================================================
+   CHIP COMPONENT
+   ============================================================
+   
+   Chip is an interactive filter/selection control.
+   
+   Compose with interactive tokens from interactive-tokens.css:
+     Bordered:  .chip + .surface-borderNeutral + .scale-300
+     Ghost:     .chip + .surface-ghost + .scale-300
+   
+   Color override (add alongside surface token):
+     Brand colour: .chip-brand-color  — overrides text to var(--color-interactive)
+   
+   Disabled:
+     .chip.is-disabled — pointer-events off, 25% opacity on all content
+   
+   Icon Positions:
+     None     — px: var(--spacing-150) / 12px  (inherited from surface token)
+     Leading  — .chip-icon-leading:  pl: var(--spacing-100), pr: var(--spacing-150)
+     Trailing — .chip-icon-trailing: pl: var(--spacing-150), pr: var(--spacing-100)
+   
+   HTML examples:
+     <button class="chip surface-borderNeutral scale-300">Label</button>
+     <button class="chip surface-ghost scale-300 chip-brand-color">Label</button>
+     <button class="chip surface-borderNeutral scale-300 chip-icon-trailing is-disabled">
+       <span class="chip-label">Label</span>
+       <span class="icon icon-300">star</span>
+     </button>
+   ============================================================ */
+
+.chip {
+  /* Layout & shape — surface token provides bg, border, cursor, transition */
+  padding-left: var(--spacing-150);  /* 12px */
+  padding-right: var(--spacing-150); /* 12px */
+}
+
+/* Brand colour: override text colour to the mode-aware interactive */
+.chip.chip-brand-color {
+  color: var(--color-interactive);
+}
+
+/* Force children to inherit color (text style classes override with --text-primary) */
+.chip.chip-brand-color * {
+  color: inherit;
+}
+
+/* Disabled: freeze all interaction, fade all content */
+.chip.is-disabled {
+  pointer-events: none;
+  cursor: default;
+  opacity: 0.25;
+}
+
+/* --- Icon Positions --- */
+
+.chip.chip-icon-leading {
+  padding-left: var(--spacing-100);  /* 8px */
+  padding-right: var(--spacing-150); /* 12px */
+}
+
+.chip.chip-icon-trailing {
+  padding-left: var(--spacing-150);  /* 12px */
+  padding-right: var(--spacing-100); /* 8px */
+}

@@ -1,0 +1,582 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Specimen Lab — metrics + contact sheets</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0e0f11; --surface:#17191c; --surface-2:#1e2126; --line:#2c3038;
+    --text:#e9ecf1; --text-2:#a5adba; --text-3:#6e7783; --accent:#c6f24e; --warn:#ff9f43; --bad:#ff5f6d;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--text);font:14px/1.5 Inter,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+  header{position:sticky;top:0;z-index:10;background:rgba(14,15,17,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);padding:14px 20px}
+  h1{margin:0 0 2px;font-size:15px;font-weight:600;letter-spacing:-.01em}
+  .sub{color:var(--text-3);font-size:12px}
+  main{padding:20px;max-width:1120px}
+  section{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:16px;margin-bottom:14px}
+  h2{margin:0 0 10px;font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.07em;color:var(--text-2)}
+  button{font:inherit;font-weight:500;background:var(--surface-2);color:var(--text);border:1px solid var(--line);border-radius:7px;padding:8px 13px;cursor:pointer}
+  button:hover:not(:disabled){border-color:#414855;background:#252932}
+  button:disabled{opacity:.4;cursor:default}
+  button.primary{background:var(--accent);color:#12140a;border-color:var(--accent);font-weight:600}
+  button.primary:hover:not(:disabled){background:#d3ff5e}
+  .row{display:flex;gap:9px;align-items:center;flex-wrap:wrap}
+  label.field{display:flex;flex-direction:column;gap:4px;font-size:11px;color:var(--text-3);text-transform:uppercase;letter-spacing:.05em}
+  input[type=text],input[type=number],select{font:inherit;background:var(--bg);color:var(--text);border:1px solid var(--line);border-radius:6px;padding:7px 9px}
+  input[type=text]{min-width:230px}
+  .stat{display:flex;gap:22px;flex-wrap:wrap;margin-top:10px;padding-top:12px;border-top:1px solid var(--line)}
+  .stat div{font-size:12px;color:var(--text-3)}
+  .stat b{display:block;font-size:19px;font-weight:600;color:var(--text);letter-spacing:-.02em}
+  .bar{height:5px;background:var(--surface-2);border-radius:3px;overflow:hidden;margin:12px 0 8px}
+  .bar i{display:block;height:100%;background:var(--accent);width:0;transition:width .15s}
+  #log{font:11px/1.65 ui-monospace,SFMono-Regular,Menlo,monospace;color:var(--text-3);max-height:190px;overflow:auto;white-space:pre-wrap;margin-top:8px}
+  #log .e{color:var(--bad)} #log .w{color:var(--warn)} #log .ok{color:var(--accent)}
+  #sheets{display:flex;flex-direction:column;gap:16px}
+  #sheets figure{margin:0}
+  #sheets figcaption{font-size:11px;color:var(--text-3);margin-bottom:6px;text-transform:uppercase;letter-spacing:.06em}
+  #sheets img{width:100%;border:1px solid var(--line);border-radius:8px;display:block}
+  .hint{font-size:12px;color:var(--text-3);margin-top:8px;line-height:1.6}
+  code{background:var(--surface-2);padding:1px 5px;border-radius:4px;font-size:12px}
+</style>
+</head>
+<body>
+<header>
+  <h1>Specimen Lab</h1>
+  <div class="sub">Automated metrics + contact sheets for the sans &amp; serif pass — companion to Font Lab</div>
+</header>
+<main>
+
+<section>
+  <h2>1 · Candidates</h2>
+  <div class="row">
+    <button id="btnLocal">Read verdicts from this browser</button>
+    <button id="btnFile">Load a backup JSON…</button>
+    <input type="file" id="fileIn" accept="application/json" hidden>
+    <span id="src" class="sub"></span>
+  </div>
+  <div class="row" style="margin-top:12px">
+    <label class="field">Categories
+      <select id="cats" multiple size="3" style="min-width:150px">
+        <option value="sans-serif" selected>sans-serif</option>
+        <option value="serif" selected>serif</option>
+        <option value="display">display</option>
+      </select>
+    </label>
+    <label class="field">Verdict
+      <select id="verdict"><option value="like" selected>like</option><option value="dislike">dislike</option><option value="all">all rated</option><option value="everything">everything (incl. unrated)</option></select>
+    </label>
+  </div>
+  <div class="stat">
+    <div><b id="nCand">—</b>candidates</div>
+    <div><b id="nSans">—</b>sans</div>
+    <div><b id="nSerif">—</b>serif</div>
+    <div><b id="nSheets">—</b>sheets</div>
+  </div>
+</section>
+
+<section>
+  <h2>2 · Display conditions</h2>
+  <div class="row">
+    <label class="field">Wordmark sample<input type="text" id="sample" value="SEASON TICKETS"></label>
+    <label class="field">Display px<input type="number" id="dispPx" value="62" min="24" max="140" style="width:82px"></label>
+    <label class="field">Tracking em<input type="number" id="track" value="-0.03" step="0.005" style="width:82px"></label>
+    <label class="field">Per sheet<input type="number" id="perSheet" value="10" min="4" max="16" style="width:72px"></label>
+  </div>
+  <div class="hint">Metrics are measured at the family's heaviest available weight — the condition the display component actually ships in. Sheets are grouped by style lane so similar faces sit next to each other.</div>
+</section>
+
+<section>
+  <h2>3 · Run</h2>
+  <div class="row">
+    <button class="primary" id="btnRun" disabled>Measure + render</button>
+    <button id="btnStop" disabled>Stop</button>
+    <button id="btnMetrics" disabled>↓ metrics.json</button>
+    <button id="btnBundle" disabled>↓ sheets-bundle.json</button>
+    <button id="btnPngs" disabled>↓ sheets as PNGs</button>
+  </div>
+  <div class="bar"><i id="prog"></i></div>
+  <div class="sub" id="status">Load candidates to begin.</div>
+  <div id="log"></div>
+  <div class="hint">
+    <b>sheets-bundle.json</b> is the one to hand to Claude — every sheet as a JPEG in a single file, so you move one file instead of dozens.
+    Save it next to this page in <code>font-lab/</code>.
+  </div>
+</section>
+
+<section>
+  <h2>4 · Sheets</h2>
+  <div id="sheets"></div>
+</section>
+
+</main>
+<script src="theme-ramps.js"></script>
+  <script src="catalog.js"></script>
+<script>
+'use strict';
+const CAT = window.GF_CATALOG || [];
+const byName = Object.fromEntries(CAT.map(f => [f.n, f]));
+const $ = id => document.getElementById(id);
+let verdicts = null, candidates = [], metrics = [], sheets = [], stopped = false;
+
+function log(msg, cls) {
+  const d = $('log'), s = document.createElement('div');
+  if (cls) s.className = cls;
+  s.textContent = msg; d.appendChild(s); d.scrollTop = d.scrollHeight;
+}
+
+/* ── Style lanes: derived from Google's own taxonomy tags already in catalog.js ── */
+const LANES = [
+  ['Neo-grotesque',      ['Sans/Neo Grotesque']],
+  ['Grotesque',          ['Sans/Grotesque']],
+  ['Geometric',          ['Sans/Geometric']],
+  ['Humanist sans',      ['Sans/Humanist']],
+  ['Superellipse',       ['Sans/Superellipse']],
+  ['Rounded',            ['Sans/Rounded']],
+  ['Glyphic',            ['Sans/Glyphic']],
+  ['Transitional serif', ['Serif/Transitional']],
+  ['Old style serif',    ['Serif/Old Style Garalde']],
+  ['Venetian serif',     ['Serif/Humanist Venetian']],
+  ['Modern / Didone',    ['Serif/Modern','Serif/Didone','Serif/Scotch','Serif/Fat Face']],
+  ['Slab',               ['Slab/Humanist','Slab/Geometric','Slab/Clarendon']],
+];
+function laneOf(f) {
+  const t = f.t || {};
+  if (f.c === 'display') {
+    for (const [lane, tags] of DISPLAY_LANES)
+      if (tags.some(tg => (t[tg] || 0) > 0)) return lane;
+    return 'Display / untagged';
+  }
+  let best = null, score = 0;
+  for (const [lane, tags] of LANES) for (const tg of tags) if ((t[tg] || 0) > score) { score = t[tg]; best = lane; }
+  return best || (f.c === 'serif' ? 'Unclassified serif' : 'Unclassified sans');
+}
+/* Display fonts carry Theme/Script tags rather than Sans/Serif ones — group them
+   by idiom so like sits beside like on the sheets. Checked in order; first family
+   of tags with a score wins, so the more specific idioms take precedence. */
+const DISPLAY_LANES = [
+  ['Blackletter & medieval', ['Theme/Blackletter','Theme/Medieval']],
+  ['Stencil',                ['Theme/Stencil']],
+  ['Pixel & LCD',            ['Theme/Pixel']],
+  ['Distressed & rough',     ['Theme/Distressed','Theme/Tattoo','Theme/Horror']],
+  ['Wood type & western',    ['Theme/Woodtype']],
+  ['Deco, inline & shaded',  ['Theme/Art Deco','Theme/Inline','Theme/Shaded']],
+  ['Techno',                 ['Theme/Techno']],
+  ['Brush & marker',         ['Theme/Brush','Theme/Marker']],
+  ['Script',                 ['Script/Informal','Script/Handwritten','Script/Upright Script','Script/Formal','Script/Calligraphic']],
+  ['Wacky & comic',          ['Theme/Wacky','Theme/Kids']],
+  ['Blobby & rounded',       ['Theme/Blobby','Sans/Rounded']],
+  ['Display serif & slab',   ['Serif/Fat Face','Serif/Modern','Serif/Didone','Serif/Transitional','Serif/Old Style Garalde','Serif/Humanist Venetian','Serif/Scotch','Slab/Humanist','Slab/Geometric','Slab/Clarendon']],
+  ['Display sans',           ['Sans/Geometric','Sans/Humanist','Sans/Superellipse','Sans/Grotesque','Sans/Neo Grotesque','Sans/Glyphic']],
+];
+const LANE_ORDER = LANES.map(l => l[0])
+  .concat(['Unclassified sans','Unclassified serif'])
+  .concat(DISPLAY_LANES.map(l => l[0]))
+  .concat(['Display / untagged']);
+
+function maxW(f) {
+  let m = (f.w && f.w.length) ? Math.max(...f.w) : 400;
+  if (f.v && f.v.wght) m = Math.max(m, f.v.wght[1]);
+  return Math.round(m);
+}
+function css2Url(f, w) {
+  const fam = encodeURIComponent(f.n).replace(/%20/g, '+');
+  if (!f.w || !f.w.length) return `https://fonts.googleapis.com/css2?family=${fam}&display=block`;
+  const spec = f.i ? `ital,wght@0,${w}` : `wght@${w}`;
+  return `https://fonts.googleapis.com/css2?family=${fam}:${spec}&display=block`;
+}
+const linkCache = new Map();
+/* The stylesheet has to finish parsing before document.fonts.load() can match
+   anything. Called too early it resolves with an empty list immediately rather
+   than waiting, which reads as "font failed" for every family. So: await the
+   <link> load event first, then ask for the face. */
+function linkFor(url) {
+  let p = linkCache.get(url);
+  if (p) return p;
+  p = new Promise(res => {
+    const l = document.createElement('link');
+    l.rel = 'stylesheet'; l.href = url;
+    let settled = false;
+    const done = ok => { if (!settled) { settled = true; res(ok); } };
+    l.onload = () => done(true);
+    l.onerror = () => done(false);
+    setTimeout(() => done(false), 12000);
+    document.head.appendChild(l);
+  });
+  linkCache.set(url, p);
+  return p;
+}
+async function ensureFont(f, w) {
+  if (!(await linkFor(css2Url(f, w)))) return false;
+  const ask = () => Promise.race([
+    document.fonts.load(`${w} 100px "${f.n}"`),
+    new Promise(r => setTimeout(() => r([]), 8000)),
+  ]);
+  try {
+    let got = await ask();
+    if (!got || !got.length) { await new Promise(r => setTimeout(r, 250)); got = await ask(); }
+    return !!(got && got.length);
+  } catch (e) { return false; }
+}
+
+/* ── Measurement ──────────────────────────────────────────────────────────────
+   Everything below is a number, not an opinion: set width, cap and x-height,
+   stem thickness, ink density, stroke contrast, counter area, and how much open
+   column is left at production tracking. These are the axes that do NOT need a
+   vision model, so they get computed exactly for every candidate.            */
+const EM = 200;
+const mc = document.createElement('canvas');
+const mx = mc.getContext('2d', { willReadFrequently: true });
+mc.width = 2400; mc.height = 600;
+
+function setF(ctx, name, w, px, lsPx) {
+  ctx.font = `${w} ${px}px "${name}"`;
+  ctx.letterSpacing = (lsPx || 0) + 'px';
+  ctx.textBaseline = 'alphabetic';
+  ctx.fillStyle = '#000';
+}
+function adv(name, w, str) { setF(mx, name, w, EM, 0); return mx.measureText(str).width / EM; }
+function ascentOf(name, w, ch) {
+  setF(mx, name, w, EM, 0);
+  const m = mx.measureText(ch);
+  return (m.actualBoundingBoxAscent || 0) / EM;
+}
+
+function raster(name, w, str, px, lsEm) {
+  setF(mx, name, w, px, (lsEm || 0) * px);
+  const width = Math.ceil(mx.measureText(str).width) + 60;
+  const height = Math.ceil(px * 2.2);
+  mc.width = Math.max(20, width); mc.height = height;
+  setF(mx, name, w, px, (lsEm || 0) * px);
+  mx.clearRect(0, 0, mc.width, mc.height);
+  mx.fillStyle = '#000';
+  mx.fillText(str, 30, Math.round(px * 1.5));
+  const img = mx.getImageData(0, 0, mc.width, mc.height);
+  return { a: img.data, W: mc.width, H: mc.height };
+}
+function bbox(r) {
+  let x0 = 1e9, y0 = 1e9, x1 = -1, y1 = -1, n = 0;
+  for (let y = 0; y < r.H; y++) for (let x = 0; x < r.W; x++) {
+    if (r.a[(y * r.W + x) * 4 + 3] > 40) { n++; if (x < x0) x0 = x; if (x > x1) x1 = x; if (y < y0) y0 = y; if (y > y1) y1 = y; }
+  }
+  return { x0, y0, x1, y1, n, w: x1 - x0 + 1, h: y1 - y0 + 1 };
+}
+function runsRow(r, y, x0, x1) {
+  const out = []; let start = -1;
+  for (let x = x0; x <= x1; x++) {
+    const on = r.a[(y * r.W + x) * 4 + 3] > 40;
+    if (on && start < 0) start = x;
+    if (!on && start >= 0) { out.push(x - start); start = -1; }
+  }
+  if (start >= 0) out.push(x1 - start + 1);
+  return out;
+}
+function runsCol(r, x, y0, y1) {
+  const out = []; let start = -1;
+  for (let y = y0; y <= y1; y++) {
+    const on = r.a[(y * r.W + x) * 4 + 3] > 40;
+    if (on && start < 0) start = y;
+    if (!on && start >= 0) { out.push(y - start); start = -1; }
+  }
+  if (start >= 0) out.push(y1 - start + 1);
+  return out;
+}
+/* Enclosed counter area of 'e' — background pixels unreachable from the border. */
+function counterRatio(name, w) {
+  const r = raster(name, w, 'e', 160, 0), b = bbox(r);
+  if (b.n < 10) return null;
+  const W = b.w, H = b.h, seen = new Uint8Array(W * H), q = [];
+  const isInk = (x, y) => r.a[((y + b.y0) * r.W + (x + b.x0)) * 4 + 3] > 40;
+  for (let x = 0; x < W; x++) { q.push([x, 0]); q.push([x, H - 1]); }
+  for (let y = 0; y < H; y++) { q.push([0, y]); q.push([W - 1, y]); }
+  while (q.length) {
+    const [x, y] = q.pop();
+    if (x < 0 || y < 0 || x >= W || y >= H) continue;
+    const i = y * W + x;
+    if (seen[i] || isInk(x, y)) continue;
+    seen[i] = 1;
+    q.push([x + 1, y], [x - 1, y], [x, y + 1], [x, y - 1]);
+  }
+  let enclosed = 0;
+  for (let y = 0; y < H; y++) for (let x = 0; x < W; x++) if (!seen[y * W + x] && !isInk(x, y)) enclosed++;
+  return enclosed / (W * H);
+}
+
+function measure(f, w, sample, trackEm) {
+  const n = f.n;
+  const capH = ascentOf(n, w, 'H') || null;
+  const xH = ascentOf(n, w, 'x') || null;
+  const capWidth = adv(n, w, 'HAMBURGEFONTSIV');
+  const lcWidth = adv(n, w, 'hamburgefontsiv');
+  const capsOnly = ['a','g','e','r'].every(c => Math.abs(adv(n, w, c) - adv(n, w, c.toUpperCase())) < 0.002);
+
+  /* stem thickness from 'H', measured across the middle of the cap */
+  let stemRatio = null;
+  const rh = raster(n, w, 'H', 200, 0), bh = bbox(rh);
+  if (bh.n > 20) {
+    /* Sample several rows in the upper half and keep the thinnest left-stem
+       reading. Rows that cross the crossbar merge both stems into a single run,
+       so requiring two runs rejects them; taking the minimum rejects any serif
+       bracketing near the cap line. */
+    for (let pct = 0.10; pct <= 0.38; pct += 0.03) {
+      const rr = runsRow(rh, Math.round(bh.y0 + bh.h * pct), bh.x0, bh.x1).filter(v => v > 1);
+      if (rr.length >= 2) {
+        const v = rr[0] / bh.h;
+        if (stemRatio == null || v < stemRatio) stemRatio = v;
+      }
+    }
+  }
+  /* stroke contrast from 'O': vertical stem vs horizontal stroke */
+  let contrast = null;
+  const ro = raster(n, w, 'O', 200, 0), bo = bbox(ro);
+  if (bo.n > 20) {
+    const vert = runsRow(ro, Math.round(bo.y0 + bo.h / 2), bo.x0, bo.x1).filter(v => v > 1);
+    const horz = runsCol(ro, Math.round(bo.x0 + bo.w / 2), bo.y0, bo.y1).filter(v => v > 1);
+    if (vert.length && horz.length) {
+      const v = (vert[0] + vert[vert.length - 1]) / 2, h = (horz[0] + horz[horz.length - 1]) / 2;
+      if (v > 0) contrast = Math.max(0, Math.min(1, 1 - h / v));
+    }
+  }
+  /* ink density and open-column ratio at production tracking */
+  let inkDensity = null, openColRatio = null, wordWidth = null;
+  const rs = raster(n, w, sample, 120, trackEm), bs = bbox(rs);
+  if (bs.n > 20) {
+    inkDensity = bs.n / (bs.w * bs.h);
+    let open = 0;
+    for (let x = bs.x0; x <= bs.x1; x++) {
+      let any = false;
+      for (let y = bs.y0; y <= bs.y1 && !any; y++) if (rs.a[(y * rs.W + x) * 4 + 3] > 40) any = true;
+      if (!any) open++;
+    }
+    openColRatio = open / bs.w;
+    wordWidth = adv(n, w, sample) + trackEm * (sample.length - 1);
+  }
+  return {
+    family: n, cat: f.c, lane: laneOf(f), pop: f.p || null, inGuide: !!f.d,
+    maxWeight: w, variable: !!(f.v && f.v.wght), widthAxis: !!(f.v && f.v.wdth),
+    trueItalic: !!f.i, capsOnly,
+    capHeight: capH, xHeight: xH, xRatio: (capH && xH) ? xH / capH : null,
+    capWidth, lcWidth, wordWidth,
+    stemRatio, inkDensity, contrast, counterRatio: counterRatio(n, w), openColRatio,
+  };
+}
+
+/* ── Contact sheets ───────────────────────────────────────────────────────────
+   White ground, one lane per sheet, fonts ordered by popularity within the lane
+   so like sits beside like. Each row: the wordmark at production size and
+   tracking, plus a trap line for figures and the letters that expose sloppy
+   drawing.                                                                    */
+const SHEET_W = 1500, HEAD_H = 52, SCALE = 2;
+const TRAP = 'Hamburgefontsiv 0123456789  I1lO0  RQGSae  &@';
+
+function drawSheet(lane, idx, rows, o) {
+  const ROW_H = o.dispPx + 72;
+  const H = HEAD_H + rows.length * ROW_H + 14;
+  const c = document.createElement('canvas');
+  c.width = SHEET_W * SCALE; c.height = H * SCALE;
+  const x = c.getContext('2d');
+  x.scale(SCALE, SCALE);
+  x.textBaseline = 'alphabetic';
+  x.fillStyle = '#fff'; x.fillRect(0, 0, SHEET_W, H);
+
+  x.fillStyle = '#111'; x.font = '600 16px Inter, sans-serif'; x.letterSpacing = '0px';
+  x.fillText(`${lane}  ·  sheet ${idx}`, 22, 32);
+  x.fillStyle = '#999'; x.font = '400 12px Inter, sans-serif';
+  const cond = `${o.dispPx}px · ${o.track}em · heaviest weight`;
+  x.fillText(cond, SHEET_W - 22 - x.measureText(cond).width, 32);
+  x.strokeStyle = '#111'; x.lineWidth = 1;
+  x.beginPath(); x.moveTo(0, HEAD_H - 8); x.lineTo(SHEET_W, HEAD_H - 8); x.stroke();
+
+  rows.forEach((m, i) => {
+    const top = HEAD_H + i * ROW_H;
+    if (i) { x.strokeStyle = '#e8e8e8'; x.beginPath(); x.moveTo(22, top); x.lineTo(SHEET_W - 22, top); x.stroke(); }
+
+    x.letterSpacing = '0px';
+    x.fillStyle = '#111'; x.font = '600 13px Inter, sans-serif';
+    x.fillText(`${i + 1}.  ${m.family}`, 22, top + 22);
+    x.fillStyle = '#999'; x.font = '400 11px Inter, sans-serif';
+    const meta = [
+      `w${m.maxWeight}`,
+      m.variable ? 'var' : 'static',
+      m.wordWidth ? `set ${m.wordWidth.toFixed(2)}em` : '',
+      m.xRatio ? `x/cap ${m.xRatio.toFixed(2)}` : '',
+      m.stemRatio ? `stem ${(m.stemRatio * 100).toFixed(1)}%` : '',
+      m.contrast != null ? `contrast ${m.contrast.toFixed(2)}` : '',
+      m.capsOnly ? 'CAPS-ONLY' : '',
+      m.pop ? `#${m.pop}` : '',
+    ].filter(Boolean).join('   ');
+    x.fillText(meta, SHEET_W - 22 - x.measureText(meta).width, top + 22);
+
+    /* wordmark line, auto-shrunk if it would run off the sheet */
+    let px = o.dispPx;
+    for (let guard = 0; guard < 40; guard++) {
+      x.font = `${m.maxWeight} ${px}px "${m.family}", sans-serif`;
+      x.letterSpacing = (o.track * px) + 'px';
+      if (x.measureText(o.sample).width <= SHEET_W - 48) break;
+      px -= 2;
+    }
+    x.fillStyle = '#111';
+    x.fillText(o.sample, 22, top + 34 + px * 0.86);
+
+    x.font = `${Math.min(m.maxWeight, 500)} 19px "${m.family}", sans-serif`;
+    x.letterSpacing = '0px';
+    x.fillStyle = '#444';
+    x.fillText(TRAP, 22, top + ROW_H - 16);
+  });
+  return { lane, index: idx, fonts: rows.map(r => r.family), canvas: c };
+}
+
+function appendSheet(s) {
+  const fig = document.createElement('figure');
+  const cap = document.createElement('figcaption');
+  cap.textContent = `${s.lane} · sheet ${s.index} · ${s.fonts.length} faces`;
+  const img = document.createElement('img');
+  img.src = s.canvas.toDataURL('image/jpeg', 0.86);
+  fig.append(cap, img); $('sheets').append(fig);
+}
+
+/* ── Run ── */
+async function run() {
+  stopped = false; metrics = []; sheets = []; $('sheets').innerHTML = ''; $('log').innerHTML = '';
+  const o = {
+    sample: ($('sample').value || 'SEASON TICKETS'),
+    dispPx: +$('dispPx').value || 62,
+    track: +$('track').value || 0,
+  };
+  const per = Math.max(4, +$('perSheet').value || 10);
+  $('btnRun').disabled = true; $('btnStop').disabled = false;
+
+  const groups = new Map();
+  candidates.forEach(f => { const l = laneOf(f); if (!groups.has(l)) groups.set(l, []); groups.get(l).push(f); });
+  const order = LANE_ORDER.filter(l => groups.has(l));
+  const total = candidates.length;
+  let done = 0, sheetNo = 0, failed = 0;
+  const t0 = performance.now();
+
+  for (const lane of order) {
+    if (stopped) break;
+    const list = groups.get(lane).sort((a, b) => (a.p || 9999) - (b.p || 9999));
+    log(`▸ ${lane} — ${list.length} faces`);
+    for (let i = 0; i < list.length; i += per) {
+      if (stopped) break;
+      const chunk = list.slice(i, i + per);
+      const ok = await Promise.all(chunk.map(f => ensureFont(f, maxW(f))));
+      sheetNo++;
+      const rows = [];
+      chunk.forEach((f, k) => {
+        done++;
+        if (!ok[k]) { failed++; log(`  ✗ ${f.n} — no webfont`, 'e'); metrics.push({ family: f.n, cat: f.c, lane, loaded: false }); return; }
+        let m;
+        try { m = measure(f, maxW(f), o.sample, o.track); }
+        catch (e) { failed++; log(`  ✗ ${f.n} — ${e.message}`, 'e'); metrics.push({ family: f.n, cat: f.c, lane, loaded: false, error: String(e.message) }); return; }
+        m.loaded = true; m.sheet = sheetNo; metrics.push(m); rows.push(m);
+      });
+      $('prog').style.width = (done / total * 100).toFixed(1) + '%';
+      $('status').textContent = `${done} / ${total} measured — ${lane}`;
+      if (rows.length) { const s = drawSheet(lane, sheetNo, rows, o); sheets.push(s); appendSheet(s); }
+      else sheetNo--;
+      await new Promise(r => setTimeout(r, 0));
+    }
+  }
+  const secs = ((performance.now() - t0) / 1000).toFixed(0);
+  log(`● done — ${done - failed} measured, ${failed} failed, ${sheets.length} sheets, ${secs}s`, 'ok');
+  $('status').textContent = `${done - failed} measured · ${failed} failed · ${sheets.length} sheets`;
+  $('btnRun').disabled = false; $('btnStop').disabled = true;
+  $('btnMetrics').disabled = $('btnBundle').disabled = $('btnPngs').disabled = !metrics.length;
+  window.__metrics = metrics; window.__sheets = sheets;
+}
+
+/* ── Exports ── */
+function conditions() {
+  return { sample: $('sample').value, dispPx: +$('dispPx').value, track: +$('track').value, perSheet: +$('perSheet').value };
+}
+function download(name, blob) {
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob); a.download = name;
+  document.body.append(a); a.click(); a.remove();
+  setTimeout(() => URL.revokeObjectURL(a.href), 4000);
+}
+function saveMetrics() {
+  download('metrics.json', new Blob([JSON.stringify({
+    generated: new Date().toISOString(), conditions: conditions(), count: metrics.length, metrics,
+  }, null, 1)], { type: 'application/json' }));
+}
+function saveBundle() {
+  const payload = {
+    generated: new Date().toISOString(), conditions: conditions(),
+    sheets: sheets.map(s => ({ lane: s.lane, index: s.index, fonts: s.fonts, jpeg: s.canvas.toDataURL('image/jpeg', 0.86) })),
+  };
+  download('sheets-bundle.json', new Blob([JSON.stringify(payload)], { type: 'application/json' }));
+}
+async function savePngs() {
+  for (const s of sheets) {
+    await new Promise(res => s.canvas.toBlob(b => { download(`sheet-${String(s.index).padStart(2, '0')}-${s.lane.replace(/[^a-z0-9]+/gi, '-').toLowerCase()}.png`, b); res(); }, 'image/png'));
+    await new Promise(r => setTimeout(r, 350));
+  }
+}
+
+/* ── Candidate selection ── */
+function refresh() {
+  const cats = [...$('cats').selectedOptions].map(o => o.value);
+  const want = $('verdict').value;
+  candidates = verdicts ? CAT.filter(f => {
+    if (!cats.includes(f.c)) return false;
+    const v = verdicts[f.n];
+    if (want === 'everything') return true;
+    if (!v) return false;
+    return want === 'all' ? true : v === want;
+  }) : [];
+  const per = Math.max(4, +$('perSheet').value || 10);
+  const groups = new Map();
+  candidates.forEach(f => { const l = laneOf(f); groups.set(l, (groups.get(l) || 0) + 1); });
+  let sheetCount = 0; groups.forEach(n => sheetCount += Math.ceil(n / per));
+  $('nCand').textContent = candidates.length;
+  $('nSans').textContent = candidates.filter(f => f.c === 'sans-serif').length;
+  $('nSerif').textContent = candidates.filter(f => f.c === 'serif').length;
+  $('nSheets').textContent = sheetCount;
+  $('btnRun').disabled = !candidates.length;
+  if (candidates.length) $('status').textContent = `Ready — ${candidates.length} candidates across ${groups.size} lanes.`;
+}
+function useVerdicts(v, label) {
+  verdicts = v;
+  $('src').textContent = `${label} — ${Object.keys(v).length} rated families`;
+  log(`Loaded verdicts: ${Object.keys(v).length} families (${label})`, 'ok');
+  refresh();
+}
+
+$('btnLocal').onclick = () => {
+  try {
+    const s = JSON.parse(localStorage.getItem('fontlab-v1') || '{}');
+    if (s.verdicts && Object.keys(s.verdicts).length) useVerdicts(s.verdicts, 'this browser');
+    else log('No verdicts in localStorage for this origin — load a backup JSON instead.', 'w');
+  } catch (e) { log('Could not read localStorage: ' + e.message, 'e'); }
+};
+$('btnFile').onclick = () => $('fileIn').click();
+$('fileIn').onchange = e => {
+  const f = e.target.files[0]; if (!f) return;
+  const r = new FileReader();
+  r.onload = () => {
+    try {
+      const j = JSON.parse(r.result);
+      if (j.verdicts) useVerdicts(j.verdicts, f.name);
+      else log('That file has no `verdicts` key.', 'e');
+    } catch (err) { log('Bad JSON: ' + err.message, 'e'); }
+  };
+  r.readAsText(f);
+};
+['cats', 'verdict', 'perSheet'].forEach(id => $(id).onchange = refresh);
+$('btnRun').onclick = run;
+$('btnStop').onclick = () => { stopped = true; };
+$('btnMetrics').onclick = saveMetrics;
+$('btnBundle').onclick = saveBundle;
+$('btnPngs').onclick = savePngs;
+
+log(`catalog.js loaded — ${CAT.length} families`);
+$('btnLocal').click();
+</script>
+</body>
+</html>

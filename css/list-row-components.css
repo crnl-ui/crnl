@@ -1,0 +1,1018 @@
+/* ============================================================
+   list-row-components.css
+   ============================================================
+   The list row and everything built on it: its slots and subcomponents, the selector wrapper, and the event row.
+
+   What's inside
+   - .list-row (+ .list-row-content, .list-row-text-pair, .not-tappable, .disabled)
+     — the three-slot row: leading → content → trailing
+   - .leading (+ gap modifiers), .leading-image-*, .leading-logo, .leading-icon,
+     .leading-payment, .circle-container, .select-box — leading-slot content
+   - .trailing (+ gap modifiers), .trailing-text-link, .trailing-text-pair — trailing-slot content
+   - .status-dot, .info-item, .info-block, .tag-group, .tag-brand-color, .switch,
+     .stepper — subcomponents that sit inside a row
+   - .list-divided — rows inside a card, hairline-separated, dividers bleeding
+     to both edges and padding square
+   - .selector (+ .is-selected, .is-disabled) — wraps a row to make it selectable
+   - .event-row (+ -top/-bottom/-logo/-label/-sublabel/-coming-soon), .event-row-list
+     — the buy-flow event card
+
+   Notes
+   - .tag itself lives in tag-chip-components.css; only .tag-brand-color is here.
+   - A tappable row is a .selector with a .surface-* + .scale-700 pair, not a
+     :hover rule. See RULES §2 and §3.
+   - Icons inside rows are <span class="icon icon-N">. See RULES §4.
+   ============================================================ */
+
+
+/* ============================================================
+   STATUS DOT
+   ============================================================
+   8px indicator circle for read/unread state.
+   
+   Variants:
+     .status-dot           → Unread (--status-info blue)
+     .status-dot.read      → Read (--neutral-200 grey)
+   
+   Usage:
+     <div class="status-dot"></div>
+     <div class="status-dot read"></div>
+   ============================================================ */
+
+.status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 48px;
+  background-color: var(--status-info);
+  flex-shrink: 0;
+}
+
+.status-dot.read {
+  background-color: var(--neutral-200);
+}
+
+
+/* ============================================================
+   INFO ITEM
+   ============================================================
+   Icon + optional label pair used inside Info Block.
+   24px icon, optional 12px label text.
+   
+   Variants:
+     .info-item              → Icon only (no label)
+     .info-item.has-label    → Icon + label with 4px gap
+   
+   Usage:
+     <div class="info-item">
+       <span class="icon icon-200">event_seat</span>
+     </div>
+     <div class="info-item has-label">
+       <span class="icon icon-200">receipt</span>
+       <span class="labelRegular10">Label</span>
+     </div>
+   
+   Pattern: In an Info Block, only the LAST item
+   shows its label — all others are icon-only.
+   ============================================================ */
+
+.info-item {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.info-item.has-label {
+  gap: var(--spacing-50); /* 4px */
+}
+
+
+/* ============================================================
+   INFO BLOCK
+   ============================================================
+   Wrapping row of 1–4 Info Items.
+   
+   Usage:
+     <div class="info-block">
+       <div class="info-item">
+         <span class="icon icon-200">event_seat</span>
+       </div>
+       <div class="info-item">
+         <span class="icon icon-200">confirmation_number</span>
+       </div>
+       <div class="info-item has-label">
+         <span class="icon icon-200">receipt</span>
+         <span class="labelRegular10">3 Items</span>
+       </div>
+     </div>
+   ============================================================ */
+
+.info-block {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: start;
+  gap: var(--spacing-100); /* 8px */
+}
+
+
+/* ============================================================
+   TAG (TEAM COLOR)
+   ============================================================
+   .tag and its icon-placement variants live in tag-chip-components.css.
+   Only .tag-brand-color is declared here — a list-row concern, not a tag concern.
+   ============================================================ */
+
+.tag.tag-brand-color {
+  background:
+    linear-gradient(var(--inverted-900), var(--inverted-900)),
+    linear-gradient(var(--color-interactive), var(--color-interactive));
+  color: var(--color-interactive);
+}
+
+.tag.tag-brand-color * {
+  color: inherit;
+}
+
+
+/* ============================================================
+   TAG GROUP
+   ============================================================
+   Flex row of 1–2 Tags with 8px gap.
+   
+   Usage:
+     <div class="tag-group">
+       <div class="tag"><span class="labelBold20">Label</span></div>
+       <div class="tag"><span class="labelBold20">Label</span></div>
+     </div>
+   ============================================================ */
+
+.tag-group {
+  display: flex;
+  align-items: start;
+  gap: var(--spacing-100); /* 8px */
+}
+
+
+/* ============================================================
+   SWITCH (WEB)
+   ============================================================
+   iOS-style toggle, 51×31px with 27px knob.
+   Uses native checkbox for accessibility.
+   
+   States driven by HTML attributes:
+     checked   → On (brand-interactive track)
+     disabled  → Muted (neutral-100 track, faded knob)
+   
+   Usage:
+     <div class="switch">
+       <input type="checkbox" id="switch-1">
+       <label for="switch-1"></label>
+     </div>
+     <div class="switch">
+       <input type="checkbox" id="switch-2" checked>
+       <label for="switch-2"></label>
+     </div>
+     <div class="switch">
+       <input type="checkbox" id="switch-3" disabled>
+       <label for="switch-3"></label>
+     </div>
+     <div class="switch">
+       <input type="checkbox" id="switch-4" checked disabled>
+       <label for="switch-4"></label>
+     </div>
+   ============================================================ */
+
+.switch {
+  position: relative;
+  width: 51px;
+  height: 31px;
+  flex-shrink: 0;
+}
+
+.switch input {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.switch label {
+  position: absolute;
+  inset: 0;
+  border-radius: 100px;
+  background: var(--neutral-200);
+  cursor: pointer;
+  transition: background 200ms ease;
+}
+
+.switch label::after {
+  content: '';
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 27px;
+  height: 27px;
+  border-radius: 100px;
+  background: var(--white-1000);
+  box-shadow: 0 0 0 0 rgba(0,0,0,0.04),
+              0 3px 8px 0 rgba(0,0,0,0.15),
+              0 3px 1px 0 rgba(0,0,0,0.06);
+  transition: left 200ms ease;
+}
+
+/* On (checked) */
+.switch input:checked + label {
+  background: var(--color-interactive);
+}
+
+.switch input:checked + label::after {
+  left: 22px; /* 51 - 27 - 2 */
+}
+
+/* Disabled */
+.switch input:disabled + label {
+  background: var(--neutral-100);
+  cursor: not-allowed;
+}
+
+.switch input:disabled + label::after {
+  background: var(--white-200);
+}
+
+
+/* ============================================================
+   LEADING SLOT
+   ============================================================
+   Left-side container for the List Row.
+   Flex container with align-items: center and
+   variant-specific padding-right as the gap
+   between leading content and main content.
+   
+   Base class + gap modifier + inner component.
+   
+   Gap modifiers:
+     .leading-gap-sm   → 8px  (Logo variants)
+     .leading-gap-md   → 12px (Icon, Circle, Select, etc)
+     .leading-gap-lg   → 16px (Square/Small image)
+     .leading-gap-xl   → 24px (Large image)
+   
+   Usage:
+     <div class="leading leading-gap-md">
+       <span class="icon icon-200">star</span>
+     </div>
+   ============================================================ */
+
+.leading {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.leading-gap-sm  { padding-right: 8px; }
+.leading-gap-md  { padding-right: 12px; }
+.leading-gap-lg  { padding-right: 16px; }
+.leading-gap-xl  { padding-right: 24px; }
+
+
+/* ============================================================
+   CIRCLE CONTAINER
+   ============================================================
+   40px neutral circle shared by Circle Icon
+   and Circle Letter leading variants.
+   
+   Usage:
+     <div class="circle-container">
+       <span class="icon icon-200">star</span>
+     </div>
+     <div class="circle-container">
+       <span class="display100">A</span>
+     </div>
+   ============================================================ */
+
+.circle-container {
+  width: 40px;
+  height: 40px;
+  border-radius: 48px;
+  background: var(--neutral-100);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+
+/* ============================================================
+   SELECT BOX
+   ============================================================
+   28px checkbox square used in leading slot
+   for multi-select / edit modes.
+   
+   Usage:
+     <div class="select-box"></div>
+   ============================================================ */
+
+.select-box {
+  width: 28px;
+  height: 28px;
+  border-radius: var(--border-radius-50); /* 4px */
+  border: 1px solid var(--neutral-300);
+  flex-shrink: 0;
+}
+
+
+/* ============================================================
+   LEADING IMAGES
+   ============================================================
+   Three image sizes for leading slot.
+   All use object-fit: cover and 8px radius.
+   
+   Usage:
+     <img class="leading-image-square" src="..." alt="">
+     <img class="leading-image-small" src="..." alt="">
+     <img class="leading-image-large" src="..." alt="">
+   ============================================================ */
+
+.leading-image-square {
+  width: 80px;
+  height: 80px;
+  border-radius: var(--border-radius-100); /* 8px */
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.leading-image-small {
+  width: 136px;
+  height: 80px;
+  border-radius: var(--border-radius-100); /* 8px */
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.leading-image-large {
+  width: 244px;
+  height: 124px;
+  border-radius: var(--border-radius-100); /* 8px */
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+
+/* ============================================================
+   LEADING LOGO
+   ============================================================
+   48x48 brand logo in leading slot.
+   Automatically renders the active theme's logo
+   via --brand-logo-url (set per [data-theme]).
+   No src or img tag needed — just a div.
+   
+   Usage:
+     <div class="leading leading-gap-sm">
+       <div class="leading-logo" role="img" aria-label="Brand logo"></div>
+     </div>
+   ============================================================ */
+
+.leading-logo {
+  width: 48px;
+  height: 48px;
+  background-image: var(--brand-logo-url);
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  flex-shrink: 0;
+}
+
+
+/* ============================================================
+   LEADING PAYMENT
+   ============================================================
+   Payment card icon (e.g. Visa, Mastercard).
+   
+   Usage:
+     <img class="leading-payment" src="..." alt="">
+   ============================================================ */
+
+/* --- Leading icon — circular icon container in the leading slot ---
+   The icon counterpart to the image, logo and payment leading variants.
+   Pair with an `.icon` glyph:
+
+     <div class="leading leading-gap-md">
+       <div class="leading-icon"><span class="icon icon-300">confirmation_number</span></div>
+     </div>
+*/
+.leading-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--neutral-100);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.leading-payment {
+  width: 33px;
+  height: 24px;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+
+/* ============================================================
+   TRAILING SLOT
+   ============================================================
+   Right-side container for the List Row.
+   Flex container with align-items: center,
+   justify-content: flex-end, and variant-specific
+   padding-left as the gap from main content.
+   
+   Gap modifiers:
+     .trailing-gap-xs   → 2px  (Icon variants)
+     .trailing-gap-sm   → 4px  (Text Pair)
+     .trailing-gap-md   → 8px  (Text Link)
+     .trailing-gap-lg   → 12px (Button)
+   
+   Usage:
+     <div class="trailing trailing-gap-xs">
+       <span class="icon icon-200">chevron_right</span>
+     </div>
+   ============================================================ */
+
+.trailing {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  flex-shrink: 0;
+}
+
+.trailing-gap-xs  { padding-left: 2px; }
+.trailing-gap-sm  { padding-left: 4px; }
+.trailing-gap-md  { padding-left: 8px; }
+.trailing-gap-lg  { padding-left: 12px; }
+
+
+/* ============================================================
+   TRAILING TEXT LINK (CHIP)
+   ============================================================
+   Borderless text action, 32px height.
+   Transparent background, 12px horizontal padding.
+   
+   Usage:
+     <div class="trailing trailing-gap-md">
+       <span class="trailing-text-link labelBold20">Label</span>
+     </div>
+   ============================================================ */
+
+.trailing-text-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 32px;
+  padding: 0 12px;
+  border-radius: var(--border-radius-50); /* 4px */
+  background: transparent;
+  cursor: pointer;
+}
+
+
+/* ============================================================
+   TRAILING TEXT PAIR
+   ============================================================
+   Right-aligned label + sublabel pair.
+   1px gap between lines.
+   
+   Usage:
+     <div class="trailing trailing-gap-sm">
+       <div class="trailing-text-pair">
+         <span class="labelBold20">Label</span>
+         <span class="labelRegular10 text-secondary">Sublabel</span>
+       </div>
+     </div>
+   ============================================================ */
+
+.trailing-text-pair {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 1px;
+  text-align: right;
+  white-space: nowrap;
+}
+
+
+/* ============================================================
+   STEPPER (WEB)
+   ============================================================
+   Quantity selector: minus button, count, plus button.
+   40px circle buttons with neutral-300 border.
+   Count uses labelBold50 (20px) in a 32px-wide area.
+   
+   At min value, minus button gets .disabled class
+   (border fades to neutral-100, no pointer).
+   At max value, plus button gets .disabled class.
+   
+   Usage:
+     <div class="stepper">
+       <button class="stepper-btn disabled">
+         <span class="icon icon-200">remove</span>
+       </button>
+       <span class="stepper-count labelBold50">0</span>
+       <button class="stepper-btn">
+         <span class="icon icon-200">add</span>
+       </button>
+     </div>
+   ============================================================ */
+
+.stepper {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-100); /* 8px */
+}
+
+.stepper-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 100px;
+  border: 1px solid var(--neutral-300);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  background: transparent;
+  color: var(--text-primary);
+  flex-shrink: 0;
+}
+
+.stepper-btn.disabled {
+  border-color: var(--neutral-100);
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.stepper-btn.disabled .icon {
+  opacity: 0.3;
+}
+
+.stepper-count {
+  width: 32px;
+  text-align: center;
+  flex-shrink: 0;
+}
+
+
+/* ============================================================
+   LIST ROW (PARENT)
+   ============================================================
+   Composable row with 3-slot architecture:
+   Leading → Main Content → Trailing
+   
+   States:
+     .list-row                → Default (tappable)
+     .list-row.not-tappable   → No pointer cursor
+     .list-row.disabled       → 30% opacity, no interaction
+   
+   Main content stacks Text Pair, Tag Group,
+   and Info Block vertically with 8px gap.
+   Any section can be omitted.
+   
+   Usage:
+     <div class="list-row">
+       <div class="leading leading-gap-md">
+         <span class="icon icon-200">star</span>
+       </div>
+       <div class="list-row-content">
+         <div class="list-row-text-pair">
+           <span class="labelBold30">Label</span>
+           <span class="labelRegular10 text-secondary">Sublabel</span>
+         </div>
+         <div class="tag-group">
+           <div class="tag"><span class="labelBold20">Tag</span></div>
+         </div>
+         <div class="info-block">
+           <div class="info-item has-label">
+             <span class="icon icon-200">event_seat</span>
+             <span class="labelRegular10">Label</span>
+           </div>
+         </div>
+       </div>
+       <div class="trailing trailing-gap-xs">
+         <span class="icon icon-200">chevron_right</span>
+       </div>
+     </div>
+   ============================================================ */
+
+.list-row {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  cursor: pointer;
+}
+
+.list-row.not-tappable {
+  cursor: default;
+}
+
+
+/* ============================================================
+   DIVIDED LIST
+   ============================================================
+   Rows inside a card, separated by hairlines.
+
+   The system used to leave this to the page, and design-guide § Row container
+   told you to define `.row-wrap` yourself — so every screen invented it, and
+   invented it the same way: padding on a *wrapper* around each row, which
+   insets the divider so it stops short of the card's edges. A divider inside a
+   card reaches both edges or it reads as a mistake.
+
+   So the padding goes on the row and the hairline goes under it, and the
+   container carries neither. The row already spans the full width, so its
+   border does too.
+
+   Padding is symmetric — 16px on every side. A card section with less room
+   above and below than at the sides reads as squeezed, and the system's own
+   sections (.card-closed-header at 20px, -body and -footer at 24px) are all
+   square for the same reason.
+
+     <div class="card-closed">
+       <div class="list-divided">
+         <div class="list-row surface-section">…</div>
+         <div class="list-row surface-section">…</div>
+       </div>
+     </div>
+
+   `surface-section` on each row gives it hover and press without a scale —
+   scaling one row of a stack looks wrong (RULES §3). For rows that should read
+   as separate objects rather than bands of one card, use .list-gap /
+   .list-gap-tight instead and let space do the separating; what you must not
+   do is stack rows with neither, which slams them together.
+   ============================================================ */
+
+.list-divided {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.list-divided > .list-row {
+  padding: var(--spacing-200); /* 16px, square */
+  border-bottom: var(--border-weight-100) solid var(--neutral-200);
+}
+
+.list-divided > .list-row:last-child {
+  border-bottom: none;
+}
+
+.list-row.disabled {
+  opacity: 0.3;
+  pointer-events: none;
+}
+
+.list-row.disabled .select-box {
+  background: var(--neutral-200);
+}
+
+/* Leading/Trailing stretch full row height */
+.list-row > .leading,
+.list-row > .trailing {
+  align-self: stretch;
+}
+
+
+/* ============================================================
+   LIST ROW CONTENT
+   ============================================================
+   Center column that holds Text Pair, Tags,
+   and Info Block stacked with 8px gap.
+   flex: 1 so it fills available space.
+   ============================================================ */
+
+.list-row-content {
+  flex: 1 0 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-100); /* 8px */
+  justify-content: center;
+  min-width: 0;
+  min-height: 0;
+}
+
+
+/* ============================================================
+   LIST ROW TEXT PAIR
+   ============================================================
+   Label + sublabel with 2px gap.
+   Label: .labelBold30 (16px Semi-Bold)
+   Sublabel: .labelRegular10 (12px Regular)
+   
+   Usage:
+     <div class="list-row-text-pair">
+       <span class="labelBold30">Label</span>
+       <span class="labelRegular10 text-secondary">Sublabel</span>
+     </div>
+   ============================================================ */
+
+.list-row-text-pair {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  width: 100%;
+}
+
+
+/* ============================================================
+   SELECTOR
+   ============================================================
+   A clickable container that wraps a list row
+   to make it a selectable item.
+
+   Structural class only — compose with a surface
+   token and scale-700 for interaction behavior.
+
+   Two variants:
+   - surface-washNeutral  →  nearly transparent at rest
+                             use inside cards / on --bg-surface
+   - surface-card         →  --bg-surface at rest (looks like a card)
+                             use on --bg-base (page background)
+
+   Usage:
+     <div class="selector surface-washNeutral scale-700">
+       <div class="list-row">...</div>
+     </div>
+
+     <div class="selector surface-card scale-700">
+       <div class="list-row">...</div>
+     </div>
+
+     <div class="selector surface-washNeutral scale-700 is-selected">
+       <div class="list-row">...</div>
+     </div>
+
+     <div class="selector surface-washNeutral is-disabled">
+       <div class="list-row">...</div>
+     </div>
+
+   Notes:
+   - .selector handles its own 16px padding — do not add
+     a padding wrapper around it.
+   - The surface class provides hover/press bg behavior.
+   - scale-700 provides the expand-hover / shrink-press transform.
+   - Sublabel .text-secondary color is automatically overridden
+     in selected state so all text stays readable.
+   ============================================================ */
+
+.selector {
+  border-radius: var(--border-radius-200);   /* 16px */
+  padding: var(--spacing-200);               /* 16px all sides */
+  box-sizing: border-box;
+}
+
+/* Selected — overrides surface hover/press backgrounds (works with washNeutral and card) */
+.selector.is-selected,
+.selector.is-selected:hover,
+.selector.is-selected:active {
+  background: var(--neutral-1000);
+  color: var(--inverted-1000);
+}
+
+/* All children inherit the inverted color (overrides .labelBold30, etc.) */
+.selector.is-selected * {
+  color: inherit;
+}
+
+/* .text-secondary uses !important in text-styles-system.css — must match to override */
+.selector.is-selected .text-secondary {
+  color: var(--inverted-700) !important;
+}
+
+/* Cancel the text opacity dim that surface:active applies (both washNeutral and card set opacity: 0.6) */
+.selector.is-selected:active * {
+  opacity: 1;
+}
+
+/* Disabled */
+.selector.is-disabled {
+  opacity: 0.25;
+  pointer-events: none;
+  cursor: default;
+}
+
+
+/* ============================================================
+   EVENT ROW LOGO
+   ============================================================
+   48×48 opposing team logo for buy-flow event rows.
+   Logos are SVGs from content/assets/crests/ (opponent.logo asset id)
+   with internal padding — always use object-fit: contain.
+
+   Usage:
+     <img class="event-row-logo" src="{opponent.logoUrl}" alt="{opponent.name}">
+   ============================================================ */
+
+.event-row-logo {
+  width: 48px;
+  height: 48px;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+
+/* ============================================================
+   EVENT ROW
+   ============================================================
+   Buy-flow card for a single game event.
+   Opposing team logo + event info + offer state.
+
+   Structure:
+     .event-row                     → structural wrapper only (16px radius, no background)
+     .event-row-top                 → always present; logo, text, trailing action
+     .event-row-bottom (optional)   → offer summary link; include when offers exist
+
+   Interactive surface:
+     .event-row has background built in (--org-surface). No surface class needed on wrapper.
+     Add surface-section to any section that is interactive. Non-interactive sections get none.
+     No scale — only one section of the card unit is interactive at a time.
+
+     Featured Only:       .event-row-top surface-section   ← tappable (buy)
+     Featured + Others:   .event-row-top surface-section   ← tappable (buy)
+                          .event-row-bottom surface-section ← tappable (more offers)
+     No Featured Offers:  .event-row-top                   ← NOT interactive
+                          .event-row-bottom surface-section ← tappable (offers)
+     Sold Out / Coming Soon: no surface-section anywhere
+
+   Offer states (trailing content varies):
+     Featured Only       → .btn.btn-primary.btn-100 trailing (one offer price)
+     Featured + Others   → button top + .event-row-bottom with offer count
+     No Featured Offers  → no trailing top + .event-row-bottom with offer count
+     Sold Out            → "Sold Out" text trailing (.text-secondary)
+     Coming Soon         → "Coming Soon" text trailing (.event-row-coming-soon)
+
+   Label/sublabel scale up at ≥500px:
+     Mobile:   event-row-label = labelBold30 (16px/600)
+     Tablet+:  event-row-label = title50 (20px/700)
+
+   Padding:
+     Mobile:   top p-16px, bottom px-16px py-12px
+     Tablet+:  both px-24px py-16px
+
+   Data binding (content/opponents.json):
+     logo  → opposingTeam.logo.asset->url
+     label → opposingTeam.name (or shortName)
+     date  → event.date formatted as "Day, Mon D · H PM"
+
+   Usage:
+     <!-- Featured Only — nothing on the wrapper, surface-section on the interactive section -->
+     <div class="event-row">
+       <div class="event-row-top surface-section">
+         <div class="list-row">
+           <div class="leading leading-gap-sm">
+             <img class="event-row-logo" src="{logoUrl}" alt="{name}">
+           </div>
+           <div class="list-row-content">
+             <div class="list-row-text-pair">
+               <span class="event-row-label">Portland Marmots</span>
+               <span class="event-row-sublabel text-secondary">Tuesday, Oct 8 · 7 PM</span>
+             </div>
+           </div>
+           <div class="trailing trailing-gap-lg">
+             <button class="btn btn-primary btn-100">$19+</button>
+           </div>
+         </div>
+       </div>
+     </div>
+
+     <!-- Featured and Others — surface-section on each interactive section -->
+     <div class="event-row">
+       <div class="event-row-top surface-section">
+         <div class="list-row">...logo + text + button...</div>
+       </div>
+       <div class="event-row-bottom surface-section">
+         <div class="list-row">
+           <div class="list-row-content">
+             <div class="list-row-text-pair">
+               <span class="labelBold30 text-interactive-tertiary">3 Additional Offers</span>
+             </div>
+           </div>
+           <div class="trailing trailing-gap-xs">
+             <span class="icon icon-300">arrow_drop_down</span>
+           </div>
+         </div>
+       </div>
+     </div>
+
+     <!-- No Featured Offers — top NOT interactive (no surface class), bottom has surface-section -->
+     <div class="event-row">
+       <div class="event-row-top">
+         <div class="list-row not-tappable">...logo + text...</div>
+       </div>
+       <div class="event-row-bottom surface-section">
+         <div class="list-row">...<span>3 Offers Available</span>...</div>
+       </div>
+     </div>
+
+     <!-- Sold Out / Coming Soon — no interactive sections, no surface class anywhere -->
+     <!-- Trailing: <span class="labelBold30 text-secondary">Sold Out</span> -->
+     <!-- Trailing: <span class="labelBold20 text-interactive-tertiary event-row-coming-soon">Coming Soon</span> -->
+     <div class="event-row">
+       <div class="event-row-top">
+         <div class="list-row not-tappable">...</div>
+       </div>
+     </div>
+   ============================================================ */
+
+.event-row {
+  background: var(--org-surface); /* card background — intrinsic, not a modifier */
+  border-radius: var(--border-radius-200); /* 16px */
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.event-row-top {
+  padding: var(--spacing-200); /* 16px */
+}
+
+.event-row-bottom {
+  padding: var(--spacing-150) var(--spacing-200); /* 12px 16px */
+  border-top: 0.33px solid var(--border-default);
+}
+
+@media (min-width: 500px) {
+  .event-row-top,
+  .event-row-bottom {
+    padding: var(--spacing-200) var(--spacing-300); /* 16px 24px */
+  }
+}
+
+/* Responsive label: labelBold30 (mobile) → title50 (tablet/desktop) */
+.event-row-label {
+  font-family: 'Inter', sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.21;
+  letter-spacing: -0.02em;
+  color: var(--text-primary);
+}
+
+@media (min-width: 500px) {
+  .event-row-label {
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+  }
+}
+
+/* Responsive sublabel: labelRegular10 (mobile) → labelRegular20 (tablet/desktop) */
+.event-row-sublabel {
+  font-family: 'Inter', sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1.21;
+  letter-spacing: -0.02em;
+}
+
+@media (min-width: 500px) {
+  .event-row-sublabel {
+    font-size: 14px;
+  }
+}
+
+/* Coming Soon — right-aligned, wraps to two lines on narrow screens */
+.event-row-coming-soon {
+  text-align: right;
+  white-space: normal;
+  max-width: var(--spacing-800); /* 64px */
+}
+
+
+/* ============================================================
+   EVENT ROW LIST
+   ============================================================
+   Container that stacks event rows with 8px gap
+   and responsive max-width constraints.
+
+   Phone (<500px):  max-width 499px, 16px padding
+   Tablet/Desktop:  max-width 672px, 16px padding
+
+   Usage:
+     <div class="event-row-list">
+       <div class="event-row">...</div>
+       <div class="event-row">...</div>
+     </div>
+   ============================================================ */
+
+.event-row-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-100); /* 8px */
+  padding: var(--spacing-200); /* 16px */
+  width: 100%;
+  max-width: 499px;
+  box-sizing: border-box;
+}
+
+@media (min-width: 500px) {
+  .event-row-list {
+    max-width: 672px;
+  }
+}

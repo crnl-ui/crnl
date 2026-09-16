@@ -1,0 +1,446 @@
+/* ============================================================
+   interactive-tokens.css
+   ============================================================
+   Surface and scale classes that give any element its hover and pressed states.
+
+   What's inside
+   - .surface-fill{Neutral|Color|Inverted|Black|White} — filled surfaces
+   - .surface-border{Neutral|Inverted|Black|White} — outlined surfaces
+   - .surface-washNeutral, .surface-ghost, .surface-card — low-emphasis surfaces
+   - .surface-section — one band of a card already divided by hairlines; it has
+     a container contract the others don't, documented at the rule below
+   - .scale-{700|500|300} — expand-on-hover / shrink-on-press transforms
+
+   Notes
+   - A surface token gives themed default/hover/pressed fill and border; a scale
+     token adds the transform. They compose freely — any surface with any scale:
+       <div class="surface-fillColor scale-500">Buy Tickets</div>
+       <div class="surface-borderNeutral scale-700">Card</div>
+   - Anything tappable takes a surface + scale pair instead of a hand-written
+     :hover / :active. See RULES §2 and §3.
+   ============================================================ */
+
+
+/* ============================================================
+   INTERACTIVE SURFACE TOKENS
+   ============================================================
+   Each token defines background, border, and text-opacity across
+   Default → Hover → Pressed.
+
+   Hover/Pressed backgrounds use stacked linear-gradients to layer multiple
+   solid colors (replicating Figma's multi-fill layering).
+
+   Pressed states reduce child text opacity to 60%.
+   ============================================================ */
+
+
+/* --- Fill - Neutral ---
+   Default:  neutral-1000 fill, no border
+   Hover:    inverted-200 over neutral-1000
+   Pressed:  black-500 over neutral-1000, 60% text
+   ------------------------------------------------------------ */
+.surface-fillNeutral {
+  background: var(--neutral-1000);
+  border: none;
+  color: var(--inverted-1000);
+  transition: background 120ms ease;
+  cursor: pointer;
+}
+.surface-fillNeutral:hover {
+  background:
+    linear-gradient(var(--inverted-200), var(--inverted-200)),
+    linear-gradient(var(--neutral-1000), var(--neutral-1000));
+}
+.surface-fillNeutral:active {
+  background:
+    linear-gradient(var(--black-500), var(--black-500)),
+    linear-gradient(var(--neutral-1000), var(--neutral-1000));
+}
+.surface-fillNeutral:active > * { opacity: 0.6; }
+
+
+/* --- Fill - Color ---
+   Default:  brand-core fill, no border
+   Hover:    white-300 over brand-core
+   Pressed:  black-300 over brand-core, 60% text
+   ------------------------------------------------------------ */
+.surface-fillColor {
+  background: var(--brand-core);
+  border: none;
+  color: var(--white-1000);
+  transition: background 120ms ease;
+  cursor: pointer;
+}
+.surface-fillColor:hover {
+  background:
+    linear-gradient(var(--white-300), var(--white-300)),
+    linear-gradient(var(--brand-core), var(--brand-core));
+}
+.surface-fillColor:active {
+  background:
+    linear-gradient(var(--black-300), var(--black-300)),
+    linear-gradient(var(--brand-core), var(--brand-core));
+}
+.surface-fillColor:active > * { opacity: 0.6; }
+
+
+/* --- Fill - Inverted ---
+   Default:  inverted-1000 fill, no border
+   Hover:    neutral-200 over inverted-1000
+   Pressed:  black-500 over inverted-1000, 60% text
+   ------------------------------------------------------------ */
+.surface-fillInverted {
+  background: var(--inverted-1000);
+  border: none;
+  color: var(--neutral-1000);
+  transition: background 120ms ease;
+  cursor: pointer;
+}
+.surface-fillInverted:hover {
+  background:
+    linear-gradient(var(--neutral-200), var(--neutral-200)),
+    linear-gradient(var(--inverted-1000), var(--inverted-1000));
+}
+.surface-fillInverted:active {
+  background:
+    linear-gradient(var(--black-500), var(--black-500)),
+    linear-gradient(var(--inverted-1000), var(--inverted-1000));
+}
+.surface-fillInverted:active > * { opacity: 0.6; }
+
+
+/* --- Fill - Black ---
+   Default:  black-1000 fill, no border
+   Hover:    white-300 over black-1000
+   Pressed:  black-1000 (no overlay), 60% text
+   ------------------------------------------------------------ */
+.surface-fillBlack {
+  background: var(--black-1000);
+  border: none;
+  color: var(--white-1000);
+  transition: background 120ms ease;
+  cursor: pointer;
+}
+.surface-fillBlack:hover {
+  background:
+    linear-gradient(var(--white-300), var(--white-300)),
+    linear-gradient(var(--black-1000), var(--black-1000));
+}
+.surface-fillBlack:active {
+  background: var(--black-1000);
+}
+.surface-fillBlack:active > * { opacity: 0.6; }
+
+
+/* --- Fill - White ---
+   Default:  white-1000 fill, no border
+   Hover:    black-200 over white-1000
+   Pressed:  black-500 over white-1000, 60% text
+   ------------------------------------------------------------ */
+.surface-fillWhite {
+  background: var(--white-1000);
+  border: none;
+  color: var(--black-1000);
+  transition: background 120ms ease;
+  cursor: pointer;
+}
+.surface-fillWhite:hover {
+  background:
+    linear-gradient(var(--black-200), var(--black-200)),
+    linear-gradient(var(--white-1000), var(--white-1000));
+}
+.surface-fillWhite:active {
+  background:
+    linear-gradient(var(--black-500), var(--black-500)),
+    linear-gradient(var(--white-1000), var(--white-1000));
+}
+.surface-fillWhite:active > * { opacity: 0.6; }
+
+
+/* --- Border - Neutral ---
+   Default:  transparent fill, neutral-300 border
+   Hover:    neutral-100 fill, neutral-200 border
+   Pressed:  black-300 fill, neutral-200 border, 60% text
+   ------------------------------------------------------------ */
+.surface-borderNeutral {
+  background: var(--neutral-000);
+  border: 1px solid var(--neutral-300);
+  color: var(--text-primary);
+  transition: background 120ms ease, border-color 120ms ease;
+  cursor: pointer;
+}
+.surface-borderNeutral:hover {
+  background:
+    linear-gradient(var(--neutral-100), var(--neutral-100)),
+    linear-gradient(var(--neutral-000), var(--neutral-000));
+  border-color: var(--neutral-200);
+}
+.surface-borderNeutral:active {
+  background:
+    linear-gradient(var(--black-300), var(--black-300)),
+    linear-gradient(var(--neutral-000), var(--neutral-000));
+  border-color: var(--neutral-200);
+}
+.surface-borderNeutral:active > * { opacity: 0.6; }
+
+
+/* --- Border - Inverted ---
+   Default:  transparent fill, inverted-300 border
+   Hover:    inverted-100 fill, inverted-200 border
+   Pressed:  black-300 fill, inverted-200 border, 60% text
+   ------------------------------------------------------------ */
+.surface-borderInverted {
+  background: var(--neutral-000);
+  border: 1px solid var(--inverted-300);
+  color: var(--text-primary);
+  transition: background 120ms ease, border-color 120ms ease;
+  cursor: pointer;
+}
+.surface-borderInverted:hover {
+  background:
+    linear-gradient(var(--inverted-100), var(--inverted-100)),
+    linear-gradient(var(--neutral-000), var(--neutral-000));
+  border-color: var(--inverted-200);
+}
+.surface-borderInverted:active {
+  background:
+    linear-gradient(var(--black-300), var(--black-300)),
+    linear-gradient(var(--neutral-000), var(--neutral-000));
+  border-color: var(--inverted-200);
+}
+.surface-borderInverted:active > * { opacity: 0.6; }
+
+
+/* --- Border - Black ---
+   Default:  transparent fill, black-300 border
+   Hover:    black-100 fill, black-200 border
+   Pressed:  black-300 fill, black-200 border, 60% text
+   ------------------------------------------------------------ */
+.surface-borderBlack {
+  background: var(--neutral-000);
+  border: 1px solid var(--black-300);
+  color: var(--text-primary);
+  transition: background 120ms ease, border-color 120ms ease;
+  cursor: pointer;
+}
+.surface-borderBlack:hover {
+  background:
+    linear-gradient(var(--black-100), var(--black-100)),
+    linear-gradient(var(--neutral-000), var(--neutral-000));
+  border-color: var(--black-200);
+}
+.surface-borderBlack:active {
+  background:
+    linear-gradient(var(--black-300), var(--black-300)),
+    linear-gradient(var(--neutral-000), var(--neutral-000));
+  border-color: var(--black-200);
+}
+.surface-borderBlack:active > * { opacity: 0.6; }
+
+
+/* --- Border - White ---
+   Default:  transparent fill, black-300 border
+   Hover:    white-200 fill, white-200 border
+   Pressed:  black-300 fill, white-200 border, 60% text
+   ------------------------------------------------------------ */
+.surface-borderWhite {
+  background: var(--neutral-000);
+  border: 1px solid var(--black-300);
+  color: var(--text-primary);
+  transition: background 120ms ease, border-color 120ms ease;
+  cursor: pointer;
+}
+.surface-borderWhite:hover {
+  background:
+    linear-gradient(var(--white-200), var(--white-200)),
+    linear-gradient(var(--neutral-000), var(--neutral-000));
+  border-color: var(--white-200);
+}
+.surface-borderWhite:active {
+  background:
+    linear-gradient(var(--black-300), var(--black-300)),
+    linear-gradient(var(--neutral-000), var(--neutral-000));
+  border-color: var(--white-200);
+}
+.surface-borderWhite:active > * { opacity: 0.6; }
+
+
+/* --- Wash - Neutral ---
+   Default:  neutral-100 fill, no border
+   Hover:    neutral-100 over neutral-100
+   Pressed:  black-300 over neutral-100, 60% text
+   ------------------------------------------------------------ */
+.surface-washNeutral {
+  background: var(--neutral-100);
+  border: none;
+  color: var(--text-primary);
+  transition: background 120ms ease;
+  cursor: pointer;
+}
+.surface-washNeutral:hover {
+  background:
+    linear-gradient(var(--neutral-100), var(--neutral-100)),
+    linear-gradient(var(--neutral-100), var(--neutral-100));
+}
+.surface-washNeutral:active {
+  background:
+    linear-gradient(var(--black-300), var(--black-300)),
+    linear-gradient(var(--neutral-100), var(--neutral-100));
+}
+.surface-washNeutral:active > * { opacity: 0.6; }
+
+
+/* --- Ghost ---
+   Default:  transparent fill, no border
+   Hover:    neutral-100 over transparent
+   Pressed:  black-300 over transparent, 60% text
+   ------------------------------------------------------------ */
+.surface-ghost {
+  background: var(--neutral-000);
+  border: none;
+  color: var(--text-primary);
+  transition: background 120ms ease;
+  cursor: pointer;
+}
+.surface-ghost:hover {
+  background:
+    linear-gradient(var(--neutral-100), var(--neutral-100)),
+    linear-gradient(var(--neutral-000), var(--neutral-000));
+}
+.surface-ghost:active {
+  background:
+    linear-gradient(var(--black-300), var(--black-300)),
+    linear-gradient(var(--neutral-000), var(--neutral-000));
+}
+.surface-ghost:active > * { opacity: 0.6; }
+
+
+/* --- Card ---
+   Default:  org-surface fill, no border
+   Hover:    white-100 over org-surface
+   Pressed:  black-300 over org-surface, 60% text
+   ------------------------------------------------------------ */
+.surface-card {
+  background: var(--org-surface);
+  border: none;
+  color: var(--text-primary);
+  transition: background 120ms ease;
+  cursor: pointer;
+}
+.surface-card:hover {
+  background:
+    linear-gradient(var(--white-100), var(--white-100)),
+    linear-gradient(var(--org-surface), var(--org-surface));
+}
+.surface-card:active {
+  background:
+    linear-gradient(var(--black-300), var(--black-300)),
+    linear-gradient(var(--org-surface), var(--org-surface));
+}
+.surface-card:active > * { opacity: 0.6; }
+
+
+/* --- Section (one band of a divided card) ---
+   Default:  transparent — inherits the parent card's background
+   Hover:    white-100 overlay — same intensity as surface-card hover
+   Pressed:  black-300 overlay, 60% direct-child opacity
+
+   A *section* is one band of a card that is already divided by hairlines — the
+   shape .card-closed-header / -body / -footer make, each separated by
+   `var(--border-weight-100) solid var(--neutral-200)`. It is NOT a floating box
+   inside a padded container; mocked up that way it looks like nothing at rest,
+   because transparency is the point: the band is invisible until hovered, then
+   washes edge to edge, which reads as "this row of the card is tappable"
+   rather than "there is a button in here".
+
+   That only works if the container holds up its end:
+     - the section spans the card's full width — no margin, no inset, or the
+       wash reads as a floating button instead of a band
+     - the card is a real card (--bg-surface against --bg-base); on the page
+       background there is nothing to be transparent against
+     - its neighbours are divided by a --neutral-200 hairline, or it is plainly
+       one of several bands of one card
+     - no .scale-* — scaling one band detaches it from the card it belongs to
+
+   Only the interactive bands take the class; the rest of the card takes no
+   surface at all. Shipped examples: .event-row-top / .event-row-bottom, where
+   which bands are interactive changes with the offer state, and the inventory
+   list, where every row is a section of one card. Both are worked through in
+   design-guide.md § Interactive Surfaces.
+   ------------------------------------------------------------ */
+.surface-section {
+  background: transparent;
+  border: none;
+  color: var(--text-primary);
+  transition: background 120ms ease;
+  cursor: pointer;
+}
+.surface-section:hover {
+  background: linear-gradient(var(--white-100), var(--white-100));
+}
+.surface-section:active {
+  background: linear-gradient(var(--black-300), var(--black-300));
+}
+.surface-section:active > * { opacity: 0.6; }
+
+
+/* ============================================================
+   INTERACTIVE SCALE TOKENS
+   ============================================================
+   Apply alongside any surface token to add scale transforms on hover (expand)
+   and press (shrink). Values shown are for web.
+
+   iOS/Android have no hover scale; pressed values are more aggressive
+   (see comments).
+   ============================================================ */
+
+
+/* --- Interaction 700 ---
+   For: Cards, large components
+   Web:     1 → 1.01 → 0.99
+   Mobile:  1 → 1    → 0.975
+   ------------------------------------------------------------ */
+.scale-700 {
+  transition: transform 180ms ease-out;
+  transform: scale(1);
+}
+.scale-700:hover {
+  transform: scale(1.01);
+}
+.scale-700:active {
+  transform: scale(0.99);
+}
+
+
+/* --- Interaction 500 ---
+   For: Buttons, medium components
+   Web:     1 → 1.025 → 0.975
+   Mobile:  1 → 1     → 0.96
+   ------------------------------------------------------------ */
+.scale-500 {
+  transition: transform 180ms ease-out;
+  transform: scale(1);
+}
+.scale-500:hover {
+  transform: scale(1.025);
+}
+.scale-500:active {
+  transform: scale(0.975);
+}
+
+
+/* --- Interaction 300 ---
+   For: Icon buttons, small components
+   Web:     1 → 1.035 → 0.965
+   Mobile:  1 → 1     → 0.95
+   ------------------------------------------------------------ */
+.scale-300 {
+  transition: transform 180ms ease-out;
+  transform: scale(1);
+}
+.scale-300:hover {
+  transform: scale(1.035);
+}
+.scale-300:active {
+  transform: scale(0.965);
+}
