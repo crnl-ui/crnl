@@ -26,8 +26,6 @@
    Contains a brand slot (logo + brand name) and an optional
    trailing actions slot (auth buttons, icon buttons, etc.).
 
-   Figma: nodeId 9562:74597 · COMPONENT_SET
-
    Breakpoints
      Mobile  (<768px):  px-16px  · shortName
      Tablet  (≥768px):  px-48px  · fullName
@@ -234,8 +232,6 @@
    Multi-step progress indicator for checkout and multi-stage
    flows. Also usable standalone in any context.
 
-   Figma: nodeId 9586:31206 · COMPONENT_SET
-
    Step states (class on .step):
      .step-completed  — --status-success green circle + filled check icon
      .step-active     — --neutral-1000 black circle + white bold number
@@ -393,8 +389,6 @@
    ============================================================
    Section-level page header with title + subtitle text content
    and optional tabs or steps navigation below the text.
-
-   Figma: nodeId 9588:73094 · COMPONENT_SET
 
    Padding (aligns horizontal edges with top bar at each breakpoint)
      Mobile  (<768px):  .page-header px-0   + .page-header-content px-16px = 16px from edge

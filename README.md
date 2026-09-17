@@ -25,10 +25,35 @@ offline as online.
 `crnl-loader.js` owns the stylesheet order — never hand-write `<link>` tags for
 the CSS. `prototype-harness.js` injects the theme / mode / display-face switcher.
 
+## Status
+
+**Early. Nothing here is a stable API yet.** Token names, class names and
+component props can all still move, and will. If you build on it, pin a commit.
+
+Where it actually stands:
+
+- **The CSS is the system.** 739 classes and 226 tokens, covered by the demo
+  sheets and five programmatic checks.
+- **The React layer is a subset**, not parity — 18 components against those 739
+  classes. It exists for the parts that carry real state; the rest is markup and
+  classes.
+- **Not published to npm.** The manifest is marked `private` on purpose. Use
+  this by vendoring the repo — clone it, or copy `css/`, `fonts/` and `images/`
+  into a project and point `crnl-loader.js` at them. The `exports` map is there
+  so a local file or workspace dependency resolves; it is not a registry
+  promise.
+- **Known gaps**, in rough priority order: no CI, so every check is run by hand;
+  236 `!important` declarations that want `@layer`; no RTL support (the CSS uses
+  physical properties throughout); buttons and rows rely on the browser's
+  default focus ring rather than a designed one.
+
+The licence is MIT and means what it says — the reservation above is about
+maturity, not permission.
+
 ## What's here
 
 ```
-css/          the design system — 23 stylesheets, the source of truth
+css/          the design system — 24 stylesheets, the source of truth
   crnl-loader.js            loads them in order, locally or from a bundle
   design-tokens-master.css  base tokens + the base theme
   themes.css              five worked example themes

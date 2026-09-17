@@ -1,5 +1,5 @@
 #!/bin/bash
-# Remove every AirDS display font cut from ~/Library/Fonts. Only touches filenames
+# Remove every display font cut from ~/Library/Fonts. Only touches filenames
 # listed in manifest.json, so nothing else in your font folder is at risk.
 set -euo pipefail
 HERE="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"

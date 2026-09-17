@@ -801,7 +801,7 @@
   pointer-events: auto;
 }
 
-/* orgBase gradient fade — matches Figma "Nav Gradient" (15004:34183)
+/* orgBase gradient fade
    215px tall, orgBase at 90% opacity, backdrop blur, non-linear luminance mask */
 .ios-tab-bar::before {
   content: '';

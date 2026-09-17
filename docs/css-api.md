@@ -1494,9 +1494,6 @@ Notes
 table-components.css
 A stats table — a pinned entity column beside horizontally scrolling attribute columns.
 
-Ported from the Air DS Figma "Table" component set (16263:30315)
-and its subcomponents (16276:36620).
-
 The shape exists because a standings or stat table has one wide
 identifying column and many narrow numeric ones. On a phone the
 numbers cannot all fit, so they scroll while the entity
@@ -2281,7 +2278,7 @@ goes full-bleed. See RULES §9.
 
 | Class | Declares | Tokens |
 |---|---|---|
-| `.app-device-controls` | display: none | --white-100, --white-1000, --white-300, --white-200 |
+| `.app-device-controls` | display: none | --white-100, --white-1000, --white-300, --border-weight-200, … |
 | `.device-control-label` | *contextual — styled via a parent* | --white-1000, --white-300 |
 | `.mode-toggle` | *contextual — styled via a parent* | --white-300, --white-1000, --white-200 |
 
