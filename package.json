@@ -1,7 +1,16 @@
 {
-  "name": "@corneliushegeman/crnl",
+  "name": "crnl",
   "version": "0.1.0",
   "description": "Crnl — a token-based CSS design system with a typed React layer, light and dark modes, and pluggable theming",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/crnl-ui/crnl.git"
+  },
+  "homepage": "https://github.com/crnl-ui/crnl#readme",
+  "bugs": {
+    "url": "https://github.com/crnl-ui/crnl/issues"
+  },
+  "author": "Cornelius Hegeman",
   "type": "module",
   "private": true,
   "main": "dist/index.cjs",

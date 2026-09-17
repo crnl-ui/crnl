@@ -1,0 +1,51 @@
+# Runs the five checks that need no browser. See CLAUDE.md § "After any change
+# to CSS or docs" for what each one asserts.
+#
+# check:visual is deliberately NOT here. Its baselines are per rendering
+# environment — text rasterises differently on macOS and Linux, and at this
+# threshold that is the difference between a clean run and 32 failures — so
+# they are generated locally and not committed. A CI run would have nothing to
+# diff against and would simply write a fresh set. Pinning a container renderer
+# is the prerequisite for running it here; until then it stays a local check.
+name: check
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: check-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - run: npm ci
+
+      # themes, assets, icons, exports, demo coverage
+      - run: npm run check
+
+      # The generated docs are committed, so they can go stale against the CSS.
+      # Regenerate and fail if anything moved — a drifted css-api.md is the one
+      # failure mode none of the checks above can see.
+      - name: docs are current
+        run: |
+          npm run build:css-api
+          if ! git diff --quiet -- docs/css-api.md docs/css-api.json; then
+            echo "::error::docs/css-api.* is stale — run 'npm run build:docs' and commit the result."
+            git diff --stat -- docs/css-api.md docs/css-api.json
+            exit 1
+          fi
