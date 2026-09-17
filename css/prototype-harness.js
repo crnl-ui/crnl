@@ -20,10 +20,10 @@
    The theme list is not written here: it is read from the loaded stylesheets,
    so a new theme in themes.css shows up in the switcher on its own.
 
-   USAGE — include in <head>, immediately after ds-loader.js and BEFORE
+   USAGE — include in <head>, immediately after crnl-loader.js and BEFORE
    device-sync.js (which wires itself to the controls this script injects):
 
-     <script src="../css/ds-loader.js"></script>
+     <script src="../css/crnl-loader.js"></script>
      <script src="../css/prototype-harness.js" data-native="index.native.html"></script>
      <script src="../css/device-sync.js"></script>
 
@@ -453,7 +453,7 @@
 
     var show = param('surfaces') === 'show';
     console.warn(
-      '[ds] ' + hits.length + ' element(s) sit on a background identical to their own — ' +
+      '[crnl] ' + hits.length + ' element(s) sit on a background identical to their own — ' +
       'invisible until hovered (RULES §2, "never sit a solid surface on another solid surface"). ' +
       (show ? 'Outlined in red on the page.' : 'Re-open with ?surfaces=show to outline them.')
     );

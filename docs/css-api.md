@@ -12,7 +12,7 @@
 
 ## Load order
 
-Read from `ds-loader.js` at generation time — this is what browsers actually load.
+Read from `crnl-loader.js` at generation time — this is what browsers actually load.
 
 ```html
 <!--  1 --> design-tokens-master.css
@@ -41,7 +41,7 @@ Read from `ds-loader.js` at generation time — this is what browsers actually l
 <!-- 24 --> platform-tokens.css
 ```
 
-In-repo pages use `<script src="ds-loader.js"></script>` instead of individual tags.
+In-repo pages use `<script src="crnl-loader.js"></script>` instead of individual tags.
 
 ## Index
 

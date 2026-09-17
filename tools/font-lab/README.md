@@ -51,7 +51,7 @@ Style lanes come from the Google taxonomy tags already in `catalog.js`: Neo-grot
 
 ## Font Lab 2 (`font-lab-2.html`) — display spec refinement
 
-A second, narrower tool for the phase after selection: taking the **145 confirmed families** and pinning down each one's shipping display spec. It uses the same shell as Font Lab 1 — `ds-loader.js`, design tokens throughout, the inverted rail, underline tabs, and a right-hand control panel — so the two tools read as one product. Data comes from `library.js` (generated from `catalog.js` + `confirmed-fonts.json`); it does not need the full catalog. Fonts are requested from Google with their full width and tilt ranges — css2 pins any axis you do not ask for, so requesting `wght` alone would leave those sliders inert.
+A second, narrower tool for the phase after selection: taking the **145 confirmed families** and pinning down each one's shipping display spec. It uses the same shell as Font Lab 1 — `crnl-loader.js`, design tokens throughout, the inverted rail, underline tabs, and a right-hand control panel — so the two tools read as one product. Data comes from `library.js` (generated from `catalog.js` + `confirmed-fonts.json`); it does not need the full catalog. Fonts are requested from Google with their full width and tilt ranges — css2 pins any axis you do not ask for, so requesting `wght` alone would leave those sliders inert.
 
 Two views only, both from the v1 tool:
 

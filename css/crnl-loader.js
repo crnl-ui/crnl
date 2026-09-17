@@ -1,5 +1,5 @@
 /* ============================================================
-   ds-loader.js
+   crnl-loader.js
    ============================================================
    Loads the design-system stylesheets in the right order.
 
@@ -8,11 +8,11 @@
      See RULES §1. Everything that needs the list derives it from the `sheets`
      array below via scripts/lib/load-order.mjs.
    - Local pages get the individual stylesheets so an edit-and-reload loop needs
-     no build step; deployed pages get the concatenated ds.css instead, with
+     no build step; deployed pages get the concatenated crnl.css instead, with
      a fallback to the individual sheets if it is absent.
    - The base path is resolved from this script's own URL, so the system can be
      served from any directory or origin with no configuration.
-   - Usage: <script src="../css/ds-loader.js"></script> (adjust the relative
+   - Usage: <script src="../css/crnl-loader.js"></script> (adjust the relative
      path to where the page lives).
    ============================================================ */
 (function () {
@@ -32,7 +32,7 @@
 
   // Resolve the base path from this script's own URL, so a page at any depth
   // and a site served from any origin both find the sheets.
-  var base = script.src.replace(/[^/]*$/, '');   // directory containing ds-loader.js
+  var base = script.src.replace(/[^/]*$/, '');   // directory containing crnl-loader.js
 
   var htmlEl = document.documentElement;
 
@@ -90,7 +90,7 @@
      to work with no build step in between. Anywhere else, take the concatenated
      bundle: one request rather than 23, because this script is render-blocking
      and every <link> it injects waits on it. `npm run build:css-bundle` writes
-     ds.css; it is gitignored.
+     crnl.css; it is gitignored.
 
      If the bundle is missing — a checkout that never ran the build, or a LAN
      address where isLocal is false — fall back to the individual sheets rather
@@ -100,7 +100,7 @@
   } else {
     var bundle = document.createElement('link');
     bundle.rel = 'stylesheet';
-    bundle.href = base + 'ds.css';
+    bundle.href = base + 'crnl.css';
     bundle.onerror = function () {
       bundle.remove();
       injectSheets();

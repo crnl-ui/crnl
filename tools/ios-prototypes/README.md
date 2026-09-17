@@ -17,7 +17,7 @@ worked out. Where the two disagree, the demo sheet is right.
 | `ios-modal-demo.html` | the modal sheet presentation and its stacked backdrop |
 | `phone-frame-spike.html` | the phone frame itself, including the iframe variant |
 
-Open any of them directly in a browser. Each loads `css/ds-loader.js` and
+Open any of them directly in a browser. Each loads `css/crnl-loader.js` and
 `css/prototype-harness.js`, so the theme / mode / display-face switcher is the
 same one every other page gets — the hand-pasted copy each of these used to
 carry was removed (`RULES §1`).

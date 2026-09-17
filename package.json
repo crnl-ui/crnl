@@ -1,7 +1,7 @@
 {
-  "name": "@ds/design-system",
-  "version": "1.0.0",
-  "description": "A token-based CSS design system with a typed React layer, light and dark modes, and pluggable theming",
+  "name": "@corneliushegeman/crnl",
+  "version": "0.1.0",
+  "description": "Crnl — a token-based CSS design system with a typed React layer, light and dark modes, and pluggable theming",
   "type": "module",
   "private": true,
   "main": "dist/index.cjs",
@@ -12,29 +12,38 @@
       "import": "./dist/index.js",
       "require": "./dist/index.cjs"
     },
-    "./style.css": "./dist/style.css"
+    "./crnl.css": "./css/crnl.css",
+    "./css/*": "./css/*",
+    "./fonts/*": "./fonts/*",
+    "./images/*": "./images/*",
+    "./package.json": "./package.json"
   },
   "files": [
     "dist",
     "css",
     "fonts",
-    "images"
+    "images",
+    "RULES.md"
   ],
   "scripts": {
     "dev": "storybook dev -p 6006",
-    "build": "vite build",
+    "build": "npm run build:css-bundle && vite build",
     "build-storybook": "storybook build",
     "preview": "vite preview",
-    "check": "npm run check:themes && npm run check:assets && npm run check:icons && npm run check:demo",
+    "prepack": "npm run build",
+    "check": "npm run check:themes && npm run check:assets && npm run check:icons && npm run check:exports && npm run check:demo",
     "check:themes": "node scripts/check-themes.mjs",
     "check:assets": "node scripts/check-assets.mjs",
     "check:icons": "node scripts/check-icons.mjs",
+    "check:visual": "node scripts/visual.mjs",
     "check:demo": "node demo/check-coverage.mjs",
     "build:css-api": "node scripts/generate-css-reference.js",
     "build:css-bundle": "node scripts/build-css-bundle.mjs",
     "build:docs": "npm run build:css-api && npm run build:css-bundle",
     "build:fonts": "python3 scripts/build-fonts.py",
-    "build:ui-fonts": "python3 scripts/build-ui-fonts.py"
+    "build:ui-fonts": "python3 scripts/build-ui-fonts.py",
+    "check:all": "npm run check && npm run check:visual",
+    "check:exports": "node scripts/check-exports.mjs"
   },
   "dependencies": {
     "react": "^18.0.0",
@@ -47,6 +56,8 @@
     "@types/react-dom": "^18.3.1",
     "@vitejs/plugin-react": "^4.3.4",
     "@xmldom/xmldom": "^0.9.12",
+    "pixelmatch": "^7.2.0",
+    "pngjs": "^7.0.0",
     "storybook": "^8.4.7",
     "typescript": "^5.7.2",
     "vite": "^6.0.5",

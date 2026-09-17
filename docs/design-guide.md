@@ -1626,7 +1626,7 @@ the class in question.
 | `platform-tokens.css` | phone frame, safe areas, status bar, home indicator, device-control styling, ≤500px collapse |
 | `ios-nav-components.css` | glass token, nav bars, tab bar, modal sheet, brand icon token |
 | `prototype-harness.js` | injects the device controls and the web/native platform link |
-| `ds-loader.js` | loads every stylesheet in order; triple-tap handler for the mobile controls |
+| `crnl-loader.js` | loads every stylesheet in order; triple-tap handler for the mobile controls |
 | `demo/11-ios-frame.html` | live app-mode reference |
 
 ---
@@ -2170,7 +2170,7 @@ this header; the first prose line is what `css-api.md` shows in its index.
 /* --- Sub-section --- */
 ```
 
-- **No load-order lines in headers.** `ds-loader.js` owns the order and
+- **No load-order lines in headers.** `crnl-loader.js` owns the order and
   `css-api.md` regenerates the table from it (`RULES §1`).
 - **No dated changelog lines.** Git holds the history.
 - **Rules are cited, not restated.** A note that repeats `RULES.md` goes stale

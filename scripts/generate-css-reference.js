@@ -31,18 +31,18 @@ const OUT_JSON = join(ROOT, 'docs', 'css-api.json'); // same data, machine-reada
 const INTERNAL = new Set([]);
 
 /* Generated artifacts. Neither is part of the API surface, and both are on disk
-   rather than in ds-loader's `sheets`, so the trailing sweep below would
+   rather than in crnl-loader's `sheets`, so the trailing sweep below would
    otherwise document them:
-     ds.css             the concatenated delivery bundle — every class in it is
+     crnl.css             the concatenated delivery bundle — every class in it is
                         already documented under the sheet that owns it, and it
-                        made each of those read "also styled in ds.css".
+                        made each of those read "also styled in crnl.css".
    The sweep still exists to catch a genuinely new hand-written stylesheet that
-   nobody added to ds-loader.js. */
+   nobody added to crnl-loader.js. */
 const GENERATED = new Set([
-  'ds.css',
+  'crnl.css',
 ]);
 
-/* Load order comes from scripts/lib/load-order.mjs, which parses ds-loader.js's
+/* Load order comes from scripts/lib/load-order.mjs, which parses crnl-loader.js's
    `sheets` array specifically — this used to match any '*.css' string anywhere
    in the file, which would have picked up a filename mentioned in a comment. */
 function loadOrder() {
@@ -411,13 +411,13 @@ out.push('');
 
 out.push('## Load order');
 out.push('');
-out.push('Read from `ds-loader.js` at generation time — this is what browsers actually load.');
+out.push('Read from `crnl-loader.js` at generation time — this is what browsers actually load.');
 out.push('');
 out.push('```html');
 order.forEach((f, i) => out.push(`<!-- ${String(i + 1).padStart(2)} --> ${f}`));
 out.push('```');
 out.push('');
-out.push('In-repo pages use `<script src="ds-loader.js"></script>` instead of individual tags.');
+out.push('In-repo pages use `<script src="crnl-loader.js"></script>` instead of individual tags.');
 out.push('');
 
 out.push('## Index');

@@ -47,7 +47,7 @@ function blocks(source) {
 }
 
 const all = readdirSync(CSS)
-  .filter(f => f.endsWith('.css') && f !== 'ds.css')
+  .filter(f => f.endsWith('.css') && f !== 'crnl.css')
   .flatMap(f => blocks(readFileSync(join(CSS, f), 'utf8')))
 
 /* The contract is what the base theme defines. Derived from the CSS rather than

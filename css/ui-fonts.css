@@ -28,7 +28,7 @@
 }
 
 /* Material Symbols Rounded — **block, not swap**, and this is the whole reason
-   ds-loader.js no longer carries a font gate.
+   crnl-loader.js no longer carries a font gate.
 
    An icon is a ligature over its own name, so with `swap` the fallback face
    renders the name: a nav bar of the words "home", "sell", "confirmation_number"

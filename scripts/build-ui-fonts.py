@@ -5,7 +5,7 @@ build-ui-fonts.py — self-host the two UI faces, so rendering needs no CDN.
 Inter and Material Symbols Rounded used to come from a <link> to
 fonts.googleapis.com in every page head. That made a third-party CDN a hard
 dependency of rendering: offline, behind a proxy, or on a locked-down network,
-every page lost its icons and its UI type — and ds-loader.js carried a JS gate
+every page lost its icons and its UI type — and crnl-loader.js carried a JS gate
 that blanked the whole page for up to three seconds waiting for them.
 
 Both are now built into fonts/ from upstream sources:

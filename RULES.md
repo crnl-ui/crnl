@@ -54,10 +54,10 @@ A fourth is optional:
   lists them.
 
 Load the system with two script tags. Never hand-write `<link>` tags for CSS —
-`ds-loader.js` owns the order, and a hand-written list has been wrong every time.
+`crnl-loader.js` owns the order, and a hand-written list has been wrong every time.
 
 ```html
-<script src="../css/ds-loader.js"></script>
+<script src="../css/crnl-loader.js"></script>
 <script src="../css/prototype-harness.js"></script>
 ```
 

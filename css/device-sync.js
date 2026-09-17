@@ -15,7 +15,7 @@
    itself to whatever .app-device-controls exists on the page. It also applies
    the shared theme synchronously at load, so there is no flash of the wrong one.
 
-   Include AFTER ds-loader.js:
+   Include AFTER crnl-loader.js:
      <script src="../css/device-sync.js"></script>
    ============================================================================= */
 (function () {
@@ -26,9 +26,9 @@
   var MODE_ATTR = 'data-mode';
 
   // localStorage keys (namespaced so they never collide with prototype data)
-  var K_ON = 'ds:link:on';
-  var K_THEME = 'ds:link:theme';
-  var K_MODE = 'ds:link:mode';
+  var K_ON = 'crnl:link:on';
+  var K_THEME = 'crnl:link:theme';
+  var K_MODE = 'crnl:link:mode';
 
   // Is this document a screen a person can actually operate? Both a top-level tab
   // and an embedded-but-interactive iframe qualify — a page showing several screens
@@ -161,7 +161,7 @@
 
   // ---------- inject the link toggle into the device-controls pill ----------
   function injectStyles() {
-    if (document.getElementById('ds-device-sync-styles')) return;
+    if (document.getElementById('crnl-device-sync-styles')) return;
     var css =
       '[data-platform="app"] .app-device-controls .device-link-toggle{' +
         'display:flex;align-items:center;justify-content:center;border:none;background:transparent;' +
@@ -176,7 +176,7 @@
         '[data-platform="app"] .app-device-controls .device-link-toggle .material-symbols-rounded{font-size:20px!important;}' +
         '[data-platform="app"] .app-device-controls .device-link-toggle.is-linked{color:var(--white-1000)!important;}}';
     var style = document.createElement('style');
-    style.id = 'ds-device-sync-styles';
+    style.id = 'crnl-device-sync-styles';
     style.textContent = css;
     document.head.appendChild(style);
   }

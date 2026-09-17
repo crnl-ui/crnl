@@ -2,7 +2,7 @@
 node_modules/
 
 # Generated — rebuilt by `npm run build:docs`
-css/ds.css
+css/crnl.css
 dist/
 storybook-static/
 
@@ -12,3 +12,8 @@ tools/font-lab/_build/state*.json
 
 # OS
 .DS_Store
+
+# Visual regression. Baselines are machine-specific — text rasterises
+# differently per OS and browser build — so they are generated locally by the
+# first `npm run check:visual`, never shared.
+tests/visual/

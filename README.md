@@ -1,4 +1,4 @@
-# Design System
+# Crnl
 
 A token-based CSS design system with a typed React layer on the same tokens.
 Two attributes on `<html>` re-skin an entire screen — `data-theme` picks the
@@ -13,7 +13,7 @@ icon font.
 ```html
 <html data-theme="signal" data-mode="dark" data-platform="web">
   <head>
-    <script src="css/ds-loader.js"></script>
+    <script src="css/crnl-loader.js"></script>
     <script src="css/prototype-harness.js"></script>
   </head>
 ```
@@ -22,14 +22,14 @@ That is the whole setup. **Nothing is fetched from a CDN** — the UI face, the
 icon face and the 145 display faces all ship here, so a page renders the same
 offline as online.
 
-`ds-loader.js` owns the stylesheet order — never hand-write `<link>` tags for
+`crnl-loader.js` owns the stylesheet order — never hand-write `<link>` tags for
 the CSS. `prototype-harness.js` injects the theme / mode / display-face switcher.
 
 ## What's here
 
 ```
 css/          the design system — 23 stylesheets, the source of truth
-  ds-loader.js            loads them in order, locally or from a bundle
+  crnl-loader.js            loads them in order, locally or from a bundle
   design-tokens-master.css  base tokens + the base theme
   themes.css              five worked example themes
   ui-fonts.css            Inter + the icon font, self-hosted
@@ -39,6 +39,7 @@ fonts/        145 woff2 display faces, Inter, the icon font, every licence
 images/       payment marks, store badges, a placeholder logo — nothing branded
 src/          the React component library (src/index.ts exports)
 demo/         thirteen sheets rendering every class and token, live
+tests/        visual regression output — generated locally, not committed
 docs/         the design guide, the generated CSS API, the theming guide
 scripts/      generators and checks
 tools/        Font Lab — where the display faces come from, and how to cut more
@@ -87,8 +88,11 @@ The TTFs for desktop and Figma are in `tools/font-lab/built-fonts/`, with
 ```bash
 npm install
 npm run dev              # Storybook for the React components
-npm run check            # themes, assets, icons, demo coverage — run before you finish
-npm run build:docs       # regenerate docs/css-api.md and css/ds.css
+npm run check            # themes, assets, icons, demo coverage — fast, no browser
+npm run check:visual     # screenshot every sheet, diff against tests/visual/baseline
+                         # (first run writes the baselines — they are machine-specific)
+npm run check:all        # both — run before you finish
+npm run build:docs       # regenerate docs/css-api.md and css/crnl.css
 npm run build:fonts      # re-cut the display faces from tools/font-lab
 npm run build:ui-fonts   # re-cut Inter and the icon font from upstream
 ```

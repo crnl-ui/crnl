@@ -1,7 +1,7 @@
 /* =============================================================================
    load-order.mjs — the one place that reads the stylesheet load order
    =============================================================================
-   ds-loader.js owns the CSS load order (RULES §1). Anything else that needs the
+   crnl-loader.js owns the CSS load order (RULES §1). Anything else that needs the
    list — the bundle builder, the CSS reference —
    parses it from there through this helper rather than keeping a copy.
 
@@ -15,11 +15,11 @@ import { fileURLToPath } from 'node:url'
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..', '..')
 
-/** Absolute path to ds-loader.js — the source of truth. */
-export const LOADER_PATH = join(ROOT, 'css', 'ds-loader.js')
+/** Absolute path to crnl-loader.js — the source of truth. */
+export const LOADER_PATH = join(ROOT, 'css', 'crnl-loader.js')
 
 /**
- * The stylesheets ds-loader.js injects, in order.
+ * The stylesheets crnl-loader.js injects, in order.
  * Throws rather than returning a partial list: every caller either generates
  * markup or enforces a rule, and both are worse than useless if the list is
  * silently short.
