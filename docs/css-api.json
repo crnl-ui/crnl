@@ -6,6 +6,7 @@
     "spacing-tokens.css",
     "container-tokens.css",
     "border-effects-tokens.css",
+    "ui-fonts.css",
     "fonts.css",
     "display-fonts.css",
     "text-styles-system.css",
@@ -2205,6 +2206,12 @@
       ]
     },
     {
+      "file": "ui-fonts.css",
+      "covers": "The two UI faces, served from this repository rather than a CDN.",
+      "classes": [],
+      "tokens": []
+    },
+    {
       "file": "fonts.css",
       "covers": "Every shipped display face, plus the UI face.",
       "classes": [],
@@ -2892,6 +2899,17 @@
             "nav-components.css",
             "ios-nav-components.css",
             "product-patterns.css"
+          ]
+        },
+        {
+          "name": "material-symbols-rounded",
+          "section": "BASE ICON CLASS",
+          "declares": "font-size: 24px; font-weight: normal; line-height: 1; letter-spacing: normal; display: inline-block; +11 more",
+          "tokens": [],
+          "alsoStyledIn": [
+            "input-components.css",
+            "tag-chip-components.css",
+            "platform-tokens.css"
           ]
         },
         {
@@ -4669,16 +4687,6 @@
             "--org-primary-button"
           ],
           "alsoStyledIn": []
-        },
-        {
-          "name": "material-symbols-rounded",
-          "section": "LEADING ICON",
-          "declares": null,
-          "tokens": [],
-          "alsoStyledIn": [
-            "tag-chip-components.css",
-            "platform-tokens.css"
-          ]
         },
         {
           "name": "input-clear",

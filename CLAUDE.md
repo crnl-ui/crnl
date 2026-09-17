@@ -32,8 +32,9 @@ an entire screen — `data-theme` picks the palette and display type, `data-mode
 picks light or dark — and `data-platform` switches between a responsive web
 layout and a phone frame (`RULES §1`, `§9`).
 
-It ships no content, no brand assets and no paid fonts. The 145 display faces
-are open-licence cuts with their licences included.
+It ships no content, no brand assets, no paid fonts and no CDN dependency —
+the UI face, the icon face and the 145 display faces are all open-licence cuts
+served from this repository, with their licences included.
 
 Themes: `ink` `signal` `moss` `ember` `violet`, plus the base theme that applies
 when `data-theme` is absent. They are worked examples of the contract, not a
@@ -50,6 +51,7 @@ css/                  CSS source — the design system itself
 ├── themes.css        the five shipped themes
 ├── display-fonts.css a tuned display ramp per shipped face  [GENERATED]
 ├── fonts.css         @font-face per shipped face            [GENERATED]
+├── ui-fonts.css      Inter + the icon font, both self-hosted
 ├── prototype-harness.js  injects the theme/mode/face switcher
 └── device-sync.js    links theme and mode across open tabs
 fonts/                145 woff2 faces, catalog.json, every licence
@@ -75,7 +77,8 @@ The CSS files in `css/` are the source of truth. Four things are
 
 | Generated | By |
 |---|---|
-| `css/fonts.css`, `css/display-fonts.css`, `fonts/*.woff2`, `fonts/catalog.json` | `npm run build:fonts` |
+| `css/fonts.css`, `css/display-fonts.css`, the display `fonts/*.woff2`, `fonts/catalog.json` | `npm run build:fonts` |
+| `fonts/inter.woff2`, `fonts/material-symbols-rounded.woff2`, `fonts/icons.json` | `npm run build:ui-fonts` |
 | `docs/css-api.md`, `docs/css-api.json` | `npm run build:css-api` |
 | `css/ds.css` (the delivery bundle, gitignored) | `npm run build:css-bundle` |
 
@@ -90,7 +93,9 @@ npm run build:docs     # regenerates css-api.md and the CSS bundle
 contract in both modes and clears 4.5:1 on its button and accent pairs.
 `npm run check:assets` asserts every shipped SVG parses — a malformed one still
 serves with the right content-type and still reports `complete` on an `<img>`,
-it just paints nothing. `npm run check:demo` asserts the demo sheets still cover
+it just paints nothing. `npm run check:icons` asserts every icon name in the
+markup is in the subset the icon font actually ships; one that is not renders
+as its own letters rather than failing. `npm run check:demo` asserts the demo sheets still cover
 every class and token — it fails both ways, on a class in the CSS that no sheet
 shows and on a class a sheet uses that the CSS does not have.
 
@@ -113,6 +118,13 @@ step with an inline literal (`RULES §2`).
 A theme is tokens only, in three blocks. `docs/theming.md` has the contract and
 a worked example. The switcher discovers themes from the loaded CSS, so nothing
 else needs editing. Run `npm run check:themes` after.
+
+### Adding an icon
+
+The icon font is subset to what the repository uses — that is what makes 15MB
+of Material Symbols into 19KB. Use the new name, then run
+`npm run build:ui-fonts` to re-cut the font. `npm run check:icons` is what tells
+you when you have forgotten.
 
 ### Adding a display face
 
@@ -162,8 +174,16 @@ Everything symptom-shaped (a token that vanishes in dark mode, a double border,
 a stepper that won't disable) is in `docs/design-guide.md § Troubleshooting`.
 Two that are not visible from inside a page:
 
-- **Safari iOS font loading** — a cross-origin stylesheet needs absolute font
-  URLs, and `font-style: oblique` renders differently in Safari; avoid it.
+- **The icon font must stay on `font-display: block`.** An icon is a ligature
+  over its own name, so on `swap` a nav bar renders the words "home", "sell",
+  "confirmation_number" until the font arrives. `block` holds them invisible
+  instead. ds-loader.js used to hide the whole page for up to 3s to paper over
+  this; see the note where that gate used to be.
+- **`.material-symbols-rounded` is defined in `icons.css`, not by Google.**
+  It is the upstream class, reproduced with upstream defaults (24px, FILL 0) —
+  which differ from `.icon` (the size ramp, FILL 1). Do not merge them.
+- **Safari iOS font loading** — `font-style: oblique` renders differently in
+  Safari; avoid it.
 - **`docs/css-api.md` is only as current as the last `build:css-api`.** If a
   class you can see in the CSS is missing from it, regenerate before concluding
   anything.

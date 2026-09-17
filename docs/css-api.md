@@ -8,7 +8,7 @@
 > compose; this file is the exhaustive list of what exists. If a class or token
 > is not here, it is not in the design system.
 
-**739 classes and 226 custom properties across 23 stylesheets.** 0 internal classes (documentation chrome) are intentionally omitted. Each class is listed once, under the stylesheet that defines it.
+**739 classes and 226 custom properties across 24 stylesheets.** 0 internal classes (documentation chrome) are intentionally omitted. Each class is listed once, under the stylesheet that defines it.
 
 ## Load order
 
@@ -20,24 +20,25 @@ Read from `ds-loader.js` at generation time — this is what browsers actually l
 <!--  3 --> spacing-tokens.css
 <!--  4 --> container-tokens.css
 <!--  5 --> border-effects-tokens.css
-<!--  6 --> fonts.css
-<!--  7 --> display-fonts.css
-<!--  8 --> text-styles-system.css
-<!--  9 --> icons.css
-<!-- 10 --> card-components.css
-<!-- 11 --> interactive-tokens.css
-<!-- 12 --> button-components.css
-<!-- 13 --> system-ui.css
-<!-- 14 --> list-row-components.css
-<!-- 15 --> table-components.css
-<!-- 16 --> input-components.css
-<!-- 17 --> tag-chip-components.css
-<!-- 18 --> nav-components.css
-<!-- 19 --> ios-nav-components.css
-<!-- 20 --> web-footer-components.css
-<!-- 21 --> product-patterns.css
-<!-- 22 --> boilerplate.css
-<!-- 23 --> platform-tokens.css
+<!--  6 --> ui-fonts.css
+<!--  7 --> fonts.css
+<!--  8 --> display-fonts.css
+<!--  9 --> text-styles-system.css
+<!-- 10 --> icons.css
+<!-- 11 --> card-components.css
+<!-- 12 --> interactive-tokens.css
+<!-- 13 --> button-components.css
+<!-- 14 --> system-ui.css
+<!-- 15 --> list-row-components.css
+<!-- 16 --> table-components.css
+<!-- 17 --> input-components.css
+<!-- 18 --> tag-chip-components.css
+<!-- 19 --> nav-components.css
+<!-- 20 --> ios-nav-components.css
+<!-- 21 --> web-footer-components.css
+<!-- 22 --> product-patterns.css
+<!-- 23 --> boilerplate.css
+<!-- 24 --> platform-tokens.css
 ```
 
 In-repo pages use `<script src="ds-loader.js"></script>` instead of individual tags.
@@ -51,17 +52,18 @@ In-repo pages use `<script src="ds-loader.js"></script>` instead of individual t
 | [`spacing-tokens.css`](#spacing-tokenscss) | 3 · 40 tokens | The 8px spacing scale, its responsive tokens, and section-rhythm utilities. |
 | [`container-tokens.css`](#container-tokenscss) | 8 · 7 tokens | Content max-width frames and the responsive page padding that goes with them. |
 | [`border-effects-tokens.css`](#border-effects-tokenscss) | 70 · 15 tokens | Border radius, border weight, drop shadow and scrim tokens, with their utility classes. |
+| [`ui-fonts.css`](#ui-fontscss) | 0 | The two UI faces, served from this repository rather than a CDN. |
 | [`fonts.css`](#fontscss) | 0 | Every shipped display face, plus the UI face. |
 | [`display-fonts.css`](#display-fontscss) | 0 · 12 tokens | A ready-tuned display ramp for each shipped face. |
 | [`text-styles-system.css`](#text-styles-systemcss) | 59 | The type scale: display, title, label and body text classes, plus colour and text utilities. |
-| [`icons.css`](#iconscss) | 10 · 8 tokens | The Material Symbols (Rounded) icon system: size tokens, the base icon class and its variants. |
+| [`icons.css`](#iconscss) | 11 · 8 tokens | The Material Symbols (Rounded) icon system: size tokens, the base icon class and its variants. |
 | [`card-components.css`](#card-componentscss) | 27 | Card layouts and the small blocks that go inside them: closed and open cards, tiles and logo blocks. |
 | [`interactive-tokens.css`](#interactive-tokenscss) | 16 | Surface and scale classes that give any element its hover and pressed states. |
 | [`button-components.css`](#button-componentscss) | 36 | The button system: every button type, three sizes, icon placement, fill width and circle icon buttons. |
 | [`system-ui.css`](#system-uicss) | 4 | Vendor chrome: controls specified by Apple or Google that a prototype reproduces rather than designs. |
 | [`list-row-components.css`](#list-row-componentscss) | 48 | The list row and everything built on it: its slots and subcomponents, the selector wrapper, and the event row. |
 | [`table-components.css`](#table-componentscss) | 17 · 1 tokens | A stats table — a pinned entity column beside horizontally scrolling attribute columns. |
-| [`input-components.css`](#input-componentscss) | 17 | Single-line text input and select dropdown, with their states and modifiers. |
+| [`input-components.css`](#input-componentscss) | 16 | Single-line text input and select dropdown, with their states and modifiers. |
 | [`tag-chip-components.css`](#tag-chip-componentscss) | 7 | The tag (a static label badge) and the chip (an interactive filter or toggle). |
 | [`nav-components.css`](#nav-componentscss) | 26 | Web navigation and page-structure components: top bar, tabs, steps and page header. |
 | [`ios-nav-components.css`](#ios-nav-componentscss) | 33 · 2 tokens | iOS navigation chrome for app-mode prototypes: nav bars, tab bar, modal sheet and glass surface. |
@@ -469,6 +471,28 @@ mode-stable) is RULES §8.
 
 ---
 
+## ui-fonts.css
+
+```
+ui-fonts.css
+The two UI faces, served from this repository rather than a CDN.
+
+What's inside
+- Inter — the UI text face, variable on `wght`, so one file covers
+400 / 600 / 700 / 900
+- Material Symbols Rounded — the icon face, variable on `FILL` and `opsz`,
+subset to the icons this repository actually uses
+
+Notes
+- Both are generated by `npm run build:ui-fonts`, from google/fonts and
+google/material-design-icons. Licences: fonts/licenses/.
+- The display faces are a separate concern and live in fonts.css.
+- These used to come from a <link> to fonts.googleapis.com in every page
+head, which made a third-party CDN a hard dependency of rendering.
+```
+
+---
+
 ## fonts.css
 
 ```
@@ -742,14 +766,16 @@ What's inside
 - --icon-size-{50…700} — the icon size scale
 - .icon — base class; sets the Material Symbols font, filled by default
 - .icon-{50…700} — size utilities
+- .material-symbols-rounded — the upstream class, outlined by default
 - .icon-outlined — opt a glyph out of the filled default
 
 Notes
 - The canonical form is <span class="icon icon-N">name</span>; .icon sets
 the font family, so never add material-symbols-rounded beside it. See
 RULES §4.
-- The variable font is loaded via the Google Fonts <link> in the page <head>:
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
+- The variable font ships in this repository, subset to the icons in use.
+Its @font-face is in ui-fonts.css; `npm run build:ui-fonts` re-cuts it and
+`npm run check:icons` fails when markup uses an icon outside the subset.
 - Icons inherit color, so the text colour modifiers apply.
 - Full usage notes: see Usage Guidelines at the bottom of this file.
 ```
@@ -763,6 +789,7 @@ RULES §4.
 | Class | Declares | Tokens |
 |---|---|---|
 | `.icon` | font-size: var(--icon-size-300); font-weight: normal; line-height: 1; letter-spacing: normal; color: inherit; +13 more *(also styled in button-components.css, list-row-components.css, nav-components.css, ios-nav-components.css, product-patterns.css)* | --icon-size-300 |
+| `.material-symbols-rounded` | font-size: 24px; font-weight: normal; line-height: 1; letter-spacing: normal; display: inline-block; +11 more *(also styled in input-components.css, tag-chip-components.css, platform-tokens.css)* | — |
 
 ### ICON SIZE UTILITIES
 
@@ -1625,7 +1652,6 @@ select                      (native, invisible overlay)
 | Class | Declares | Tokens |
 |---|---|---|
 | `.input-icon` | color: var(--text-secondary); height: 24px; width: 24px; display: flex; align-items: center; +4 more | --text-secondary, --org-primary-button |
-| `.material-symbols-rounded` | *contextual — styled via a parent* *(also styled in tag-chip-components.css, platform-tokens.css)* | — |
 
 ### TRAILING CLEAR BUTTON
 

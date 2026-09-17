@@ -34,81 +34,21 @@
   // and a site served from any origin both find the sheets.
   var base = script.src.replace(/[^/]*$/, '');   // directory containing ds-loader.js
 
-  /* ── Font-gate: hide body until icon + text fonts are ready ────────────
-     Prevents the flash of raw icon names ("home", "sell", etc.) while
-     Material Symbols is still fetching. Applies to every page that loads
-     ds-loader.js. Reveals when the fonts have loaded or after a 2s
-     safety timeout, whichever comes first. Opt out per-page by adding
-     data-no-font-gate="true" on <html>. */
   var htmlEl = document.documentElement;
-  if (!htmlEl.hasAttribute('data-no-font-gate')) {
-    var gateStyle = document.createElement('style');
-    gateStyle.textContent =
-      /* Hide body while fonts load */
-      'html.ds-fonts-loading body { opacity: 0; }' +
-      'html:not(.ds-fonts-loading) body { transition: opacity 150ms ease-out; }' +
-      /* Loading spinner — appears in center of viewport after a 400ms delay
-         (fast loads never see it), fades in over 250ms, then spins until
-         the gate lifts and it disappears with the .ds-fonts-loading class.
-         Mid-gray color reads on both light and dark backdrops. */
-      'html.ds-fonts-loading::before {' +
-        'content: "";' +
-        'position: fixed;' +
-        'top: 50%; left: 50%;' +
-        'width: 28px; height: 28px;' +
-        'margin: -14px 0 0 -14px;' +
-        'border: 2.5px solid rgba(128,128,128,0.22);' +
-        'border-top-color: rgba(128,128,128,0.9);' +
-        'border-radius: 50%;' +
-        'z-index: 999999;' +
-        'pointer-events: none;' +
-        'opacity: 0;' +
-        'animation:' +
-          'ds-gate-spin 0.7s linear infinite,' +
-          'ds-gate-fade-in 250ms 400ms forwards;' +
-      '}' +
-      '@keyframes ds-gate-spin { to { transform: rotate(360deg); } }' +
-      '@keyframes ds-gate-fade-in { to { opacity: 1; } }';
-    document.head.appendChild(gateStyle);
-    htmlEl.classList.add('ds-fonts-loading');
 
-    var reveal = function () { htmlEl.classList.remove('ds-fonts-loading'); };
-    var fired = false;
-    var revealOnce = function () { if (!fired) { fired = true; reveal(); } };
+  /* There used to be a font gate here: ~70 lines that hid <body> behind a
+     spinner until Material Symbols had loaded, with a 3s timeout.
 
-    // Safety timeout — hard ceiling in case Google Fonts is slow or fails.
-    // 3s gives cold-cache CDN fetches enough time; anything longer just makes
-    // the page feel broken. Fallback fonts are acceptable at that point.
-    setTimeout(revealOnce, 3000);
+     It existed because an icon is a ligature over its own name, so an icon font
+     on `font-display: swap` renders "home", "sell", "confirmation_number" as
+     words until it arrives. Hiding the page was the workaround.
 
-    if (document.fonts && document.fonts.load) {
-      // Gate ONLY on Material Symbols Rounded. When this font isn't loaded,
-      // icons render as raw text ("home", "sell", "confirmation_number") which
-      // is jarring. Inter and team display fonts have reasonable system
-      // fallbacks (SF Pro / Segoe UI) so a brief fallback flash on those is
-      // acceptable — waiting for them delays reveal on slow networks.
-      //
-      // Poll document.fonts.load() because it returns [] (empty) while the
-      // Google Fonts stylesheet is still fetching — the @font-face isn't
-      // declared yet. check() returns TRUE in that state (falls back to system),
-      // which would lift the gate too early.
-      var pollFonts = function () {
-        document.fonts.load('16px "Material Symbols Rounded"').then(function (arr) {
-          if (arr.length > 0 && arr.every(function (f) { return f.status === 'loaded'; })) {
-            revealOnce();
-          } else if (!fired) {
-            setTimeout(pollFonts, 40);
-          }
-        }, function () {
-          if (!fired) setTimeout(pollFonts, 40);
-        });
-      };
-      pollFonts();
-    } else {
-      // Old browsers — short-delay reveal
-      setTimeout(revealOnce, 300);
-    }
-  }
+     The fix was `font-display: block` on that one @font-face (see
+     ui-fonts.css) — the browser holds the icons invisible and paints the rest
+     of the page immediately, which is what the gate was approximating badly.
+     Self-hosting the font made the block period a few milliseconds instead of
+     a CDN round trip. Both fonts now ship from fonts/, so a page renders the
+     same offline as online, and `data-no-font-gate` is no longer read. */
 
   var sheets = [
     'design-tokens-master.css',
@@ -116,6 +56,7 @@
     'spacing-tokens.css',
     'container-tokens.css',
     'border-effects-tokens.css',
+    'ui-fonts.css',
     'fonts.css',
     'display-fonts.css',
     'text-styles-system.css',

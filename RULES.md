@@ -12,8 +12,8 @@ Two things in this system are normative, and they do different jobs:
 
 This file is the prose layer, and the **only** place a prose rule is written —
 every other document cites a section here (`RULES §3`) instead of restating it.
-But the CSS and the templates are rules too: the class surface is the boundary
-of what you may use, and a template is the correct composition.
+But the CSS is a rule too: the class surface is the boundary of what you may
+use.
 
 **Where this file and the CSS disagree, the CSS wins** — it is what ships.
 Report the discrepancy; don't code around it.
@@ -24,7 +24,7 @@ Section numbers are stable — add to a section, never renumber.
 |---|---|
 | Every class and token the system ships | `docs/css-api.md` — generated, complete |
 | How a component composes, worked examples | `docs/design-guide.md` |
-| How parts assemble into a screen | `demo/` — eleven live sheets of every class |
+| How parts assemble into a screen | `demo/` — thirteen live sheets of every class |
 | Authoring a theme | `docs/theming.md` |
 | Check your work | `npm run check` |
 
@@ -64,6 +64,12 @@ Load the system with two script tags. Never hand-write `<link>` tags for CSS —
 `prototype-harness.js` injects the theme/mode switcher. Never paste that chrome
 into a page.
 
+That is the whole `<head>`. **Never add a font `<link>`** — Inter and the icon
+font ship in `fonts/` and are declared in `ui-fonts.css`, so a page renders the
+same offline as online. An icon outside the shipped subset renders as its own
+letters; `npm run check:icons` catches that, and `npm run build:ui-fonts`
+re-cuts the font.
+
 ---
 
 ## 2. Never
@@ -74,9 +80,8 @@ into a page.
 - **Never force letter case.** No `text-transform`, and no `TEXT TYPED IN CAPS`.
   Case belongs to the copy and to the theme's display font, which bakes it in
   (§5) — a `text-transform: uppercase` shouts in every theme whose display face
-  does not render caps, and it does it in every mode and on
-  every team at once. Every text class sets `text-transform: none` for this
-  reason. There are no case utilities; `.text-uppercase`, `.text-lowercase`,
+  does not render caps, and it does it in every mode and every theme at once.
+  Every text class sets `text-transform: none` for this reason. There are no case utilities; `.text-uppercase`, `.text-lowercase`,
   `.text-capitalize` and `.text-normal-case` were removed on 2026-09-10.
 - **Never hardcode spacing** in `px`/`em`/`rem`. Use a spacing token or utility.
 - **Never write `:hover` or `:active`** on an interactive element. `.surface-*`
@@ -129,7 +134,7 @@ into a page.
   carries a design system class — `.btn`, an `.ios-*` control, or a named
   use-case component like `.action-tile`.
 - **Never use `--brand-interactive` or `--brand-inverted` in a component.** They
-  are theme-scoped only — one value per team, the same in light and dark — so
+  are theme-scoped only — one value per theme, the same in light and dark — so
   they render dark-on-dark in one mode. The mode-aware pair is
   `--color-interactive` / `--color-inverted`: identical in light, swapped in
   dark. Links, active states, focus rings and accents take `--color-*`.
@@ -235,7 +240,7 @@ Four families. Pick the family, then the step.
 
 | Family | Font | Use for |
 |---|---|---|
-| `.display*` | team display font | screen titles, team name, big numbers |
+| `.display*` | the theme display face | screen titles, brand name, big numbers |
 | `.title*` | Inter 700 | section headings |
 | `.label*` | Inter 400/600, tight leading | UI text — buttons, rows, tags |
 | `.body*` | Inter 400/600, loose leading | sentences meant to be read |
@@ -299,7 +304,7 @@ block from `css/display-fonts.css`; never swap `--display-font` alone.
 `system-ui.css` holds controls specified by Apple or Google that a prototype
 *reproduces* rather than designs — the Add to Apple Wallet button today. Inside
 that file the rules are suspended on purpose: vendor colours as literals, vendor
-type, no response to theme or mode. Theming an Apple button to the team's brand
+type, no response to theme or mode. Theming an Apple button to the theme's brand
 would make it wrong.
 
 That exemption is bounded. If you cannot point at a published vendor guideline,
@@ -322,7 +327,7 @@ Text over a photograph needs a scrim. Flat scrims are the existing alpha scales
 | Primary text sitting on a scrim | `var(--white-1000)` |
 
 Gradients are tokens, because a scale can't express them:
-`.scrim-image` (bottom-up black fade) and `.scrim-brand` (fades into the team's
+`.scrim-image` (bottom-up black fade) and `.scrim-brand` (fades into the theme's
 dark brand colour). Scrims are **mode-stable** — a photo needs the same
 darkening in light mode as in dark. Never wrap one in a `[data-mode]` block.
 

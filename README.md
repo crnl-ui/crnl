@@ -5,19 +5,22 @@ Two attributes on `<html>` re-skin an entire screen — `data-theme` picks the
 palette and display type, `data-mode` picks light or dark — and `data-platform`
 switches between a responsive web layout and a phone frame.
 
-Everything here is self-contained: no CMS, no external brand assets, no paid
-fonts. The 145 display faces it ships are open-licence (OFL / Apache) cuts,
-re-metricated and renamed, with every licence included.
+Everything here is self-contained: no CMS, no CDN, no external brand assets, no
+paid fonts. The 145 display faces it ships are open-licence (OFL / Apache) cuts,
+re-metricated and renamed, with every licence included — as are Inter and the
+icon font.
 
 ```html
 <html data-theme="signal" data-mode="dark" data-platform="web">
   <head>
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap" rel="stylesheet">
     <script src="css/ds-loader.js"></script>
     <script src="css/prototype-harness.js"></script>
   </head>
 ```
+
+That is the whole setup. **Nothing is fetched from a CDN** — the UI face, the
+icon face and the 145 display faces all ship here, so a page renders the same
+offline as online.
 
 `ds-loader.js` owns the stylesheet order — never hand-write `<link>` tags for
 the CSS. `prototype-harness.js` injects the theme / mode / display-face switcher.
@@ -29,9 +32,10 @@ css/          the design system — 23 stylesheets, the source of truth
   ds-loader.js            loads them in order, locally or from a bundle
   design-tokens-master.css  base tokens + the base theme
   themes.css              five worked example themes
+  ui-fonts.css            Inter + the icon font, self-hosted
   display-fonts.css       a tuned display ramp for each shipped face
   prototype-harness.js    the review switcher
-fonts/        145 woff2 display faces + catalog.json + every licence
+fonts/        145 woff2 display faces, Inter, the icon font, every licence
 images/       payment marks, store badges, a placeholder logo — nothing branded
 src/          the React component library (src/index.ts exports)
 demo/         thirteen sheets rendering every class and token, live
@@ -83,9 +87,10 @@ The TTFs for desktop and Figma are in `tools/font-lab/built-fonts/`, with
 ```bash
 npm install
 npm run dev              # Storybook for the React components
-npm run check            # CSS API + demo coverage — the one to run before you finish
+npm run check            # themes, assets, icons, demo coverage — run before you finish
 npm run build:docs       # regenerate docs/css-api.md and css/ds.css
-npm run build:fonts      # re-cut fonts/*.woff2 and the two font stylesheets
+npm run build:fonts      # re-cut the display faces from tools/font-lab
+npm run build:ui-fonts   # re-cut Inter and the icon font from upstream
 ```
 
 Open `demo/index.html` directly in a browser — no server needed.
@@ -94,7 +99,8 @@ Open `demo/index.html` directly in a browser — no server needed.
 
 Code: MIT, see `LICENSE`.
 
-Fonts: each face is a modified cut of an OFL or Apache-licensed family. The
+Fonts: each face is a modified cut of an OFL or Apache-licensed family (the
+display faces, Inter, and Material Symbols Rounded). The
 original copyright, designer and licence records are preserved in every file,
 and the full licence text for each is in `fonts/licenses/`. `fonts/catalog.json`
 maps every shipped family to its source family and licence. Redistributing them

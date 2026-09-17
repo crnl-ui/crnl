@@ -25,14 +25,16 @@
     "build": "vite build",
     "build-storybook": "storybook build",
     "preview": "vite preview",
-    "check": "npm run check:themes && npm run check:assets && npm run check:demo",
+    "check": "npm run check:themes && npm run check:assets && npm run check:icons && npm run check:demo",
     "check:themes": "node scripts/check-themes.mjs",
     "check:assets": "node scripts/check-assets.mjs",
+    "check:icons": "node scripts/check-icons.mjs",
     "check:demo": "node demo/check-coverage.mjs",
     "build:css-api": "node scripts/generate-css-reference.js",
     "build:css-bundle": "node scripts/build-css-bundle.mjs",
     "build:docs": "npm run build:css-api && npm run build:css-bundle",
-    "build:fonts": "python3 scripts/build-fonts.py"
+    "build:fonts": "python3 scripts/build-fonts.py",
+    "build:ui-fonts": "python3 scripts/build-ui-fonts.py"
   },
   "dependencies": {
     "react": "^18.0.0",
