@@ -1,5 +1,5 @@
 #!/bin/bash
-# Install the AirDS display font cuts into ~/Library/Fonts.
+# Install the display font cuts into ~/Library/Fonts.
 #
 #   ./install-fonts.sh            # shipping defaults only — 145 files, 145 families
 #   ./install-fonts.sh roman      # every roman cut — 256 files, 256 families
@@ -14,7 +14,7 @@ DEST="$HOME/Library/Fonts"
 MODE="${1:-defaults}"
 mkdir -p "$DEST"
 
-python3 - "$HERE" "$MODE" <<'PY' > /tmp/airds-font-list.txt
+python3 - "$HERE" "$MODE" <<'PY' > /tmp/crnl-font-list.txt
 import json, sys
 here, mode = sys.argv[1], sys.argv[2]
 cuts = json.load(open(f'{here}/manifest.json'))['cuts']
@@ -30,12 +30,12 @@ else:
 print('\n'.join(c['file'] for c in pick))
 PY
 
-COUNT=$(wc -l < /tmp/airds-font-list.txt | tr -d ' ')
+COUNT=$(wc -l < /tmp/crnl-font-list.txt | tr -d ' ')
 echo "Installing $COUNT font files ($MODE) into $DEST"
 while IFS= read -r f; do
   [ -n "$f" ] && cp "$HERE/$f" "$DEST/$f"
-done < /tmp/airds-font-list.txt
-rm -f /tmp/airds-font-list.txt
+done < /tmp/crnl-font-list.txt
+rm -f /tmp/crnl-font-list.txt
 
 cat <<'MSG'
 

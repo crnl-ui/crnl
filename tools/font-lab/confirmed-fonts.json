@@ -30,7 +30,7 @@
   "lane": "Blackletter & medieval",
   "w": 400,
   "src": "rounded up",
-  "n": "Cleanest blackletter after Germania; a real Raiders-register option",
+  "n": "Cleanest blackletter after Germania; a real blackletter-register option",
   "st": [
    "Map"
   ],
@@ -693,7 +693,7 @@
   "sc": "c5 p4 a3",
   "spec": {
    "ls": -0.04,
-   "note": "Jump org spec: w900 \u00b7 \u22120.04em \u00b7 display ramp to 68px"
+   "note": "House display spec: w900 \u00b7 \u22120.04em \u00b7 display ramp to 68px"
   }
  },
  {

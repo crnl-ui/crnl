@@ -3,9 +3,6 @@
    ============================================================
    A stats table — a pinned entity column beside horizontally scrolling attribute columns.
 
-   Ported from the Air DS Figma "Table" component set (16263:30315)
-   and its subcomponents (16276:36620).
-
    The shape exists because a standings or stat table has one wide
    identifying column and many narrow numeric ones. On a phone the
    numbers cannot all fit, so they scroll while the entity
