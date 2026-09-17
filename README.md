@@ -61,7 +61,7 @@ css/          the design system — 24 stylesheets, the source of truth
   display-fonts.css       a tuned display ramp for each shipped face
   prototype-harness.js    the review switcher
 fonts/        145 woff2 display faces, Inter, the icon font, every licence
-images/       payment marks, store badges, a placeholder logo — nothing branded
+images/       payment marks, store badges, placeholders — see images/NOTICE.md
 src/          the React component library (src/index.ts exports)
 demo/         thirteen sheets rendering every class and token, live
 tests/        visual regression output — generated locally, not committed
@@ -129,8 +129,17 @@ Open `demo/index.html` directly in a browser — no server needed.
 Code: MIT, see `LICENSE`.
 
 Fonts: each face is a modified cut of an OFL or Apache-licensed family (the
-display faces, Inter, and Material Symbols Rounded). The
-original copyright, designer and licence records are preserved in every file,
-and the full licence text for each is in `fonts/licenses/`. `fonts/catalog.json`
-maps every shipped family to its source family and licence. Redistributing them
-means shipping those licence files too.
+display faces, Inter, and Material Symbols Rounded). A cut of an OFL family
+stays under OFL 1.1, as that licence requires of modified versions; an
+Apache-sourced cut stays under Apache 2.0. The original copyright, designer and
+licence records are preserved in every file, and the full licence text for each
+is in `fonts/licenses/`. `fonts/catalog.json` maps every shipped family to its
+source family and licence. Redistributing them means shipping those licence
+files too.
+
+Brand marks: the payment, wallet and app store marks in `images/` are
+trademarks of their owners and are **not** MIT — they are not this project's to
+licence, and are included under nominative use. `images/NOTICE.md` records what
+belongs to whom, which files there are original and MIT, and where to get
+current artwork. `pay-generic.svg` is the neutral card mark if you would rather
+not ship the real ones.

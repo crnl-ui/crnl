@@ -32,4 +32,27 @@ inside every font file. The full license text for each source family is in
 `fonts/licenses/`, and `fonts/catalog.json` maps every shipped family to its
 source family and license.
 
+A cut of an OFL family remains licensed under the SIL Open Font License 1.1, as
+that license requires of modified versions; a cut of an Apache-2.0 family
+remains under the Apache License 2.0. Renaming is what the OFL's Reserved Font
+Name condition requires of a modified version, and is why these families do not
+carry their source names.
+
 Redistributing these fonts means shipping those license files with them.
+
+---
+
+THE BRAND MARKS IN `images/` ARE NOT COVERED BY THE MIT LICENSE ABOVE, AND ARE
+NOT THIS PROJECT'S TO LICENSE.
+
+The payment network marks, wallet marks and app store badges are trademarks of
+their respective owners — Visa Inc., Mastercard International Incorporated,
+American Express Company, Discover Financial Services, Apple Inc. and Google
+LLC. They are included under nominative use, for the purpose each owner
+publishes them for. Their inclusion is not a grant of rights and implies no
+endorsement, sponsorship or affiliation.
+
+`images/NOTICE.md` records what belongs to whom, which files in that directory
+are original to this project and do carry the MIT license, and where to obtain
+current artwork. Anyone redistributing or shipping these marks is responsible
+for complying with the owner's brand guidelines.
