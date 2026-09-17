@@ -539,8 +539,18 @@ select {
 input:focus,
 textarea:focus,
 select:focus {
-  outline: none;
   border-color: var(--border-active);
+}
+
+/* Keyboard focus gets a ring on top of the border shift. The border alone is a
+   colour-only signal, which is not a sufficient focus indicator on its own —
+   so the outline is the indicator and the border is reinforcement. Scoped to
+   :focus-visible so a pointer click does not draw it. */
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: var(--border-weight-200) solid var(--color-interactive);
+  outline-offset: var(--spacing-25);
 }
 
 input::placeholder,

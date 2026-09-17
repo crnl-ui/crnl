@@ -8597,6 +8597,8 @@
             "--white-100",
             "--white-1000",
             "--white-300",
+            "--border-weight-200",
+            "--spacing-25",
             "--white-200"
           ],
           "alsoStyledIn": []
@@ -8666,7 +8668,9 @@
             "--text-primary",
             "--spacing-50",
             "--neutral-300",
-            "--color-interactive"
+            "--color-interactive",
+            "--border-weight-200",
+            "--spacing-25"
           ],
           "alsoStyledIn": []
         },

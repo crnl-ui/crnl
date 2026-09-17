@@ -2278,7 +2278,7 @@ goes full-bleed. See RULES §9.
 
 | Class | Declares | Tokens |
 |---|---|---|
-| `.app-device-controls` | display: none | --white-100, --white-1000, --white-300, --white-200 |
+| `.app-device-controls` | display: none | --white-100, --white-1000, --white-300, --border-weight-200, … |
 | `.device-control-label` | *contextual — styled via a parent* | --white-1000, --white-300 |
 | `.mode-toggle` | *contextual — styled via a parent* | --white-300, --white-1000, --white-200 |
 

@@ -302,6 +302,14 @@
   width: auto;
 }
 
+/* Keyboard focus for the device-controls select. The bar carries its own fixed
+   palette, so the ring tracks currentColor rather than the theme accent, which
+   can resolve to near-black against it. */
+[data-platform="app"] .app-device-controls select:focus-visible {
+  outline: var(--border-weight-200) solid currentColor;
+  outline-offset: var(--spacing-25);
+}
+
 [data-platform="app"] .app-device-controls .material-symbols-rounded {
   font-size: 16px;
   color: var(--white-300);
@@ -665,6 +673,8 @@
 
 .template-fab-panel select:focus-visible {
   border-color: var(--color-interactive);
+  outline: var(--border-weight-200) solid var(--color-interactive);
+  outline-offset: var(--spacing-25);
 }
 
 /* Cross-platform link inside the web panel */
