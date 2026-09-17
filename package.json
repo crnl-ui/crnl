@@ -1,5 +1,5 @@
 {
-  "name": "crnl",
+  "name": "@crnl/ui",
   "version": "0.1.0",
   "description": "Crnl — a token-based CSS design system with a typed React layer, light and dark modes, and pluggable theming",
   "repository": {

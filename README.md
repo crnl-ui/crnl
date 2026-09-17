@@ -37,15 +37,17 @@ Where it actually stands:
 - **The React layer is a subset**, not parity — 18 components against those 739
   classes. It exists for the parts that carry real state; the rest is markup and
   classes.
-- **Not published to npm.** The manifest is marked `private` on purpose. Use
-  this by vendoring the repo — clone it, or copy `css/`, `fonts/` and `images/`
-  into a project and point `crnl-loader.js` at them. The `exports` map is there
-  so a local file or workspace dependency resolves; it is not a registry
-  promise.
-- **Known gaps**, in rough priority order: no CI, so every check is run by hand;
-  236 `!important` declarations that want `@layer`; no RTL support (the CSS uses
-  physical properties throughout); buttons and rows rely on the browser's
-  default focus ring rather than a designed one.
+- **Not published to npm.** The manifest is marked `private` on purpose. The
+  `@crnl` scope is reserved, so the name is held whether or not anything is ever
+  published under it. Use this by vendoring the repo — clone it, or copy `css/`,
+  `fonts/` and `images/` into a project and point `crnl-loader.js` at them. The
+  `exports` map is there so a local file or workspace dependency resolves; it is
+  not a registry promise.
+- **Known gaps**, in rough priority order: 236 `!important` declarations that
+  want `@layer`; no RTL support (the CSS uses physical properties throughout);
+  buttons and rows rely on the browser's default focus ring rather than a
+  designed one; the visual check's baselines are per-machine, so it runs
+  locally and not in CI.
 
 The licence is MIT and means what it says — the reservation above is about
 maturity, not permission.
@@ -113,7 +115,7 @@ The TTFs for desktop and Figma are in `tools/font-lab/built-fonts/`, with
 ```bash
 npm install
 npm run dev              # Storybook for the React components
-npm run check            # themes, assets, icons, demo coverage — fast, no browser
+npm run check            # themes, assets, icons, exports, demo coverage — no browser
 npm run check:visual     # screenshot every sheet, diff against tests/visual/baseline
                          # (first run writes the baselines — they are machine-specific)
 npm run check:all        # both — run before you finish
@@ -123,6 +125,13 @@ npm run build:ui-fonts   # re-cut Inter and the icon font from upstream
 ```
 
 Open `demo/index.html` directly in a browser — no server needed.
+
+`npm run check` also runs in CI on every push to `main` and every pull request,
+along with a step that regenerates `docs/css-api.*` and fails if the result
+differs — those files are generated but committed, and every check above reads
+that manifest rather than auditing it, so drift is the one thing none of them
+can see. `check:visual` stays local: its baselines are specific to the machine
+and browser build that made them.
 
 ## Licence
 
