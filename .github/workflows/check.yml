@@ -44,8 +44,20 @@ jobs:
       - name: docs are current
         run: |
           npm run build:css-api
-          if ! git diff --quiet -- docs/css-api.md docs/css-api.json; then
-            echo "::error::docs/css-api.* is stale — run 'npm run build:docs' and commit the result."
-            git diff --stat -- docs/css-api.md docs/css-api.json
+          npm run build:inventory
+          if ! git diff --quiet -- docs/css-api.md docs/css-api.json docs/inventory.md docs/inventory.json; then
+            echo "::error::a generated doc is stale — run 'npm run build:docs' and commit the result."
+            git diff --stat -- docs/css-api.md docs/css-api.json docs/inventory.md docs/inventory.json
+            exit 1
+          fi
+
+      # The lint baseline records debt the repository already carries. A run
+      # that comes in UNDER it means somebody fixed something without locking
+      # the gain in, and the next regression would land free.
+      - name: lint baseline is tight
+        run: |
+          if node scripts/lint.mjs | grep -q 'Below the baseline'; then
+            echo "::error::the lint baseline is looser than reality — run 'node scripts/lint.mjs --update-baseline' and commit it."
+            node scripts/lint.mjs | sed -n '/Below the baseline/,$p'
             exit 1
           fi

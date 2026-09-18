@@ -1,0 +1,118 @@
+# Inventory
+
+> **Generated file — do not edit.** Produced by `npm run build:inventory` from
+> `docs/css-api.json`, `src/components/`, `src/index.ts` and `demo/*.html`.
+>
+> This answers *what exists*, at a glance. `docs/css-api.md` is the exhaustive
+> per-class reference; `docs/design-guide.md` explains when to reach for each
+> thing. Read `docs/inventory.json` instead of this file if you are an agent —
+> same content, nothing to parse.
+
+**737 classes and 226 tokens across 24 stylesheets, shown live on 13 demo sheets, with 18 React components over the top.**
+
+## The two layers
+
+The CSS is the system. The React library is a typed convenience over part of
+it — not a parity target, and not a prerequisite. Anything with no React
+component is markup plus classes, which is the normal way to use this.
+
+| | Count | Covered by React |
+|---|---:|---:|
+| token | 81 | 0 (0%) |
+| primitive | 404 | 20 (5%) |
+| component | 223 | 122 (55%) |
+| pattern | 14 | 0 (0%) |
+| vendor | 4 | 0 (0%) |
+| platform | 11 | 0 (0%) |
+
+## Stylesheets
+
+In load order. `crnl-loader.js` owns that order (`RULES §1`).
+
+| # | Stylesheet | Layer | Classes | Tokens | React | Covers |
+|---:|---|---|---:|---:|---:|---|
+| 1 | `design-tokens-master.css` | token | — | 105 | — | Colour, in both modes, plus the base theme |
+| 2 | `themes.css` | token | — | 33 | — | The five shipped themes |
+| 3 | `spacing-tokens.css` | token | 3 | 40 | 0/3 | The 8px scale and its utilities |
+| 4 | `container-tokens.css` | token | 8 | 7 | 0/8 | Content widths and page padding |
+| 5 | `border-effects-tokens.css` | token | 70 | 15 | 0/70 | Radius, border weight, shadow, scrim |
+| 6 | `ui-fonts.css` | token | — | — | — | The UI and icon faces |
+| 7 | `fonts.css` | token | — | — | — | Every shipped display face |
+| 8 | `display-fonts.css` | token | — | 12 | — | A tuned display ramp per face |
+| 9 | `text-styles-system.css` | primitive | 59 | — | 9/59 | The type scale |
+| 10 | `icons.css` | primitive | 11 | 8 | 4/11 | The icon system |
+| 11 | `card-components.css` | component | 27 | — | 14/27 | Cards, tiles, media bands |
+| 12 | `interactive-tokens.css` | primitive | 16 | — | 7/16 | Surfaces and scales — the press mechanism |
+| 13 | `button-components.css` | component | 36 | — | 20/36 | Buttons |
+| 14 | `system-ui.css` | vendor | 4 | — | 0/4 | Vendor chrome — exempt by RULES §7 |
+| 15 | `list-row-components.css` | component | 46 | — | 21/46 | The list row and everything on it |
+| 16 | `table-components.css` | component | 17 | 1 | 0/17 | The stat table |
+| 17 | `input-components.css` | component | 16 | — | 14/16 | Text input and select |
+| 18 | `tag-chip-components.css` | component | 7 | — | 7/7 | Tags and chips |
+| 19 | `nav-components.css` | component | 26 | — | 23/26 | Top bar, tabs, steps, page header |
+| 20 | `ios-nav-components.css` | component | 33 | 2 | 23/33 | iOS chrome for app mode |
+| 21 | `web-footer-components.css` | component | 15 | — | 0/15 | The site footer |
+| 22 | `product-patterns.css` | pattern | 14 | — | 0/14 | Composite layouts above the component layer |
+| 23 | `boilerplate.css` | primitive | 318 | — | 0/318 | Reset, element defaults, layout utilities |
+| 24 | `platform-tokens.css` | platform | 11 | 3 | 0/11 | The web/app switch and the phone frame |
+
+## React components
+
+18 in `src/components/`, 18 exported from `src/index.ts`.
+A component that is not exported cannot be imported from the package, whatever
+else is true of it.
+
+| Component | Exports | Stories | Renders | From |
+|---|---|---|---:|---|
+| `Button` | `Button` `CircleButton` | yes | 23 | `button`, `icons`, `list-row` |
+| `Card` | `CardClosed` `CardOpen` `CardSection` | yes | 10 | `card` |
+| `IOSHomeNav` | `IOSHomeNav` | **no** | 7 | `ios-nav`, `text-styles-system` |
+| `IOSModal` | `IOSModal` | **no** | 9 | `ios-nav` |
+| `IOSNavButton` | `IOSNavButton` | **no** | 4 | `icons`, `ios-nav` |
+| `IOSPageNav` | `IOSPageNav` | **no** | 5 | `ios-nav` |
+| `IOSTabBar` | `IOSTabBar` | **no** | 6 | `icons`, `ios-nav` |
+| `Icon` | `Icon` | yes | 2 | `icons` |
+| `Input` | `Input` `Select` | yes | 16 | `icons`, `input`, `list-row` |
+| `ListRow` | `ListRow` `TextPair` `TrailingText` `LeadingImage` `LeadingLogo` `CircleContainer` | yes | 14 | `list-row`, `text-styles-system` |
+| `PageHeader` | `PageHeader` | yes | 8 | `card`, `nav`, `text-styles-system` |
+| `Selector` | `Selector` | yes | 6 | `interactive-tokens`, `list-row` |
+| `SplitRow` | `SplitRow` `SplitRowList` | yes | 17 | `interactive-tokens`, `list-row`, `text-styles-system` |
+| `Steps` | `Steps` | yes | 9 | `icons`, `nav` |
+| `Tabs` | `Tabs` | yes | 4 | `nav` |
+| `Tag` | `Tag` `Chip` | yes | 15 | `icons`, `interactive-tokens`, `list-row`, `tag-chip` |
+| `Tile` | `Tile` | yes | 5 | `card`, `interactive-tokens` |
+| `TopBar` | `TopBar` | yes | 9 | `nav`, `text-styles-system` |
+
+**No stories:** `IOSHomeNav`, `IOSModal`, `IOSNavButton`, `IOSPageNav`, `IOSTabBar` — nothing renders these in Storybook, so nothing catches a break in them.
+
+## Demo sheets
+
+Every class rendered live, in the real CSS. Open `demo/index.html`.
+
+| Sheet | Shows |
+|---|---|
+| [`01-color.html`](../demo/01-color.html) | Color |
+| [`02-type.html`](../demo/02-type.html) | Type |
+| [`03-space.html`](../demo/03-space.html) | Space & Layout |
+| [`04-buttons.html`](../demo/04-buttons.html) | Buttons |
+| [`05-surfaces.html`](../demo/05-surfaces.html) | Surfaces |
+| [`06-cards.html`](../demo/06-cards.html) | Cards & Tiles |
+| [`07-rows.html`](../demo/07-rows.html) | Rows, Tags & Controls |
+| [`08-forms.html`](../demo/08-forms.html) | Forms |
+| [`09-nav.html`](../demo/09-nav.html) | Nav & Patterns |
+| [`10-tables.html`](../demo/10-tables.html) | Tables |
+| [`11-ios-frame.html`](../demo/11-ios-frame.html) | iOS Chrome |
+| [`11-ios.html`](../demo/11-ios.html) | iOS / App |
+| [`index.html`](../demo/index.html) | Overview |
+
+## What has no live specimen
+
+329 class(es) appear by name on a sheet but have no live specimen —
+legitimate for a utility scale, where 300 identical boxes would show less
+than one listing. `npm run check:demo` is what holds the line.
+
+- `boilerplate.css` — 283: `.flex-center` `.flex-center-viewport` `.flex-column` `.gap-xs` `.gap-sm` `.gap-md` `.gap-lg` `.gap-xl` `.m-25` `.m-50` `.m-100` `.m-150` …
+- `border-effects-tokens.css` — 33: `.rounded-t-50` `.rounded-t-100` `.rounded-b-50` `.rounded-b-100` `.rounded-l-50` `.rounded-l-100` `.rounded-r-50` `.rounded-r-100` `.rounded-tl-50` `.rounded-tl-100` `.rounded-tr-50` `.rounded-tr-100` …
+- `input-components.css` — 1: `.is-open`
+- `ios-nav-components.css` — 3: `.ios-status-bar-modal` `.ios-content` `.has-ios-tab-bar`
+- `platform-tokens.css` — 9: `.app-device-controls` `.device-control-label` `.mode-toggle` `.template-fab` `.template-fab-trigger` `.template-fab-panel` `.open` `.template-fab-link` `.template-platform-link`
