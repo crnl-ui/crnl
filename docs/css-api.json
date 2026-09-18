@@ -1,6 +1,7 @@
 {
   "_generated": "npm run build:css-api — do not edit by hand",
   "loadOrder": [
+    "reset.css",
     "design-tokens-master.css",
     "themes.css",
     "spacing-tokens.css",
@@ -27,6 +28,12 @@
     "platform-tokens.css"
   ],
   "stylesheets": [
+    {
+      "file": "reset.css",
+      "covers": "The element layer: the box-sizing reset, the document defaults, and the",
+      "classes": [],
+      "tokens": []
+    },
     {
       "file": "design-tokens-master.css",
       "covers": "Colour tokens in light and dark mode, the base theme, and the semantic tokens components consume.",
@@ -2675,13 +2682,11 @@
         {
           "name": "text-secondary",
           "section": "COLOR MODIFIERS",
-          "declares": "color: var(--neutral-700) !important",
+          "declares": "color: var(--text-secondary) !important",
           "tokens": [
-            "--neutral-700"
+            "--text-secondary"
           ],
-          "alsoStyledIn": [
-            "list-row-components.css"
-          ]
+          "alsoStyledIn": []
         },
         {
           "name": "text-disabled",
@@ -4401,7 +4406,15 @@
           "alsoStyledIn": []
         }
       ],
-      "tokens": []
+      "tokens": [
+        {
+          "name": "--text-secondary",
+          "scopes": [
+            "component-scoped"
+          ],
+          "example": "var(--inverted-700)"
+        }
+      ]
     },
     {
       "file": "table-components.css",
@@ -5782,7 +5795,7 @@
     },
     {
       "file": "boilerplate.css",
-      "covers": "The base layer: CSS reset, element defaults, and the spacing, layout, grid and responsive utilities.",
+      "covers": "The utility layer: spacing, layout, grid and responsive utilities.",
       "classes": [
         {
           "name": "flex-center",

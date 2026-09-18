@@ -51,6 +51,7 @@
      same offline as online, and `data-no-font-gate` is no longer read. */
 
   var sheets = [
+    'reset.css',
     'design-tokens-master.css',
     'themes.css',
     'spacing-tokens.css',
@@ -77,13 +78,61 @@
     'platform-tokens.css'
   ];
 
+  /* ── Cascade layers ──────────────────────────────────────────────────────
+     The system declares its own layers so that anything a consumer writes —
+     unlayered, in their own stylesheet — beats all of it without a
+     specificity fight and without !important. That is what makes the CSS
+     ownable rather than merely forkable: unlayered styles always win over
+     layered ones, whatever their specificity.
+
+     Each entry is [layer name, index of the last sheet in it]. Defining the
+     boundaries by position rather than by listing filenames twice means the
+     groups are contiguous in load order by construction, so the relative
+     precedence of any two sheets is exactly what it was before layers
+     existed. A layer that skipped around the list would silently reorder the
+     cascade.
+
+     scripts/lib/load-order.mjs parses this, so the bundle builder wraps each
+     sheet in the same layer this injects it into. Two copies of this list
+     would be two cascades. */
+  var layers = [
+    ['reset',      1],   // 1     element defaults and the box-sizing reset
+    ['tokens',     9],   // 2–9   colour, spacing, containers, borders, fonts
+    ['primitives', 11],  // 10–11 the type scale and the icon system
+    ['components', 22],  // 12–22 every component, incl. the surface ladder
+    ['patterns',   23],  // 23    composite layouts above the component layer
+    ['utilities',  24],  // 24    boilerplate: the utility scales
+    ['platform',   25]   // 25    the web/app switch and the phone frame
+  ];
+
+  var layerOf = function (index) {
+    for (var i = 0; i < layers.length; i++) {
+      if (index < layers[i][1]) return 'crnl.' + layers[i][0];
+    }
+    return 'crnl.' + layers[layers.length - 1][0];
+  };
+
+  /* The layer order statement has to come first and name every layer, because
+     a layer's position is fixed the first time it is mentioned. Declaring
+     them all up front means the order does not depend on which sheet happens
+     to load first. */
+  var layerStatement = function () {
+    return '@layer ' + layers.map(function (l) { return 'crnl.' + l[0]; }).join(', ') + ';';
+  };
+
+  /* @import rather than <link>, because the `layer` attribute on <link> is
+     not supported anywhere yet, and @import url(…) layer(…) is supported
+     everywhere @layer itself is. It serialises the requests, which is the
+     cost of the local path — and the local path is the one where a round
+     trip does not matter, because the files are on disk. */
   var injectSheets = function () {
-    sheets.forEach(function (name) {
-      var link = document.createElement('link');
-      link.rel = 'stylesheet';
-      link.href = base + name;
-      document.head.appendChild(link);
-    });
+    var style = document.createElement('style');
+    style.textContent =
+      layerStatement() + '\n' +
+      sheets.map(function (name, i) {
+        return "@import url('" + base + name + "') layer(" + layerOf(i) + ");";
+      }).join('\n');
+    document.head.appendChild(style);
   };
 
   /* Locally, inject the individual stylesheets — editing one and reloading has

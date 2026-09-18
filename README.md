@@ -64,9 +64,13 @@ component props can all still move, and will. If you build on it, pin a commit.
 Where it actually stands, measured rather than asserted — every number below
 comes from `npm run check` or `npm run build:inventory`:
 
-- **The CSS is the system.** 737 classes and 226 tokens across 24 stylesheets,
+- **The CSS is the system.** 737 classes and 226 tokens across 25 stylesheets,
   every one of them rendered live on the demo sheets and held there by a
   coverage check that fails in both directions.
+- **It ships in cascade layers**, so your own CSS overrides any of it without
+  `!important` and without a specificity fight — unlayered styles beat layered
+  ones by rule. `crnl.reset → tokens → primitives → components → patterns →
+  utilities → platform`.
 - **The React layer is 19% of it**, and deliberately so. 18 components
   exporting 27 symbols, covering 55% of the component layer and none of the
   utilities. Everything else is markup plus classes, which is the normal way to
@@ -115,8 +119,9 @@ one failure mode none of the other checks can see.
 ## What's here
 
 ```
-css/          the design system — 24 stylesheets, the source of truth
-  crnl-loader.js            loads them in order, locally or from a bundle
+css/          the design system — 25 stylesheets, the source of truth
+  crnl-loader.js            loads them in order and in layers, locally or bundled
+  reset.css                 element defaults — the first cascade layer
   design-tokens-master.css  base tokens + the base theme (the contract)
   themes.css                five worked example themes
   ui-fonts.css              Inter + the icon font, self-hosted

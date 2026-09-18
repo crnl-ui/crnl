@@ -423,8 +423,15 @@
   color: var(--neutral-1000) !important;
 }
 
+/* Through the semantic token rather than the raw scale, so a context that
+   needs a different secondary — an inverted surface, a scrim — redefines
+   --text-secondary in scope and every .text-secondary inside it follows. A
+   component that instead re-declares `.text-secondary` has to match this
+   !important to win, and under cascade layers matching it is not enough:
+   important declarations reverse layer order, so the earlier layer wins and
+   the component loses. Set the token, not the class. */
 .text-secondary {
-  color: var(--neutral-700) !important;
+  color: var(--text-secondary) !important;
 }
 
 .text-disabled {

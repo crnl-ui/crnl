@@ -71,6 +71,7 @@ because a class lacks a wrapper.
 ```
 css/                  CSS source — the design system itself
 ├── crnl-loader.js      loads every stylesheet in order (local sheets or bundle)
+├── reset.css         element defaults — the first cascade layer
 ├── design-tokens-master.css   base tokens + the base theme (the contract)
 ├── themes.css        the five shipped themes
 ├── display-fonts.css a tuned display ramp per shipped face  [GENERATED]
@@ -208,12 +209,37 @@ card sits only a few points off its background), and the failure limit is an
 absolute pixel count rather than a percentage (one changed rule is 0.003% of a
 10,000px sheet).
 
-### Load order
+### Load order and cascade layers
 
-`crnl-loader.js` owns the stylesheet list and order; `scripts/lib/load-order.mjs`
-parses it so nothing keeps a second copy. Never hand-write `<link>` tags or a
-load-order list in a page or a doc (`RULES §1`). Adding a stylesheet = add it to
-`crnl-loader.js`, run `build:docs`.
+`crnl-loader.js` owns the stylesheet list, the order, **and** the layer map;
+`scripts/lib/load-order.mjs` parses all three so nothing keeps a second copy.
+Never hand-write `<link>` tags or a load-order list in a page or a doc
+(`RULES §1`). Adding a stylesheet = add it to `crnl-loader.js`, put it in a
+layer, run `build:docs`.
+
+The system ships inside seven layers:
+
+```
+crnl.reset → crnl.tokens → crnl.primitives → crnl.components
+           → crnl.patterns → crnl.utilities → crnl.platform
+```
+
+Three consequences worth holding:
+
+- **Anything you write outside a layer beats all of it**, whatever the
+  specificity. A prototype's own CSS needs no `!important` and no
+  specificity games to override a component — that is the point.
+- **A later layer beats an earlier one regardless of specificity.** So a
+  reset rule can no longer be out-specified by a component rule; it is
+  simply earlier, and loses. This is why `reset.css` exists separately from
+  `boilerplate.css` and is the first layer of all.
+- **`!important` reverses the order** — an important declaration in an
+  *earlier* layer beats one in a later layer. Two rules racing with
+  `!important` across layers will resolve the opposite way from what
+  specificity suggests. When a component needs to change what a utility
+  paints, **set the token, don't re-declare the class**: custom properties
+  resolve independently of layers, so `--text-secondary: …` in scope always
+  wins. `.selector.is-selected` is the worked example.
 
 ### Adding a token
 

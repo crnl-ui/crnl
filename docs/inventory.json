@@ -2,8 +2,8 @@
   "_generated": "npm run build:inventory — do not edit by hand",
   "totals": {
     "classes": 737,
-    "tokens": 226,
-    "stylesheets": 24,
+    "tokens": 227,
+    "stylesheets": 25,
     "sheets": 13,
     "reactComponents": 18,
     "reactExported": 18,
@@ -11,6 +11,15 @@
     "classesOnASheet": 408
   },
   "stylesheets": [
+    {
+      "file": "reset.css",
+      "layer": "component",
+      "covers": "The element layer: the box-sizing reset, the document defaults, and the",
+      "classCount": 0,
+      "tokenCount": 0,
+      "reactCovered": 0,
+      "classes": []
+    },
     {
       "file": "design-tokens-master.css",
       "layer": "token",
@@ -1555,7 +1564,7 @@
       "layer": "component",
       "covers": "The list row and everything on it",
       "classCount": 46,
-      "tokenCount": 0,
+      "tokenCount": 1,
       "reactCovered": 21,
       "classes": [
         {

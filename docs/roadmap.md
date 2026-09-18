@@ -155,26 +155,68 @@ capture — are small and worth doing next. The content rule is worth a heuristi
 even at some false-positive cost, because it is the rule most often broken and
 the one whose breakage is invisible until the data changes.
 
-### 2. No cascade layers, and 118 `!important`
+### 2. No cascade layers — ✅ closed. The `!important` cleanup it unblocks is not.
+
+**Closed.** The system now declares seven layers, in this order:
 
 ```
-grep -o '!important' css/*.css | wc -l   # 118
-grep -c '@layer' css/*.css               # 0 files
+crnl.reset → crnl.tokens → crnl.primitives → crnl.components
+           → crnl.patterns → crnl.utilities → crnl.platform
 ```
 
-Concentrated in `platform-tokens.css` (67) and `text-styles-system.css` (33),
-where they exist to beat inline styles the prototype harness writes — which is
-the one use `RULES §2` allows in spirit and forbids in letter.
+Anything a consumer writes is **unlayered**, and unlayered styles beat layered
+ones whatever their specificity. So a consumer's `.selector { background: … }`
+now beats the system's `.selector.is-selected`, with no `!important` and no
+specificity fight. Measured both ways before and after: before, the
+lower-specificity consumer rule lost; after, it wins. That is what "ownable"
+was missing.
 
-The cost is not tidiness. It is that a consumer cannot override a component
-without joining the arms race, which is what makes the system un-ownable in
-practice. Wrapping the load order in `@layer crnl.tokens, crnl.primitives,
-crnl.components, crnl.patterns` makes every consumer rule win by default, with
-no specificity fight, and lets most of the 118 go.
+`crnl-loader.js` owns the layer map next to the load order, and defines the
+boundaries by position, so the groups are contiguous by construction and the
+relative precedence of any two sheets is what it always was.
+`scripts/lib/load-order.mjs` parses it, so the delivery bundle wraps each sheet
+in the layer the local path imports it into — one list, one cascade. The local
+path uses `@import url(…) layer(…)`, because the `layer` attribute on `<link>`
+is not supported anywhere yet.
 
-`crnl-loader.js` already owns the load order, so the layer statement has exactly
-one place to live. This is a contained change with a large payoff, and it is
-the prerequisite for gap 6.
+**All 32 visual baselines are pixel-identical.** Getting there found three real
+problems, which is the whole argument for doing this with a screenshot diff
+rather than by reasoning:
+
+- **`boilerplate.css` was simultaneously the reset and the utilities.** Load
+  order let specificity arbitrate — a class-based component rule beat an
+  element-based reset rule without anyone deciding. Layers removed that
+  arbitration, and `* { padding: 0 }` in a late layer silently zeroed the
+  padding of every card section. The two halves want opposite ends of the
+  cascade, so they are now two files: `reset.css` and `boilerplate.css`.
+- **The reset has to be the *first* layer, before the tokens.** Three of the
+  token sheets also ship classes — `.container-*`, the spacing utilities, the
+  radius and border scales, 81 in all — and `* { padding: 0 }` in a layer after
+  those zeroed every container's page padding. A reset belongs before
+  everything that draws, and "everything" includes the sheets whose names
+  suggest they only declare values.
+- **`!important` reverses layer order.** `.text-secondary`'s `!important` in
+  the primitives layer began beating `.selector.is-selected .text-secondary`'s
+  `!important` in the components layer, which had won on specificity for as
+  long as it had existed — dark text on a dark selected row. The CSS comment
+  there already said "must match to override"; matching stopped being enough.
+  Fixed token-natively: `.text-secondary` now reads `var(--text-secondary)`,
+  and the selected row redefines that token in scope. Custom properties resolve
+  independently of layer precedence, so nothing can reorder it. One
+  `!important` gone, and the pattern to copy for the rest.
+
+**Still open: the `!important` count.** Layering makes most of the 118
+unnecessary in principle — a rule in the last layer needs no `!important` to
+beat a rule in an earlier one — but it does not make removing them *verifiable*
+yet. 67 are in `platform-tokens.css`, and most of those apply in app mode or
+below 500px, which `check:visual` does not capture: it shoots one width, in web
+mode. Removing them and seeing a green run would prove nothing.
+
+So this waits on three-breakpoint and app-mode capture (gap 1), and then is
+mechanical: drop every `!important` whose only competitor is a stylesheet rule,
+keep and comment the ones that beat an inline style the harness writes, which
+no layer can help with. Sequencing it the other way round is how you ship a
+mobile-only regression nobody sees for a month.
 
 ### 3. Two vocabularies for one system
 
@@ -320,7 +362,9 @@ regression would land free.
 
 1. ~~**Gap 0** — focus rings, the role rule, the lint rule.~~ Done, bar the
    axe-core pass, which rides with pinning the renderer (gap 7).
-2. **Gap 2** — `@layer`, and the `!important` count falls out of it.
+2. ~~**Gap 2** — `@layer`.~~ Done. The `!important` cleanup it unblocks is
+   sequenced after gap 1's breakpoint capture, because it cannot be verified
+   without it.
 3. **Gap 3** — align the React vocabulary with the CSS, while the surface is
    small and nothing is published.
 4. **Gap 7** — the cheap ones, in an afternoon.

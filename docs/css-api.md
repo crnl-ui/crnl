@@ -8,37 +8,38 @@
 > compose; this file is the exhaustive list of what exists. If a class or token
 > is not here, it is not in the design system.
 
-**737 classes and 226 custom properties across 24 stylesheets.** 0 internal classes (documentation chrome) are intentionally omitted. Each class is listed once, under the stylesheet that defines it.
+**737 classes and 227 custom properties across 25 stylesheets.** 0 internal classes (documentation chrome) are intentionally omitted. Each class is listed once, under the stylesheet that defines it.
 
 ## Load order
 
 Read from `crnl-loader.js` at generation time — this is what browsers actually load.
 
 ```html
-<!--  1 --> design-tokens-master.css
-<!--  2 --> themes.css
-<!--  3 --> spacing-tokens.css
-<!--  4 --> container-tokens.css
-<!--  5 --> border-effects-tokens.css
-<!--  6 --> ui-fonts.css
-<!--  7 --> fonts.css
-<!--  8 --> display-fonts.css
-<!--  9 --> text-styles-system.css
-<!-- 10 --> icons.css
-<!-- 11 --> card-components.css
-<!-- 12 --> interactive-tokens.css
-<!-- 13 --> button-components.css
-<!-- 14 --> system-ui.css
-<!-- 15 --> list-row-components.css
-<!-- 16 --> table-components.css
-<!-- 17 --> input-components.css
-<!-- 18 --> tag-chip-components.css
-<!-- 19 --> nav-components.css
-<!-- 20 --> ios-nav-components.css
-<!-- 21 --> web-footer-components.css
-<!-- 22 --> product-patterns.css
-<!-- 23 --> boilerplate.css
-<!-- 24 --> platform-tokens.css
+<!--  1 --> reset.css
+<!--  2 --> design-tokens-master.css
+<!--  3 --> themes.css
+<!--  4 --> spacing-tokens.css
+<!--  5 --> container-tokens.css
+<!--  6 --> border-effects-tokens.css
+<!--  7 --> ui-fonts.css
+<!--  8 --> fonts.css
+<!--  9 --> display-fonts.css
+<!-- 10 --> text-styles-system.css
+<!-- 11 --> icons.css
+<!-- 12 --> card-components.css
+<!-- 13 --> interactive-tokens.css
+<!-- 14 --> button-components.css
+<!-- 15 --> system-ui.css
+<!-- 16 --> list-row-components.css
+<!-- 17 --> table-components.css
+<!-- 18 --> input-components.css
+<!-- 19 --> tag-chip-components.css
+<!-- 20 --> nav-components.css
+<!-- 21 --> ios-nav-components.css
+<!-- 22 --> web-footer-components.css
+<!-- 23 --> product-patterns.css
+<!-- 24 --> boilerplate.css
+<!-- 25 --> platform-tokens.css
 ```
 
 In-repo pages use `<script src="crnl-loader.js"></script>` instead of individual tags.
@@ -47,6 +48,7 @@ In-repo pages use `<script src="crnl-loader.js"></script>` instead of individual
 
 | Stylesheet | Classes | What it covers |
 |---|---:|---|
+| [`reset.css`](#resetcss) | 0 | The element layer: the box-sizing reset, the document defaults, and the |
 | [`design-tokens-master.css`](#design-tokens-mastercss) | 0 · 105 tokens | Colour tokens in light and dark mode, the base theme, and the semantic tokens components consume. |
 | [`themes.css`](#themescss) | 0 · 33 tokens | The themes this system ships with, as worked examples of the theming contract. |
 | [`spacing-tokens.css`](#spacing-tokenscss) | 3 · 40 tokens | The 8px spacing scale, its responsive tokens, and section-rhythm utilities. |
@@ -61,7 +63,7 @@ In-repo pages use `<script src="crnl-loader.js"></script>` instead of individual
 | [`interactive-tokens.css`](#interactive-tokenscss) | 16 | Surface and scale classes that give any element its hover and pressed states. |
 | [`button-components.css`](#button-componentscss) | 36 | The button system: every button type, three sizes, icon placement, fill width and circle icon buttons. |
 | [`system-ui.css`](#system-uicss) | 4 | Vendor chrome: controls specified by Apple or Google that a prototype reproduces rather than designs. |
-| [`list-row-components.css`](#list-row-componentscss) | 46 | The list row and everything built on it: its slots and subcomponents, the selector wrapper, and the split row. |
+| [`list-row-components.css`](#list-row-componentscss) | 46 · 1 tokens | The list row and everything built on it: its slots and subcomponents, the selector wrapper, and the split row. |
 | [`table-components.css`](#table-componentscss) | 17 · 1 tokens | A stats table — a pinned entity column beside horizontally scrolling attribute columns. |
 | [`input-components.css`](#input-componentscss) | 16 | Single-line text input and select dropdown, with their states and modifiers. |
 | [`tag-chip-components.css`](#tag-chip-componentscss) | 7 | The tag (a static label badge) and the chip (an interactive filter or toggle). |
@@ -69,8 +71,39 @@ In-repo pages use `<script src="crnl-loader.js"></script>` instead of individual
 | [`ios-nav-components.css`](#ios-nav-componentscss) | 33 · 2 tokens | iOS navigation chrome for app-mode prototypes: nav bars, tab bar, modal sheet and glass surface. |
 | [`web-footer-components.css`](#web-footer-componentscss) | 15 | The responsive site footer. |
 | [`product-patterns.css`](#product-patternscss) | 14 | Composite layouts that recur across product screens and sit above the component layer. |
-| [`boilerplate.css`](#boilerplatecss) | 318 | The base layer: CSS reset, element defaults, and the spacing, layout, grid and responsive utilities. |
+| [`boilerplate.css`](#boilerplatecss) | 318 | The utility layer: spacing, layout, grid and responsive utilities. |
 | [`platform-tokens.css`](#platform-tokenscss) | 11 · 3 tokens | The web/app platform switch: phone frame, iOS system chrome, safe-area tokens and review chrome. |
+
+---
+
+## reset.css
+
+```
+reset.css
+The element layer: the box-sizing reset, the document defaults, and the
+browser's own controls brought to a neutral starting point.
+
+This used to live inside boilerplate.css, at two separate places in a file
+that is otherwise 300-odd utility classes. Load order made that work — the
+sheet loaded last, and specificity decided every conflict, so a class-based
+component rule beat an element-based reset rule without anyone having to
+think about it.
+
+Cascade layers removed that arbitration. A later layer beats an earlier one
+whatever the specificity, so `* { padding: 0 }` in the utilities layer
+silently zeroed the padding of every card section, and `button { font-size:
+inherit }` overrode every .btn size. The two halves of the file want
+opposite ends of the cascade, which is why they are now two files: a reset
+has to come before the components, and a utility has to come after them.
+
+Layer: crnl.reset — the FIRST layer, before even the tokens. Not because
+the reset needs the tokens (custom properties resolve independently of
+layer order), but because three of the token sheets also ship classes —
+.container-*, the spacing utilities, the radius and border scales, 81 of
+them. `* { padding: 0 }` in a layer after those zeroed every container's
+page padding. A reset belongs before everything that draws, and "everything"
+includes the sheets whose names suggest they only declare values.
+```
 
 ---
 
@@ -718,7 +751,7 @@ Fix it on the child with `color: inherit`, not by overriding the text class.
 | `.text-inverted` | color: var(--inverted-1000) !important | --inverted-1000 |
 | `.text-placeholder` | color: var(--neutral-500) !important | --neutral-500 |
 | `.text-primary` | color: var(--neutral-1000) !important | --neutral-1000 |
-| `.text-secondary` | color: var(--neutral-700) !important *(also styled in list-row-components.css)* | --neutral-700 |
+| `.text-secondary` | color: var(--text-secondary) !important | --text-secondary |
 | `.text-success` | color: var(--status-success) !important | --status-success |
 | `.text-warning` | color: var(--status-warning) !important | --status-warning |
 
@@ -1317,6 +1350,13 @@ Notes
 :hover rule. See RULES §2 and §3.
 - Icons inside rows are <span class="icon icon-N">. See RULES §4.
 ```
+
+### Tokens
+
+
+| Token | Scope | Example value |
+|---|---|---|
+| `--text-secondary` | component-scoped | var(--inverted-700) |
 
 ### STATUS DOT
 
@@ -2031,6 +2071,12 @@ definition; until then it stays product CSS in the template.
 
 ```
 boilerplate.css
+The utility layer: spacing, layout, grid and responsive utilities.
+
+The reset and the element defaults that used to sit in here are now
+reset.css — see the note at the top of that file for why the two halves
+had to separate once the system took cascade layers.
+
 The base layer: CSS reset, element defaults, and the spacing, layout, grid and responsive utilities.
 
 What's inside

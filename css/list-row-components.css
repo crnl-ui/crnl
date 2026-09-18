@@ -778,16 +778,19 @@
 .selector.is-selected:active {
   background: var(--neutral-1000);
   color: var(--inverted-1000);
+  /* Redefine the token in scope rather than re-declaring .text-secondary.
+     The class reads --text-secondary, so everything inside a selected row
+     picks this up by inheritance — which no cascade layer can reorder,
+     because custom properties resolve independently of layer precedence.
+     This used to be an !important racing the one in text-styles-system.css,
+     and it won on specificity until layers made important run earliest-first
+     and the row went dark-on-dark. */
+  --text-secondary: var(--inverted-700);
 }
 
 /* All children inherit the inverted color (overrides .labelBold30, etc.) */
 .selector.is-selected * {
   color: inherit;
-}
-
-/* .text-secondary uses !important in text-styles-system.css — must match to override */
-.selector.is-selected .text-secondary {
-  color: var(--inverted-700) !important;
 }
 
 /* Cancel the text opacity dim that surface:active applies (both washNeutral and card set opacity: 0.6) */

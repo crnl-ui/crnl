@@ -8,7 +8,7 @@
 > thing. Read `docs/inventory.json` instead of this file if you are an agent —
 > same content, nothing to parse.
 
-**737 classes and 226 tokens across 24 stylesheets, shown live on 13 demo sheets, with 18 React components over the top.**
+**737 classes and 227 tokens across 25 stylesheets, shown live on 13 demo sheets, with 18 React components over the top.**
 
 ## The two layers
 
@@ -31,30 +31,31 @@ In load order. `crnl-loader.js` owns that order (`RULES §1`).
 
 | # | Stylesheet | Layer | Classes | Tokens | React | Covers |
 |---:|---|---|---:|---:|---:|---|
-| 1 | `design-tokens-master.css` | token | — | 105 | — | Colour, in both modes, plus the base theme |
-| 2 | `themes.css` | token | — | 33 | — | The five shipped themes |
-| 3 | `spacing-tokens.css` | token | 3 | 40 | 0/3 | The 8px scale and its utilities |
-| 4 | `container-tokens.css` | token | 8 | 7 | 0/8 | Content widths and page padding |
-| 5 | `border-effects-tokens.css` | token | 70 | 15 | 0/70 | Radius, border weight, shadow, scrim |
-| 6 | `ui-fonts.css` | token | — | — | — | The UI and icon faces |
-| 7 | `fonts.css` | token | — | — | — | Every shipped display face |
-| 8 | `display-fonts.css` | token | — | 12 | — | A tuned display ramp per face |
-| 9 | `text-styles-system.css` | primitive | 59 | — | 9/59 | The type scale |
-| 10 | `icons.css` | primitive | 11 | 8 | 4/11 | The icon system |
-| 11 | `card-components.css` | component | 27 | — | 14/27 | Cards, tiles, media bands |
-| 12 | `interactive-tokens.css` | primitive | 16 | — | 7/16 | Surfaces and scales — the press mechanism |
-| 13 | `button-components.css` | component | 36 | — | 20/36 | Buttons |
-| 14 | `system-ui.css` | vendor | 4 | — | 0/4 | Vendor chrome — exempt by RULES §7 |
-| 15 | `list-row-components.css` | component | 46 | — | 21/46 | The list row and everything on it |
-| 16 | `table-components.css` | component | 17 | 1 | 0/17 | The stat table |
-| 17 | `input-components.css` | component | 16 | — | 14/16 | Text input and select |
-| 18 | `tag-chip-components.css` | component | 7 | — | 7/7 | Tags and chips |
-| 19 | `nav-components.css` | component | 26 | — | 23/26 | Top bar, tabs, steps, page header |
-| 20 | `ios-nav-components.css` | component | 33 | 2 | 23/33 | iOS chrome for app mode |
-| 21 | `web-footer-components.css` | component | 15 | — | 0/15 | The site footer |
-| 22 | `product-patterns.css` | pattern | 14 | — | 0/14 | Composite layouts above the component layer |
-| 23 | `boilerplate.css` | primitive | 318 | — | 0/318 | Reset, element defaults, layout utilities |
-| 24 | `platform-tokens.css` | platform | 11 | 3 | 0/11 | The web/app switch and the phone frame |
+| 1 | `reset.css` | component | — | — | — | The element layer: the box-sizing reset, the document defaults, and the |
+| 2 | `design-tokens-master.css` | token | — | 105 | — | Colour, in both modes, plus the base theme |
+| 3 | `themes.css` | token | — | 33 | — | The five shipped themes |
+| 4 | `spacing-tokens.css` | token | 3 | 40 | 0/3 | The 8px scale and its utilities |
+| 5 | `container-tokens.css` | token | 8 | 7 | 0/8 | Content widths and page padding |
+| 6 | `border-effects-tokens.css` | token | 70 | 15 | 0/70 | Radius, border weight, shadow, scrim |
+| 7 | `ui-fonts.css` | token | — | — | — | The UI and icon faces |
+| 8 | `fonts.css` | token | — | — | — | Every shipped display face |
+| 9 | `display-fonts.css` | token | — | 12 | — | A tuned display ramp per face |
+| 10 | `text-styles-system.css` | primitive | 59 | — | 9/59 | The type scale |
+| 11 | `icons.css` | primitive | 11 | 8 | 4/11 | The icon system |
+| 12 | `card-components.css` | component | 27 | — | 14/27 | Cards, tiles, media bands |
+| 13 | `interactive-tokens.css` | primitive | 16 | — | 7/16 | Surfaces and scales — the press mechanism |
+| 14 | `button-components.css` | component | 36 | — | 20/36 | Buttons |
+| 15 | `system-ui.css` | vendor | 4 | — | 0/4 | Vendor chrome — exempt by RULES §7 |
+| 16 | `list-row-components.css` | component | 46 | 1 | 21/46 | The list row and everything on it |
+| 17 | `table-components.css` | component | 17 | 1 | 0/17 | The stat table |
+| 18 | `input-components.css` | component | 16 | — | 14/16 | Text input and select |
+| 19 | `tag-chip-components.css` | component | 7 | — | 7/7 | Tags and chips |
+| 20 | `nav-components.css` | component | 26 | — | 23/26 | Top bar, tabs, steps, page header |
+| 21 | `ios-nav-components.css` | component | 33 | 2 | 23/33 | iOS chrome for app mode |
+| 22 | `web-footer-components.css` | component | 15 | — | 0/15 | The site footer |
+| 23 | `product-patterns.css` | pattern | 14 | — | 0/14 | Composite layouts above the component layer |
+| 24 | `boilerplate.css` | primitive | 318 | — | 0/318 | Reset, element defaults, layout utilities |
+| 25 | `platform-tokens.css` | platform | 11 | 3 | 0/11 | The web/app switch and the phone frame |
 
 ## React components
 

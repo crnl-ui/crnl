@@ -1,6 +1,12 @@
 /* ============================================================
    boilerplate.css
    ============================================================
+   The utility layer: spacing, layout, grid and responsive utilities.
+
+   The reset and the element defaults that used to sit in here are now
+   reset.css — see the note at the top of that file for why the two halves
+   had to separate once the system took cascade layers.
+
    The base layer: CSS reset, element defaults, and the spacing, layout, grid and responsive utilities.
 
    What's inside
@@ -18,31 +24,6 @@
    - Spacing takes a utility or a token, never a literal. See RULES §2.
    - Breakpoints are 500/1100. See RULES §9.
    ============================================================ */
-
-/* ============================================================
-   CSS RESET & BASE STYLES
-   ============================================================ */
-
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-html {
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-body {
-  margin: 0;
-  padding: 0;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  background-color: var(--bg-base);
-  color: var(--text-primary);
-  min-height: 100vh;
-  line-height: 1.5;
-}
 
 /* ============================================================
    LAYOUT UTILITIES
@@ -495,85 +476,6 @@ body {
 }
 
 /* ============================================================
-   COMMON ELEMENT STYLES
-   ============================================================ */
-
-/* --color-interactive is the mode-aware interactive colour; --brand-interactive
-   is one value per theme in both modes and renders dark-on-dark. See RULES §2. */
-a {
-  color: var(--color-interactive);
-  text-decoration: none;
-  transition: opacity 0.2s ease;
-}
-
-a:hover {
-  opacity: 0.8;
-}
-
-img {
-  max-width: 100%;
-  height: auto;
-  display: block;
-}
-
-/* The reset has to go far enough that a <button> can carry a design system
-   surface and lay out exactly as the <div> it replaces. That is what makes
-   RULES §3 #14 followable: a tappable card should be a real button, and it
-   will only get written that way if doing so costs nothing.
-
-   padding, text-align and color are the three that bite — a UA button centres
-   its text, insets it, and paints its own colour. The .btn size classes set
-   their own padding, and .btn centres by flexbox, so zeroing them here is
-   invisible to buttons that are buttons. */
-button {
-  font-family: inherit;
-  font-size: inherit;
-  line-height: inherit;
-  cursor: pointer;
-  border: none;
-  background: none;
-  padding: 0;
-  margin: 0;
-  color: inherit;
-  text-align: inherit;
-}
-
-input,
-textarea,
-select {
-  font-family: inherit;
-  color: var(--text-primary);
-  background-color: var(--bg-surface);
-  border: 1px solid var(--border-default);
-  border-radius: 8px;
-  padding: 12px;
-  width: 100%;
-  transition: border-color 0.2s ease;
-}
-
-input:focus,
-textarea:focus,
-select:focus {
-  border-color: var(--border-active);
-}
-
-/* Keyboard focus gets a ring on top of the border shift. The border alone is a
-   colour-only signal, which is not a sufficient focus indicator on its own —
-   so the outline is the indicator and the border is reinforcement. Scoped to
-   :focus-visible so a pointer click does not draw it. */
-input:focus-visible,
-textarea:focus-visible,
-select:focus-visible {
-  outline: var(--border-weight-200) solid var(--color-interactive);
-  outline-offset: var(--spacing-25);
-}
-
-input::placeholder,
-textarea::placeholder {
-  color: var(--text-placeholder);
-}
-
-/* ============================================================
    RESPONSIVE UTILITIES
    ============================================================ */
 
@@ -671,9 +573,8 @@ textarea::placeholder {
   .scale-700 {
     transform: none;
   }
-  .scale-300:hover, .scale-300:active,
-  .scale-500:hover, .scale-500:active,
-  .scale-700:hover, .scale-700:active {
+  /* crnl-lint-disable-next-line no-hover-rule -- cancels the press mechanism rather than reimplementing it; the states have to be named in order to be removed. One line so the escape covers the whole selector. */
+  .scale-300:hover, .scale-300:active, .scale-500:hover, .scale-500:active, .scale-700:hover, .scale-700:active {
     transform: none;
   }
 }

@@ -65,7 +65,7 @@ const API_PATH = join(ROOT, 'docs', 'css-api.json')
 const HOVER_MECHANISM = new Set([
   'interactive-tokens.css',  // the surface ladder itself
   'button-components.css',   // .btn carries its own tier internally (RULES §2)
-  'boilerplate.css',         // element defaults: <a>, <summary>
+  'reset.css',               // element defaults: <a>, <summary>
   'system-ui.css',           // vendor chrome, exempt by RULES §7
   'ios-nav-components.css',  // iOS chrome reproduces Apple's own press states
   'nav-components.css',      // tabs and steps carry their indicator states
@@ -85,7 +85,7 @@ const COLOUR_SOURCES = new Set([
   'border-effects-tokens.css', // defines the shadow tokens
   'system-ui.css',            // vendor colours, exempt by RULES §7
   'platform-tokens.css',      // the phone frame and review chrome
-  'boilerplate.css',          // reset defaults
+  'reset.css',                // reset defaults
   'prototype-harness.js',
 ])
 
@@ -98,7 +98,7 @@ const TYPE_SOURCES = new Set([
   'icons.css',              // the icon font's own metrics
   'design-tokens-master.css',
   'themes.css',
-  'boilerplate.css',        // element defaults
+  'reset.css',              // element defaults
   'system-ui.css',          // vendor chrome, RULES §7
   'platform-tokens.css',    // review chrome
 ])
