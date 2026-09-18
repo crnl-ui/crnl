@@ -1962,7 +1962,7 @@ and fixture data follow `RULES §6`.
 | Prop | Type | Default |
 |---|---|---|
 | `variant` | `'primary' \| 'secondary' \| 'tertiary' \| 'transactional' \| 'neutral' \| 'destructive' \| 'white' \| 'white-tertiary' \| 'black'` | required |
-| `size` | `'large' \| 'small' \| 'xsmall'` | `'large'` |
+| `size` | `700 \| 300 \| 100` — the CSS number | `700` |
 | `icon` / `iconPosition` | `string` / `'leading' \| 'trailing'` | — / `'leading'` |
 | `fill` · `disabled` | `boolean` | `false` |
 | `type` | `'button' \| 'submit' \| 'reset'` | `'button'` |
@@ -1973,7 +1973,7 @@ and fixture data follow `RULES §6`.
 | Prop | Type | Default |
 |---|---|---|
 | `variant` | as Button | required |
-| `size` | `'large' \| 'small'` | `'large'` |
+| `size` | `700 \| 300` — the CSS number | `700` |
 | `icon` | `string` | required |
 | `aria-label` | `string` | required |
 | `disabled` · `onClick` · `type` | as Button | |
@@ -1991,7 +1991,7 @@ and fixture data follow `RULES §6`.
 | Prop | Type | Default |
 |---|---|---|
 | `children` | `ReactNode` | |
-| `surface` | `'bordered' \| 'ghost'` | `'bordered'` |
+| `surface` | `'borderNeutral' \| 'ghost'` — the class, minus `surface-` | `'borderNeutral'` |
 | `brandColor` · `disabled` | `boolean` | `false` |
 | `icon` / `iconPosition` | as Tag | |
 | `onClick` | `() => void` | |
@@ -2027,7 +2027,7 @@ and fixture data follow `RULES §6`.
 | Prop | Type | Default |
 |---|---|---|
 | `children` | `ReactNode` (a `ListRow`) | |
-| `surface` | `'wash' \| 'card'` | `'wash'` — `'card'` on the page background |
+| `surface` | `'washNeutral' \| 'card'` — the class, minus `surface-` | `'washNeutral'`; `'card'` on the page background |
 | `selected` · `disabled` | `boolean` | `false` |
 | `onClick` | `() => void` | |
 

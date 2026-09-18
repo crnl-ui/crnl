@@ -218,23 +218,30 @@ keep and comment the ones that beat an inline style the harness writes, which
 no layer can help with. Sequencing it the other way round is how you ship a
 mobile-only regression nobody sees for a month.
 
-### 3. Two vocabularies for one system
+### 3. Two vocabularies for one system — ✅ closed
 
-The React layer names the same choices differently from the CSS:
+The React layer named the same choices differently from the CSS:
 
-| CSS | React |
-|---|---|
-| `.btn-700` `.btn-300` `.btn-100` | `size="large" \| "small" \| "xsmall"` |
-| `.leading-gap-sm` … `-xl` | `gap="sm" \| "md" \| "lg" \| "xl"` |
-| `.surface-washNeutral` / `.surface-card` | `surface="wash" \| "card"` |
+| CSS | React, before | React, now |
+|---|---|---|
+| `.btn-700` `.btn-300` `.btn-100` | `size="large" \| "small" \| "xsmall"` | `size={700 \| 300 \| 100}` |
+| `.btn-circle-700` `-300` | `size="large" \| "small"` | `size={700 \| 300}` |
+| `.surface-washNeutral` / `.surface-card` | `surface="wash" \| "card"` | `surface="washNeutral" \| "card"` |
+| `.surface-borderNeutral` / `.surface-ghost` | `surface="bordered" \| "ghost"` | `surface="borderNeutral" \| "ghost"` |
 
-Three sizes, two names each. The CSS numbers are the ones in `css-api.md`, on
-the demo sheets, and in every rule. An agent that has read the system and then
-writes `<Button size="700">` gets a type error for being right.
+Four lookup tables whose only job was renaming what the CSS had already
+named. They are gone, and the class is now derived from the prop
+(`` `btn-${size}` ``) — so a new size in the CSS needs no second edit here,
+and there is no table to fall out of step.
 
-Either the React props take the CSS names, or the mapping is generated and
-documented in one place. The first is a breaking change to 18 components and
-worth making now, while the surface is small and nothing is published.
+Less of the layer diverged than this gap assumed, which is worth recording:
+`IconSize` was already `100 | 200 | …`, and `LeadingGap` / `TrailingGap` /
+`LeadingImageSize` already used the class suffixes verbatim. The divergence
+was four props, not a philosophy.
+
+Done now rather than later because nothing is published: every call site was
+a type error, the compiler listed them, and the fix was mechanical. After
+publishing it would be a breaking change to somebody else's code.
 
 ### 4. The React layer is 19% of the system, and that is fine — but undeclared
 
@@ -303,14 +310,23 @@ API. Publish after those, not before.
 - **No shadow-colour tokens.** 11 hardcoded shadow colours with nothing to
   reach for — the alpha scales are for surfaces and text. A `--shadow-*` colour
   scale would close a whole lint category.
-- **One `prefers-reduced-motion` block** against ~100 transitions and the
-  `.scale-*` transform that every interactive element carries. One global block
-  in `boilerplate.css` covers it.
+- ~~**One `prefers-reduced-motion` block**~~ — done with gap 0. One global
+  block, durations collapsed rather than animations removed.
 - **`check:visual` is not in CI.** Baselines are machine-specific, so it runs
   locally. Pinning the renderer to a container makes it a CI check, and it is
   the only check that could also run axe-core (gap 0) and RTL (gap 5). One
   change unlocks three.
 - **No `CONTRIBUTING.md`, no `CHANGELOG.md`.** Both are prerequisites for gap 6.
+- ~~**Five components with no Storybook story**~~ — done. `IOSHomeNav`,
+  `IOSModal`, `IOSNavButton`, `IOSPageNav` and `IOSTabBar` all have one, so
+  every component in the library renders somewhere.
+- ~~**Storybook hand-wrote the load order**~~ — done, and it had already gone
+  wrong: `RULES §1` forbids a second copy of the list precisely because it
+  drifts, and `.storybook/preview.ts` was missing `ui-fonts.css` and had no
+  layers, so Storybook rendered a different cascade from every other surface.
+  It now imports one generated file, `css/crnl-layers.css`, which
+  `build:css-bundle` writes from the loader's own list. Verified that Vite
+  preserves `@layer` through the build.
 
 ---
 
@@ -365,8 +381,7 @@ regression would land free.
 2. ~~**Gap 2** — `@layer`.~~ Done. The `!important` cleanup it unblocks is
    sequenced after gap 1's breakpoint capture, because it cannot be verified
    without it.
-3. **Gap 3** — align the React vocabulary with the CSS, while the surface is
-   small and nothing is published.
+3. ~~**Gap 3** — align the React vocabulary with the CSS.~~ Done.
 4. **Gap 7** — the cheap ones, in an afternoon.
 5. **Gap 1** — two more lint rules and three-breakpoint capture.
 6. **Gap 5** — RTL as one deliberate pass.

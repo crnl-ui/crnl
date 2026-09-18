@@ -2,12 +2,12 @@ import type { SelectorProps } from './Selector.types'
 
 export function Selector({
   children,
-  surface = 'wash',
+  surface = 'washNeutral',
   selected = false,
   disabled = false,
   onClick
 }: SelectorProps) {
-  const surfaceClass = surface === 'wash' ? 'surface-washNeutral' : 'surface-card'
+  const surfaceClass = `surface-${surface}`
 
   const classes = [
     'selector',

@@ -9,14 +9,19 @@ export type ButtonVariant =
   | 'white-tertiary'
   | 'black'
 
-export type ButtonSize = 'large' | 'small' | 'xsmall'
+/**
+ * The CSS names the sizes, so these are the CSS names. `.btn-700` is 700 —
+ * not "large", which is a second vocabulary for the same three values and
+ * means learning the system twice. See docs/roadmap.md § gap 3.
+ */
+export type ButtonSize = 700 | 300 | 100
 
 export type IconPosition = 'leading' | 'trailing'
 
 export interface ButtonProps {
   /** Visual variant */
   variant: ButtonVariant
-  /** Size variant. Default: 'large' */
+  /** Size, by the CSS number: 700 · 300 · 100. Default: 700 */
   size?: ButtonSize
   /** Material Symbols icon name */
   icon?: string
@@ -35,12 +40,12 @@ export interface ButtonProps {
 }
 
 export type CircleButtonVariant = ButtonVariant
-export type CircleButtonSize = 'large' | 'small'
+export type CircleButtonSize = 700 | 300
 
 export interface CircleButtonProps {
   /** Visual variant */
   variant: CircleButtonVariant
-  /** Size variant. Default: 'large' */
+  /** Size, by the CSS number: 700 · 300 · 100. Default: 700 */
   size?: CircleButtonSize
   /** Material Symbols icon name */
   icon: string

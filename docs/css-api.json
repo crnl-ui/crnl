@@ -2146,32 +2146,28 @@
         {
           "name": "--shadow-sheet-a",
           "scopes": [
-            "global",
-            "per mode"
+            "global"
           ],
           "example": "0px -8px 64px 0px rgba(0, 0, 0, 0.12)"
         },
         {
           "name": "--shadow-sheet-b",
           "scopes": [
-            "global",
-            "per mode"
+            "global"
           ],
           "example": "0px -4px 32px 0px rgba(0, 0, 0, 0.08)"
         },
         {
           "name": "--shadow-modal-a",
           "scopes": [
-            "global",
-            "per mode"
+            "global"
           ],
           "example": "0px 8px 64px 0px rgba(0, 0, 0, 0.16)"
         },
         {
           "name": "--shadow-modal-b",
           "scopes": [
-            "global",
-            "per mode"
+            "global"
           ],
           "example": "0px 4px 32px 0px rgba(0, 0, 0, 0.12)"
         },
@@ -8794,6 +8790,12 @@
           "example": "0px"
         }
       ]
+    },
+    {
+      "file": "crnl-layers.css",
+      "covers": "The stylesheets, each imported into its cascade layer. Import this from",
+      "classes": [],
+      "tokens": []
     }
   ]
 }

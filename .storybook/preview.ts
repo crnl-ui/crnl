@@ -1,29 +1,15 @@
 import type { Preview } from '@storybook/react'
 
-// Import all CSS files in correct load order
-import '../css/design-tokens-master.css'
-import '../css/themes.css'
-import '../css/spacing-tokens.css'
-import '../css/container-tokens.css'
-import '../css/border-effects-tokens.css'
-import '../css/fonts.css'
-import '../css/display-fonts.css'
-import '../css/text-styles-system.css'
-import '../css/icons.css'
-import '../css/card-components.css'
-import '../css/interactive-tokens.css'
-import '../css/button-components.css'
-import '../css/system-ui.css'
-import '../css/list-row-components.css'
-import '../css/table-components.css'
-import '../css/input-components.css'
-import '../css/tag-chip-components.css'
-import '../css/nav-components.css'
-import '../css/ios-nav-components.css'
-import '../css/web-footer-components.css'
-import '../css/product-patterns.css'
-import '../css/boilerplate.css'
-import '../css/platform-tokens.css'
+/* One import, generated. crnl-loader.js owns the stylesheet list, the order
+   and the cascade layers; scripts/build-css-bundle.mjs writes them out as
+   crnl-layers.css so anything driven by a bundler gets the same cascade a
+   page gets.
+
+   This used to be a hand-written list of 24 imports, which RULES §1 forbids
+   and which had already gone wrong: it was missing ui-fonts.css, so Storybook
+   rendered without the icon font, and it had no layers, so its cascade
+   differed from every other surface. Regenerate with `npm run build:docs`. */
+import '../css/crnl-layers.css'
 
 const preview: Preview = {
   parameters: {

@@ -8,7 +8,7 @@
 > thing. Read `docs/inventory.json` instead of this file if you are an agent —
 > same content, nothing to parse.
 
-**737 classes and 227 tokens across 25 stylesheets, shown live on 13 demo sheets, with 18 React components over the top.**
+**737 classes and 227 tokens across 26 stylesheets, shown live on 13 demo sheets, with 18 React components over the top.**
 
 ## The two layers
 
@@ -19,8 +19,8 @@ component is markup plus classes, which is the normal way to use this.
 | | Count | Covered by React |
 |---|---:|---:|
 | token | 81 | 0 (0%) |
-| primitive | 404 | 20 (5%) |
-| component | 223 | 122 (55%) |
+| primitive | 404 | 35 (9%) |
+| component | 223 | 141 (63%) |
 | pattern | 14 | 0 (0%) |
 | vendor | 4 | 0 (0%) |
 | platform | 11 | 0 (0%) |
@@ -41,12 +41,12 @@ In load order. `crnl-loader.js` owns that order (`RULES §1`).
 | 8 | `fonts.css` | token | — | — | — | Every shipped display face |
 | 9 | `display-fonts.css` | token | — | 12 | — | A tuned display ramp per face |
 | 10 | `text-styles-system.css` | primitive | 59 | — | 9/59 | The type scale |
-| 11 | `icons.css` | primitive | 11 | 8 | 4/11 | The icon system |
+| 11 | `icons.css` | primitive | 11 | 8 | 11/11 | The icon system |
 | 12 | `card-components.css` | component | 27 | — | 14/27 | Cards, tiles, media bands |
-| 13 | `interactive-tokens.css` | primitive | 16 | — | 7/16 | Surfaces and scales — the press mechanism |
-| 14 | `button-components.css` | component | 36 | — | 20/36 | Buttons |
+| 13 | `interactive-tokens.css` | primitive | 16 | — | 15/16 | Surfaces and scales — the press mechanism |
+| 14 | `button-components.css` | component | 36 | — | 36/36 | Buttons |
 | 15 | `system-ui.css` | vendor | 4 | — | 0/4 | Vendor chrome — exempt by RULES §7 |
-| 16 | `list-row-components.css` | component | 46 | 1 | 21/46 | The list row and everything on it |
+| 16 | `list-row-components.css` | component | 46 | 1 | 24/46 | The list row and everything on it |
 | 17 | `table-components.css` | component | 17 | 1 | 0/17 | The stat table |
 | 18 | `input-components.css` | component | 16 | — | 14/16 | Text input and select |
 | 19 | `tag-chip-components.css` | component | 7 | — | 7/7 | Tags and chips |
@@ -56,6 +56,7 @@ In load order. `crnl-loader.js` owns that order (`RULES §1`).
 | 23 | `product-patterns.css` | pattern | 14 | — | 0/14 | Composite layouts above the component layer |
 | 24 | `boilerplate.css` | primitive | 318 | — | 0/318 | Reset, element defaults, layout utilities |
 | 25 | `platform-tokens.css` | platform | 11 | 3 | 0/11 | The web/app switch and the phone frame |
+| 26 | `crnl-layers.css` | component | — | — | — | The stylesheets, each imported into its cascade layer. Import this from |
 
 ## React components
 
@@ -65,26 +66,24 @@ else is true of it.
 
 | Component | Exports | Stories | Renders | From |
 |---|---|---|---:|---|
-| `Button` | `Button` `CircleButton` | yes | 23 | `button`, `icons`, `list-row` |
+| `Button` | `Button` `CircleButton` | yes | 39 | `button`, `icons`, `list-row` |
 | `Card` | `CardClosed` `CardOpen` `CardSection` | yes | 10 | `card` |
-| `IOSHomeNav` | `IOSHomeNav` | **no** | 7 | `ios-nav`, `text-styles-system` |
-| `IOSModal` | `IOSModal` | **no** | 9 | `ios-nav` |
-| `IOSNavButton` | `IOSNavButton` | **no** | 4 | `icons`, `ios-nav` |
-| `IOSPageNav` | `IOSPageNav` | **no** | 5 | `ios-nav` |
-| `IOSTabBar` | `IOSTabBar` | **no** | 6 | `icons`, `ios-nav` |
-| `Icon` | `Icon` | yes | 2 | `icons` |
+| `IOSHomeNav` | `IOSHomeNav` | yes | 7 | `ios-nav`, `text-styles-system` |
+| `IOSModal` | `IOSModal` | yes | 9 | `ios-nav` |
+| `IOSNavButton` | `IOSNavButton` | yes | 4 | `icons`, `ios-nav` |
+| `IOSPageNav` | `IOSPageNav` | yes | 5 | `ios-nav` |
+| `IOSTabBar` | `IOSTabBar` | yes | 6 | `icons`, `ios-nav` |
+| `Icon` | `Icon` | yes | 10 | `icons` |
 | `Input` | `Input` `Select` | yes | 16 | `icons`, `input`, `list-row` |
-| `ListRow` | `ListRow` `TextPair` `TrailingText` `LeadingImage` `LeadingLogo` `CircleContainer` | yes | 14 | `list-row`, `text-styles-system` |
+| `ListRow` | `ListRow` `TextPair` `TrailingText` `LeadingImage` `LeadingLogo` `CircleContainer` | yes | 17 | `list-row`, `text-styles-system` |
 | `PageHeader` | `PageHeader` | yes | 8 | `card`, `nav`, `text-styles-system` |
-| `Selector` | `Selector` | yes | 6 | `interactive-tokens`, `list-row` |
+| `Selector` | `Selector` | yes | 17 | `interactive-tokens`, `list-row` |
 | `SplitRow` | `SplitRow` `SplitRowList` | yes | 17 | `interactive-tokens`, `list-row`, `text-styles-system` |
 | `Steps` | `Steps` | yes | 9 | `icons`, `nav` |
 | `Tabs` | `Tabs` | yes | 4 | `nav` |
-| `Tag` | `Tag` `Chip` | yes | 15 | `icons`, `interactive-tokens`, `list-row`, `tag-chip` |
+| `Tag` | `Tag` `Chip` | yes | 26 | `icons`, `interactive-tokens`, `list-row`, `tag-chip` |
 | `Tile` | `Tile` | yes | 5 | `card`, `interactive-tokens` |
 | `TopBar` | `TopBar` | yes | 9 | `nav`, `text-styles-system` |
-
-**No stories:** `IOSHomeNav`, `IOSModal`, `IOSNavButton`, `IOSPageNav`, `IOSTabBar` — nothing renders these in Storybook, so nothing catches a break in them.
 
 ## Demo sheets
 

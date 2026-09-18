@@ -111,6 +111,7 @@ The CSS files in `css/` are the source of truth. Five things are
 | `docs/css-api.md`, `docs/css-api.json` | `npm run build:css-api` |
 | `docs/inventory.md`, `docs/inventory.json` | `npm run build:inventory` |
 | `css/crnl.css` (the delivery bundle, gitignored) | `npm run build:css-bundle` |
+| `css/crnl-layers.css` (the bundler entry point, committed) | `npm run build:css-bundle` |
 
 ### After any change to CSS, markup or docs
 
@@ -370,10 +371,11 @@ These are the ones not visible from inside a page:
   which differ from `.icon` (the size ramp, FILL 1). Do not merge them.
 - **Safari iOS font loading** — `font-style: oblique` renders differently in
   Safari; avoid it.
-- **The React props do not use the CSS names.** `<Button size="large">` is
-  `.btn-700`. Two vocabularies for one system, recorded as
-  `docs/roadmap.md § gap 3`. Read the `.types.ts` file, not the CSS, when
-  writing React.
+- **The React props are the CSS names.** `<Button size={700}>` is `.btn-700`;
+  `<Chip surface="borderNeutral">` is `.surface-borderNeutral`. If you know
+  the class you know the prop, and a component that renames one is a bug —
+  there used to be three, and they are what `docs/roadmap.md § gap 3` was
+  about.
 - **`docs/css-api.md` is only as current as the last `build:css-api`.** If a
   class you can see in the CSS is missing from it, regenerate before concluding
   anything — and the linter reads the same file, so a stale one makes it report

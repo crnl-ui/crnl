@@ -103,6 +103,17 @@ function readReactLayer() {
       for (const m of src.matchAll(/'([a-z][\w-]*(?:\s+[a-z][\w-]*)*)'/g)) {
         for (const c of m[1].split(/\s+/)) if (classOwner.has(c)) classes.add(c)
       }
+      /* A class built from a prop — `` `btn-${size}` `` — cannot be read as a
+         literal, and the components that do this are exactly the ones that
+         stopped keeping a rename table (docs/roadmap.md § gap 3). Credit the
+         component with every shipped class under that prefix: the prop's type
+         is what narrows it, and over-crediting here is better than reporting
+         a component renders nothing. */
+      for (const m of src.matchAll(/`([a-z][\w-]*-)\$\{/g)) {
+        for (const name of classOwner.keys()) {
+          if (name.startsWith(m[1]) && name.length > m[1].length) classes.add(name)
+        }
+      }
     }
     out.push({
       name,

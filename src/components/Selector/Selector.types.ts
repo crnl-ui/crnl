@@ -1,9 +1,11 @@
-export type SelectorSurface = 'wash' | 'card'
+/** The surface class, minus the `surface-` prefix — the CSS's own names. */
+export type SelectorSurface = 'washNeutral' | 'card'
 
 export interface SelectorProps {
   /** Content (typically a ListRow) */
   children: React.ReactNode
-  /** Surface style. 'wash' for inside cards; 'card' on page background */
+  /** Surface class, minus the `surface-` prefix. 'washNeutral' inside a card;
+   *  'card' on the page background. Default: 'washNeutral' */
   surface?: SelectorSurface
   /** Selected state */
   selected?: boolean

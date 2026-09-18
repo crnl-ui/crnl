@@ -45,16 +45,26 @@
    DROP SHADOW TOKENS
    ============================================================ */
 
-/* Sheet Shadows - Mobile (elevated surfaces like sheets, cards) */
+/* Sheet Shadows - Mobile (elevated surfaces like sheets, cards)
+
+   Mode-stable, and deliberately so. These used to be restated under
+   [data-mode="dark"] with byte-identical values, which implied a decision
+   nobody had made. The values are right either way, for opposite reasons:
+
+   - In light, --org-sheet equals --org-base (#FFFFFF in every shipped theme
+     and in the base theme), so a sheet is the same colour as the page behind
+     it and this shadow is the only edge it has. It is load-bearing.
+   - In dark, the surface ladder does the work — #0C1118 → #171E29 → #212A38
+     on `signal` — and a black shadow on a dark surface contributes almost
+     nothing. It costs nothing either, so it stays rather than becoming a
+     second thing to keep in step.
+
+   See docs/roadmap.md § gap 7. */
 :root {
   --shadow-sheet-a: 0px -8px 64px 0px rgba(0, 0, 0, 0.12);
   --shadow-sheet-b: 0px -4px 32px 0px rgba(0, 0, 0, 0.08);
 }
 
-[data-mode="dark"] {
-  --shadow-sheet-a: 0px -8px 64px 0px rgba(0, 0, 0, 0.12);
-  --shadow-sheet-b: 0px -4px 32px 0px rgba(0, 0, 0, 0.08);
-}
 
 /* Modal Shadows - Tablet/Desktop (highest elevation, modals and overlays) */
 :root {
@@ -62,10 +72,6 @@
   --shadow-modal-b: 0px 4px 32px 0px rgba(0, 0, 0, 0.12);
 }
 
-[data-mode="dark"] {
-  --shadow-modal-a: 0px 8px 64px 0px rgba(0, 0, 0, 0.16);
-  --shadow-modal-b: 0px 4px 32px 0px rgba(0, 0, 0, 0.12);
-}
 
 /* ============================================================
    SEMANTIC SHADOW TOKENS

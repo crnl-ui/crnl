@@ -34,7 +34,7 @@ export const BothBandsInteractive: Story = {
       subtitle={record.subtitle}
       topInteractive
       bottomInteractive
-      trailing={<Button variant="primary" size="xsmall">Primary</Button>}
+      trailing={<Button variant="primary" size={100}>Primary</Button>}
       bottom={<SecondBand label="Secondary action" />}
     />
   )
@@ -46,7 +46,7 @@ export const TopOnly: Story = {
       title={record.title}
       subtitle={record.subtitle}
       topInteractive
-      trailing={<Button variant="primary" size="xsmall">Primary</Button>}
+      trailing={<Button variant="primary" size={100}>Primary</Button>}
     />
   )
 }
@@ -92,9 +92,9 @@ export const InAList: Story = {
   render: () => (
     <SplitRowList>
       <SplitRow title={record.title} subtitle={record.subtitle} topInteractive
-        trailing={<Button variant="primary" size="xsmall">Primary</Button>} />
+        trailing={<Button variant="primary" size={100}>Primary</Button>} />
       <SplitRow title={record.title} subtitle={record.subtitle} topInteractive bottomInteractive
-        trailing={<Button variant="primary" size="xsmall">Primary</Button>}
+        trailing={<Button variant="primary" size={100}>Primary</Button>}
         bottom={<SecondBand label="Secondary action" />} />
       <SplitRow title={record.title} subtitle={record.subtitle}
         trailing={<span className="labelBold30 text-secondary">Unavailable</span>} />
