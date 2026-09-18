@@ -68,8 +68,8 @@
    
    Icon Positions:
      None         — px-200 (12px) on both sides
-     Leading      — pl-100 (8px) pr-200 (12px)
-     Trailing     — pl-200 (12px) pr-100 (8px)
+     Leading      — ps-100 (8px) pe-200 (12px)
+     Trailing     — ps-200 (12px) pe-100 (8px)
    ============================================================ */
 
 .tag {

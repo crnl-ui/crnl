@@ -229,73 +229,73 @@
           "sheet": "03-space.html"
         },
         {
-          "name": "rounded-tl-50",
+          "name": "rounded-ss-50",
           "section": "UTILITY CLASSES - BORDER RADIUS",
           "react": null,
           "sheet": null
         },
         {
-          "name": "rounded-tl-100",
+          "name": "rounded-ss-100",
           "section": "UTILITY CLASSES - BORDER RADIUS",
           "react": null,
           "sheet": null
         },
         {
-          "name": "rounded-tl-200",
+          "name": "rounded-ss-200",
           "section": "UTILITY CLASSES - BORDER RADIUS",
           "react": null,
           "sheet": "03-space.html"
         },
         {
-          "name": "rounded-tr-50",
+          "name": "rounded-se-50",
           "section": "UTILITY CLASSES - BORDER RADIUS",
           "react": null,
           "sheet": null
         },
         {
-          "name": "rounded-tr-100",
+          "name": "rounded-se-100",
           "section": "UTILITY CLASSES - BORDER RADIUS",
           "react": null,
           "sheet": null
         },
         {
-          "name": "rounded-tr-200",
+          "name": "rounded-se-200",
           "section": "UTILITY CLASSES - BORDER RADIUS",
           "react": null,
           "sheet": "03-space.html"
         },
         {
-          "name": "rounded-bl-50",
+          "name": "rounded-es-50",
           "section": "UTILITY CLASSES - BORDER RADIUS",
           "react": null,
           "sheet": null
         },
         {
-          "name": "rounded-bl-100",
+          "name": "rounded-es-100",
           "section": "UTILITY CLASSES - BORDER RADIUS",
           "react": null,
           "sheet": null
         },
         {
-          "name": "rounded-bl-200",
+          "name": "rounded-es-200",
           "section": "UTILITY CLASSES - BORDER RADIUS",
           "react": null,
           "sheet": "03-space.html"
         },
         {
-          "name": "rounded-br-50",
+          "name": "rounded-ee-50",
           "section": "UTILITY CLASSES - BORDER RADIUS",
           "react": null,
           "sheet": null
         },
         {
-          "name": "rounded-br-100",
+          "name": "rounded-ee-100",
           "section": "UTILITY CLASSES - BORDER RADIUS",
           "react": null,
           "sheet": null
         },
         {
-          "name": "rounded-br-200",
+          "name": "rounded-ee-200",
           "section": "UTILITY CLASSES - BORDER RADIUS",
           "react": null,
           "sheet": "03-space.html"
@@ -337,19 +337,19 @@
           "sheet": null
         },
         {
-          "name": "border-r-50",
+          "name": "border-e-50",
           "section": "UTILITY CLASSES - BORDER WEIGHT",
           "react": null,
           "sheet": null
         },
         {
-          "name": "border-r-100",
+          "name": "border-e-100",
           "section": "UTILITY CLASSES - BORDER WEIGHT",
           "react": null,
           "sheet": null
         },
         {
-          "name": "border-r-200",
+          "name": "border-e-200",
           "section": "UTILITY CLASSES - BORDER WEIGHT",
           "react": null,
           "sheet": null
@@ -373,19 +373,19 @@
           "sheet": null
         },
         {
-          "name": "border-l-50",
+          "name": "border-s-50",
           "section": "UTILITY CLASSES - BORDER WEIGHT",
           "react": null,
           "sheet": null
         },
         {
-          "name": "border-l-100",
+          "name": "border-s-100",
           "section": "UTILITY CLASSES - BORDER WEIGHT",
           "react": null,
           "sheet": null
         },
         {
-          "name": "border-l-200",
+          "name": "border-s-200",
           "section": "UTILITY CLASSES - BORDER WEIGHT",
           "react": null,
           "sheet": null
@@ -517,7 +517,7 @@
           "sheet": "03-space.html"
         },
         {
-          "name": "border-right",
+          "name": "border-end",
           "section": "COMMON BORDER COMBINATIONS",
           "react": null,
           "sheet": "03-space.html"
@@ -529,7 +529,7 @@
           "sheet": "03-space.html"
         },
         {
-          "name": "border-left",
+          "name": "border-start",
           "section": "COMMON BORDER COMBINATIONS",
           "react": null,
           "sheet": "03-space.html"
@@ -2836,157 +2836,157 @@
           "sheet": null
         },
         {
-          "name": "ml-25",
+          "name": "ms-25",
           "section": "SPACING UTILITIES - MARGIN",
           "react": null,
           "sheet": null
         },
         {
-          "name": "ml-50",
+          "name": "ms-50",
           "section": "SPACING UTILITIES - MARGIN",
           "react": null,
           "sheet": null
         },
         {
-          "name": "ml-100",
+          "name": "ms-100",
           "section": "SPACING UTILITIES - MARGIN",
           "react": null,
           "sheet": null
         },
         {
-          "name": "ml-150",
+          "name": "ms-150",
           "section": "SPACING UTILITIES - MARGIN",
           "react": null,
           "sheet": null
         },
         {
-          "name": "ml-200",
+          "name": "ms-200",
           "section": "SPACING UTILITIES - MARGIN",
           "react": null,
           "sheet": null
         },
         {
-          "name": "ml-250",
+          "name": "ms-250",
           "section": "SPACING UTILITIES - MARGIN",
           "react": null,
           "sheet": null
         },
         {
-          "name": "ml-300",
+          "name": "ms-300",
           "section": "SPACING UTILITIES - MARGIN",
           "react": null,
           "sheet": null
         },
         {
-          "name": "ml-400",
+          "name": "ms-400",
           "section": "SPACING UTILITIES - MARGIN",
           "react": null,
           "sheet": null
         },
         {
-          "name": "ml-500",
+          "name": "ms-500",
           "section": "SPACING UTILITIES - MARGIN",
           "react": null,
           "sheet": null
         },
         {
-          "name": "ml-600",
+          "name": "ms-600",
           "section": "SPACING UTILITIES - MARGIN",
           "react": null,
           "sheet": null
         },
         {
-          "name": "ml-700",
+          "name": "ms-700",
           "section": "SPACING UTILITIES - MARGIN",
           "react": null,
           "sheet": null
         },
         {
-          "name": "ml-800",
+          "name": "ms-800",
           "section": "SPACING UTILITIES - MARGIN",
           "react": null,
           "sheet": null
         },
         {
-          "name": "ml-900",
+          "name": "ms-900",
           "section": "SPACING UTILITIES - MARGIN",
           "react": null,
           "sheet": null
         },
         {
-          "name": "mr-25",
+          "name": "me-25",
           "section": "SPACING UTILITIES - MARGIN",
           "react": null,
           "sheet": null
         },
         {
-          "name": "mr-50",
+          "name": "me-50",
           "section": "SPACING UTILITIES - MARGIN",
           "react": null,
           "sheet": null
         },
         {
-          "name": "mr-100",
+          "name": "me-100",
           "section": "SPACING UTILITIES - MARGIN",
           "react": null,
           "sheet": null
         },
         {
-          "name": "mr-150",
+          "name": "me-150",
           "section": "SPACING UTILITIES - MARGIN",
           "react": null,
           "sheet": null
         },
         {
-          "name": "mr-200",
+          "name": "me-200",
           "section": "SPACING UTILITIES - MARGIN",
           "react": null,
           "sheet": null
         },
         {
-          "name": "mr-250",
+          "name": "me-250",
           "section": "SPACING UTILITIES - MARGIN",
           "react": null,
           "sheet": null
         },
         {
-          "name": "mr-300",
+          "name": "me-300",
           "section": "SPACING UTILITIES - MARGIN",
           "react": null,
           "sheet": null
         },
         {
-          "name": "mr-400",
+          "name": "me-400",
           "section": "SPACING UTILITIES - MARGIN",
           "react": null,
           "sheet": null
         },
         {
-          "name": "mr-500",
+          "name": "me-500",
           "section": "SPACING UTILITIES - MARGIN",
           "react": null,
           "sheet": null
         },
         {
-          "name": "mr-600",
+          "name": "me-600",
           "section": "SPACING UTILITIES - MARGIN",
           "react": null,
           "sheet": null
         },
         {
-          "name": "mr-700",
+          "name": "me-700",
           "section": "SPACING UTILITIES - MARGIN",
           "react": null,
           "sheet": null
         },
         {
-          "name": "mr-800",
+          "name": "me-800",
           "section": "SPACING UTILITIES - MARGIN",
           "react": null,
           "sheet": null
         },
         {
-          "name": "mr-900",
+          "name": "me-900",
           "section": "SPACING UTILITIES - MARGIN",
           "react": null,
           "sheet": null
@@ -3154,13 +3154,13 @@
           "sheet": null
         },
         {
-          "name": "ml-auto",
+          "name": "ms-auto",
           "section": "SPACING UTILITIES - MARGIN",
           "react": null,
           "sheet": null
         },
         {
-          "name": "mr-auto",
+          "name": "me-auto",
           "section": "SPACING UTILITIES - MARGIN",
           "react": null,
           "sheet": null
@@ -3400,157 +3400,157 @@
           "sheet": null
         },
         {
-          "name": "pl-25",
+          "name": "ps-25",
           "section": "SPACING UTILITIES - PADDING",
           "react": null,
           "sheet": null
         },
         {
-          "name": "pl-50",
+          "name": "ps-50",
           "section": "SPACING UTILITIES - PADDING",
           "react": null,
           "sheet": null
         },
         {
-          "name": "pl-100",
+          "name": "ps-100",
           "section": "SPACING UTILITIES - PADDING",
           "react": null,
           "sheet": null
         },
         {
-          "name": "pl-150",
+          "name": "ps-150",
           "section": "SPACING UTILITIES - PADDING",
           "react": null,
           "sheet": null
         },
         {
-          "name": "pl-200",
+          "name": "ps-200",
           "section": "SPACING UTILITIES - PADDING",
           "react": null,
           "sheet": null
         },
         {
-          "name": "pl-250",
+          "name": "ps-250",
           "section": "SPACING UTILITIES - PADDING",
           "react": null,
           "sheet": null
         },
         {
-          "name": "pl-300",
+          "name": "ps-300",
           "section": "SPACING UTILITIES - PADDING",
           "react": null,
           "sheet": null
         },
         {
-          "name": "pl-400",
+          "name": "ps-400",
           "section": "SPACING UTILITIES - PADDING",
           "react": null,
           "sheet": null
         },
         {
-          "name": "pl-500",
+          "name": "ps-500",
           "section": "SPACING UTILITIES - PADDING",
           "react": null,
           "sheet": null
         },
         {
-          "name": "pl-600",
+          "name": "ps-600",
           "section": "SPACING UTILITIES - PADDING",
           "react": null,
           "sheet": null
         },
         {
-          "name": "pl-700",
+          "name": "ps-700",
           "section": "SPACING UTILITIES - PADDING",
           "react": null,
           "sheet": null
         },
         {
-          "name": "pl-800",
+          "name": "ps-800",
           "section": "SPACING UTILITIES - PADDING",
           "react": null,
           "sheet": null
         },
         {
-          "name": "pl-900",
+          "name": "ps-900",
           "section": "SPACING UTILITIES - PADDING",
           "react": null,
           "sheet": null
         },
         {
-          "name": "pr-25",
+          "name": "pe-25",
           "section": "SPACING UTILITIES - PADDING",
           "react": null,
           "sheet": null
         },
         {
-          "name": "pr-50",
+          "name": "pe-50",
           "section": "SPACING UTILITIES - PADDING",
           "react": null,
           "sheet": null
         },
         {
-          "name": "pr-100",
+          "name": "pe-100",
           "section": "SPACING UTILITIES - PADDING",
           "react": null,
           "sheet": null
         },
         {
-          "name": "pr-150",
+          "name": "pe-150",
           "section": "SPACING UTILITIES - PADDING",
           "react": null,
           "sheet": null
         },
         {
-          "name": "pr-200",
+          "name": "pe-200",
           "section": "SPACING UTILITIES - PADDING",
           "react": null,
           "sheet": null
         },
         {
-          "name": "pr-250",
+          "name": "pe-250",
           "section": "SPACING UTILITIES - PADDING",
           "react": null,
           "sheet": null
         },
         {
-          "name": "pr-300",
+          "name": "pe-300",
           "section": "SPACING UTILITIES - PADDING",
           "react": null,
           "sheet": null
         },
         {
-          "name": "pr-400",
+          "name": "pe-400",
           "section": "SPACING UTILITIES - PADDING",
           "react": null,
           "sheet": null
         },
         {
-          "name": "pr-500",
+          "name": "pe-500",
           "section": "SPACING UTILITIES - PADDING",
           "react": null,
           "sheet": null
         },
         {
-          "name": "pr-600",
+          "name": "pe-600",
           "section": "SPACING UTILITIES - PADDING",
           "react": null,
           "sheet": null
         },
         {
-          "name": "pr-700",
+          "name": "pe-700",
           "section": "SPACING UTILITIES - PADDING",
           "react": null,
           "sheet": null
         },
         {
-          "name": "pr-800",
+          "name": "pe-800",
           "section": "SPACING UTILITIES - PADDING",
           "react": null,
           "sheet": null
         },
         {
-          "name": "pr-900",
+          "name": "pe-900",
           "section": "SPACING UTILITIES - PADDING",
           "react": null,
           "sheet": null
@@ -4156,13 +4156,13 @@
           "sheet": null
         },
         {
-          "name": "ml-small",
+          "name": "ms-small",
           "section": "RESPONSIVE SPACING UTILITIES",
           "react": null,
           "sheet": null
         },
         {
-          "name": "mr-small",
+          "name": "me-small",
           "section": "RESPONSIVE SPACING UTILITIES",
           "react": null,
           "sheet": null
@@ -4192,13 +4192,13 @@
           "sheet": null
         },
         {
-          "name": "pl-small",
+          "name": "ps-small",
           "section": "RESPONSIVE SPACING UTILITIES",
           "react": null,
           "sheet": null
         },
         {
-          "name": "pr-small",
+          "name": "pe-small",
           "section": "RESPONSIVE SPACING UTILITIES",
           "react": null,
           "sheet": null
@@ -4234,13 +4234,13 @@
           "sheet": null
         },
         {
-          "name": "ml-large",
+          "name": "ms-large",
           "section": "RESPONSIVE SPACING UTILITIES",
           "react": null,
           "sheet": null
         },
         {
-          "name": "mr-large",
+          "name": "me-large",
           "section": "RESPONSIVE SPACING UTILITIES",
           "react": null,
           "sheet": null
@@ -4270,13 +4270,13 @@
           "sheet": null
         },
         {
-          "name": "pl-large",
+          "name": "ps-large",
           "section": "RESPONSIVE SPACING UTILITIES",
           "react": null,
           "sheet": null
         },
         {
-          "name": "pr-large",
+          "name": "pe-large",
           "section": "RESPONSIVE SPACING UTILITIES",
           "react": null,
           "sheet": null
@@ -4312,13 +4312,13 @@
           "sheet": null
         },
         {
-          "name": "ml-landing",
+          "name": "ms-landing",
           "section": "RESPONSIVE SPACING UTILITIES",
           "react": null,
           "sheet": null
         },
         {
-          "name": "mr-landing",
+          "name": "me-landing",
           "section": "RESPONSIVE SPACING UTILITIES",
           "react": null,
           "sheet": null
@@ -4348,13 +4348,13 @@
           "sheet": null
         },
         {
-          "name": "pl-landing",
+          "name": "ps-landing",
           "section": "RESPONSIVE SPACING UTILITIES",
           "react": null,
           "sheet": null
         },
         {
-          "name": "pr-landing",
+          "name": "pe-landing",
           "section": "RESPONSIVE SPACING UTILITIES",
           "react": null,
           "sheet": null
@@ -4540,7 +4540,7 @@
           "sheet": "01-color.html"
         },
         {
-          "name": "text-left",
+          "name": "text-start",
           "section": "TEXT UTILITIES — alignment, decoration, truncation",
           "react": null,
           "sheet": "02-type.html"
@@ -4552,7 +4552,7 @@
           "sheet": "02-type.html"
         },
         {
-          "name": "text-right",
+          "name": "text-end",
           "section": "TEXT UTILITIES — alignment, decoration, truncation",
           "react": null,
           "sheet": "02-type.html"

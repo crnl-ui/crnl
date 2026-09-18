@@ -429,14 +429,14 @@ mode-stable) is RULES §8.
 **Scales**
 
 - `.rounded-{50|100|200}` — border-radius: var(--border-radius-50) *(smallest step shown)*
-- `.rounded-t-{50|100|200}` — border-top-left-radius: var(--border-radius-50); border-top-right-radius: var(--border-radius-50) *(smallest step shown)*
-- `.rounded-b-{50|100|200}` — border-bottom-left-radius: var(--border-radius-50); border-bottom-right-radius: var(--border-radius-50) *(smallest step shown)*
-- `.rounded-l-{50|100|200}` — border-top-left-radius: var(--border-radius-50); border-bottom-left-radius: var(--border-radius-50) *(smallest step shown)*
-- `.rounded-r-{50|100|200}` — border-top-right-radius: var(--border-radius-50); border-bottom-right-radius: var(--border-radius-50) *(smallest step shown)*
-- `.rounded-tl-{50|100|200}` — border-top-left-radius: var(--border-radius-50) *(smallest step shown)*
-- `.rounded-tr-{50|100|200}` — border-top-right-radius: var(--border-radius-50) *(smallest step shown)*
-- `.rounded-bl-{50|100|200}` — border-bottom-left-radius: var(--border-radius-50) *(smallest step shown)*
-- `.rounded-br-{50|100|200}` — border-bottom-right-radius: var(--border-radius-50) *(smallest step shown)*
+- `.rounded-t-{50|100|200}` — border-start-start-radius: var(--border-radius-50); border-start-end-radius: var(--border-radius-50) *(smallest step shown)*
+- `.rounded-b-{50|100|200}` — border-end-start-radius: var(--border-radius-50); border-end-end-radius: var(--border-radius-50) *(smallest step shown)*
+- `.rounded-l-{50|100|200}` — border-start-start-radius: var(--border-radius-50); border-end-start-radius: var(--border-radius-50) *(smallest step shown)*
+- `.rounded-r-{50|100|200}` — border-start-end-radius: var(--border-radius-50); border-end-end-radius: var(--border-radius-50) *(smallest step shown)*
+- `.rounded-ss-{50|100|200}` — border-start-start-radius: var(--border-radius-50) *(smallest step shown)*
+- `.rounded-se-{50|100|200}` — border-start-end-radius: var(--border-radius-50) *(smallest step shown)*
+- `.rounded-es-{50|100|200}` — border-end-start-radius: var(--border-radius-50) *(smallest step shown)*
+- `.rounded-ee-{50|100|200}` — border-end-end-radius: var(--border-radius-50) *(smallest step shown)*
 
 | Class | Declares | Tokens |
 |---|---|---|
@@ -448,9 +448,9 @@ mode-stable) is RULES §8.
 
 - `.border-{50|100|200}` — border-width: var(--border-weight-50) *(smallest step shown)*
 - `.border-t-{50|100|200}` — border-top-width: var(--border-weight-50) *(smallest step shown)*
-- `.border-r-{50|100|200}` — border-right-width: var(--border-weight-50) *(smallest step shown)*
+- `.border-e-{50|100|200}` — border-inline-end-width: var(--border-weight-50) *(smallest step shown)*
 - `.border-b-{50|100|200}` — border-bottom-width: var(--border-weight-50) *(smallest step shown)*
-- `.border-l-{50|100|200}` — border-left-width: var(--border-weight-50) *(smallest step shown)*
+- `.border-s-{50|100|200}` — border-inline-start-width: var(--border-weight-50) *(smallest step shown)*
 
 | Class | Declares | Tokens |
 |---|---|---|
@@ -488,10 +488,10 @@ mode-stable) is RULES §8.
 |---|---|---|
 | `.border` | border-width: var(--border-weight-100); border-style: solid; border-color: var(--border-default) | --border-weight-100, --border-default |
 | `.border-bottom` | border-bottom-width: var(--border-weight-100); border-bottom-style: solid; border-bottom-color: var(--border-default) | --border-weight-100, --border-default |
+| `.border-end` | border-inline-end-width: var(--border-weight-100); border-inline-end-style: solid; border-inline-end-color: var(--border-default) | --border-weight-100, --border-default |
 | `.border-heavy` | border-width: var(--border-weight-200); border-style: solid; border-color: var(--neutral-1000) | --border-weight-200, --neutral-1000 |
 | `.border-interactive` | border-width: var(--border-weight-200); border-style: solid; border-color: var(--color-interactive) | --border-weight-200, --color-interactive |
-| `.border-left` | border-left-width: var(--border-weight-100); border-left-style: solid; border-left-color: var(--border-default) | --border-weight-100, --border-default |
-| `.border-right` | border-right-width: var(--border-weight-100); border-right-style: solid; border-right-color: var(--border-default) | --border-weight-100, --border-default |
+| `.border-start` | border-inline-start-width: var(--border-weight-100); border-inline-start-style: solid; border-inline-start-color: var(--border-default) | --border-weight-100, --border-default |
 | `.border-thin` | border-width: var(--border-weight-50); border-style: solid; border-color: var(--neutral-200) | --border-weight-50, --neutral-200 |
 | `.border-top` | border-top-width: var(--border-weight-100); border-top-style: solid; border-top-color: var(--border-default) | --border-weight-100, --border-default |
 
@@ -2097,16 +2097,16 @@ needed), and `.grid` / `.grid-auto-fit` for card grids.
 - `.m-{25|50|100|150|200|250|300|400|500|600|700|800|900}` — margin: var(--spacing-25) *(smallest step shown)*
 - `.mt-{25|50|100|150|200|250|300|400|500|600|700|800|900}` — margin-top: var(--spacing-25) *(smallest step shown)*
 - `.mb-{25|50|100|150|200|250|300|400|500|600|700|800|900}` — margin-bottom: var(--spacing-25) *(smallest step shown)*
-- `.ml-{25|50|100|150|200|250|300|400|500|600|700|800|900}` — margin-left: var(--spacing-25) *(smallest step shown)*
-- `.mr-{25|50|100|150|200|250|300|400|500|600|700|800|900}` — margin-right: var(--spacing-25) *(smallest step shown)*
-- `.mx-{25|50|100|150|200|250|300|400|500|600|700|800|900}` — margin-left: var(--spacing-25); margin-right: var(--spacing-25) *(smallest step shown)*
+- `.ms-{25|50|100|150|200|250|300|400|500|600|700|800|900}` — margin-inline-start: var(--spacing-25) *(smallest step shown)*
+- `.me-{25|50|100|150|200|250|300|400|500|600|700|800|900}` — margin-inline-end: var(--spacing-25) *(smallest step shown)*
+- `.mx-{25|50|100|150|200|250|300|400|500|600|700|800|900}` — margin-inline-start: var(--spacing-25); margin-inline-end: var(--spacing-25) *(smallest step shown)*
 - `.my-{25|50|100|150|200|250|300|400|500|600|700|800|900}` — margin-top: var(--spacing-25); margin-bottom: var(--spacing-25) *(smallest step shown)*
 
 | Class | Declares | Tokens |
 |---|---|---|
-| `.ml-auto` | margin-left: auto | — |
-| `.mr-auto` | margin-right: auto | — |
-| `.mx-auto` | margin-left: auto; margin-right: auto | — |
+| `.me-auto` | margin-inline-end: auto | — |
+| `.ms-auto` | margin-inline-start: auto | — |
+| `.mx-auto` | margin-inline-start: auto; margin-inline-end: auto | — |
 
 ### SPACING UTILITIES - PADDING
 
@@ -2115,9 +2115,9 @@ needed), and `.grid` / `.grid-auto-fit` for card grids.
 - `.p-{25|50|100|150|200|250|300|400|500|600|700|800|900}` — padding: var(--spacing-25) *(smallest step shown)*
 - `.pt-{25|50|100|150|200|250|300|400|500|600|700|800|900}` — padding-top: var(--spacing-25) *(smallest step shown)*
 - `.pb-{25|50|100|150|200|250|300|400|500|600|700|800|900}` — padding-bottom: var(--spacing-25) *(smallest step shown)*
-- `.pl-{25|50|100|150|200|250|300|400|500|600|700|800|900}` — padding-left: var(--spacing-25) *(smallest step shown)*
-- `.pr-{25|50|100|150|200|250|300|400|500|600|700|800|900}` — padding-right: var(--spacing-25) *(smallest step shown)*
-- `.px-{25|50|100|150|200|250|300|400|500|600|700|800|900}` — padding-left: var(--spacing-25); padding-right: var(--spacing-25) *(smallest step shown)*
+- `.ps-{25|50|100|150|200|250|300|400|500|600|700|800|900}` — padding-inline-start: var(--spacing-25) *(smallest step shown)*
+- `.pe-{25|50|100|150|200|250|300|400|500|600|700|800|900}` — padding-inline-end: var(--spacing-25) *(smallest step shown)*
+- `.px-{25|50|100|150|200|250|300|400|500|600|700|800|900}` — padding-inline-start: var(--spacing-25); padding-inline-end: var(--spacing-25) *(smallest step shown)*
 - `.py-{25|50|100|150|200|250|300|400|500|600|700|800|900}` — padding-top: var(--spacing-25); padding-bottom: var(--spacing-25) *(smallest step shown)*
 
 ### SPACING UTILITIES - GAP (Flexbox/Grid)
@@ -2150,21 +2150,21 @@ needed), and `.grid` / `.grid-auto-fit` for card grids.
 | `.mb-large` | margin-bottom: var(--margin-large) | --margin-large |
 | `.mb-row` | margin-bottom: var(--spacing-row) | --spacing-row |
 | `.mb-small` | margin-bottom: var(--margin-small) | --margin-small |
-| `.ml-landing` | margin-left: var(--margin-landing) | --margin-landing |
-| `.ml-large` | margin-left: var(--margin-large) | --margin-large |
-| `.ml-small` | margin-left: var(--margin-small) | --margin-small |
-| `.mr-landing` | margin-right: var(--margin-landing) | --margin-landing |
-| `.mr-large` | margin-right: var(--margin-large) | --margin-large |
-| `.mr-small` | margin-right: var(--margin-small) | --margin-small |
+| `.me-landing` | margin-inline-end: var(--margin-landing) | --margin-landing |
+| `.me-large` | margin-inline-end: var(--margin-large) | --margin-large |
+| `.me-small` | margin-inline-end: var(--margin-small) | --margin-small |
+| `.ms-landing` | margin-inline-start: var(--margin-landing) | --margin-landing |
+| `.ms-large` | margin-inline-start: var(--margin-large) | --margin-large |
+| `.ms-small` | margin-inline-start: var(--margin-small) | --margin-small |
 | `.mt-card` | margin-top: var(--spacing-card) | --spacing-card |
 | `.mt-content` | margin-top: var(--spacing-content) | --spacing-content |
 | `.mt-landing` | margin-top: var(--margin-landing) | --margin-landing |
 | `.mt-large` | margin-top: var(--margin-large) | --margin-large |
 | `.mt-row` | margin-top: var(--spacing-row) | --spacing-row |
 | `.mt-small` | margin-top: var(--margin-small) | --margin-small |
-| `.mx-landing` | margin-left: var(--margin-landing); margin-right: var(--margin-landing) | --margin-landing |
-| `.mx-large` | margin-left: var(--margin-large); margin-right: var(--margin-large) | --margin-large |
-| `.mx-small` | margin-left: var(--margin-small); margin-right: var(--margin-small) | --margin-small |
+| `.mx-landing` | margin-inline-start: var(--margin-landing); margin-inline-end: var(--margin-landing) | --margin-landing |
+| `.mx-large` | margin-inline-start: var(--margin-large); margin-inline-end: var(--margin-large) | --margin-large |
+| `.mx-small` | margin-inline-start: var(--margin-small); margin-inline-end: var(--margin-small) | --margin-small |
 | `.my-card` | margin-top: var(--spacing-card); margin-bottom: var(--spacing-card) | --spacing-card |
 | `.my-content` | margin-top: var(--spacing-content); margin-bottom: var(--spacing-content) | --spacing-content |
 | `.my-landing` | margin-top: var(--margin-landing); margin-bottom: var(--margin-landing) | --margin-landing |
@@ -2177,21 +2177,21 @@ needed), and `.grid` / `.grid-auto-fit` for card grids.
 | `.pb-large` | padding-bottom: var(--margin-large) | --margin-large |
 | `.pb-row` | padding-bottom: var(--spacing-row) | --spacing-row |
 | `.pb-small` | padding-bottom: var(--margin-small) | --margin-small |
-| `.pl-landing` | padding-left: var(--margin-landing) | --margin-landing |
-| `.pl-large` | padding-left: var(--margin-large) | --margin-large |
-| `.pl-small` | padding-left: var(--margin-small) | --margin-small |
-| `.pr-landing` | padding-right: var(--margin-landing) | --margin-landing |
-| `.pr-large` | padding-right: var(--margin-large) | --margin-large |
-| `.pr-small` | padding-right: var(--margin-small) | --margin-small |
+| `.pe-landing` | padding-inline-end: var(--margin-landing) | --margin-landing |
+| `.pe-large` | padding-inline-end: var(--margin-large) | --margin-large |
+| `.pe-small` | padding-inline-end: var(--margin-small) | --margin-small |
+| `.ps-landing` | padding-inline-start: var(--margin-landing) | --margin-landing |
+| `.ps-large` | padding-inline-start: var(--margin-large) | --margin-large |
+| `.ps-small` | padding-inline-start: var(--margin-small) | --margin-small |
 | `.pt-card` | padding-top: var(--spacing-card) | --spacing-card |
 | `.pt-content` | padding-top: var(--spacing-content) | --spacing-content |
 | `.pt-landing` | padding-top: var(--margin-landing) | --margin-landing |
 | `.pt-large` | padding-top: var(--margin-large) | --margin-large |
 | `.pt-row` | padding-top: var(--spacing-row) | --spacing-row |
 | `.pt-small` | padding-top: var(--margin-small) | --margin-small |
-| `.px-landing` | padding-left: var(--margin-landing); padding-right: var(--margin-landing) | --margin-landing |
-| `.px-large` | padding-left: var(--margin-large); padding-right: var(--margin-large) | --margin-large |
-| `.px-small` | padding-left: var(--margin-small); padding-right: var(--margin-small) | --margin-small |
+| `.px-landing` | padding-inline-start: var(--margin-landing); padding-inline-end: var(--margin-landing) | --margin-landing |
+| `.px-large` | padding-inline-start: var(--margin-large); padding-inline-end: var(--margin-large) | --margin-large |
+| `.px-small` | padding-inline-start: var(--margin-small); padding-inline-end: var(--margin-small) | --margin-small |
 | `.py-card` | padding-top: var(--spacing-card); padding-bottom: var(--spacing-card) | --spacing-card |
 | `.py-content` | padding-top: var(--spacing-content); padding-bottom: var(--spacing-content) | --spacing-content |
 | `.py-landing` | padding-top: var(--margin-landing); padding-bottom: var(--margin-landing) | --margin-landing |
@@ -2252,9 +2252,9 @@ needed), and `.grid` / `.grid-auto-fit` for card grids.
 | Class | Declares | Tokens |
 |---|---|---|
 | `.text-center` | text-align: center | — |
+| `.text-end` | text-align: end | — |
 | `.text-justify` | text-align: justify | — |
-| `.text-left` | text-align: left | — |
-| `.text-right` | text-align: right | — |
+| `.text-start` | text-align: start | — |
 
 ### TEXT DECORATION UTILITIES
 

@@ -32,7 +32,9 @@ names, token names and component props can move**. Pin a commit.
 - **`docs/inventory.md` / `.json`** — generated. What exists, by layer, and
   what the React layer covers.
 - **`docs/roadmap.md`** — what the system cannot yet do, ranked, measured.
-- **RTL support in every component** — logical properties throughout.
+- **RTL support throughout** — logical properties in every component *and*
+  every utility, with the directional utility classes renamed to match the
+  properties they set (see Changed).
 - **`check:visual` now captures 98 shots** — three breakpoints, both platforms
   and a right-to-left pass, where it captured 32 at one width in one platform.
 - Storybook stories for the five iOS components that had none.
@@ -51,6 +53,13 @@ names, token names and component props can move**. Pin a commit.
   `surface="bordered"` → `surface="borderNeutral"`; likewise `"wash"` →
   `"washNeutral"`. Four lookup tables that existed only to rename what the CSS
   had already named are gone. **Breaking.**
+- **The directional utility classes are renamed to logical names.** `.ml-*` /
+  `.mr-*` → `.ms-*` / `.me-*`; `.pl-*` / `.pr-*` → `.ps-*` / `.pe-*`;
+  `.rounded-tl-*` and siblings → `.rounded-ss-*` and siblings; `.border-l-*` /
+  `.border-r-*` → `.border-s-*` / `.border-e-*`; `.border-left` /
+  `.border-right` → `.border-start` / `.border-end`; `.text-left` /
+  `.text-right` → `.text-start` / `.text-end`. 90 renames. A name that says
+  "left" while applying on the right is worse than no name. **Breaking.**
 - **`.event-row` → `.split-row`**, `.event-card` → `.row-card`, `EventRow` →
   `SplitRow`. A brand-neutral system should not ship domain-named classes.
   `SplitRow` is now structural, with slots, where it had hardcoded copy.
@@ -105,9 +114,6 @@ names, token names and component props can move**. Pin a commit.
 
 Tracked in `docs/roadmap.md`, with what closing each one takes:
 
-- The spacing and corner-radius **utility class names are still physical**
-  (`.ml-200`, `.rounded-tl-100`), so a page built from components mirrors in
-  RTL and one built from utilities does not. Three options, one decision.
 - 168 lint findings in the baseline, mostly components restating type instead
   of composing a text class.
 - No axe-core pass; `check:visual` is the only check that drives a browser.

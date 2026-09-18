@@ -300,55 +300,42 @@ Five components have no Storybook story at all — `IOSHomeNav`, `IOSModal`,
 nothing catches a break in them. Cheap to fix and worth doing before anything
 else in the React layer.
 
-### 5. No RTL — component layer done, the utility names are a decision
+### 5. No RTL — ✅ closed
 
 ```
 grep -rhoE '\b(margin|padding|border)-(left|right)\b|\b(left|right)\s*:' css/*.css | wc -l
-# 301 before, 185 now
+# 301 before, 0 now
 ```
 
-**Every component is converted** — `margin-inline-start`, `padding-inline-end`,
-`border-start-start-radius`, `inset-inline-start`, `text-align: start`. 113
-lines across nine files, and all 88 left-to-right shots are pixel-identical,
-which is the point: in LTR a logical property *is* the physical one, so a
-conversion that changes anything has changed something it should not have.
+**Every component and every utility is converted** —
+`margin-inline-start`, `padding-inline-end`, `border-start-start-radius`,
+`border-inline-start-width`, `inset-inline-start`, `text-align: start`.
 
-`check:visual` now takes a right-to-left pass over the five directional
-sheets at two widths — 98 shots. A physical property that creeps back in shows
-up there as a slot on the wrong side. Verified by measurement, not just by
-diff: a list row's leading slot sits at the row's left edge in LTR and its
-right edge in RTL, and the tile tag insets 8px from the leading edge either
-way.
+**The utility classes were renamed, not just re-pointed.** `.ml-200` applying
+on the right is a name that lies in exactly the mode this work exists to
+support, and leaving it would have made "Semantic" false for the most-used
+classes in the system. 90 renames, taking the CSS property's own names —
+which is the same principle that settled gap 3:
 
-**What is left is 185 occurrences in two files, and they are one decision, not
-a task.** `boilerplate.css` (134) and `border-effects-tokens.css` (50) do not
-contain component internals — they are the *utility classes*, and their names
-are the API:
+| Was | Now | Property |
+|---|---|---|
+| `.ml-*` `.mr-*` | `.ms-*` `.me-*` | `margin-inline-start` / `-end` |
+| `.pl-*` `.pr-*` | `.ps-*` `.pe-*` | `padding-inline-start` / `-end` |
+| `.rounded-tl-*` `-tr-*` `-bl-*` `-br-*` | `.rounded-ss-*` `-se-*` `-es-*` `-ee-*` | `border-start-start-radius` … |
+| `.border-l-*` `.border-r-*` | `.border-s-*` `.border-e-*` | `border-inline-start-width` / `-end` |
+| `.border-left` `.border-right` | `.border-start` `.border-end` | |
+| `.text-left` `.text-right` | `.text-start` `.text-end` | `text-align: start` / `end` |
 
-- 66 spacing utilities: `.ml-200`, `.mr-200`, `.pl-300`, `.pr-300` …
-- 12 corner-radius utilities: `.rounded-tl-100`, `.rounded-br-200` …
+**Breaking**, and done before publishing for that reason: renaming the
+most-used classes in the system is free now and is somebody else's migration
+later.
 
-Three ways to go, and they are not equivalent:
-
-1. **Rename to logical** — `.ms-200` / `.me-200`, `.rounded-ss-100`. Honest,
-   and the only option that leaves "Semantic" true, because `.ml-200` applying
-   on the right is a name that lies. Costs: 78 class renames, every demo sheet
-   and doc that uses one, and a real break for anything built on the old names.
-2. **Keep the names, make them logical underneath.** No churn, works in RTL,
-   and `.ml-200` means "margin-left except when it doesn't". The name is then
-   a lie in exactly the mode this work exists to support.
-3. **Keep the physical utilities physical, add logical ones alongside.** Both
-   work, nothing breaks, and the surface grows by 78 classes with two ways to
-   do one thing — which `RULES §3` exists to prevent.
-
-(1) is the recommendation: this is pre-1.0, nothing is published, and the
-whole reason to do RTL as one deliberate pass is to avoid living with a
-half-measure. But it is a breaking API change to the most-used classes in the
-system, so it is the author's call, not a linter's.
-
-Until it is decided, a page built from components mirrors correctly and a page
-that reaches for `.ml-200` does not — which is worth knowing rather than
-discovering.
+Verified by measurement, not just by diff. `.ms-300` computes
+`margin-left: 24px` in LTR and `margin-right: 24px` in RTL; `.pe-200` and
+`.rounded-ss-200` flip the same way. Of 98 shots only 12 changed, all on the
+two sheets that print class names as labels, and **no page height changed
+anywhere** — which is the proof that the properties behave identically in LTR
+and only the printed text moved.
 
 ### 6. Not installable
 
@@ -363,7 +350,7 @@ Order matters here: publishing before gap 2 ships a package consumers cannot
 override, and publishing before gap 3 freezes two vocabularies into a public
 API. **Both are now done**, and `CONTRIBUTING.md` and `CHANGELOG.md` exist, so
 the one thing still in front of publishing is the utility-class naming decision
-in gap 5 — renaming `.ml-200` after publishing is a breaking change to
+in gap 5 — renaming `.ms-200` after publishing is a breaking change to
 somebody else's code; before, it is free.
 
 ### 7. Smaller, real, cheap
@@ -503,5 +490,5 @@ land free.
 4. **Gap 7** — the cheap ones, in an afternoon.
 5. **Gap 1** — the remaining lint rules, and axe-core. The breakpoint capture
    is done.
-6. **Gap 5** — the utility-class naming decision; the components are done.
+6. ~~**Gap 5** — RTL.~~ Done, components and utilities both.
 7. **Gap 6** — publish, once 2 and 3 have landed.
