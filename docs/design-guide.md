@@ -325,7 +325,9 @@ Structure: `.list-row` > optional `.leading` + `.list-row-content` + optional
   </div>
 </div>
 
-<!-- Switch — input id must match label for -->
+<!-- Switch — the input id must match the label for, AND the input carries its
+     own aria-label: the <label> is the track and is deliberately empty, so
+     without one the control has no accessible name at all. -->
 <div class="trailing trailing-gap-md">
   <div class="switch">
     <input type="checkbox" id="switch-1">
@@ -515,8 +517,8 @@ helpers keep in sync.
         onfocus="openSelect('select-1')"
         onblur="closeSelect('select-1')">
         <option value="" disabled selected>Choose a category</option>
-        <option value="basketball">Basketball</option>
-        <option value="soccer">Soccer</option>
+        <option value="a">First option</option>
+        <option value="b">Second option</option>
       </select>
     </div>
   </div>
@@ -1469,8 +1471,8 @@ rather than fight.
           onfocus="openSelect('filter-category')"
           onblur="closeSelect('filter-category')">
           <option value="" disabled selected>Category</option>
-          <option value="basketball">Basketball</option>
-          <option value="soccer">Soccer</option>
+          <option value="a">First option</option>
+          <option value="b">Second option</option>
         </select>
       </div>
     </div>

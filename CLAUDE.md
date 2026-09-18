@@ -118,8 +118,9 @@ The CSS files in `css/` are the source of truth. Five things are
 ```bash
 npm run lint           # RULES.md against docs/css-api.json — run this first
 npm run check          # lint + themes, assets, icons, exports, demo coverage
+npm run check:a11y     # axe-core over every sheet, both modes — runs in CI too
 npm run check:visual   # screenshot every sheet and diff it against the baseline
-npm run check:all      # both
+npm run check:all      # all three
 npm run build:docs     # regenerates css-api.*, inventory.* and the CSS bundle
 ```
 
@@ -177,7 +178,11 @@ green; if a rule is wrong, say so.
 ### The other checks
 
 `npm run check:themes` asserts every `[data-theme]` supplies the whole token
-contract in both modes and clears 4.5:1 on its button and accent pairs.
+contract in both modes and clears 4.5:1 on **three** pairs — the primary
+button, the transactional button, and `--color-interactive` against
+`--org-base`. Not the other seven button types, and not the status or brand
+text colours: `npm run check:a11y` is what covers those, and it currently finds
+32 real component failures (`docs/roadmap.md § gap 8`).
 `npm run check:assets` asserts every shipped SVG parses — a malformed one still
 serves with the right content-type and still reports `complete` on an `<img>`,
 it just paints nothing. `npm run check:icons` asserts every icon name in the

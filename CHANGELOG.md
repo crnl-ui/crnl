@@ -36,6 +36,10 @@ names, token names and component props can move**. Pin a commit.
 - **`check:visual` now captures 98 shots** — three breakpoints, both platforms
   and a right-to-left pass, where it captured 32 at one width in one platform.
 - Storybook stories for the five iOS components that had none.
+- **`npm run check:a11y`** — axe-core over every sheet in both modes, WCAG 2 A
+  and AA, with its own two-way baseline. Runs in CI, which `check:visual`
+  cannot. It found eight critical failures, all fixed, and 103 contrast
+  violations now recorded as `docs/roadmap.md § gap 8`.
 - `CONTRIBUTING.md`, `CHANGELOG.md`.
 
 ### Changed
@@ -71,6 +75,12 @@ names, token names and component props can move**. Pin a commit.
 
 ### Fixed
 
+- **The switch had no accessible name.** Its `<label>` is the track and is
+  deliberately empty, so every switch built from the documented form was
+  unnamed. It carries its own `aria-label` now, in the guide, the CSS usage
+  note and the demo.
+- **The filter-bar selects had no accessible name** — a styled `<span>` stood
+  in for a label.
 - Every `Card` Storybook story rendered unstyled — `.label-bold-30`,
   `.body-20` and `.title-30` do not exist.
 - `.event-card:hover { opacity }` reimplemented the press mechanism in the

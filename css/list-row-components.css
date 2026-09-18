@@ -163,6 +163,8 @@
      disabled  → Muted (neutral-100 track, faded knob)
    
    Usage:
+     <!-- The <label> is the track and is empty, so the input needs its own
+          aria-label or it has no accessible name (npm run check:a11y). -->
      <div class="switch">
        <input type="checkbox" id="switch-1">
        <label for="switch-1"></label>

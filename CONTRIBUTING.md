@@ -18,8 +18,14 @@ in between.
 
 ```bash
 npm run check            # lint + themes, assets, icons, exports, demo coverage
+npm run check:a11y       # axe-core, WCAG 2 A/AA, over every sheet in both modes
 npm run check:visual     # 98 screenshots, diffed against your local baselines
 ```
+
+`check:a11y` has its own baseline, `scripts/a11y-baseline.json`, and works the
+same way the linter's does — in both directions. It runs in CI; `check:visual`
+cannot, because its baselines are pixels and pixels are machine-specific,
+while axe returns rule ids that are not.
 
 `npm run check` also runs in CI. `check:visual` does not, and cannot until the
 renderer is pinned to a container — its baselines are specific to the machine

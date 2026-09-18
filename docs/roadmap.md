@@ -121,9 +121,23 @@ mouse never encounters it.
   `<div>` in the demo sheets and the guide is now a `<button>`, including the
   18 surface specimens, which now demonstrate the focus ring too.
 
-**Still open from this gap:** an axe-core pass in `check:visual`, which already
-drives a real browser and is the only check that could run one. The lint rule
-catches the shape; axe would catch the rest (contrast, names, roles).
+**Also done, since:** `npm run check:a11y` runs axe-core over every sheet in
+both modes and the colour sheet in all five themes — WCAG 2 A and AA, with its
+own baseline. It runs in CI, which `check:visual` cannot: axe returns rule ids
+and node targets rather than pixels, so the result is the same on any machine.
+
+It found eight critical failures the lint rule could not see, all now fixed,
+and all of them *pattern* failures rather than page ones — anything built from
+the documented form had them:
+
+- The switch's `<label>` is the track and is deliberately empty, so the input
+  had no accessible name at all. It needs its own `aria-label`, which the
+  guide, the CSS usage note and the demo now all say.
+- The filter-bar selects had a styled `<span>` standing in for a label and no
+  accessible name.
+
+What it also found is a real finding about the palette, not the markup, and it
+is gap 8.
 
 This was the gap most aligned with the positioning. "Making for non-AIs"
 includes the non-AIs who do not use a mouse.
@@ -392,6 +406,45 @@ somebody else's code; before, it is free.
   preserves `@layer` through the build.
 
 ---
+
+### 8. 103 contrast failures, and `check:themes` checks three pairs
+
+`npm run check:a11y` reports 103 WCAG AA contrast violations across the sheets.
+They are not all equal, and the split is the useful part:
+
+| | Count | What it is |
+|---|---:|---|
+| Disabled states | 28 | `.text-disabled`, `.is-disabled`, `.text-placeholder`. **WCAG 1.4.3 exempts disabled controls**, so these are conformance-neutral. axe flags them anyway |
+| Brand as text | 22 | `.text-brand-core` / `-light` / `-inverted` used as a text colour. Between 1.07 and 2.5 — a brand colour is picked to be a brand, not body copy |
+| Status as text | 21 | `.text-warning` at 2.76, `.text-info` at 4.23 — the second is a small nudge from passing |
+| **Shipped components** | **32** | the ones that are unambiguously bugs |
+
+That last row is the one to act on:
+
+- **`.btn-destructive` fails at 4.17** — a shipped button, in all three sizes.
+- **`.input-message` on `.is-error` fails at 4.0** — the text that tells somebody
+  what went wrong.
+- **The stat table's header fails at 2.84.**
+- `.text-inverted` and `.surface-borderWhite` label at 3.12.
+
+**`check:themes` did not catch any of this, and the docs overstated what it
+does.** It checks exactly three pairs — the primary button, the transactional
+button, and `--color-interactive` against `--org-base`. Two button types out of
+nine. "Clears 4.5:1 on its button and accent pairs" was true of the pairs it
+checks and misleading about the rest; the wording is fixed.
+
+Fixing these means changing token values, which is a brand decision rather than
+a mechanical one, so they are recorded rather than adjusted:
+
+1. **The component failures** should just be fixed — a destructive button and an
+   error message have to be readable. The cheapest route is a darker
+   `--status-error` in light mode, checked against both.
+2. **The brand-as-text utilities** need a decision: drop them, restrict them to
+   display sizes (WCAG allows 3:1 at ≥24px, which most would then pass), or ship
+   accessible variants alongside.
+3. **`check:themes` should check every button type**, not two. That is a small
+   change to one array and it turns this from a thing somebody noticed into a
+   thing that cannot come back.
 
 ## What not to build
 

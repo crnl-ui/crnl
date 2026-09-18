@@ -77,7 +77,7 @@ comes from `npm run check` or `npm run build:inventory`:
   exporting 27 symbols, covering 55% of the component layer and none of the
   utilities. Everything else is markup plus classes, which is the normal way to
   use this. `docs/inventory.md` has the real per-layer breakdown.
-- **Six checks run with no browser**, one more with. `npm run lint` is the new
+- **Six checks run with no browser**, two more with. `npm run lint` is the new
   one, and it found a story file whose every class name was wrong, a
   product-layer `:hover` reimplementing the press mechanism, two classes
   duplicating a responsive type pair that already shipped, and a dead class
@@ -162,11 +162,12 @@ npm run build:ui-fonts   # re-cut Inter and the icon font from upstream
 | Command | Asserts |
 |---|---|
 | `lint` | every rule in `RULES.md` that can be checked statically — twelve of them |
-| `check:themes` | every `[data-theme]` supplies the whole token contract in both modes, and clears 4.5:1 on its button and accent pairs |
+| `check:themes` | every `[data-theme]` supplies the whole token contract in both modes, and clears 4.5:1 on three pairs: the primary button, the transactional button, and the accent on base. Not the other seven button types — see `check:a11y` and `docs/roadmap.md § gap 8` |
 | `check:assets` | every shipped SVG parses — a malformed one still serves, reports `complete`, and paints nothing |
 | `check:icons` | every icon name in the markup is in the subset the font ships; one that is not renders as its own letters |
 | `check:exports` | every path in `package.json`'s `exports` and `files` resolves |
 | `check:demo` | the sheets still cover every class and token — fails on a class the CSS has and no sheet shows, *and* on a class a sheet uses that the CSS does not have |
+| `check:a11y` | axe-core, WCAG 2 A and AA, over every sheet in both modes and the colour sheet in all five themes. Needs a browser, but runs in CI — its results are rule ids, not pixels |
 | `check:visual` | every sheet still renders as it did — light and dark, at all three breakpoints, in both platforms, plus the colour sheet in all five themes. 88 shots |
 
 `check:visual` is the one that *looks*. The others prove a class is mentioned;

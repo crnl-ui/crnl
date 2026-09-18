@@ -47,6 +47,7 @@
     "check:assets": "node scripts/check-assets.mjs",
     "check:icons": "node scripts/check-icons.mjs",
     "check:visual": "node scripts/visual.mjs",
+    "check:a11y": "node scripts/check-a11y.mjs",
     "check:demo": "node demo/check-coverage.mjs",
     "build:css-api": "node scripts/generate-css-reference.js",
     "build:inventory": "node scripts/build-inventory.mjs",
@@ -54,7 +55,7 @@
     "build:docs": "npm run build:css-api && npm run build:inventory && npm run build:css-bundle",
     "build:fonts": "python3 scripts/build-fonts.py",
     "build:ui-fonts": "python3 scripts/build-ui-fonts.py",
-    "check:all": "npm run check && npm run check:visual",
+    "check:all": "npm run check && npm run check:a11y && npm run check:visual",
     "check:exports": "node scripts/check-exports.mjs"
   },
   "dependencies": {
@@ -68,6 +69,7 @@
     "@types/react-dom": "^18.3.1",
     "@vitejs/plugin-react": "^4.3.4",
     "@xmldom/xmldom": "^0.9.12",
+    "axe-core": "^4.13.0",
     "pixelmatch": "^7.2.0",
     "playwright": "^1.63.0",
     "pngjs": "^7.0.0",

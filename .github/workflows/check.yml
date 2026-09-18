@@ -39,6 +39,12 @@ jobs:
       # themes, assets, icons, exports, demo coverage
       - run: npm run check
 
+      # axe-core needs a browser, but unlike check:visual its results are rule
+      # ids and node targets rather than pixels — identical on any machine — so
+      # this one belongs in CI. The browser install is the only cost.
+      - run: npx playwright install --with-deps chromium
+      - run: npm run check:a11y
+
       # The generated docs are committed, so they can go stale against the CSS.
       # Regenerate and fail if anything moved — a drifted css-api.md is the one
       # failure mode none of the checks above can see.
