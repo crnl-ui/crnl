@@ -77,20 +77,20 @@
   color: var(--text-primary);
   padding-top: var(--spacing-50);    /* 4px */
   padding-bottom: var(--spacing-50); /* 4px */
-  padding-left: var(--spacing-150);  /* 12px */
-  padding-right: var(--spacing-150); /* 12px */
+  padding-inline-start: var(--spacing-150);  /* 12px */
+  padding-inline-end: var(--spacing-150); /* 12px */
 }
 
 /* Icon position: Leading  — icon first, then label */
 .tag.tag-icon-leading {
-  padding-left: var(--spacing-100);  /* 8px */
-  padding-right: var(--spacing-150); /* 12px */
+  padding-inline-start: var(--spacing-100);  /* 8px */
+  padding-inline-end: var(--spacing-150); /* 12px */
 }
 
 /* Icon position: Trailing — label first, then icon */
 .tag.tag-icon-trailing {
-  padding-left: var(--spacing-150);  /* 12px */
-  padding-right: var(--spacing-100); /* 8px */
+  padding-inline-start: var(--spacing-150);  /* 12px */
+  padding-inline-end: var(--spacing-100); /* 8px */
 }
 
 
@@ -126,8 +126,8 @@
 
 .chip {
   /* Layout & shape — surface token provides bg, border, cursor, transition */
-  padding-left: var(--spacing-150);  /* 12px */
-  padding-right: var(--spacing-150); /* 12px */
+  padding-inline-start: var(--spacing-150);  /* 12px */
+  padding-inline-end: var(--spacing-150); /* 12px */
 }
 
 /* Brand colour: override text colour to the mode-aware interactive */
@@ -150,11 +150,11 @@
 /* --- Icon Positions --- */
 
 .chip.chip-icon-leading {
-  padding-left: var(--spacing-100);  /* 8px */
-  padding-right: var(--spacing-150); /* 12px */
+  padding-inline-start: var(--spacing-100);  /* 8px */
+  padding-inline-end: var(--spacing-150); /* 12px */
 }
 
 .chip.chip-icon-trailing {
-  padding-left: var(--spacing-150);  /* 12px */
-  padding-right: var(--spacing-100); /* 8px */
+  padding-inline-start: var(--spacing-150);  /* 12px */
+  padding-inline-end: var(--spacing-100); /* 8px */
 }

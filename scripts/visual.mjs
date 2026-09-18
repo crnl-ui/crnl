@@ -10,6 +10,7 @@
      every sheet × light and dark × three widths             72 shots
      01-color × all five themes × both modes, at desktop     10 shots
      the app-platform sheets × both modes × two widths        8 shots
+     the directional sheets, right-to-left, at two widths    10 shots
    The colour sheet resolves every token live out of getComputedStyle, so it is
    the canary for a theme regression; capturing every sheet in every theme would
    be 390 shots for very little more coverage. The three widths are the
@@ -111,6 +112,14 @@ const WIDTHS = [
    page's whole geometry, so these are captured in both platforms. */
 const APP_SHEETS = ['07-rows.html', '11-ios.html']
 
+/* A right-to-left pass over the sheets whose layout is directional — rows
+   with leading and trailing slots, forms, nav, tables. The CSS uses logical
+   properties, so these should mirror without a single rule of their own; a
+   physical property that slipped back in shows up here as a slot on the
+   wrong side. Not every sheet: colour and type have no handedness. */
+const RTL_SHEETS = ['06-cards.html', '07-rows.html', '08-forms.html',
+                    '09-nav.html', '10-tables.html']
+
 /* De-duplicated: 01-color on the default theme appears in more than one list. */
 const SHOTS = [...new Map([
   /* Every sheet, both modes, all three widths, on the default theme. */
@@ -126,11 +135,16 @@ const SHOTS = [...new Map([
       file: f, theme: 'signal', mode, width: w,
       widthLabel: w === 1280 ? null : 'mobile', platform: 'app',
     })))),
-].map(s => [`${s.file}|${s.theme}|${s.mode}|${s.width}|${s.platform ?? 'web'}`, s])).values()]
+  /* Right-to-left, at desktop and mobile. */
+  ...RTL_SHEETS.flatMap(f => [1280, 390].map(w => ({
+    file: f, theme: 'signal', mode: 'light', width: w,
+    widthLabel: w === 1280 ? null : 'mobile', dir: 'rtl',
+  }))),
+].map(s => [`${s.file}|${s.theme}|${s.mode}|${s.width}|${s.platform ?? 'web'}|${s.dir ?? 'ltr'}`, s])).values()]
 
 const name = s => [
   s.file.replace('.html', ''), s.theme, s.mode,
-  s.widthLabel, s.platform === 'app' ? 'app' : null,
+  s.widthLabel, s.platform === 'app' ? 'app' : null, s.dir === 'rtl' ? 'rtl' : null,
 ].filter(Boolean).join('--') + '.png'
 
 /* ── A static server, so no dependency and no port guessing ───────────────── */
@@ -167,11 +181,12 @@ async function capture(browser, port, shot) {
   }, FROZEN)
 
   await page.goto(`http://127.0.0.1:${port}/demo/${shot.file}`, { waitUntil: 'networkidle' })
-  await page.evaluate(([theme, mode, platform]) => {
+  await page.evaluate(([theme, mode, platform, dir]) => {
     document.documentElement.setAttribute('data-theme', theme)
     document.documentElement.setAttribute('data-mode', mode)
     if (platform) document.documentElement.setAttribute('data-platform', platform)
-  }, [shot.theme, shot.mode, shot.platform ?? null])
+    if (dir) document.documentElement.setAttribute('dir', dir)
+  }, [shot.theme, shot.mode, shot.platform ?? null, shot.dir ?? null])
   await page.addStyleTag({ content: `
     *, *::before, *::after {
       transition-duration: 0s !important;

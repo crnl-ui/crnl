@@ -75,8 +75,8 @@
   color: var(--text-primary);
   padding-top: var(--spacing-200);    /* 16px */
   padding-bottom: var(--spacing-150); /* 12px */
-  padding-left: var(--spacing-200);
-  padding-right: var(--spacing-200);
+  padding-inline-start: var(--spacing-200);
+  padding-inline-end: var(--spacing-200);
 }
 
 .stat-table-title.is-plain {
@@ -100,15 +100,15 @@
    row variant below restates its fill on this cell. */
 .stat-table-entity {
   position: sticky;
-  left: 0;
+  inset-inline-start: 0;
   z-index: 1;
   width: var(--stat-table-entity-width);
   min-width: var(--spacing-900); /* 72px — the Figma minimum */
   box-sizing: border-box;
   background-color: var(--bg-base);
-  border-right: var(--border-weight-50) solid var(--neutral-300);
+  border-inline-end: var(--border-weight-50) solid var(--neutral-300);
   color: var(--text-secondary);
-  text-align: left;
+  text-align: start;
   padding: var(--spacing-100) var(--spacing-200); /* 8px 16px */
   overflow: hidden;
   text-overflow: ellipsis;
@@ -149,9 +149,9 @@
    text cell takes the entity cell's padding and the columns line up as a
    grid. Set a width alongside it — 48px will not hold a string. */
 .stat-table-attr.is-text {
-  text-align: left;
-  padding-left: var(--spacing-200);
-  padding-right: var(--spacing-200);
+  text-align: start;
+  padding-inline-start: var(--spacing-200);
+  padding-inline-end: var(--spacing-200);
   /* A number is one line by definition; a string is not. Wrapping is the
      default here so a long value stays readable instead of being cut off,
      and overflow-wrap breaks the unbroken ones (an asset id, a URL) that

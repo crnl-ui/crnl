@@ -338,7 +338,7 @@
 .logo-block img {
   position: absolute;
   top: 50%;
-  left: 50%;
+  inset-inline-start: 50%;
   transform: translate(-50%, -50%);
 }
 
@@ -430,8 +430,8 @@
 /* Frosted glass label — absolutely positioned over the visual header */
 .tile-tag {
   position: absolute;
-  top: var(--spacing-100);   /* 8px */
-  left: var(--spacing-100);  /* 8px */
+  top: var(--spacing-100);                  /* 8px */
+  inset-inline-start: var(--spacing-100);   /* 8px — mirrors in RTL */
   display: flex;
   align-items: center;
   height: 32px;

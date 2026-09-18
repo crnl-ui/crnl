@@ -282,20 +282,55 @@ Five components have no Storybook story at all — `IOSHomeNav`, `IOSModal`,
 nothing catches a break in them. Cheap to fix and worth doing before anything
 else in the React layer.
 
-### 5. No RTL
+### 5. No RTL — component layer done, the utility names are a decision
 
 ```
-grep -rhoE '\b(margin|padding)-(left|right)\b|\b(left|right):' css/*.css | wc -l   # 247
-grep -rhoE '(margin|padding)-(inline|block)' css/*.css | wc -l                     # 6
+grep -rhoE '\b(margin|padding|border)-(left|right)\b|\b(left|right)\s*:' css/*.css | wc -l
+# 301 before, 185 now
 ```
 
-247 physical properties against 6 logical ones. Every row is leading-first,
-every chevron points right, every safe-area inset is one-sided.
+**Every component is converted** — `margin-inline-start`, `padding-inline-end`,
+`border-start-start-radius`, `inset-inline-start`, `text-align: start`. 113
+lines across nine files, and all 88 left-to-right shots are pixel-identical,
+which is the point: in LTR a logical property *is* the physical one, so a
+conversion that changes anything has changed something it should not have.
 
-Mostly mechanical — `margin-left` → `margin-inline-start` — but "mostly" hides
-the two real decisions: the icons that must mirror and the ones that must not,
-and the phone frame's fixed geometry. Worth doing as one deliberate pass with a
-`dir="rtl"` column added to `check:visual`, not incrementally.
+`check:visual` now takes a right-to-left pass over the five directional
+sheets at two widths — 98 shots. A physical property that creeps back in shows
+up there as a slot on the wrong side. Verified by measurement, not just by
+diff: a list row's leading slot sits at the row's left edge in LTR and its
+right edge in RTL, and the tile tag insets 8px from the leading edge either
+way.
+
+**What is left is 185 occurrences in two files, and they are one decision, not
+a task.** `boilerplate.css` (134) and `border-effects-tokens.css` (50) do not
+contain component internals — they are the *utility classes*, and their names
+are the API:
+
+- 66 spacing utilities: `.ml-200`, `.mr-200`, `.pl-300`, `.pr-300` …
+- 12 corner-radius utilities: `.rounded-tl-100`, `.rounded-br-200` …
+
+Three ways to go, and they are not equivalent:
+
+1. **Rename to logical** — `.ms-200` / `.me-200`, `.rounded-ss-100`. Honest,
+   and the only option that leaves "Semantic" true, because `.ml-200` applying
+   on the right is a name that lies. Costs: 78 class renames, every demo sheet
+   and doc that uses one, and a real break for anything built on the old names.
+2. **Keep the names, make them logical underneath.** No churn, works in RTL,
+   and `.ml-200` means "margin-left except when it doesn't". The name is then
+   a lie in exactly the mode this work exists to support.
+3. **Keep the physical utilities physical, add logical ones alongside.** Both
+   work, nothing breaks, and the surface grows by 78 classes with two ways to
+   do one thing — which `RULES §3` exists to prevent.
+
+(1) is the recommendation: this is pre-1.0, nothing is published, and the
+whole reason to do RTL as one deliberate pass is to avoid living with a
+half-measure. But it is a breaking API change to the most-used classes in the
+system, so it is the author's call, not a linter's.
+
+Until it is decided, a page built from components mirrors correctly and a page
+that reaches for `.ml-200` does not — which is worth knowing rather than
+discovering.
 
 ### 6. Not installable
 
@@ -403,5 +438,5 @@ land free.
 4. **Gap 7** — the cheap ones, in an afternoon.
 5. **Gap 1** — the remaining lint rules, and axe-core. The breakpoint capture
    is done.
-6. **Gap 5** — RTL as one deliberate pass.
+6. **Gap 5** — the utility-class naming decision; the components are done.
 7. **Gap 6** — publish, once 2 and 3 have landed.

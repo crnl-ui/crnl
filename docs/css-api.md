@@ -375,14 +375,14 @@ and §9.
 
 | Class | Declares | Tokens |
 |---|---|---|
-| `.container` | width: 100%; max-width: var(--container-default); margin-left: auto; margin-right: auto; padding-left: 20px; +1 more | --container-default |
-| `.container-compact` | width: 100%; max-width: var(--container-compact); margin-left: auto; margin-right: auto; padding-left: 20px; +1 more | --container-compact |
-| `.container-extra-wide` | width: 100%; max-width: var(--container-extra-wide); margin-left: auto; margin-right: auto; padding-left: 20px; +1 more | --container-extra-wide |
-| `.container-fluid` | width: 100%; padding-left: 20px; padding-right: 20px | — |
-| `.container-maximum` | width: 100%; max-width: var(--container-maximum); margin-left: auto; margin-right: auto; padding-left: 20px; +1 more | --container-maximum |
-| `.container-medium` | width: 100%; max-width: var(--container-medium); margin-left: auto; margin-right: auto; padding-left: 20px; +1 more | --container-medium |
-| `.container-narrow` | width: 100%; max-width: var(--container-narrow); margin-left: auto; margin-right: auto; padding-left: 20px; +1 more | --container-narrow |
-| `.container-wide` | width: 100%; max-width: var(--container-wide); margin-left: auto; margin-right: auto; padding-left: 20px; +1 more | --container-wide |
+| `.container` | width: 100%; max-width: var(--container-default); margin-inline-start: auto; margin-inline-end: auto; padding-inline-start: 20px; +1 more | --container-default |
+| `.container-compact` | width: 100%; max-width: var(--container-compact); margin-inline-start: auto; margin-inline-end: auto; padding-inline-start: 20px; +1 more | --container-compact |
+| `.container-extra-wide` | width: 100%; max-width: var(--container-extra-wide); margin-inline-start: auto; margin-inline-end: auto; padding-inline-start: 20px; +1 more | --container-extra-wide |
+| `.container-fluid` | width: 100%; padding-inline-start: 20px; padding-inline-end: 20px | — |
+| `.container-maximum` | width: 100%; max-width: var(--container-maximum); margin-inline-start: auto; margin-inline-end: auto; padding-inline-start: 20px; +1 more | --container-maximum |
+| `.container-medium` | width: 100%; max-width: var(--container-medium); margin-inline-start: auto; margin-inline-end: auto; padding-inline-start: 20px; +1 more | --container-medium |
+| `.container-narrow` | width: 100%; max-width: var(--container-narrow); margin-inline-start: auto; margin-inline-end: auto; padding-inline-start: 20px; +1 more | --container-narrow |
+| `.container-wide` | width: 100%; max-width: var(--container-wide); margin-inline-start: auto; margin-inline-end: auto; padding-inline-start: 20px; +1 more | --container-wide |
 
 ---
 
@@ -1358,10 +1358,10 @@ Notes
 | Class | Declares | Tokens |
 |---|---|---|
 | `.leading` | display: flex; align-items: center; flex-shrink: 0 | — |
-| `.leading-gap-lg` | padding-right: 16px | — |
-| `.leading-gap-md` | padding-right: 12px | — |
-| `.leading-gap-sm` | padding-right: 8px | — |
-| `.leading-gap-xl` | padding-right: 24px | — |
+| `.leading-gap-lg` | padding-inline-end: 16px | — |
+| `.leading-gap-md` | padding-inline-end: 12px | — |
+| `.leading-gap-sm` | padding-inline-end: 8px | — |
+| `.leading-gap-xl` | padding-inline-end: 24px | — |
 
 ### CIRCLE CONTAINER
 
@@ -1401,10 +1401,10 @@ Notes
 | Class | Declares | Tokens |
 |---|---|---|
 | `.trailing` | display: flex; align-items: center; justify-content: flex-end; flex-shrink: 0 | — |
-| `.trailing-gap-lg` | padding-left: 12px | — |
-| `.trailing-gap-md` | padding-left: 8px | — |
-| `.trailing-gap-sm` | padding-left: 4px | — |
-| `.trailing-gap-xs` | padding-left: 2px | — |
+| `.trailing-gap-lg` | padding-inline-start: 12px | — |
+| `.trailing-gap-md` | padding-inline-start: 8px | — |
+| `.trailing-gap-sm` | padding-inline-start: 4px | — |
+| `.trailing-gap-xs` | padding-inline-start: 2px | — |
 
 ### TRAILING TEXT LINK (CHIP)
 
@@ -1416,7 +1416,7 @@ Notes
 
 | Class | Declares | Tokens |
 |---|---|---|
-| `.trailing-text-pair` | gap: 1px; display: flex; flex-direction: column; align-items: flex-end; text-align: right; +1 more | — |
+| `.trailing-text-pair` | gap: 1px; display: flex; flex-direction: column; align-items: flex-end; text-align: end; +1 more | — |
 
 ### STEPPER (WEB)
 
@@ -1472,7 +1472,7 @@ Notes
 |---|---|---|
 | `.split-row` | background: var(--org-surface); border-radius: var(--border-radius-200); width: 100%; display: flex; flex-direction: column; +1 more | --org-surface, --border-radius-200 |
 | `.split-row-bottom` | padding: var(--spacing-150) var(--spacing-200); border-top: 0.33px solid var(--border-default) *(also styled in platform-tokens.css)* | --spacing-150, --spacing-200, --border-default, --spacing-300 |
-| `.split-row-note` | max-width: var(--spacing-800); text-align: right; white-space: normal | --spacing-800 |
+| `.split-row-note` | max-width: var(--spacing-800); text-align: end; white-space: normal | --spacing-800 |
 | `.split-row-top` | padding: var(--spacing-200) *(also styled in platform-tokens.css)* | --spacing-200, --spacing-300 |
 
 ### SPLIT ROW LIST
@@ -1623,7 +1623,7 @@ select                      (native, invisible overlay)
 | Class | Declares | Tokens |
 |---|---|---|
 | `.input-label` | font-size: 16px; font-weight: 600; line-height: 1; letter-spacing: -0.02em; color: var(--text-primary); +3 more | --text-primary, --org-primary-button |
-| `.input-label-row` | gap: var(--spacing-100); display: flex; align-items: center; justify-content: space-between; padding-left: var(--spacing-100); +1 more | --spacing-100 |
+| `.input-label-row` | gap: var(--spacing-100); display: flex; align-items: center; justify-content: space-between; padding-inline-start: var(--spacing-100); +1 more | --spacing-100 |
 | `.input-link` | font-size: 14px; font-weight: 600; line-height: 1; letter-spacing: -0.02em; color: var(--color-interactive); +7 more | --color-interactive, --spacing-50, --spacing-150, --border-radius-50 |
 | `.is-error` | *contextual — styled via a parent* | --text-primary, --status-error, --neutral-100, --border-weight-200, … |
 
@@ -1694,8 +1694,8 @@ Notes
 
 | Class | Declares | Tokens |
 |---|---|---|
-| `.chip` | padding-left: var(--spacing-150); padding-right: var(--spacing-150) | --spacing-50, --spacing-150, --color-interactive, --spacing-100 |
-| `.tag` | color: var(--text-primary); background-color: var(--neutral-100); padding-top: var(--spacing-50); padding-bottom: var(--spacing-50); padding-left: var(--spacing-150); +1 more *(also styled in list-row-components.css)* | --spacing-50, --neutral-100, --text-primary, --spacing-150, … |
+| `.chip` | padding-inline-start: var(--spacing-150); padding-inline-end: var(--spacing-150) | --spacing-50, --spacing-150, --color-interactive, --spacing-100 |
+| `.tag` | color: var(--text-primary); background-color: var(--neutral-100); padding-top: var(--spacing-50); padding-bottom: var(--spacing-50); padding-inline-start: var(--spacing-150); +1 more *(also styled in list-row-components.css)* | --spacing-50, --neutral-100, --text-primary, --spacing-150, … |
 
 ### TAG COMPONENT
 
@@ -2333,7 +2333,7 @@ goes full-bleed. See RULES §9.
 | Class | Declares | Tokens |
 |---|---|---|
 | `.open` | *contextual — styled via a parent* | — |
-| `.template-fab` | position: fixed; bottom: var(--spacing-300); right: var(--spacing-300); z-index: 99999 | --spacing-300 |
+| `.template-fab` | position: fixed; bottom: var(--spacing-300); inset-inline-end: var(--spacing-300); z-index: 99999 | --spacing-300 |
 | `.template-fab-link` | color: var(--text-secondary); gap: var(--spacing-100); display: flex; align-items: center; justify-content: space-between; +6 more | --spacing-100, --spacing-50, --spacing-75, --border-weight-100, … |
 | `.template-fab-panel` | background: var(--bg-surface); gap: var(--spacing-100); padding: var(--spacing-150); border-radius: var(--border-radius-200); border: var(--border-weight-100) solid var(--neutral-200); +8 more | --spacing-100, --spacing-700, --spacing-150, --bg-surface, … |
 | `.template-fab-trigger` | color: var(--text-secondary); background: var(--bg-surface); border-radius: 50%; border: var(--border-weight-100) solid var(--neutral-200); height: 48px; +8 more | --border-weight-100, --neutral-200, --bg-surface, --text-secondary, … |

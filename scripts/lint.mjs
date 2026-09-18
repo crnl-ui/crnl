@@ -530,6 +530,7 @@ function lintMarkup(file, src, surface, extra) {
   // Static approximation: two surface-painting classes nested in the same
   // element chain. The harness catches at runtime what this cannot see.
   lintSurfaceNesting(file, src, escapes)
+  lintTargetInTarget(file, src, escapes)
 }
 
 const VOID_TAGS = /^(img|br|hr|input|meta|link|source|area|base|col|embed|param|track|wbr)$/i
@@ -572,6 +573,39 @@ function openClassesAt(src, index) {
     if (m.index === index) found = stack.flatMap((f) => f.names)
   })
   return found
+}
+
+/**
+ * A tappable card holds one block of content and no controls of its own
+ * (RULES §2). A button inside it is a target inside a target: the outer card
+ * responds to the press, the inner button swallows it, and which one the
+ * person got depends on a few pixels.
+ *
+ * Nesting is the whole signal, so this rides the same tag walk as
+ * surface-on-surface. What makes it tractable is that "tappable" already has
+ * a mechanical definition here — a .surface-* and a .scale-* on one element —
+ * so the rule does not need to guess intent.
+ */
+function lintTargetInTarget(file, src, escapes) {
+  const isTappable = (names) =>
+    names.some((n) => TAPPABLE_NEEDS_SCALE.test(n)) &&
+    names.some((n) => /^scale-(300|500|700)$/.test(n))
+
+  tagWalk(src, (m, names, stack) => {
+    const isControl =
+      names.includes('btn') || names.includes('btn-circle') ||
+      names.includes('chip') || names.includes('switch') ||
+      names.includes('stepper') || names.includes('action-tile')
+    if (!isControl) return
+    const outer = stack.find((f) => isTappable(f.names))
+    if (!outer) return
+    const line = lineOf(src, m.index)
+    if (escaped(escapes, line, 'target-in-target')) return
+    const outerName = outer.names.find((n) => TAPPABLE_NEEDS_SCALE.test(n))
+    report('warning', 'target-in-target', file, line,
+      `a control inside \`.${outerName}\` + \`.scale-*\`, which makes the whole container the tap target — a target inside a target. Pick one: the container is tappable and holds a single block of content, or it is inert and the controls inside it do the work.`,
+      ['RULES §2'])
+  })
 }
 
 /** Flag a surface-painting element inside another (RULES §2). */

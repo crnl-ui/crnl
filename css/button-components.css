@@ -207,19 +207,19 @@
    ============================================================ */
 
 /* Leading icon: reduced left padding */
-.btn-700.btn-icon-leading { padding-left: 28px; }
-.btn-300.btn-icon-leading { padding-left: 20px; }
-.btn-100.btn-icon-leading { padding-left: 14px; }
+.btn-700.btn-icon-leading { padding-inline-start: 28px; }
+.btn-300.btn-icon-leading { padding-inline-start: 20px; }
+.btn-100.btn-icon-leading { padding-inline-start: 14px; }
 
 /* Trailing icon: reduced right padding */
-.btn-700.btn-icon-trailing { padding-right: 28px; }
-.btn-300.btn-icon-trailing { padding-right: 20px; }
-.btn-100.btn-icon-trailing { padding-right: 14px; }
+.btn-700.btn-icon-trailing { padding-inline-end: 28px; }
+.btn-300.btn-icon-trailing { padding-inline-end: 20px; }
+.btn-100.btn-icon-trailing { padding-inline-end: 14px; }
 
 /* Both icons: reduced both sides */
-.btn-700.btn-icon-leading.btn-icon-trailing { padding-left: 28px; padding-right: 28px; }
-.btn-300.btn-icon-leading.btn-icon-trailing { padding-left: 20px; padding-right: 20px; }
-.btn-100.btn-icon-leading.btn-icon-trailing { padding-left: 14px; padding-right: 14px; }
+.btn-700.btn-icon-leading.btn-icon-trailing { padding-inline-start: 28px; padding-inline-end: 28px; }
+.btn-300.btn-icon-leading.btn-icon-trailing { padding-inline-start: 20px; padding-inline-end: 20px; }
+.btn-100.btn-icon-leading.btn-icon-trailing { padding-inline-start: 14px; padding-inline-end: 14px; }
 
 
 /* ============================================================

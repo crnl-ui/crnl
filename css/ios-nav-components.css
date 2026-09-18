@@ -198,8 +198,8 @@
 .ios-nav-maintab::after {
   content: '';
   position: absolute;
-  left: 0;
-  right: 0;
+  inset-inline-start: 0;
+  inset-inline-end: 0;
   top: calc(-1 * var(--safe-area-top)); /* extend up to cover status bar */
   bottom: -36px; /* extend slightly below nav bar */
   pointer-events: none;
@@ -263,8 +263,8 @@
 .ios-chrome-top,
 .ios-chrome-bottom {
   position: absolute;
-  left: 0;
-  right: 0;
+  inset-inline-start: 0;
+  inset-inline-end: 0;
   z-index: 100;
   /* The layers span the frame, so let taps fall through the empty parts... */
   pointer-events: none;
@@ -438,8 +438,8 @@
 .ios-nav-page::after {
   content: '';
   position: absolute;
-  left: 0;
-  right: 0;
+  inset-inline-start: 0;
+  inset-inline-end: 0;
   top: calc(-1 * var(--safe-area-top)); /* extend up to cover status bar */
   bottom: -36px; /* extend slightly below nav bar */
   pointer-events: none;
@@ -495,13 +495,13 @@
 .ios-nav-page-left,
 .ios-nav-page .ios-nav-page-left {
   position: absolute;
-  left: var(--spacing-200);
+  inset-inline-start: var(--spacing-200);
 }
 
 .ios-nav-page-right,
 .ios-nav-page .ios-nav-page-right {
   position: absolute;
-  right: var(--spacing-200);
+  inset-inline-end: var(--spacing-200);
 }
 
 
@@ -658,8 +658,8 @@
 .ios-nav-modal::after {
   content: '';
   position: absolute;
-  left: 0;
-  right: 0;
+  inset-inline-start: 0;
+  inset-inline-end: 0;
   top: 0;
   bottom: -36px;
   pointer-events: none;
@@ -694,7 +694,7 @@
   content: '';
   position: absolute;
   top: 6px;
-  left: 50%;
+  inset-inline-start: 50%;
   transform: translateX(-50%);
   width: 36px;
   height: 5px;
@@ -729,8 +729,8 @@
 .ios-nav-modal .ios-nav-page-left,
 .ios-nav-modal .ios-nav-page-right {
   position: relative;
-  left: auto;
-  right: auto;
+  inset-inline-start: auto;
+  inset-inline-end: auto;
 }
 
 /* Scrollable content area */
@@ -806,8 +806,8 @@
 .ios-tab-bar::before {
   content: '';
   position: absolute;
-  left: 0;
-  right: 0;
+  inset-inline-start: 0;
+  inset-inline-end: 0;
   bottom: 0;
   top: -120px; /* total height ≈ 215px (120 above + 95 tab bar) */
   background: var(--bg-base);

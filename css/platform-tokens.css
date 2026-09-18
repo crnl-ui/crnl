@@ -96,8 +96,8 @@
 .ios-status-bar {
   position: absolute;
   top: 0;
-  left: 0;
-  right: 0;
+  inset-inline-start: 0;
+  inset-inline-end: 0;
   z-index: 9999;
   height: var(--safe-area-top);
   background: transparent;
@@ -136,8 +136,8 @@
 .ios-home-indicator {
   position: absolute;
   bottom: 0;
-  left: 0;
-  right: 0;
+  inset-inline-start: 0;
+  inset-inline-end: 0;
   z-index: 9999;
   display: flex;
   justify-content: center;
@@ -245,7 +245,7 @@
   display: flex;
   position: absolute;
   top: 11px;
-  left: 50%;
+  inset-inline-start: 50%;
   transform: translateX(-50%);
   /* Hug the controls, but never shrink below a real Dynamic Island (125×37pt on
      iPhone 15 Pro) — so the pill still reads as hardware when it holds only a
@@ -347,7 +347,7 @@
 [data-platform="app"] .app-device-controls .mode-toggle + label::before {
   content: '';
   position: absolute;
-  left: 0;
+  inset-inline-start: 0;
   top: 25%;
   height: 50%;
   width: 1px;
@@ -430,7 +430,7 @@
     display: flex;
     position: fixed;
     top: 50%;
-    left: 50%;
+    inset-inline-start: 50%;
     transform: translate(-50%, -50%);
     align-items: center;
     gap: 0;
@@ -508,7 +508,7 @@
   [data-platform="app"] .app-device-controls .mode-toggle + label::before {
     content: '';
     position: absolute;
-    left: 0;
+    inset-inline-start: 0;
     top: 25%;
     height: 50%;
     width: 1px;
@@ -530,8 +530,8 @@
   [data-platform="app"] .ios-chrome-bottom {
     position: fixed;
     bottom: env(safe-area-inset-bottom, 0px);
-    left: 0;
-    right: 0;
+    inset-inline-start: 0;
+    inset-inline-end: 0;
     z-index: 100;
     pointer-events: none;
   }
@@ -603,7 +603,7 @@
 .template-fab {
   position: fixed;
   bottom: var(--spacing-300);
-  right: var(--spacing-300);
+  inset-inline-end: var(--spacing-300);
   z-index: 99999;
 }
 
@@ -643,7 +643,7 @@
   gap: var(--spacing-100);
   position: absolute;
   bottom: var(--spacing-700);
-  right: 0;
+  inset-inline-end: 0;
   min-width: 180px;
   padding: var(--spacing-150);
   background: var(--bg-surface);
@@ -720,7 +720,7 @@
 .template-platform-link {
   position: fixed;
   bottom: var(--spacing-300);
-  right: var(--spacing-300);
+  inset-inline-end: var(--spacing-300);
   display: flex;
   align-items: center;
   gap: var(--spacing-75);
