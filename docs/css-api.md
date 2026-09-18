@@ -1351,7 +1351,7 @@ Notes
 
 | Class | Declares | Tokens |
 |---|---|---|
-| `.switch` | height: 31px; width: 51px; position: relative; flex-shrink: 0 | --neutral-200, --white-1000, --color-interactive, --neutral-100, … |
+| `.switch` | height: 31px; width: 51px; position: relative; flex-shrink: 0 | --neutral-200, --white-1000, --black-100, --black-300, … |
 
 ### LEADING SLOT
 
@@ -1827,7 +1827,7 @@ chrome. See RULES §2.
 |---|---|---|
 | `.ios-glass` | background: var(--neutral-200), var(--inverted-300), var(--black-200); position: relative; backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); background-blend-mode: luminosity | --white-300, --white-100, --neutral-200, --inverted-300, … |
 | `.ios-nav-btn` | color: var(--text-primary); padding: 0; border-radius: 50%; border: none; height: 44px; +8 more | --text-primary, --white-300, --white-100 |
-| `.ios-nav-btn-brand` | color: var(--interactive-primary-text); background: var(--interactive-primary); backdrop-filter: none; -webkit-backdrop-filter: none; box-shadow: inset 0.5px 1px 3px rgba(255, 255, 255, 0.25), inset -0.5px -1px 2px rgba(0, 0, 0, 0.2), 0px 2px 40px rgba(0, 0, 0, 0.2); +1 more | --interactive-primary, --interactive-primary-text |
+| `.ios-nav-btn-brand` | color: var(--interactive-primary-text); background: var(--interactive-primary); backdrop-filter: none; -webkit-backdrop-filter: none; box-shadow: inset 0.5px 1px 3px var(--white-300), inset -0.5px -1px 2px rgba(0, 0, 0, 0.2), 0px 2px 40px rgba(0, 0, 0, 0.2); +1 more | --interactive-primary, --interactive-primary-text, --white-300 |
 
 ### iOS HOME NAV BAR
 

@@ -358,9 +358,14 @@ function lintCss(file, src) {
 
   // RULES §2 — never hardcode spacing
   if (!COLOUR_SOURCES.has(name) && name !== 'spacing-tokens.css' && name !== 'container-tokens.css') {
-    const spacing = /\b(margin|padding|gap|row-gap|column-gap)(-(top|right|bottom|left|inline|block))?\s*:\s*([^;{}]+)/g
+    /* Logical longhands are named `padding-inline-start`, not `padding-inline`,
+       so a pattern that stopped at the axis matched nothing once the CSS was
+       converted for RTL — 8 findings vanished from one file without anyone
+       fixing anything. The lint baseline is what surfaced that: a count going
+       down for no reason is as suspicious as one going up. */
+    const spacing = /\b(margin|padding|gap|row-gap|column-gap)(-(?:top|right|bottom|left|(?:inline|block)(?:-(?:start|end))?))?\s*:\s*([^;{}]+)/g
     for (const m of code.matchAll(spacing)) {
-      const value = m[4]
+      const value = m[3]
       if (!/\d\s*(px|rem|em)\b/.test(value)) continue
       if (/^\s*0(px|rem|em)?\s*$/.test(value)) continue
       const line = lineOf(code, m.index)

@@ -131,7 +131,7 @@
   backdrop-filter: none;
   -webkit-backdrop-filter: none;
   box-shadow:
-    inset 0.5px 1px 3px rgba(255, 255, 255, 0.25),
+    inset 0.5px 1px 3px var(--white-300),
     inset -0.5px -1px 2px rgba(0, 0, 0, 0.2),
     0px 2px 40px rgba(0, 0, 0, 0.2);
   transition: transform 0.15s cubic-bezier(0.32, 0.72, 0, 1), opacity 0.15s;
@@ -881,8 +881,8 @@
   );
   mix-blend-mode: hard-light;
   box-shadow:
-    inset 0.5px 1px 3px rgba(255, 255, 255, 0.15),
-    inset -0.5px -1px 2px rgba(255, 255, 255, 0.1);
+    inset 0.5px 1px 3px var(--white-200),
+    inset -0.5px -1px 2px var(--white-100);
   pointer-events: none;
 }
 

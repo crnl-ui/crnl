@@ -343,7 +343,10 @@ not its author.
 
 Order matters here: publishing before gap 2 ships a package consumers cannot
 override, and publishing before gap 3 freezes two vocabularies into a public
-API. Publish after those, not before.
+API. **Both are now done**, and `CONTRIBUTING.md` and `CHANGELOG.md` exist, so
+the one thing still in front of publishing is the utility-class naming decision
+in gap 5 — renaming `.ml-200` after publishing is a breaking change to
+somebody else's code; before, it is free.
 
 ### 7. Smaller, real, cheap
 
@@ -362,16 +365,21 @@ API. Publish after those, not before.
   (`css/border-effects-tokens.css`). The values are right — dark does not need
   its own — but a duplicated block implies a decision somebody made, and
   nobody did. Delete it; it inherits identically and stops lying.
-- **No shadow-colour tokens.** 11 hardcoded shadow colours with nothing to
-  reach for — the alpha scales are for surfaces and text. A `--shadow-*` colour
-  scale would close a whole lint category.
+- **No shadow-colour tokens.** Six hardcoded shadow colours left, down from
+  eleven: the five that were exactly an existing alpha token now use it. The
+  rest need alphas the scales do not have — 0.06, 0.08, 0.12, 0.2 — so closing
+  this means either adding a `--shadow-*` scale or rounding shadows onto the
+  existing steps, which changes what renders. A token name is permanent API
+  (`CLAUDE.md § Adding a token`), so it wants deciding rather than assuming.
 - ~~**One `prefers-reduced-motion` block**~~ — done with gap 0. One global
   block, durations collapsed rather than animations removed.
 - **`check:visual` is not in CI.** Baselines are machine-specific, so it runs
   locally. Pinning the renderer to a container makes it a CI check, and it is
   the only check that could also run axe-core (gap 0) and RTL (gap 5). One
   change unlocks three.
-- **No `CONTRIBUTING.md`, no `CHANGELOG.md`.** Both are prerequisites for gap 6.
+- ~~**No `CONTRIBUTING.md`, no `CHANGELOG.md`**~~ — both written. They were
+  prerequisites for gap 6, so publishing is now gated only on the RTL naming
+  decision in gap 5.
 - ~~**Five components with no Storybook story**~~ — done. `IOSHomeNav`,
   `IOSModal`, `IOSNavButton`, `IOSPageNav` and `IOSTabBar` all have one, so
   every component in the library renders somewhere.
@@ -408,7 +416,7 @@ be declined:
 
 ## Debt ledger
 
-`scripts/lint-baseline.json` records what the repository carries today: **168
+`scripts/lint-baseline.json` records what the repository carries today: **163
 findings across 16 file/rule pairs**, down from 186. The build fails above
 those numbers and is quiet at or below them, so existing debt does not block
 work and nothing can add to it.
@@ -418,7 +426,7 @@ work and nothing can add to it.
 | `no-type-override` | 74 | components composing text classes instead of restating them |
 | `no-hardcoded-spacing` | 42 | spacing tokens for the remaining literals |
 | `no-hardcoded-colour` | 40 | mostly `ios-nav-components.css` glass and gradients |
-| `no-hardcoded-shadow-colour` | 11 | gap 7 — a shadow-colour scale |
+| `no-hardcoded-shadow-colour` | 6 | gap 7 — five need a `--shadow-*` alpha the scales do not have (0.06, 0.08, 0.12, 0.2); the six that matched an existing token are done |
 | `surface-needs-scale` | 1 | one demo specimen, individually checkable |
 | ~~`no-important`~~ | ~~18~~ **0** | gap 2 — cascade layers. Gone from the baseline |
 
