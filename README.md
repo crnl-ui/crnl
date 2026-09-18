@@ -196,8 +196,9 @@ node scripts/lint.mjs --json              # machine-readable, for an agent
 node scripts/lint.mjs path/to/page.html   # one file, baseline not consulted
 ```
 
-CI fails if a run comes in *under* the baseline without the file being updated —
-otherwise a fix would be quietly banked and the next regression would land free.
+A run that comes in *under* the baseline fails too, not just over it —
+otherwise a fix is quietly banked and the next regression lands free, and a
+rule that stops matching is indistinguishable from progress.
 
 ---
 

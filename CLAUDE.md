@@ -156,8 +156,13 @@ node scripts/lint.mjs --strict            # ignore the baseline, see the real de
 already carries — 186 findings, itemised in `docs/roadmap.md`. The build fails
 *above* those counts and is quiet at or below them, so existing debt does not
 block you and nothing you write can add to it. If you deliberately fix
-something, run `node scripts/lint.mjs --update-baseline` and commit the result;
-CI fails a run that comes in under the baseline without it.
+something, run `node scripts/lint.mjs --update-baseline` and commit the result.
+**A run that comes in *under* the baseline fails too**, not just over it: a
+count that drops without the file being updated means either a fix was not
+banked — so the next regression lands free — or a rule quietly stopped
+matching. The second is not hypothetical; converting the CSS for RTL renamed
+`padding-left` to `padding-inline-start`, the spacing pattern stopped at the
+axis, and 20 findings vanished with nothing fixed.
 
 **Escapes.** A rule with a genuine exception takes an inline escape, and the
 reason is required:

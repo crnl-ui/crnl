@@ -49,9 +49,12 @@ node scripts/lint.mjs --strict            # ignore the baseline, see real debt
 already carries, per file and per rule. The build fails *above* those counts
 and is quiet at or below them, so existing debt does not block your work and
 nothing you write can add to it. If you fix something, run
-`node scripts/lint.mjs --update-baseline` and commit the result — CI fails a
-run that comes in under the baseline without it, because otherwise a fix is
-banked silently and the next regression lands free.
+`node scripts/lint.mjs --update-baseline` and commit the result. A run that
+comes in **under** the baseline fails as well as one that comes in over it —
+otherwise a fix is banked silently and the next regression lands free, and a
+rule that quietly stops matching looks exactly like progress. That has already
+happened once: converting the CSS for RTL renamed `padding-left` to
+`padding-inline-start` and the spacing pattern matched neither.
 
 **Escapes** need a reason, and an escape without one is itself a finding:
 

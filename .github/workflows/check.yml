@@ -35,6 +35,7 @@ jobs:
 
       - run: npm ci
 
+      # lint (including that the baseline is tight in both directions),
       # themes, assets, icons, exports, demo coverage
       - run: npm run check
 
@@ -51,13 +52,3 @@ jobs:
             exit 1
           fi
 
-      # The lint baseline records debt the repository already carries. A run
-      # that comes in UNDER it means somebody fixed something without locking
-      # the gain in, and the next regression would land free.
-      - name: lint baseline is tight
-        run: |
-          if node scripts/lint.mjs | grep -q 'Below the baseline'; then
-            echo "::error::the lint baseline is looser than reality — run 'node scripts/lint.mjs --update-baseline' and commit it."
-            node scripts/lint.mjs | sed -n '/Below the baseline/,$p'
-            exit 1
-          fi

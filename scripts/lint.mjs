@@ -784,7 +784,8 @@ if (asJson) {
   }
 
   if (belowBaseline.length && baselineApplies) {
-    console.log('  Below the baseline — run `node scripts/lint.mjs --update-baseline` to lock the gain in:')
+    console.log('  Below the baseline. Either a fix was not banked, or a rule stopped matching —')
+    console.log('  check which, then run `node scripts/lint.mjs --update-baseline` and commit it:')
     for (const b of belowBaseline) console.log(`    ${b.key}  ${b.allowed} → ${b.n}`)
     console.log('')
   }
@@ -801,4 +802,17 @@ if (asJson) {
 /* Scoped runs (an explicit path) and --strict do not consult the baseline:
    the first is somebody checking one file, the second is the true debt. */
 if (strict || scoped) process.exit(errors.length || (strict && warnings.length) ? 1 : 0)
-process.exit(overBaseline.length ? 1 : 0)
+
+/* Under the baseline fails too, not just over it.
+
+   A count that drops without the file being updated means either somebody
+   fixed something and did not bank it — so the next regression lands free —
+   or a rule quietly stopped matching. The second is not hypothetical: the
+   RTL conversion renamed `padding-left` to `padding-inline-start`, the
+   spacing pattern stopped at the axis and matched neither, and 20 findings
+   vanished without anyone fixing anything.
+
+   This lived only in CI for a while, which meant `npm run check` passing
+   locally did not predict CI — and a check you cannot run before you push is
+   a check that finds things late. */
+process.exit(overBaseline.length || belowBaseline.length ? 1 : 0)
