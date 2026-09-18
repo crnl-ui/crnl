@@ -363,7 +363,7 @@
      - no .scale-* — scaling one band detaches it from the card it belongs to
 
    Only the interactive bands take the class; the rest of the card takes no
-   surface at all. Shipped examples: .event-row-top / .event-row-bottom, where
+   surface at all. Shipped examples: .split-row-top / .split-row-bottom, where
    which bands are interactive changes with the offer state, and the inventory
    list, where every row is a section of one card. Both are worked through in
    design-guide.md § Interactive Surfaces.

@@ -206,7 +206,7 @@
   z-index: -1;
   -webkit-mask-image: linear-gradient(to top,
     transparent 0%,
-    rgba(0,0,0,0.15) 15%,
+    var(--black-300) 15%,
     rgba(0,0,0,0.35) 30%,
     rgba(0,0,0,0.55) 45%,
     rgba(0,0,0,0.8) 60%,
@@ -215,7 +215,7 @@
   );
   mask-image: linear-gradient(to top,
     transparent 0%,
-    rgba(0,0,0,0.15) 15%,
+    var(--black-300) 15%,
     rgba(0,0,0,0.35) 30%,
     rgba(0,0,0,0.55) 45%,
     rgba(0,0,0,0.8) 60%,

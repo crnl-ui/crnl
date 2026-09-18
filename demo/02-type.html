@@ -28,7 +28,7 @@
     <p class="bodyRegular30">Four families. Pick the family, then the step. <span class="mono">Bold</span>/<span class="mono">Regular</span> is weight, the number is size. Metrics next to each name are read live — switch theme and the display ramp changes with it, because a display font and its ramp travel together (<span class="mono">RULES §6</span>).</p>
   </div>
 
-  <div class="sheet-callout is-warn">
+  <div class="sheet-callout">
     <p class="bodyRegular30"><strong>Never set <span class="mono">font-size</span>, <span class="mono">font-weight</span> or <span class="mono">line-height</span></strong> (<span class="mono">RULES §2</span>). And write display text in title case — a caps face has it baked into the font, so a hardcoded <span class="mono">"BUY"</span> breaks every theme on a face that renders as drawn (<span class="mono">RULES §5</span>).</p>
   </div>
 
@@ -322,7 +322,7 @@
     </div>
 
     <div class="sheet-sub"><span class="title50">Transform</span><span class="labelRegular10 text-secondary">there are none, and that is deliberate</span></div>
-    <div class="sheet-callout is-warn">
+    <div class="sheet-callout">
       <p class="bodyRegular30"><strong>Never force letter case</strong> (<span class="mono">RULES §2</span>). Case belongs to the copy and to the theme's display font, which bakes it in — which is why every text class above sets <span class="mono">text-transform: none</span>. Four case utilities used to live here; they carried <span class="mono">!important</span> and overrode that for every theme at once, so an uppercase heading shouted in every theme whose face does not render caps. They were removed. Write the string the way it should read.</p>
     </div>
     <div class="sheet-grid">

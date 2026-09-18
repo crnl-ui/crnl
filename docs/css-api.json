@@ -3295,12 +3295,13 @@
         {
           "name": "tile-tag",
           "section": "TILE",
-          "declares": "background: rgba(0, 0, 0, 0.04); padding: var(--spacing-50) var(--spacing-150); border-radius: var(--border-radius-50); height: 32px; display: flex; +5 more",
+          "declares": "background: var(--black-100); padding: var(--spacing-50) var(--spacing-150); border-radius: var(--border-radius-50); height: 32px; display: flex; +5 more",
           "tokens": [
             "--spacing-100",
             "--spacing-50",
             "--spacing-150",
-            "--border-radius-50"
+            "--border-radius-50",
+            "--black-100"
           ],
           "alsoStyledIn": []
         }
@@ -3930,7 +3931,7 @@
     },
     {
       "file": "list-row-components.css",
-      "covers": "The list row and everything built on it: its slots and subcomponents, the selector wrapper, and the event row.",
+      "covers": "The list row and everything built on it: its slots and subcomponents, the selector wrapper, and the split row.",
       "classes": [
         {
           "name": "status-dot",
@@ -4287,15 +4288,15 @@
           ]
         },
         {
-          "name": "event-row-logo",
-          "section": "EVENT ROW LOGO",
+          "name": "split-row-logo",
+          "section": "SPLIT ROW LOGO",
           "declares": "height: 48px; width: 48px; object-fit: contain; flex-shrink: 0",
           "tokens": [],
           "alsoStyledIn": []
         },
         {
-          "name": "event-row",
-          "section": "EVENT ROW",
+          "name": "split-row",
+          "section": "SPLIT ROW",
           "declares": "background: var(--org-surface); border-radius: var(--border-radius-200); width: 100%; display: flex; flex-direction: column; +1 more",
           "tokens": [
             "--org-surface",
@@ -4304,8 +4305,8 @@
           "alsoStyledIn": []
         },
         {
-          "name": "event-row-top",
-          "section": "EVENT ROW",
+          "name": "split-row-top",
+          "section": "SPLIT ROW",
           "declares": "padding: var(--spacing-200)",
           "tokens": [
             "--spacing-200",
@@ -4316,8 +4317,8 @@
           ]
         },
         {
-          "name": "event-row-bottom",
-          "section": "EVENT ROW",
+          "name": "split-row-bottom",
+          "section": "SPLIT ROW",
           "declares": "padding: var(--spacing-150) var(--spacing-200); border-top: 0.33px solid var(--border-default)",
           "tokens": [
             "--spacing-150",
@@ -4330,24 +4331,8 @@
           ]
         },
         {
-          "name": "event-row-label",
-          "section": "EVENT ROW",
-          "declares": "font-size: 16px; font-weight: 600; line-height: 1.21; letter-spacing: -0.02em; color: var(--text-primary); +1 more",
-          "tokens": [
-            "--text-primary"
-          ],
-          "alsoStyledIn": []
-        },
-        {
-          "name": "event-row-sublabel",
-          "section": "EVENT ROW",
-          "declares": "font-size: 12px; font-weight: 400; line-height: 1.21; letter-spacing: -0.02em; font-family: 'Inter', sans-serif",
-          "tokens": [],
-          "alsoStyledIn": []
-        },
-        {
-          "name": "event-row-coming-soon",
-          "section": "EVENT ROW",
+          "name": "split-row-note",
+          "section": "SPLIT ROW",
           "declares": "max-width: var(--spacing-800); text-align: right; white-space: normal",
           "tokens": [
             "--spacing-800"
@@ -4355,8 +4340,8 @@
           "alsoStyledIn": []
         },
         {
-          "name": "event-row-list",
-          "section": "EVENT ROW LIST",
+          "name": "split-row-list",
+          "section": "SPLIT ROW LIST",
           "declares": "gap: var(--spacing-100); padding: var(--spacing-200); width: 100%; display: flex; flex-direction: column; +2 more",
           "tokens": [
             "--spacing-100",
@@ -5180,6 +5165,7 @@
           "tokens": [
             "--spacing-200",
             "--safe-area-top",
+            "--black-300",
             "--bg-base"
           ],
           "alsoStyledIn": []
@@ -5544,8 +5530,10 @@
         {
           "name": "web-footer-link",
           "section": "WEB FOOTER",
-          "declares": "color: rgba(255, 255, 255, 0.7); display: block; text-decoration: none; transition: color 0.15s ease; cursor: pointer",
-          "tokens": [],
+          "declares": "color: var(--white-700); display: block; text-decoration: none; transition: color 0.15s ease; cursor: pointer",
+          "tokens": [
+            "--white-700"
+          ],
           "alsoStyledIn": []
         },
         {
@@ -5555,6 +5543,7 @@
           "tokens": [
             "--spacing-200",
             "--border-weight-50",
+            "--white-200",
             "--spacing-400"
           ],
           "alsoStyledIn": []
@@ -5581,6 +5570,7 @@
           "declares": "gap: var(--spacing-200); display: flex; flex-direction: row; flex-wrap: wrap",
           "tokens": [
             "--spacing-200",
+            "--white-700",
             "--spacing-100"
           ],
           "alsoStyledIn": []
@@ -5643,26 +5633,25 @@
           "alsoStyledIn": []
         },
         {
-          "name": "event-card",
-          "section": "EVENT CARD",
-          "declares": "background: var(--bg-surface); padding: var(--spacing-300); border-radius: var(--border-radius-200); cursor: pointer; overflow: hidden; +1 more",
+          "name": "row-card",
+          "section": "ROW CARD",
+          "declares": "padding: var(--spacing-300); border-radius: var(--border-radius-200); overflow: hidden",
           "tokens": [
-            "--bg-surface",
             "--border-radius-200",
             "--spacing-300"
           ],
           "alsoStyledIn": []
         },
         {
-          "name": "event-card-media",
-          "section": "EVENT CARD",
+          "name": "row-card-media",
+          "section": "ROW CARD",
           "declares": "padding: 0",
           "tokens": [],
           "alsoStyledIn": []
         },
         {
-          "name": "event-card-list",
-          "section": "EVENT CARD",
+          "name": "row-card-list",
+          "section": "ROW CARD",
           "declares": "gap: var(--spacing-200); display: flex; flex-direction: column",
           "tokens": [
             "--spacing-200"

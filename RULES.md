@@ -116,7 +116,7 @@ re-cuts the font.
 
   **This applies to the classes, not just the tokens**, and that is how the
   rule is usually broken: `.surface-card`, `.card-closed`, `.tile`,
-  `.event-row` and `.event-card` all paint `--bg-surface` at rest, so putting
+  `.split-row` and `.row-card` all paint `--bg-surface` at rest, so putting
   any of them inside any other one is the same mistake written a different
   way. So is putting one inside a container whose own CSS sets
   `background: var(--bg-surface)` — which is the version that slips through,
@@ -203,7 +203,7 @@ Before writing any CSS, walk this list. Stop at the first match.
 8. Switch → `.switch > input + label`
 9. Card → `.card-closed`, or a surface token
 10. Recurring product layout → `product-patterns.css` (`.context-header`,
-    `.event-card`, `.action-row`, `.action-tile`, `.heading-select`,
+    `.row-card`, `.action-row`, `.action-tile`, `.heading-select`,
     `.disclosure-toggle`, `.section-heading`, `.link`, `.circle-icon`)
 11. Reproducing OS chrome (Apple Wallet, store badges) → `system-ui.css`
 12. Type → a text class

@@ -35,7 +35,7 @@ Common picks, so you don't have to derive them:
 - Small emphasis label (tag text, "3 Additional Offers") → `.labelBold30`
 - Supporting line under a title (date, venue) → `.labelRegular30` + `.text-secondary`
 - Timestamp, seat number, fine print → `.labelRegular10`
-- Row title in a list → `.labelBold30`, or `.event-row-label` inside an event row
+- Row title in a list → `.labelBold30`, or `.title50-r` inside a split row
 - Screen title → `.display500`; team name in a nav bar → `.display100`
 - Paragraph of copy → `.bodyRegular30`
 

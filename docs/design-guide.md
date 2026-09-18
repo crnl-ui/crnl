@@ -46,7 +46,7 @@ composing anything from primitives. Rebuilding something the system already has
 is the most common failure mode (`RULES §2`).
 
 When copying from a sheet: keep the composite class structure
-(`.event-row-top`, `.surface-section`, the `.list-row` three slots,
+(`.split-row-top`, `.surface-section`, the `.list-row` three slots,
 `.card-text-pair`, `.card-media`, `.tile-info`, `.leading-logo`); swap only
 content; keep `data-theme` / `data-mode` / `data-platform` on `<html>` and the
 `../css/` loader path. When nothing in the system covers the pattern, build it
@@ -621,7 +621,7 @@ at all.
 ```
 
 Two shipped patterns are worth reading before you build one:
-[Event row](#event-row-buy-flow-single-game), where *which* bands are
+[Event row](#split-row-buy-flow-single-game), where *which* bands are
 interactive changes with the offer state, and
 [Inventory list row](#inventory-list-row-vfs-image--price), where every row is a
 section of one card and the rows carry the padding so their dividers bleed full
@@ -1159,7 +1159,7 @@ the logo, name and short name come from the resolved reference.
 <div class="row-wrap">
   <div class="list-row">
     <div class="leading leading-gap-md">
-      <img class="event-row-logo" src="{item.logo}" alt="{item.name}">
+      <img class="split-row-logo" src="{item.logo}" alt="{item.name}">
     </div>
     <div class="list-row-content">
       <div class="list-row-text-pair">
@@ -1179,7 +1179,7 @@ the logo, name and short name come from the resolved reference.
 
 - Away game → the tag reads `Away`
 - No logo → omit `.leading`; `.list-row-content` becomes the first child
-- Crests are SVG; `.event-row-logo` already applies `object-fit: contain`
+- Crests are SVG; `.split-row-logo` already applies `object-fit: contain`
 
 ### Event row (buy flow, single event)
 
@@ -1192,35 +1192,35 @@ is `--bg-surface` with a 16px radius; padding and text scale are responsive.
 | Featured and Others | `btn btn-primary btn-100` "$N+" | "X Additional Offers" + `arrow_drop_down` |
 | No Featured Offers | none | "X Offers Available" + `arrow_drop_down` |
 | Sold Out | `labelBold30 text-secondary` "Sold Out" | — |
-| Coming Soon | `labelBold20 text-interactive-tertiary event-row-coming-soon` "Coming Soon" | — |
+| Coming Soon | `labelBold20 text-interactive-tertiary split-row-note` "Coming Soon" | — |
 
-`.event-row-label` / `.event-row-sublabel` step from 16/12px on mobile to
+`.split-row-label` / `.split-row-sublabel` step from 16/12px on mobile to
 20/14px from 500px — it is a `-r`-style pair baked into the component, not a
 media query in the template (`RULES §5`).
 
-**Surfaces.** The card background is built into `.event-row`; the wrapper takes
+**Surfaces.** The card background is built into `.split-row`; the wrapper takes
 no surface token and no `scale-*`. `surface-section` goes on each **interactive
 section** only:
 
 | State | `surface-section` on |
 |---|---|
-| Featured Only | `.event-row-top` |
-| Featured and Others | `.event-row-top` + `.event-row-bottom` |
-| No Featured Offers | `.event-row-bottom` only |
+| Featured Only | `.split-row-top` |
+| Featured and Others | `.split-row-top` + `.split-row-bottom` |
+| No Featured Offers | `.split-row-bottom` only |
 | Sold Out / Coming Soon | neither |
 
 ```html
 <!-- Featured Only -->
-<div class="event-row">
-  <div class="event-row-top surface-section">
+<div class="split-row">
+  <div class="split-row-top surface-section">
     <div class="list-row">
       <div class="leading leading-gap-sm">
-        <img class="event-row-logo" src="{item.logo}" alt="{item.name}">
+        <img class="split-row-logo" src="{item.logo}" alt="{item.name}">
       </div>
       <div class="list-row-content">
         <div class="list-row-text-pair">
-          <span class="event-row-label">{item.name}</span>
-          <span class="event-row-sublabel text-secondary">{item.date, formatted}</span>
+          <span class="title50-r">{item.name}</span>
+          <span class="labelRegular20-r text-secondary">{item.date, formatted}</span>
         </div>
       </div>
       <div class="trailing trailing-gap-lg">
@@ -1231,11 +1231,11 @@ section** only:
 </div>
 
 <!-- Featured and Others -->
-<div class="event-row">
-  <div class="event-row-top surface-section">
+<div class="split-row">
+  <div class="split-row-top surface-section">
     <div class="list-row">…same as above…</div>
   </div>
-  <div class="event-row-bottom surface-section">
+  <div class="split-row-bottom surface-section">
     <div class="list-row">
       <div class="list-row-content">
         <div class="list-row-text-pair">
@@ -1250,21 +1250,21 @@ section** only:
 </div>
 
 <!-- No Featured Offers — top is not interactive -->
-<div class="event-row">
-  <div class="event-row-top">
+<div class="split-row">
+  <div class="split-row-top">
     <div class="list-row not-tappable">
       <div class="leading leading-gap-sm">
-        <img class="event-row-logo" src="{item.logo}" alt="{item.name}">
+        <img class="split-row-logo" src="{item.logo}" alt="{item.name}">
       </div>
       <div class="list-row-content">
         <div class="list-row-text-pair">
-          <span class="event-row-label">{item.name}</span>
-          <span class="event-row-sublabel text-secondary">{item.date, formatted}</span>
+          <span class="title50-r">{item.name}</span>
+          <span class="labelRegular20-r text-secondary">{item.date, formatted}</span>
         </div>
       </div>
     </div>
   </div>
-  <div class="event-row-bottom surface-section">
+  <div class="split-row-bottom surface-section">
     <div class="list-row">
       <div class="list-row-content">
         <div class="list-row-text-pair">
@@ -1279,16 +1279,16 @@ section** only:
 </div>
 
 <!-- Sold Out -->
-<div class="event-row">
-  <div class="event-row-top">
+<div class="split-row">
+  <div class="split-row-top">
     <div class="list-row not-tappable">
       <div class="leading leading-gap-sm">
-        <img class="event-row-logo" src="{item.logo}" alt="{item.name}">
+        <img class="split-row-logo" src="{item.logo}" alt="{item.name}">
       </div>
       <div class="list-row-content">
         <div class="list-row-text-pair">
-          <span class="event-row-label">{item.name}</span>
-          <span class="event-row-sublabel text-secondary">{item.date, formatted}</span>
+          <span class="title50-r">{item.name}</span>
+          <span class="labelRegular20-r text-secondary">{item.date, formatted}</span>
         </div>
       </div>
       <div class="trailing trailing-gap-sm">
@@ -1299,25 +1299,25 @@ section** only:
 </div>
 
 <!-- Coming Soon -->
-<div class="event-row">
-  <div class="event-row-top">
+<div class="split-row">
+  <div class="split-row-top">
     <div class="list-row not-tappable">
       …
       <div class="trailing trailing-gap-sm">
-        <span class="labelBold20 text-interactive-tertiary event-row-coming-soon">Coming Soon</span>
+        <span class="labelBold20 text-interactive-tertiary split-row-note">Coming Soon</span>
       </div>
     </div>
   </div>
 </div>
 ```
 
-**List container** — `.event-row-list` stacks rows with an 8px gap, constrained
+**List container** — `.split-row-list` stacks rows with an 8px gap, constrained
 to 499px on phone and 672px from tablet up:
 
 ```html
-<div class="event-row-list">
-  <div class="event-row">…</div>
-  <div class="event-row">…</div>
+<div class="split-row-list">
+  <div class="split-row">…</div>
+  <div class="split-row">…</div>
 </div>
 ```
 
@@ -1913,7 +1913,7 @@ Typed components in `src/`, exported from `src/index.ts`, built on the same CSS.
 Variants only — no `className` or `style` on a design system component.
 
 <!-- gen:react-exports -->
-`Icon` · `Button` · `CircleButton` · `Tag` · `Chip` · `CardClosed` · `CardOpen` · `CardSection` · `ListRow` · `TextPair` · `TrailingText` · `LeadingImage` · `LeadingLogo` · `CircleContainer` · `Input` · `Select` · `Selector` · `Tile` · `TopBar` · `Tabs` · `Steps` · `PageHeader` · `EventRow` · `IOSNavButton` · `IOSHomeNav` · `IOSPageNav` · `IOSModal` · `IOSTabBar`
+`Icon` · `Button` · `CircleButton` · `Tag` · `Chip` · `CardClosed` · `CardOpen` · `CardSection` · `ListRow` · `TextPair` · `TrailingText` · `LeadingImage` · `LeadingLogo` · `CircleContainer` · `Input` · `Select` · `Selector` · `Tile` · `TopBar` · `Tabs` · `Steps` · `PageHeader` · `SplitRow` · `IOSNavButton` · `IOSHomeNav` · `IOSPageNav` · `IOSModal` · `IOSTabBar`
 <!-- /gen:react-exports -->
 
 ```tsx
@@ -2052,7 +2052,7 @@ system's 500/1100 breakpoints.
 | `tabs?` | `ReactNode` (a `Tabs`) — suppresses the header's bottom border; the tabs draw it |
 | `steps?` | `ReactNode` (a `Steps`) — header keeps its border |
 
-### EventRow
+### SplitRow
 
 | Prop | Type |
 |---|---|

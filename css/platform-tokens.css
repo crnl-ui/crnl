@@ -201,13 +201,13 @@
    so its value across every context, this one included, is declared there. */
 
 /* --- Event rows keep phone spacing inside the frame ---
-   list-row-components.css bumps .event-row-top / .event-row-bottom padding
+   list-row-components.css bumps .split-row-top / .split-row-bottom padding
    to desktop values at @media (min-width: 500px). Those are literal paddings
    rather than tokens, so the block above does not reach them. */
-[data-platform="app"] .event-row-top {
+[data-platform="app"] .split-row-top {
   padding: var(--spacing-200); /* 16px */
 }
-[data-platform="app"] .event-row-bottom {
+[data-platform="app"] .split-row-bottom {
   padding: var(--spacing-150) var(--spacing-200); /* 12px 16px */
 }
 

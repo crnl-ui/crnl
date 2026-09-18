@@ -8,7 +8,7 @@
 > compose; this file is the exhaustive list of what exists. If a class or token
 > is not here, it is not in the design system.
 
-**739 classes and 226 custom properties across 24 stylesheets.** 0 internal classes (documentation chrome) are intentionally omitted. Each class is listed once, under the stylesheet that defines it.
+**737 classes and 226 custom properties across 24 stylesheets.** 0 internal classes (documentation chrome) are intentionally omitted. Each class is listed once, under the stylesheet that defines it.
 
 ## Load order
 
@@ -61,7 +61,7 @@ In-repo pages use `<script src="crnl-loader.js"></script>` instead of individual
 | [`interactive-tokens.css`](#interactive-tokenscss) | 16 | Surface and scale classes that give any element its hover and pressed states. |
 | [`button-components.css`](#button-componentscss) | 36 | The button system: every button type, three sizes, icon placement, fill width and circle icon buttons. |
 | [`system-ui.css`](#system-uicss) | 4 | Vendor chrome: controls specified by Apple or Google that a prototype reproduces rather than designs. |
-| [`list-row-components.css`](#list-row-componentscss) | 48 | The list row and everything built on it: its slots and subcomponents, the selector wrapper, and the event row. |
+| [`list-row-components.css`](#list-row-componentscss) | 46 | The list row and everything built on it: its slots and subcomponents, the selector wrapper, and the split row. |
 | [`table-components.css`](#table-componentscss) | 17 · 1 tokens | A stats table — a pinned entity column beside horizontally scrolling attribute columns. |
 | [`input-components.css`](#input-componentscss) | 16 | Single-line text input and select dropdown, with their states and modifiers. |
 | [`tag-chip-components.css`](#tag-chip-componentscss) | 7 | The tag (a static label badge) and the chip (an interactive filter or toggle). |
@@ -606,7 +606,7 @@ Common picks, so you don't have to derive them:
 - Small emphasis label (tag text, "3 Additional Offers") → `.labelBold30`
 - Supporting line under a title (date, venue) → `.labelRegular30` + `.text-secondary`
 - Timestamp, seat number, fine print → `.labelRegular10`
-- Row title in a list → `.labelBold30`, or `.event-row-label` inside an event row
+- Row title in a list → `.labelBold30`, or `.title50-r` inside a split row
 - Screen title → `.display500`; team name in a nav bar → `.display100`
 - Paragraph of copy → `.bodyRegular30`
 
@@ -898,7 +898,7 @@ band's hover wash follows the 16px radius with no extra CSS. Do not add
 |---|---|---|
 | `.tile` | background: var(--bg-surface); border-radius: var(--border-radius-100); overflow: hidden; position: relative | --bg-surface, --border-radius-100 |
 | `.tile-info` | gap: var(--spacing-100); padding: var(--spacing-200); display: flex; flex-direction: column | --spacing-200, --spacing-100 |
-| `.tile-tag` | background: rgba(0, 0, 0, 0.04); padding: var(--spacing-50) var(--spacing-150); border-radius: var(--border-radius-50); height: 32px; display: flex; +5 more | --spacing-100, --spacing-50, --spacing-150, --border-radius-50 |
+| `.tile-tag` | background: var(--black-100); padding: var(--spacing-50) var(--spacing-150); border-radius: var(--border-radius-50); height: 32px; display: flex; +5 more | --spacing-100, --spacing-50, --spacing-150, --border-radius-50, … |
 
 ---
 
@@ -992,7 +992,7 @@ For that to work, the container has to hold up its end:
 </div>
 ```
 
-The shipped examples are `.event-row-top` / `.event-row-bottom`, where which bands get the class
+The shipped examples are `.split-row-top` / `.split-row-bottom`, where which bands get the class
 changes with the offer state, and the inventory list, where every row is a section of one card.
 Both are worked through in `design-guide.md`.
 
@@ -1295,7 +1295,7 @@ and it lives here — never inside a template. See RULES §7.
 
 ```
 list-row-components.css
-The list row and everything built on it: its slots and subcomponents, the selector wrapper, and the event row.
+The list row and everything built on it: its slots and subcomponents, the selector wrapper, and the split row.
 
 What's inside
 - .list-row (+ .list-row-content, .list-row-text-pair, .not-tappable, .disabled)
@@ -1308,8 +1308,8 @@ What's inside
 - .list-divided — rows inside a card, hairline-separated, dividers bleeding
 to both edges and padding square
 - .selector (+ .is-selected, .is-disabled) — wraps a row to make it selectable
-- .event-row (+ -top/-bottom/-logo/-label/-sublabel/-coming-soon), .event-row-list
-— the buy-flow event card
+- .split-row (+ -top/-bottom/-logo/-note), .split-row-list — a card of two
+independently tappable bands, the shipped example of .surface-section
 
 Notes
 - .tag itself lives in tag-chip-components.css; only .tag-brand-color is here.
@@ -1463,28 +1463,26 @@ Notes
 | `.is-selected` | *contextual — styled via a parent* | --neutral-1000, --inverted-1000, --inverted-700 |
 | `.selector` | padding: var(--spacing-200); border-radius: var(--border-radius-200); box-sizing: border-box | --border-radius-200, --spacing-200, --neutral-1000, --inverted-1000, … |
 
-### EVENT ROW LOGO
+### SPLIT ROW LOGO
 
 | Class | Declares | Tokens |
 |---|---|---|
-| `.event-row-logo` | height: 48px; width: 48px; object-fit: contain; flex-shrink: 0 | — |
+| `.split-row-logo` | height: 48px; width: 48px; object-fit: contain; flex-shrink: 0 | — |
 
-### EVENT ROW
-
-| Class | Declares | Tokens |
-|---|---|---|
-| `.event-row` | background: var(--org-surface); border-radius: var(--border-radius-200); width: 100%; display: flex; flex-direction: column; +1 more | --org-surface, --border-radius-200 |
-| `.event-row-bottom` | padding: var(--spacing-150) var(--spacing-200); border-top: 0.33px solid var(--border-default) *(also styled in platform-tokens.css)* | --spacing-150, --spacing-200, --border-default, --spacing-300 |
-| `.event-row-coming-soon` | max-width: var(--spacing-800); text-align: right; white-space: normal | --spacing-800 |
-| `.event-row-label` | font-size: 16px; font-weight: 600; line-height: 1.21; letter-spacing: -0.02em; color: var(--text-primary); +1 more | --text-primary |
-| `.event-row-sublabel` | font-size: 12px; font-weight: 400; line-height: 1.21; letter-spacing: -0.02em; font-family: 'Inter', sans-serif | — |
-| `.event-row-top` | padding: var(--spacing-200) *(also styled in platform-tokens.css)* | --spacing-200, --spacing-300 |
-
-### EVENT ROW LIST
+### SPLIT ROW
 
 | Class | Declares | Tokens |
 |---|---|---|
-| `.event-row-list` | gap: var(--spacing-100); padding: var(--spacing-200); width: 100%; display: flex; flex-direction: column; +2 more | --spacing-100, --spacing-200 |
+| `.split-row` | background: var(--org-surface); border-radius: var(--border-radius-200); width: 100%; display: flex; flex-direction: column; +1 more | --org-surface, --border-radius-200 |
+| `.split-row-bottom` | padding: var(--spacing-150) var(--spacing-200); border-top: 0.33px solid var(--border-default) *(also styled in platform-tokens.css)* | --spacing-150, --spacing-200, --border-default, --spacing-300 |
+| `.split-row-note` | max-width: var(--spacing-800); text-align: right; white-space: normal | --spacing-800 |
+| `.split-row-top` | padding: var(--spacing-200) *(also styled in platform-tokens.css)* | --spacing-200, --spacing-300 |
+
+### SPLIT ROW LIST
+
+| Class | Declares | Tokens |
+|---|---|---|
+| `.split-row-list` | gap: var(--spacing-100); padding: var(--spacing-200); width: 100%; display: flex; flex-direction: column; +2 more | --spacing-100, --spacing-200 |
 
 ---
 
@@ -1839,7 +1837,7 @@ chrome. See RULES §2.
 | Class | Declares | Tokens |
 |---|---|---|
 | `.ios-nav-controls` | gap: 10px; display: flex; align-items: center; flex-shrink: 0 | — |
-| `.ios-nav-maintab` | padding: 0 var(--spacing-200) 6px; display: flex; flex-direction: column; position: relative; z-index: 100; +3 more | --spacing-200, --safe-area-top, --bg-base |
+| `.ios-nav-maintab` | padding: 0 var(--spacing-200) 6px; display: flex; flex-direction: column; position: relative; z-index: 100; +3 more | --spacing-200, --safe-area-top, --black-300, --bg-base |
 
 ### CHROME LAYERS & SCROLLPORT
 
@@ -1930,13 +1928,13 @@ always a dark surface regardless of mode.
 | `.web-footer-app-title` | color: white | — |
 | `.web-footer-badge` | height: 40px; width: auto; display: block | — |
 | `.web-footer-badges` | gap: var(--spacing-100); display: flex; flex-direction: column; padding-top: var(--spacing-100) | --spacing-100 |
-| `.web-footer-bottom` | gap: var(--spacing-400); padding: var(--spacing-200) 0; display: flex; flex-direction: column; justify-content: space-between; +1 more | --spacing-200, --border-weight-50, --spacing-400 |
+| `.web-footer-bottom` | gap: var(--spacing-400); padding: var(--spacing-200) 0; display: flex; flex-direction: column; justify-content: space-between; +1 more | --spacing-200, --border-weight-50, --white-200, --spacing-400 |
 | `.web-footer-column` | gap: var(--spacing-100); display: flex; flex-direction: column | --spacing-100 |
 | `.web-footer-column-heading` | color: white | — |
 | `.web-footer-copyright` | color: white | — |
 | `.web-footer-legal` | gap: var(--spacing-300); display: flex; flex-direction: column | --spacing-300 |
-| `.web-footer-legal-links` | gap: var(--spacing-200); display: flex; flex-direction: row; flex-wrap: wrap | --spacing-200, --spacing-100 |
-| `.web-footer-link` | color: rgba(255, 255, 255, 0.7); display: block; text-decoration: none; transition: color 0.15s ease; cursor: pointer | — |
+| `.web-footer-legal-links` | gap: var(--spacing-200); display: flex; flex-direction: row; flex-wrap: wrap | --spacing-200, --white-700, --spacing-100 |
+| `.web-footer-link` | color: var(--white-700); display: block; text-decoration: none; transition: color 0.15s ease; cursor: pointer | --white-700 |
 | `.web-footer-logo` | border-radius: var(--border-radius-200); height: 120px; width: 120px; flex-shrink: 0; overflow: hidden | --border-radius-200 |
 | `.web-footer-main` | gap: var(--spacing-400); display: flex; flex-direction: column | --spacing-400, --spacing-500 |
 | `.web-footer-powered` | gap: var(--spacing-25); display: flex; align-items: center; flex-shrink: 0 | --spacing-25 |
@@ -1953,7 +1951,8 @@ What's inside
 - .context-header — the band under the top nav with a page title and optional tabs
 - .circle-icon — large decorative icon disc for auth flows and empty states
 - .action-row — a row of equally weighted buttons
-- .event-card (+ .event-card-media, .event-card-list) — a tappable card for one event
+- .row-card (+ .row-card-media, .row-card-list) — a card whose body is a
+stack of rows; takes a .surface-* + .scale-700 pair to become tappable
 - .action-tile-row, .action-tile (+ -circle) — a row of icon-above-label actions
 - .heading-select — a heading that is also a picker
 - .disclosure-toggle — a label plus chevron that expands detail in place
@@ -1986,13 +1985,13 @@ definition; until then it stays product CSS in the template.
 |---|---|---|
 | `.action-row` | gap: var(--spacing-200); display: flex; align-items: center | --spacing-200 |
 
-### EVENT CARD
+### ROW CARD
 
 | Class | Declares | Tokens |
 |---|---|---|
-| `.event-card` | background: var(--bg-surface); padding: var(--spacing-300); border-radius: var(--border-radius-200); cursor: pointer; overflow: hidden; +1 more | --bg-surface, --border-radius-200, --spacing-300 |
-| `.event-card-list` | gap: var(--spacing-200); display: flex; flex-direction: column | --spacing-200 |
-| `.event-card-media` | padding: 0 | — |
+| `.row-card` | padding: var(--spacing-300); border-radius: var(--border-radius-200); overflow: hidden | --border-radius-200, --spacing-300 |
+| `.row-card-list` | gap: var(--spacing-200); display: flex; flex-direction: column | --spacing-200 |
+| `.row-card-media` | padding: 0 | — |
 
 ### ACTION TILE
 

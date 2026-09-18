@@ -301,9 +301,11 @@
   max-width: var(--container-narrow);
 }
 
-/* A warning is not a different shape, it is a different word — the copy says
-   "Never". Distinguishing it with a colour the reader has to decode is the
-   same mistake one layer along. */
+/* There is no warning variant. A warning is not a different shape, it is a
+   different word — the copy says "Never". Distinguishing it with a colour the
+   reader has to decode is the same mistake one layer along. An `.is-warn`
+   class survived here as a no-op for a while, doing nothing but implying
+   otherwise; `npm run lint` is what found it. */
 
 .demo-box {
   background: var(--color-interactive);

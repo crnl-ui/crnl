@@ -433,7 +433,7 @@
     var candidates = document.querySelectorAll(
       '[class*="surface-fill"],[class*="surface-border"],.surface-card,' +
       '.card-closed,.card-closed-interactive,.card-open-section,' +
-      '.card-open-section-interactive,.tile,.event-row,.event-card'
+      '.card-open-section-interactive,.tile,.split-row,.row-card'
     );
 
     var hits = [];

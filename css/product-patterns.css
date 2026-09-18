@@ -7,7 +7,8 @@
    - .context-header — the band under the top nav with a page title and optional tabs
    - .circle-icon — large decorative icon disc for auth flows and empty states
    - .action-row — a row of equally weighted buttons
-   - .event-card (+ .event-card-media, .event-card-list) — a tappable card for one event
+   - .row-card (+ .row-card-media, .row-card-list) — a card whose body is a
+     stack of rows; takes a .surface-* + .scale-700 pair to become tappable
    - .action-tile-row, .action-tile (+ -circle) — a row of icon-above-label actions
    - .heading-select — a heading that is also a picker
    - .disclosure-toggle — a label plus chevron that expands detail in place
@@ -26,11 +27,11 @@
    CONTEXT HEADER
    ============================================================
    The band under the top nav holding a page title and, optionally, tabs.
-   Used by every Buy tab, event details, and the ticket wallet.
+   Used wherever a page needs a titled band between the nav and the content.
 
    <div class="context-header">
      <div class="container-compact">
-       <h1 class="display500">Buy Tickets</h1>
+       <h1 class="display500">{page title}</h1>
        <div class="tabs">…</div>
      </div>
    </div>
@@ -103,37 +104,40 @@
 
 
 /* ============================================================
-   EVENT CARD
+   ROW CARD
    ============================================================
-   A tappable card for one event. Two variants:
+   A card whose body is a stack of rows rather than a block of prose. Two
+   variants:
 
-     .event-card              padded — text and controls, no bleed
-     .event-card-media        edge-to-edge — an image meets the card corners
+     .row-card              padded — text and controls, no bleed
+     .row-card-media        edge-to-edge — an image meets the card corners
 
-   <div class="event-card event-card-media">
-     <img class="card-media"> <div class="list-row">…</div>
+   It is a layout class only: the radius, the padding and the clipping. The
+   background and the press states come from a .surface-* + .scale-700 pair, so
+   a tappable row card carries both (RULES §3 #14) and an inert one carries
+   neither. The card must sit on --bg-base, never on another surface (RULES §2).
+
+   <div class="row-card surface-card scale-700">
+     <div class="list-row">…</div>
+   </div>
+
+   <div class="row-card row-card-media surface-card scale-700">
+     <img class="card-media"> <div class="list-row p-300">…</div>
    </div>
    ============================================================ */
 
-.event-card {
-  background: var(--bg-surface);
+.row-card {
   border-radius: var(--border-radius-200);
   padding: var(--spacing-300);
-  cursor: pointer;
   overflow: hidden;
-  transition: opacity 0.15s ease;
-}
-
-.event-card:hover {
-  opacity: 0.85;
 }
 
 /* Media variant: the image owns the edges, so the card sheds its padding. */
-.event-card-media {
+.row-card-media {
   padding: 0;
 }
 
-.event-card-list {
+.row-card-list {
   display: flex;
   flex-direction: column;
   gap: var(--spacing-200);

@@ -1,0 +1,30 @@
+{
+  "_generated": "node scripts/lint.mjs --update-baseline",
+  "_what": "Findings this repository already carries, per file and per rule. The build fails above these counts and is quiet at or below them. A number going down is progress; a number going up needs a reason.",
+  "_total": 188,
+  "counts": {
+    "css/boilerplate.css no-important": 8,
+    "css/button-components.css no-hardcoded-spacing": 12,
+    "css/button-components.css no-important": 3,
+    "css/button-components.css no-type-override": 19,
+    "css/card-components.css no-hardcoded-spacing": 1,
+    "css/input-components.css no-type-override": 18,
+    "css/ios-nav-components.css no-hardcoded-colour": 40,
+    "css/ios-nav-components.css no-hardcoded-shadow-colour": 8,
+    "css/ios-nav-components.css no-hardcoded-spacing": 17,
+    "css/ios-nav-components.css no-important": 4,
+    "css/ios-nav-components.css no-type-override": 17,
+    "css/list-row-components.css no-hardcoded-shadow-colour": 3,
+    "css/list-row-components.css no-hardcoded-spacing": 11,
+    "css/list-row-components.css no-important": 1,
+    "css/nav-components.css no-hardcoded-spacing": 1,
+    "css/nav-components.css no-type-override": 14,
+    "css/platform-tokens.css no-important": 1,
+    "css/product-patterns.css no-type-override": 1,
+    "css/table-components.css no-type-override": 1,
+    "css/tag-chip-components.css no-type-override": 4,
+    "css/text-styles-system.css no-important": 1,
+    "demo/01-color.html surface-needs-scale": 1,
+    "demo/07-rows.html surface-needs-scale": 2
+  }
+}

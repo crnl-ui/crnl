@@ -28,7 +28,7 @@
     <p class="bodyRegular30">Every value below is read live out of <span class="mono">getComputedStyle</span>, so it is what the browser actually paints for the theme and mode selected in the switcher — not what the CSS source says. Switch theme or mode and the whole page re-resolves.</p>
   </div>
 
-  <div class="sheet-callout is-warn">
+  <div class="sheet-callout">
     <p class="bodyRegular30"><strong>Never hardcode a colour</strong> — no <span class="mono">#hex</span>, <span class="mono">rgb()</span> or <span class="mono">rgba()</span> in a prototype (<span class="mono">RULES §2</span>). Reach for a semantic token first, a brand token second, an alpha scale last.</p>
   </div>
 
@@ -187,7 +187,7 @@
         </div>
     </div>
 
-    <div class="sheet-callout is-warn mt-300">
+    <div class="sheet-callout mt-300">
       <p class="bodyRegular30"><span class="mono">--brand-interactive</span> and <span class="mono">--brand-inverted</span> exist but <strong>never appear in a component</strong> — being mode-stable they render dark-on-dark in one mode. The mode-aware pair below is what links, active states and accents take (<span class="mono">RULES §2</span>).</p>
     </div>
     <div class="token-list">

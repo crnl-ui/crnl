@@ -37,7 +37,7 @@
    with a background of its own — a .surface-section hover or press wash, a
    full-bleed image in the first band — paints square corners over the card's
    radius. Every other rounded container in the system already clips
-   (.event-row, .event-card, .tile, .logo-block); these two did not,
+   (.split-row, .row-card, .tile, .logo-block); these two did not,
    and four files had been patching it with an inline `style="overflow: hidden"`
    instead. */
 .card-closed {
@@ -434,7 +434,7 @@
   padding: var(--spacing-50) var(--spacing-150); /* 4px 12px */
   border-radius: var(--border-radius-50);        /* 4px */
   backdrop-filter: blur(25px);
-  background: rgba(0, 0, 0, 0.04);
+  background: var(--black-100);
 }
 
 /* ============================================================

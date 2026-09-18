@@ -58,8 +58,8 @@ export type { StepsProps, StepItem, StepState } from './components/Steps'
 export { PageHeader } from './components/PageHeader'
 export type { PageHeaderProps } from './components/PageHeader'
 
-export { EventRow } from './components/EventRow'
-export type { EventRowProps, EventRowState } from './components/EventRow'
+export { SplitRow, SplitRowList } from './components/SplitRow'
+export type { SplitRowProps, SplitRowListProps } from './components/SplitRow'
 
 // iOS Navigation Components
 export { IOSNavButton } from './components/IOSNavButton'

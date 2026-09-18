@@ -141,7 +141,7 @@
    The frame is a phone. Pin the tokens to their mobile values there, after the
    breakpoints so this wins at every width. It fixes every component, utility
    and template that reads one at once; before this the leak was patched a
-   symptom at a time (see the .event-row rules in platform-tokens.css, which
+   symptom at a time (see the .split-row rules in platform-tokens.css, which
    are literal paddings rather than tokens and still need their own override).
    RULES §9. */
 [data-platform="app"] {

@@ -28,7 +28,7 @@
     <p class="bodyRegular30">One structure: <span class="mono">.list-row</span> &gt; optional <span class="mono">.leading</span> + <span class="mono">.list-row-content</span> + optional <span class="mono">.trailing</span>. All three slots are optional. Inside a row the text pair is <span class="mono">.list-row-text-pair</span>, never <span class="mono">.card-text-pair</span> (<span class="mono">RULES §4</span>).</p>
   </div>
 
-  <div class="sheet-callout is-warn">
+  <div class="sheet-callout">
     <p class="bodyRegular30">A <span class="mono">.list-row</span> carries <strong>no padding, no margin and no border</strong> — its container does. Two correct containers: a flex column with <span class="mono">.list-gap</span> / <span class="mono">.list-gap-tight</span>, or a wrapper that carries the padding and a hairline (called <span class="mono">.row-wrap</span> on this page, defined once in <span class="mono">sheet.css</span>).</p>
   </div>
 
@@ -79,9 +79,9 @@
       </div></div></div><div class="spec-label"><span class="labelRegular10 mono spec-code">.leading-logo</span><span class="labelRegular10 spec-meta">with .leading-gap-sm</span></div></div>
 
       <div class="spec"><div class="spec-stage is-block"><div class="row-wrap"><div class="list-row">
-        <div class="leading leading-gap-md"><img class="event-row-logo" data-opponent-logo alt=""></div>
+        <div class="leading leading-gap-md"><img class="split-row-logo" data-opponent-logo alt=""></div>
         <div class="list-row-content"><div class="list-row-text-pair"><span class="labelBold30">Counterparty mark</span><span class="labelRegular10 text-secondary">object-fit is already applied</span></div></div>
-      </div></div></div><div class="spec-label"><span class="labelRegular10 mono spec-code">.event-row-logo</span></div></div>
+      </div></div></div><div class="spec-label"><span class="labelRegular10 mono spec-code">.split-row-logo</span></div></div>
 
       <div class="spec"><div class="spec-stage is-block"><div class="row-wrap"><div class="list-row">
         <div class="leading leading-gap-lg"><div class="leading-image-square demo-image" data-demo-image></div></div>
@@ -280,85 +280,84 @@
     </div>
   </section>
 
-  <section class="sheet-section" id="event-row">
+  <section class="sheet-section" id="split-row">
     <div class="sheet-section-head">
       <h2 class="display300">Event row</h2>
       <span class="labelRegular10 text-secondary mono">the buy-flow card for one game — five offer states</span>
     </div>
-    <p class="sheet-note bodyRegular30">The card background is built into <span class="mono">.event-row</span>; the wrapper takes no surface token and no scale. <span class="mono">surface-section</span> goes on each <em>interactive section</em> only — which sections those are is what the five states differ on.</p>
-    <div class="event-row-list">
+    <p class="sheet-note bodyRegular30">The card background is built into <span class="mono">.split-row</span>; the wrapper takes no surface token and no scale. <span class="mono">surface-section</span> goes on each <em>interactive section</em> only — which sections those are is what the five states differ on.</p>
+    <div class="split-row-list">
 
-      <div class="event-row">
-        <div class="event-row-top surface-section"><div class="list-row">
-          <div class="leading leading-gap-sm"><img class="event-row-logo" data-opponent-logo alt=""></div>
+      <div class="split-row">
+        <div class="split-row-top surface-section"><div class="list-row">
+          <div class="leading leading-gap-sm"><img class="split-row-logo" data-opponent-logo alt=""></div>
           <div class="list-row-content"><div class="list-row-text-pair">
-            <span class="event-row-label" data-opponent-name>Opponent</span>
-            <span class="event-row-sublabel text-secondary" data-game-date>Date</span>
+            <span class="title50-r" data-opponent-name>Opponent</span>
+            <span class="labelRegular20-r text-secondary" data-game-date>Date</span>
           </div></div>
           <div class="trailing trailing-gap-lg"><button class="btn btn-primary btn-100">$19+</button></div>
         </div></div>
       </div>
 
-      <div class="event-row">
-        <div class="event-row-top surface-section"><div class="list-row">
-          <div class="leading leading-gap-sm"><img class="event-row-logo" data-opponent-logo alt=""></div>
+      <div class="split-row">
+        <div class="split-row-top surface-section"><div class="list-row">
+          <div class="leading leading-gap-sm"><img class="split-row-logo" data-opponent-logo alt=""></div>
           <div class="list-row-content"><div class="list-row-text-pair">
-            <span class="event-row-label" data-opponent-name>Opponent</span>
-            <span class="event-row-sublabel text-secondary" data-game-date>Date</span>
+            <span class="title50-r" data-opponent-name>Opponent</span>
+            <span class="labelRegular20-r text-secondary" data-game-date>Date</span>
           </div></div>
           <div class="trailing trailing-gap-lg"><button class="btn btn-primary btn-100">$19+</button></div>
         </div></div>
-        <div class="event-row-bottom surface-section"><div class="list-row">
+        <div class="split-row-bottom surface-section"><div class="list-row">
           <div class="list-row-content"><div class="list-row-text-pair"><span class="labelBold30 text-interactive-tertiary">3 Additional Offers</span></div></div>
           <div class="trailing trailing-gap-xs"><span class="icon text-interactive-tertiary">arrow_drop_down</span></div>
         </div></div>
       </div>
 
-      <div class="event-row">
-        <div class="event-row-top"><div class="list-row not-tappable">
-          <div class="leading leading-gap-sm"><img class="event-row-logo" data-opponent-logo alt=""></div>
+      <div class="split-row">
+        <div class="split-row-top"><div class="list-row not-tappable">
+          <div class="leading leading-gap-sm"><img class="split-row-logo" data-opponent-logo alt=""></div>
           <div class="list-row-content"><div class="list-row-text-pair">
-            <span class="event-row-label" data-opponent-name>Opponent</span>
-            <span class="event-row-sublabel text-secondary" data-game-date>Date</span>
+            <span class="title50-r" data-opponent-name>Opponent</span>
+            <span class="labelRegular20-r text-secondary" data-game-date>Date</span>
           </div></div>
         </div></div>
-        <div class="event-row-bottom surface-section"><div class="list-row">
+        <div class="split-row-bottom surface-section"><div class="list-row">
           <div class="list-row-content"><div class="list-row-text-pair"><span class="labelBold30 text-interactive-tertiary">3 Offers Available</span></div></div>
           <div class="trailing trailing-gap-xs"><span class="icon text-interactive-tertiary">arrow_drop_down</span></div>
         </div></div>
       </div>
 
-      <div class="event-row">
-        <div class="event-row-top"><div class="list-row not-tappable">
-          <div class="leading leading-gap-sm"><img class="event-row-logo" data-opponent-logo alt=""></div>
+      <div class="split-row">
+        <div class="split-row-top"><div class="list-row not-tappable">
+          <div class="leading leading-gap-sm"><img class="split-row-logo" data-opponent-logo alt=""></div>
           <div class="list-row-content"><div class="list-row-text-pair">
-            <span class="event-row-label" data-opponent-name>Opponent</span>
-            <span class="event-row-sublabel text-secondary" data-game-date>Date</span>
+            <span class="title50-r" data-opponent-name>Opponent</span>
+            <span class="labelRegular20-r text-secondary" data-game-date>Date</span>
           </div></div>
           <div class="trailing trailing-gap-sm"><span class="labelBold30 text-secondary">Sold Out</span></div>
         </div></div>
       </div>
 
-      <div class="event-row">
-        <div class="event-row-top"><div class="list-row not-tappable">
-          <div class="leading leading-gap-sm"><img class="event-row-logo" data-opponent-logo alt=""></div>
+      <div class="split-row">
+        <div class="split-row-top"><div class="list-row not-tappable">
+          <div class="leading leading-gap-sm"><img class="split-row-logo" data-opponent-logo alt=""></div>
           <div class="list-row-content"><div class="list-row-text-pair">
-            <span class="event-row-label" data-opponent-name>Opponent</span>
-            <span class="event-row-sublabel text-secondary" data-game-date>Date</span>
+            <span class="title50-r" data-opponent-name>Opponent</span>
+            <span class="labelRegular20-r text-secondary" data-game-date>Date</span>
           </div></div>
-          <div class="trailing trailing-gap-sm"><span class="labelBold20 text-interactive-tertiary event-row-coming-soon">Coming Soon</span></div>
+          <div class="trailing trailing-gap-sm"><span class="labelBold20 text-interactive-tertiary split-row-note">Coming Soon</span></div>
         </div></div>
       </div>
 
     </div>
     <div class="spec-label mt-200">
-      <span class="labelRegular10 mono spec-code">.event-row-list</span>
-      <span class="labelRegular10 mono spec-code">.event-row</span>
-      <span class="labelRegular10 mono spec-code">.event-row-top</span>
-      <span class="labelRegular10 mono spec-code">.event-row-bottom</span>
-      <span class="labelRegular10 mono spec-code">.event-row-label</span>
-      <span class="labelRegular10 mono spec-code">.event-row-sublabel</span>
-      <span class="labelRegular10 mono spec-code">.event-row-coming-soon</span>
+      <span class="labelRegular10 mono spec-code">.split-row-list</span>
+      <span class="labelRegular10 mono spec-code">.split-row</span>
+      <span class="labelRegular10 mono spec-code">.split-row-top</span>
+      <span class="labelRegular10 mono spec-code">.split-row-bottom</span>
+      <span class="labelRegular10 mono spec-code">.split-row-logo</span>
+      <span class="labelRegular10 mono spec-code">.split-row-note</span>
     </div>
   </section>
 
