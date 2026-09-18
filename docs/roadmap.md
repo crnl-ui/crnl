@@ -79,7 +79,7 @@ system.
 
 Ranked by what they cost, not by how hard they are.
 
-### 0. The interaction model is mouse-only by construction
+### 0. The interaction model is mouse-only by construction — ✅ closed
 
 **The single most serious gap.** `RULES §3 #14` says anything tappable takes a
 `.surface-*` + `.scale-*` pair. That mechanism is applied to a `<div>`, and a
@@ -100,19 +100,31 @@ It is not a rendering bug, which is why nothing has caught it: it looks correct
 in every screenshot. `check:visual` cannot see it, and a person building with a
 mouse never encounters it.
 
-What closing it takes:
+**Closed.** What it took:
 
-- A `.focus-ring` treatment on the surface ladder, offset outside the element
-  so it survives `overflow: hidden` on a card.
-- `RULES §3 #14` extended: a tappable surface goes on a `<button>` or an `<a>`,
-  or carries `tabindex="0"` and a `role`. A `<div>` with a surface and no role
-  becomes a lint error.
-- A lint rule for it — the check is cheap once the rule is written, because the
-  linter already walks the tag tree for `surface-on-surface`.
-- An axe-core pass in `check:visual`, which already drives a real browser and
-  is the only check that could run one.
+- A focus ring on every surface in the ladder and on `.btn` / `.btn-circle`,
+  drawn with `outline` at `--border-weight-200` against a `--spacing-25`
+  offset — outside the element, so it survives the `overflow: hidden` every
+  card carries. `--color-interactive` keeps it visible in both modes (it
+  resolves blue in light and amber in dark on `signal`). `.surface-section`
+  is the one exception: it is flush to its card's edge, so its ring is drawn
+  inside.
+- The `<button>` reset extended to `padding`, `margin`, `color`, `text-align`,
+  `font-size` and `line-height`, and `display` / `width` added to `.selector`
+  and `.card-open-section-interactive`. This is what makes the rule
+  followable: a tappable card becomes a real button with **no** layout change,
+  verified element by element against the geometry before the conversion.
+- `RULES §3 #14` rewritten to require it.
+- A lint rule, `unreachable-target`: a surface + scale pair on anything a
+  keyboard cannot reach. The repository is clean against it — every tappable
+  `<div>` in the demo sheets and the guide is now a `<button>`, including the
+  18 surface specimens, which now demonstrate the focus ring too.
 
-This is also the gap most aligned with the positioning. "Making for non-AIs"
+**Still open from this gap:** an axe-core pass in `check:visual`, which already
+drives a real browser and is the only check that could run one. The lint rule
+catches the shape; axe would catch the rest (contrast, names, roles).
+
+This was the gap most aligned with the positioning. "Making for non-AIs"
 includes the non-AIs who do not use a mouse.
 
 ### 1. Most of RULES.md is still prose
@@ -231,12 +243,21 @@ API. Publish after those, not before.
 
 ### 7. Smaller, real, cheap
 
-- **Dark mode has no elevation.** `--shadow-sheet-*` and `--shadow-modal-*` are
-  byte-identical in light and dark (`css/border-effects-tokens.css`). A black
-  shadow on a dark surface is invisible, so modals and sheets lose their lift
-  in exactly the mode where they need it most. Either give dark its own values
-  or drop the duplicate block, which currently just implies a decision nobody
-  made.
+- **The elevation ladder is three steps in dark and two in light.** In every
+  theme, and in the base theme, `--org-sheet` equals `--org-base` — light mode
+  runs `#FFFFFF` → a tinted surface → `#FFFFFF` again, so a modal sheet is the
+  same colour as the page behind it and its shadow is the only edge it has.
+  Dark runs three genuinely distinct rungs (`#0C1118` → `#171E29` → `#212A38`
+  in `signal`) and carries its elevation in surface colour, the way dark UI
+  generally should. Both are defensible; neither is written down. `RULES §2`
+  describes the ladder as three steps unconditionally, which is true in one
+  mode. Say which, and say that the shadow is load-bearing in light.
+
+  The related smell is that `--shadow-sheet-*` and `--shadow-modal-*` are
+  restated byte-for-byte under `[data-mode="dark"]`
+  (`css/border-effects-tokens.css`). The values are right — dark does not need
+  its own — but a duplicated block implies a decision somebody made, and
+  nobody did. Delete it; it inherits identically and stops lying.
 - **No shadow-colour tokens.** 11 hardcoded shadow colours with nothing to
   reach for — the alpha scales are for surfaces and text. A `--shadow-*` colour
   scale would close a whole lint category.
@@ -297,8 +318,8 @@ regression would land free.
 
 ## Suggested order
 
-1. **Gap 0** — focus rings, the role rule, the lint rule, axe in `check:visual`.
-   Largest cost, and nothing downstream depends on it, so it can start now.
+1. ~~**Gap 0** — focus rings, the role rule, the lint rule.~~ Done, bar the
+   axe-core pass, which rides with pinning the renderer (gap 7).
 2. **Gap 2** — `@layer`, and the `!important` count falls out of it.
 3. **Gap 3** — align the React vocabulary with the CSS, while the surface is
    small and nothing is published.

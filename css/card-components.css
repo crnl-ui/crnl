@@ -185,6 +185,10 @@
   border-radius: var(--border-radius-200);
   padding: var(--spacing-300);
   width: 100%;
+  /* As .selector: this band is a tap target and should be a real button, and
+     a UA button is inline-block — which puts the content on a baseline and
+     loses the descender space a block box reserves. */
+  display: block;
 }
 
 /* ============================================================

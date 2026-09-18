@@ -89,6 +89,19 @@
   opacity: 0.6;
 }
 
+/* Keyboard focus. A button paints its own background, so the browser default
+   ring lands on top of a fill it was never contrasted against — on
+   .btn-primary in a dark theme it is close to invisible. This draws the
+   system's own ring outside the button instead (see the FOCUS block in
+   interactive-tokens.css for why outline and why offset).
+
+   .btn-circle inherits it: the ring follows the 100px radius on its own. */
+.btn:focus-visible,
+.btn-circle:focus-visible {
+  outline: var(--border-weight-200) solid var(--color-interactive);
+  outline-offset: var(--spacing-25);
+}
+
 /* Color inheritance for text style classes inside buttons */
 .btn * {
   color: inherit;

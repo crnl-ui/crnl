@@ -448,6 +448,28 @@ function lintMarkup(file, src, surface, extra) {
         ['RULES §3'])
     }
 
+    /* RULES §3 #14 — a tappable surface has to be on something a keyboard can
+       reach. The surface + scale pair is the system's statement that this
+       element is a target; on a <div> it is a target nobody can tab to, and
+       it fails silently — the page looks right in every screenshot.
+
+       Native interactive elements carry it for free. Anything else has to say
+       so with a role and a tabindex, which is also what makes a screen reader
+       announce it as actionable. A demo specimen that is showing the surface
+       rather than shipping a control takes the escape. */
+    const tappable = surfaceClass && hasScale
+    if (tappable && !escaped(escapes, line, 'unreachable-target')) {
+      const tag = tagAt(src, index)
+      const native = /^(button|a|input|select|textarea|summary|label)$/i.test(tag)
+      const hasRole = /\brole\s*=/.test(attrsAt(src, index))
+      const focusable = /\btabindex\s*=\s*["']?-?\d/.test(attrsAt(src, index))
+      if (!native && !(hasRole && focusable)) {
+        report('warning', 'unreachable-target', file, line,
+          `<${tag}> carries \`.${surfaceClass}\` + a \`.scale-*\` — the system's way of saying "this is a target" — but a keyboard cannot reach it. Use a <button> or an <a>, or add both a role and tabindex="0". See docs/roadmap.md § gap 0.`,
+          ['RULES §3'])
+      }
+    }
+
     // RULES §4 — canonical icon form
     if (names.includes('icon') && names.includes('material-symbols-rounded') &&
         !escaped(escapes, line, 'icon-form')) {
@@ -529,6 +551,19 @@ function tagWalk(src, onOpen) {
     onOpen?.(m, names, stack)
     if (!selfClose && !VOID_TAGS.test(tag)) stack.push({ tag, names })
   }
+}
+
+/** The tag name of the element whose attributes contain this offset. */
+function tagAt(src, index) {
+  const open = src.lastIndexOf('<', index)
+  return /^<\s*([a-zA-Z][\w-]*)/.exec(src.slice(open, index + 1))?.[1] ?? 'div'
+}
+
+/** The raw attribute text of the element whose attributes contain this offset. */
+function attrsAt(src, index) {
+  const open = src.lastIndexOf('<', index)
+  const close = src.indexOf('>', index)
+  return close > open ? src.slice(open, close) : ''
 }
 
 /** Every class on every open ancestor at an offset. */

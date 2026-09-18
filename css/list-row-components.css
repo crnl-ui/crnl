@@ -764,6 +764,12 @@
   border-radius: var(--border-radius-200);   /* 16px */
   padding: var(--spacing-200);               /* 16px all sides */
   box-sizing: border-box;
+  /* display and width so the class behaves the same on a <button> as on a
+     <div>. A selector is a tap target and should be a real button
+     (RULES §3 #14); a UA button is inline-block and shrinks to its content,
+     which collapsed a full-width row to the width of its longest word. */
+  display: block;
+  width: 100%;
 }
 
 /* Selected — overrides surface hover/press backgrounds (works with washNeutral and card) */

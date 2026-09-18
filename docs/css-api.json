@@ -3148,7 +3148,7 @@
         {
           "name": "card-open-section-interactive",
           "section": "CARD VARIANTS - INTERACTIVE STATES",
-          "declares": "background: var(--bg-surface); padding: var(--spacing-300); border-radius: var(--border-radius-200); width: 100%",
+          "declares": "background: var(--bg-surface); padding: var(--spacing-300); border-radius: var(--border-radius-200); width: 100%; display: block",
           "tokens": [
             "--bg-surface",
             "--border-radius-200",
@@ -3320,7 +3320,10 @@
             "--neutral-1000",
             "--inverted-1000",
             "--inverted-200",
-            "--black-500"
+            "--black-500",
+            "--border-weight-200",
+            "--color-interactive",
+            "--spacing-25"
           ],
           "alsoStyledIn": []
         },
@@ -3332,7 +3335,10 @@
             "--brand-core",
             "--white-1000",
             "--white-300",
-            "--black-300"
+            "--black-300",
+            "--border-weight-200",
+            "--color-interactive",
+            "--spacing-25"
           ],
           "alsoStyledIn": []
         },
@@ -3344,7 +3350,10 @@
             "--inverted-1000",
             "--neutral-1000",
             "--neutral-200",
-            "--black-500"
+            "--black-500",
+            "--border-weight-200",
+            "--color-interactive",
+            "--spacing-25"
           ],
           "alsoStyledIn": []
         },
@@ -3355,7 +3364,10 @@
           "tokens": [
             "--black-1000",
             "--white-1000",
-            "--white-300"
+            "--white-300",
+            "--border-weight-200",
+            "--color-interactive",
+            "--spacing-25"
           ],
           "alsoStyledIn": []
         },
@@ -3367,7 +3379,10 @@
             "--white-1000",
             "--black-1000",
             "--black-200",
-            "--black-500"
+            "--black-500",
+            "--border-weight-200",
+            "--color-interactive",
+            "--spacing-25"
           ],
           "alsoStyledIn": []
         },
@@ -3381,7 +3396,10 @@
             "--text-primary",
             "--neutral-100",
             "--neutral-200",
-            "--black-300"
+            "--black-300",
+            "--border-weight-200",
+            "--color-interactive",
+            "--spacing-25"
           ],
           "alsoStyledIn": []
         },
@@ -3395,7 +3413,10 @@
             "--text-primary",
             "--inverted-100",
             "--inverted-200",
-            "--black-300"
+            "--black-300",
+            "--border-weight-200",
+            "--color-interactive",
+            "--spacing-25"
           ],
           "alsoStyledIn": []
         },
@@ -3408,7 +3429,10 @@
             "--black-300",
             "--text-primary",
             "--black-100",
-            "--black-200"
+            "--black-200",
+            "--border-weight-200",
+            "--color-interactive",
+            "--spacing-25"
           ],
           "alsoStyledIn": []
         },
@@ -3420,7 +3444,10 @@
             "--neutral-000",
             "--black-300",
             "--text-primary",
-            "--white-200"
+            "--white-200",
+            "--border-weight-200",
+            "--color-interactive",
+            "--spacing-25"
           ],
           "alsoStyledIn": []
         },
@@ -3431,7 +3458,10 @@
           "tokens": [
             "--neutral-100",
             "--text-primary",
-            "--black-300"
+            "--black-300",
+            "--border-weight-200",
+            "--color-interactive",
+            "--spacing-25"
           ],
           "alsoStyledIn": []
         },
@@ -3443,7 +3473,10 @@
             "--neutral-000",
             "--text-primary",
             "--neutral-100",
-            "--black-300"
+            "--black-300",
+            "--border-weight-200",
+            "--color-interactive",
+            "--spacing-25"
           ],
           "alsoStyledIn": []
         },
@@ -3455,7 +3488,10 @@
             "--org-surface",
             "--text-primary",
             "--white-100",
-            "--black-300"
+            "--black-300",
+            "--border-weight-200",
+            "--color-interactive",
+            "--spacing-25"
           ],
           "alsoStyledIn": []
         },
@@ -3466,7 +3502,10 @@
           "tokens": [
             "--text-primary",
             "--white-100",
-            "--black-300"
+            "--black-300",
+            "--border-weight-200",
+            "--color-interactive",
+            "--spacing-25"
           ],
           "alsoStyledIn": []
         },
@@ -3475,21 +3514,27 @@
           "section": "Interaction 700",
           "declares": "transition: transform 180ms ease-out; transform: scale(1)",
           "tokens": [],
-          "alsoStyledIn": []
+          "alsoStyledIn": [
+            "boilerplate.css"
+          ]
         },
         {
           "name": "scale-500",
           "section": "Interaction 500",
           "declares": "transition: transform 180ms ease-out; transform: scale(1)",
           "tokens": [],
-          "alsoStyledIn": []
+          "alsoStyledIn": [
+            "boilerplate.css"
+          ]
         },
         {
           "name": "scale-300",
           "section": "Interaction 300",
           "declares": "transition: transform 180ms ease-out; transform: scale(1)",
           "tokens": [],
-          "alsoStyledIn": []
+          "alsoStyledIn": [
+            "boilerplate.css"
+          ]
         }
       ],
       "tokens": []
@@ -3504,12 +3549,42 @@
           "declares": "gap: var(--spacing-100); border-radius: var(--button-border-radius); border: none; display: inline-flex; align-items: center; +9 more",
           "tokens": [
             "--spacing-100",
-            "--button-border-radius"
+            "--button-border-radius",
+            "--border-weight-200",
+            "--color-interactive",
+            "--spacing-25"
           ],
           "alsoStyledIn": [
             "card-components.css",
             "product-patterns.css"
           ]
+        },
+        {
+          "name": "btn-circle",
+          "section": "BASE BUTTON RESET & STRUCTURE",
+          "declares": "border-radius: 50%; border: none; display: inline-flex; align-items: center; justify-content: center; +4 more",
+          "tokens": [
+            "--border-weight-200",
+            "--color-interactive",
+            "--spacing-25",
+            "--interactive-primary",
+            "--interactive-primary-text",
+            "--white-300",
+            "--black-300",
+            "--neutral-1000",
+            "--inverted-1000",
+            "--inverted-200",
+            "--black-500",
+            "--neutral-200",
+            "--black-1000",
+            "--white-1000",
+            "--black-200",
+            "--status-error",
+            "--neutral-000",
+            "--neutral-300",
+            "--text-primary"
+          ],
+          "alsoStyledIn": []
         },
         {
           "name": "btn-700",
@@ -3674,30 +3749,6 @@
             "--white-1000",
             "--white-300",
             "--white-500"
-          ],
-          "alsoStyledIn": []
-        },
-        {
-          "name": "btn-circle",
-          "section": "CIRCLE ICON BUTTONS",
-          "declares": "border-radius: 50%; border: none; display: inline-flex; align-items: center; justify-content: center; +4 more",
-          "tokens": [
-            "--interactive-primary",
-            "--interactive-primary-text",
-            "--white-300",
-            "--black-300",
-            "--neutral-1000",
-            "--inverted-1000",
-            "--inverted-200",
-            "--black-500",
-            "--neutral-200",
-            "--black-1000",
-            "--white-1000",
-            "--black-200",
-            "--status-error",
-            "--neutral-000",
-            "--neutral-300",
-            "--text-primary"
           ],
           "alsoStyledIn": []
         },
@@ -4256,7 +4307,7 @@
         {
           "name": "selector",
           "section": "SELECTOR",
-          "declares": "padding: var(--spacing-200); border-radius: var(--border-radius-200); box-sizing: border-box",
+          "declares": "padding: var(--spacing-200); border-radius: var(--border-radius-200); width: 100%; display: block; box-sizing: border-box",
           "tokens": [
             "--border-radius-200",
             "--spacing-200",

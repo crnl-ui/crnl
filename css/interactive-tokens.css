@@ -444,3 +444,57 @@
 .scale-300:active {
   transform: scale(0.965);
 }
+
+/* ============================================================
+   FOCUS
+   ============================================================
+   Every surface in this file is a tap target, and until this block existed
+   none of them showed a keyboard user where they were. That is the whole of
+   the treatment: one ring, drawn the same way on every surface, so there is
+   nothing per-surface to get wrong or forget.
+
+   Three decisions worth keeping:
+
+   - `:focus-visible`, not `:focus`. A pointer click must not draw it — a ring
+     that appears on every mouse press reads as a rendering bug and is the
+     reason people delete focus rings.
+   - `outline`, not `box-shadow` or `border`. An outline does not take part in
+     layout, so it cannot shift the element or its neighbours, and it follows
+     `border-radius` on its own.
+   - `outline-offset` pushes it *outside* the element. Every card in this
+     system clips its children (`overflow: hidden`), so a ring drawn inside
+     the bounds is cropped on exactly the components that most need it.
+
+   `--color-interactive` is the mode-aware accent, identical in light and
+   swapped in dark, so the ring stays visible against both. Never
+   `--brand-interactive` here (RULES §2).
+
+   The ring is 2px against a 2px offset — 4px of total separation. That clears
+   the WCAG 2.2 focus-appearance minimum on every surface in the ladder,
+   including the filled ones where the ring sits against the fill rather than
+   the page.
+   ------------------------------------------------------------ */
+
+.surface-fillNeutral:focus-visible,
+.surface-fillColor:focus-visible,
+.surface-fillInverted:focus-visible,
+.surface-fillBlack:focus-visible,
+.surface-fillWhite:focus-visible,
+.surface-borderNeutral:focus-visible,
+.surface-borderInverted:focus-visible,
+.surface-borderBlack:focus-visible,
+.surface-borderWhite:focus-visible,
+.surface-washNeutral:focus-visible,
+.surface-ghost:focus-visible,
+.surface-card:focus-visible,
+.surface-section:focus-visible {
+  outline: var(--border-weight-200) solid var(--color-interactive);
+  outline-offset: var(--spacing-25);
+}
+
+/* A section is one band of a card, flush to its edges. An offset ring would
+   be drawn outside the card and clipped by it, so this one sits inside — the
+   band has no radius of its own to crop it. */
+.surface-section:focus-visible {
+  outline-offset: calc(-1 * var(--border-weight-200));
+}

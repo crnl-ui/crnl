@@ -1305,6 +1305,12 @@
           "sheet": "04-buttons.html"
         },
         {
+          "name": "btn-circle",
+          "section": "BASE BUTTON RESET & STRUCTURE",
+          "react": "Button",
+          "sheet": "04-buttons.html"
+        },
+        {
           "name": "btn-700",
           "section": "BUTTON SIZES",
           "react": "Button",
@@ -1397,12 +1403,6 @@
         {
           "name": "btn-black",
           "section": "FILL WIDTH MODE",
-          "react": "Button",
-          "sheet": "04-buttons.html"
-        },
-        {
-          "name": "btn-circle",
-          "section": "CIRCLE ICON BUTTONS",
           "react": "Button",
           "sheet": "04-buttons.html"
         },

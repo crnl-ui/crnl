@@ -856,7 +856,7 @@ band's hover wash follows the 16px radius with no extra CSS. Do not add
 | Class | Declares | Tokens |
 |---|---|---|
 | `.card-closed-interactive` | background: var(--bg-surface); border-radius: var(--border-radius-200); width: 100%; display: flex; flex-direction: column; +1 more | --bg-surface, --border-radius-200 |
-| `.card-open-section-interactive` | background: var(--bg-surface); padding: var(--spacing-300); border-radius: var(--border-radius-200); width: 100% | --bg-surface, --border-radius-200, --spacing-300 |
+| `.card-open-section-interactive` | background: var(--bg-surface); padding: var(--spacing-300); border-radius: var(--border-radius-200); width: 100%; display: block | --bg-surface, --border-radius-200, --spacing-300 |
 
 ### CARD CONTENT UTILITIES
 
@@ -1013,31 +1013,31 @@ thing is a band of that card.
 
 | Class | Declares | Tokens |
 |---|---|---|
-| `.surface-fillNeutral` | color: var(--inverted-1000); background: var(--neutral-1000); border: none; transition: background 120ms ease; cursor: pointer | --neutral-1000, --inverted-1000, --inverted-200, --black-500 |
+| `.surface-fillNeutral` | color: var(--inverted-1000); background: var(--neutral-1000); border: none; transition: background 120ms ease; cursor: pointer | --neutral-1000, --inverted-1000, --inverted-200, --black-500, … |
 
 ### Fill - Color
 
 | Class | Declares | Tokens |
 |---|---|---|
-| `.surface-fillColor` | color: var(--white-1000); background: var(--brand-core); border: none; transition: background 120ms ease; cursor: pointer | --brand-core, --white-1000, --white-300, --black-300 |
+| `.surface-fillColor` | color: var(--white-1000); background: var(--brand-core); border: none; transition: background 120ms ease; cursor: pointer | --brand-core, --white-1000, --white-300, --black-300, … |
 
 ### Fill - Inverted
 
 | Class | Declares | Tokens |
 |---|---|---|
-| `.surface-fillInverted` | color: var(--neutral-1000); background: var(--inverted-1000); border: none; transition: background 120ms ease; cursor: pointer | --inverted-1000, --neutral-1000, --neutral-200, --black-500 |
+| `.surface-fillInverted` | color: var(--neutral-1000); background: var(--inverted-1000); border: none; transition: background 120ms ease; cursor: pointer | --inverted-1000, --neutral-1000, --neutral-200, --black-500, … |
 
 ### Fill - Black
 
 | Class | Declares | Tokens |
 |---|---|---|
-| `.surface-fillBlack` | color: var(--white-1000); background: var(--black-1000); border: none; transition: background 120ms ease; cursor: pointer | --black-1000, --white-1000, --white-300 |
+| `.surface-fillBlack` | color: var(--white-1000); background: var(--black-1000); border: none; transition: background 120ms ease; cursor: pointer | --black-1000, --white-1000, --white-300, --border-weight-200, … |
 
 ### Fill - White
 
 | Class | Declares | Tokens |
 |---|---|---|
-| `.surface-fillWhite` | color: var(--black-1000); background: var(--white-1000); border: none; transition: background 120ms ease; cursor: pointer | --white-1000, --black-1000, --black-200, --black-500 |
+| `.surface-fillWhite` | color: var(--black-1000); background: var(--white-1000); border: none; transition: background 120ms ease; cursor: pointer | --white-1000, --black-1000, --black-200, --black-500, … |
 
 ### Border - Neutral
 
@@ -1061,49 +1061,49 @@ thing is a band of that card.
 
 | Class | Declares | Tokens |
 |---|---|---|
-| `.surface-borderWhite` | color: var(--text-primary); background: var(--neutral-000); border: 1px solid var(--black-300); transition: background 120ms ease, border-color 120ms ease; cursor: pointer | --neutral-000, --black-300, --text-primary, --white-200 |
+| `.surface-borderWhite` | color: var(--text-primary); background: var(--neutral-000); border: 1px solid var(--black-300); transition: background 120ms ease, border-color 120ms ease; cursor: pointer | --neutral-000, --black-300, --text-primary, --white-200, … |
 
 ### Wash - Neutral
 
 | Class | Declares | Tokens |
 |---|---|---|
-| `.surface-washNeutral` | color: var(--text-primary); background: var(--neutral-100); border: none; transition: background 120ms ease; cursor: pointer | --neutral-100, --text-primary, --black-300 |
+| `.surface-washNeutral` | color: var(--text-primary); background: var(--neutral-100); border: none; transition: background 120ms ease; cursor: pointer | --neutral-100, --text-primary, --black-300, --border-weight-200, … |
 
 ### Ghost
 
 | Class | Declares | Tokens |
 |---|---|---|
-| `.surface-ghost` | color: var(--text-primary); background: var(--neutral-000); border: none; transition: background 120ms ease; cursor: pointer | --neutral-000, --text-primary, --neutral-100, --black-300 |
+| `.surface-ghost` | color: var(--text-primary); background: var(--neutral-000); border: none; transition: background 120ms ease; cursor: pointer | --neutral-000, --text-primary, --neutral-100, --black-300, … |
 
 ### Card
 
 | Class | Declares | Tokens |
 |---|---|---|
-| `.surface-card` | color: var(--text-primary); background: var(--org-surface); border: none; transition: background 120ms ease; cursor: pointer | --org-surface, --text-primary, --white-100, --black-300 |
+| `.surface-card` | color: var(--text-primary); background: var(--org-surface); border: none; transition: background 120ms ease; cursor: pointer | --org-surface, --text-primary, --white-100, --black-300, … |
 
 ### Section (one band of a divided card)
 
 | Class | Declares | Tokens |
 |---|---|---|
-| `.surface-section` | color: var(--text-primary); background: transparent; border: none; transition: background 120ms ease; cursor: pointer | --text-primary, --white-100, --black-300 |
+| `.surface-section` | color: var(--text-primary); background: transparent; border: none; transition: background 120ms ease; cursor: pointer | --text-primary, --white-100, --black-300, --border-weight-200, … |
 
 ### Interaction 700
 
 | Class | Declares | Tokens |
 |---|---|---|
-| `.scale-700` | transition: transform 180ms ease-out; transform: scale(1) | — |
+| `.scale-700` | transition: transform 180ms ease-out; transform: scale(1) *(also styled in boilerplate.css)* | — |
 
 ### Interaction 500
 
 | Class | Declares | Tokens |
 |---|---|---|
-| `.scale-500` | transition: transform 180ms ease-out; transform: scale(1) | — |
+| `.scale-500` | transition: transform 180ms ease-out; transform: scale(1) *(also styled in boilerplate.css)* | — |
 
 ### Interaction 300
 
 | Class | Declares | Tokens |
 |---|---|---|
-| `.scale-300` | transition: transform 180ms ease-out; transform: scale(1) | — |
+| `.scale-300` | transition: transform 180ms ease-out; transform: scale(1) *(also styled in boilerplate.css)* | — |
 
 ---
 
@@ -1198,7 +1198,8 @@ the right size without the icon box sizing.
 
 | Class | Declares | Tokens |
 |---|---|---|
-| `.btn` | gap: var(--spacing-100); border-radius: var(--button-border-radius); border: none; display: inline-flex; align-items: center; +9 more *(also styled in card-components.css, product-patterns.css)* | --spacing-100, --button-border-radius |
+| `.btn` | gap: var(--spacing-100); border-radius: var(--button-border-radius); border: none; display: inline-flex; align-items: center; +9 more *(also styled in card-components.css, product-patterns.css)* | --spacing-100, --button-border-radius, --border-weight-200, --color-interactive, … |
+| `.btn-circle` | border-radius: 50%; border: none; display: inline-flex; align-items: center; justify-content: center; +4 more | --border-weight-200, --color-interactive, --spacing-25, --interactive-primary, … |
 
 ### BUTTON SIZES
 
@@ -1236,7 +1237,6 @@ the right size without the icon box sizing.
 
 | Class | Declares | Tokens |
 |---|---|---|
-| `.btn-circle` | border-radius: 50%; border: none; display: inline-flex; align-items: center; justify-content: center; +4 more | --interactive-primary, --interactive-primary-text, --white-300, --black-300, … |
 | `.btn-circle-300` | height: 40px; width: 40px | — |
 | `.btn-circle-700` | height: 56px; width: 56px | — |
 | `.btn-circle-black` | *contextual — styled via a parent* | --black-1000, --white-1000, --white-300 |
@@ -1461,7 +1461,7 @@ Notes
 |---|---|---|
 | `.is-disabled` | *contextual — styled via a parent* *(also styled in input-components.css, tag-chip-components.css)* | — |
 | `.is-selected` | *contextual — styled via a parent* | --neutral-1000, --inverted-1000, --inverted-700 |
-| `.selector` | padding: var(--spacing-200); border-radius: var(--border-radius-200); box-sizing: border-box | --border-radius-200, --spacing-200, --neutral-1000, --inverted-1000, … |
+| `.selector` | padding: var(--spacing-200); border-radius: var(--border-radius-200); width: 100%; display: block; box-sizing: border-box | --border-radius-200, --spacing-200, --neutral-1000, --inverted-1000, … |
 
 ### SPLIT ROW LOGO
 

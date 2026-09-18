@@ -219,13 +219,17 @@ Before writing any CSS, walk this list. Stop at the first match.
     looks wrong, and one band of a card divided by hairlines, which takes
     `.surface-section` — scaling it would detach it from the card it is part of.
 
-    **Put the pair on a `<button>` or an `<a>` wherever the element can be
-    one.** A `<div>` with a surface is not focusable, not announced, and not
-    operable by keyboard, so the documented way to make something tappable
-    currently produces something a keyboard user cannot reach. The system does
-    not yet have a designed focus treatment for the surface ladder — that is
-    `docs/roadmap.md § gap 0`, the largest thing wrong with it — so until it
-    does, choosing the right element is the whole of the mitigation.
+    **The pair goes on a `<button>` or an `<a>`.** A `<div>` with a surface is
+    not focusable, not announced and not operable by keyboard, so a tappable
+    `<div>` is a target nobody can reach — and it fails silently, because the
+    page looks correct in every screenshot. Where the element genuinely cannot
+    be either, it carries both a `role` and `tabindex="0"`.
+
+    Every surface in the ladder draws a focus ring on `:focus-visible`, and the
+    component classes set their own `display` and `width`, so a `<button>` lays
+    out identically to the `<div>` it replaces. There is no cost to getting
+    this right. `npm run lint` fails a surface + scale pair on anything a
+    keyboard cannot reach (`unreachable-target`).
 15. None of the above → minimal custom CSS, tokens only
 
 ---

@@ -226,8 +226,8 @@
       </div></div></div><div class="spec-label"><span class="labelRegular10 mono spec-code">.list-row</span><span class="labelRegular10 mono spec-code">.not-tappable</span><span class="labelRegular10 mono spec-code">.disabled</span></div></div>
 
       <div class="spec"><div class="spec-stage is-base is-block"><div class="list-gap-tight">
-        <div class="selector surface-card scale-500"><div class="list-row"><div class="list-row-content"><div class="list-row-text-pair"><span class="labelBold30">Space only</span><span class="labelRegular10 text-secondary">.list-gap-tight — 8px</span></div></div></div></div>
-        <div class="selector surface-card scale-500"><div class="list-row"><div class="list-row-content"><div class="list-row-text-pair"><span class="labelBold30">Space only</span><span class="labelRegular10 text-secondary">each row is its own object</span></div></div></div></div>
+        <button type="button" class="selector surface-card scale-500"><div class="list-row"><div class="list-row-content"><div class="list-row-text-pair"><span class="labelBold30">Space only</span><span class="labelRegular10 text-secondary">.list-gap-tight — 8px</span></div></div></div></button>
+        <button type="button" class="selector surface-card scale-500"><div class="list-row"><div class="list-row-content"><div class="list-row-text-pair"><span class="labelBold30">Space only</span><span class="labelRegular10 text-secondary">each row is its own object</span></div></div></div></button>
       </div></div><div class="spec-label"><span class="labelRegular10 mono spec-code">.list-gap-tight</span><span class="labelRegular10 spec-meta">the other correct container — space separates rows only when each one reads as a separate object, so they sit on the page background with their own surface. Bare rows with a gap and no surface just slam together (<span class="mono">RULES §2</span>).</span></div></div>
 
       <div class="spec"><div class="spec-stage is-base is-block"><div class="card-closed"><div class="list-divided">
@@ -253,23 +253,23 @@
     <p class="sheet-note bodyRegular30">The selector supplies the 16px radius and the padding; the surface class supplies every interactive state. <span class="mono">surface-washNeutral</span> when it sits inside a card, <span class="mono">surface-card</span> when it sits on the page background. <span class="mono">.is-selected</span> inverts and beats both surfaces; <span class="mono">.is-disabled</span> is 25% opacity and takes no scale.</p>
     <div class="sheet-grid sheet-grid-wide">
       <div class="spec"><div class="spec-stage is-block">
-        <div class="selector surface-washNeutral scale-500"><div class="list-row">
+        <button type="button" class="selector surface-washNeutral scale-500"><div class="list-row">
           <div class="list-row-content"><div class="list-row-text-pair"><span class="labelBold30">Section 313 — Row F</span><span class="labelRegular10 text-secondary">Seats 9–14</span></div></div>
           <div class="trailing trailing-gap-sm"><div class="trailing-text-pair"><span class="labelBold20">$148</span><span class="labelRegular10 text-secondary">each</span></div></div>
-        </div></div>
+        </div></button>
       </div><div class="spec-label"><span class="labelRegular10 mono spec-code">.selector .surface-washNeutral .scale-500</span><span class="labelRegular10 spec-meta">inside a card</span></div></div>
 
       <div class="spec"><div class="spec-stage is-base is-block">
-        <div class="selector surface-card scale-500"><div class="list-row">
+        <button type="button" class="selector surface-card scale-500"><div class="list-row">
           <div class="list-row-content"><div class="list-row-text-pair"><span class="labelBold30">Section 101 — Row 2</span><span class="labelRegular10 text-secondary">Seats 5–8</span></div></div>
           <div class="trailing trailing-gap-sm"><div class="trailing-text-pair"><span class="labelBold20">$189</span><span class="labelRegular10 text-secondary">each</span></div></div>
-        </div></div>
+        </div></button>
       </div><div class="spec-label"><span class="labelRegular10 mono spec-code">.selector .surface-card .scale-500</span><span class="labelRegular10 spec-meta">on the page background</span></div></div>
 
       <div class="spec"><div class="spec-stage is-block">
-        <div class="selector surface-washNeutral scale-500 is-selected"><div class="list-row">
+        <button type="button" class="selector surface-washNeutral scale-500 is-selected"><div class="list-row">
           <div class="list-row-content"><div class="list-row-text-pair"><span class="labelBold30">Selected</span><span class="labelRegular10 text-secondary">inverts to --neutral-1000</span></div></div>
-        </div></div>
+        </div></button>
       </div><div class="spec-label"><span class="labelRegular10 mono spec-code">.is-selected</span></div></div>
 
       <div class="spec"><div class="spec-stage is-block">

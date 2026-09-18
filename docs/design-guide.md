@@ -670,8 +670,8 @@ sub-sections inside a `.card-open`.
 | a button | the button | none |
 
 ```html
-<!-- Tile is the tap target -->
-<div class="tile surface-card scale-700">
+<!-- Tile is the tap target: a real button, so a keyboard can reach it (RULES §3 #14) -->
+<button type="button" class="tile surface-card scale-700">
   <img class="card-media" src="{item.image}" alt="{item.imageAlt}">
   <div class="tile-tag">{item.badge}</div>    <!-- optional frosted label, top-left -->
   <div class="tile-info">
@@ -681,9 +681,9 @@ sub-sections inside a `.card-open`.
     </div>
     <span class="labelBold20 text-success">{item.price}</span>   <!-- optional -->
   </div>
-</div>
+</button>
 
-<!-- Button is the CTA: no surface and no scale on the tile -->
+<!-- Button is the CTA: no surface and no scale on the tile, so it stays a <div> -->
 <div class="tile">
   <img class="card-media" src="{item.image}" alt="{item.imageAlt}">
   <div class="tile-info">
@@ -997,7 +997,7 @@ Prices and quantities are fixtures.
 
 ```html
 <div class="card-grid grid-cols-3-desktop grid-cols-2-tablet grid-cols-1-mobile">
-  <div class="tile surface-card scale-700">
+  <button type="button" class="tile surface-card scale-700">
     <img class="card-media" src="{item.image}" alt="{item.imageAlt}">
     <div class="tile-info">
       <div class="card-text-pair">
@@ -1006,7 +1006,7 @@ Prices and quantities are fixtures.
       </div>
       <span class="labelBold20 text-success">{item.price}</span>
     </div>
-  </div>
+  </button>
   <!-- repeat per record from the project's data source -->
 </div>
 ```
@@ -1535,37 +1535,50 @@ radius and padding, and the surface class supplies every interactive state
 | Wash | `surface-washNeutral` | inside a card, on `--bg-surface` — near transparent at rest |
 | Card | `surface-card` | on the page background, `--bg-base` — reads as a card at rest |
 
+A selector is a tap target, so it is a `<button>` — `.selector` sets its own
+`display` and `width`, so it lays out identically either way and a keyboard
+can reach it (`RULES §3 #14`). Use `aria-pressed` to carry the selected state;
+`.is-selected` is the paint, not the semantics.
+
 ```html
 <!-- Wash -->
-<div class="selector surface-washNeutral scale-500">
+<button type="button" class="selector surface-washNeutral scale-500" aria-pressed="false">
   <div class="list-row">
     <div class="list-row-content">
       <div class="list-row-text-pair">
-        <span class="labelBold30">Section 313 — Row F</span>
-        <span class="labelRegular10 text-secondary">Two lines of detail</span>
+        <span class="labelBold30">{option.title}</span>
+        <span class="labelRegular10 text-secondary">{option.detail}</span>
       </div>
     </div>
     <div class="trailing trailing-gap-sm">
       <div class="trailing-text-pair">
-        <span class="labelBold20">$148</span>
+        <span class="labelBold20">{option.price}</span>
         <span class="labelRegular10 text-secondary">each</span>
       </div>
     </div>
   </div>
-</div>
+</button>
 
 <!-- Card -->
-<div class="selector surface-card scale-500"><div class="list-row">…</div></div>
+<button type="button" class="selector surface-card scale-500" aria-pressed="false">
+  <div class="list-row">…</div>
+</button>
 
 <!-- Selected — either variant -->
-<div class="selector surface-washNeutral scale-500 is-selected"><div class="list-row">…</div></div>
+<button type="button" class="selector surface-washNeutral scale-500 is-selected" aria-pressed="true">
+  <div class="list-row">…</div>
+</button>
 
-<!-- Disabled — drop scale-500 -->
-<div class="selector surface-washNeutral is-disabled"><div class="list-row">…</div></div>
+<!-- Disabled — drop scale-500, and use the real attribute, not only the class -->
+<button type="button" class="selector surface-washNeutral is-disabled" disabled>
+  <div class="list-row">…</div>
+</button>
 ```
 
 `is-selected` inverts to `--neutral-1000` with inverted text and beats both
-surfaces; `is-disabled` is 25% opacity with no pointer events.
+surfaces; `is-disabled` is 25% opacity with no pointer events. `is-disabled`
+styles it — `disabled` is what stops it being focused and announces it, so a
+disabled selector carries both.
 
 ---
 

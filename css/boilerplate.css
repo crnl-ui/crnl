@@ -516,11 +516,26 @@ img {
   display: block;
 }
 
+/* The reset has to go far enough that a <button> can carry a design system
+   surface and lay out exactly as the <div> it replaces. That is what makes
+   RULES §3 #14 followable: a tappable card should be a real button, and it
+   will only get written that way if doing so costs nothing.
+
+   padding, text-align and color are the three that bite — a UA button centres
+   its text, insets it, and paints its own colour. The .btn size classes set
+   their own padding, and .btn centres by flexbox, so zeroing them here is
+   invisible to buttons that are buttons. */
 button {
   font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
   cursor: pointer;
   border: none;
   background: none;
+  padding: 0;
+  margin: 0;
+  color: inherit;
+  text-align: inherit;
 }
 
 input,
@@ -608,5 +623,57 @@ textarea::placeholder {
 @media (min-width: 500px) {
   .hide-tablet-desktop {
     display: none !important;
+  }
+}
+
+/* ============================================================
+   REDUCED MOTION
+   ============================================================
+   `prefers-reduced-motion: reduce` is a request from someone for whom motion
+   is a symptom, not a preference — vestibular disorder, migraine, nausea. The
+   system has around a hundred transitions and a `.scale-*` transform on every
+   interactive element, and until this block existed exactly one of them
+   (the input error shake) honoured the request.
+
+   This is deliberately global rather than per-component. A per-component
+   opt-in is a list somebody has to remember to add to, and the one that gets
+   forgotten is the one that makes a person ill.
+
+   What it does NOT do is set `animation: none`. Removing an animation
+   mid-flight can strand an element in its start frame — a spinner that never
+   turns, a sheet stuck off-screen. Collapsing the duration to near-zero
+   instead lets every animation run to its final state instantly, so the UI
+   still arrives where it was going.
+
+   `scroll-behavior: auto` is here too: a smooth-scrolled jump is motion the
+   person did not ask for, and it is not covered by the two properties above.
+   ------------------------------------------------------------ */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    /* crnl-lint-disable-next-line no-important -- a reduced-motion override has to beat every component's own transition, and the inline ones the harness writes; this is the documented exception */
+    animation-duration: 0.01ms !important;
+    /* crnl-lint-disable-next-line no-important -- as above */
+    animation-iteration-count: 1 !important;
+    /* crnl-lint-disable-next-line no-important -- as above */
+    transition-duration: 0.01ms !important;
+    /* crnl-lint-disable-next-line no-important -- as above */
+    scroll-behavior: auto !important;
+  }
+
+  /* The press transform is the one thing worth removing outright rather than
+     speeding up: at 0.01ms it becomes an instant jump in size, which is more
+     jarring than no movement at all. The surface still carries the state. */
+  .scale-300,
+  .scale-500,
+  .scale-700 {
+    transform: none;
+  }
+  .scale-300:hover, .scale-300:active,
+  .scale-500:hover, .scale-500:active,
+  .scale-700:hover, .scale-700:active {
+    transform: none;
   }
 }
