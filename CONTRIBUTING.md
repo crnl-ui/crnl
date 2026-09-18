@@ -40,8 +40,8 @@ saw it.
 
 ## The rules are executable
 
-`RULES.md` is the only file that states a design rule. Fourteen of them are
-checked by `npm run lint`, which reads the same two sources you do — the class
+`RULES.md` is the only file that states a design rule. `node scripts/lint.mjs
+--rules` lists the ones `npm run lint` checks — 18 today — which reads the same two sources you do — the class
 and token surface from `docs/css-api.json`, and the rules themselves — and
 names the section for every finding.
 

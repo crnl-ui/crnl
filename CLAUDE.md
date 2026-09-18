@@ -58,8 +58,8 @@ Themes: `ink` `signal` `moss` `ember` `violet`, plus the base theme that applies
 when `data-theme` is absent. They are worked examples of the contract, not a
 fixed set — `docs/theming.md` is how to add one.
 
-**The React layer is 19% of the system and is not a parity target.** 18
-components, covering 55% of the component layer and none of the utilities.
+**The React layer is 24% of the system and is not a parity target.** 18
+components, covering 63% of the component layer and none of the utilities.
 Everything else is markup plus classes, which is the normal way to use this. Do
 not reach for a React component that does not exist, and do not build one
 because a class lacks a wrapper.
@@ -131,7 +131,7 @@ two sources an author does — the class and token surface from
 `docs/css-api.json`, the rules from `RULES.md` — and every finding names the
 section it broke.
 
-Thirteen rules today, listed in `scripts/lint.mjs`. The ones that catch the most:
+`node scripts/lint.mjs --rules` lists them — 18 today. The ones that catch the most:
 
 - **`unknown-class`** — a class not in `docs/css-api.json`. This is the rule
   that matters most to you: it is the mechanical form of "if it is not in
@@ -154,7 +154,7 @@ node scripts/lint.mjs --strict            # ignore the baseline, see the real de
 ```
 
 **The baseline.** `scripts/lint-baseline.json` records what the repository
-already carries — 186 findings, itemised in `docs/roadmap.md`. The build fails
+already carries — 163 findings, itemised in `docs/roadmap.md`. The build fails
 *above* those counts and is quiet at or below them, so existing debt does not
 block you and nothing you write can add to it. If you deliberately fix
 something, run `node scripts/lint.mjs --update-baseline` and commit the result.
@@ -195,7 +195,7 @@ every class and token — it fails both ways, on a class in the CSS that no shee
 shows and on a class a sheet uses that the CSS does not have.
 
 `npm run check:visual` is the one that *looks*. The others prove a class is
-mentioned; this one proves it still renders. 88 shots: every sheet in light and
+mentioned; this one proves it still renders. 98 shots: every sheet in light and
 dark at all three breakpoints, the app platform where it applies, and the
 colour sheet in all five themes, each diffed against `tests/visual/baseline/`.
 The three widths are not optional coverage — the responsive utilities, the
@@ -294,8 +294,8 @@ in `tools/font-lab/built-fonts/` with a spec in `display-specs.json`,
 
 ### Adding a lint rule
 
-Most of `RULES.md` is still prose — twelve rules are checked, roughly thirty are
-written. `docs/roadmap.md § gap 1` lists which are tractable and which are not.
+Most of `RULES.md` is still prose — `node scripts/lint.mjs --rules` says how many
+are checked, against roughly thirty written. `docs/roadmap.md § gap 1` lists which are tractable and which are not.
 A new rule goes in `scripts/lint.mjs` beside its siblings, cites its section in
 the `rules` array, and ships with its baseline recorded in the same commit.
 

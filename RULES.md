@@ -14,8 +14,8 @@ Three things in this system are normative, and they do different jobs:
 This file is the prose layer, and the **only** place a prose rule is written —
 every other document cites a section here (`RULES §3`) instead of restating it.
 But the CSS is a rule too: the class surface is the boundary of what you may
-use. And thirteen of the rules below are executable, which is the only form a
-rule reliably survives in.
+use. And eighteen checks below are executable (`node scripts/lint.mjs --rules`),
+which is the only form a rule reliably survives in.
 
 **Where this file and the CSS disagree, the CSS wins** — it is what ships.
 Report the discrepancy; don't code around it.

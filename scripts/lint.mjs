@@ -660,9 +660,26 @@ function defaultTargets() {
 
 const argv = process.argv.slice(2)
 const asJson = argv.includes('--json')
+const listRules = argv.includes('--rules')
 const strict = argv.includes('--strict')
 const updateBaseline = argv.includes('--update-baseline')
 const paths = argv.filter((a) => !a.startsWith('--'))
+
+/* `--rules` prints what this file actually checks, derived from this file.
+   The count had been hand-copied into five documents and had drifted in all
+   of them — twelve in one, thirteen in another, fourteen in a third, against
+   an actual eighteen. A number worth stating is a number worth deriving. */
+if (listRules) {
+  const src = readFileSync(fileURLToPath(import.meta.url), 'utf8')
+  const ids = new Set()
+  for (const m of src.matchAll(/report\([^,]+,\s*'([a-z-]+)'/g)) ids.add(m[1])
+  for (const m of src.matchAll(/'(no-hardcoded-shadow-colour)'/g)) ids.add(m[1])
+  const sorted = [...ids].sort()
+  console.log(`lint — ${sorted.length} check(s), each citing the RULES.md section it enforces:\n`)
+  for (const r of sorted) console.log(`  ${r}`)
+  console.log('')
+  process.exit(0)
+}
 
 SURFACE = loadSurface()
 const surface = SURFACE

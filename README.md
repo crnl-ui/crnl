@@ -161,14 +161,14 @@ npm run build:ui-fonts   # re-cut Inter and the icon font from upstream
 
 | Command | Asserts |
 |---|---|
-| `lint` | every rule in `RULES.md` that can be checked statically — twelve of them |
+| `lint` | every rule in `RULES.md` that can be checked statically — 18 checks; `node scripts/lint.mjs --rules` lists them |
 | `check:themes` | every `[data-theme]` supplies the whole token contract in both modes, and clears 4.5:1 on three pairs: the primary button, the transactional button, and the accent on base. Not the other seven button types — see `check:a11y` and `docs/roadmap.md § gap 8` |
 | `check:assets` | every shipped SVG parses — a malformed one still serves, reports `complete`, and paints nothing |
 | `check:icons` | every icon name in the markup is in the subset the font ships; one that is not renders as its own letters |
 | `check:exports` | every path in `package.json`'s `exports` and `files` resolves |
 | `check:demo` | the sheets still cover every class and token — fails on a class the CSS has and no sheet shows, *and* on a class a sheet uses that the CSS does not have |
 | `check:a11y` | axe-core, WCAG 2 A and AA, over every sheet in both modes and the colour sheet in all five themes. Needs a browser, but runs in CI — its results are rule ids, not pixels |
-| `check:visual` | every sheet still renders as it did — light and dark, at all three breakpoints, in both platforms, plus the colour sheet in all five themes. 88 shots |
+| `check:visual` | every sheet still renders as it did — light and dark, at all three breakpoints, in both platforms, plus the colour sheet in all five themes, and a right-to-left pass. 98 shots |
 
 `check:visual` is the one that *looks*. The others prove a class is mentioned;
 this one proves it still renders. It needs a browser

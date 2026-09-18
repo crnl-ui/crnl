@@ -64,7 +64,7 @@ consequences:
 a command. Every rule that matters must therefore be executable, not written.
 Before this pass, zero of the rules in `RULES.md` were checked by anything —
 the file said "the linter checks all of them" and named a `surface-on-surface`
-rule that did not exist. `npm run lint` now exists and checks twelve of them.
+rule that did not exist. `npm run lint` now exists and runs 18 checks.
 See gap 1 for the rest.
 
 **The output is judged by someone who cannot read CSS.** They see a screen. So
@@ -144,15 +144,15 @@ includes the non-AIs who do not use a mouse.
 
 ### 1. Most of RULES.md is still prose — partly closed
 
-`npm run lint` checks thirteen rules, across CSS, markup, JSX **and the fenced
+`npm run lint` runs 18 checks, across CSS, markup, JSX **and the fenced
 `html` examples in the guides** — a doc that teaches a class the CSS does not
 have is worse than one that says nothing, because it is wrong with authority
 and it is the first thing an agent reads. That pass found `.tile-visual`, a
 wrapper the tile section had taught for as long as it existed and that never
 shipped.
 
-**`check:visual` now captures three widths and both platforms** — 88 shots,
-up from 32. This was the hole that mattered most: the responsive spacing and
+**`check:visual` now captures three widths, both platforms and a
+right-to-left pass** — 98 shots, up from 32. This was the hole that mattered most: the responsive spacing and
 grid utilities, every `-r` type pair and most of `platform-tokens.css` only
 apply below 1100px, so a regression in any of them was invisible. It is also
 what made the `!important` cleanup in gap 2 verifiable rather than hopeful.
@@ -230,7 +230,7 @@ rather than by reasoning:
   `!important` gone, and the pattern to copy for the rest.
 
 **The `!important` count fell out of it: 118 → 6.** Once gap 1's
-three-breakpoint and app-mode capture existed (88 shots instead of 32), this
+three-breakpoint and app-mode capture existed (98 shots instead of 32), this
 became measurable rather than guesswork. Removed in stages, each verified
 against the full shot set:
 
@@ -277,14 +277,18 @@ Done now rather than later because nothing is published: every call site was
 a type error, the compiler listed them, and the fix was mechanical. After
 publishing it would be a breaking change to somebody else's code.
 
-### 4. The React layer is 19% of the system, and that is fine — but undeclared
+### 4. The React layer is 24% of the system, and that is fine — ✅ declared
 
 ```
 npm run build:inventory
-# 142 of 737 classes reachable through React (19%)
+# 176 of 737 classes reachable through React (24%)
 ```
 
-By layer: components 55%, primitives 5%, patterns 0%, tables 0%, footer 0%.
+By layer: components 63%, primitives 5%, patterns 0%, tables 0%, footer 0%.
+(The number rose without a component being added: removing the prop-rename
+tables in gap 3 meant a class is now built from its prop, and the inventory
+scanner learned to resolve that — it had been crediting those components with
+nothing.)
 
 That is a reasonable shape for a CSS-first system. The problem is that nothing
 said so, so "plus a typed React component library" in the README implied parity
