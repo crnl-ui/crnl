@@ -16,7 +16,7 @@
    rule it broke, so the fix is always one lookup away.
 
    Usage
-     node scripts/lint.mjs                 # the repo's own CSS, markup and JSX
+     node scripts/lint.mjs                 # the repo's own CSS, markup, JSX and docs
      node scripts/lint.mjs path/to/page.html [more…]
      node scripts/lint.mjs --json          # machine-readable, for an agent
      node scripts/lint.mjs --strict        # warnings become errors
@@ -111,6 +111,20 @@ const NOT_PRODUCT_MARKUP = new Set(['sheet.css'])
    time under a filename nobody can fix, and it is gitignored besides. */
 const GENERATED = new Set(['crnl.css', 'fonts.css', 'display-fonts.css'])
 
+/* Markdown whose fenced html blocks are examples people copy. A guide that
+   teaches a class the CSS does not have is worse than one that says nothing:
+   it is wrong with authority, and it is the first thing an agent reads. The
+   generated reference is excluded — it quotes the CSS rather than teaching
+   from it, so a finding there would be a finding about the CSS. */
+const LINTED_DOCS = [
+  'docs/design-guide.md',
+  'docs/theming.md',
+  'README.md',
+  'CLAUDE.md',
+  'RULES.md',
+  'demo/README.md',
+]
+
 /* Component stylesheets set their control's own type rather than composing a
    text class. That is a real inconsistency — the type scale exists so there is
    one place a size is decided — but it is the shape the system shipped in, so
@@ -197,6 +211,22 @@ const findings = []
 
 function report(severity, rule, file, line, message, rules) {
   findings.push({ severity, rule, file: relative(ROOT, file), line, message, rules })
+}
+
+/**
+ * The fenced html blocks of a markdown file, with every other line blanked so
+ * a reported line number still points at the real line in the real file.
+ */
+function htmlFromMarkdown(src) {
+  const lines = src.split('\n')
+  let inBlock = false
+  return lines
+    .map((line) => {
+      if (/^\s*```html\s*$/.test(line)) { inBlock = true; return '' }
+      if (inBlock && /^\s*```/.test(line)) { inBlock = false; return '' }
+      return inBlock ? line : ''
+    })
+    .join('\n')
 }
 
 /** Line number of a character offset. */
@@ -408,7 +438,9 @@ function lintMarkup(file, src, surface, extra) {
     const surfaceClass = names.find((n) => TAPPABLE_NEEDS_SCALE.test(n))
     const hasScale = names.some((n) => /^scale-(300|500|700)$/.test(n))
     const isRowOrSection = names.includes('list-row') || names.includes('surface-section')
-    if (surfaceClass && !hasScale && !isRowOrSection &&
+    /* A disabled control does not respond to press, so it takes no scale. */
+    const isDisabled = names.includes('is-disabled') || names.includes('disabled')
+    if (surfaceClass && !hasScale && !isRowOrSection && !isDisabled &&
         !names.includes('btn') && !names.includes('btn-circle') &&
         !escaped(escapes, line, 'surface-needs-scale')) {
       report('warning', 'surface-needs-scale', file, line,
@@ -545,6 +577,7 @@ function defaultTargets() {
     ...walk(join(ROOT, 'css')),
     ...walk(join(ROOT, 'demo')),
     ...walk(join(ROOT, 'src')),
+    ...LINTED_DOCS.map((d) => join(ROOT, d)).filter((p) => existsSync(p)),
   ]
 }
 
@@ -561,7 +594,7 @@ const paths = argv.filter((a) => !a.startsWith('--'))
 SURFACE = loadSurface()
 const surface = SURFACE
 const targets = (paths.length ? paths.map((p) => join(ROOT, p)) : defaultTargets())
-  .filter((p) => /\.(css|html|jsx|tsx)$/.test(p))
+  .filter((p) => /\.(css|html|jsx|tsx|md)$/.test(p))
   .filter((p) => !GENERATED.has(basename(p)))
 
 /* A page's own stylesheet declares its scaffolding. Anything it defines is
@@ -576,6 +609,10 @@ for (const file of targets) {
   if (extname(file) === '.css') {
     if (NOT_PRODUCT_MARKUP.has(basename(file))) continue
     lintCss(file, src)
+  } else if (extname(file) === '.md') {
+    /* Only the html examples, and only the rules that read markup. The prose
+       around them is prose. */
+    lintMarkup(file, htmlFromMarkdown(src), surface, scaffolding)
   } else {
     lintMarkup(file, src, surface, scaffolding)
   }
