@@ -14,7 +14,7 @@ Three things in this system are normative, and they do different jobs:
 This file is the prose layer, and the **only** place a prose rule is written —
 every other document cites a section here (`RULES §3`) instead of restating it.
 But the CSS is a rule too: the class surface is the boundary of what you may
-use. And twelve of the rules below are executable, which is the only form a
+use. And thirteen of the rules below are executable, which is the only form a
 rule reliably survives in.
 
 **Where this file and the CSS disagree, the CSS wins** — it is what ships.
@@ -190,8 +190,12 @@ re-cuts the font.
   Known offenders — no exception, the system already serves the need:
   - a partial or accent border down one side of a card, callout or quote
 
-- **Never use `!important`.** If you need it, you are fighting an inline style —
-  remove the inline style instead.
+- **Never use `!important`.** The system ships in cascade layers, so anything
+  you write outside them already beats all of it — a rule in a later layer
+  wins whatever the specificity. That leaves exactly one thing `!important`
+  can still beat: an inline style. If that is not what you are fighting,
+  remove it; and if it is, remove the inline style instead where you can.
+  Six remain in the whole system, each with a written reason.
 
 ---
 

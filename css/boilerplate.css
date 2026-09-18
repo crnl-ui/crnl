@@ -484,47 +484,47 @@
 /* Mobile-only (0-499px) */
 @media (max-width: 499px) {
   .hide-mobile {
-    display: none !important;
+    display: none;
   }
   
   .show-mobile {
-    display: block !important;
+    display: block;
   }
 }
 
 /* Tablet-only (500-1099px) */
 @media (min-width: 500px) and (max-width: 1099px) {
   .hide-tablet {
-    display: none !important;
+    display: none;
   }
   
   .show-tablet {
-    display: block !important;
+    display: block;
   }
 }
 
 /* Desktop (1100px+) */
 @media (min-width: 1100px) {
   .hide-desktop {
-    display: none !important;
+    display: none;
   }
   
   .show-desktop {
-    display: block !important;
+    display: block;
   }
 }
 
 /* Mobile & Tablet (0-1099px) */
 @media (max-width: 1099px) {
   .hide-mobile-tablet {
-    display: none !important;
+    display: none;
   }
 }
 
 /* Tablet & Desktop (500px+) */
 @media (min-width: 500px) {
   .hide-tablet-desktop {
-    display: none !important;
+    display: none;
   }
 }
 
@@ -577,4 +577,183 @@
   .scale-300:hover, .scale-300:active, .scale-500:hover, .scale-500:active, .scale-700:hover, .scale-700:active {
     transform: none;
   }
+}
+
+
+/* ============================================================
+   TEXT COLOUR UTILITIES
+   ============================================================
+   Apply to any text style to override its colour.
+
+   These live here, in the utilities layer, rather than beside the type scale
+   in text-styles-system.css — and that is the whole reason they no longer
+   carry !important. A utility has to beat the component it is applied inside,
+   and the utilities layer comes after the component layer, so it does. Next
+   to the type scale they were in the primitives layer, *before* components,
+   and needed !important on all 32 of them to win.
+
+   That !important then became actively wrong when the system took cascade
+   layers, because important declarations reverse layer order: .text-secondary
+   in primitives started beating a component's own !important override of it,
+   and a selected row went dark-on-dark. See docs/roadmap.md § gap 2.
+
+   .text-primary and .text-secondary read the semantic token rather than the
+   raw scale, so a context that needs a different secondary — an inverted
+   surface, a scrim — redefines --text-secondary in scope and everything
+   inside follows. Set the token, don't re-declare the class.
+   ============================================================ */
+
+.text-primary {
+  color: var(--neutral-1000);
+}
+
+/* Through the semantic token rather than the raw scale, so a context that
+   needs a different secondary — an inverted surface, a scrim — redefines
+   --text-secondary in scope and every .text-secondary inside it follows. A
+   component that instead re-declares `.text-secondary` has to match this
+   !important to win, and under cascade layers matching it is not enough:
+   important declarations reverse layer order, so the earlier layer wins and
+   the component loses. Set the token, not the class. */
+.text-secondary {
+  color: var(--text-secondary);
+}
+
+.text-disabled {
+  color: var(--neutral-300);
+}
+
+.text-placeholder {
+  color: var(--neutral-500);
+}
+
+.text-brand-core {
+  color: var(--brand-core);
+}
+
+.text-brand-light {
+  color: var(--brand-light);
+}
+
+.text-brand-interactive {
+  color: var(--color-interactive);
+}
+
+.text-brand-inverted {
+  color: var(--color-inverted);
+}
+
+.text-interactive-tertiary {
+  color: var(--interactive-tertiary-text);
+}
+
+.text-inverted {
+  color: var(--inverted-1000);
+}
+
+/* Status colors */
+.text-success {
+  color: var(--status-success);
+}
+
+.text-warning {
+  color: var(--status-warning);
+}
+
+.text-error {
+  color: var(--status-error);
+}
+
+.text-info {
+  color: var(--status-info);
+}
+
+
+/* ============================================================
+   TEXT UTILITIES — alignment, decoration, truncation
+   ============================================================
+   Moved here from text-styles-system.css with the colour utilities above, and
+   for the same reason: a utility has to beat the component it is applied
+   inside, and the utilities layer comes after the component layer. Beside the
+   type scale they were in the primitives layer, before components, and needed
+   !important to win.
+
+   The text-transform utilities are not here and are not coming back. They were
+   removed on 2026-09-10 — see the note at that point in text-styles-system.css
+   and RULES §2: case belongs to the copy and to the theme's display face.
+   ============================================================ */
+
+.text-left {
+  text-align: left;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.text-justify {
+  text-align: justify;
+}
+
+/* ============================================================
+   TEXT TRANSFORM UTILITIES — REMOVED 2026-09-10
+   ============================================================
+   .text-uppercase, .text-lowercase, .text-capitalize and .text-normal-case
+   used to live here. They are gone, and they should not come back.
+
+   Case is not a styling decision in this system. It belongs to the copy and
+   to the theme's display font, which bakes it in — that is why every text
+   class above sets `text-transform: none` explicitly. Four utilities with
+   `!important` were the only thing in the sheet able to override that, and
+   they overrode it for every theme at once: `text-transform: uppercase` shouts
+   in a theme whose display face does not render caps. It is the same mistake
+   as typing "BUY" instead of "Buy", one layer down (RULES §2, §5).
+
+   Need caps in one theme? That is the font's job — pick one of the `Caps`
+   faces in fonts/, which remap lowercase to the uppercase glyphs so kerning
+   stays correct. Need them for one string? Write the string that way, and
+   accept that it reads as caps in every theme.
+   ============================================================ */
+
+/* ============================================================
+   TEXT DECORATION UTILITIES
+   ============================================================ */
+
+.text-underline {
+  text-decoration: underline;
+}
+
+.text-line-through {
+  text-decoration: line-through;
+}
+
+.text-no-underline {
+  text-decoration: none;
+}
+
+/* ============================================================
+   TRUNCATION UTILITIES
+   ============================================================ */
+
+.text-truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.text-truncate-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.text-truncate-3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }

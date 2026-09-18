@@ -2667,202 +2667,6 @@
           "alsoStyledIn": []
         },
         {
-          "name": "text-primary",
-          "section": "COLOR MODIFIERS",
-          "declares": "color: var(--neutral-1000) !important",
-          "tokens": [
-            "--neutral-1000"
-          ],
-          "alsoStyledIn": []
-        },
-        {
-          "name": "text-secondary",
-          "section": "COLOR MODIFIERS",
-          "declares": "color: var(--text-secondary) !important",
-          "tokens": [
-            "--text-secondary"
-          ],
-          "alsoStyledIn": []
-        },
-        {
-          "name": "text-disabled",
-          "section": "COLOR MODIFIERS",
-          "declares": "color: var(--neutral-300) !important",
-          "tokens": [
-            "--neutral-300"
-          ],
-          "alsoStyledIn": []
-        },
-        {
-          "name": "text-placeholder",
-          "section": "COLOR MODIFIERS",
-          "declares": "color: var(--neutral-500) !important",
-          "tokens": [
-            "--neutral-500"
-          ],
-          "alsoStyledIn": []
-        },
-        {
-          "name": "text-brand-core",
-          "section": "COLOR MODIFIERS",
-          "declares": "color: var(--brand-core) !important",
-          "tokens": [
-            "--brand-core"
-          ],
-          "alsoStyledIn": []
-        },
-        {
-          "name": "text-brand-light",
-          "section": "COLOR MODIFIERS",
-          "declares": "color: var(--brand-light) !important",
-          "tokens": [
-            "--brand-light"
-          ],
-          "alsoStyledIn": []
-        },
-        {
-          "name": "text-brand-interactive",
-          "section": "COLOR MODIFIERS",
-          "declares": "color: var(--color-interactive) !important",
-          "tokens": [
-            "--color-interactive"
-          ],
-          "alsoStyledIn": []
-        },
-        {
-          "name": "text-brand-inverted",
-          "section": "COLOR MODIFIERS",
-          "declares": "color: var(--color-inverted) !important",
-          "tokens": [
-            "--color-inverted"
-          ],
-          "alsoStyledIn": []
-        },
-        {
-          "name": "text-interactive-tertiary",
-          "section": "COLOR MODIFIERS",
-          "declares": "color: var(--interactive-tertiary-text) !important",
-          "tokens": [
-            "--interactive-tertiary-text"
-          ],
-          "alsoStyledIn": []
-        },
-        {
-          "name": "text-inverted",
-          "section": "COLOR MODIFIERS",
-          "declares": "color: var(--inverted-1000) !important",
-          "tokens": [
-            "--inverted-1000"
-          ],
-          "alsoStyledIn": []
-        },
-        {
-          "name": "text-success",
-          "section": "COLOR MODIFIERS",
-          "declares": "color: var(--status-success) !important",
-          "tokens": [
-            "--status-success"
-          ],
-          "alsoStyledIn": []
-        },
-        {
-          "name": "text-warning",
-          "section": "COLOR MODIFIERS",
-          "declares": "color: var(--status-warning) !important",
-          "tokens": [
-            "--status-warning"
-          ],
-          "alsoStyledIn": []
-        },
-        {
-          "name": "text-error",
-          "section": "COLOR MODIFIERS",
-          "declares": "color: var(--status-error) !important",
-          "tokens": [
-            "--status-error"
-          ],
-          "alsoStyledIn": []
-        },
-        {
-          "name": "text-info",
-          "section": "COLOR MODIFIERS",
-          "declares": "color: var(--status-info) !important",
-          "tokens": [
-            "--status-info"
-          ],
-          "alsoStyledIn": []
-        },
-        {
-          "name": "text-left",
-          "section": "ALIGNMENT UTILITIES",
-          "declares": "text-align: left !important",
-          "tokens": [],
-          "alsoStyledIn": []
-        },
-        {
-          "name": "text-center",
-          "section": "ALIGNMENT UTILITIES",
-          "declares": "text-align: center !important",
-          "tokens": [],
-          "alsoStyledIn": []
-        },
-        {
-          "name": "text-right",
-          "section": "ALIGNMENT UTILITIES",
-          "declares": "text-align: right !important",
-          "tokens": [],
-          "alsoStyledIn": []
-        },
-        {
-          "name": "text-justify",
-          "section": "ALIGNMENT UTILITIES",
-          "declares": "text-align: justify !important",
-          "tokens": [],
-          "alsoStyledIn": []
-        },
-        {
-          "name": "text-underline",
-          "section": "TEXT DECORATION UTILITIES",
-          "declares": "text-decoration: underline !important",
-          "tokens": [],
-          "alsoStyledIn": []
-        },
-        {
-          "name": "text-line-through",
-          "section": "TEXT DECORATION UTILITIES",
-          "declares": "text-decoration: line-through !important",
-          "tokens": [],
-          "alsoStyledIn": []
-        },
-        {
-          "name": "text-no-underline",
-          "section": "TEXT DECORATION UTILITIES",
-          "declares": "text-decoration: none !important",
-          "tokens": [],
-          "alsoStyledIn": []
-        },
-        {
-          "name": "text-truncate",
-          "section": "TRUNCATION UTILITIES",
-          "declares": "overflow: hidden !important; text-overflow: ellipsis !important; white-space: nowrap !important",
-          "tokens": [],
-          "alsoStyledIn": []
-        },
-        {
-          "name": "text-truncate-2",
-          "section": "TRUNCATION UTILITIES",
-          "declares": "display: -webkit-box !important; -webkit-line-clamp: 2 !important; -webkit-box-orient: vertical !important; overflow: hidden !important",
-          "tokens": [],
-          "alsoStyledIn": []
-        },
-        {
-          "name": "text-truncate-3",
-          "section": "TRUNCATION UTILITIES",
-          "declares": "display: -webkit-box !important; -webkit-line-clamp: 3 !important; -webkit-box-orient: vertical !important; overflow: hidden !important",
-          "tokens": [],
-          "alsoStyledIn": []
-        },
-        {
           "name": "title50-r",
           "section": "RESPONSIVE TEXT",
           "declares": "font-size: 20px; font-weight: 700; line-height: 1.21; letter-spacing: -0.03em; color: var(--text-primary); +1 more",
@@ -5211,7 +5015,7 @@
         {
           "name": "ios-nav-btn-brand",
           "section": "iOS GLASS CIRCLE BUTTON",
-          "declares": "color: var(--interactive-primary-text); background: var(--interactive-primary) !important; backdrop-filter: none !important; -webkit-backdrop-filter: none !important; box-shadow: inset 0.5px 1px 3px rgba(255, 255, 255, 0.25), inset -0.5px -1px 2px rgba(0, 0, 0, 0.2), 0px 2px 40px rgba(0, 0, 0, 0.2); +1 more",
+          "declares": "color: var(--interactive-primary-text); background: var(--interactive-primary); backdrop-filter: none; -webkit-backdrop-filter: none; box-shadow: inset 0.5px 1px 3px rgba(255, 255, 255, 0.25), inset -0.5px -1px 2px rgba(0, 0, 0, 0.2), 0px 2px 40px rgba(0, 0, 0, 0.2); +1 more",
           "tokens": [
             "--interactive-primary",
             "--interactive-primary-text"
@@ -8610,6 +8414,202 @@
           "name": "hide-tablet-desktop",
           "section": "RESPONSIVE UTILITIES",
           "declares": null,
+          "tokens": [],
+          "alsoStyledIn": []
+        },
+        {
+          "name": "text-primary",
+          "section": "TEXT COLOUR UTILITIES",
+          "declares": "color: var(--neutral-1000)",
+          "tokens": [
+            "--neutral-1000"
+          ],
+          "alsoStyledIn": []
+        },
+        {
+          "name": "text-secondary",
+          "section": "TEXT COLOUR UTILITIES",
+          "declares": "color: var(--text-secondary)",
+          "tokens": [
+            "--text-secondary"
+          ],
+          "alsoStyledIn": []
+        },
+        {
+          "name": "text-disabled",
+          "section": "TEXT COLOUR UTILITIES",
+          "declares": "color: var(--neutral-300)",
+          "tokens": [
+            "--neutral-300"
+          ],
+          "alsoStyledIn": []
+        },
+        {
+          "name": "text-placeholder",
+          "section": "TEXT COLOUR UTILITIES",
+          "declares": "color: var(--neutral-500)",
+          "tokens": [
+            "--neutral-500"
+          ],
+          "alsoStyledIn": []
+        },
+        {
+          "name": "text-brand-core",
+          "section": "TEXT COLOUR UTILITIES",
+          "declares": "color: var(--brand-core)",
+          "tokens": [
+            "--brand-core"
+          ],
+          "alsoStyledIn": []
+        },
+        {
+          "name": "text-brand-light",
+          "section": "TEXT COLOUR UTILITIES",
+          "declares": "color: var(--brand-light)",
+          "tokens": [
+            "--brand-light"
+          ],
+          "alsoStyledIn": []
+        },
+        {
+          "name": "text-brand-interactive",
+          "section": "TEXT COLOUR UTILITIES",
+          "declares": "color: var(--color-interactive)",
+          "tokens": [
+            "--color-interactive"
+          ],
+          "alsoStyledIn": []
+        },
+        {
+          "name": "text-brand-inverted",
+          "section": "TEXT COLOUR UTILITIES",
+          "declares": "color: var(--color-inverted)",
+          "tokens": [
+            "--color-inverted"
+          ],
+          "alsoStyledIn": []
+        },
+        {
+          "name": "text-interactive-tertiary",
+          "section": "TEXT COLOUR UTILITIES",
+          "declares": "color: var(--interactive-tertiary-text)",
+          "tokens": [
+            "--interactive-tertiary-text"
+          ],
+          "alsoStyledIn": []
+        },
+        {
+          "name": "text-inverted",
+          "section": "TEXT COLOUR UTILITIES",
+          "declares": "color: var(--inverted-1000)",
+          "tokens": [
+            "--inverted-1000"
+          ],
+          "alsoStyledIn": []
+        },
+        {
+          "name": "text-success",
+          "section": "TEXT COLOUR UTILITIES",
+          "declares": "color: var(--status-success)",
+          "tokens": [
+            "--status-success"
+          ],
+          "alsoStyledIn": []
+        },
+        {
+          "name": "text-warning",
+          "section": "TEXT COLOUR UTILITIES",
+          "declares": "color: var(--status-warning)",
+          "tokens": [
+            "--status-warning"
+          ],
+          "alsoStyledIn": []
+        },
+        {
+          "name": "text-error",
+          "section": "TEXT COLOUR UTILITIES",
+          "declares": "color: var(--status-error)",
+          "tokens": [
+            "--status-error"
+          ],
+          "alsoStyledIn": []
+        },
+        {
+          "name": "text-info",
+          "section": "TEXT COLOUR UTILITIES",
+          "declares": "color: var(--status-info)",
+          "tokens": [
+            "--status-info"
+          ],
+          "alsoStyledIn": []
+        },
+        {
+          "name": "text-left",
+          "section": "TEXT UTILITIES — alignment, decoration, truncation",
+          "declares": "text-align: left",
+          "tokens": [],
+          "alsoStyledIn": []
+        },
+        {
+          "name": "text-center",
+          "section": "TEXT UTILITIES — alignment, decoration, truncation",
+          "declares": "text-align: center",
+          "tokens": [],
+          "alsoStyledIn": []
+        },
+        {
+          "name": "text-right",
+          "section": "TEXT UTILITIES — alignment, decoration, truncation",
+          "declares": "text-align: right",
+          "tokens": [],
+          "alsoStyledIn": []
+        },
+        {
+          "name": "text-justify",
+          "section": "TEXT UTILITIES — alignment, decoration, truncation",
+          "declares": "text-align: justify",
+          "tokens": [],
+          "alsoStyledIn": []
+        },
+        {
+          "name": "text-underline",
+          "section": "TEXT DECORATION UTILITIES",
+          "declares": "text-decoration: underline",
+          "tokens": [],
+          "alsoStyledIn": []
+        },
+        {
+          "name": "text-line-through",
+          "section": "TEXT DECORATION UTILITIES",
+          "declares": "text-decoration: line-through",
+          "tokens": [],
+          "alsoStyledIn": []
+        },
+        {
+          "name": "text-no-underline",
+          "section": "TEXT DECORATION UTILITIES",
+          "declares": "text-decoration: none",
+          "tokens": [],
+          "alsoStyledIn": []
+        },
+        {
+          "name": "text-truncate",
+          "section": "TRUNCATION UTILITIES",
+          "declares": "overflow: hidden; text-overflow: ellipsis; white-space: nowrap",
+          "tokens": [],
+          "alsoStyledIn": []
+        },
+        {
+          "name": "text-truncate-2",
+          "section": "TRUNCATION UTILITIES",
+          "declares": "display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden",
+          "tokens": [],
+          "alsoStyledIn": []
+        },
+        {
+          "name": "text-truncate-3",
+          "section": "TRUNCATION UTILITIES",
+          "declares": "display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden",
           "tokens": [],
           "alsoStyledIn": []
         }

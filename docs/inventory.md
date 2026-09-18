@@ -40,7 +40,7 @@ In load order. `crnl-loader.js` owns that order (`RULES §1`).
 | 7 | `ui-fonts.css` | token | — | — | — | The UI and icon faces |
 | 8 | `fonts.css` | token | — | — | — | Every shipped display face |
 | 9 | `display-fonts.css` | token | — | 12 | — | A tuned display ramp per face |
-| 10 | `text-styles-system.css` | primitive | 59 | — | 9/59 | The type scale |
+| 10 | `text-styles-system.css` | primitive | 35 | — | 8/35 | The type scale |
 | 11 | `icons.css` | primitive | 11 | 8 | 11/11 | The icon system |
 | 12 | `card-components.css` | component | 27 | — | 14/27 | Cards, tiles, media bands |
 | 13 | `interactive-tokens.css` | primitive | 16 | — | 15/16 | Surfaces and scales — the press mechanism |
@@ -54,7 +54,7 @@ In load order. `crnl-loader.js` owns that order (`RULES §1`).
 | 21 | `ios-nav-components.css` | component | 33 | 2 | 23/33 | iOS chrome for app mode |
 | 22 | `web-footer-components.css` | component | 15 | — | 0/15 | The site footer |
 | 23 | `product-patterns.css` | pattern | 14 | — | 0/14 | Composite layouts above the component layer |
-| 24 | `boilerplate.css` | primitive | 318 | — | 0/318 | Reset, element defaults, layout utilities |
+| 24 | `boilerplate.css` | primitive | 342 | — | 1/342 | Reset, element defaults, layout utilities |
 | 25 | `platform-tokens.css` | platform | 11 | 3 | 0/11 | The web/app switch and the phone frame |
 | 26 | `crnl-layers.css` | component | — | — | — | The stylesheets, each imported into its cascade layer. Import this from |
 
@@ -75,10 +75,10 @@ else is true of it.
 | `IOSTabBar` | `IOSTabBar` | yes | 6 | `icons`, `ios-nav` |
 | `Icon` | `Icon` | yes | 10 | `icons` |
 | `Input` | `Input` `Select` | yes | 16 | `icons`, `input`, `list-row` |
-| `ListRow` | `ListRow` `TextPair` `TrailingText` `LeadingImage` `LeadingLogo` `CircleContainer` | yes | 17 | `list-row`, `text-styles-system` |
-| `PageHeader` | `PageHeader` | yes | 8 | `card`, `nav`, `text-styles-system` |
+| `ListRow` | `ListRow` `TextPair` `TrailingText` `LeadingImage` `LeadingLogo` `CircleContainer` | yes | 17 | `boilerplate`, `list-row`, `text-styles-system` |
+| `PageHeader` | `PageHeader` | yes | 8 | `boilerplate`, `card`, `nav`, `text-styles-system` |
 | `Selector` | `Selector` | yes | 17 | `interactive-tokens`, `list-row` |
-| `SplitRow` | `SplitRow` `SplitRowList` | yes | 17 | `interactive-tokens`, `list-row`, `text-styles-system` |
+| `SplitRow` | `SplitRow` `SplitRowList` | yes | 17 | `boilerplate`, `interactive-tokens`, `list-row`, `text-styles-system` |
 | `Steps` | `Steps` | yes | 9 | `icons`, `nav` |
 | `Tabs` | `Tabs` | yes | 4 | `nav` |
 | `Tag` | `Tag` `Chip` | yes | 26 | `icons`, `interactive-tokens`, `list-row`, `tag-chip` |

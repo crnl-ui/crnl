@@ -585,9 +585,9 @@
       "file": "text-styles-system.css",
       "layer": "primitive",
       "covers": "The type scale",
-      "classCount": 59,
+      "classCount": 35,
       "tokenCount": 0,
-      "reactCovered": 9,
+      "reactCovered": 8,
       "classes": [
         {
           "name": "display900",
@@ -784,150 +784,6 @@
         {
           "name": "idealRegular40",
           "section": "IDEAL REGULAR TEXT STYLES (theme-independent)",
-          "react": null,
-          "sheet": "02-type.html"
-        },
-        {
-          "name": "text-primary",
-          "section": "COLOR MODIFIERS",
-          "react": null,
-          "sheet": "01-color.html"
-        },
-        {
-          "name": "text-secondary",
-          "section": "COLOR MODIFIERS",
-          "react": "ListRow",
-          "sheet": "01-color.html"
-        },
-        {
-          "name": "text-disabled",
-          "section": "COLOR MODIFIERS",
-          "react": null,
-          "sheet": "01-color.html"
-        },
-        {
-          "name": "text-placeholder",
-          "section": "COLOR MODIFIERS",
-          "react": null,
-          "sheet": "01-color.html"
-        },
-        {
-          "name": "text-brand-core",
-          "section": "COLOR MODIFIERS",
-          "react": null,
-          "sheet": "01-color.html"
-        },
-        {
-          "name": "text-brand-light",
-          "section": "COLOR MODIFIERS",
-          "react": null,
-          "sheet": "01-color.html"
-        },
-        {
-          "name": "text-brand-interactive",
-          "section": "COLOR MODIFIERS",
-          "react": null,
-          "sheet": "01-color.html"
-        },
-        {
-          "name": "text-brand-inverted",
-          "section": "COLOR MODIFIERS",
-          "react": null,
-          "sheet": "01-color.html"
-        },
-        {
-          "name": "text-interactive-tertiary",
-          "section": "COLOR MODIFIERS",
-          "react": null,
-          "sheet": "01-color.html"
-        },
-        {
-          "name": "text-inverted",
-          "section": "COLOR MODIFIERS",
-          "react": null,
-          "sheet": "01-color.html"
-        },
-        {
-          "name": "text-success",
-          "section": "COLOR MODIFIERS",
-          "react": null,
-          "sheet": "01-color.html"
-        },
-        {
-          "name": "text-warning",
-          "section": "COLOR MODIFIERS",
-          "react": null,
-          "sheet": "01-color.html"
-        },
-        {
-          "name": "text-error",
-          "section": "COLOR MODIFIERS",
-          "react": null,
-          "sheet": "01-color.html"
-        },
-        {
-          "name": "text-info",
-          "section": "COLOR MODIFIERS",
-          "react": null,
-          "sheet": "01-color.html"
-        },
-        {
-          "name": "text-left",
-          "section": "ALIGNMENT UTILITIES",
-          "react": null,
-          "sheet": "02-type.html"
-        },
-        {
-          "name": "text-center",
-          "section": "ALIGNMENT UTILITIES",
-          "react": null,
-          "sheet": "02-type.html"
-        },
-        {
-          "name": "text-right",
-          "section": "ALIGNMENT UTILITIES",
-          "react": null,
-          "sheet": "02-type.html"
-        },
-        {
-          "name": "text-justify",
-          "section": "ALIGNMENT UTILITIES",
-          "react": null,
-          "sheet": "02-type.html"
-        },
-        {
-          "name": "text-underline",
-          "section": "TEXT DECORATION UTILITIES",
-          "react": null,
-          "sheet": "02-type.html"
-        },
-        {
-          "name": "text-line-through",
-          "section": "TEXT DECORATION UTILITIES",
-          "react": null,
-          "sheet": "02-type.html"
-        },
-        {
-          "name": "text-no-underline",
-          "section": "TEXT DECORATION UTILITIES",
-          "react": null,
-          "sheet": "02-type.html"
-        },
-        {
-          "name": "text-truncate",
-          "section": "TRUNCATION UTILITIES",
-          "react": null,
-          "sheet": "02-type.html"
-        },
-        {
-          "name": "text-truncate-2",
-          "section": "TRUNCATION UTILITIES",
-          "react": null,
-          "sheet": "02-type.html"
-        },
-        {
-          "name": "text-truncate-3",
-          "section": "TRUNCATION UTILITIES",
           "react": null,
           "sheet": "02-type.html"
         },
@@ -2687,9 +2543,9 @@
       "file": "boilerplate.css",
       "layer": "primitive",
       "covers": "Reset, element defaults, layout utilities",
-      "classCount": 318,
+      "classCount": 342,
       "tokenCount": 0,
-      "reactCovered": 0,
+      "reactCovered": 1,
       "classes": [
         {
           "name": "flex-center",
@@ -4598,6 +4454,150 @@
           "section": "RESPONSIVE UTILITIES",
           "react": null,
           "sheet": "03-space.html"
+        },
+        {
+          "name": "text-primary",
+          "section": "TEXT COLOUR UTILITIES",
+          "react": null,
+          "sheet": "01-color.html"
+        },
+        {
+          "name": "text-secondary",
+          "section": "TEXT COLOUR UTILITIES",
+          "react": "ListRow",
+          "sheet": "01-color.html"
+        },
+        {
+          "name": "text-disabled",
+          "section": "TEXT COLOUR UTILITIES",
+          "react": null,
+          "sheet": "01-color.html"
+        },
+        {
+          "name": "text-placeholder",
+          "section": "TEXT COLOUR UTILITIES",
+          "react": null,
+          "sheet": "01-color.html"
+        },
+        {
+          "name": "text-brand-core",
+          "section": "TEXT COLOUR UTILITIES",
+          "react": null,
+          "sheet": "01-color.html"
+        },
+        {
+          "name": "text-brand-light",
+          "section": "TEXT COLOUR UTILITIES",
+          "react": null,
+          "sheet": "01-color.html"
+        },
+        {
+          "name": "text-brand-interactive",
+          "section": "TEXT COLOUR UTILITIES",
+          "react": null,
+          "sheet": "01-color.html"
+        },
+        {
+          "name": "text-brand-inverted",
+          "section": "TEXT COLOUR UTILITIES",
+          "react": null,
+          "sheet": "01-color.html"
+        },
+        {
+          "name": "text-interactive-tertiary",
+          "section": "TEXT COLOUR UTILITIES",
+          "react": null,
+          "sheet": "01-color.html"
+        },
+        {
+          "name": "text-inverted",
+          "section": "TEXT COLOUR UTILITIES",
+          "react": null,
+          "sheet": "01-color.html"
+        },
+        {
+          "name": "text-success",
+          "section": "TEXT COLOUR UTILITIES",
+          "react": null,
+          "sheet": "01-color.html"
+        },
+        {
+          "name": "text-warning",
+          "section": "TEXT COLOUR UTILITIES",
+          "react": null,
+          "sheet": "01-color.html"
+        },
+        {
+          "name": "text-error",
+          "section": "TEXT COLOUR UTILITIES",
+          "react": null,
+          "sheet": "01-color.html"
+        },
+        {
+          "name": "text-info",
+          "section": "TEXT COLOUR UTILITIES",
+          "react": null,
+          "sheet": "01-color.html"
+        },
+        {
+          "name": "text-left",
+          "section": "TEXT UTILITIES — alignment, decoration, truncation",
+          "react": null,
+          "sheet": "02-type.html"
+        },
+        {
+          "name": "text-center",
+          "section": "TEXT UTILITIES — alignment, decoration, truncation",
+          "react": null,
+          "sheet": "02-type.html"
+        },
+        {
+          "name": "text-right",
+          "section": "TEXT UTILITIES — alignment, decoration, truncation",
+          "react": null,
+          "sheet": "02-type.html"
+        },
+        {
+          "name": "text-justify",
+          "section": "TEXT UTILITIES — alignment, decoration, truncation",
+          "react": null,
+          "sheet": "02-type.html"
+        },
+        {
+          "name": "text-underline",
+          "section": "TEXT DECORATION UTILITIES",
+          "react": null,
+          "sheet": "02-type.html"
+        },
+        {
+          "name": "text-line-through",
+          "section": "TEXT DECORATION UTILITIES",
+          "react": null,
+          "sheet": "02-type.html"
+        },
+        {
+          "name": "text-no-underline",
+          "section": "TEXT DECORATION UTILITIES",
+          "react": null,
+          "sheet": "02-type.html"
+        },
+        {
+          "name": "text-truncate",
+          "section": "TRUNCATION UTILITIES",
+          "react": null,
+          "sheet": "02-type.html"
+        },
+        {
+          "name": "text-truncate-2",
+          "section": "TRUNCATION UTILITIES",
+          "react": null,
+          "sheet": "02-type.html"
+        },
+        {
+          "name": "text-truncate-3",
+          "section": "TRUNCATION UTILITIES",
+          "react": null,
+          "sheet": "02-type.html"
         }
       ]
     },
@@ -4988,6 +4988,7 @@
       ],
       "exported": true,
       "stylesheets": [
+        "boilerplate.css",
         "list-row-components.css",
         "text-styles-system.css"
       ]
@@ -5012,6 +5013,7 @@
       ],
       "exported": true,
       "stylesheets": [
+        "boilerplate.css",
         "card-components.css",
         "nav-components.css",
         "text-styles-system.css"
@@ -5080,6 +5082,7 @@
       ],
       "exported": true,
       "stylesheets": [
+        "boilerplate.css",
         "interactive-tokens.css",
         "list-row-components.css",
         "text-styles-system.css"

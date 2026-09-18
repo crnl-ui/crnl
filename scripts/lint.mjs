@@ -269,22 +269,21 @@ function lintCss(file, src) {
   const escapes = readEscapes(src, file)
   const code = blankComments(src)
 
-  // RULES §2 — never use !important
-  if (!/^(platform-tokens|text-styles-system)\.css$/.test(name)) {
-    for (const m of code.matchAll(/!important/g)) {
-      const line = lineOf(code, m.index)
-      if (escaped(escapes, line, 'no-important')) continue
-      report('error', 'no-important', file, line,
-        '`!important` — the only thing it can beat is an inline style. Remove the inline style instead.',
-        ['RULES §2'])
-    }
-  } else {
-    const count = [...code.matchAll(/!important/g)].length
-    if (count) {
-      report('warning', 'no-important', file, 1,
-        `${count} \`!important\` declaration(s) — recorded debt, resolved by moving this file into a cascade layer. See docs/roadmap.md.`,
-        ['RULES §2'])
-    }
+  /* RULES §2 — never use !important.
+
+     This was a per-file warning for platform-tokens.css and
+     text-styles-system.css, which between them carried 99 of the
+     repository's 118. Cascade layers retired 112 of them: a rule in a later
+     layer beats an earlier one without needing it. The six that remain are
+     all the case the rule actually allows — fighting an inline style, which
+     no layer can reach — and each carries an escape saying so. No file gets
+     a pass any more. */
+  for (const m of code.matchAll(/!important/g)) {
+    const line = lineOf(code, m.index)
+    if (escaped(escapes, line, 'no-important')) continue
+    report('error', 'no-important', file, line,
+      '`!important` — a cascade layer already beats every other stylesheet, so the only thing left for this to beat is an inline style. If that is not what you are fighting, remove it.',
+      ['RULES §2'])
   }
 
   // RULES §2 — never hardcode a colour

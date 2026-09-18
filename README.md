@@ -70,7 +70,9 @@ comes from `npm run check` or `npm run build:inventory`:
 - **It ships in cascade layers**, so your own CSS overrides any of it without
   `!important` and without a specificity fight — unlayered styles beat layered
   ones by rule. `crnl.reset → tokens → primitives → components → patterns →
-  utilities → platform`.
+  utilities → platform`. That took the system's own `!important` count from
+  118 to 6, and the six left are the one case the rule permits: beating an
+  inline style, which no layer can reach.
 - **The React layer is 19% of it**, and deliberately so. 18 components
   exporting 27 symbols, covering 55% of the component layer and none of the
   utilities. Everything else is markup plus classes, which is the normal way to
@@ -165,7 +167,7 @@ npm run build:ui-fonts   # re-cut Inter and the icon font from upstream
 | `check:icons` | every icon name in the markup is in the subset the font ships; one that is not renders as its own letters |
 | `check:exports` | every path in `package.json`'s `exports` and `files` resolves |
 | `check:demo` | the sheets still cover every class and token — fails on a class the CSS has and no sheet shows, *and* on a class a sheet uses that the CSS does not have |
-| `check:visual` | every sheet still renders as it did, in light and dark, and the colour sheet in all five themes |
+| `check:visual` | every sheet still renders as it did — light and dark, at all three breakpoints, in both platforms, plus the colour sheet in all five themes. 88 shots |
 
 `check:visual` is the one that *looks*. The others prove a class is mentioned;
 this one proves it still renders. It needs a browser

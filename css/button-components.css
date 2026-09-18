@@ -111,12 +111,12 @@
 .btn:disabled,
 .btn[disabled] {
   cursor: not-allowed;
-  transform: scale(1) !important;
+  transform: scale(1);
   pointer-events: auto;
 }
 .btn:disabled:hover,
 .btn[disabled]:hover {
-  transform: scale(1) !important;
+  transform: scale(1);
 }
 .btn:disabled:active > *,
 .btn[disabled]:active > * {
@@ -757,7 +757,7 @@
 .btn-circle[disabled] {
   opacity: 0.4;
   cursor: not-allowed;
-  transform: scale(1) !important;
+  transform: scale(1);
 }
 
 

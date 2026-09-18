@@ -130,7 +130,7 @@ two sources an author does — the class and token surface from
 `docs/css-api.json`, the rules from `RULES.md` — and every finding names the
 section it broke.
 
-Twelve rules today, listed in `scripts/lint.mjs`. The ones that catch the most:
+Thirteen rules today, listed in `scripts/lint.mjs`. The ones that catch the most:
 
 - **`unknown-class`** — a class not in `docs/css-api.json`. This is the rule
   that matters most to you: it is the mechanical form of "if it is not in
@@ -185,9 +185,11 @@ every class and token — it fails both ways, on a class in the CSS that no shee
 shows and on a class a sheet uses that the CSS does not have.
 
 `npm run check:visual` is the one that *looks*. The others prove a class is
-mentioned; this one proves it still renders. It captures every sheet in light
-and dark plus the colour sheet in all five themes, and diffs each against
-`tests/visual/baseline/`. It needs a browser (`npx playwright install chromium`
+mentioned; this one proves it still renders. 88 shots: every sheet in light and
+dark at all three breakpoints, the app platform where it applies, and the
+colour sheet in all five themes, each diffed against `tests/visual/baseline/`.
+The three widths are not optional coverage — the responsive utilities, the
+`-r` type pairs and most of `platform-tokens.css` only apply below 1100px. It needs a browser (`npx playwright install chromium`
 once) and takes about a minute, which is why it is not in `npm run check`.
 
 **Baselines are not committed, and the first run creates them.** They are

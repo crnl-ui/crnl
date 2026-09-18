@@ -413,7 +413,7 @@
 
   /* Status bar becomes an 8px spacer on mobile */
   [data-platform="app"] .ios-status-bar {
-    height: 8px !important;
+    height: 8px;
     overflow: hidden;
   }
   [data-platform="app"] .ios-status-bar svg {
@@ -421,98 +421,98 @@
   }
 
   [data-platform="app"] .ios-home-indicator {
-    display: none !important;
+    display: none;
   }
 
   /* Mobile: device controls become a centered popup, hidden by default */
   [data-platform="app"] .app-device-controls {
-    all: unset !important;
-    display: flex !important;
-    position: fixed !important;
-    top: 50% !important;
-    left: 50% !important;
-    transform: translate(-50%, -50%) !important;
-    align-items: center !important;
-    gap: 0 !important;
-    height: 44px !important;
-    border-radius: 22px !important;
-    padding: 0 6px !important;
-    background: rgba(0, 0, 0, 0.9) !important;
-    backdrop-filter: blur(20px) !important;
-    -webkit-backdrop-filter: blur(20px) !important;
-    border: 1px solid var(--white-200) !important;
-    z-index: 999999 !important;
-    font-family: system-ui, -apple-system, sans-serif !important;
-    opacity: 0 !important;
-    pointer-events: none !important;
-    transition: opacity 0.2s ease !important;
+    all: unset;
+    display: flex;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    align-items: center;
+    gap: 0;
+    height: 44px;
+    border-radius: 22px;
+    padding: 0 6px;
+    background: rgba(0, 0, 0, 0.9);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid var(--white-200);
+    z-index: 999999;
+    font-family: system-ui, -apple-system, sans-serif;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease;
   }
   [data-platform="app"] .app-device-controls.is-open {
-    opacity: 1 !important;
-    pointer-events: auto !important;
+    opacity: 1;
+    pointer-events: auto;
   }
 
   /* Mode toggle */
   [data-platform="app"] .app-device-controls .mode-toggle {
-    all: unset !important;
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    padding: 0 12px !important;
-    height: 100% !important;
-    cursor: pointer !important;
-    color: var(--white-300) !important;
+    all: unset;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 12px;
+    height: 100%;
+    cursor: pointer;
+    color: var(--white-300);
   }
   [data-platform="app"] .app-device-controls .mode-toggle .material-symbols-rounded {
-    font-size: 20px !important;
-    color: inherit !important;
+    font-size: 20px;
+    color: inherit;
   }
 
   /* Theme label */
   [data-platform="app"] .app-device-controls label {
-    all: unset !important;
-    display: flex !important;
-    align-items: center !important;
-    gap: 4px !important;
-    padding: 0 12px !important;
-    height: 100% !important;
-    cursor: pointer !important;
-    position: relative !important;
-    overflow: hidden !important;
+    all: unset;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    padding: 0 12px;
+    height: 100%;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
   }
   [data-platform="app"] .app-device-controls label .device-control-label {
-    color: var(--white-300) !important;
-    font-size: 14px !important;
-    font-weight: 600 !important;
-    pointer-events: none !important;
+    color: var(--white-300);
+    font-size: 14px;
+    font-weight: 600;
+    pointer-events: none;
   }
   [data-platform="app"] .app-device-controls label .material-symbols-rounded {
-    font-size: 18px !important;
-    color: var(--white-300) !important;
+    font-size: 18px;
+    color: var(--white-300);
   }
   [data-platform="app"] .app-device-controls label select {
-    position: absolute !important;
-    inset: 0 !important;
-    opacity: 0 !important;
-    cursor: pointer !important;
-    font-size: 16px !important;
-    width: 100% !important;
-    height: 100% !important;
-    pointer-events: none !important;
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    cursor: pointer;
+    font-size: 16px;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
   }
   [data-platform="app"] .app-device-controls.is-open label select {
-    pointer-events: auto !important;
+    pointer-events: auto;
   }
 
   /* Divider */
   [data-platform="app"] .app-device-controls .mode-toggle + label::before {
-    content: '' !important;
-    position: absolute !important;
-    left: 0 !important;
-    top: 25% !important;
-    height: 50% !important;
-    width: 1px !important;
-    background: var(--white-200) !important;
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 25%;
+    height: 50%;
+    width: 1px;
+    background: var(--white-200);
   }
 
   /* ios-scroll / ios-chrome-top / ios-chrome-bottom pattern:
@@ -546,8 +546,24 @@
   }
 
   /* Override JS-set margin (measured for phone frame, wrong on mobile) */
+  /* The only two !important left in this file, and the one case RULES §2
+     allows: they are fighting an inline style, which no cascade layer can
+     reach. A page running the phone frame measures its chrome at runtime and
+     writes the result to this element's style attribute
+     (demo/11-ios-frame.html § measureChrome), because the chrome's height
+     depends on the safe areas and the nav it happens to be showing. Below
+     500px the frame is gone and the measurement is wrong, so it has to be
+     overridden — and an inline style is beaten by nothing else.
+
+     The other 65 !important in this file were removed when the system took
+     cascade layers: platform-tokens.css is the last layer, so it already
+     beats every other stylesheet without them. Verified across 88 shots at
+     three widths in both platforms — these two were the only ones that
+     changed anything. See docs/roadmap.md § gap 2. */
   [data-platform="app"] .ios-scroll-inner {
+    /* crnl-lint-disable-next-line no-important -- beats the runtime chrome measurement written to the style attribute; see above */
     margin-top: 0 !important;
+    /* crnl-lint-disable-next-line no-important -- as above */
     padding-bottom: 0 !important;
   }
 

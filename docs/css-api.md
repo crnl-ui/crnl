@@ -57,7 +57,7 @@ In-repo pages use `<script src="crnl-loader.js"></script>` instead of individual
 | [`ui-fonts.css`](#ui-fontscss) | 0 | The two UI faces, served from this repository rather than a CDN. |
 | [`fonts.css`](#fontscss) | 0 | Every shipped display face, plus the UI face. |
 | [`display-fonts.css`](#display-fontscss) | 0 · 12 tokens | A ready-tuned display ramp for each shipped face. |
-| [`text-styles-system.css`](#text-styles-systemcss) | 59 | The type scale: display, title, label and body text classes, plus colour and text utilities. |
+| [`text-styles-system.css`](#text-styles-systemcss) | 35 | The type scale: display, title, label and body text classes, plus colour and text utilities. |
 | [`icons.css`](#iconscss) | 11 · 8 tokens | The Material Symbols (Rounded) icon system: size tokens, the base icon class and its variants. |
 | [`card-components.css`](#card-componentscss) | 27 | Card layouts and the small blocks that go inside them: closed and open cards, tiles and logo blocks. |
 | [`interactive-tokens.css`](#interactive-tokenscss) | 16 | Surface and scale classes that give any element its hover and pressed states. |
@@ -71,7 +71,7 @@ In-repo pages use `<script src="crnl-loader.js"></script>` instead of individual
 | [`ios-nav-components.css`](#ios-nav-componentscss) | 33 · 2 tokens | iOS navigation chrome for app-mode prototypes: nav bars, tab bar, modal sheet and glass surface. |
 | [`web-footer-components.css`](#web-footer-componentscss) | 15 | The responsive site footer. |
 | [`product-patterns.css`](#product-patternscss) | 14 | Composite layouts that recur across product screens and sit above the component layer. |
-| [`boilerplate.css`](#boilerplatecss) | 318 | The utility layer: spacing, layout, grid and responsive utilities. |
+| [`boilerplate.css`](#boilerplatecss) | 342 | The utility layer: spacing, layout, grid and responsive utilities. |
 | [`platform-tokens.css`](#platform-tokenscss) | 11 · 3 tokens | The web/app platform switch: phone frame, iOS system chrome, safe-area tokens and review chrome. |
 | [`crnl-layers.css`](#crnl-layerscss) | 0 | The stylesheets, each imported into its cascade layer. Import this from |
 
@@ -736,50 +736,6 @@ Fix it on the child with `color: inherit`, not by overriding the text class.
 | Class | Declares | Tokens |
 |---|---|---|
 | `.idealRegular40` | font-size: 12px; font-weight: 400; line-height: 1.6; letter-spacing: -0.02em; color: var(--text-primary); +2 more | --text-primary |
-
-### COLOR MODIFIERS
-
-| Class | Declares | Tokens |
-|---|---|---|
-| `.text-brand-core` | color: var(--brand-core) !important | --brand-core |
-| `.text-brand-interactive` | color: var(--color-interactive) !important | --color-interactive |
-| `.text-brand-inverted` | color: var(--color-inverted) !important | --color-inverted |
-| `.text-brand-light` | color: var(--brand-light) !important | --brand-light |
-| `.text-disabled` | color: var(--neutral-300) !important | --neutral-300 |
-| `.text-error` | color: var(--status-error) !important | --status-error |
-| `.text-info` | color: var(--status-info) !important | --status-info |
-| `.text-interactive-tertiary` | color: var(--interactive-tertiary-text) !important | --interactive-tertiary-text |
-| `.text-inverted` | color: var(--inverted-1000) !important | --inverted-1000 |
-| `.text-placeholder` | color: var(--neutral-500) !important | --neutral-500 |
-| `.text-primary` | color: var(--neutral-1000) !important | --neutral-1000 |
-| `.text-secondary` | color: var(--text-secondary) !important | --text-secondary |
-| `.text-success` | color: var(--status-success) !important | --status-success |
-| `.text-warning` | color: var(--status-warning) !important | --status-warning |
-
-### ALIGNMENT UTILITIES
-
-| Class | Declares | Tokens |
-|---|---|---|
-| `.text-center` | text-align: center !important | — |
-| `.text-justify` | text-align: justify !important | — |
-| `.text-left` | text-align: left !important | — |
-| `.text-right` | text-align: right !important | — |
-
-### TEXT DECORATION UTILITIES
-
-| Class | Declares | Tokens |
-|---|---|---|
-| `.text-line-through` | text-decoration: line-through !important | — |
-| `.text-no-underline` | text-decoration: none !important | — |
-| `.text-underline` | text-decoration: underline !important | — |
-
-### TRUNCATION UTILITIES
-
-| Class | Declares | Tokens |
-|---|---|---|
-| `.text-truncate` | overflow: hidden !important; text-overflow: ellipsis !important; white-space: nowrap !important | — |
-| `.text-truncate-2` | display: -webkit-box !important; -webkit-line-clamp: 2 !important; -webkit-box-orient: vertical !important; overflow: hidden !important | — |
-| `.text-truncate-3` | display: -webkit-box !important; -webkit-line-clamp: 3 !important; -webkit-box-orient: vertical !important; overflow: hidden !important | — |
 
 ### RESPONSIVE TEXT
 
@@ -1871,7 +1827,7 @@ chrome. See RULES §2.
 |---|---|---|
 | `.ios-glass` | background: var(--neutral-200), var(--inverted-300), var(--black-200); position: relative; backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); background-blend-mode: luminosity | --white-300, --white-100, --neutral-200, --inverted-300, … |
 | `.ios-nav-btn` | color: var(--text-primary); padding: 0; border-radius: 50%; border: none; height: 44px; +8 more | --text-primary, --white-300, --white-100 |
-| `.ios-nav-btn-brand` | color: var(--interactive-primary-text); background: var(--interactive-primary) !important; backdrop-filter: none !important; -webkit-backdrop-filter: none !important; box-shadow: inset 0.5px 1px 3px rgba(255, 255, 255, 0.25), inset -0.5px -1px 2px rgba(0, 0, 0, 0.2), 0px 2px 40px rgba(0, 0, 0, 0.2); +1 more | --interactive-primary, --interactive-primary-text |
+| `.ios-nav-btn-brand` | color: var(--interactive-primary-text); background: var(--interactive-primary); backdrop-filter: none; -webkit-backdrop-filter: none; box-shadow: inset 0.5px 1px 3px rgba(255, 255, 255, 0.25), inset -0.5px -1px 2px rgba(0, 0, 0, 0.2), 0px 2px 40px rgba(0, 0, 0, 0.2); +1 more | --interactive-primary, --interactive-primary-text |
 
 ### iOS HOME NAV BAR
 
@@ -2271,6 +2227,50 @@ needed), and `.grid` / `.grid-auto-fit` for card grids.
 | `.show-desktop` | *contextual — styled via a parent* | — |
 | `.show-mobile` | *contextual — styled via a parent* | — |
 | `.show-tablet` | *contextual — styled via a parent* | — |
+
+### TEXT COLOUR UTILITIES
+
+| Class | Declares | Tokens |
+|---|---|---|
+| `.text-brand-core` | color: var(--brand-core) | --brand-core |
+| `.text-brand-interactive` | color: var(--color-interactive) | --color-interactive |
+| `.text-brand-inverted` | color: var(--color-inverted) | --color-inverted |
+| `.text-brand-light` | color: var(--brand-light) | --brand-light |
+| `.text-disabled` | color: var(--neutral-300) | --neutral-300 |
+| `.text-error` | color: var(--status-error) | --status-error |
+| `.text-info` | color: var(--status-info) | --status-info |
+| `.text-interactive-tertiary` | color: var(--interactive-tertiary-text) | --interactive-tertiary-text |
+| `.text-inverted` | color: var(--inverted-1000) | --inverted-1000 |
+| `.text-placeholder` | color: var(--neutral-500) | --neutral-500 |
+| `.text-primary` | color: var(--neutral-1000) | --neutral-1000 |
+| `.text-secondary` | color: var(--text-secondary) | --text-secondary |
+| `.text-success` | color: var(--status-success) | --status-success |
+| `.text-warning` | color: var(--status-warning) | --status-warning |
+
+### TEXT UTILITIES — alignment, decoration, truncation
+
+| Class | Declares | Tokens |
+|---|---|---|
+| `.text-center` | text-align: center | — |
+| `.text-justify` | text-align: justify | — |
+| `.text-left` | text-align: left | — |
+| `.text-right` | text-align: right | — |
+
+### TEXT DECORATION UTILITIES
+
+| Class | Declares | Tokens |
+|---|---|---|
+| `.text-line-through` | text-decoration: line-through | — |
+| `.text-no-underline` | text-decoration: none | — |
+| `.text-underline` | text-decoration: underline | — |
+
+### TRUNCATION UTILITIES
+
+| Class | Declares | Tokens |
+|---|---|---|
+| `.text-truncate` | overflow: hidden; text-overflow: ellipsis; white-space: nowrap | — |
+| `.text-truncate-2` | display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden | — |
+| `.text-truncate-3` | display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden | — |
 
 ---
 

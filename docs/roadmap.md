@@ -21,11 +21,12 @@ shipped. *Met.*
 
 **Ownable** — you can take this and it is yours: fork it, rename it, change any
 token, and nothing phones home or breaks. The test is whether a fork can
-diverge without fighting the original. *Mostly met.* Theming is a clean
-contract (`docs/theming.md`) and re-skinning needs no code. What is not yet
-ownable is the **cascade**: with no `@layer` and 118 `!important` declarations,
-a consumer's own CSS cannot reliably override a component without escalating in
-the same way. Ownable means overridable. See gap 2.
+diverge without fighting the original. *Met.* Theming is a clean
+contract (`docs/theming.md`) and re-skinning needs no code. *Now met.* The system ships in seven cascade layers, so a consumer's own
+unlayered CSS beats any of it without `!important` and without a specificity
+fight — measured, not assumed. The `!important` count went from 118 to 6 in
+the same pass, and the six that remain are the case the rule permits. See
+gap 2.
 
 **Out of the box** — two script tags and a screen renders, offline, themed.
 *Met, with a caveat.* It is met by vendoring, not by installing: the package is
@@ -127,19 +128,24 @@ catches the shape; axe would catch the rest (contrast, names, roles).
 This was the gap most aligned with the positioning. "Making for non-AIs"
 includes the non-AIs who do not use a mouse.
 
-### 1. Most of RULES.md is still prose
+### 1. Most of RULES.md is still prose — partly closed
 
-`npm run lint` checks twelve rules, across CSS, markup, JSX **and the fenced
+`npm run lint` checks thirteen rules, across CSS, markup, JSX **and the fenced
 `html` examples in the guides** — a doc that teaches a class the CSS does not
 have is worse than one that says nothing, because it is wrong with authority
 and it is the first thing an agent reads. That pass found `.tile-visual`, a
 wrapper the tile section had taught for as long as it existed and that never
 shipped.
 
-`RULES.md` states roughly thirty rules. The unchecked ones are not the trivial
-ones:
+**`check:visual` now captures three widths and both platforms** — 88 shots,
+up from 32. This was the hole that mattered most: the responsive spacing and
+grid utilities, every `-r` type pair and most of `platform-tokens.css` only
+apply below 1100px, so a regression in any of them was invisible. It is also
+what made the `!important` cleanup in gap 2 verifiable rather than hopeful.
 
-| Rule | Why it is not checked yet |
+`RULES.md` states roughly thirty rules. Still unchecked:
+
+| Rule | Why not yet |
 |---|---|
 | §2 never put a border on a card | needs to know which elements are cards at author time |
 | §2 never give a component an outer margin | same |
@@ -148,14 +154,18 @@ ones:
 | §2 never use a pattern the system did not give you | not mechanisable, and says so |
 | §5 label vs body | needs to know whether text wraps |
 | §6 never hardcode content | tractable as a heuristic: a date, price or proper noun in markup |
-| §9 works at all three breakpoints | `check:visual` could capture three widths instead of one |
 
-Two of these — the button-in-a-tappable-card rule, and three-breakpoint
-capture — are small and worth doing next. The content rule is worth a heuristic
-even at some false-positive cost, because it is the rule most often broken and
-the one whose breakage is invisible until the data changes.
+The button-in-a-tappable-card rule is the next one worth writing; the tag walk
+that `surface-on-surface` and `unreachable-target` already use gives it for
+almost nothing. The content rule is worth a heuristic even at some
+false-positive cost, because it is the rule most often broken and its breakage
+is invisible until the data changes.
 
-### 2. No cascade layers — ✅ closed. The `!important` cleanup it unblocks is not.
+An axe-core pass belongs here too, carried over from gap 0: `check:visual` is
+the only check that drives a real browser, and it now drives one at three
+widths.
+
+### 2. No cascade layers, and 118 `!important` — ✅ closed
 
 **Closed.** The system now declares seven layers, in this order:
 
@@ -205,18 +215,28 @@ rather than by reasoning:
   independently of layer precedence, so nothing can reorder it. One
   `!important` gone, and the pattern to copy for the rest.
 
-**Still open: the `!important` count.** Layering makes most of the 118
-unnecessary in principle — a rule in the last layer needs no `!important` to
-beat a rule in an earlier one — but it does not make removing them *verifiable*
-yet. 67 are in `platform-tokens.css`, and most of those apply in app mode or
-below 500px, which `check:visual` does not capture: it shoots one width, in web
-mode. Removing them and seeing a green run would prove nothing.
+**The `!important` count fell out of it: 118 → 6.** Once gap 1's
+three-breakpoint and app-mode capture existed (88 shots instead of 32), this
+became measurable rather than guesswork. Removed in stages, each verified
+against the full shot set:
 
-So this waits on three-breakpoint and app-mode capture (gap 1), and then is
-mechanical: drop every `!important` whose only competitor is a stylesheet rule,
-keep and comment the ones that beat an inline style the harness writes, which
-no layer can help with. Sequencing it the other way round is how you ship a
-mobile-only regression nobody sees for a month.
+| File | Before | After | Why they went, or stayed |
+|---|---:|---:|---|
+| `platform-tokens.css` | 67 | **2** | Last layer, so it already beat every stylesheet. The two left fight an inline style the phone frame writes at runtime |
+| `text-styles-system.css` | 32 | **0** | The colour, alignment, decoration and truncation utilities moved to the utilities layer, which is *after* components — so they win by layer |
+| `boilerplate.css` | 12 | **4** | The visibility utilities won by layer too. The four left are the reduced-motion block, which has to beat inline styles |
+| `ios-nav-components.css` | 4 | **0** | Same-file ordering; never needed |
+| `button-components.css` | 3 | **0** | `.btn:disabled:hover` already outranks `.btn:hover` on specificity. Never did anything |
+
+The six that remain are all the case `RULES §2` actually permits — an inline
+style, which no cascade layer can reach — and each carries an escape saying
+so. `npm run lint` no longer exempts any file from `no-important`, and the
+rule has left the baseline entirely.
+
+Two of those removals needed a test a screenshot cannot do. A disabled
+button's `transform` only matters on hover, so it was checked by hovering it
+and reading the computed value: identical with and without. Guessing there
+would have been guessing.
 
 ### 3. Two vocabularies for one system — ✅ closed
 
@@ -353,26 +373,24 @@ be declined:
 
 ## Debt ledger
 
-`scripts/lint-baseline.json` records what the repository carries today: **186
-findings across 22 file/rule pairs.** The build fails above those numbers and is
-quiet at or below them, so existing debt does not block work and nothing can add
-to it.
+`scripts/lint-baseline.json` records what the repository carries today: **168
+findings across 16 file/rule pairs**, down from 186. The build fails above
+those numbers and is quiet at or below them, so existing debt does not block
+work and nothing can add to it.
 
 | Rule | Count | Closed by |
 |---|---:|---|
 | `no-type-override` | 74 | components composing text classes instead of restating them |
 | `no-hardcoded-spacing` | 42 | spacing tokens for the remaining literals |
 | `no-hardcoded-colour` | 40 | mostly `ios-nav-components.css` glass and gradients |
-| `no-important` | 18 | gap 2 — cascade layers |
 | `no-hardcoded-shadow-colour` | 11 | gap 7 — a shadow-colour scale |
 | `surface-needs-scale` | 1 | one demo specimen, individually checkable |
+| ~~`no-important`~~ | ~~18~~ **0** | gap 2 — cascade layers. Gone from the baseline |
 
-Every number in that table should only go down. `node scripts/lint.mjs
---update-baseline` locks in a reduction, and CI fails if a run comes in under
-the recorded baseline without the file being updated — otherwise the next
-regression would land free.
-
----
+Every number should only go down. `node scripts/lint.mjs --update-baseline`
+locks in a reduction, and CI fails if a run comes in under the recorded
+baseline without the file being updated — otherwise the next regression would
+land free.
 
 ## Suggested order
 
@@ -383,6 +401,7 @@ regression would land free.
    without it.
 3. ~~**Gap 3** — align the React vocabulary with the CSS.~~ Done.
 4. **Gap 7** — the cheap ones, in an afternoon.
-5. **Gap 1** — two more lint rules and three-breakpoint capture.
+5. **Gap 1** — the remaining lint rules, and axe-core. The breakpoint capture
+   is done.
 6. **Gap 5** — RTL as one deliberate pass.
 7. **Gap 6** — publish, once 2 and 3 have landed.
