@@ -107,6 +107,10 @@ const TYPE_SOURCES = new Set([
    use them. The unknown-class rule does not read these. */
 const NOT_PRODUCT_MARKUP = new Set(['sheet.css'])
 
+/* Generated output. Linting the bundle would report every finding a second
+   time under a filename nobody can fix, and it is gitignored besides. */
+const GENERATED = new Set(['crnl.css', 'fonts.css', 'display-fonts.css'])
+
 /* Component stylesheets set their control's own type rather than composing a
    text class. That is a real inconsistency — the type scale exists so there is
    one place a size is decided — but it is the shape the system shipped in, so
@@ -558,6 +562,7 @@ SURFACE = loadSurface()
 const surface = SURFACE
 const targets = (paths.length ? paths.map((p) => join(ROOT, p)) : defaultTargets())
   .filter((p) => /\.(css|html|jsx|tsx)$/.test(p))
+  .filter((p) => !GENERATED.has(basename(p)))
 
 /* A page's own stylesheet declares its scaffolding. Anything it defines is
    known to the markup beside it — not system surface, but not invented. */
