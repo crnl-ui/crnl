@@ -70,9 +70,9 @@ See gap 1 for the rest.
 **The output is judged by someone who cannot read CSS.** They see a screen. So
 the failures that matter are the ones that are invisible to the author and
 obvious to the viewer: a card that only appears on hover, a colour that works in
-one mode, a control a keyboard cannot reach. Two of those three are now caught
-statically. The third is gap 0, and it is the largest thing wrong with this
-system.
+one mode, a control a keyboard cannot reach. **All three are now caught** —
+the first two by `npm run lint`, the third by `unreachable-target` and by
+`npm run check:a11y`, which was gap 0 and is closed.
 
 ---
 
@@ -346,12 +346,17 @@ there is no version anyone can pin, no changelog, and no upgrade path — the
 three things that decide whether a design system is adoptable by someone who is
 not its author.
 
-Order matters here: publishing before gap 2 ships a package consumers cannot
-override, and publishing before gap 3 freezes two vocabularies into a public
-API. **Both are now done**, and `CONTRIBUTING.md` and `CHANGELOG.md` exist, so
-the one thing still in front of publishing is the utility-class naming decision
-in gap 5 — renaming `.ms-200` after publishing is a breaking change to
-somebody else's code; before, it is free.
+Order mattered here, and the order is now served. Publishing before gap 2
+would have shipped a package consumers could not override; before gap 3, it
+would have frozen two vocabularies into a public API; before gap 5, it would
+have made renaming the most-used classes in the system somebody else's
+migration instead of a free change. **All three are done**, and
+`CONTRIBUTING.md` and `CHANGELOG.md` exist.
+
+**Nothing technical is in front of a first release any more.** What is left is
+the decision to make one: drop `private: true`, pick a version, and accept
+that the names then stop being free to change. That is a judgement about
+whether the surface has settled, not a task.
 
 ### 7. Smaller, real, cheap
 
@@ -365,11 +370,10 @@ somebody else's code; before, it is free.
   describes the ladder as three steps unconditionally, which is true in one
   mode. Say which, and say that the shadow is load-bearing in light.
 
-  The related smell is that `--shadow-sheet-*` and `--shadow-modal-*` are
-  restated byte-for-byte under `[data-mode="dark"]`
-  (`css/border-effects-tokens.css`). The values are right — dark does not need
-  its own — but a duplicated block implies a decision somebody made, and
-  nobody did. Delete it; it inherits identically and stops lying.
+  ~~The related smell is the duplicated `[data-mode="dark"]` shadow block.~~
+  Deleted — it restated the light values byte-for-byte, implying a decision
+  nobody had made, and inherits identically without it. `RULES §2` now states
+  the two-rung/three-rung split and that the shadow is load-bearing in light.
 - **No shadow-colour tokens.** Six hardcoded shadow colours left, down from
   eleven: the five that were exactly an existing alpha token now use it. The
   rest need alphas the scales do not have — 0.06, 0.08, 0.12, 0.2 — so closing
@@ -378,13 +382,16 @@ somebody else's code; before, it is free.
   (`CLAUDE.md § Adding a token`), so it wants deciding rather than assuming.
 - ~~**One `prefers-reduced-motion` block**~~ — done with gap 0. One global
   block, durations collapsed rather than animations removed.
-- **`check:visual` is not in CI.** Baselines are machine-specific, so it runs
-  locally. Pinning the renderer to a container makes it a CI check, and it is
-  the only check that could also run axe-core (gap 0) and RTL (gap 5). One
-  change unlocks three.
+- **`check:visual` is not in CI**, and is the only check that is not. Its
+  baselines are pixels, and pixels are specific to the machine and browser
+  build that made them, so it runs locally. Pinning the renderer to a
+  container would fix that. This used to be the blocker for axe-core and RTL
+  too; it no longer is — `check:a11y` runs in CI on its own, because axe
+  returns rule ids rather than pixels, and the RTL pass rides in
+  `check:visual` locally. So this now unlocks one thing, not three, which
+  makes it a smaller prize than it looked.
 - ~~**No `CONTRIBUTING.md`, no `CHANGELOG.md`**~~ — both written. They were
-  prerequisites for gap 6, so publishing is now gated only on the RTL naming
-  decision in gap 5.
+  the last prerequisites for gap 6, which is now unblocked entirely.
 - ~~**Five components with no Storybook story**~~ — done. `IOSHomeNav`,
   `IOSModal`, `IOSNavButton`, `IOSPageNav` and `IOSTabBar` all have one, so
   every component in the library renders somewhere.
@@ -470,7 +477,7 @@ work and nothing can add to it.
 | `no-type-override` | 74 | components composing text classes instead of restating them |
 | `no-hardcoded-spacing` | 42 | spacing tokens for the remaining literals |
 | `no-hardcoded-colour` | 40 | mostly `ios-nav-components.css` glass and gradients |
-| `no-hardcoded-shadow-colour` | 6 | gap 7 — five need a `--shadow-*` alpha the scales do not have (0.06, 0.08, 0.12, 0.2); the six that matched an existing token are done |
+| `no-hardcoded-shadow-colour` | 6 | gap 7 — these six need a `--shadow-*` alpha the scales do not have (0.06, 0.08, 0.12, 0.2). The five that matched an existing token already use it |
 | `surface-needs-scale` | 1 | one demo specimen, individually checkable |
 | ~~`no-important`~~ | ~~18~~ **0** | gap 2 — cascade layers. Gone from the baseline |
 
@@ -481,14 +488,25 @@ land free.
 
 ## Suggested order
 
-1. ~~**Gap 0** — focus rings, the role rule, the lint rule.~~ Done, bar the
-   axe-core pass, which rides with pinning the renderer (gap 7).
-2. ~~**Gap 2** — `@layer`.~~ Done. The `!important` cleanup it unblocks is
-   sequenced after gap 1's breakpoint capture, because it cannot be verified
-   without it.
-3. ~~**Gap 3** — align the React vocabulary with the CSS.~~ Done.
-4. **Gap 7** — the cheap ones, in an afternoon.
-5. **Gap 1** — the remaining lint rules, and axe-core. The breakpoint capture
-   is done.
-6. ~~**Gap 5** — RTL.~~ Done, components and utilities both.
-7. **Gap 6** — publish, once 2 and 3 have landed.
+Gaps 0, 2, 3, 4 and 5 are closed, and most of 7. What remains, in the order
+it is worth doing:
+
+1. **Gap 8 — the 32 component contrast failures.** `.btn-destructive` at 4.17
+   and `.input-message` on `.is-error` at 4.0 are shipping today; a
+   destructive button and an error message are the two things that most need
+   to be readable. Needs token values decided, so it belongs with a design
+   pass rather than a refactor.
+2. **Gap 8's second half — extend `check:themes` to every button type.** Three
+   pairs is two button types out of nine, which is why none of the above was
+   caught. A small change to one array, and it turns a thing somebody noticed
+   into a thing that cannot come back. Do it *after* 1, or it fails on landing.
+3. **Gap 7 — a `--shadow-*` alpha scale**, or a decision to round the six
+   remaining shadows onto the existing steps. Either way a token decision.
+4. **Gap 1 — the remaining prose rules.** The `RULES §6` hardcoded-content
+   heuristic is the valuable one and the one that will produce false
+   positives; worth a deliberate choice about that trade rather than a
+   default. The button-in-a-tappable-card rule is already done.
+5. **Gap 7 — pin the renderer** so `check:visual` can run in CI. Smaller prize
+   than it was, now that `check:a11y` runs there independently.
+6. **Gap 6 — publish.** Nothing technical blocks it; it waits on the surface
+   feeling settled.

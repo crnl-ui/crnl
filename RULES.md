@@ -119,6 +119,15 @@ re-cuts the font.
   indistinguishable slab. On top of a surface, use the alpha washes
   (`.surface-wash*`) or step up to `--bg-sheet`; never a second `--bg-surface`.
 
+  **The ladder has three rungs in dark and two in light.** In every shipped
+  theme and in the base theme, `--org-sheet` equals `--org-base`, so light
+  mode runs white → a tinted surface → white again: a modal sheet is the same
+  colour as the page behind it, and its **shadow is the only edge it has**.
+  Dark runs three genuinely distinct values and carries elevation in colour.
+  Both are deliberate. What follows from it is that a light-mode sheet must
+  keep its shadow — it is structural there, not decoration — while in dark the
+  shadow contributes almost nothing and the surface step does the work.
+
   **This applies to the classes, not just the tokens**, and that is how the
   rule is usually broken: `.surface-card`, `.card-closed`, `.tile`,
   `.split-row` and `.row-card` all paint `--bg-surface` at rest, so putting
