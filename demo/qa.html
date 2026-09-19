@@ -1,0 +1,1530 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Crnl QA Bench</title>
+
+<script src="../css/crnl-loader.js"></script>
+
+<style>
+/* ============================================================
+   QA bench chrome — NOT part of the design system.
+   ============================================================
+   Everything here is prefixed .qa- and uses a neutral slate that is
+   deliberately not any Crnl theme, set in a monospace/system stack rather
+   than Inter. That is the whole point: if something on this page is grey,
+   mono and boxy, it is scaffolding. If it has colour, Inter or a display
+   face, it is the system rendering.
+
+   Only .qa-* class selectors — never a bare element selector. The system
+   ships in cascade layers and anything unlayered beats it, so an `h2 {}`
+   here would silently outrank every text class inside a specimen.
+   ============================================================ */
+:root {
+  --qa-ink: #0f1115;
+  --qa-muted: #5b6270;
+  --qa-faint: #8b929e;
+  --qa-rule: #dfe2e8;
+  --qa-ground: #f6f7f9;
+  --qa-panel: #ffffff;
+  --qa-flag: #b4341a;
+  --qa-flag-bg: #fdf0ec;
+  --qa-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+  --qa-ui: system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-qa-chrome="light"]) {
+    --qa-ink: #e8eaee; --qa-muted: #9aa2b1; --qa-faint: #6d7585;
+    --qa-rule: #2a2f39; --qa-ground: #14171d; --qa-panel: #1a1e26;
+    --qa-flag: #ff8d6b; --qa-flag-bg: #2c1a14;
+  }
+}
+:root[data-qa-chrome="dark"] {
+  --qa-ink: #e8eaee; --qa-muted: #9aa2b1; --qa-faint: #6d7585;
+  --qa-rule: #2a2f39; --qa-ground: #14171d; --qa-panel: #1a1e26;
+  --qa-flag: #ff8d6b; --qa-flag-bg: #2c1a14;
+}
+
+.qa-page { background: var(--qa-ground); color: var(--qa-ink); font-family: var(--qa-ui); min-height: 100%; }
+.qa-wrap { max-width: 1180px; margin: 0 auto; padding-inline: 20px; padding-block: 0; }
+
+/* ---- control bar ---------------------------------------------------- */
+.qa-bar {
+  position: sticky; top: env(safe-area-inset-top, 0px); z-index: 900;
+  background: var(--qa-panel); border-bottom: 1px solid var(--qa-rule);
+}
+.qa-bar-inner {
+  max-width: 1180px; margin: 0 auto; padding-inline: 20px; padding-block: 10px;
+  display: flex; flex-wrap: wrap; gap: 8px 18px; align-items: center;
+}
+.qa-brand { font-family: var(--qa-mono); font-size: 12px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--qa-ink); margin-inline-end: auto; }
+.qa-brand span { color: var(--qa-faint); font-weight: 400; }
+.qa-field { display: flex; align-items: center; gap: 6px; }
+.qa-field > label { font-family: var(--qa-mono); font-size: 10px; letter-spacing: .07em; text-transform: uppercase; color: var(--qa-faint); }
+.qa-select, .qa-toggle {
+  font-family: var(--qa-mono); font-size: 12px; color: var(--qa-ink);
+  background: var(--qa-ground); border: 1px solid var(--qa-rule); border-radius: 6px;
+  padding: 5px 8px; cursor: pointer;
+}
+.qa-toggle[aria-pressed="true"] { background: var(--qa-ink); color: var(--qa-panel); border-color: var(--qa-ink); }
+.qa-select:focus-visible, .qa-toggle:focus-visible, .qa-jump a:focus-visible { outline: 2px solid var(--qa-flag); outline-offset: 2px; }
+
+/* ---- structure ------------------------------------------------------ */
+.qa-lede { padding-block: 40px 28px; max-width: 62ch; }
+.qa-lede h1 { font-family: var(--qa-ui); font-size: 30px; line-height: 1.15; font-weight: 640; letter-spacing: -.02em; margin: 0 0 12px; text-wrap: balance; }
+.qa-lede p { font-size: 15px; line-height: 1.6; color: var(--qa-muted); margin: 0 0 10px; }
+.qa-jump { display: flex; flex-wrap: wrap; gap: 6px; padding-block: 0 36px; }
+.qa-jump a {
+  font-family: var(--qa-mono); font-size: 11px; text-decoration: none;
+  color: var(--qa-muted); background: var(--qa-panel);
+  border: 1px solid var(--qa-rule); border-radius: 100px; padding: 5px 11px;
+}
+.qa-jump a:hover { color: var(--qa-ink); border-color: var(--qa-faint); }
+
+.qa-sec { padding-block: 0 56px; scroll-margin-top: 80px; }
+.qa-sec-head { display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; border-top: 2px solid var(--qa-ink); padding-block: 10px 0; margin-block-end: 22px; }
+.qa-sec-head h2 { font-family: var(--qa-ui); font-size: 19px; font-weight: 640; letter-spacing: -.01em; margin: 0; }
+.qa-sec-head .qa-src { font-family: var(--qa-mono); font-size: 11px; color: var(--qa-faint); margin-inline-start: auto; }
+.qa-note { font-size: 13.5px; line-height: 1.6; color: var(--qa-muted); max-width: 70ch; margin: 0 0 20px; }
+.qa-note code, .qa-mono { font-family: var(--qa-mono); font-size: .92em; color: var(--qa-ink); }
+
+.qa-sub { font-family: var(--qa-mono); font-size: 11px; letter-spacing: .07em; text-transform: uppercase; color: var(--qa-faint); border-bottom: 1px solid var(--qa-rule); padding-block-end: 6px; margin-block: 30px 14px; }
+.qa-sub:first-of-type { margin-block-start: 0; }
+
+/* A stage: where a specimen actually renders. Painted in the system's own
+   page background so surfaces read against what they will really sit on. */
+.qa-stage { background: var(--bg-base); border: 1px solid var(--qa-rule); border-radius: 10px; padding: 22px; overflow: hidden; }
+.qa-stage.is-surface { background: var(--bg-surface); }
+.qa-stage.is-flush { padding: 0; }
+.qa-grid { display: grid; gap: 14px; grid-template-columns: repeat(auto-fit, minmax(270px, 1fr)); }
+.qa-grid.is-wide { grid-template-columns: repeat(auto-fit, minmax(380px, 1fr)); }
+.qa-grid.is-one { grid-template-columns: 1fr; }
+.qa-row { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
+.qa-col { display: flex; flex-direction: column; gap: 12px; }
+.qa-cap { font-family: var(--qa-mono); font-size: 10.5px; color: var(--qa-faint); margin-block-start: 8px; display: flex; flex-wrap: wrap; gap: 4px 10px; }
+.qa-cap b { font-weight: 500; color: var(--qa-muted); }
+
+/* ---- known-issue flags ---------------------------------------------- */
+.qa-flag {
+  display: none; font-family: var(--qa-mono); font-size: 10.5px; line-height: 1.45;
+  color: var(--qa-flag); background: var(--qa-flag-bg);
+  border: 1px solid currentColor; border-radius: 6px; padding: 6px 9px; margin-block-start: 8px;
+}
+[data-qa-issues="on"] .qa-flag { display: block; }
+[data-qa-issues="on"] .qa-flagged { outline: 2px dashed var(--qa-flag); outline-offset: 3px; border-radius: 4px; }
+
+/* ---- token readouts -------------------------------------------------- */
+.qa-swatches { display: grid; gap: 10px; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); }
+.qa-sw { border: 1px solid var(--qa-rule); border-radius: 8px; overflow: hidden; background: var(--qa-panel); }
+.qa-sw-chip { height: 46px; border-bottom: 1px solid var(--qa-rule); }
+.qa-sw-meta { padding: 7px 9px; font-family: var(--qa-mono); font-size: 10.5px; line-height: 1.5; }
+.qa-sw-meta b { display: block; font-weight: 500; color: var(--qa-ink); }
+.qa-sw-meta span { color: var(--qa-faint); }
+
+.qa-scale { display: flex; flex-direction: column; gap: 2px; }
+.qa-scale-row { display: flex; align-items: baseline; gap: 14px; padding-block: 7px; border-bottom: 1px solid var(--qa-rule); }
+.qa-scale-row:last-child { border-bottom: 0; }
+.qa-scale-key { font-family: var(--qa-mono); font-size: 10.5px; color: var(--qa-faint); min-width: 130px; flex-shrink: 0; }
+.qa-scale-val { font-family: var(--qa-mono); font-size: 10.5px; color: var(--qa-faint); margin-inline-start: auto; flex-shrink: 0; }
+
+.qa-ruler { display: flex; align-items: center; gap: 12px; padding-block: 5px; }
+.qa-ruler-bar { height: 14px; background: var(--color-interactive); border-radius: 3px; }
+
+/* ---- screens (the "in use" section) ---------------------------------- */
+.qa-screens { display: grid; gap: 18px; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); align-items: start; }
+.qa-screen { border: 1px solid var(--qa-rule); border-radius: 12px; overflow: hidden; background: var(--bg-base); }
+.qa-screen-bar { display: flex; align-items: center; gap: 6px; padding: 8px 12px; background: var(--qa-panel); border-bottom: 1px solid var(--qa-rule); }
+.qa-screen-bar span { font-family: var(--qa-mono); font-size: 10.5px; color: var(--qa-faint); }
+.qa-screen-dot { width: 8px; height: 8px; border-radius: 100px; background: var(--qa-rule); }
+.qa-screen-body { padding: 18px; display: flex; flex-direction: column; gap: 16px; }
+
+.qa-phone { width: 393px; max-width: 100%; height: 720px; border: 1px solid var(--qa-rule); border-radius: 30px; overflow: hidden; background: var(--bg-base); position: relative; }
+.qa-phone-scroll { height: 100%; overflow-y: auto; }
+
+.qa-foot { border-top: 1px solid var(--qa-rule); padding-block: 26px 60px; font-size: 12.5px; line-height: 1.65; color: var(--qa-faint); }
+.qa-foot a { color: var(--qa-muted); }
+
+@media (max-width: 640px) {
+  .qa-bar-inner { padding-block: 8px; gap: 6px 12px; }
+  .qa-brand { width: 100%; margin-inline-end: 0; }
+  .qa-lede { padding-block: 28px 20px; }
+  .qa-lede h1 { font-size: 24px; }
+}
+</style>
+</head>
+<body class="qa-page" data-qa-issues="off">
+
+<script>
+  /* Set the system attributes before first paint so nothing flashes unthemed. */
+  (function () {
+    var d = document.documentElement;
+    d.setAttribute('data-theme', 'signal');
+    d.setAttribute('data-mode', 'light');
+    d.setAttribute('data-platform', 'web');
+  })();
+</script>
+
+<!-- ============================================================
+     CONTROL BAR — drives the real data-* attributes on <html>.
+     This is the QA instrument: everything below re-skins live.
+     ============================================================ -->
+<div class="qa-bar">
+  <div class="qa-bar-inner">
+    <div class="qa-brand">Crnl <span>· QA bench</span></div>
+
+    <div class="qa-field">
+      <label for="qa-theme">Theme</label>
+      <select class="qa-select" id="qa-theme">
+        <option value="signal" selected>signal</option>
+        <option value="ink">ink</option>
+        <option value="moss">moss</option>
+        <option value="ember">ember</option>
+        <option value="violet">violet</option>
+        <option value="">base (none)</option>
+      </select>
+    </div>
+
+    <div class="qa-field">
+      <label for="qa-mode">Mode</label>
+      <select class="qa-select" id="qa-mode">
+        <option value="light" selected>light</option>
+        <option value="dark">dark</option>
+      </select>
+    </div>
+
+    <div class="qa-field">
+      <label for="qa-face">Face</label>
+      <select class="qa-select" id="qa-face">
+        <option value="" selected>theme default</option>
+        <option value="chronicle">chronicle</option>
+        <option value="grandstand">grandstand</option>
+        <option value="spire">spire</option>
+        <option value="register">register</option>
+        <option value="marquee">marquee</option>
+        <option value="gantry">gantry</option>
+      </select>
+    </div>
+
+    <div class="qa-field">
+      <label for="qa-dir">Dir</label>
+      <select class="qa-select" id="qa-dir">
+        <option value="ltr" selected>ltr</option>
+        <option value="rtl">rtl</option>
+      </select>
+    </div>
+
+    <button class="qa-toggle" id="qa-issues" type="button" aria-pressed="false">Known issues</button>
+  </div>
+</div>
+
+<div class="qa-wrap">
+
+  <header class="qa-lede">
+    <h1>Every component, in the real CSS, at every theme</h1>
+    <p>Two things at once: the top section shows what the system produces when
+      it is actually used, and everything after it is the parts catalogue —
+      each component family with its variants, so you can look at them.</p>
+    <p>The controls above drive the same three attributes a real page sets, so
+      this whole document re-skins live. <b>Known issues</b> marks the places
+      where a measured defect is already recorded, with the number.</p>
+    <p>Grey, monospaced and boxy is this page's own scaffolding. Anything with
+      colour, Inter or a display face is Crnl rendering. Every name and price
+      below is obviously synthetic placeholder text.</p>
+  </header>
+
+  <nav class="qa-jump">
+    <a href="#inuse">In use</a>
+    <a href="#colour">Colour</a>
+    <a href="#type">Type</a>
+    <a href="#space">Space &amp; shape</a>
+    <a href="#surfaces">Surfaces</a>
+    <a href="#buttons">Buttons</a>
+    <a href="#forms">Forms</a>
+    <a href="#rows">Rows</a>
+    <a href="#cards">Cards &amp; tiles</a>
+    <a href="#tags">Tags</a>
+    <a href="#nav">Nav</a>
+    <a href="#table">Table</a>
+    <a href="#patterns">Patterns</a>
+    <a href="#ios">iOS</a>
+    <a href="#issues">Issues</a>
+  </nav>
+
+  <!-- ============================================================
+       IN USE — the part that does not exist anywhere else.
+       Three screens composed only from shipped classes.
+       ============================================================ -->
+  <section class="qa-sec" id="inuse">
+    <div class="qa-sec-head">
+      <h2>In use</h2>
+      <span class="qa-src">composed from shipped classes only</span>
+    </div>
+    <p class="qa-note">Three screens built the way a real one would be: components
+      first, tokens for anything left over, nothing invented. Change the theme
+      above and watch all three move together — that is the claim the system
+      makes, and this is where you can check it.</p>
+
+    <div class="qa-screens">
+
+      <!-- Screen 1: a browse list -->
+      <div class="qa-screen">
+        <div class="qa-screen-bar"><i class="qa-screen-dot"></i><span>browse</span></div>
+        <div class="qa-screen-body">
+          <div class="card-text-pair">
+            <h3 class="display400">Discover</h3>
+            <p class="labelRegular20 text-secondary">Placeholder subtitle for the screen</p>
+          </div>
+
+          <nav class="tabs" role="tablist" aria-label="Browse sections">
+            <button class="tab is-active" role="tab" aria-selected="true">All</button>
+            <button class="tab" role="tab" aria-selected="false">Nearby</button>
+            <button class="tab" role="tab" aria-selected="false">Saved</button>
+          </nav>
+
+          <div class="split-row-list">
+            <div class="split-row">
+              <div class="split-row-top surface-section">
+                <div class="list-row">
+                  <div class="leading leading-gap-sm">
+                    <span class="circle-container"><span class="icon icon-200">storefront</span></span>
+                  </div>
+                  <div class="list-row-content">
+                    <div class="list-row-text-pair">
+                      <span class="title50-r">First record</span>
+                      <span class="labelRegular20-r text-secondary">Supporting detail line</span>
+                    </div>
+                  </div>
+                  <div class="trailing trailing-gap-lg">
+                    <button type="button" class="btn btn-primary btn-100">$19</button>
+                  </div>
+                </div>
+              </div>
+              <div class="split-row-bottom surface-section">
+                <div class="list-row">
+                  <div class="list-row-content">
+                    <div class="list-row-text-pair">
+                      <span class="labelBold30 text-interactive-tertiary">3 more options</span>
+                    </div>
+                  </div>
+                  <div class="trailing trailing-gap-xs">
+                    <span class="icon icon-300" aria-hidden="true">arrow_drop_down</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="split-row">
+              <div class="split-row-top">
+                <div class="list-row not-tappable">
+                  <div class="leading leading-gap-sm">
+                    <span class="circle-container"><span class="icon icon-200">storefront</span></span>
+                  </div>
+                  <div class="list-row-content">
+                    <div class="list-row-text-pair">
+                      <span class="title50-r">Second record</span>
+                      <span class="labelRegular20-r text-secondary">Supporting detail line</span>
+                    </div>
+                  </div>
+                  <div class="trailing trailing-gap-sm">
+                    <span class="labelBold30 text-secondary">Unavailable</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="card-grid grid-cols-2-desktop grid-cols-2-tablet grid-cols-1-mobile">
+            <button type="button" class="tile surface-card scale-700">
+              <div class="card-media"></div>
+              <div class="tile-tag">New</div>
+              <div class="tile-info">
+                <div class="card-text-pair">
+                  <span class="labelBold30">Tile one</span>
+                  <span class="labelRegular10 text-secondary">Secondary line</span>
+                </div>
+                <span class="labelBold20 text-success">From $12</span>
+              </div>
+            </button>
+            <button type="button" class="tile surface-card scale-700">
+              <div class="card-media"></div>
+              <div class="tile-info">
+                <div class="card-text-pair">
+                  <span class="labelBold30">Tile two</span>
+                  <span class="labelRegular10 text-secondary">Secondary line</span>
+                </div>
+                <span class="labelBold20 text-success">From $30</span>
+              </div>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Screen 2: a detail / summary -->
+      <div class="qa-screen">
+        <div class="qa-screen-bar"><i class="qa-screen-dot"></i><span>detail</span></div>
+        <div class="qa-screen-body">
+          <div class="card-closed">
+            <div class="card-closed-header">
+              <div class="card-text-pair">
+                <h3 class="title50">Order summary</h3>
+                <p class="labelRegular20 text-secondary">Reference 0000-0000</p>
+              </div>
+            </div>
+            <div class="card-closed-body">
+              <div class="list-divided">
+                <div class="list-row not-tappable">
+                  <div class="list-row-content">
+                    <div class="list-row-text-pair">
+                      <span class="labelBold30">Line item</span>
+                      <span class="labelRegular10 text-secondary">Qty 2</span>
+                    </div>
+                  </div>
+                  <div class="trailing trailing-gap-sm"><span class="labelBold20">$38.00</span></div>
+                </div>
+                <div class="list-row not-tappable">
+                  <div class="list-row-content">
+                    <div class="list-row-text-pair">
+                      <span class="labelBold30">Service</span>
+                      <span class="labelRegular10 text-secondary">Computed at render</span>
+                    </div>
+                  </div>
+                  <div class="trailing trailing-gap-sm"><span class="labelBold20">$4.56</span></div>
+                </div>
+              </div>
+            </div>
+            <div class="card-closed-footer">
+              <div class="list-row not-tappable">
+                <div class="list-row-content">
+                  <div class="list-row-text-pair"><span class="labelBold30">Total</span></div>
+                </div>
+                <div class="trailing trailing-gap-sm"><span class="display200">$42.56</span></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="tag-group">
+            <div class="tag"><span class="labelBold20">Placeholder</span></div>
+            <div class="tag tag-brand-color"><span class="labelBold20">Brand tag</span></div>
+          </div>
+
+          <div class="action-row">
+            <button type="button" class="btn btn-secondary btn-300">Back</button>
+            <button type="button" class="btn btn-transactional btn-300">Confirm</button>
+          </div>
+
+          <div class="action-tile-row">
+            <button type="button" class="action-tile">
+              <div class="action-tile-circle"><span class="icon icon-400">send</span></div>
+              <span class="labelBold20">Transfer</span>
+            </button>
+            <button type="button" class="action-tile">
+              <div class="action-tile-circle"><span class="icon icon-400">sell</span></div>
+              <span class="labelBold20">Resell</span>
+            </button>
+            <button type="button" class="action-tile">
+              <div class="action-tile-circle"><span class="icon icon-400">ios_share</span></div>
+              <span class="labelBold20">Share</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Screen 3: a form -->
+      <div class="qa-screen">
+        <div class="qa-screen-bar"><i class="qa-screen-dot"></i><span>form</span></div>
+        <div class="qa-screen-body">
+          <div class="card-text-pair">
+            <h3 class="display300">Sign in</h3>
+            <p class="bodyRegular30 text-secondary">Placeholder copy describing what this form is for.</p>
+          </div>
+
+          <div class="input-field">
+            <div class="input-label-row">
+              <label class="input-label" for="qa-email">Email</label>
+            </div>
+            <div class="input-and-message">
+              <div class="input-control">
+                <span class="input-icon material-symbols-rounded" aria-hidden="true">mail</span>
+                <input type="email" id="qa-email" placeholder="you@example.com">
+              </div>
+            </div>
+          </div>
+
+          <div class="input-field">
+            <div class="input-label-row">
+              <label class="input-label" for="qa-pass">Password</label>
+              <a class="input-link" href="#forms">Forgot?</a>
+            </div>
+            <div class="input-and-message">
+              <div class="input-control">
+                <input type="password" id="qa-pass" placeholder="Placeholder">
+              </div>
+            </div>
+          </div>
+
+          <div class="input-field is-error">
+            <div class="input-label-row">
+              <label class="input-label" for="qa-code">Code</label>
+            </div>
+            <div class="input-and-message">
+              <div class="input-control">
+                <input type="text" id="qa-code" value="0000">
+              </div>
+              <p class="input-message qa-flagged">That code has expired. Request a new one.</p>
+            </div>
+          </div>
+          <div class="qa-flag">contrast 4.00 — <code>.input-message</code> on <code>.is-error</code>
+            against <code>--bg-base</code>. Below AA (4.5). roadmap gap 8.</div>
+
+          <button type="button" class="btn btn-primary btn-700 btn-fill">Continue</button>
+
+          <div class="list-row not-tappable">
+            <div class="list-row-content">
+              <div class="list-row-text-pair">
+                <span class="labelBold30">Keep me signed in</span>
+                <span class="labelRegular10 text-secondary">On this device only</span>
+              </div>
+            </div>
+            <div class="trailing trailing-gap-md">
+              <div class="switch">
+                <input type="checkbox" id="qa-keep" checked aria-label="Keep me signed in">
+                <label for="qa-keep"></label>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ============================================================ COLOUR -->
+  <section class="qa-sec" id="colour">
+    <div class="qa-sec-head">
+      <h2>Colour</h2>
+      <span class="qa-src">design-tokens-master.css · themes.css</span>
+    </div>
+    <p class="qa-note">Values are read from <code>getComputedStyle</code> at render
+      time and re-read whenever you change theme or mode, so what is printed is
+      what the browser actually has — not what a doc says it should be.</p>
+
+    <div class="qa-sub">Elevation ladder</div>
+    <div class="qa-swatches" data-qa-tokens="--bg-base,--bg-surface,--bg-sheet,--bg-nav,--bg-input"></div>
+    <p class="qa-note" style="margin-block-start:14px">Three rungs in dark, two in
+      light — <code>--bg-sheet</code> equals <code>--bg-base</code> in every
+      shipped theme, so a light-mode sheet is the same colour as the page and its
+      shadow is the only edge it has. Switch to dark and the three separate.</p>
+
+    <div class="qa-sub">Text</div>
+    <div class="qa-swatches" data-qa-tokens="--text-primary,--text-secondary,--text-disabled,--text-placeholder"></div>
+
+    <div class="qa-sub">Interactive &amp; brand</div>
+    <div class="qa-swatches" data-qa-tokens="--color-interactive,--color-inverted,--interactive-primary,--interactive-transactional,--brand-core,--brand-light,--brand-dark"></div>
+
+    <div class="qa-sub">Status</div>
+    <div class="qa-swatches" data-qa-tokens="--status-success,--status-warning,--status-error,--status-info"></div>
+
+    <div class="qa-sub">Borders</div>
+    <div class="qa-swatches" data-qa-tokens="--border-default,--border-hover,--border-active,--border-disabled"></div>
+
+    <div class="qa-sub">Text colour utilities, on the page background</div>
+    <div class="qa-stage">
+      <div class="qa-grid">
+        <div><p class="bodyRegular30 text-primary">text-primary</p></div>
+        <div><p class="bodyRegular30 text-secondary">text-secondary</p></div>
+        <div><p class="bodyRegular30 text-disabled">text-disabled</p></div>
+        <div><p class="bodyRegular30 text-placeholder">text-placeholder</p></div>
+        <div><p class="bodyRegular30 text-success">text-success</p></div>
+        <div class="qa-flagged"><p class="bodyRegular30 text-warning">text-warning</p></div>
+        <div><p class="bodyRegular30 text-error">text-error</p></div>
+        <div class="qa-flagged"><p class="bodyRegular30 text-info">text-info</p></div>
+        <div class="qa-flagged"><p class="bodyRegular30 text-brand-core">text-brand-core</p></div>
+        <div class="qa-flagged"><p class="bodyRegular30 text-brand-light">text-brand-light</p></div>
+        <div class="qa-flagged"><p class="bodyRegular30 text-brand-inverted">text-brand-inverted</p></div>
+        <div><p class="bodyRegular30 text-interactive-tertiary">text-interactive-tertiary</p></div>
+      </div>
+    </div>
+    <div class="qa-flag">Dashed outlines fail AA at 4.5:1 as text on
+      <code>--bg-base</code>. Measured on <code>signal</code> light:
+      <code>.text-brand-light</code> and <code>.text-brand-inverted</code> 1.66,
+      <code>.text-warning</code> 2.76, <code>.text-info</code> 4.23,
+      <code>.text-brand-core</code> 2.49 in dark. A brand colour is picked to be
+      a brand, not body copy — roadmap gap 8 lays out the three ways to resolve it.</div>
+  </section>
+
+  <!-- ============================================================ TYPE -->
+  <section class="qa-sec" id="type">
+    <div class="qa-sec-head">
+      <h2>Type</h2>
+      <span class="qa-src">text-styles-system.css · display-fonts.css</span>
+    </div>
+    <p class="qa-note">Four families. <code>.display*</code> is the theme's display
+      face; <code>.title*</code>, <code>.label*</code> and <code>.body*</code> are
+      Inter. Sizes are read live, so changing the display face above shows its own
+      tuned ramp rather than a shared one.</p>
+
+    <div class="qa-sub">Display — the theme face</div>
+    <div class="qa-stage"><div class="qa-scale" data-qa-type="display900,display800,display700,display600,display500,display400,display300,display200,display100"></div></div>
+
+    <div class="qa-sub">Title — Inter 700</div>
+    <div class="qa-stage"><div class="qa-scale" data-qa-type="title90,title80,title70,title60,title50"></div></div>
+
+    <div class="qa-sub">Label — one line, inside a control</div>
+    <div class="qa-stage"><div class="qa-scale" data-qa-type="labelBold50,labelBold40,labelBold30,labelBold20,labelBold10,labelBold5,labelRegular50,labelRegular40,labelRegular30,labelRegular20,labelRegular10,labelRegular5"></div></div>
+
+    <div class="qa-sub">Body — sentences meant to be read</div>
+    <div class="qa-stage"><div class="qa-scale" data-qa-type="bodyBold40,bodyBold30,bodyBold20,bodyRegular40,bodyRegular30,bodyRegular20,idealRegular40"></div></div>
+
+    <div class="qa-sub">Responsive pairs — resize the window below 500px</div>
+    <div class="qa-stage"><div class="qa-scale" data-qa-type="title50-r,labelRegular20-r"></div></div>
+  </section>
+
+  <!-- ============================================================ SPACE -->
+  <section class="qa-sec" id="space">
+    <div class="qa-sec-head">
+      <h2>Space &amp; shape</h2>
+      <span class="qa-src">spacing-tokens.css · border-effects-tokens.css · container-tokens.css</span>
+    </div>
+
+    <div class="qa-sub">The 8px scale</div>
+    <div class="qa-stage"><div data-qa-spacing="--spacing-25,--spacing-50,--spacing-100,--spacing-150,--spacing-200,--spacing-250,--spacing-300,--spacing-400,--spacing-500,--spacing-600,--spacing-700,--spacing-800,--spacing-900"></div></div>
+
+    <div class="qa-sub">Radius</div>
+    <div class="qa-stage">
+      <div class="qa-row">
+        <div><div class="rounded-50" style="width:76px;height:56px;background:var(--neutral-200)"></div><div class="qa-cap">.rounded-50</div></div>
+        <div><div class="rounded-100" style="width:76px;height:56px;background:var(--neutral-200)"></div><div class="qa-cap">.rounded-100</div></div>
+        <div><div class="rounded-200" style="width:76px;height:56px;background:var(--neutral-200)"></div><div class="qa-cap">.rounded-200</div></div>
+        <div><div class="rounded-button" style="width:76px;height:56px;background:var(--neutral-200)"></div><div class="qa-cap">.rounded-button <b>theme-set</b></div></div>
+        <div><div class="rounded-ss-200" style="width:76px;height:56px;background:var(--neutral-200)"></div><div class="qa-cap">.rounded-ss-200 <b>logical</b></div></div>
+      </div>
+    </div>
+
+    <div class="qa-sub">Border weight and colour</div>
+    <div class="qa-stage">
+      <div class="qa-row">
+        <div><div class="border-50 border-solid border-neutral-200 rounded-100" style="width:76px;height:56px"></div><div class="qa-cap">.border-50</div></div>
+        <div><div class="border-100 border-solid border-neutral-500 rounded-100" style="width:76px;height:56px"></div><div class="qa-cap">.border-100</div></div>
+        <div><div class="border-200 border-solid border-neutral-1000 rounded-100" style="width:76px;height:56px"></div><div class="qa-cap">.border-200</div></div>
+        <div><div class="border-200 border-solid border-brand-interactive rounded-100" style="width:76px;height:56px"></div><div class="qa-cap">.border-brand-interactive</div></div>
+        <div><div class="border-s-200 border-solid border-neutral-1000" style="width:76px;height:56px"></div><div class="qa-cap">.border-s-200 <b>logical</b></div></div>
+      </div>
+    </div>
+
+    <div class="qa-sub">Shadow — load-bearing in light, near-invisible in dark</div>
+    <div class="qa-stage">
+      <div class="qa-row">
+        <div><div class="shadow-sheet rounded-200" style="width:120px;height:72px;background:var(--bg-sheet)"></div><div class="qa-cap">.shadow-sheet</div></div>
+        <div><div class="shadow-modal rounded-200" style="width:120px;height:72px;background:var(--bg-sheet)"></div><div class="qa-cap">.shadow-modal</div></div>
+      </div>
+    </div>
+
+    <div class="qa-sub">Scrims — mode-stable, for text over a photograph</div>
+    <div class="qa-stage">
+      <div class="qa-row">
+        <div style="position:relative;width:180px;height:100px;border-radius:12px;overflow:hidden;background:var(--brand-core)">
+          <div class="scrim-image" style="position:absolute;inset:0"></div>
+          <span class="labelBold30" style="position:absolute;inset-inline-start:12px;bottom:10px;color:var(--white-1000)">.scrim-image</span>
+        </div>
+        <div style="position:relative;width:180px;height:100px;border-radius:12px;overflow:hidden;background:var(--brand-core)">
+          <div class="scrim-brand" style="position:absolute;inset:0"></div>
+          <span class="labelBold30" style="position:absolute;inset-inline-start:12px;bottom:10px;color:var(--white-1000)">.scrim-brand</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="qa-sub">Icons — filled by default, one ramp</div>
+    <div class="qa-stage">
+      <div class="qa-row" style="align-items:flex-end">
+        <div><span class="icon icon-50">favorite</span><div class="qa-cap">50</div></div>
+        <div><span class="icon icon-100">favorite</span><div class="qa-cap">100</div></div>
+        <div><span class="icon icon-200">favorite</span><div class="qa-cap">200</div></div>
+        <div><span class="icon icon-300">favorite</span><div class="qa-cap">300</div></div>
+        <div><span class="icon icon-400">favorite</span><div class="qa-cap">400</div></div>
+        <div><span class="icon icon-500">favorite</span><div class="qa-cap">500</div></div>
+        <div><span class="icon icon-600">favorite</span><div class="qa-cap">600</div></div>
+        <div><span class="icon icon-700">favorite</span><div class="qa-cap">700</div></div>
+        <div><span class="icon icon-400 icon-outlined">favorite</span><div class="qa-cap">.icon-outlined</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================ SURFACES -->
+  <section class="qa-sec" id="surfaces">
+    <div class="qa-sec-head">
+      <h2>Surfaces &amp; scale</h2>
+      <span class="qa-src">interactive-tokens.css</span>
+    </div>
+    <p class="qa-note">The press mechanism. A surface carries the themed fill and
+      border across rest, hover and press; a scale carries the transform. Pair one
+      of each — and put the pair on a <code>&lt;button&gt;</code> or an
+      <code>&lt;a&gt;</code>, because a tappable <code>&lt;div&gt;</code> is a
+      target nobody can reach. <b>Hover them, and tab through them.</b></p>
+
+    <div class="qa-sub">Fill — solid, darkens on press</div>
+    <div class="qa-stage">
+      <div class="qa-grid">
+        <div><button type="button" class="surface-fillNeutral scale-500 p-200 rounded-200" style="width:100%"><span class="labelBold20">fillNeutral</span></button></div>
+        <div><button type="button" class="surface-fillColor scale-500 p-200 rounded-200" style="width:100%"><span class="labelBold20">fillColor</span></button></div>
+        <div><button type="button" class="surface-fillInverted scale-500 p-200 rounded-200" style="width:100%"><span class="labelBold20">fillInverted</span></button></div>
+        <div><button type="button" class="surface-fillBlack scale-500 p-200 rounded-200" style="width:100%"><span class="labelBold20">fillBlack</span></button></div>
+        <div><button type="button" class="surface-fillWhite scale-500 p-200 rounded-200" style="width:100%"><span class="labelBold20">fillWhite</span></button></div>
+      </div>
+    </div>
+
+    <div class="qa-sub">Border — outlined, fills lightly on hover</div>
+    <div class="qa-stage">
+      <div class="qa-grid">
+        <div><button type="button" class="surface-borderNeutral scale-500 p-200 rounded-200" style="width:100%"><span class="labelBold20">borderNeutral</span></button></div>
+        <div><button type="button" class="surface-borderInverted scale-500 p-200 rounded-200" style="width:100%"><span class="labelBold20">borderInverted</span></button></div>
+        <div><button type="button" class="surface-borderBlack scale-500 p-200 rounded-200" style="width:100%"><span class="labelBold20">borderBlack</span></button></div>
+        <div class="qa-flagged"><button type="button" class="surface-borderWhite scale-500 p-200 rounded-200" style="width:100%"><span class="labelBold20">borderWhite</span></button></div>
+      </div>
+      <div class="qa-flag">contrast 3.12 — <code>.surface-borderWhite</code>'s label
+        on the page background. It is designed to sit on a photograph or a brand
+        panel, not on base; shown here on base so the number is visible. gap 8.</div>
+    </div>
+
+    <div class="qa-sub">Subtle — shown on base, then on a surface</div>
+    <div class="qa-stage">
+      <div class="qa-grid">
+        <div><button type="button" class="surface-washNeutral scale-500 p-200 rounded-200" style="width:100%"><span class="labelBold20">washNeutral</span></button></div>
+        <div><button type="button" class="surface-ghost scale-500 p-200 rounded-200" style="width:100%"><span class="labelBold20">ghost</span></button></div>
+        <div><button type="button" class="surface-card scale-500 p-200 rounded-200" style="width:100%"><span class="labelBold20">card</span></button></div>
+      </div>
+    </div>
+    <div class="qa-stage is-surface" style="margin-block-start:12px">
+      <div class="qa-grid">
+        <div><button type="button" class="surface-washNeutral scale-500 p-200 rounded-200" style="width:100%"><span class="labelBold20">washNeutral</span></button></div>
+        <div><button type="button" class="surface-ghost scale-500 p-200 rounded-200" style="width:100%"><span class="labelBold20">ghost</span></button></div>
+        <div><button type="button" class="surface-card scale-500 p-200 rounded-200" style="width:100%"><span class="labelBold20">card on a surface — invisible at rest</span></button></div>
+      </div>
+      <div class="qa-cap"><b>This second stage is <code>--bg-surface</code>.</b>
+        <code>.surface-card</code> paints <code>--bg-surface</code> too, so it
+        disappears until you hover it. That is the surface-on-surface failure the
+        linter catches — shown deliberately.</div>
+    </div>
+
+    <div class="qa-sub">Scale tiers — the size of the object, not the movement</div>
+    <div class="qa-stage">
+      <div class="qa-row">
+        <div><button type="button" class="surface-fillNeutral scale-300 p-150 rounded-100"><span class="labelBold20">scale-300 · chips</span></button></div>
+        <div><button type="button" class="surface-fillNeutral scale-500 p-200 rounded-200"><span class="labelBold20">scale-500 · buttons</span></button></div>
+        <div><button type="button" class="surface-fillNeutral scale-700 p-300 rounded-200"><span class="labelBold20">scale-700 · cards and rows</span></button></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================ BUTTONS -->
+  <section class="qa-sec" id="buttons">
+    <div class="qa-sec-head">
+      <h2>Buttons</h2>
+      <span class="qa-src">button-components.css</span>
+    </div>
+    <p class="qa-note">Nine types, three sizes. <code>.btn</code> carries its own
+      scale tier — never add a <code>.scale-*</code> to one. Tab through to see
+      the focus ring.</p>
+
+    <div class="qa-sub">Types at 700</div>
+    <div class="qa-stage">
+      <div class="qa-row">
+        <button type="button" class="btn btn-primary btn-700">Primary</button>
+        <button type="button" class="btn btn-transactional btn-700">Transactional</button>
+        <button type="button" class="btn btn-secondary btn-700">Secondary</button>
+        <button type="button" class="btn btn-tertiary btn-700">Tertiary</button>
+        <button type="button" class="btn btn-neutral btn-700">Neutral</button>
+        <span class="qa-flagged"><button type="button" class="btn btn-destructive btn-700">Destructive</button></span>
+        <button type="button" class="btn btn-black btn-700">Black</button>
+      </div>
+      <div class="qa-flag">contrast 4.17 — <code>.btn-destructive</code>, label on
+        fill, in all three sizes. Below AA (4.5). This is the one in gap 8 worth
+        fixing first: a destructive action is the button that most needs reading
+        correctly. Needs <code>--status-error</code> decided, so it waits on a
+        design call.</div>
+      <div class="qa-row" style="margin-block-start:14px;background:var(--brand-dark-surface);padding:14px;border-radius:12px">
+        <button type="button" class="btn btn-white btn-700">White</button>
+        <button type="button" class="btn btn-white-tertiary btn-700">White tertiary</button>
+        <span class="qa-cap" style="margin:0"><b>on --brand-dark-surface, where they are meant to sit</b></span>
+      </div>
+    </div>
+
+    <div class="qa-sub">Sizes</div>
+    <div class="qa-stage">
+      <div class="qa-row">
+        <button type="button" class="btn btn-primary btn-700">btn-700</button>
+        <button type="button" class="btn btn-primary btn-300">btn-300</button>
+        <button type="button" class="btn btn-primary btn-100">btn-100</button>
+      </div>
+    </div>
+
+    <div class="qa-sub">Icons, fill and disabled</div>
+    <div class="qa-stage">
+      <div class="qa-row">
+        <button type="button" class="btn btn-primary btn-300 btn-icon-leading"><span class="btn-icon material-symbols-rounded">add</span><span>Leading</span></button>
+        <button type="button" class="btn btn-primary btn-300 btn-icon-trailing"><span>Trailing</span><span class="btn-icon material-symbols-rounded">arrow_forward</span></button>
+        <button type="button" class="btn btn-secondary btn-300" disabled>Disabled</button>
+      </div>
+      <div style="margin-block-start:12px"><button type="button" class="btn btn-primary btn-300 btn-fill">btn-fill</button></div>
+      <div class="btn-group" style="margin-block-start:12px">
+        <button type="button" class="btn btn-secondary btn-300">Cancel</button>
+        <button type="button" class="btn btn-primary btn-300">Save</button>
+      </div>
+    </div>
+
+    <div class="qa-sub">Circle buttons</div>
+    <div class="qa-stage">
+      <div class="qa-row">
+        <button type="button" class="btn-circle btn-circle-700 btn-circle-brand" aria-label="Brand"><span class="btn-icon material-symbols-rounded">favorite</span></button>
+        <button type="button" class="btn-circle btn-circle-700 btn-circle-neutral" aria-label="Neutral"><span class="btn-icon material-symbols-rounded">ios_share</span></button>
+        <button type="button" class="btn-circle btn-circle-700 btn-circle-inverted" aria-label="Inverted"><span class="btn-icon material-symbols-rounded">close</span></button>
+        <button type="button" class="btn-circle btn-circle-700 btn-circle-destructive" aria-label="Destructive"><span class="btn-icon material-symbols-rounded">close</span></button>
+        <button type="button" class="btn-circle btn-circle-300 btn-circle-brand-secondary" aria-label="Brand secondary"><span class="btn-icon material-symbols-rounded">add</span></button>
+        <button type="button" class="btn-circle btn-circle-300 btn-circle-neutral-tertiary" aria-label="Neutral tertiary"><span class="btn-icon material-symbols-rounded">more_horiz</span></button>
+        <button type="button" class="btn-circle btn-circle-700 btn-circle-brand btn-circle-letter" aria-label="Account">A</button>
+      </div>
+    </div>
+
+    <div class="qa-sub">Vendor chrome — the one rules exemption (RULES §7)</div>
+    <div class="qa-stage">
+      <div class="wallet-btn-wrapper">
+        <button type="button" class="wallet-btn"><span class="wallet-icon"></span><span class="wallet-btn-label">Add to Apple Wallet</span></button>
+      </div>
+      <div class="qa-cap">Reproduces a vendor spec, so it does not respond to theme or mode. That is correct, not a bug.</div>
+    </div>
+  </section>
+
+  <!-- ============================================================ FORMS -->
+  <section class="qa-sec" id="forms">
+    <div class="qa-sec-head">
+      <h2>Forms</h2>
+      <span class="qa-src">input-components.css · list-row-components.css</span>
+    </div>
+    <p class="qa-note">The bare <code>&lt;input&gt;</code> inside
+      <code>.input-control</code> is the correct form — the wrapper carries the
+      class. A switch is the exception worth knowing: its <code>&lt;label&gt;</code>
+      is the visual track and is deliberately empty, so the input needs its own
+      <code>aria-label</code> or it has no accessible name at all.</p>
+
+    <div class="qa-stage">
+      <div class="qa-grid is-wide">
+        <div class="input-field">
+          <div class="input-label-row"><label class="input-label" for="qa-f1">Default</label></div>
+          <div class="input-and-message"><div class="input-control"><input type="text" id="qa-f1" placeholder="Placeholder"></div></div>
+        </div>
+
+        <div class="input-field has-value">
+          <div class="input-label-row"><label class="input-label" for="qa-f2">With value and clear</label></div>
+          <div class="input-and-message"><div class="input-control">
+            <input type="text" id="qa-f2" value="Placeholder value">
+            <button type="button" class="input-clear" aria-label="Clear field"><span class="material-symbols-rounded">close</span></button>
+          </div></div>
+        </div>
+
+        <div class="input-field">
+          <div class="input-label-row"><label class="input-label" for="qa-f3">With icon and message</label></div>
+          <div class="input-and-message">
+            <div class="input-control"><span class="input-icon material-symbols-rounded" aria-hidden="true">search</span><input type="text" id="qa-f3" placeholder="Placeholder"></div>
+            <p class="input-message">Helper text sits under the control.</p>
+          </div>
+        </div>
+
+        <div class="input-field is-error">
+          <div class="input-label-row"><label class="input-label" for="qa-f4">Error</label></div>
+          <div class="input-and-message">
+            <div class="input-control"><input type="text" id="qa-f4" value="not-an-email"></div>
+            <p class="input-message qa-flagged">Enter a valid email address.</p>
+          </div>
+        </div>
+
+        <div class="input-field is-disabled">
+          <div class="input-label-row"><label class="input-label" for="qa-f5">Disabled</label></div>
+          <div class="input-and-message"><div class="input-control"><input type="text" id="qa-f5" placeholder="Placeholder" disabled></div></div>
+        </div>
+
+        <div class="input-field input-select" id="qa-sel-wrap">
+          <div class="input-label-row"><label class="input-label" for="qa-f6">Select</label></div>
+          <div class="input-and-message"><div class="input-control">
+            <span class="input-select-display is-placeholder" id="qa-sel-display">Choose a category</span>
+            <span class="input-select-chevron material-symbols-rounded" aria-hidden="true">arrow_drop_down</span>
+            <select id="qa-f6" aria-label="Category">
+              <option value="" disabled selected>Choose a category</option>
+              <option value="a">First option</option>
+              <option value="b">Second option</option>
+            </select>
+          </div></div>
+        </div>
+      </div>
+      <div class="qa-flag">contrast 4.00 — <code>.input-message</code> under
+        <code>.is-error</code>. gap 8.</div>
+    </div>
+
+    <div class="qa-sub">Switch and stepper — inside a row</div>
+    <div class="qa-stage">
+      <div class="list-gap">
+        <div class="list-row not-tappable">
+          <div class="leading leading-gap-md"><span class="icon icon-200">notifications</span></div>
+          <div class="list-row-content"><div class="list-row-text-pair">
+            <span class="labelBold30">Switch, off</span>
+            <span class="labelRegular10 text-secondary">The label element is the track, and is empty</span>
+          </div></div>
+          <div class="trailing trailing-gap-md"><div class="switch">
+            <input type="checkbox" id="qa-sw1" aria-label="Switch, off"><label for="qa-sw1"></label>
+          </div></div>
+        </div>
+        <div class="list-row not-tappable">
+          <div class="leading leading-gap-md"><span class="icon icon-200">sell</span></div>
+          <div class="list-row-content"><div class="list-row-text-pair">
+            <span class="labelBold30">Quantity</span>
+            <span class="labelRegular10 text-secondary">Stepper, with a disabled end</span>
+          </div></div>
+          <div class="trailing trailing-gap-md"><div class="stepper">
+            <button type="button" class="stepper-btn disabled" aria-label="Decrease" disabled><span class="material-symbols-rounded">remove</span></button>
+            <span class="stepper-count labelBold30">1</span>
+            <button type="button" class="stepper-btn" aria-label="Increase"><span class="material-symbols-rounded">add</span></button>
+          </div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================ ROWS -->
+  <section class="qa-sec" id="rows">
+    <div class="qa-sec-head">
+      <h2>Rows</h2>
+      <span class="qa-src">list-row-components.css</span>
+    </div>
+    <p class="qa-note">Three slots: leading → content → trailing. The row carries
+      no padding, margin or border — its container does. The gap class is chosen
+      by what is in the slot.</p>
+
+    <div class="qa-sub">Leading slot variants</div>
+    <div class="qa-stage">
+      <div class="list-divided">
+        <div class="list-row not-tappable">
+          <div class="leading leading-gap-md"><span class="icon icon-200">home</span></div>
+          <div class="list-row-content"><div class="list-row-text-pair"><span class="labelBold30">Icon</span><span class="labelRegular10 text-secondary">.leading-gap-md</span></div></div>
+        </div>
+        <div class="list-row not-tappable">
+          <div class="leading leading-gap-md"><span class="circle-container"><span class="icon icon-200">groups</span></span></div>
+          <div class="list-row-content"><div class="list-row-text-pair"><span class="labelBold30">Circle container</span><span class="labelRegular10 text-secondary">.circle-container</span></div></div>
+        </div>
+        <div class="list-row not-tappable">
+          <div class="leading leading-gap-md"><div class="status-dot"></div></div>
+          <div class="list-row-content"><div class="list-row-text-pair"><span class="labelBold30">Status dot, unread</span><span class="labelRegular10 text-secondary">.status-dot</span></div></div>
+        </div>
+        <div class="list-row not-tappable">
+          <div class="leading leading-gap-md"><div class="status-dot read"></div></div>
+          <div class="list-row-content"><div class="list-row-text-pair"><span class="labelBold30">Status dot, read</span><span class="labelRegular10 text-secondary">.status-dot.read</span></div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="qa-sub">Trailing slot variants</div>
+    <div class="qa-stage">
+      <div class="list-divided">
+        <div class="list-row not-tappable">
+          <div class="list-row-content"><div class="list-row-text-pair"><span class="labelBold30">Chevron</span></div></div>
+          <div class="trailing trailing-gap-xs"><span class="icon icon-200">chevron_right</span></div>
+        </div>
+        <div class="list-row not-tappable">
+          <div class="list-row-content"><div class="list-row-text-pair"><span class="labelBold30">Text pair</span></div></div>
+          <div class="trailing trailing-gap-sm"><div class="trailing-text-pair">
+            <span class="labelBold20">$148</span><span class="labelRegular10 text-secondary">each</span>
+          </div></div>
+        </div>
+        <div class="list-row not-tappable">
+          <div class="list-row-content"><div class="list-row-text-pair"><span class="labelBold30">Text link</span></div></div>
+          <div class="trailing trailing-gap-xs"><span class="trailing-text-link labelBold20">View all</span></div>
+        </div>
+        <div class="list-row not-tappable">
+          <div class="list-row-content"><div class="list-row-text-pair"><span class="labelBold30">Info block</span></div></div>
+          <div class="trailing trailing-gap-sm"><div class="info-block">
+            <div class="info-item"><span class="icon icon-200">event_seat</span></div>
+            <div class="info-item has-label"><span class="icon icon-200">confirmation_number</span><span class="labelRegular10">3</span></div>
+          </div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="qa-sub">States, and the selector</div>
+    <div class="qa-stage">
+      <div class="list-gap">
+        <button type="button" class="selector surface-washNeutral scale-500" aria-pressed="false">
+          <div class="list-row"><div class="list-row-content"><div class="list-row-text-pair">
+            <span class="labelBold30">Selector, wash</span><span class="labelRegular10 text-secondary">Inside a card</span>
+          </div></div><div class="trailing trailing-gap-sm"><span class="labelBold20">$42</span></div></div>
+        </button>
+        <button type="button" class="selector surface-card scale-500" aria-pressed="false">
+          <div class="list-row"><div class="list-row-content"><div class="list-row-text-pair">
+            <span class="labelBold30">Selector, card</span><span class="labelRegular10 text-secondary">On the page background</span>
+          </div></div><div class="trailing trailing-gap-sm"><span class="labelBold20">$42</span></div></div>
+        </button>
+        <button type="button" class="selector surface-washNeutral scale-500 is-selected" aria-pressed="true">
+          <div class="list-row"><div class="list-row-content"><div class="list-row-text-pair">
+            <span class="labelBold30">Selected</span><span class="labelRegular10 text-secondary">Sets --text-secondary in scope</span>
+          </div></div><div class="trailing trailing-gap-sm"><span class="labelBold20">$42</span></div></div>
+        </button>
+        <button type="button" class="selector surface-washNeutral is-disabled" disabled>
+          <div class="list-row"><div class="list-row-content"><div class="list-row-text-pair">
+            <span class="labelBold30">Disabled</span><span class="labelRegular10 text-secondary">No scale, and the real attribute</span>
+          </div></div></div>
+        </button>
+      </div>
+    </div>
+
+    <div class="qa-sub">Split row — two independently tappable bands</div>
+    <div class="qa-stage">
+      <div class="split-row-list">
+        <div class="split-row">
+          <div class="split-row-top surface-section">
+            <div class="list-row">
+              <div class="leading leading-gap-sm"><span class="circle-container"><span class="icon icon-200">star</span></span></div>
+              <div class="list-row-content"><div class="list-row-text-pair">
+                <span class="title50-r">Both bands interactive</span><span class="labelRegular20-r text-secondary">Supporting line</span>
+              </div></div>
+              <div class="trailing trailing-gap-lg"><button type="button" class="btn btn-primary btn-100">$19</button></div>
+            </div>
+          </div>
+          <div class="split-row-bottom surface-section">
+            <div class="list-row"><div class="list-row-content"><div class="list-row-text-pair">
+              <span class="labelBold30 text-interactive-tertiary">3 more options</span>
+            </div></div><div class="trailing trailing-gap-xs"><span class="icon icon-300">arrow_drop_down</span></div></div>
+          </div>
+        </div>
+        <div class="split-row">
+          <div class="split-row-top">
+            <div class="list-row not-tappable">
+              <div class="leading leading-gap-sm"><span class="circle-container"><span class="icon icon-200">flag</span></span></div>
+              <div class="list-row-content"><div class="list-row-text-pair">
+                <span class="title50-r">Nothing interactive</span><span class="labelRegular20-r text-secondary">Supporting line</span>
+              </div></div>
+              <div class="trailing trailing-gap-sm"><span class="labelBold20 text-interactive-tertiary split-row-note">Not yet available</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================ CARDS -->
+  <section class="qa-sec" id="cards">
+    <div class="qa-sec-head">
+      <h2>Cards &amp; tiles</h2>
+      <span class="qa-src">card-components.css</span>
+    </div>
+    <p class="qa-note">A card never takes a border — <code>--bg-surface</code>
+      against <code>--bg-base</code> is the edge. A tile is either the tap target
+      or it holds a button; never both, because a button inside a tappable card is
+      a target inside a target.</p>
+
+    <div class="qa-sub">Closed card — header, body, footer</div>
+    <div class="qa-stage">
+      <div class="qa-grid is-wide">
+        <div class="card-closed">
+          <div class="card-closed-header"><div class="card-text-pair">
+            <h3 class="title50">Card header</h3><p class="labelRegular20 text-secondary">Supporting line</p>
+          </div></div>
+          <div class="card-closed-body"><p class="bodyRegular30">Body copy sits here, and the card divides its bands with a hairline that bleeds to both edges.</p></div>
+          <div class="card-closed-footer"><div class="list-row not-tappable">
+            <div class="list-row-content"><div class="list-row-text-pair"><span class="labelBold30">Footer</span></div></div>
+            <div class="trailing trailing-gap-sm"><span class="labelBold20">$42.00</span></div>
+          </div></div>
+        </div>
+        <button type="button" class="card-closed-interactive surface-card scale-700">
+          <div class="card-closed-header"><div class="card-text-pair">
+            <h3 class="title50">Interactive card</h3><p class="labelRegular20 text-secondary">The whole card is the target</p>
+          </div></div>
+          <div class="card-closed-body"><p class="bodyRegular30">So it holds one block of content and no controls of its own.</p></div>
+        </button>
+      </div>
+    </div>
+
+    <div class="qa-sub">Open card — sections float on the page</div>
+    <div class="qa-stage">
+      <div class="card-open">
+        <div class="card-open-header"><div class="card-text-pair">
+          <h3 class="display300">Open card</h3><p class="labelRegular20 text-secondary">No background of its own</p>
+        </div></div>
+        <div class="card-open-content">
+          <div class="card-open-section"><span class="labelBold30">Section one</span></div>
+          <div class="card-open-section"><span class="labelBold30">Section two</span></div>
+          <button type="button" class="card-open-section-interactive surface-card scale-500"><span class="labelBold30">Section three — tappable</span></button>
+        </div>
+      </div>
+    </div>
+
+    <div class="qa-sub">Media bands — sized by ratio, never by height</div>
+    <div class="qa-stage">
+      <div class="qa-grid">
+        <div><div class="card-closed"><div class="card-media"></div><div class="card-closed-body"><span class="labelBold30">.card-media</span><span class="labelRegular10 text-secondary"> · 16/9</span></div></div></div>
+        <div><div class="card-closed"><div class="card-media-square"></div><div class="card-closed-body"><span class="labelBold30">.card-media-square</span></div></div></div>
+        <div><div class="card-closed"><div class="card-media-tall"></div><div class="card-closed-body"><span class="labelBold30">.card-media-tall</span></div></div></div>
+      </div>
+    </div>
+
+    <div class="qa-sub">Tiles — one choice per set, never mixed</div>
+    <div class="qa-stage">
+      <div class="card-grid grid-cols-3-desktop grid-cols-2-tablet grid-cols-1-mobile">
+        <button type="button" class="tile surface-card scale-700">
+          <div class="card-media"></div><div class="tile-tag">Tag</div>
+          <div class="tile-info"><div class="card-text-pair"><span class="labelBold30">Tile is the target</span><span class="labelRegular10 text-secondary">surface + scale on the tile</span></div><span class="labelBold20 text-success">From $19</span></div>
+        </button>
+        <button type="button" class="tile surface-card scale-700">
+          <div class="card-media"></div>
+          <div class="tile-info"><div class="card-text-pair"><span class="labelBold30">Same shape</span><span class="labelRegular10 text-secondary">Same slots, same set</span></div><span class="labelBold20 text-success">From $24</span></div>
+        </button>
+        <div class="tile">
+          <div class="card-media"></div>
+          <div class="tile-info"><div class="card-text-pair"><span class="labelBold30">Button is the CTA</span><span class="labelRegular10 text-secondary">So the tile stays inert</span></div><button type="button" class="btn btn-primary btn-100">Buy</button></div>
+        </div>
+      </div>
+      <div class="qa-cap"><b>The third tile is a different set.</b> Mixing a tappable tile and a button tile in one row is what RULES §2 forbids; they are side by side here only to compare them.</div>
+    </div>
+
+    <div class="qa-sub">Logo blocks</div>
+    <div class="qa-stage">
+      <div class="qa-row">
+        <div><div class="logo-block logo-block-sm"></div><div class="qa-cap">-sm</div></div>
+        <div><div class="logo-block logo-block-md"></div><div class="qa-cap">-md</div></div>
+        <div><div class="logo-block logo-block-lg"></div><div class="qa-cap">-lg</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================ TAGS -->
+  <section class="qa-sec" id="tags">
+    <div class="qa-sec-head">
+      <h2>Tags &amp; chips</h2>
+      <span class="qa-src">tag-chip-components.css</span>
+    </div>
+    <p class="qa-note">A tag is a static label. A chip is interactive, so it takes
+      a surface and <code>.scale-300</code>.</p>
+    <div class="qa-stage">
+      <div class="qa-row">
+        <div class="tag"><span class="labelBold20">Tag</span></div>
+        <div class="tag tag-brand-color"><span class="labelBold20">Brand colour</span></div>
+        <div class="tag tag-icon-leading"><span class="material-symbols-rounded">star</span><span class="labelBold20">Leading icon</span></div>
+        <div class="tag tag-icon-trailing"><span class="labelBold20">Trailing icon</span><span class="material-symbols-rounded">close</span></div>
+      </div>
+      <div class="qa-row" style="margin-block-start:14px">
+        <button type="button" class="chip surface-borderNeutral scale-300"><span class="labelBold20">Chip, bordered</span></button>
+        <button type="button" class="chip surface-ghost scale-300"><span class="labelBold20">Chip, ghost</span></button>
+        <button type="button" class="chip surface-borderNeutral scale-300 chip-brand-color"><span class="labelBold20">Brand chip</span></button>
+        <button type="button" class="chip surface-borderNeutral scale-300 chip-icon-leading"><span class="material-symbols-rounded">tune</span><span class="labelBold20">Filter</span></button>
+        <button type="button" class="chip surface-borderNeutral is-disabled" disabled><span class="labelBold20">Disabled</span></button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================ NAV -->
+  <section class="qa-sec" id="nav">
+    <div class="qa-sec-head">
+      <h2>Navigation &amp; page structure</h2>
+      <span class="qa-src">nav-components.css · web-footer-components.css</span>
+    </div>
+
+    <div class="qa-sub">Top bar</div>
+    <div class="qa-stage is-flush">
+      <header class="top-bar" role="banner"><div class="top-bar-inner">
+        <a class="top-bar-brand" href="#nav">
+          <span class="top-bar-name display100"><span class="top-bar-name-short">Crnl</span><span class="top-bar-name-full">Crnl Design System</span></span>
+        </a>
+        <div class="top-bar-actions">
+          <button type="button" class="btn btn-tertiary btn-300">Sign in</button>
+          <button type="button" class="btn btn-primary btn-300">Get started</button>
+        </div>
+      </div></header>
+    </div>
+
+    <div class="qa-sub">Tabs and steps</div>
+    <div class="qa-stage">
+      <nav class="tabs" role="tablist" aria-label="Example tabs">
+        <button class="tab is-active" role="tab" aria-selected="true">First</button>
+        <button class="tab" role="tab" aria-selected="false">Second</button>
+        <button class="tab" role="tab" aria-selected="false">Third</button>
+      </nav>
+      <nav class="tabs tabs-neutral" role="tablist" aria-label="Example neutral tabs" style="margin-block-start:14px">
+        <button class="tab is-active" role="tab" aria-selected="true">Neutral</button>
+        <button class="tab" role="tab" aria-selected="false">Indicator</button>
+      </nav>
+      <div class="steps" style="margin-block-start:20px">
+        <div class="step step-completed"><div class="step-circle"><span class="icon icon-100">check</span></div><span class="step-label">Done</span></div>
+        <span class="step-connector icon">chevron_right</span>
+        <div class="step step-active"><div class="step-circle"><span class="step-number">2</span></div><span class="step-label">Active</span></div>
+        <span class="step-connector icon">chevron_right</span>
+        <div class="step step-pending"><div class="step-circle"><span class="step-number">3</span></div><span class="step-label">Pending</span></div>
+      </div>
+    </div>
+
+    <div class="qa-sub">Page header</div>
+    <div class="qa-stage is-flush">
+      <section class="page-header has-tabs"><div class="page-header-content">
+        <div class="card-text-pair"><h1 class="display500">Page title</h1><p class="labelRegular30 text-secondary">Supporting line under the title</p></div>
+        <nav class="tabs" role="tablist" aria-label="Page sections">
+          <button class="tab is-active" role="tab" aria-selected="true">Overview</button>
+          <button class="tab" role="tab" aria-selected="false">Detail</button>
+        </nav>
+      </div></section>
+    </div>
+
+    <div class="qa-sub">Footer</div>
+    <div class="qa-stage is-flush">
+      <footer class="web-footer"><div class="web-footer-main">
+        <div class="web-footer-column">
+          <div class="web-footer-column-heading labelBold20">Product</div>
+          <a class="web-footer-link labelRegular20" href="#nav">First link</a>
+          <a class="web-footer-link labelRegular20" href="#nav">Second link</a>
+        </div>
+        <div class="web-footer-column">
+          <div class="web-footer-column-heading labelBold20">Company</div>
+          <a class="web-footer-link labelRegular20" href="#nav">Third link</a>
+          <a class="web-footer-link labelRegular20" href="#nav">Fourth link</a>
+        </div>
+      </div>
+      <div class="web-footer-bottom"><div class="web-footer-legal">
+        <span class="web-footer-copyright labelRegular10">© Placeholder</span>
+        <div class="web-footer-legal-links">
+          <a class="web-footer-link labelRegular10" href="#nav">Privacy</a>
+          <a class="web-footer-link labelRegular10" href="#nav">Terms</a>
+        </div>
+      </div></div></footer>
+    </div>
+  </section>
+
+  <!-- ============================================================ TABLE -->
+  <section class="qa-sec" id="table">
+    <div class="qa-sec-head">
+      <h2>Stat table</h2>
+      <span class="qa-src">table-components.css</span>
+    </div>
+    <p class="qa-note">A pinned entity column beside horizontally scrolling
+      attribute columns. Scroll it sideways — the first column stays.</p>
+    <div class="qa-stage is-flush">
+      <div class="stat-table-scroll">
+        <table class="stat-table">
+          <thead><tr>
+            <th class="stat-table-entity is-title">Entity</th>
+            <th class="stat-table-attr is-sorted qa-flagged">Sorted</th>
+            <th class="stat-table-attr qa-flagged">Second</th>
+            <th class="stat-table-attr">Third</th>
+            <th class="stat-table-attr">Fourth</th>
+            <th class="stat-table-attr">Fifth</th>
+          </tr></thead>
+          <tbody>
+            <tr class="stat-table-row is-featured">
+              <td class="stat-table-entity"><div class="stat-table-entity-block"><span class="stat-table-rank labelRegular10">1</span><span class="labelBold30">Featured row</span></div></td>
+              <td class="stat-table-attr is-sorted labelBold20">18</td>
+              <td class="stat-table-attr labelRegular20">12</td>
+              <td class="stat-table-attr labelRegular20">7</td>
+              <td class="stat-table-attr is-win labelRegular20">W</td>
+              <td class="stat-table-attr labelRegular20">2.4</td>
+            </tr>
+            <tr class="stat-table-row is-tinted">
+              <td class="stat-table-entity"><div class="stat-table-entity-block"><span class="stat-table-rank labelRegular10">2</span><span class="labelBold30">Tinted row</span></div></td>
+              <td class="stat-table-attr is-sorted labelBold20">15</td>
+              <td class="stat-table-attr labelRegular20">9</td>
+              <td class="stat-table-attr labelRegular20">6</td>
+              <td class="stat-table-attr is-loss labelRegular20">L</td>
+              <td class="stat-table-attr labelRegular20">1.9</td>
+            </tr>
+            <tr class="stat-table-row">
+              <td class="stat-table-entity"><div class="stat-table-entity-block"><span class="stat-table-rank labelRegular10">3</span><span class="labelBold30">Plain row</span></div></td>
+              <td class="stat-table-attr is-sorted labelBold20">11</td>
+              <td class="stat-table-attr labelRegular20">8</td>
+              <td class="stat-table-attr is-empty labelRegular20">—</td>
+              <td class="stat-table-attr labelRegular20">D</td>
+              <td class="stat-table-attr labelRegular20">1.2</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="qa-flag">contrast 2.84 — the attribute column headers. 21 findings
+      on this component in total. gap 8.</div>
+  </section>
+
+  <!-- ============================================================ PATTERNS -->
+  <section class="qa-sec" id="patterns">
+    <div class="qa-sec-head">
+      <h2>Product patterns</h2>
+      <span class="qa-src">product-patterns.css</span>
+    </div>
+    <p class="qa-note">Composite layouts that recur across screens and sit above
+      the component layer. Reach for one of these before writing layout CSS.</p>
+
+    <div class="qa-sub">Section heading, link, disclosure, heading select</div>
+    <div class="qa-stage">
+      <div class="section-heading">
+        <h3 class="display300">Section heading</h3>
+        <p class="labelRegular30 text-secondary">Title plus a supporting line</p>
+      </div>
+      <p class="bodyRegular30" style="margin-block-start:14px">Body copy with an <a class="link" href="#patterns">emphasised inline link</a> in it.</p>
+      <button type="button" class="disclosure-toggle" style="margin-block-start:14px">
+        <span class="labelBold30">Disclosure toggle</span>
+        <span class="icon icon-300">expand_more</span>
+      </button>
+      <div class="heading-select" style="margin-block-start:14px">
+        <span class="display300">Heading select</span>
+        <span class="icon icon-300">arrow_drop_down</span>
+      </div>
+    </div>
+
+    <div class="qa-sub">Circle icon, action row, row card</div>
+    <div class="qa-stage">
+      <div class="circle-icon"><span class="icon icon-500">check</span></div>
+      <div class="action-row" style="margin-block-start:16px">
+        <button type="button" class="btn btn-secondary btn-300">Secondary</button>
+        <button type="button" class="btn btn-primary btn-300">Primary</button>
+      </div>
+      <div class="row-card-list" style="margin-block-start:18px">
+        <button type="button" class="row-card surface-card scale-700">
+          <div class="list-row">
+            <div class="leading leading-gap-sm"><span class="circle-container"><span class="icon icon-200">layers</span></span></div>
+            <div class="list-row-content"><div class="list-row-text-pair"><span class="labelBold30">Row card</span><span class="labelRegular10 text-secondary">Layout only — takes a surface and scale to become tappable</span></div></div>
+            <div class="trailing trailing-gap-xs"><span class="icon icon-200">chevron_right</span></div>
+          </div>
+        </button>
+        <button type="button" class="row-card row-card-media surface-card scale-700">
+          <div class="card-media"></div>
+          <div class="list-row p-300"><div class="list-row-content"><div class="list-row-text-pair">
+            <span class="labelBold30">Media variant</span><span class="labelRegular10 text-secondary">The image owns the edges, so the card sheds its padding</span>
+          </div></div></div>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================ iOS -->
+  <section class="qa-sec" id="ios">
+    <div class="qa-sec-head">
+      <h2>iOS / app chrome</h2>
+      <span class="qa-src">ios-nav-components.css · platform-tokens.css</span>
+    </div>
+    <p class="qa-note">The app platform's own navigation. The wrapper below carries
+      <code>data-platform="app"</code>, so the descendant rules apply — the phone
+      frame itself only renders when that attribute is on <code>&lt;html&gt;</code>,
+      which is what <code>demo/11-ios.html</code> shows.</p>
+
+    <div class="qa-stage" data-platform="app">
+      <div class="qa-row" style="align-items:flex-start;gap:24px">
+        <div class="qa-phone">
+          <div class="qa-phone-scroll">
+            <div class="ios-chrome-top">
+              <div class="ios-status-bar"></div>
+              <header class="ios-nav-maintab">
+                <div class="ios-nav-maintab-row">
+                  <h1 class="display400">Home</h1>
+                  <div class="ios-nav-controls">
+                    <button type="button" class="ios-nav-btn ios-glass" aria-label="Notifications"><span class="icon icon-300">notifications</span></button>
+                    <button type="button" class="ios-nav-btn ios-nav-btn-brand" aria-label="Account">A</button>
+                  </div>
+                </div>
+                <div class="ios-nav-subtabs-container"><div class="ios-nav-subtabs">
+                  <button type="button" class="ios-nav-subtab is-active">All</button>
+                  <span class="ios-nav-subtab-sep"></span>
+                  <button type="button" class="ios-nav-subtab">Nearby</button>
+                  <span class="ios-nav-subtab-sep"></span>
+                  <button type="button" class="ios-nav-subtab">Saved</button>
+                </div></div>
+              </header>
+            </div>
+
+            <div class="ios-content has-ios-tab-bar" style="padding:16px;display:flex;flex-direction:column;gap:12px">
+              <div class="card-closed">
+                <div class="card-closed-header"><div class="card-text-pair">
+                  <h3 class="title50">Inside the frame</h3><p class="labelRegular20 text-secondary">Ordinary components, app chrome around them</p>
+                </div></div>
+              </div>
+              <button type="button" class="row-card surface-card scale-700">
+                <div class="list-row">
+                  <div class="leading leading-gap-md"><span class="icon icon-200">navigation</span></div>
+                  <div class="list-row-content"><div class="list-row-text-pair"><span class="labelBold30">A row</span><span class="labelRegular10 text-secondary">Supporting line</span></div></div>
+                  <div class="trailing trailing-gap-xs"><span class="icon icon-200">chevron_right</span></div>
+                </div>
+              </button>
+              <button type="button" class="btn btn-primary btn-700 btn-fill">Primary action</button>
+            </div>
+
+            <div class="ios-chrome-bottom">
+              <nav class="ios-tab-bar"><div class="ios-tab-bar-inner">
+                <button type="button" class="ios-tab is-active"><span class="icon">home</span><span class="ios-tab-label">Home</span></button>
+                <button type="button" class="ios-tab"><span class="icon">search</span><span class="ios-tab-label">Search</span></button>
+                <button type="button" class="ios-tab"><span class="icon">confirmation_number</span><span class="ios-tab-label">Saved</span></button>
+                <button type="button" class="ios-tab"><span class="icon">groups</span><span class="ios-tab-label">Account</span></button>
+              </div></nav>
+            </div>
+          </div>
+        </div>
+
+        <div class="qa-col" style="flex:1;min-width:240px">
+          <div>
+            <div class="qa-cap" style="margin:0 0 8px"><b>Page nav</b></div>
+            <header class="ios-nav-page"><div class="ios-nav-page-row">
+              <div class="ios-nav-page-left"><button type="button" class="ios-nav-btn ios-glass" aria-label="Back"><span class="icon icon-300">arrow_back</span></button></div>
+              <h2 class="ios-nav-page-title labelBold40">Page title</h2>
+              <div class="ios-nav-page-right"><button type="button" class="ios-nav-btn ios-glass" aria-label="Share"><span class="icon icon-300">ios_share</span></button></div>
+            </div></header>
+          </div>
+          <div>
+            <div class="qa-cap" style="margin:0 0 8px"><b>Glass buttons</b></div>
+            <div class="qa-row" style="background:var(--brand-dark-surface);padding:16px;border-radius:12px">
+              <button type="button" class="ios-nav-btn ios-glass" aria-label="Back"><span class="icon icon-300">arrow_back</span></button>
+              <button type="button" class="ios-nav-btn ios-glass" aria-label="Share"><span class="icon icon-300">ios_share</span></button>
+              <button type="button" class="ios-nav-btn ios-nav-btn-brand" aria-label="Account">A</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================ ISSUES -->
+  <section class="qa-sec" id="issues">
+    <div class="qa-sec-head">
+      <h2>Known issues</h2>
+      <span class="qa-src">docs/roadmap.md § gap 8 · npm run check:a11y</span>
+    </div>
+    <p class="qa-note">Measured by axe-core across every sheet in both modes, then
+      split by what they actually are. Turn on <b>Known issues</b> above to see
+      each one marked where it renders.</p>
+
+    <div class="qa-stage">
+      <div class="qa-scale">
+        <div class="qa-scale-row"><span class="qa-scale-key">32 · components</span><span class="bodyRegular30">Unambiguously wrong. <code class="qa-mono">.btn-destructive</code> 4.17, <code class="qa-mono">.input-message</code> on error 4.00, stat-table headers 2.84.</span></div>
+        <div class="qa-scale-row"><span class="qa-scale-key">28 · disabled</span><span class="bodyRegular30">WCAG 1.4.3 exempts disabled controls, so these are conformance-neutral. axe flags them anyway.</span></div>
+        <div class="qa-scale-row"><span class="qa-scale-key">22 · brand as text</span><span class="bodyRegular30">1.07–2.50. A brand colour is picked to be a brand, not body copy.</span></div>
+        <div class="qa-scale-row"><span class="qa-scale-key">21 · status as text</span><span class="bodyRegular30"><code class="qa-mono">.text-warning</code> 2.76, <code class="qa-mono">.text-info</code> 4.23 — the second is one nudge from passing.</span></div>
+      </div>
+    </div>
+
+    <p class="qa-note" style="margin-block-start:18px">None of these are fixed,
+      deliberately: every one needs a token value decided, which is a design call
+      rather than a refactor. <code>npm run check:themes</code> did not catch any
+      of them because it checks three pairs — two button types out of nine.</p>
+  </section>
+
+  <footer class="qa-foot">
+    <p><b>What this page is.</b> Every component family with its variants, plus
+      three composed screens. It is not exhaustive at the utility level — the 300-odd
+      spacing, grid and visibility utilities are listed by name in
+      <span class="qa-mono">docs/css-api.md</span> and shown one by one across the
+      thirteen sheets in <span class="qa-mono">demo/</span>, which this page does
+      not replace.</p>
+    <p><b>How to trust it.</b> Nothing here is a mockup: the page loads the real
+      <span class="qa-mono">css/crnl.css</span> and the real fonts, so what you are
+      looking at is the system running. Every class used is in
+      <span class="qa-mono">docs/css-api.json</span> — <span class="qa-mono">npm run lint</span>
+      fails on an invented one.</p>
+    <p>Placeholder copy throughout. No name, price or date here comes from
+      anywhere real (<span class="qa-mono">RULES §6</span>).</p>
+  </footer>
+
+</div>
+
+<script>
+/* ============================================================
+   QA bench behaviour. Three jobs, all of them reading the live CSS
+   rather than a copy of what it is supposed to say.
+   ============================================================ */
+(function () {
+  var root = document.documentElement;
+  var body = document.body;
+
+  /* ---- controls ---------------------------------------------------- */
+  function bind(id, attr) {
+    var el = document.getElementById(id);
+    if (!el) return;
+    el.addEventListener('change', function () {
+      if (el.value) root.setAttribute(attr, el.value);
+      else root.removeAttribute(attr);
+      refresh();
+    });
+  }
+  bind('qa-theme', 'data-theme');
+  bind('qa-mode', 'data-mode');
+  bind('qa-face', 'data-display-font');
+  bind('qa-dir', 'dir');
+
+  var issues = document.getElementById('qa-issues');
+  issues.addEventListener('click', function () {
+    var on = issues.getAttribute('aria-pressed') === 'true';
+    issues.setAttribute('aria-pressed', String(!on));
+    body.setAttribute('data-qa-issues', on ? 'off' : 'on');
+  });
+
+  /* ---- live token readouts ------------------------------------------
+     Printed from getComputedStyle, so a value shown here is the value the
+     browser resolved — not what a doc claims. Re-read on every change. */
+  function resolve(name) {
+    return getComputedStyle(root).getPropertyValue(name).trim();
+  }
+
+  function paintTokens() {
+    document.querySelectorAll('[data-qa-tokens]').forEach(function (host) {
+      var names = host.getAttribute('data-qa-tokens').split(',');
+      host.innerHTML = names.map(function (n) {
+        var v = resolve(n) || '—';
+        return '<div class="qa-sw">' +
+               '<div class="qa-sw-chip" style="background:' + (v !== '—' ? v : 'transparent') + '"></div>' +
+               '<div class="qa-sw-meta"><b>' + n + '</b><span>' + v + '</span></div></div>';
+      }).join('');
+    });
+  }
+
+  function paintType() {
+    document.querySelectorAll('[data-qa-type]').forEach(function (host) {
+      var names = host.getAttribute('data-qa-type').split(',');
+      host.innerHTML = names.map(function (n) {
+        return '<div class="qa-scale-row">' +
+               '<span class="qa-scale-key">.' + n + '</span>' +
+               '<span class="' + n + '">Grumpy wizards</span>' +
+               '<span class="qa-scale-val" data-qa-metric="' + n + '"></span></div>';
+      }).join('');
+    });
+    /* Measure after the classes are applied, so the numbers are real. */
+    document.querySelectorAll('[data-qa-metric]').forEach(function (out) {
+      var cls = out.getAttribute('data-qa-metric');
+      var sample = out.parentNode.querySelector('.' + cls);
+      if (!sample) return;
+      var cs = getComputedStyle(sample);
+      out.textContent = parseFloat(cs.fontSize).toFixed(0) + 'px / ' + cs.fontWeight;
+    });
+  }
+
+  function paintSpacing() {
+    document.querySelectorAll('[data-qa-spacing]').forEach(function (host) {
+      var names = host.getAttribute('data-qa-spacing').split(',');
+      host.innerHTML = names.map(function (n) {
+        var v = resolve(n) || '0px';
+        return '<div class="qa-ruler">' +
+               '<span class="qa-scale-key">' + n + '</span>' +
+               '<span class="qa-ruler-bar" style="width:' + v + '"></span>' +
+               '<span class="qa-scale-val">' + v + '</span></div>';
+      }).join('');
+    });
+  }
+
+  function refresh() { paintTokens(); paintType(); paintSpacing(); }
+
+  /* The stylesheets arrive via @import, so wait for them before measuring —
+     otherwise every number is the unstyled fallback. */
+  if (document.readyState === 'complete') refresh();
+  else window.addEventListener('load', refresh);
+  refresh();
+
+  /* ---- the select's own display, as the design guide specifies -------- */
+  var sel = document.getElementById('qa-f6');
+  if (sel) {
+    sel.addEventListener('change', function () {
+      var d = document.getElementById('qa-sel-display');
+      var opt = sel.options[sel.selectedIndex];
+      d.textContent = opt.text;
+      d.classList.remove('is-placeholder');
+    });
+  }
+}());
+</script>
+
+</body>
+</html>
