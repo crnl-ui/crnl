@@ -53,6 +53,20 @@ const NOT_RENDERABLE = new Map([
 const files = readdirSync(HERE).filter(f => f.endsWith('.html'));
 const sources = files.map(f => [f, readFileSync(join(HERE, f), 'utf8')]);
 
+/* A page may declare its own scaffolding in its own <style> rather than in
+   sheet.css. That is a legitimate shape for a self-contained page, and the
+   rule is that a class is declared somewhere a reader can find it — not that
+   it lives in a particular file. Collecting them here beats adding three
+   dozen names to SCAFFOLDING above, which is a hand-maintained list and would
+   drift the first time one was renamed. */
+const inlineScaffolding = new Set();
+for (const [, src] of sources) {
+  for (const block of src.matchAll(/<style\b[^>]*>([\s\S]*?)<\/style>/gi)) {
+    const css = block[1].replace(/\/\*[\s\S]*?\*\//g, '');
+    for (const m of css.matchAll(/\.(-?[_a-zA-Z][\w-]*)/g)) inlineScaffolding.add(m[1]);
+  }
+}
+
 /* Two ways a class counts as covered: it is used in a class= attribute
    (a live specimen), or it is printed by name in the page copy (a listing).
    Both are legitimate — a listing is how 300 spacing utilities get shown. */
@@ -83,7 +97,7 @@ for (const s of API.stylesheets) {
 const missingClasses = [...allClasses].filter(([n]) => !used.has(n) && !named.has(n));
 const missingTokens = [...allTokens].filter(([n]) => !tokensSeen.has(n));
 const unknown = [...used].filter(
-  c => !allClasses.has(c) && !SCAFFOLDING.has(c) && !c.startsWith('data-')
+  c => !allClasses.has(c) && !SCAFFOLDING.has(c) && !inlineScaffolding.has(c) && !c.startsWith('data-')
 );
 
 const group = pairs => {

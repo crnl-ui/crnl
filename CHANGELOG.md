@@ -114,12 +114,19 @@ names, token names and component props can move**. Pin a commit.
 
 Tracked in `docs/roadmap.md`, with what closing each one takes:
 
-- 168 lint findings in the baseline, mostly components restating type instead
+- **32 component-level contrast failures**, including `.btn-destructive` at
+  4.17 and `.input-message` on `.is-error` at 4.0. Recorded by
+  `npm run check:a11y`; fixing them needs token values decided.
+- `check:themes` checks three contrast pairs — two button types out of nine —
+  which is why the above was not caught there.
+- 163 lint findings in the baseline, mostly components restating type instead
   of composing a text class.
-- No axe-core pass; `check:visual` is the only check that drives a browser.
-- `check:visual` is not in CI — its baselines are per-machine until the
-  renderer is pinned to a container.
-- Not published to npm. `private: true` on purpose.
+- Six hardcoded shadow colours needing alphas the scales do not have.
+- `check:visual` is not in CI, and is now the only check that is not — its
+  baselines are pixels and therefore per-machine, until the renderer is
+  pinned to a container.
+- Not published to npm. `private: true` on purpose; nothing technical blocks
+  a first release any more.
 
 ## Before this
 
