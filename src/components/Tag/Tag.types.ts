@@ -11,7 +11,8 @@ export interface TagProps {
   iconPosition?: TagIconPosition
 }
 
-export type ChipSurface = 'bordered' | 'ghost'
+/** The surface class, minus the `surface-` prefix — the CSS's own names. */
+export type ChipSurface = 'borderNeutral' | 'ghost'
 
 export interface ChipProps {
   /** Label text */

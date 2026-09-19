@@ -65,7 +65,7 @@ For that to work, the container has to hold up its end:
 </div>
 ```
 
-The shipped examples are `.event-row-top` / `.event-row-bottom`, where which bands get the class
+The shipped examples are `.split-row-top` / `.split-row-bottom`, where which bands get the class
 changes with the offer state, and the inventory list, where every row is a section of one card.
 Both are worked through in `design-guide.md`.
 

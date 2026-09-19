@@ -89,6 +89,19 @@
   opacity: 0.6;
 }
 
+/* Keyboard focus. A button paints its own background, so the browser default
+   ring lands on top of a fill it was never contrasted against — on
+   .btn-primary in a dark theme it is close to invisible. This draws the
+   system's own ring outside the button instead (see the FOCUS block in
+   interactive-tokens.css for why outline and why offset).
+
+   .btn-circle inherits it: the ring follows the 100px radius on its own. */
+.btn:focus-visible,
+.btn-circle:focus-visible {
+  outline: var(--border-weight-200) solid var(--color-interactive);
+  outline-offset: var(--spacing-25);
+}
+
 /* Color inheritance for text style classes inside buttons */
 .btn * {
   color: inherit;
@@ -98,12 +111,12 @@
 .btn:disabled,
 .btn[disabled] {
   cursor: not-allowed;
-  transform: scale(1) !important;
+  transform: scale(1);
   pointer-events: auto;
 }
 .btn:disabled:hover,
 .btn[disabled]:hover {
-  transform: scale(1) !important;
+  transform: scale(1);
 }
 .btn:disabled:active > *,
 .btn[disabled]:active > * {
@@ -194,19 +207,19 @@
    ============================================================ */
 
 /* Leading icon: reduced left padding */
-.btn-700.btn-icon-leading { padding-left: 28px; }
-.btn-300.btn-icon-leading { padding-left: 20px; }
-.btn-100.btn-icon-leading { padding-left: 14px; }
+.btn-700.btn-icon-leading { padding-inline-start: 28px; }
+.btn-300.btn-icon-leading { padding-inline-start: 20px; }
+.btn-100.btn-icon-leading { padding-inline-start: 14px; }
 
 /* Trailing icon: reduced right padding */
-.btn-700.btn-icon-trailing { padding-right: 28px; }
-.btn-300.btn-icon-trailing { padding-right: 20px; }
-.btn-100.btn-icon-trailing { padding-right: 14px; }
+.btn-700.btn-icon-trailing { padding-inline-end: 28px; }
+.btn-300.btn-icon-trailing { padding-inline-end: 20px; }
+.btn-100.btn-icon-trailing { padding-inline-end: 14px; }
 
 /* Both icons: reduced both sides */
-.btn-700.btn-icon-leading.btn-icon-trailing { padding-left: 28px; padding-right: 28px; }
-.btn-300.btn-icon-leading.btn-icon-trailing { padding-left: 20px; padding-right: 20px; }
-.btn-100.btn-icon-leading.btn-icon-trailing { padding-left: 14px; padding-right: 14px; }
+.btn-700.btn-icon-leading.btn-icon-trailing { padding-inline-start: 28px; padding-inline-end: 28px; }
+.btn-300.btn-icon-leading.btn-icon-trailing { padding-inline-start: 20px; padding-inline-end: 20px; }
+.btn-100.btn-icon-leading.btn-icon-trailing { padding-inline-start: 14px; padding-inline-end: 14px; }
 
 
 /* ============================================================
@@ -744,7 +757,7 @@
 .btn-circle[disabled] {
   opacity: 0.4;
   cursor: not-allowed;
-  transform: scale(1) !important;
+  transform: scale(1);
 }
 
 

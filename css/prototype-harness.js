@@ -71,6 +71,36 @@
     return slug.replace(/-/g, ' ').replace(/\b\w/g, function (m) { return m.toUpperCase(); });
   }
 
+  /* Walk a rule list, and every rule list nested inside it, calling back with
+     each rule that has a selector.
+
+     One level deep is not enough, and stopped being enough the moment the
+     system took cascade layers: crnl-loader.js injects the sheets as
+     `@import url(…) layer(…)`, which puts every real rule inside a
+     CSSImportRule's own stylesheet, and the delivery bundle wraps each sheet
+     in `@layer name { … }`, which puts them inside a CSSLayerBlockRule. A
+     flat scan of document.styleSheets finds neither, so the switcher quietly
+     discovers no themes and no faces and falls back — the failure is an empty
+     dropdown, not an error.
+
+     @media and @supports are walked for the same reason: a theme declared
+     inside one is still a theme. */
+  function eachRule(rules, fn) {
+    if (!rules) return;
+    for (var i = 0; i < rules.length; i++) {
+      var rule = rules[i];
+      if (rule.selectorText) fn(rule);
+      /* An @import exposes its sheet; reading it can throw same-origin. */
+      if (rule.styleSheet) {
+        var nested;
+        try { nested = rule.styleSheet.cssRules; } catch (e) { nested = null; }
+        eachRule(nested, fn);
+      }
+      /* @layer, @media, @supports and @container all carry a child list. */
+      if (rule.cssRules) eachRule(rule.cssRules, fn);
+    }
+  }
+
   /* Collect every value of `attr` that appears in an attribute selector across
      the loaded stylesheets, in document order, de-duplicated. */
   function discover(attr) {
@@ -80,16 +110,13 @@
     for (var i = 0; i < document.styleSheets.length; i++) {
       var rules;
       try { rules = document.styleSheets[i].cssRules; } catch (e) { continue; }
-      if (!rules) continue;
-      for (var j = 0; j < rules.length; j++) {
-        var sel = rules[j].selectorText;
-        if (!sel) continue;
+      eachRule(rules, function (rule) {
         var m;
         re.lastIndex = 0;
-        while ((m = re.exec(sel))) {
+        while ((m = re.exec(rule.selectorText))) {
           if (!seen[m[1]]) { seen[m[1]] = 1; out.push({ value: m[1], label: titleCase(m[1]) }); }
         }
-      }
+      });
     }
     return out;
   }
@@ -433,7 +460,7 @@
     var candidates = document.querySelectorAll(
       '[class*="surface-fill"],[class*="surface-border"],.surface-card,' +
       '.card-closed,.card-closed-interactive,.card-open-section,' +
-      '.card-open-section-interactive,.tile,.event-row,.event-card'
+      '.card-open-section-interactive,.tile,.split-row,.row-card'
     );
 
     var hits = [];

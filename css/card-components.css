@@ -37,7 +37,7 @@
    with a background of its own — a .surface-section hover or press wash, a
    full-bleed image in the first band — paints square corners over the card's
    radius. Every other rounded container in the system already clips
-   (.event-row, .event-card, .tile, .logo-block); these two did not,
+   (.split-row, .row-card, .tile, .logo-block); these two did not,
    and four files had been patching it with an inline `style="overflow: hidden"`
    instead. */
 .card-closed {
@@ -185,6 +185,10 @@
   border-radius: var(--border-radius-200);
   padding: var(--spacing-300);
   width: 100%;
+  /* As .selector: this band is a tap target and should be a real button, and
+     a UA button is inline-block — which puts the content on a baseline and
+     loses the descender space a block box reserves. */
+  display: block;
 }
 
 /* ============================================================
@@ -334,7 +338,7 @@
 .logo-block img {
   position: absolute;
   top: 50%;
-  left: 50%;
+  inset-inline-start: 50%;
   transform: translate(-50%, -50%);
 }
 
@@ -426,15 +430,15 @@
 /* Frosted glass label — absolutely positioned over the visual header */
 .tile-tag {
   position: absolute;
-  top: var(--spacing-100);   /* 8px */
-  left: var(--spacing-100);  /* 8px */
+  top: var(--spacing-100);                  /* 8px */
+  inset-inline-start: var(--spacing-100);   /* 8px — mirrors in RTL */
   display: flex;
   align-items: center;
   height: 32px;
   padding: var(--spacing-50) var(--spacing-150); /* 4px 12px */
   border-radius: var(--border-radius-50);        /* 4px */
   backdrop-filter: blur(25px);
-  background: rgba(0, 0, 0, 0.04);
+  background: var(--black-100);
 }
 
 /* ============================================================

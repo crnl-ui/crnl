@@ -8,37 +8,38 @@
 > compose; this file is the exhaustive list of what exists. If a class or token
 > is not here, it is not in the design system.
 
-**739 classes and 226 custom properties across 24 stylesheets.** 0 internal classes (documentation chrome) are intentionally omitted. Each class is listed once, under the stylesheet that defines it.
+**737 classes and 227 custom properties across 26 stylesheets.** 0 internal classes (documentation chrome) are intentionally omitted. Each class is listed once, under the stylesheet that defines it.
 
 ## Load order
 
 Read from `crnl-loader.js` at generation time — this is what browsers actually load.
 
 ```html
-<!--  1 --> design-tokens-master.css
-<!--  2 --> themes.css
-<!--  3 --> spacing-tokens.css
-<!--  4 --> container-tokens.css
-<!--  5 --> border-effects-tokens.css
-<!--  6 --> ui-fonts.css
-<!--  7 --> fonts.css
-<!--  8 --> display-fonts.css
-<!--  9 --> text-styles-system.css
-<!-- 10 --> icons.css
-<!-- 11 --> card-components.css
-<!-- 12 --> interactive-tokens.css
-<!-- 13 --> button-components.css
-<!-- 14 --> system-ui.css
-<!-- 15 --> list-row-components.css
-<!-- 16 --> table-components.css
-<!-- 17 --> input-components.css
-<!-- 18 --> tag-chip-components.css
-<!-- 19 --> nav-components.css
-<!-- 20 --> ios-nav-components.css
-<!-- 21 --> web-footer-components.css
-<!-- 22 --> product-patterns.css
-<!-- 23 --> boilerplate.css
-<!-- 24 --> platform-tokens.css
+<!--  1 --> reset.css
+<!--  2 --> design-tokens-master.css
+<!--  3 --> themes.css
+<!--  4 --> spacing-tokens.css
+<!--  5 --> container-tokens.css
+<!--  6 --> border-effects-tokens.css
+<!--  7 --> ui-fonts.css
+<!--  8 --> fonts.css
+<!--  9 --> display-fonts.css
+<!-- 10 --> text-styles-system.css
+<!-- 11 --> icons.css
+<!-- 12 --> card-components.css
+<!-- 13 --> interactive-tokens.css
+<!-- 14 --> button-components.css
+<!-- 15 --> system-ui.css
+<!-- 16 --> list-row-components.css
+<!-- 17 --> table-components.css
+<!-- 18 --> input-components.css
+<!-- 19 --> tag-chip-components.css
+<!-- 20 --> nav-components.css
+<!-- 21 --> ios-nav-components.css
+<!-- 22 --> web-footer-components.css
+<!-- 23 --> product-patterns.css
+<!-- 24 --> boilerplate.css
+<!-- 25 --> platform-tokens.css
 ```
 
 In-repo pages use `<script src="crnl-loader.js"></script>` instead of individual tags.
@@ -47,6 +48,7 @@ In-repo pages use `<script src="crnl-loader.js"></script>` instead of individual
 
 | Stylesheet | Classes | What it covers |
 |---|---:|---|
+| [`reset.css`](#resetcss) | 0 | The element layer: the box-sizing reset, the document defaults, and the |
 | [`design-tokens-master.css`](#design-tokens-mastercss) | 0 · 105 tokens | Colour tokens in light and dark mode, the base theme, and the semantic tokens components consume. |
 | [`themes.css`](#themescss) | 0 · 33 tokens | The themes this system ships with, as worked examples of the theming contract. |
 | [`spacing-tokens.css`](#spacing-tokenscss) | 3 · 40 tokens | The 8px spacing scale, its responsive tokens, and section-rhythm utilities. |
@@ -55,13 +57,13 @@ In-repo pages use `<script src="crnl-loader.js"></script>` instead of individual
 | [`ui-fonts.css`](#ui-fontscss) | 0 | The two UI faces, served from this repository rather than a CDN. |
 | [`fonts.css`](#fontscss) | 0 | Every shipped display face, plus the UI face. |
 | [`display-fonts.css`](#display-fontscss) | 0 · 12 tokens | A ready-tuned display ramp for each shipped face. |
-| [`text-styles-system.css`](#text-styles-systemcss) | 59 | The type scale: display, title, label and body text classes, plus colour and text utilities. |
+| [`text-styles-system.css`](#text-styles-systemcss) | 35 | The type scale: display, title, label and body text classes, plus colour and text utilities. |
 | [`icons.css`](#iconscss) | 11 · 8 tokens | The Material Symbols (Rounded) icon system: size tokens, the base icon class and its variants. |
 | [`card-components.css`](#card-componentscss) | 27 | Card layouts and the small blocks that go inside them: closed and open cards, tiles and logo blocks. |
 | [`interactive-tokens.css`](#interactive-tokenscss) | 16 | Surface and scale classes that give any element its hover and pressed states. |
 | [`button-components.css`](#button-componentscss) | 36 | The button system: every button type, three sizes, icon placement, fill width and circle icon buttons. |
 | [`system-ui.css`](#system-uicss) | 4 | Vendor chrome: controls specified by Apple or Google that a prototype reproduces rather than designs. |
-| [`list-row-components.css`](#list-row-componentscss) | 48 | The list row and everything built on it: its slots and subcomponents, the selector wrapper, and the event row. |
+| [`list-row-components.css`](#list-row-componentscss) | 46 · 1 tokens | The list row and everything built on it: its slots and subcomponents, the selector wrapper, and the split row. |
 | [`table-components.css`](#table-componentscss) | 17 · 1 tokens | A stats table — a pinned entity column beside horizontally scrolling attribute columns. |
 | [`input-components.css`](#input-componentscss) | 16 | Single-line text input and select dropdown, with their states and modifiers. |
 | [`tag-chip-components.css`](#tag-chip-componentscss) | 7 | The tag (a static label badge) and the chip (an interactive filter or toggle). |
@@ -69,8 +71,40 @@ In-repo pages use `<script src="crnl-loader.js"></script>` instead of individual
 | [`ios-nav-components.css`](#ios-nav-componentscss) | 33 · 2 tokens | iOS navigation chrome for app-mode prototypes: nav bars, tab bar, modal sheet and glass surface. |
 | [`web-footer-components.css`](#web-footer-componentscss) | 15 | The responsive site footer. |
 | [`product-patterns.css`](#product-patternscss) | 14 | Composite layouts that recur across product screens and sit above the component layer. |
-| [`boilerplate.css`](#boilerplatecss) | 318 | The base layer: CSS reset, element defaults, and the spacing, layout, grid and responsive utilities. |
+| [`boilerplate.css`](#boilerplatecss) | 342 | The utility layer: spacing, layout, grid and responsive utilities. |
 | [`platform-tokens.css`](#platform-tokenscss) | 11 · 3 tokens | The web/app platform switch: phone frame, iOS system chrome, safe-area tokens and review chrome. |
+| [`crnl-layers.css`](#crnl-layerscss) | 0 | The stylesheets, each imported into its cascade layer. Import this from |
+
+---
+
+## reset.css
+
+```
+reset.css
+The element layer: the box-sizing reset, the document defaults, and the
+browser's own controls brought to a neutral starting point.
+
+This used to live inside boilerplate.css, at two separate places in a file
+that is otherwise 300-odd utility classes. Load order made that work — the
+sheet loaded last, and specificity decided every conflict, so a class-based
+component rule beat an element-based reset rule without anyone having to
+think about it.
+
+Cascade layers removed that arbitration. A later layer beats an earlier one
+whatever the specificity, so `* { padding: 0 }` in the utilities layer
+silently zeroed the padding of every card section, and `button { font-size:
+inherit }` overrode every .btn size. The two halves of the file want
+opposite ends of the cascade, which is why they are now two files: a reset
+has to come before the components, and a utility has to come after them.
+
+Layer: crnl.reset — the FIRST layer, before even the tokens. Not because
+the reset needs the tokens (custom properties resolve independently of
+layer order), but because three of the token sheets also ship classes —
+.container-*, the spacing utilities, the radius and border scales, 81 of
+them. `* { padding: 0 }` in a layer after those zeroed every container's
+page padding. A reset belongs before everything that draws, and "everything"
+includes the sheets whose names suggest they only declare values.
+```
 
 ---
 
@@ -341,14 +375,14 @@ and §9.
 
 | Class | Declares | Tokens |
 |---|---|---|
-| `.container` | width: 100%; max-width: var(--container-default); margin-left: auto; margin-right: auto; padding-left: 20px; +1 more | --container-default |
-| `.container-compact` | width: 100%; max-width: var(--container-compact); margin-left: auto; margin-right: auto; padding-left: 20px; +1 more | --container-compact |
-| `.container-extra-wide` | width: 100%; max-width: var(--container-extra-wide); margin-left: auto; margin-right: auto; padding-left: 20px; +1 more | --container-extra-wide |
-| `.container-fluid` | width: 100%; padding-left: 20px; padding-right: 20px | — |
-| `.container-maximum` | width: 100%; max-width: var(--container-maximum); margin-left: auto; margin-right: auto; padding-left: 20px; +1 more | --container-maximum |
-| `.container-medium` | width: 100%; max-width: var(--container-medium); margin-left: auto; margin-right: auto; padding-left: 20px; +1 more | --container-medium |
-| `.container-narrow` | width: 100%; max-width: var(--container-narrow); margin-left: auto; margin-right: auto; padding-left: 20px; +1 more | --container-narrow |
-| `.container-wide` | width: 100%; max-width: var(--container-wide); margin-left: auto; margin-right: auto; padding-left: 20px; +1 more | --container-wide |
+| `.container` | width: 100%; max-width: var(--container-default); margin-inline-start: auto; margin-inline-end: auto; padding-inline-start: 20px; +1 more | --container-default |
+| `.container-compact` | width: 100%; max-width: var(--container-compact); margin-inline-start: auto; margin-inline-end: auto; padding-inline-start: 20px; +1 more | --container-compact |
+| `.container-extra-wide` | width: 100%; max-width: var(--container-extra-wide); margin-inline-start: auto; margin-inline-end: auto; padding-inline-start: 20px; +1 more | --container-extra-wide |
+| `.container-fluid` | width: 100%; padding-inline-start: 20px; padding-inline-end: 20px | — |
+| `.container-maximum` | width: 100%; max-width: var(--container-maximum); margin-inline-start: auto; margin-inline-end: auto; padding-inline-start: 20px; +1 more | --container-maximum |
+| `.container-medium` | width: 100%; max-width: var(--container-medium); margin-inline-start: auto; margin-inline-end: auto; padding-inline-start: 20px; +1 more | --container-medium |
+| `.container-narrow` | width: 100%; max-width: var(--container-narrow); margin-inline-start: auto; margin-inline-end: auto; padding-inline-start: 20px; +1 more | --container-narrow |
+| `.container-wide` | width: 100%; max-width: var(--container-wide); margin-inline-start: auto; margin-inline-end: auto; padding-inline-start: 20px; +1 more | --container-wide |
 
 ---
 
@@ -384,25 +418,25 @@ mode-stable) is RULES §8.
 | `--scrim-brand-strong` | global | linear-gradient( 180deg, rgba(0, 0, 0, 0.03) 0%, rgba(0, 0,  |
 | `--scrim-image` | global | linear-gradient( 180deg, transparent 0%, rgba(0, 0, 0, 0.75) |
 | `--shadow-modal` | global | var(--shadow-modal-a), var(--shadow-modal-b) |
-| `--shadow-modal-a` | global, per mode | 0px 8px 64px 0px rgba(0, 0, 0, 0.16) |
-| `--shadow-modal-b` | global, per mode | 0px 4px 32px 0px rgba(0, 0, 0, 0.12) |
+| `--shadow-modal-a` | global | 0px 8px 64px 0px rgba(0, 0, 0, 0.16) |
+| `--shadow-modal-b` | global | 0px 4px 32px 0px rgba(0, 0, 0, 0.12) |
 | `--shadow-sheet` | global | var(--shadow-sheet-a), var(--shadow-sheet-b) |
-| `--shadow-sheet-a` | global, per mode | 0px -8px 64px 0px rgba(0, 0, 0, 0.12) |
-| `--shadow-sheet-b` | global, per mode | 0px -4px 32px 0px rgba(0, 0, 0, 0.08) |
+| `--shadow-sheet-a` | global | 0px -8px 64px 0px rgba(0, 0, 0, 0.12) |
+| `--shadow-sheet-b` | global | 0px -4px 32px 0px rgba(0, 0, 0, 0.08) |
 
 ### UTILITY CLASSES - BORDER RADIUS
 
 **Scales**
 
 - `.rounded-{50|100|200}` — border-radius: var(--border-radius-50) *(smallest step shown)*
-- `.rounded-t-{50|100|200}` — border-top-left-radius: var(--border-radius-50); border-top-right-radius: var(--border-radius-50) *(smallest step shown)*
-- `.rounded-b-{50|100|200}` — border-bottom-left-radius: var(--border-radius-50); border-bottom-right-radius: var(--border-radius-50) *(smallest step shown)*
-- `.rounded-l-{50|100|200}` — border-top-left-radius: var(--border-radius-50); border-bottom-left-radius: var(--border-radius-50) *(smallest step shown)*
-- `.rounded-r-{50|100|200}` — border-top-right-radius: var(--border-radius-50); border-bottom-right-radius: var(--border-radius-50) *(smallest step shown)*
-- `.rounded-tl-{50|100|200}` — border-top-left-radius: var(--border-radius-50) *(smallest step shown)*
-- `.rounded-tr-{50|100|200}` — border-top-right-radius: var(--border-radius-50) *(smallest step shown)*
-- `.rounded-bl-{50|100|200}` — border-bottom-left-radius: var(--border-radius-50) *(smallest step shown)*
-- `.rounded-br-{50|100|200}` — border-bottom-right-radius: var(--border-radius-50) *(smallest step shown)*
+- `.rounded-t-{50|100|200}` — border-start-start-radius: var(--border-radius-50); border-start-end-radius: var(--border-radius-50) *(smallest step shown)*
+- `.rounded-b-{50|100|200}` — border-end-start-radius: var(--border-radius-50); border-end-end-radius: var(--border-radius-50) *(smallest step shown)*
+- `.rounded-l-{50|100|200}` — border-start-start-radius: var(--border-radius-50); border-end-start-radius: var(--border-radius-50) *(smallest step shown)*
+- `.rounded-r-{50|100|200}` — border-start-end-radius: var(--border-radius-50); border-end-end-radius: var(--border-radius-50) *(smallest step shown)*
+- `.rounded-ss-{50|100|200}` — border-start-start-radius: var(--border-radius-50) *(smallest step shown)*
+- `.rounded-se-{50|100|200}` — border-start-end-radius: var(--border-radius-50) *(smallest step shown)*
+- `.rounded-es-{50|100|200}` — border-end-start-radius: var(--border-radius-50) *(smallest step shown)*
+- `.rounded-ee-{50|100|200}` — border-end-end-radius: var(--border-radius-50) *(smallest step shown)*
 
 | Class | Declares | Tokens |
 |---|---|---|
@@ -414,9 +448,9 @@ mode-stable) is RULES §8.
 
 - `.border-{50|100|200}` — border-width: var(--border-weight-50) *(smallest step shown)*
 - `.border-t-{50|100|200}` — border-top-width: var(--border-weight-50) *(smallest step shown)*
-- `.border-r-{50|100|200}` — border-right-width: var(--border-weight-50) *(smallest step shown)*
+- `.border-e-{50|100|200}` — border-inline-end-width: var(--border-weight-50) *(smallest step shown)*
 - `.border-b-{50|100|200}` — border-bottom-width: var(--border-weight-50) *(smallest step shown)*
-- `.border-l-{50|100|200}` — border-left-width: var(--border-weight-50) *(smallest step shown)*
+- `.border-s-{50|100|200}` — border-inline-start-width: var(--border-weight-50) *(smallest step shown)*
 
 | Class | Declares | Tokens |
 |---|---|---|
@@ -454,10 +488,10 @@ mode-stable) is RULES §8.
 |---|---|---|
 | `.border` | border-width: var(--border-weight-100); border-style: solid; border-color: var(--border-default) | --border-weight-100, --border-default |
 | `.border-bottom` | border-bottom-width: var(--border-weight-100); border-bottom-style: solid; border-bottom-color: var(--border-default) | --border-weight-100, --border-default |
+| `.border-end` | border-inline-end-width: var(--border-weight-100); border-inline-end-style: solid; border-inline-end-color: var(--border-default) | --border-weight-100, --border-default |
 | `.border-heavy` | border-width: var(--border-weight-200); border-style: solid; border-color: var(--neutral-1000) | --border-weight-200, --neutral-1000 |
 | `.border-interactive` | border-width: var(--border-weight-200); border-style: solid; border-color: var(--color-interactive) | --border-weight-200, --color-interactive |
-| `.border-left` | border-left-width: var(--border-weight-100); border-left-style: solid; border-left-color: var(--border-default) | --border-weight-100, --border-default |
-| `.border-right` | border-right-width: var(--border-weight-100); border-right-style: solid; border-right-color: var(--border-default) | --border-weight-100, --border-default |
+| `.border-start` | border-inline-start-width: var(--border-weight-100); border-inline-start-style: solid; border-inline-start-color: var(--border-default) | --border-weight-100, --border-default |
 | `.border-thin` | border-width: var(--border-weight-50); border-style: solid; border-color: var(--neutral-200) | --border-weight-50, --neutral-200 |
 | `.border-top` | border-top-width: var(--border-weight-100); border-top-style: solid; border-top-color: var(--border-default) | --border-weight-100, --border-default |
 
@@ -606,7 +640,7 @@ Common picks, so you don't have to derive them:
 - Small emphasis label (tag text, "3 Additional Offers") → `.labelBold30`
 - Supporting line under a title (date, venue) → `.labelRegular30` + `.text-secondary`
 - Timestamp, seat number, fine print → `.labelRegular10`
-- Row title in a list → `.labelBold30`, or `.event-row-label` inside an event row
+- Row title in a list → `.labelBold30`, or `.title50-r` inside a split row
 - Screen title → `.display500`; team name in a nav bar → `.display100`
 - Paragraph of copy → `.bodyRegular30`
 
@@ -702,50 +736,6 @@ Fix it on the child with `color: inherit`, not by overriding the text class.
 | Class | Declares | Tokens |
 |---|---|---|
 | `.idealRegular40` | font-size: 12px; font-weight: 400; line-height: 1.6; letter-spacing: -0.02em; color: var(--text-primary); +2 more | --text-primary |
-
-### COLOR MODIFIERS
-
-| Class | Declares | Tokens |
-|---|---|---|
-| `.text-brand-core` | color: var(--brand-core) !important | --brand-core |
-| `.text-brand-interactive` | color: var(--color-interactive) !important | --color-interactive |
-| `.text-brand-inverted` | color: var(--color-inverted) !important | --color-inverted |
-| `.text-brand-light` | color: var(--brand-light) !important | --brand-light |
-| `.text-disabled` | color: var(--neutral-300) !important | --neutral-300 |
-| `.text-error` | color: var(--status-error) !important | --status-error |
-| `.text-info` | color: var(--status-info) !important | --status-info |
-| `.text-interactive-tertiary` | color: var(--interactive-tertiary-text) !important | --interactive-tertiary-text |
-| `.text-inverted` | color: var(--inverted-1000) !important | --inverted-1000 |
-| `.text-placeholder` | color: var(--neutral-500) !important | --neutral-500 |
-| `.text-primary` | color: var(--neutral-1000) !important | --neutral-1000 |
-| `.text-secondary` | color: var(--neutral-700) !important *(also styled in list-row-components.css)* | --neutral-700 |
-| `.text-success` | color: var(--status-success) !important | --status-success |
-| `.text-warning` | color: var(--status-warning) !important | --status-warning |
-
-### ALIGNMENT UTILITIES
-
-| Class | Declares | Tokens |
-|---|---|---|
-| `.text-center` | text-align: center !important | — |
-| `.text-justify` | text-align: justify !important | — |
-| `.text-left` | text-align: left !important | — |
-| `.text-right` | text-align: right !important | — |
-
-### TEXT DECORATION UTILITIES
-
-| Class | Declares | Tokens |
-|---|---|---|
-| `.text-line-through` | text-decoration: line-through !important | — |
-| `.text-no-underline` | text-decoration: none !important | — |
-| `.text-underline` | text-decoration: underline !important | — |
-
-### TRUNCATION UTILITIES
-
-| Class | Declares | Tokens |
-|---|---|---|
-| `.text-truncate` | overflow: hidden !important; text-overflow: ellipsis !important; white-space: nowrap !important | — |
-| `.text-truncate-2` | display: -webkit-box !important; -webkit-line-clamp: 2 !important; -webkit-box-orient: vertical !important; overflow: hidden !important | — |
-| `.text-truncate-3` | display: -webkit-box !important; -webkit-line-clamp: 3 !important; -webkit-box-orient: vertical !important; overflow: hidden !important | — |
 
 ### RESPONSIVE TEXT
 
@@ -856,7 +846,7 @@ band's hover wash follows the 16px radius with no extra CSS. Do not add
 | Class | Declares | Tokens |
 |---|---|---|
 | `.card-closed-interactive` | background: var(--bg-surface); border-radius: var(--border-radius-200); width: 100%; display: flex; flex-direction: column; +1 more | --bg-surface, --border-radius-200 |
-| `.card-open-section-interactive` | background: var(--bg-surface); padding: var(--spacing-300); border-radius: var(--border-radius-200); width: 100% | --bg-surface, --border-radius-200, --spacing-300 |
+| `.card-open-section-interactive` | background: var(--bg-surface); padding: var(--spacing-300); border-radius: var(--border-radius-200); width: 100%; display: block | --bg-surface, --border-radius-200, --spacing-300 |
 
 ### CARD CONTENT UTILITIES
 
@@ -898,7 +888,7 @@ band's hover wash follows the 16px radius with no extra CSS. Do not add
 |---|---|---|
 | `.tile` | background: var(--bg-surface); border-radius: var(--border-radius-100); overflow: hidden; position: relative | --bg-surface, --border-radius-100 |
 | `.tile-info` | gap: var(--spacing-100); padding: var(--spacing-200); display: flex; flex-direction: column | --spacing-200, --spacing-100 |
-| `.tile-tag` | background: rgba(0, 0, 0, 0.04); padding: var(--spacing-50) var(--spacing-150); border-radius: var(--border-radius-50); height: 32px; display: flex; +5 more | --spacing-100, --spacing-50, --spacing-150, --border-radius-50 |
+| `.tile-tag` | background: var(--black-100); padding: var(--spacing-50) var(--spacing-150); border-radius: var(--border-radius-50); height: 32px; display: flex; +5 more | --spacing-100, --spacing-50, --spacing-150, --border-radius-50, … |
 
 ---
 
@@ -992,7 +982,7 @@ For that to work, the container has to hold up its end:
 </div>
 ```
 
-The shipped examples are `.event-row-top` / `.event-row-bottom`, where which bands get the class
+The shipped examples are `.split-row-top` / `.split-row-bottom`, where which bands get the class
 changes with the offer state, and the inventory list, where every row is a section of one card.
 Both are worked through in `design-guide.md`.
 
@@ -1013,31 +1003,31 @@ thing is a band of that card.
 
 | Class | Declares | Tokens |
 |---|---|---|
-| `.surface-fillNeutral` | color: var(--inverted-1000); background: var(--neutral-1000); border: none; transition: background 120ms ease; cursor: pointer | --neutral-1000, --inverted-1000, --inverted-200, --black-500 |
+| `.surface-fillNeutral` | color: var(--inverted-1000); background: var(--neutral-1000); border: none; transition: background 120ms ease; cursor: pointer | --neutral-1000, --inverted-1000, --inverted-200, --black-500, … |
 
 ### Fill - Color
 
 | Class | Declares | Tokens |
 |---|---|---|
-| `.surface-fillColor` | color: var(--white-1000); background: var(--brand-core); border: none; transition: background 120ms ease; cursor: pointer | --brand-core, --white-1000, --white-300, --black-300 |
+| `.surface-fillColor` | color: var(--white-1000); background: var(--brand-core); border: none; transition: background 120ms ease; cursor: pointer | --brand-core, --white-1000, --white-300, --black-300, … |
 
 ### Fill - Inverted
 
 | Class | Declares | Tokens |
 |---|---|---|
-| `.surface-fillInverted` | color: var(--neutral-1000); background: var(--inverted-1000); border: none; transition: background 120ms ease; cursor: pointer | --inverted-1000, --neutral-1000, --neutral-200, --black-500 |
+| `.surface-fillInverted` | color: var(--neutral-1000); background: var(--inverted-1000); border: none; transition: background 120ms ease; cursor: pointer | --inverted-1000, --neutral-1000, --neutral-200, --black-500, … |
 
 ### Fill - Black
 
 | Class | Declares | Tokens |
 |---|---|---|
-| `.surface-fillBlack` | color: var(--white-1000); background: var(--black-1000); border: none; transition: background 120ms ease; cursor: pointer | --black-1000, --white-1000, --white-300 |
+| `.surface-fillBlack` | color: var(--white-1000); background: var(--black-1000); border: none; transition: background 120ms ease; cursor: pointer | --black-1000, --white-1000, --white-300, --border-weight-200, … |
 
 ### Fill - White
 
 | Class | Declares | Tokens |
 |---|---|---|
-| `.surface-fillWhite` | color: var(--black-1000); background: var(--white-1000); border: none; transition: background 120ms ease; cursor: pointer | --white-1000, --black-1000, --black-200, --black-500 |
+| `.surface-fillWhite` | color: var(--black-1000); background: var(--white-1000); border: none; transition: background 120ms ease; cursor: pointer | --white-1000, --black-1000, --black-200, --black-500, … |
 
 ### Border - Neutral
 
@@ -1061,49 +1051,49 @@ thing is a band of that card.
 
 | Class | Declares | Tokens |
 |---|---|---|
-| `.surface-borderWhite` | color: var(--text-primary); background: var(--neutral-000); border: 1px solid var(--black-300); transition: background 120ms ease, border-color 120ms ease; cursor: pointer | --neutral-000, --black-300, --text-primary, --white-200 |
+| `.surface-borderWhite` | color: var(--text-primary); background: var(--neutral-000); border: 1px solid var(--black-300); transition: background 120ms ease, border-color 120ms ease; cursor: pointer | --neutral-000, --black-300, --text-primary, --white-200, … |
 
 ### Wash - Neutral
 
 | Class | Declares | Tokens |
 |---|---|---|
-| `.surface-washNeutral` | color: var(--text-primary); background: var(--neutral-100); border: none; transition: background 120ms ease; cursor: pointer | --neutral-100, --text-primary, --black-300 |
+| `.surface-washNeutral` | color: var(--text-primary); background: var(--neutral-100); border: none; transition: background 120ms ease; cursor: pointer | --neutral-100, --text-primary, --black-300, --border-weight-200, … |
 
 ### Ghost
 
 | Class | Declares | Tokens |
 |---|---|---|
-| `.surface-ghost` | color: var(--text-primary); background: var(--neutral-000); border: none; transition: background 120ms ease; cursor: pointer | --neutral-000, --text-primary, --neutral-100, --black-300 |
+| `.surface-ghost` | color: var(--text-primary); background: var(--neutral-000); border: none; transition: background 120ms ease; cursor: pointer | --neutral-000, --text-primary, --neutral-100, --black-300, … |
 
 ### Card
 
 | Class | Declares | Tokens |
 |---|---|---|
-| `.surface-card` | color: var(--text-primary); background: var(--org-surface); border: none; transition: background 120ms ease; cursor: pointer | --org-surface, --text-primary, --white-100, --black-300 |
+| `.surface-card` | color: var(--text-primary); background: var(--org-surface); border: none; transition: background 120ms ease; cursor: pointer | --org-surface, --text-primary, --white-100, --black-300, … |
 
 ### Section (one band of a divided card)
 
 | Class | Declares | Tokens |
 |---|---|---|
-| `.surface-section` | color: var(--text-primary); background: transparent; border: none; transition: background 120ms ease; cursor: pointer | --text-primary, --white-100, --black-300 |
+| `.surface-section` | color: var(--text-primary); background: transparent; border: none; transition: background 120ms ease; cursor: pointer | --text-primary, --white-100, --black-300, --border-weight-200, … |
 
 ### Interaction 700
 
 | Class | Declares | Tokens |
 |---|---|---|
-| `.scale-700` | transition: transform 180ms ease-out; transform: scale(1) | — |
+| `.scale-700` | transition: transform 180ms ease-out; transform: scale(1) *(also styled in boilerplate.css)* | — |
 
 ### Interaction 500
 
 | Class | Declares | Tokens |
 |---|---|---|
-| `.scale-500` | transition: transform 180ms ease-out; transform: scale(1) | — |
+| `.scale-500` | transition: transform 180ms ease-out; transform: scale(1) *(also styled in boilerplate.css)* | — |
 
 ### Interaction 300
 
 | Class | Declares | Tokens |
 |---|---|---|
-| `.scale-300` | transition: transform 180ms ease-out; transform: scale(1) | — |
+| `.scale-300` | transition: transform 180ms ease-out; transform: scale(1) *(also styled in boilerplate.css)* | — |
 
 ---
 
@@ -1198,7 +1188,8 @@ the right size without the icon box sizing.
 
 | Class | Declares | Tokens |
 |---|---|---|
-| `.btn` | gap: var(--spacing-100); border-radius: var(--button-border-radius); border: none; display: inline-flex; align-items: center; +9 more *(also styled in card-components.css, product-patterns.css)* | --spacing-100, --button-border-radius |
+| `.btn` | gap: var(--spacing-100); border-radius: var(--button-border-radius); border: none; display: inline-flex; align-items: center; +9 more *(also styled in card-components.css, product-patterns.css)* | --spacing-100, --button-border-radius, --border-weight-200, --color-interactive, … |
+| `.btn-circle` | border-radius: 50%; border: none; display: inline-flex; align-items: center; justify-content: center; +4 more | --border-weight-200, --color-interactive, --spacing-25, --interactive-primary, … |
 
 ### BUTTON SIZES
 
@@ -1236,7 +1227,6 @@ the right size without the icon box sizing.
 
 | Class | Declares | Tokens |
 |---|---|---|
-| `.btn-circle` | border-radius: 50%; border: none; display: inline-flex; align-items: center; justify-content: center; +4 more | --interactive-primary, --interactive-primary-text, --white-300, --black-300, … |
 | `.btn-circle-300` | height: 40px; width: 40px | — |
 | `.btn-circle-700` | height: 56px; width: 56px | — |
 | `.btn-circle-black` | *contextual — styled via a parent* | --black-1000, --white-1000, --white-300 |
@@ -1295,7 +1285,7 @@ and it lives here — never inside a template. See RULES §7.
 
 ```
 list-row-components.css
-The list row and everything built on it: its slots and subcomponents, the selector wrapper, and the event row.
+The list row and everything built on it: its slots and subcomponents, the selector wrapper, and the split row.
 
 What's inside
 - .list-row (+ .list-row-content, .list-row-text-pair, .not-tappable, .disabled)
@@ -1308,8 +1298,8 @@ What's inside
 - .list-divided — rows inside a card, hairline-separated, dividers bleeding
 to both edges and padding square
 - .selector (+ .is-selected, .is-disabled) — wraps a row to make it selectable
-- .event-row (+ -top/-bottom/-logo/-label/-sublabel/-coming-soon), .event-row-list
-— the buy-flow event card
+- .split-row (+ -top/-bottom/-logo/-note), .split-row-list — a card of two
+independently tappable bands, the shipped example of .surface-section
 
 Notes
 - .tag itself lives in tag-chip-components.css; only .tag-brand-color is here.
@@ -1317,6 +1307,13 @@ Notes
 :hover rule. See RULES §2 and §3.
 - Icons inside rows are <span class="icon icon-N">. See RULES §4.
 ```
+
+### Tokens
+
+
+| Token | Scope | Example value |
+|---|---|---|
+| `--text-secondary` | component-scoped | var(--inverted-700) |
 
 ### STATUS DOT
 
@@ -1354,17 +1351,17 @@ Notes
 
 | Class | Declares | Tokens |
 |---|---|---|
-| `.switch` | height: 31px; width: 51px; position: relative; flex-shrink: 0 | --neutral-200, --white-1000, --color-interactive, --neutral-100, … |
+| `.switch` | height: 31px; width: 51px; position: relative; flex-shrink: 0 | --neutral-200, --white-1000, --black-100, --black-300, … |
 
 ### LEADING SLOT
 
 | Class | Declares | Tokens |
 |---|---|---|
 | `.leading` | display: flex; align-items: center; flex-shrink: 0 | — |
-| `.leading-gap-lg` | padding-right: 16px | — |
-| `.leading-gap-md` | padding-right: 12px | — |
-| `.leading-gap-sm` | padding-right: 8px | — |
-| `.leading-gap-xl` | padding-right: 24px | — |
+| `.leading-gap-lg` | padding-inline-end: 16px | — |
+| `.leading-gap-md` | padding-inline-end: 12px | — |
+| `.leading-gap-sm` | padding-inline-end: 8px | — |
+| `.leading-gap-xl` | padding-inline-end: 24px | — |
 
 ### CIRCLE CONTAINER
 
@@ -1404,10 +1401,10 @@ Notes
 | Class | Declares | Tokens |
 |---|---|---|
 | `.trailing` | display: flex; align-items: center; justify-content: flex-end; flex-shrink: 0 | — |
-| `.trailing-gap-lg` | padding-left: 12px | — |
-| `.trailing-gap-md` | padding-left: 8px | — |
-| `.trailing-gap-sm` | padding-left: 4px | — |
-| `.trailing-gap-xs` | padding-left: 2px | — |
+| `.trailing-gap-lg` | padding-inline-start: 12px | — |
+| `.trailing-gap-md` | padding-inline-start: 8px | — |
+| `.trailing-gap-sm` | padding-inline-start: 4px | — |
+| `.trailing-gap-xs` | padding-inline-start: 2px | — |
 
 ### TRAILING TEXT LINK (CHIP)
 
@@ -1419,7 +1416,7 @@ Notes
 
 | Class | Declares | Tokens |
 |---|---|---|
-| `.trailing-text-pair` | gap: 1px; display: flex; flex-direction: column; align-items: flex-end; text-align: right; +1 more | — |
+| `.trailing-text-pair` | gap: 1px; display: flex; flex-direction: column; align-items: flex-end; text-align: end; +1 more | — |
 
 ### STEPPER (WEB)
 
@@ -1461,30 +1458,28 @@ Notes
 |---|---|---|
 | `.is-disabled` | *contextual — styled via a parent* *(also styled in input-components.css, tag-chip-components.css)* | — |
 | `.is-selected` | *contextual — styled via a parent* | --neutral-1000, --inverted-1000, --inverted-700 |
-| `.selector` | padding: var(--spacing-200); border-radius: var(--border-radius-200); box-sizing: border-box | --border-radius-200, --spacing-200, --neutral-1000, --inverted-1000, … |
+| `.selector` | padding: var(--spacing-200); border-radius: var(--border-radius-200); width: 100%; display: block; box-sizing: border-box | --border-radius-200, --spacing-200, --neutral-1000, --inverted-1000, … |
 
-### EVENT ROW LOGO
-
-| Class | Declares | Tokens |
-|---|---|---|
-| `.event-row-logo` | height: 48px; width: 48px; object-fit: contain; flex-shrink: 0 | — |
-
-### EVENT ROW
+### SPLIT ROW LOGO
 
 | Class | Declares | Tokens |
 |---|---|---|
-| `.event-row` | background: var(--org-surface); border-radius: var(--border-radius-200); width: 100%; display: flex; flex-direction: column; +1 more | --org-surface, --border-radius-200 |
-| `.event-row-bottom` | padding: var(--spacing-150) var(--spacing-200); border-top: 0.33px solid var(--border-default) *(also styled in platform-tokens.css)* | --spacing-150, --spacing-200, --border-default, --spacing-300 |
-| `.event-row-coming-soon` | max-width: var(--spacing-800); text-align: right; white-space: normal | --spacing-800 |
-| `.event-row-label` | font-size: 16px; font-weight: 600; line-height: 1.21; letter-spacing: -0.02em; color: var(--text-primary); +1 more | --text-primary |
-| `.event-row-sublabel` | font-size: 12px; font-weight: 400; line-height: 1.21; letter-spacing: -0.02em; font-family: 'Inter', sans-serif | — |
-| `.event-row-top` | padding: var(--spacing-200) *(also styled in platform-tokens.css)* | --spacing-200, --spacing-300 |
+| `.split-row-logo` | height: 48px; width: 48px; object-fit: contain; flex-shrink: 0 | — |
 
-### EVENT ROW LIST
+### SPLIT ROW
 
 | Class | Declares | Tokens |
 |---|---|---|
-| `.event-row-list` | gap: var(--spacing-100); padding: var(--spacing-200); width: 100%; display: flex; flex-direction: column; +2 more | --spacing-100, --spacing-200 |
+| `.split-row` | background: var(--org-surface); border-radius: var(--border-radius-200); width: 100%; display: flex; flex-direction: column; +1 more | --org-surface, --border-radius-200 |
+| `.split-row-bottom` | padding: var(--spacing-150) var(--spacing-200); border-top: 0.33px solid var(--border-default) *(also styled in platform-tokens.css)* | --spacing-150, --spacing-200, --border-default, --spacing-300 |
+| `.split-row-note` | max-width: var(--spacing-800); text-align: end; white-space: normal | --spacing-800 |
+| `.split-row-top` | padding: var(--spacing-200) *(also styled in platform-tokens.css)* | --spacing-200, --spacing-300 |
+
+### SPLIT ROW LIST
+
+| Class | Declares | Tokens |
+|---|---|---|
+| `.split-row-list` | gap: var(--spacing-100); padding: var(--spacing-200); width: 100%; display: flex; flex-direction: column; +2 more | --spacing-100, --spacing-200 |
 
 ---
 
@@ -1628,7 +1623,7 @@ select                      (native, invisible overlay)
 | Class | Declares | Tokens |
 |---|---|---|
 | `.input-label` | font-size: 16px; font-weight: 600; line-height: 1; letter-spacing: -0.02em; color: var(--text-primary); +3 more | --text-primary, --org-primary-button |
-| `.input-label-row` | gap: var(--spacing-100); display: flex; align-items: center; justify-content: space-between; padding-left: var(--spacing-100); +1 more | --spacing-100 |
+| `.input-label-row` | gap: var(--spacing-100); display: flex; align-items: center; justify-content: space-between; padding-inline-start: var(--spacing-100); +1 more | --spacing-100 |
 | `.input-link` | font-size: 14px; font-weight: 600; line-height: 1; letter-spacing: -0.02em; color: var(--color-interactive); +7 more | --color-interactive, --spacing-50, --spacing-150, --border-radius-50 |
 | `.is-error` | *contextual — styled via a parent* | --text-primary, --status-error, --neutral-100, --border-weight-200, … |
 
@@ -1699,8 +1694,8 @@ Notes
 
 | Class | Declares | Tokens |
 |---|---|---|
-| `.chip` | padding-left: var(--spacing-150); padding-right: var(--spacing-150) | --spacing-50, --spacing-150, --color-interactive, --spacing-100 |
-| `.tag` | color: var(--text-primary); background-color: var(--neutral-100); padding-top: var(--spacing-50); padding-bottom: var(--spacing-50); padding-left: var(--spacing-150); +1 more *(also styled in list-row-components.css)* | --spacing-50, --neutral-100, --text-primary, --spacing-150, … |
+| `.chip` | padding-inline-start: var(--spacing-150); padding-inline-end: var(--spacing-150) | --spacing-50, --spacing-150, --color-interactive, --spacing-100 |
+| `.tag` | color: var(--text-primary); background-color: var(--neutral-100); padding-top: var(--spacing-50); padding-bottom: var(--spacing-50); padding-inline-start: var(--spacing-150); +1 more *(also styled in list-row-components.css)* | --spacing-50, --neutral-100, --text-primary, --spacing-150, … |
 
 ### TAG COMPONENT
 
@@ -1832,14 +1827,14 @@ chrome. See RULES §2.
 |---|---|---|
 | `.ios-glass` | background: var(--neutral-200), var(--inverted-300), var(--black-200); position: relative; backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); background-blend-mode: luminosity | --white-300, --white-100, --neutral-200, --inverted-300, … |
 | `.ios-nav-btn` | color: var(--text-primary); padding: 0; border-radius: 50%; border: none; height: 44px; +8 more | --text-primary, --white-300, --white-100 |
-| `.ios-nav-btn-brand` | color: var(--interactive-primary-text); background: var(--interactive-primary) !important; backdrop-filter: none !important; -webkit-backdrop-filter: none !important; box-shadow: inset 0.5px 1px 3px rgba(255, 255, 255, 0.25), inset -0.5px -1px 2px rgba(0, 0, 0, 0.2), 0px 2px 40px rgba(0, 0, 0, 0.2); +1 more | --interactive-primary, --interactive-primary-text |
+| `.ios-nav-btn-brand` | color: var(--interactive-primary-text); background: var(--interactive-primary); backdrop-filter: none; -webkit-backdrop-filter: none; box-shadow: inset 0.5px 1px 3px var(--white-300), inset -0.5px -1px 2px rgba(0, 0, 0, 0.2), 0px 2px 40px rgba(0, 0, 0, 0.2); +1 more | --interactive-primary, --interactive-primary-text, --white-300 |
 
 ### iOS HOME NAV BAR
 
 | Class | Declares | Tokens |
 |---|---|---|
 | `.ios-nav-controls` | gap: 10px; display: flex; align-items: center; flex-shrink: 0 | — |
-| `.ios-nav-maintab` | padding: 0 var(--spacing-200) 6px; display: flex; flex-direction: column; position: relative; z-index: 100; +3 more | --spacing-200, --safe-area-top, --bg-base |
+| `.ios-nav-maintab` | padding: 0 var(--spacing-200) 6px; display: flex; flex-direction: column; position: relative; z-index: 100; +3 more | --spacing-200, --safe-area-top, --black-300, --bg-base |
 
 ### CHROME LAYERS & SCROLLPORT
 
@@ -1930,13 +1925,13 @@ always a dark surface regardless of mode.
 | `.web-footer-app-title` | color: white | — |
 | `.web-footer-badge` | height: 40px; width: auto; display: block | — |
 | `.web-footer-badges` | gap: var(--spacing-100); display: flex; flex-direction: column; padding-top: var(--spacing-100) | --spacing-100 |
-| `.web-footer-bottom` | gap: var(--spacing-400); padding: var(--spacing-200) 0; display: flex; flex-direction: column; justify-content: space-between; +1 more | --spacing-200, --border-weight-50, --spacing-400 |
+| `.web-footer-bottom` | gap: var(--spacing-400); padding: var(--spacing-200) 0; display: flex; flex-direction: column; justify-content: space-between; +1 more | --spacing-200, --border-weight-50, --white-200, --spacing-400 |
 | `.web-footer-column` | gap: var(--spacing-100); display: flex; flex-direction: column | --spacing-100 |
 | `.web-footer-column-heading` | color: white | — |
 | `.web-footer-copyright` | color: white | — |
 | `.web-footer-legal` | gap: var(--spacing-300); display: flex; flex-direction: column | --spacing-300 |
-| `.web-footer-legal-links` | gap: var(--spacing-200); display: flex; flex-direction: row; flex-wrap: wrap | --spacing-200, --spacing-100 |
-| `.web-footer-link` | color: rgba(255, 255, 255, 0.7); display: block; text-decoration: none; transition: color 0.15s ease; cursor: pointer | — |
+| `.web-footer-legal-links` | gap: var(--spacing-200); display: flex; flex-direction: row; flex-wrap: wrap | --spacing-200, --white-700, --spacing-100 |
+| `.web-footer-link` | color: var(--white-700); display: block; text-decoration: none; transition: color 0.15s ease; cursor: pointer | --white-700 |
 | `.web-footer-logo` | border-radius: var(--border-radius-200); height: 120px; width: 120px; flex-shrink: 0; overflow: hidden | --border-radius-200 |
 | `.web-footer-main` | gap: var(--spacing-400); display: flex; flex-direction: column | --spacing-400, --spacing-500 |
 | `.web-footer-powered` | gap: var(--spacing-25); display: flex; align-items: center; flex-shrink: 0 | --spacing-25 |
@@ -1953,7 +1948,8 @@ What's inside
 - .context-header — the band under the top nav with a page title and optional tabs
 - .circle-icon — large decorative icon disc for auth flows and empty states
 - .action-row — a row of equally weighted buttons
-- .event-card (+ .event-card-media, .event-card-list) — a tappable card for one event
+- .row-card (+ .row-card-media, .row-card-list) — a card whose body is a
+stack of rows; takes a .surface-* + .scale-700 pair to become tappable
 - .action-tile-row, .action-tile (+ -circle) — a row of icon-above-label actions
 - .heading-select — a heading that is also a picker
 - .disclosure-toggle — a label plus chevron that expands detail in place
@@ -1986,13 +1982,13 @@ definition; until then it stays product CSS in the template.
 |---|---|---|
 | `.action-row` | gap: var(--spacing-200); display: flex; align-items: center | --spacing-200 |
 
-### EVENT CARD
+### ROW CARD
 
 | Class | Declares | Tokens |
 |---|---|---|
-| `.event-card` | background: var(--bg-surface); padding: var(--spacing-300); border-radius: var(--border-radius-200); cursor: pointer; overflow: hidden; +1 more | --bg-surface, --border-radius-200, --spacing-300 |
-| `.event-card-list` | gap: var(--spacing-200); display: flex; flex-direction: column | --spacing-200 |
-| `.event-card-media` | padding: 0 | — |
+| `.row-card` | padding: var(--spacing-300); border-radius: var(--border-radius-200); overflow: hidden | --border-radius-200, --spacing-300 |
+| `.row-card-list` | gap: var(--spacing-200); display: flex; flex-direction: column | --spacing-200 |
+| `.row-card-media` | padding: 0 | — |
 
 ### ACTION TILE
 
@@ -2032,6 +2028,12 @@ definition; until then it stays product CSS in the template.
 
 ```
 boilerplate.css
+The utility layer: spacing, layout, grid and responsive utilities.
+
+The reset and the element defaults that used to sit in here are now
+reset.css — see the note at the top of that file for why the two halves
+had to separate once the system took cascade layers.
+
 The base layer: CSS reset, element defaults, and the spacing, layout, grid and responsive utilities.
 
 What's inside
@@ -2095,16 +2097,16 @@ needed), and `.grid` / `.grid-auto-fit` for card grids.
 - `.m-{25|50|100|150|200|250|300|400|500|600|700|800|900}` — margin: var(--spacing-25) *(smallest step shown)*
 - `.mt-{25|50|100|150|200|250|300|400|500|600|700|800|900}` — margin-top: var(--spacing-25) *(smallest step shown)*
 - `.mb-{25|50|100|150|200|250|300|400|500|600|700|800|900}` — margin-bottom: var(--spacing-25) *(smallest step shown)*
-- `.ml-{25|50|100|150|200|250|300|400|500|600|700|800|900}` — margin-left: var(--spacing-25) *(smallest step shown)*
-- `.mr-{25|50|100|150|200|250|300|400|500|600|700|800|900}` — margin-right: var(--spacing-25) *(smallest step shown)*
-- `.mx-{25|50|100|150|200|250|300|400|500|600|700|800|900}` — margin-left: var(--spacing-25); margin-right: var(--spacing-25) *(smallest step shown)*
+- `.ms-{25|50|100|150|200|250|300|400|500|600|700|800|900}` — margin-inline-start: var(--spacing-25) *(smallest step shown)*
+- `.me-{25|50|100|150|200|250|300|400|500|600|700|800|900}` — margin-inline-end: var(--spacing-25) *(smallest step shown)*
+- `.mx-{25|50|100|150|200|250|300|400|500|600|700|800|900}` — margin-inline-start: var(--spacing-25); margin-inline-end: var(--spacing-25) *(smallest step shown)*
 - `.my-{25|50|100|150|200|250|300|400|500|600|700|800|900}` — margin-top: var(--spacing-25); margin-bottom: var(--spacing-25) *(smallest step shown)*
 
 | Class | Declares | Tokens |
 |---|---|---|
-| `.ml-auto` | margin-left: auto | — |
-| `.mr-auto` | margin-right: auto | — |
-| `.mx-auto` | margin-left: auto; margin-right: auto | — |
+| `.me-auto` | margin-inline-end: auto | — |
+| `.ms-auto` | margin-inline-start: auto | — |
+| `.mx-auto` | margin-inline-start: auto; margin-inline-end: auto | — |
 
 ### SPACING UTILITIES - PADDING
 
@@ -2113,9 +2115,9 @@ needed), and `.grid` / `.grid-auto-fit` for card grids.
 - `.p-{25|50|100|150|200|250|300|400|500|600|700|800|900}` — padding: var(--spacing-25) *(smallest step shown)*
 - `.pt-{25|50|100|150|200|250|300|400|500|600|700|800|900}` — padding-top: var(--spacing-25) *(smallest step shown)*
 - `.pb-{25|50|100|150|200|250|300|400|500|600|700|800|900}` — padding-bottom: var(--spacing-25) *(smallest step shown)*
-- `.pl-{25|50|100|150|200|250|300|400|500|600|700|800|900}` — padding-left: var(--spacing-25) *(smallest step shown)*
-- `.pr-{25|50|100|150|200|250|300|400|500|600|700|800|900}` — padding-right: var(--spacing-25) *(smallest step shown)*
-- `.px-{25|50|100|150|200|250|300|400|500|600|700|800|900}` — padding-left: var(--spacing-25); padding-right: var(--spacing-25) *(smallest step shown)*
+- `.ps-{25|50|100|150|200|250|300|400|500|600|700|800|900}` — padding-inline-start: var(--spacing-25) *(smallest step shown)*
+- `.pe-{25|50|100|150|200|250|300|400|500|600|700|800|900}` — padding-inline-end: var(--spacing-25) *(smallest step shown)*
+- `.px-{25|50|100|150|200|250|300|400|500|600|700|800|900}` — padding-inline-start: var(--spacing-25); padding-inline-end: var(--spacing-25) *(smallest step shown)*
 - `.py-{25|50|100|150|200|250|300|400|500|600|700|800|900}` — padding-top: var(--spacing-25); padding-bottom: var(--spacing-25) *(smallest step shown)*
 
 ### SPACING UTILITIES - GAP (Flexbox/Grid)
@@ -2148,21 +2150,21 @@ needed), and `.grid` / `.grid-auto-fit` for card grids.
 | `.mb-large` | margin-bottom: var(--margin-large) | --margin-large |
 | `.mb-row` | margin-bottom: var(--spacing-row) | --spacing-row |
 | `.mb-small` | margin-bottom: var(--margin-small) | --margin-small |
-| `.ml-landing` | margin-left: var(--margin-landing) | --margin-landing |
-| `.ml-large` | margin-left: var(--margin-large) | --margin-large |
-| `.ml-small` | margin-left: var(--margin-small) | --margin-small |
-| `.mr-landing` | margin-right: var(--margin-landing) | --margin-landing |
-| `.mr-large` | margin-right: var(--margin-large) | --margin-large |
-| `.mr-small` | margin-right: var(--margin-small) | --margin-small |
+| `.me-landing` | margin-inline-end: var(--margin-landing) | --margin-landing |
+| `.me-large` | margin-inline-end: var(--margin-large) | --margin-large |
+| `.me-small` | margin-inline-end: var(--margin-small) | --margin-small |
+| `.ms-landing` | margin-inline-start: var(--margin-landing) | --margin-landing |
+| `.ms-large` | margin-inline-start: var(--margin-large) | --margin-large |
+| `.ms-small` | margin-inline-start: var(--margin-small) | --margin-small |
 | `.mt-card` | margin-top: var(--spacing-card) | --spacing-card |
 | `.mt-content` | margin-top: var(--spacing-content) | --spacing-content |
 | `.mt-landing` | margin-top: var(--margin-landing) | --margin-landing |
 | `.mt-large` | margin-top: var(--margin-large) | --margin-large |
 | `.mt-row` | margin-top: var(--spacing-row) | --spacing-row |
 | `.mt-small` | margin-top: var(--margin-small) | --margin-small |
-| `.mx-landing` | margin-left: var(--margin-landing); margin-right: var(--margin-landing) | --margin-landing |
-| `.mx-large` | margin-left: var(--margin-large); margin-right: var(--margin-large) | --margin-large |
-| `.mx-small` | margin-left: var(--margin-small); margin-right: var(--margin-small) | --margin-small |
+| `.mx-landing` | margin-inline-start: var(--margin-landing); margin-inline-end: var(--margin-landing) | --margin-landing |
+| `.mx-large` | margin-inline-start: var(--margin-large); margin-inline-end: var(--margin-large) | --margin-large |
+| `.mx-small` | margin-inline-start: var(--margin-small); margin-inline-end: var(--margin-small) | --margin-small |
 | `.my-card` | margin-top: var(--spacing-card); margin-bottom: var(--spacing-card) | --spacing-card |
 | `.my-content` | margin-top: var(--spacing-content); margin-bottom: var(--spacing-content) | --spacing-content |
 | `.my-landing` | margin-top: var(--margin-landing); margin-bottom: var(--margin-landing) | --margin-landing |
@@ -2175,21 +2177,21 @@ needed), and `.grid` / `.grid-auto-fit` for card grids.
 | `.pb-large` | padding-bottom: var(--margin-large) | --margin-large |
 | `.pb-row` | padding-bottom: var(--spacing-row) | --spacing-row |
 | `.pb-small` | padding-bottom: var(--margin-small) | --margin-small |
-| `.pl-landing` | padding-left: var(--margin-landing) | --margin-landing |
-| `.pl-large` | padding-left: var(--margin-large) | --margin-large |
-| `.pl-small` | padding-left: var(--margin-small) | --margin-small |
-| `.pr-landing` | padding-right: var(--margin-landing) | --margin-landing |
-| `.pr-large` | padding-right: var(--margin-large) | --margin-large |
-| `.pr-small` | padding-right: var(--margin-small) | --margin-small |
+| `.pe-landing` | padding-inline-end: var(--margin-landing) | --margin-landing |
+| `.pe-large` | padding-inline-end: var(--margin-large) | --margin-large |
+| `.pe-small` | padding-inline-end: var(--margin-small) | --margin-small |
+| `.ps-landing` | padding-inline-start: var(--margin-landing) | --margin-landing |
+| `.ps-large` | padding-inline-start: var(--margin-large) | --margin-large |
+| `.ps-small` | padding-inline-start: var(--margin-small) | --margin-small |
 | `.pt-card` | padding-top: var(--spacing-card) | --spacing-card |
 | `.pt-content` | padding-top: var(--spacing-content) | --spacing-content |
 | `.pt-landing` | padding-top: var(--margin-landing) | --margin-landing |
 | `.pt-large` | padding-top: var(--margin-large) | --margin-large |
 | `.pt-row` | padding-top: var(--spacing-row) | --spacing-row |
 | `.pt-small` | padding-top: var(--margin-small) | --margin-small |
-| `.px-landing` | padding-left: var(--margin-landing); padding-right: var(--margin-landing) | --margin-landing |
-| `.px-large` | padding-left: var(--margin-large); padding-right: var(--margin-large) | --margin-large |
-| `.px-small` | padding-left: var(--margin-small); padding-right: var(--margin-small) | --margin-small |
+| `.px-landing` | padding-inline-start: var(--margin-landing); padding-inline-end: var(--margin-landing) | --margin-landing |
+| `.px-large` | padding-inline-start: var(--margin-large); padding-inline-end: var(--margin-large) | --margin-large |
+| `.px-small` | padding-inline-start: var(--margin-small); padding-inline-end: var(--margin-small) | --margin-small |
 | `.py-card` | padding-top: var(--spacing-card); padding-bottom: var(--spacing-card) | --spacing-card |
 | `.py-content` | padding-top: var(--spacing-content); padding-bottom: var(--spacing-content) | --spacing-content |
 | `.py-landing` | padding-top: var(--margin-landing); padding-bottom: var(--margin-landing) | --margin-landing |
@@ -2225,6 +2227,50 @@ needed), and `.grid` / `.grid-auto-fit` for card grids.
 | `.show-desktop` | *contextual — styled via a parent* | — |
 | `.show-mobile` | *contextual — styled via a parent* | — |
 | `.show-tablet` | *contextual — styled via a parent* | — |
+
+### TEXT COLOUR UTILITIES
+
+| Class | Declares | Tokens |
+|---|---|---|
+| `.text-brand-core` | color: var(--brand-core) | --brand-core |
+| `.text-brand-interactive` | color: var(--color-interactive) | --color-interactive |
+| `.text-brand-inverted` | color: var(--color-inverted) | --color-inverted |
+| `.text-brand-light` | color: var(--brand-light) | --brand-light |
+| `.text-disabled` | color: var(--neutral-300) | --neutral-300 |
+| `.text-error` | color: var(--status-error) | --status-error |
+| `.text-info` | color: var(--status-info) | --status-info |
+| `.text-interactive-tertiary` | color: var(--interactive-tertiary-text) | --interactive-tertiary-text |
+| `.text-inverted` | color: var(--inverted-1000) | --inverted-1000 |
+| `.text-placeholder` | color: var(--neutral-500) | --neutral-500 |
+| `.text-primary` | color: var(--neutral-1000) | --neutral-1000 |
+| `.text-secondary` | color: var(--text-secondary) | --text-secondary |
+| `.text-success` | color: var(--status-success) | --status-success |
+| `.text-warning` | color: var(--status-warning) | --status-warning |
+
+### TEXT UTILITIES — alignment, decoration, truncation
+
+| Class | Declares | Tokens |
+|---|---|---|
+| `.text-center` | text-align: center | — |
+| `.text-end` | text-align: end | — |
+| `.text-justify` | text-align: justify | — |
+| `.text-start` | text-align: start | — |
+
+### TEXT DECORATION UTILITIES
+
+| Class | Declares | Tokens |
+|---|---|---|
+| `.text-line-through` | text-decoration: line-through | — |
+| `.text-no-underline` | text-decoration: none | — |
+| `.text-underline` | text-decoration: underline | — |
+
+### TRUNCATION UTILITIES
+
+| Class | Declares | Tokens |
+|---|---|---|
+| `.text-truncate` | overflow: hidden; text-overflow: ellipsis; white-space: nowrap | — |
+| `.text-truncate-2` | display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden | — |
+| `.text-truncate-3` | display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden | — |
 
 ---
 
@@ -2287,9 +2333,19 @@ goes full-bleed. See RULES §9.
 | Class | Declares | Tokens |
 |---|---|---|
 | `.open` | *contextual — styled via a parent* | — |
-| `.template-fab` | position: fixed; bottom: var(--spacing-300); right: var(--spacing-300); z-index: 99999 | --spacing-300 |
+| `.template-fab` | position: fixed; bottom: var(--spacing-300); inset-inline-end: var(--spacing-300); z-index: 99999 | --spacing-300 |
 | `.template-fab-link` | color: var(--text-secondary); gap: var(--spacing-100); display: flex; align-items: center; justify-content: space-between; +6 more | --spacing-100, --spacing-50, --spacing-75, --border-weight-100, … |
 | `.template-fab-panel` | background: var(--bg-surface); gap: var(--spacing-100); padding: var(--spacing-150); border-radius: var(--border-radius-200); border: var(--border-weight-100) solid var(--neutral-200); +8 more | --spacing-100, --spacing-700, --spacing-150, --bg-surface, … |
 | `.template-fab-trigger` | color: var(--text-secondary); background: var(--bg-surface); border-radius: 50%; border: var(--border-weight-100) solid var(--neutral-200); height: 48px; +8 more | --border-weight-100, --neutral-200, --bg-surface, --text-secondary, … |
 | `.template-platform-link` | color: var(--text-secondary); background: var(--bg-surface); gap: var(--spacing-75); padding: var(--spacing-100) var(--spacing-200); border-radius: 100px; +10 more | --spacing-300, --spacing-75, --spacing-100, --spacing-200, … |
+
+---
+
+## crnl-layers.css
+
+```
+GENERATED by scripts/build-css-bundle.mjs — do not edit.
+The stylesheets, each imported into its cascade layer. Import this from
+a bundler; pages use crnl-loader.js instead (RULES §1).
+```
 

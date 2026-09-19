@@ -28,7 +28,7 @@ export const Default: Story = {
               <span className="labelRegular10 text-secondary">Sat Mar 15 · 7:30 PM</span>
             </div>
             <span className="display400">From $45</span>
-            <Button variant="primary" size="small" fill>Buy tickets</Button>
+            <Button variant="primary" size={300} fill>Buy tickets</Button>
           </>
         }
       />

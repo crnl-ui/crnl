@@ -7,11 +7,16 @@
    this repository. This is the check that looks.
 
    What it captures
-     13 sheets × light and dark, on the default theme        26 shots
-     01-color × all five themes × both modes                 10 shots
+     every sheet × light and dark × three widths             72 shots
+     01-color × all five themes × both modes, at desktop     10 shots
+     the app-platform sheets × both modes × two widths        8 shots
+     the directional sheets, right-to-left, at two widths    10 shots
    The colour sheet resolves every token live out of getComputedStyle, so it is
    the canary for a theme regression; capturing every sheet in every theme would
-   be 130 shots for very little more coverage.
+   be 390 shots for very little more coverage. The three widths are the
+   breakpoints RULES §9 names, and they are not optional coverage: the
+   responsive utilities, the `-r` type pairs and most of platform-tokens.css
+   only apply below 1100px.
 
    Determinism is the whole game — a flaky baseline gets ignored, and an ignored
    check is worse than no check. Four things are pinned before each shot:
@@ -86,13 +91,61 @@ const SHEETS = readdirSync(join(ROOT, 'demo'))
   .sort()
 const THEMES = ['ink', 'signal', 'moss', 'ember', 'violet']
 
-/* De-duplicated: 01-color on the default theme appears in both lists. */
-const SHOTS = [...new Map([
-  ...SHEETS.flatMap(f => ['light', 'dark'].map(mode => ({ file: f, theme: 'signal', mode }))),
-  ...THEMES.flatMap(t => ['light', 'dark'].map(mode => ({ file: '01-color.html', theme: t, mode }))),
-].map(s => [`${s.file}|${s.theme}|${s.mode}`, s])).values()]
+/* The three breakpoints RULES §9 names. Desktop is the unsuffixed default, so
+   the shots that existed before the other two were added keep their filenames
+   and their baselines.
 
-const name = s => `${s.file.replace('.html', '')}--${s.theme}--${s.mode}.png`
+   Capturing only desktop was a real hole, not a theoretical one: the responsive
+   spacing and grid utilities, every `-r` type pair and most of
+   platform-tokens.css only apply below 1100px, so a regression in any of them
+   was invisible to this check. That is also why the !important cleanup in
+   platform-tokens.css had to wait for this — 67 of them apply in app mode or
+   under 500px, and a green run at 1280 would have proved nothing about either.
+   See docs/roadmap.md § gap 2. */
+const WIDTHS = [
+  { w: 1280, label: null },        // desktop — the unsuffixed default
+  { w: 800,  label: 'tablet' },    // 500–1099
+  { w: 390,  label: 'mobile' },    // <500, and the width the phone frame drops at
+]
+
+/* Sheets with rules under [data-platform="app"]. The phone frame changes the
+   page's whole geometry, so these are captured in both platforms. */
+const APP_SHEETS = ['07-rows.html', '11-ios.html']
+
+/* A right-to-left pass over the sheets whose layout is directional — rows
+   with leading and trailing slots, forms, nav, tables. The CSS uses logical
+   properties, so these should mirror without a single rule of their own; a
+   physical property that slipped back in shows up here as a slot on the
+   wrong side. Not every sheet: colour and type have no handedness. */
+const RTL_SHEETS = ['06-cards.html', '07-rows.html', '08-forms.html',
+                    '09-nav.html', '10-tables.html']
+
+/* De-duplicated: 01-color on the default theme appears in more than one list. */
+const SHOTS = [...new Map([
+  /* Every sheet, both modes, all three widths, on the default theme. */
+  ...SHEETS.flatMap(f => ['light', 'dark'].flatMap(mode =>
+    WIDTHS.map(({ w, label }) => ({ file: f, theme: 'signal', mode, width: w, widthLabel: label })))),
+  /* The colour sheet in every theme — the canary for a theme regression.
+     Desktop only: a theme changes values, not layout. */
+  ...THEMES.flatMap(t => ['light', 'dark'].map(mode =>
+    ({ file: '01-color.html', theme: t, mode, width: 1280, widthLabel: null }))),
+  /* App platform, where the phone frame and the safe areas come in. */
+  ...APP_SHEETS.flatMap(f => ['light', 'dark'].flatMap(mode =>
+    [1280, 390].map(w => ({
+      file: f, theme: 'signal', mode, width: w,
+      widthLabel: w === 1280 ? null : 'mobile', platform: 'app',
+    })))),
+  /* Right-to-left, at desktop and mobile. */
+  ...RTL_SHEETS.flatMap(f => [1280, 390].map(w => ({
+    file: f, theme: 'signal', mode: 'light', width: w,
+    widthLabel: w === 1280 ? null : 'mobile', dir: 'rtl',
+  }))),
+].map(s => [`${s.file}|${s.theme}|${s.mode}|${s.width}|${s.platform ?? 'web'}|${s.dir ?? 'ltr'}`, s])).values()]
+
+const name = s => [
+  s.file.replace('.html', ''), s.theme, s.mode,
+  s.widthLabel, s.platform === 'app' ? 'app' : null, s.dir === 'rtl' ? 'rtl' : null,
+].filter(Boolean).join('--') + '.png'
 
 /* ── A static server, so no dependency and no port guessing ───────────────── */
 const TYPES = { '.html': 'text/html', '.css': 'text/css', '.js': 'text/javascript',
@@ -114,7 +167,7 @@ function serve() {
 const FROZEN = Date.UTC(2026, 0, 15, 12, 0, 0)
 
 async function capture(browser, port, shot) {
-  const page = await browser.newPage({ viewport: { width: 1280, height: 900 },
+  const page = await browser.newPage({ viewport: { width: shot.width ?? 1280, height: 900 },
                                        deviceScaleFactor: 1 })
   /* Before any page script runs: the fixture reads the clock at module scope. */
   await page.addInitScript(frozen => {
@@ -128,10 +181,12 @@ async function capture(browser, port, shot) {
   }, FROZEN)
 
   await page.goto(`http://127.0.0.1:${port}/demo/${shot.file}`, { waitUntil: 'networkidle' })
-  await page.evaluate(([theme, mode]) => {
+  await page.evaluate(([theme, mode, platform, dir]) => {
     document.documentElement.setAttribute('data-theme', theme)
     document.documentElement.setAttribute('data-mode', mode)
-  }, [shot.theme, shot.mode])
+    if (platform) document.documentElement.setAttribute('data-platform', platform)
+    if (dir) document.documentElement.setAttribute('dir', dir)
+  }, [shot.theme, shot.mode, shot.platform ?? null, shot.dir ?? null])
   await page.addStyleTag({ content: `
     *, *::before, *::after {
       transition-duration: 0s !important;

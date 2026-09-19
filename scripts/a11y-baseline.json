@@ -1,0 +1,13 @@
+{
+  "_generated": "node scripts/check-a11y.mjs --update-baseline",
+  "_what": "axe-core WCAG 2 A/AA violations this repository already carries, per sheet and per rule. The run fails outside these counts in either direction: above means a regression, below means a fix nobody banked or a rule that stopped running.",
+  "_total": 103,
+  "counts": {
+    "01-color.html color-contrast": 67,
+    "04-buttons.html color-contrast": 3,
+    "05-surfaces.html color-contrast": 1,
+    "07-rows.html color-contrast": 10,
+    "08-forms.html color-contrast": 1,
+    "10-tables.html color-contrast": 21
+  }
+}

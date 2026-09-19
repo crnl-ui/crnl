@@ -1,6 +1,7 @@
 {
   "_generated": "npm run build:css-api — do not edit by hand",
   "loadOrder": [
+    "reset.css",
     "design-tokens-master.css",
     "themes.css",
     "spacing-tokens.css",
@@ -27,6 +28,12 @@
     "platform-tokens.css"
   ],
   "stylesheets": [
+    {
+      "file": "reset.css",
+      "covers": "The element layer: the box-sizing reset, the document defaults, and the",
+      "classes": [],
+      "tokens": []
+    },
     {
       "file": "design-tokens-master.css",
       "covers": "Colour tokens in light and dark mode, the base theme, and the semantic tokens components consume.",
@@ -1336,7 +1343,7 @@
         {
           "name": "container",
           "section": "CONTAINER UTILITY CLASSES",
-          "declares": "width: 100%; max-width: var(--container-default); margin-left: auto; margin-right: auto; padding-left: 20px; +1 more",
+          "declares": "width: 100%; max-width: var(--container-default); margin-inline-start: auto; margin-inline-end: auto; padding-inline-start: 20px; +1 more",
           "tokens": [
             "--container-default"
           ],
@@ -1345,7 +1352,7 @@
         {
           "name": "container-maximum",
           "section": "CONTAINER UTILITY CLASSES",
-          "declares": "width: 100%; max-width: var(--container-maximum); margin-left: auto; margin-right: auto; padding-left: 20px; +1 more",
+          "declares": "width: 100%; max-width: var(--container-maximum); margin-inline-start: auto; margin-inline-end: auto; padding-inline-start: 20px; +1 more",
           "tokens": [
             "--container-maximum"
           ],
@@ -1354,7 +1361,7 @@
         {
           "name": "container-extra-wide",
           "section": "CONTAINER UTILITY CLASSES",
-          "declares": "width: 100%; max-width: var(--container-extra-wide); margin-left: auto; margin-right: auto; padding-left: 20px; +1 more",
+          "declares": "width: 100%; max-width: var(--container-extra-wide); margin-inline-start: auto; margin-inline-end: auto; padding-inline-start: 20px; +1 more",
           "tokens": [
             "--container-extra-wide"
           ],
@@ -1363,7 +1370,7 @@
         {
           "name": "container-wide",
           "section": "CONTAINER UTILITY CLASSES",
-          "declares": "width: 100%; max-width: var(--container-wide); margin-left: auto; margin-right: auto; padding-left: 20px; +1 more",
+          "declares": "width: 100%; max-width: var(--container-wide); margin-inline-start: auto; margin-inline-end: auto; padding-inline-start: 20px; +1 more",
           "tokens": [
             "--container-wide"
           ],
@@ -1372,7 +1379,7 @@
         {
           "name": "container-medium",
           "section": "CONTAINER UTILITY CLASSES",
-          "declares": "width: 100%; max-width: var(--container-medium); margin-left: auto; margin-right: auto; padding-left: 20px; +1 more",
+          "declares": "width: 100%; max-width: var(--container-medium); margin-inline-start: auto; margin-inline-end: auto; padding-inline-start: 20px; +1 more",
           "tokens": [
             "--container-medium"
           ],
@@ -1381,7 +1388,7 @@
         {
           "name": "container-narrow",
           "section": "CONTAINER UTILITY CLASSES",
-          "declares": "width: 100%; max-width: var(--container-narrow); margin-left: auto; margin-right: auto; padding-left: 20px; +1 more",
+          "declares": "width: 100%; max-width: var(--container-narrow); margin-inline-start: auto; margin-inline-end: auto; padding-inline-start: 20px; +1 more",
           "tokens": [
             "--container-narrow"
           ],
@@ -1390,7 +1397,7 @@
         {
           "name": "container-compact",
           "section": "CONTAINER UTILITY CLASSES",
-          "declares": "width: 100%; max-width: var(--container-compact); margin-left: auto; margin-right: auto; padding-left: 20px; +1 more",
+          "declares": "width: 100%; max-width: var(--container-compact); margin-inline-start: auto; margin-inline-end: auto; padding-inline-start: 20px; +1 more",
           "tokens": [
             "--container-compact"
           ],
@@ -1399,7 +1406,7 @@
         {
           "name": "container-fluid",
           "section": "CONTAINER UTILITY CLASSES",
-          "declares": "width: 100%; padding-left: 20px; padding-right: 20px",
+          "declares": "width: 100%; padding-inline-start: 20px; padding-inline-end: 20px",
           "tokens": [],
           "alsoStyledIn": []
         }
@@ -1499,7 +1506,7 @@
         {
           "name": "rounded-t-50",
           "section": "UTILITY CLASSES - BORDER RADIUS",
-          "declares": "border-top-left-radius: var(--border-radius-50); border-top-right-radius: var(--border-radius-50)",
+          "declares": "border-start-start-radius: var(--border-radius-50); border-start-end-radius: var(--border-radius-50)",
           "tokens": [
             "--border-radius-50"
           ],
@@ -1508,7 +1515,7 @@
         {
           "name": "rounded-t-100",
           "section": "UTILITY CLASSES - BORDER RADIUS",
-          "declares": "border-top-left-radius: var(--border-radius-100); border-top-right-radius: var(--border-radius-100)",
+          "declares": "border-start-start-radius: var(--border-radius-100); border-start-end-radius: var(--border-radius-100)",
           "tokens": [
             "--border-radius-100"
           ],
@@ -1517,7 +1524,7 @@
         {
           "name": "rounded-t-200",
           "section": "UTILITY CLASSES - BORDER RADIUS",
-          "declares": "border-top-left-radius: var(--border-radius-200); border-top-right-radius: var(--border-radius-200)",
+          "declares": "border-start-start-radius: var(--border-radius-200); border-start-end-radius: var(--border-radius-200)",
           "tokens": [
             "--border-radius-200"
           ],
@@ -1526,7 +1533,7 @@
         {
           "name": "rounded-b-50",
           "section": "UTILITY CLASSES - BORDER RADIUS",
-          "declares": "border-bottom-left-radius: var(--border-radius-50); border-bottom-right-radius: var(--border-radius-50)",
+          "declares": "border-end-start-radius: var(--border-radius-50); border-end-end-radius: var(--border-radius-50)",
           "tokens": [
             "--border-radius-50"
           ],
@@ -1535,7 +1542,7 @@
         {
           "name": "rounded-b-100",
           "section": "UTILITY CLASSES - BORDER RADIUS",
-          "declares": "border-bottom-left-radius: var(--border-radius-100); border-bottom-right-radius: var(--border-radius-100)",
+          "declares": "border-end-start-radius: var(--border-radius-100); border-end-end-radius: var(--border-radius-100)",
           "tokens": [
             "--border-radius-100"
           ],
@@ -1544,7 +1551,7 @@
         {
           "name": "rounded-b-200",
           "section": "UTILITY CLASSES - BORDER RADIUS",
-          "declares": "border-bottom-left-radius: var(--border-radius-200); border-bottom-right-radius: var(--border-radius-200)",
+          "declares": "border-end-start-radius: var(--border-radius-200); border-end-end-radius: var(--border-radius-200)",
           "tokens": [
             "--border-radius-200"
           ],
@@ -1553,7 +1560,7 @@
         {
           "name": "rounded-l-50",
           "section": "UTILITY CLASSES - BORDER RADIUS",
-          "declares": "border-top-left-radius: var(--border-radius-50); border-bottom-left-radius: var(--border-radius-50)",
+          "declares": "border-start-start-radius: var(--border-radius-50); border-end-start-radius: var(--border-radius-50)",
           "tokens": [
             "--border-radius-50"
           ],
@@ -1562,7 +1569,7 @@
         {
           "name": "rounded-l-100",
           "section": "UTILITY CLASSES - BORDER RADIUS",
-          "declares": "border-top-left-radius: var(--border-radius-100); border-bottom-left-radius: var(--border-radius-100)",
+          "declares": "border-start-start-radius: var(--border-radius-100); border-end-start-radius: var(--border-radius-100)",
           "tokens": [
             "--border-radius-100"
           ],
@@ -1571,7 +1578,7 @@
         {
           "name": "rounded-l-200",
           "section": "UTILITY CLASSES - BORDER RADIUS",
-          "declares": "border-top-left-radius: var(--border-radius-200); border-bottom-left-radius: var(--border-radius-200)",
+          "declares": "border-start-start-radius: var(--border-radius-200); border-end-start-radius: var(--border-radius-200)",
           "tokens": [
             "--border-radius-200"
           ],
@@ -1580,7 +1587,7 @@
         {
           "name": "rounded-r-50",
           "section": "UTILITY CLASSES - BORDER RADIUS",
-          "declares": "border-top-right-radius: var(--border-radius-50); border-bottom-right-radius: var(--border-radius-50)",
+          "declares": "border-start-end-radius: var(--border-radius-50); border-end-end-radius: var(--border-radius-50)",
           "tokens": [
             "--border-radius-50"
           ],
@@ -1589,7 +1596,7 @@
         {
           "name": "rounded-r-100",
           "section": "UTILITY CLASSES - BORDER RADIUS",
-          "declares": "border-top-right-radius: var(--border-radius-100); border-bottom-right-radius: var(--border-radius-100)",
+          "declares": "border-start-end-radius: var(--border-radius-100); border-end-end-radius: var(--border-radius-100)",
           "tokens": [
             "--border-radius-100"
           ],
@@ -1598,115 +1605,115 @@
         {
           "name": "rounded-r-200",
           "section": "UTILITY CLASSES - BORDER RADIUS",
-          "declares": "border-top-right-radius: var(--border-radius-200); border-bottom-right-radius: var(--border-radius-200)",
+          "declares": "border-start-end-radius: var(--border-radius-200); border-end-end-radius: var(--border-radius-200)",
           "tokens": [
             "--border-radius-200"
           ],
           "alsoStyledIn": []
         },
         {
-          "name": "rounded-tl-50",
+          "name": "rounded-ss-50",
           "section": "UTILITY CLASSES - BORDER RADIUS",
-          "declares": "border-top-left-radius: var(--border-radius-50)",
+          "declares": "border-start-start-radius: var(--border-radius-50)",
           "tokens": [
             "--border-radius-50"
           ],
           "alsoStyledIn": []
         },
         {
-          "name": "rounded-tl-100",
+          "name": "rounded-ss-100",
           "section": "UTILITY CLASSES - BORDER RADIUS",
-          "declares": "border-top-left-radius: var(--border-radius-100)",
+          "declares": "border-start-start-radius: var(--border-radius-100)",
           "tokens": [
             "--border-radius-100"
           ],
           "alsoStyledIn": []
         },
         {
-          "name": "rounded-tl-200",
+          "name": "rounded-ss-200",
           "section": "UTILITY CLASSES - BORDER RADIUS",
-          "declares": "border-top-left-radius: var(--border-radius-200)",
+          "declares": "border-start-start-radius: var(--border-radius-200)",
           "tokens": [
             "--border-radius-200"
           ],
           "alsoStyledIn": []
         },
         {
-          "name": "rounded-tr-50",
+          "name": "rounded-se-50",
           "section": "UTILITY CLASSES - BORDER RADIUS",
-          "declares": "border-top-right-radius: var(--border-radius-50)",
+          "declares": "border-start-end-radius: var(--border-radius-50)",
           "tokens": [
             "--border-radius-50"
           ],
           "alsoStyledIn": []
         },
         {
-          "name": "rounded-tr-100",
+          "name": "rounded-se-100",
           "section": "UTILITY CLASSES - BORDER RADIUS",
-          "declares": "border-top-right-radius: var(--border-radius-100)",
+          "declares": "border-start-end-radius: var(--border-radius-100)",
           "tokens": [
             "--border-radius-100"
           ],
           "alsoStyledIn": []
         },
         {
-          "name": "rounded-tr-200",
+          "name": "rounded-se-200",
           "section": "UTILITY CLASSES - BORDER RADIUS",
-          "declares": "border-top-right-radius: var(--border-radius-200)",
+          "declares": "border-start-end-radius: var(--border-radius-200)",
           "tokens": [
             "--border-radius-200"
           ],
           "alsoStyledIn": []
         },
         {
-          "name": "rounded-bl-50",
+          "name": "rounded-es-50",
           "section": "UTILITY CLASSES - BORDER RADIUS",
-          "declares": "border-bottom-left-radius: var(--border-radius-50)",
+          "declares": "border-end-start-radius: var(--border-radius-50)",
           "tokens": [
             "--border-radius-50"
           ],
           "alsoStyledIn": []
         },
         {
-          "name": "rounded-bl-100",
+          "name": "rounded-es-100",
           "section": "UTILITY CLASSES - BORDER RADIUS",
-          "declares": "border-bottom-left-radius: var(--border-radius-100)",
+          "declares": "border-end-start-radius: var(--border-radius-100)",
           "tokens": [
             "--border-radius-100"
           ],
           "alsoStyledIn": []
         },
         {
-          "name": "rounded-bl-200",
+          "name": "rounded-es-200",
           "section": "UTILITY CLASSES - BORDER RADIUS",
-          "declares": "border-bottom-left-radius: var(--border-radius-200)",
+          "declares": "border-end-start-radius: var(--border-radius-200)",
           "tokens": [
             "--border-radius-200"
           ],
           "alsoStyledIn": []
         },
         {
-          "name": "rounded-br-50",
+          "name": "rounded-ee-50",
           "section": "UTILITY CLASSES - BORDER RADIUS",
-          "declares": "border-bottom-right-radius: var(--border-radius-50)",
+          "declares": "border-end-end-radius: var(--border-radius-50)",
           "tokens": [
             "--border-radius-50"
           ],
           "alsoStyledIn": []
         },
         {
-          "name": "rounded-br-100",
+          "name": "rounded-ee-100",
           "section": "UTILITY CLASSES - BORDER RADIUS",
-          "declares": "border-bottom-right-radius: var(--border-radius-100)",
+          "declares": "border-end-end-radius: var(--border-radius-100)",
           "tokens": [
             "--border-radius-100"
           ],
           "alsoStyledIn": []
         },
         {
-          "name": "rounded-br-200",
+          "name": "rounded-ee-200",
           "section": "UTILITY CLASSES - BORDER RADIUS",
-          "declares": "border-bottom-right-radius: var(--border-radius-200)",
+          "declares": "border-end-end-radius: var(--border-radius-200)",
           "tokens": [
             "--border-radius-200"
           ],
@@ -1767,27 +1774,27 @@
           "alsoStyledIn": []
         },
         {
-          "name": "border-r-50",
+          "name": "border-e-50",
           "section": "UTILITY CLASSES - BORDER WEIGHT",
-          "declares": "border-right-width: var(--border-weight-50)",
+          "declares": "border-inline-end-width: var(--border-weight-50)",
           "tokens": [
             "--border-weight-50"
           ],
           "alsoStyledIn": []
         },
         {
-          "name": "border-r-100",
+          "name": "border-e-100",
           "section": "UTILITY CLASSES - BORDER WEIGHT",
-          "declares": "border-right-width: var(--border-weight-100)",
+          "declares": "border-inline-end-width: var(--border-weight-100)",
           "tokens": [
             "--border-weight-100"
           ],
           "alsoStyledIn": []
         },
         {
-          "name": "border-r-200",
+          "name": "border-e-200",
           "section": "UTILITY CLASSES - BORDER WEIGHT",
-          "declares": "border-right-width: var(--border-weight-200)",
+          "declares": "border-inline-end-width: var(--border-weight-200)",
           "tokens": [
             "--border-weight-200"
           ],
@@ -1821,27 +1828,27 @@
           "alsoStyledIn": []
         },
         {
-          "name": "border-l-50",
+          "name": "border-s-50",
           "section": "UTILITY CLASSES - BORDER WEIGHT",
-          "declares": "border-left-width: var(--border-weight-50)",
+          "declares": "border-inline-start-width: var(--border-weight-50)",
           "tokens": [
             "--border-weight-50"
           ],
           "alsoStyledIn": []
         },
         {
-          "name": "border-l-100",
+          "name": "border-s-100",
           "section": "UTILITY CLASSES - BORDER WEIGHT",
-          "declares": "border-left-width: var(--border-weight-100)",
+          "declares": "border-inline-start-width: var(--border-weight-100)",
           "tokens": [
             "--border-weight-100"
           ],
           "alsoStyledIn": []
         },
         {
-          "name": "border-l-200",
+          "name": "border-s-200",
           "section": "UTILITY CLASSES - BORDER WEIGHT",
-          "declares": "border-left-width: var(--border-weight-200)",
+          "declares": "border-inline-start-width: var(--border-weight-200)",
           "tokens": [
             "--border-weight-200"
           ],
@@ -2036,9 +2043,9 @@
           "alsoStyledIn": []
         },
         {
-          "name": "border-right",
+          "name": "border-end",
           "section": "COMMON BORDER COMBINATIONS",
-          "declares": "border-right-width: var(--border-weight-100); border-right-style: solid; border-right-color: var(--border-default)",
+          "declares": "border-inline-end-width: var(--border-weight-100); border-inline-end-style: solid; border-inline-end-color: var(--border-default)",
           "tokens": [
             "--border-weight-100",
             "--border-default"
@@ -2056,9 +2063,9 @@
           "alsoStyledIn": []
         },
         {
-          "name": "border-left",
+          "name": "border-start",
           "section": "COMMON BORDER COMBINATIONS",
-          "declares": "border-left-width: var(--border-weight-100); border-left-style: solid; border-left-color: var(--border-default)",
+          "declares": "border-inline-start-width: var(--border-weight-100); border-inline-start-style: solid; border-inline-start-color: var(--border-default)",
           "tokens": [
             "--border-weight-100",
             "--border-default"
@@ -2139,32 +2146,28 @@
         {
           "name": "--shadow-sheet-a",
           "scopes": [
-            "global",
-            "per mode"
+            "global"
           ],
           "example": "0px -8px 64px 0px rgba(0, 0, 0, 0.12)"
         },
         {
           "name": "--shadow-sheet-b",
           "scopes": [
-            "global",
-            "per mode"
+            "global"
           ],
           "example": "0px -4px 32px 0px rgba(0, 0, 0, 0.08)"
         },
         {
           "name": "--shadow-modal-a",
           "scopes": [
-            "global",
-            "per mode"
+            "global"
           ],
           "example": "0px 8px 64px 0px rgba(0, 0, 0, 0.16)"
         },
         {
           "name": "--shadow-modal-b",
           "scopes": [
-            "global",
-            "per mode"
+            "global"
           ],
           "example": "0px 4px 32px 0px rgba(0, 0, 0, 0.12)"
         },
@@ -2664,204 +2667,6 @@
           "alsoStyledIn": []
         },
         {
-          "name": "text-primary",
-          "section": "COLOR MODIFIERS",
-          "declares": "color: var(--neutral-1000) !important",
-          "tokens": [
-            "--neutral-1000"
-          ],
-          "alsoStyledIn": []
-        },
-        {
-          "name": "text-secondary",
-          "section": "COLOR MODIFIERS",
-          "declares": "color: var(--neutral-700) !important",
-          "tokens": [
-            "--neutral-700"
-          ],
-          "alsoStyledIn": [
-            "list-row-components.css"
-          ]
-        },
-        {
-          "name": "text-disabled",
-          "section": "COLOR MODIFIERS",
-          "declares": "color: var(--neutral-300) !important",
-          "tokens": [
-            "--neutral-300"
-          ],
-          "alsoStyledIn": []
-        },
-        {
-          "name": "text-placeholder",
-          "section": "COLOR MODIFIERS",
-          "declares": "color: var(--neutral-500) !important",
-          "tokens": [
-            "--neutral-500"
-          ],
-          "alsoStyledIn": []
-        },
-        {
-          "name": "text-brand-core",
-          "section": "COLOR MODIFIERS",
-          "declares": "color: var(--brand-core) !important",
-          "tokens": [
-            "--brand-core"
-          ],
-          "alsoStyledIn": []
-        },
-        {
-          "name": "text-brand-light",
-          "section": "COLOR MODIFIERS",
-          "declares": "color: var(--brand-light) !important",
-          "tokens": [
-            "--brand-light"
-          ],
-          "alsoStyledIn": []
-        },
-        {
-          "name": "text-brand-interactive",
-          "section": "COLOR MODIFIERS",
-          "declares": "color: var(--color-interactive) !important",
-          "tokens": [
-            "--color-interactive"
-          ],
-          "alsoStyledIn": []
-        },
-        {
-          "name": "text-brand-inverted",
-          "section": "COLOR MODIFIERS",
-          "declares": "color: var(--color-inverted) !important",
-          "tokens": [
-            "--color-inverted"
-          ],
-          "alsoStyledIn": []
-        },
-        {
-          "name": "text-interactive-tertiary",
-          "section": "COLOR MODIFIERS",
-          "declares": "color: var(--interactive-tertiary-text) !important",
-          "tokens": [
-            "--interactive-tertiary-text"
-          ],
-          "alsoStyledIn": []
-        },
-        {
-          "name": "text-inverted",
-          "section": "COLOR MODIFIERS",
-          "declares": "color: var(--inverted-1000) !important",
-          "tokens": [
-            "--inverted-1000"
-          ],
-          "alsoStyledIn": []
-        },
-        {
-          "name": "text-success",
-          "section": "COLOR MODIFIERS",
-          "declares": "color: var(--status-success) !important",
-          "tokens": [
-            "--status-success"
-          ],
-          "alsoStyledIn": []
-        },
-        {
-          "name": "text-warning",
-          "section": "COLOR MODIFIERS",
-          "declares": "color: var(--status-warning) !important",
-          "tokens": [
-            "--status-warning"
-          ],
-          "alsoStyledIn": []
-        },
-        {
-          "name": "text-error",
-          "section": "COLOR MODIFIERS",
-          "declares": "color: var(--status-error) !important",
-          "tokens": [
-            "--status-error"
-          ],
-          "alsoStyledIn": []
-        },
-        {
-          "name": "text-info",
-          "section": "COLOR MODIFIERS",
-          "declares": "color: var(--status-info) !important",
-          "tokens": [
-            "--status-info"
-          ],
-          "alsoStyledIn": []
-        },
-        {
-          "name": "text-left",
-          "section": "ALIGNMENT UTILITIES",
-          "declares": "text-align: left !important",
-          "tokens": [],
-          "alsoStyledIn": []
-        },
-        {
-          "name": "text-center",
-          "section": "ALIGNMENT UTILITIES",
-          "declares": "text-align: center !important",
-          "tokens": [],
-          "alsoStyledIn": []
-        },
-        {
-          "name": "text-right",
-          "section": "ALIGNMENT UTILITIES",
-          "declares": "text-align: right !important",
-          "tokens": [],
-          "alsoStyledIn": []
-        },
-        {
-          "name": "text-justify",
-          "section": "ALIGNMENT UTILITIES",
-          "declares": "text-align: justify !important",
-          "tokens": [],
-          "alsoStyledIn": []
-        },
-        {
-          "name": "text-underline",
-          "section": "TEXT DECORATION UTILITIES",
-          "declares": "text-decoration: underline !important",
-          "tokens": [],
-          "alsoStyledIn": []
-        },
-        {
-          "name": "text-line-through",
-          "section": "TEXT DECORATION UTILITIES",
-          "declares": "text-decoration: line-through !important",
-          "tokens": [],
-          "alsoStyledIn": []
-        },
-        {
-          "name": "text-no-underline",
-          "section": "TEXT DECORATION UTILITIES",
-          "declares": "text-decoration: none !important",
-          "tokens": [],
-          "alsoStyledIn": []
-        },
-        {
-          "name": "text-truncate",
-          "section": "TRUNCATION UTILITIES",
-          "declares": "overflow: hidden !important; text-overflow: ellipsis !important; white-space: nowrap !important",
-          "tokens": [],
-          "alsoStyledIn": []
-        },
-        {
-          "name": "text-truncate-2",
-          "section": "TRUNCATION UTILITIES",
-          "declares": "display: -webkit-box !important; -webkit-line-clamp: 2 !important; -webkit-box-orient: vertical !important; overflow: hidden !important",
-          "tokens": [],
-          "alsoStyledIn": []
-        },
-        {
-          "name": "text-truncate-3",
-          "section": "TRUNCATION UTILITIES",
-          "declares": "display: -webkit-box !important; -webkit-line-clamp: 3 !important; -webkit-box-orient: vertical !important; overflow: hidden !important",
-          "tokens": [],
-          "alsoStyledIn": []
-        },
-        {
           "name": "title50-r",
           "section": "RESPONSIVE TEXT",
           "declares": "font-size: 20px; font-weight: 700; line-height: 1.21; letter-spacing: -0.03em; color: var(--text-primary); +1 more",
@@ -3148,7 +2953,7 @@
         {
           "name": "card-open-section-interactive",
           "section": "CARD VARIANTS - INTERACTIVE STATES",
-          "declares": "background: var(--bg-surface); padding: var(--spacing-300); border-radius: var(--border-radius-200); width: 100%",
+          "declares": "background: var(--bg-surface); padding: var(--spacing-300); border-radius: var(--border-radius-200); width: 100%; display: block",
           "tokens": [
             "--bg-surface",
             "--border-radius-200",
@@ -3295,12 +3100,13 @@
         {
           "name": "tile-tag",
           "section": "TILE",
-          "declares": "background: rgba(0, 0, 0, 0.04); padding: var(--spacing-50) var(--spacing-150); border-radius: var(--border-radius-50); height: 32px; display: flex; +5 more",
+          "declares": "background: var(--black-100); padding: var(--spacing-50) var(--spacing-150); border-radius: var(--border-radius-50); height: 32px; display: flex; +5 more",
           "tokens": [
             "--spacing-100",
             "--spacing-50",
             "--spacing-150",
-            "--border-radius-50"
+            "--border-radius-50",
+            "--black-100"
           ],
           "alsoStyledIn": []
         }
@@ -3319,7 +3125,10 @@
             "--neutral-1000",
             "--inverted-1000",
             "--inverted-200",
-            "--black-500"
+            "--black-500",
+            "--border-weight-200",
+            "--color-interactive",
+            "--spacing-25"
           ],
           "alsoStyledIn": []
         },
@@ -3331,7 +3140,10 @@
             "--brand-core",
             "--white-1000",
             "--white-300",
-            "--black-300"
+            "--black-300",
+            "--border-weight-200",
+            "--color-interactive",
+            "--spacing-25"
           ],
           "alsoStyledIn": []
         },
@@ -3343,7 +3155,10 @@
             "--inverted-1000",
             "--neutral-1000",
             "--neutral-200",
-            "--black-500"
+            "--black-500",
+            "--border-weight-200",
+            "--color-interactive",
+            "--spacing-25"
           ],
           "alsoStyledIn": []
         },
@@ -3354,7 +3169,10 @@
           "tokens": [
             "--black-1000",
             "--white-1000",
-            "--white-300"
+            "--white-300",
+            "--border-weight-200",
+            "--color-interactive",
+            "--spacing-25"
           ],
           "alsoStyledIn": []
         },
@@ -3366,7 +3184,10 @@
             "--white-1000",
             "--black-1000",
             "--black-200",
-            "--black-500"
+            "--black-500",
+            "--border-weight-200",
+            "--color-interactive",
+            "--spacing-25"
           ],
           "alsoStyledIn": []
         },
@@ -3380,7 +3201,10 @@
             "--text-primary",
             "--neutral-100",
             "--neutral-200",
-            "--black-300"
+            "--black-300",
+            "--border-weight-200",
+            "--color-interactive",
+            "--spacing-25"
           ],
           "alsoStyledIn": []
         },
@@ -3394,7 +3218,10 @@
             "--text-primary",
             "--inverted-100",
             "--inverted-200",
-            "--black-300"
+            "--black-300",
+            "--border-weight-200",
+            "--color-interactive",
+            "--spacing-25"
           ],
           "alsoStyledIn": []
         },
@@ -3407,7 +3234,10 @@
             "--black-300",
             "--text-primary",
             "--black-100",
-            "--black-200"
+            "--black-200",
+            "--border-weight-200",
+            "--color-interactive",
+            "--spacing-25"
           ],
           "alsoStyledIn": []
         },
@@ -3419,7 +3249,10 @@
             "--neutral-000",
             "--black-300",
             "--text-primary",
-            "--white-200"
+            "--white-200",
+            "--border-weight-200",
+            "--color-interactive",
+            "--spacing-25"
           ],
           "alsoStyledIn": []
         },
@@ -3430,7 +3263,10 @@
           "tokens": [
             "--neutral-100",
             "--text-primary",
-            "--black-300"
+            "--black-300",
+            "--border-weight-200",
+            "--color-interactive",
+            "--spacing-25"
           ],
           "alsoStyledIn": []
         },
@@ -3442,7 +3278,10 @@
             "--neutral-000",
             "--text-primary",
             "--neutral-100",
-            "--black-300"
+            "--black-300",
+            "--border-weight-200",
+            "--color-interactive",
+            "--spacing-25"
           ],
           "alsoStyledIn": []
         },
@@ -3454,7 +3293,10 @@
             "--org-surface",
             "--text-primary",
             "--white-100",
-            "--black-300"
+            "--black-300",
+            "--border-weight-200",
+            "--color-interactive",
+            "--spacing-25"
           ],
           "alsoStyledIn": []
         },
@@ -3465,7 +3307,10 @@
           "tokens": [
             "--text-primary",
             "--white-100",
-            "--black-300"
+            "--black-300",
+            "--border-weight-200",
+            "--color-interactive",
+            "--spacing-25"
           ],
           "alsoStyledIn": []
         },
@@ -3474,21 +3319,27 @@
           "section": "Interaction 700",
           "declares": "transition: transform 180ms ease-out; transform: scale(1)",
           "tokens": [],
-          "alsoStyledIn": []
+          "alsoStyledIn": [
+            "boilerplate.css"
+          ]
         },
         {
           "name": "scale-500",
           "section": "Interaction 500",
           "declares": "transition: transform 180ms ease-out; transform: scale(1)",
           "tokens": [],
-          "alsoStyledIn": []
+          "alsoStyledIn": [
+            "boilerplate.css"
+          ]
         },
         {
           "name": "scale-300",
           "section": "Interaction 300",
           "declares": "transition: transform 180ms ease-out; transform: scale(1)",
           "tokens": [],
-          "alsoStyledIn": []
+          "alsoStyledIn": [
+            "boilerplate.css"
+          ]
         }
       ],
       "tokens": []
@@ -3503,12 +3354,42 @@
           "declares": "gap: var(--spacing-100); border-radius: var(--button-border-radius); border: none; display: inline-flex; align-items: center; +9 more",
           "tokens": [
             "--spacing-100",
-            "--button-border-radius"
+            "--button-border-radius",
+            "--border-weight-200",
+            "--color-interactive",
+            "--spacing-25"
           ],
           "alsoStyledIn": [
             "card-components.css",
             "product-patterns.css"
           ]
+        },
+        {
+          "name": "btn-circle",
+          "section": "BASE BUTTON RESET & STRUCTURE",
+          "declares": "border-radius: 50%; border: none; display: inline-flex; align-items: center; justify-content: center; +4 more",
+          "tokens": [
+            "--border-weight-200",
+            "--color-interactive",
+            "--spacing-25",
+            "--interactive-primary",
+            "--interactive-primary-text",
+            "--white-300",
+            "--black-300",
+            "--neutral-1000",
+            "--inverted-1000",
+            "--inverted-200",
+            "--black-500",
+            "--neutral-200",
+            "--black-1000",
+            "--white-1000",
+            "--black-200",
+            "--status-error",
+            "--neutral-000",
+            "--neutral-300",
+            "--text-primary"
+          ],
+          "alsoStyledIn": []
         },
         {
           "name": "btn-700",
@@ -3673,30 +3554,6 @@
             "--white-1000",
             "--white-300",
             "--white-500"
-          ],
-          "alsoStyledIn": []
-        },
-        {
-          "name": "btn-circle",
-          "section": "CIRCLE ICON BUTTONS",
-          "declares": "border-radius: 50%; border: none; display: inline-flex; align-items: center; justify-content: center; +4 more",
-          "tokens": [
-            "--interactive-primary",
-            "--interactive-primary-text",
-            "--white-300",
-            "--black-300",
-            "--neutral-1000",
-            "--inverted-1000",
-            "--inverted-200",
-            "--black-500",
-            "--neutral-200",
-            "--black-1000",
-            "--white-1000",
-            "--black-200",
-            "--status-error",
-            "--neutral-000",
-            "--neutral-300",
-            "--text-primary"
           ],
           "alsoStyledIn": []
         },
@@ -3930,7 +3787,7 @@
     },
     {
       "file": "list-row-components.css",
-      "covers": "The list row and everything built on it: its slots and subcomponents, the selector wrapper, and the event row.",
+      "covers": "The list row and everything built on it: its slots and subcomponents, the selector wrapper, and the split row.",
       "classes": [
         {
           "name": "status-dot",
@@ -4004,6 +3861,8 @@
           "tokens": [
             "--neutral-200",
             "--white-1000",
+            "--black-100",
+            "--black-300",
             "--color-interactive",
             "--neutral-100",
             "--white-200"
@@ -4020,28 +3879,28 @@
         {
           "name": "leading-gap-sm",
           "section": "LEADING SLOT",
-          "declares": "padding-right: 8px",
+          "declares": "padding-inline-end: 8px",
           "tokens": [],
           "alsoStyledIn": []
         },
         {
           "name": "leading-gap-md",
           "section": "LEADING SLOT",
-          "declares": "padding-right: 12px",
+          "declares": "padding-inline-end: 12px",
           "tokens": [],
           "alsoStyledIn": []
         },
         {
           "name": "leading-gap-lg",
           "section": "LEADING SLOT",
-          "declares": "padding-right: 16px",
+          "declares": "padding-inline-end: 16px",
           "tokens": [],
           "alsoStyledIn": []
         },
         {
           "name": "leading-gap-xl",
           "section": "LEADING SLOT",
-          "declares": "padding-right: 24px",
+          "declares": "padding-inline-end: 24px",
           "tokens": [],
           "alsoStyledIn": []
         },
@@ -4129,28 +3988,28 @@
         {
           "name": "trailing-gap-xs",
           "section": "TRAILING SLOT",
-          "declares": "padding-left: 2px",
+          "declares": "padding-inline-start: 2px",
           "tokens": [],
           "alsoStyledIn": []
         },
         {
           "name": "trailing-gap-sm",
           "section": "TRAILING SLOT",
-          "declares": "padding-left: 4px",
+          "declares": "padding-inline-start: 4px",
           "tokens": [],
           "alsoStyledIn": []
         },
         {
           "name": "trailing-gap-md",
           "section": "TRAILING SLOT",
-          "declares": "padding-left: 8px",
+          "declares": "padding-inline-start: 8px",
           "tokens": [],
           "alsoStyledIn": []
         },
         {
           "name": "trailing-gap-lg",
           "section": "TRAILING SLOT",
-          "declares": "padding-left: 12px",
+          "declares": "padding-inline-start: 12px",
           "tokens": [],
           "alsoStyledIn": []
         },
@@ -4166,7 +4025,7 @@
         {
           "name": "trailing-text-pair",
           "section": "TRAILING TEXT PAIR",
-          "declares": "gap: 1px; display: flex; flex-direction: column; align-items: flex-end; text-align: right; +1 more",
+          "declares": "gap: 1px; display: flex; flex-direction: column; align-items: flex-end; text-align: end; +1 more",
           "tokens": [],
           "alsoStyledIn": []
         },
@@ -4255,7 +4114,7 @@
         {
           "name": "selector",
           "section": "SELECTOR",
-          "declares": "padding: var(--spacing-200); border-radius: var(--border-radius-200); box-sizing: border-box",
+          "declares": "padding: var(--spacing-200); border-radius: var(--border-radius-200); width: 100%; display: block; box-sizing: border-box",
           "tokens": [
             "--border-radius-200",
             "--spacing-200",
@@ -4287,15 +4146,15 @@
           ]
         },
         {
-          "name": "event-row-logo",
-          "section": "EVENT ROW LOGO",
+          "name": "split-row-logo",
+          "section": "SPLIT ROW LOGO",
           "declares": "height: 48px; width: 48px; object-fit: contain; flex-shrink: 0",
           "tokens": [],
           "alsoStyledIn": []
         },
         {
-          "name": "event-row",
-          "section": "EVENT ROW",
+          "name": "split-row",
+          "section": "SPLIT ROW",
           "declares": "background: var(--org-surface); border-radius: var(--border-radius-200); width: 100%; display: flex; flex-direction: column; +1 more",
           "tokens": [
             "--org-surface",
@@ -4304,8 +4163,8 @@
           "alsoStyledIn": []
         },
         {
-          "name": "event-row-top",
-          "section": "EVENT ROW",
+          "name": "split-row-top",
+          "section": "SPLIT ROW",
           "declares": "padding: var(--spacing-200)",
           "tokens": [
             "--spacing-200",
@@ -4316,8 +4175,8 @@
           ]
         },
         {
-          "name": "event-row-bottom",
-          "section": "EVENT ROW",
+          "name": "split-row-bottom",
+          "section": "SPLIT ROW",
           "declares": "padding: var(--spacing-150) var(--spacing-200); border-top: 0.33px solid var(--border-default)",
           "tokens": [
             "--spacing-150",
@@ -4330,33 +4189,17 @@
           ]
         },
         {
-          "name": "event-row-label",
-          "section": "EVENT ROW",
-          "declares": "font-size: 16px; font-weight: 600; line-height: 1.21; letter-spacing: -0.02em; color: var(--text-primary); +1 more",
-          "tokens": [
-            "--text-primary"
-          ],
-          "alsoStyledIn": []
-        },
-        {
-          "name": "event-row-sublabel",
-          "section": "EVENT ROW",
-          "declares": "font-size: 12px; font-weight: 400; line-height: 1.21; letter-spacing: -0.02em; font-family: 'Inter', sans-serif",
-          "tokens": [],
-          "alsoStyledIn": []
-        },
-        {
-          "name": "event-row-coming-soon",
-          "section": "EVENT ROW",
-          "declares": "max-width: var(--spacing-800); text-align: right; white-space: normal",
+          "name": "split-row-note",
+          "section": "SPLIT ROW",
+          "declares": "max-width: var(--spacing-800); text-align: end; white-space: normal",
           "tokens": [
             "--spacing-800"
           ],
           "alsoStyledIn": []
         },
         {
-          "name": "event-row-list",
-          "section": "EVENT ROW LIST",
+          "name": "split-row-list",
+          "section": "SPLIT ROW LIST",
           "declares": "gap: var(--spacing-100); padding: var(--spacing-200); width: 100%; display: flex; flex-direction: column; +2 more",
           "tokens": [
             "--spacing-100",
@@ -4365,7 +4208,15 @@
           "alsoStyledIn": []
         }
       ],
-      "tokens": []
+      "tokens": [
+        {
+          "name": "--text-secondary",
+          "scopes": [
+            "component-scoped"
+          ],
+          "example": "var(--inverted-700)"
+        }
+      ]
     },
     {
       "file": "table-components.css",
@@ -4605,7 +4456,7 @@
         {
           "name": "input-label-row",
           "section": "LABEL ROW",
-          "declares": "gap: var(--spacing-100); display: flex; align-items: center; justify-content: space-between; padding-left: var(--spacing-100); +1 more",
+          "declares": "gap: var(--spacing-100); display: flex; align-items: center; justify-content: space-between; padding-inline-start: var(--spacing-100); +1 more",
           "tokens": [
             "--spacing-100"
           ],
@@ -4776,7 +4627,7 @@
         {
           "name": "tag",
           "section": "SHARED BASE",
-          "declares": "color: var(--text-primary); background-color: var(--neutral-100); padding-top: var(--spacing-50); padding-bottom: var(--spacing-50); padding-left: var(--spacing-150); +1 more",
+          "declares": "color: var(--text-primary); background-color: var(--neutral-100); padding-top: var(--spacing-50); padding-bottom: var(--spacing-50); padding-inline-start: var(--spacing-150); +1 more",
           "tokens": [
             "--spacing-50",
             "--neutral-100",
@@ -4791,7 +4642,7 @@
         {
           "name": "chip",
           "section": "SHARED BASE",
-          "declares": "padding-left: var(--spacing-150); padding-right: var(--spacing-150)",
+          "declares": "padding-inline-start: var(--spacing-150); padding-inline-end: var(--spacing-150)",
           "tokens": [
             "--spacing-50",
             "--spacing-150",
@@ -5166,10 +5017,11 @@
         {
           "name": "ios-nav-btn-brand",
           "section": "iOS GLASS CIRCLE BUTTON",
-          "declares": "color: var(--interactive-primary-text); background: var(--interactive-primary) !important; backdrop-filter: none !important; -webkit-backdrop-filter: none !important; box-shadow: inset 0.5px 1px 3px rgba(255, 255, 255, 0.25), inset -0.5px -1px 2px rgba(0, 0, 0, 0.2), 0px 2px 40px rgba(0, 0, 0, 0.2); +1 more",
+          "declares": "color: var(--interactive-primary-text); background: var(--interactive-primary); backdrop-filter: none; -webkit-backdrop-filter: none; box-shadow: inset 0.5px 1px 3px var(--white-300), inset -0.5px -1px 2px rgba(0, 0, 0, 0.2), 0px 2px 40px rgba(0, 0, 0, 0.2); +1 more",
           "tokens": [
             "--interactive-primary",
-            "--interactive-primary-text"
+            "--interactive-primary-text",
+            "--white-300"
           ],
           "alsoStyledIn": []
         },
@@ -5180,6 +5032,7 @@
           "tokens": [
             "--spacing-200",
             "--safe-area-top",
+            "--black-300",
             "--bg-base"
           ],
           "alsoStyledIn": []
@@ -5544,8 +5397,10 @@
         {
           "name": "web-footer-link",
           "section": "WEB FOOTER",
-          "declares": "color: rgba(255, 255, 255, 0.7); display: block; text-decoration: none; transition: color 0.15s ease; cursor: pointer",
-          "tokens": [],
+          "declares": "color: var(--white-700); display: block; text-decoration: none; transition: color 0.15s ease; cursor: pointer",
+          "tokens": [
+            "--white-700"
+          ],
           "alsoStyledIn": []
         },
         {
@@ -5555,6 +5410,7 @@
           "tokens": [
             "--spacing-200",
             "--border-weight-50",
+            "--white-200",
             "--spacing-400"
           ],
           "alsoStyledIn": []
@@ -5581,6 +5437,7 @@
           "declares": "gap: var(--spacing-200); display: flex; flex-direction: row; flex-wrap: wrap",
           "tokens": [
             "--spacing-200",
+            "--white-700",
             "--spacing-100"
           ],
           "alsoStyledIn": []
@@ -5643,26 +5500,25 @@
           "alsoStyledIn": []
         },
         {
-          "name": "event-card",
-          "section": "EVENT CARD",
-          "declares": "background: var(--bg-surface); padding: var(--spacing-300); border-radius: var(--border-radius-200); cursor: pointer; overflow: hidden; +1 more",
+          "name": "row-card",
+          "section": "ROW CARD",
+          "declares": "padding: var(--spacing-300); border-radius: var(--border-radius-200); overflow: hidden",
           "tokens": [
-            "--bg-surface",
             "--border-radius-200",
             "--spacing-300"
           ],
           "alsoStyledIn": []
         },
         {
-          "name": "event-card-media",
-          "section": "EVENT CARD",
+          "name": "row-card-media",
+          "section": "ROW CARD",
           "declares": "padding: 0",
           "tokens": [],
           "alsoStyledIn": []
         },
         {
-          "name": "event-card-list",
-          "section": "EVENT CARD",
+          "name": "row-card-list",
+          "section": "ROW CARD",
           "declares": "gap: var(--spacing-200); display: flex; flex-direction: column",
           "tokens": [
             "--spacing-200"
@@ -5742,7 +5598,7 @@
     },
     {
       "file": "boilerplate.css",
-      "covers": "The base layer: CSS reset, element defaults, and the spacing, layout, grid and responsive utilities.",
+      "covers": "The utility layer: spacing, layout, grid and responsive utilities.",
       "classes": [
         {
           "name": "flex-center",
@@ -6169,234 +6025,234 @@
           "alsoStyledIn": []
         },
         {
-          "name": "ml-25",
+          "name": "ms-25",
           "section": "SPACING UTILITIES - MARGIN",
-          "declares": "margin-left: var(--spacing-25)",
+          "declares": "margin-inline-start: var(--spacing-25)",
           "tokens": [
             "--spacing-25"
           ],
           "alsoStyledIn": []
         },
         {
-          "name": "ml-50",
+          "name": "ms-50",
           "section": "SPACING UTILITIES - MARGIN",
-          "declares": "margin-left: var(--spacing-50)",
+          "declares": "margin-inline-start: var(--spacing-50)",
           "tokens": [
             "--spacing-50"
           ],
           "alsoStyledIn": []
         },
         {
-          "name": "ml-100",
+          "name": "ms-100",
           "section": "SPACING UTILITIES - MARGIN",
-          "declares": "margin-left: var(--spacing-100)",
+          "declares": "margin-inline-start: var(--spacing-100)",
           "tokens": [
             "--spacing-100"
           ],
           "alsoStyledIn": []
         },
         {
-          "name": "ml-150",
+          "name": "ms-150",
           "section": "SPACING UTILITIES - MARGIN",
-          "declares": "margin-left: var(--spacing-150)",
+          "declares": "margin-inline-start: var(--spacing-150)",
           "tokens": [
             "--spacing-150"
           ],
           "alsoStyledIn": []
         },
         {
-          "name": "ml-200",
+          "name": "ms-200",
           "section": "SPACING UTILITIES - MARGIN",
-          "declares": "margin-left: var(--spacing-200)",
+          "declares": "margin-inline-start: var(--spacing-200)",
           "tokens": [
             "--spacing-200"
           ],
           "alsoStyledIn": []
         },
         {
-          "name": "ml-250",
+          "name": "ms-250",
           "section": "SPACING UTILITIES - MARGIN",
-          "declares": "margin-left: var(--spacing-250)",
+          "declares": "margin-inline-start: var(--spacing-250)",
           "tokens": [
             "--spacing-250"
           ],
           "alsoStyledIn": []
         },
         {
-          "name": "ml-300",
+          "name": "ms-300",
           "section": "SPACING UTILITIES - MARGIN",
-          "declares": "margin-left: var(--spacing-300)",
+          "declares": "margin-inline-start: var(--spacing-300)",
           "tokens": [
             "--spacing-300"
           ],
           "alsoStyledIn": []
         },
         {
-          "name": "ml-400",
+          "name": "ms-400",
           "section": "SPACING UTILITIES - MARGIN",
-          "declares": "margin-left: var(--spacing-400)",
+          "declares": "margin-inline-start: var(--spacing-400)",
           "tokens": [
             "--spacing-400"
           ],
           "alsoStyledIn": []
         },
         {
-          "name": "ml-500",
+          "name": "ms-500",
           "section": "SPACING UTILITIES - MARGIN",
-          "declares": "margin-left: var(--spacing-500)",
+          "declares": "margin-inline-start: var(--spacing-500)",
           "tokens": [
             "--spacing-500"
           ],
           "alsoStyledIn": []
         },
         {
-          "name": "ml-600",
+          "name": "ms-600",
           "section": "SPACING UTILITIES - MARGIN",
-          "declares": "margin-left: var(--spacing-600)",
+          "declares": "margin-inline-start: var(--spacing-600)",
           "tokens": [
             "--spacing-600"
           ],
           "alsoStyledIn": []
         },
         {
-          "name": "ml-700",
+          "name": "ms-700",
           "section": "SPACING UTILITIES - MARGIN",
-          "declares": "margin-left: var(--spacing-700)",
+          "declares": "margin-inline-start: var(--spacing-700)",
           "tokens": [
             "--spacing-700"
           ],
           "alsoStyledIn": []
         },
         {
-          "name": "ml-800",
+          "name": "ms-800",
           "section": "SPACING UTILITIES - MARGIN",
-          "declares": "margin-left: var(--spacing-800)",
+          "declares": "margin-inline-start: var(--spacing-800)",
           "tokens": [
             "--spacing-800"
           ],
           "alsoStyledIn": []
         },
         {
-          "name": "ml-900",
+          "name": "ms-900",
           "section": "SPACING UTILITIES - MARGIN",
-          "declares": "margin-left: var(--spacing-900)",
+          "declares": "margin-inline-start: var(--spacing-900)",
           "tokens": [
             "--spacing-900"
           ],
           "alsoStyledIn": []
         },
         {
-          "name": "mr-25",
+          "name": "me-25",
           "section": "SPACING UTILITIES - MARGIN",
-          "declares": "margin-right: var(--spacing-25)",
+          "declares": "margin-inline-end: var(--spacing-25)",
           "tokens": [
             "--spacing-25"
           ],
           "alsoStyledIn": []
         },
         {
-          "name": "mr-50",
+          "name": "me-50",
           "section": "SPACING UTILITIES - MARGIN",
-          "declares": "margin-right: var(--spacing-50)",
+          "declares": "margin-inline-end: var(--spacing-50)",
           "tokens": [
             "--spacing-50"
           ],
           "alsoStyledIn": []
         },
         {
-          "name": "mr-100",
+          "name": "me-100",
           "section": "SPACING UTILITIES - MARGIN",
-          "declares": "margin-right: var(--spacing-100)",
+          "declares": "margin-inline-end: var(--spacing-100)",
           "tokens": [
             "--spacing-100"
           ],
           "alsoStyledIn": []
         },
         {
-          "name": "mr-150",
+          "name": "me-150",
           "section": "SPACING UTILITIES - MARGIN",
-          "declares": "margin-right: var(--spacing-150)",
+          "declares": "margin-inline-end: var(--spacing-150)",
           "tokens": [
             "--spacing-150"
           ],
           "alsoStyledIn": []
         },
         {
-          "name": "mr-200",
+          "name": "me-200",
           "section": "SPACING UTILITIES - MARGIN",
-          "declares": "margin-right: var(--spacing-200)",
+          "declares": "margin-inline-end: var(--spacing-200)",
           "tokens": [
             "--spacing-200"
           ],
           "alsoStyledIn": []
         },
         {
-          "name": "mr-250",
+          "name": "me-250",
           "section": "SPACING UTILITIES - MARGIN",
-          "declares": "margin-right: var(--spacing-250)",
+          "declares": "margin-inline-end: var(--spacing-250)",
           "tokens": [
             "--spacing-250"
           ],
           "alsoStyledIn": []
         },
         {
-          "name": "mr-300",
+          "name": "me-300",
           "section": "SPACING UTILITIES - MARGIN",
-          "declares": "margin-right: var(--spacing-300)",
+          "declares": "margin-inline-end: var(--spacing-300)",
           "tokens": [
             "--spacing-300"
           ],
           "alsoStyledIn": []
         },
         {
-          "name": "mr-400",
+          "name": "me-400",
           "section": "SPACING UTILITIES - MARGIN",
-          "declares": "margin-right: var(--spacing-400)",
+          "declares": "margin-inline-end: var(--spacing-400)",
           "tokens": [
             "--spacing-400"
           ],
           "alsoStyledIn": []
         },
         {
-          "name": "mr-500",
+          "name": "me-500",
           "section": "SPACING UTILITIES - MARGIN",
-          "declares": "margin-right: var(--spacing-500)",
+          "declares": "margin-inline-end: var(--spacing-500)",
           "tokens": [
             "--spacing-500"
           ],
           "alsoStyledIn": []
         },
         {
-          "name": "mr-600",
+          "name": "me-600",
           "section": "SPACING UTILITIES - MARGIN",
-          "declares": "margin-right: var(--spacing-600)",
+          "declares": "margin-inline-end: var(--spacing-600)",
           "tokens": [
             "--spacing-600"
           ],
           "alsoStyledIn": []
         },
         {
-          "name": "mr-700",
+          "name": "me-700",
           "section": "SPACING UTILITIES - MARGIN",
-          "declares": "margin-right: var(--spacing-700)",
+          "declares": "margin-inline-end: var(--spacing-700)",
           "tokens": [
             "--spacing-700"
           ],
           "alsoStyledIn": []
         },
         {
-          "name": "mr-800",
+          "name": "me-800",
           "section": "SPACING UTILITIES - MARGIN",
-          "declares": "margin-right: var(--spacing-800)",
+          "declares": "margin-inline-end: var(--spacing-800)",
           "tokens": [
             "--spacing-800"
           ],
           "alsoStyledIn": []
         },
         {
-          "name": "mr-900",
+          "name": "me-900",
           "section": "SPACING UTILITIES - MARGIN",
-          "declares": "margin-right: var(--spacing-900)",
+          "declares": "margin-inline-end: var(--spacing-900)",
           "tokens": [
             "--spacing-900"
           ],
@@ -6405,7 +6261,7 @@
         {
           "name": "mx-25",
           "section": "SPACING UTILITIES - MARGIN",
-          "declares": "margin-left: var(--spacing-25); margin-right: var(--spacing-25)",
+          "declares": "margin-inline-start: var(--spacing-25); margin-inline-end: var(--spacing-25)",
           "tokens": [
             "--spacing-25"
           ],
@@ -6414,7 +6270,7 @@
         {
           "name": "mx-50",
           "section": "SPACING UTILITIES - MARGIN",
-          "declares": "margin-left: var(--spacing-50); margin-right: var(--spacing-50)",
+          "declares": "margin-inline-start: var(--spacing-50); margin-inline-end: var(--spacing-50)",
           "tokens": [
             "--spacing-50"
           ],
@@ -6423,7 +6279,7 @@
         {
           "name": "mx-100",
           "section": "SPACING UTILITIES - MARGIN",
-          "declares": "margin-left: var(--spacing-100); margin-right: var(--spacing-100)",
+          "declares": "margin-inline-start: var(--spacing-100); margin-inline-end: var(--spacing-100)",
           "tokens": [
             "--spacing-100"
           ],
@@ -6432,7 +6288,7 @@
         {
           "name": "mx-150",
           "section": "SPACING UTILITIES - MARGIN",
-          "declares": "margin-left: var(--spacing-150); margin-right: var(--spacing-150)",
+          "declares": "margin-inline-start: var(--spacing-150); margin-inline-end: var(--spacing-150)",
           "tokens": [
             "--spacing-150"
           ],
@@ -6441,7 +6297,7 @@
         {
           "name": "mx-200",
           "section": "SPACING UTILITIES - MARGIN",
-          "declares": "margin-left: var(--spacing-200); margin-right: var(--spacing-200)",
+          "declares": "margin-inline-start: var(--spacing-200); margin-inline-end: var(--spacing-200)",
           "tokens": [
             "--spacing-200"
           ],
@@ -6450,7 +6306,7 @@
         {
           "name": "mx-250",
           "section": "SPACING UTILITIES - MARGIN",
-          "declares": "margin-left: var(--spacing-250); margin-right: var(--spacing-250)",
+          "declares": "margin-inline-start: var(--spacing-250); margin-inline-end: var(--spacing-250)",
           "tokens": [
             "--spacing-250"
           ],
@@ -6459,7 +6315,7 @@
         {
           "name": "mx-300",
           "section": "SPACING UTILITIES - MARGIN",
-          "declares": "margin-left: var(--spacing-300); margin-right: var(--spacing-300)",
+          "declares": "margin-inline-start: var(--spacing-300); margin-inline-end: var(--spacing-300)",
           "tokens": [
             "--spacing-300"
           ],
@@ -6468,7 +6324,7 @@
         {
           "name": "mx-400",
           "section": "SPACING UTILITIES - MARGIN",
-          "declares": "margin-left: var(--spacing-400); margin-right: var(--spacing-400)",
+          "declares": "margin-inline-start: var(--spacing-400); margin-inline-end: var(--spacing-400)",
           "tokens": [
             "--spacing-400"
           ],
@@ -6477,7 +6333,7 @@
         {
           "name": "mx-500",
           "section": "SPACING UTILITIES - MARGIN",
-          "declares": "margin-left: var(--spacing-500); margin-right: var(--spacing-500)",
+          "declares": "margin-inline-start: var(--spacing-500); margin-inline-end: var(--spacing-500)",
           "tokens": [
             "--spacing-500"
           ],
@@ -6486,7 +6342,7 @@
         {
           "name": "mx-600",
           "section": "SPACING UTILITIES - MARGIN",
-          "declares": "margin-left: var(--spacing-600); margin-right: var(--spacing-600)",
+          "declares": "margin-inline-start: var(--spacing-600); margin-inline-end: var(--spacing-600)",
           "tokens": [
             "--spacing-600"
           ],
@@ -6495,7 +6351,7 @@
         {
           "name": "mx-700",
           "section": "SPACING UTILITIES - MARGIN",
-          "declares": "margin-left: var(--spacing-700); margin-right: var(--spacing-700)",
+          "declares": "margin-inline-start: var(--spacing-700); margin-inline-end: var(--spacing-700)",
           "tokens": [
             "--spacing-700"
           ],
@@ -6504,7 +6360,7 @@
         {
           "name": "mx-800",
           "section": "SPACING UTILITIES - MARGIN",
-          "declares": "margin-left: var(--spacing-800); margin-right: var(--spacing-800)",
+          "declares": "margin-inline-start: var(--spacing-800); margin-inline-end: var(--spacing-800)",
           "tokens": [
             "--spacing-800"
           ],
@@ -6513,7 +6369,7 @@
         {
           "name": "mx-900",
           "section": "SPACING UTILITIES - MARGIN",
-          "declares": "margin-left: var(--spacing-900); margin-right: var(--spacing-900)",
+          "declares": "margin-inline-start: var(--spacing-900); margin-inline-end: var(--spacing-900)",
           "tokens": [
             "--spacing-900"
           ],
@@ -6639,21 +6495,21 @@
         {
           "name": "mx-auto",
           "section": "SPACING UTILITIES - MARGIN",
-          "declares": "margin-left: auto; margin-right: auto",
+          "declares": "margin-inline-start: auto; margin-inline-end: auto",
           "tokens": [],
           "alsoStyledIn": []
         },
         {
-          "name": "ml-auto",
+          "name": "ms-auto",
           "section": "SPACING UTILITIES - MARGIN",
-          "declares": "margin-left: auto",
+          "declares": "margin-inline-start: auto",
           "tokens": [],
           "alsoStyledIn": []
         },
         {
-          "name": "mr-auto",
+          "name": "me-auto",
           "section": "SPACING UTILITIES - MARGIN",
-          "declares": "margin-right: auto",
+          "declares": "margin-inline-end: auto",
           "tokens": [],
           "alsoStyledIn": []
         },
@@ -7009,234 +6865,234 @@
           "alsoStyledIn": []
         },
         {
-          "name": "pl-25",
+          "name": "ps-25",
           "section": "SPACING UTILITIES - PADDING",
-          "declares": "padding-left: var(--spacing-25)",
+          "declares": "padding-inline-start: var(--spacing-25)",
           "tokens": [
             "--spacing-25"
           ],
           "alsoStyledIn": []
         },
         {
-          "name": "pl-50",
+          "name": "ps-50",
           "section": "SPACING UTILITIES - PADDING",
-          "declares": "padding-left: var(--spacing-50)",
+          "declares": "padding-inline-start: var(--spacing-50)",
           "tokens": [
             "--spacing-50"
           ],
           "alsoStyledIn": []
         },
         {
-          "name": "pl-100",
+          "name": "ps-100",
           "section": "SPACING UTILITIES - PADDING",
-          "declares": "padding-left: var(--spacing-100)",
+          "declares": "padding-inline-start: var(--spacing-100)",
           "tokens": [
             "--spacing-100"
           ],
           "alsoStyledIn": []
         },
         {
-          "name": "pl-150",
+          "name": "ps-150",
           "section": "SPACING UTILITIES - PADDING",
-          "declares": "padding-left: var(--spacing-150)",
+          "declares": "padding-inline-start: var(--spacing-150)",
           "tokens": [
             "--spacing-150"
           ],
           "alsoStyledIn": []
         },
         {
-          "name": "pl-200",
+          "name": "ps-200",
           "section": "SPACING UTILITIES - PADDING",
-          "declares": "padding-left: var(--spacing-200)",
+          "declares": "padding-inline-start: var(--spacing-200)",
           "tokens": [
             "--spacing-200"
           ],
           "alsoStyledIn": []
         },
         {
-          "name": "pl-250",
+          "name": "ps-250",
           "section": "SPACING UTILITIES - PADDING",
-          "declares": "padding-left: var(--spacing-250)",
+          "declares": "padding-inline-start: var(--spacing-250)",
           "tokens": [
             "--spacing-250"
           ],
           "alsoStyledIn": []
         },
         {
-          "name": "pl-300",
+          "name": "ps-300",
           "section": "SPACING UTILITIES - PADDING",
-          "declares": "padding-left: var(--spacing-300)",
+          "declares": "padding-inline-start: var(--spacing-300)",
           "tokens": [
             "--spacing-300"
           ],
           "alsoStyledIn": []
         },
         {
-          "name": "pl-400",
+          "name": "ps-400",
           "section": "SPACING UTILITIES - PADDING",
-          "declares": "padding-left: var(--spacing-400)",
+          "declares": "padding-inline-start: var(--spacing-400)",
           "tokens": [
             "--spacing-400"
           ],
           "alsoStyledIn": []
         },
         {
-          "name": "pl-500",
+          "name": "ps-500",
           "section": "SPACING UTILITIES - PADDING",
-          "declares": "padding-left: var(--spacing-500)",
+          "declares": "padding-inline-start: var(--spacing-500)",
           "tokens": [
             "--spacing-500"
           ],
           "alsoStyledIn": []
         },
         {
-          "name": "pl-600",
+          "name": "ps-600",
           "section": "SPACING UTILITIES - PADDING",
-          "declares": "padding-left: var(--spacing-600)",
+          "declares": "padding-inline-start: var(--spacing-600)",
           "tokens": [
             "--spacing-600"
           ],
           "alsoStyledIn": []
         },
         {
-          "name": "pl-700",
+          "name": "ps-700",
           "section": "SPACING UTILITIES - PADDING",
-          "declares": "padding-left: var(--spacing-700)",
+          "declares": "padding-inline-start: var(--spacing-700)",
           "tokens": [
             "--spacing-700"
           ],
           "alsoStyledIn": []
         },
         {
-          "name": "pl-800",
+          "name": "ps-800",
           "section": "SPACING UTILITIES - PADDING",
-          "declares": "padding-left: var(--spacing-800)",
+          "declares": "padding-inline-start: var(--spacing-800)",
           "tokens": [
             "--spacing-800"
           ],
           "alsoStyledIn": []
         },
         {
-          "name": "pl-900",
+          "name": "ps-900",
           "section": "SPACING UTILITIES - PADDING",
-          "declares": "padding-left: var(--spacing-900)",
+          "declares": "padding-inline-start: var(--spacing-900)",
           "tokens": [
             "--spacing-900"
           ],
           "alsoStyledIn": []
         },
         {
-          "name": "pr-25",
+          "name": "pe-25",
           "section": "SPACING UTILITIES - PADDING",
-          "declares": "padding-right: var(--spacing-25)",
+          "declares": "padding-inline-end: var(--spacing-25)",
           "tokens": [
             "--spacing-25"
           ],
           "alsoStyledIn": []
         },
         {
-          "name": "pr-50",
+          "name": "pe-50",
           "section": "SPACING UTILITIES - PADDING",
-          "declares": "padding-right: var(--spacing-50)",
+          "declares": "padding-inline-end: var(--spacing-50)",
           "tokens": [
             "--spacing-50"
           ],
           "alsoStyledIn": []
         },
         {
-          "name": "pr-100",
+          "name": "pe-100",
           "section": "SPACING UTILITIES - PADDING",
-          "declares": "padding-right: var(--spacing-100)",
+          "declares": "padding-inline-end: var(--spacing-100)",
           "tokens": [
             "--spacing-100"
           ],
           "alsoStyledIn": []
         },
         {
-          "name": "pr-150",
+          "name": "pe-150",
           "section": "SPACING UTILITIES - PADDING",
-          "declares": "padding-right: var(--spacing-150)",
+          "declares": "padding-inline-end: var(--spacing-150)",
           "tokens": [
             "--spacing-150"
           ],
           "alsoStyledIn": []
         },
         {
-          "name": "pr-200",
+          "name": "pe-200",
           "section": "SPACING UTILITIES - PADDING",
-          "declares": "padding-right: var(--spacing-200)",
+          "declares": "padding-inline-end: var(--spacing-200)",
           "tokens": [
             "--spacing-200"
           ],
           "alsoStyledIn": []
         },
         {
-          "name": "pr-250",
+          "name": "pe-250",
           "section": "SPACING UTILITIES - PADDING",
-          "declares": "padding-right: var(--spacing-250)",
+          "declares": "padding-inline-end: var(--spacing-250)",
           "tokens": [
             "--spacing-250"
           ],
           "alsoStyledIn": []
         },
         {
-          "name": "pr-300",
+          "name": "pe-300",
           "section": "SPACING UTILITIES - PADDING",
-          "declares": "padding-right: var(--spacing-300)",
+          "declares": "padding-inline-end: var(--spacing-300)",
           "tokens": [
             "--spacing-300"
           ],
           "alsoStyledIn": []
         },
         {
-          "name": "pr-400",
+          "name": "pe-400",
           "section": "SPACING UTILITIES - PADDING",
-          "declares": "padding-right: var(--spacing-400)",
+          "declares": "padding-inline-end: var(--spacing-400)",
           "tokens": [
             "--spacing-400"
           ],
           "alsoStyledIn": []
         },
         {
-          "name": "pr-500",
+          "name": "pe-500",
           "section": "SPACING UTILITIES - PADDING",
-          "declares": "padding-right: var(--spacing-500)",
+          "declares": "padding-inline-end: var(--spacing-500)",
           "tokens": [
             "--spacing-500"
           ],
           "alsoStyledIn": []
         },
         {
-          "name": "pr-600",
+          "name": "pe-600",
           "section": "SPACING UTILITIES - PADDING",
-          "declares": "padding-right: var(--spacing-600)",
+          "declares": "padding-inline-end: var(--spacing-600)",
           "tokens": [
             "--spacing-600"
           ],
           "alsoStyledIn": []
         },
         {
-          "name": "pr-700",
+          "name": "pe-700",
           "section": "SPACING UTILITIES - PADDING",
-          "declares": "padding-right: var(--spacing-700)",
+          "declares": "padding-inline-end: var(--spacing-700)",
           "tokens": [
             "--spacing-700"
           ],
           "alsoStyledIn": []
         },
         {
-          "name": "pr-800",
+          "name": "pe-800",
           "section": "SPACING UTILITIES - PADDING",
-          "declares": "padding-right: var(--spacing-800)",
+          "declares": "padding-inline-end: var(--spacing-800)",
           "tokens": [
             "--spacing-800"
           ],
           "alsoStyledIn": []
         },
         {
-          "name": "pr-900",
+          "name": "pe-900",
           "section": "SPACING UTILITIES - PADDING",
-          "declares": "padding-right: var(--spacing-900)",
+          "declares": "padding-inline-end: var(--spacing-900)",
           "tokens": [
             "--spacing-900"
           ],
@@ -7245,7 +7101,7 @@
         {
           "name": "px-25",
           "section": "SPACING UTILITIES - PADDING",
-          "declares": "padding-left: var(--spacing-25); padding-right: var(--spacing-25)",
+          "declares": "padding-inline-start: var(--spacing-25); padding-inline-end: var(--spacing-25)",
           "tokens": [
             "--spacing-25"
           ],
@@ -7254,7 +7110,7 @@
         {
           "name": "px-50",
           "section": "SPACING UTILITIES - PADDING",
-          "declares": "padding-left: var(--spacing-50); padding-right: var(--spacing-50)",
+          "declares": "padding-inline-start: var(--spacing-50); padding-inline-end: var(--spacing-50)",
           "tokens": [
             "--spacing-50"
           ],
@@ -7263,7 +7119,7 @@
         {
           "name": "px-100",
           "section": "SPACING UTILITIES - PADDING",
-          "declares": "padding-left: var(--spacing-100); padding-right: var(--spacing-100)",
+          "declares": "padding-inline-start: var(--spacing-100); padding-inline-end: var(--spacing-100)",
           "tokens": [
             "--spacing-100"
           ],
@@ -7272,7 +7128,7 @@
         {
           "name": "px-150",
           "section": "SPACING UTILITIES - PADDING",
-          "declares": "padding-left: var(--spacing-150); padding-right: var(--spacing-150)",
+          "declares": "padding-inline-start: var(--spacing-150); padding-inline-end: var(--spacing-150)",
           "tokens": [
             "--spacing-150"
           ],
@@ -7281,7 +7137,7 @@
         {
           "name": "px-200",
           "section": "SPACING UTILITIES - PADDING",
-          "declares": "padding-left: var(--spacing-200); padding-right: var(--spacing-200)",
+          "declares": "padding-inline-start: var(--spacing-200); padding-inline-end: var(--spacing-200)",
           "tokens": [
             "--spacing-200"
           ],
@@ -7290,7 +7146,7 @@
         {
           "name": "px-250",
           "section": "SPACING UTILITIES - PADDING",
-          "declares": "padding-left: var(--spacing-250); padding-right: var(--spacing-250)",
+          "declares": "padding-inline-start: var(--spacing-250); padding-inline-end: var(--spacing-250)",
           "tokens": [
             "--spacing-250"
           ],
@@ -7299,7 +7155,7 @@
         {
           "name": "px-300",
           "section": "SPACING UTILITIES - PADDING",
-          "declares": "padding-left: var(--spacing-300); padding-right: var(--spacing-300)",
+          "declares": "padding-inline-start: var(--spacing-300); padding-inline-end: var(--spacing-300)",
           "tokens": [
             "--spacing-300"
           ],
@@ -7308,7 +7164,7 @@
         {
           "name": "px-400",
           "section": "SPACING UTILITIES - PADDING",
-          "declares": "padding-left: var(--spacing-400); padding-right: var(--spacing-400)",
+          "declares": "padding-inline-start: var(--spacing-400); padding-inline-end: var(--spacing-400)",
           "tokens": [
             "--spacing-400"
           ],
@@ -7317,7 +7173,7 @@
         {
           "name": "px-500",
           "section": "SPACING UTILITIES - PADDING",
-          "declares": "padding-left: var(--spacing-500); padding-right: var(--spacing-500)",
+          "declares": "padding-inline-start: var(--spacing-500); padding-inline-end: var(--spacing-500)",
           "tokens": [
             "--spacing-500"
           ],
@@ -7326,7 +7182,7 @@
         {
           "name": "px-600",
           "section": "SPACING UTILITIES - PADDING",
-          "declares": "padding-left: var(--spacing-600); padding-right: var(--spacing-600)",
+          "declares": "padding-inline-start: var(--spacing-600); padding-inline-end: var(--spacing-600)",
           "tokens": [
             "--spacing-600"
           ],
@@ -7335,7 +7191,7 @@
         {
           "name": "px-700",
           "section": "SPACING UTILITIES - PADDING",
-          "declares": "padding-left: var(--spacing-700); padding-right: var(--spacing-700)",
+          "declares": "padding-inline-start: var(--spacing-700); padding-inline-end: var(--spacing-700)",
           "tokens": [
             "--spacing-700"
           ],
@@ -7344,7 +7200,7 @@
         {
           "name": "px-800",
           "section": "SPACING UTILITIES - PADDING",
-          "declares": "padding-left: var(--spacing-800); padding-right: var(--spacing-800)",
+          "declares": "padding-inline-start: var(--spacing-800); padding-inline-end: var(--spacing-800)",
           "tokens": [
             "--spacing-800"
           ],
@@ -7353,7 +7209,7 @@
         {
           "name": "px-900",
           "section": "SPACING UTILITIES - PADDING",
-          "declares": "padding-left: var(--spacing-900); padding-right: var(--spacing-900)",
+          "declares": "padding-inline-start: var(--spacing-900); padding-inline-end: var(--spacing-900)",
           "tokens": [
             "--spacing-900"
           ],
@@ -8109,7 +7965,7 @@
         {
           "name": "mx-small",
           "section": "RESPONSIVE SPACING UTILITIES",
-          "declares": "margin-left: var(--margin-small); margin-right: var(--margin-small)",
+          "declares": "margin-inline-start: var(--margin-small); margin-inline-end: var(--margin-small)",
           "tokens": [
             "--margin-small"
           ],
@@ -8143,18 +7999,18 @@
           "alsoStyledIn": []
         },
         {
-          "name": "ml-small",
+          "name": "ms-small",
           "section": "RESPONSIVE SPACING UTILITIES",
-          "declares": "margin-left: var(--margin-small)",
+          "declares": "margin-inline-start: var(--margin-small)",
           "tokens": [
             "--margin-small"
           ],
           "alsoStyledIn": []
         },
         {
-          "name": "mr-small",
+          "name": "me-small",
           "section": "RESPONSIVE SPACING UTILITIES",
-          "declares": "margin-right: var(--margin-small)",
+          "declares": "margin-inline-end: var(--margin-small)",
           "tokens": [
             "--margin-small"
           ],
@@ -8163,7 +8019,7 @@
         {
           "name": "px-small",
           "section": "RESPONSIVE SPACING UTILITIES",
-          "declares": "padding-left: var(--margin-small); padding-right: var(--margin-small)",
+          "declares": "padding-inline-start: var(--margin-small); padding-inline-end: var(--margin-small)",
           "tokens": [
             "--margin-small"
           ],
@@ -8197,18 +8053,18 @@
           "alsoStyledIn": []
         },
         {
-          "name": "pl-small",
+          "name": "ps-small",
           "section": "RESPONSIVE SPACING UTILITIES",
-          "declares": "padding-left: var(--margin-small)",
+          "declares": "padding-inline-start: var(--margin-small)",
           "tokens": [
             "--margin-small"
           ],
           "alsoStyledIn": []
         },
         {
-          "name": "pr-small",
+          "name": "pe-small",
           "section": "RESPONSIVE SPACING UTILITIES",
-          "declares": "padding-right: var(--margin-small)",
+          "declares": "padding-inline-end: var(--margin-small)",
           "tokens": [
             "--margin-small"
           ],
@@ -8226,7 +8082,7 @@
         {
           "name": "mx-large",
           "section": "RESPONSIVE SPACING UTILITIES",
-          "declares": "margin-left: var(--margin-large); margin-right: var(--margin-large)",
+          "declares": "margin-inline-start: var(--margin-large); margin-inline-end: var(--margin-large)",
           "tokens": [
             "--margin-large"
           ],
@@ -8260,18 +8116,18 @@
           "alsoStyledIn": []
         },
         {
-          "name": "ml-large",
+          "name": "ms-large",
           "section": "RESPONSIVE SPACING UTILITIES",
-          "declares": "margin-left: var(--margin-large)",
+          "declares": "margin-inline-start: var(--margin-large)",
           "tokens": [
             "--margin-large"
           ],
           "alsoStyledIn": []
         },
         {
-          "name": "mr-large",
+          "name": "me-large",
           "section": "RESPONSIVE SPACING UTILITIES",
-          "declares": "margin-right: var(--margin-large)",
+          "declares": "margin-inline-end: var(--margin-large)",
           "tokens": [
             "--margin-large"
           ],
@@ -8280,7 +8136,7 @@
         {
           "name": "px-large",
           "section": "RESPONSIVE SPACING UTILITIES",
-          "declares": "padding-left: var(--margin-large); padding-right: var(--margin-large)",
+          "declares": "padding-inline-start: var(--margin-large); padding-inline-end: var(--margin-large)",
           "tokens": [
             "--margin-large"
           ],
@@ -8314,18 +8170,18 @@
           "alsoStyledIn": []
         },
         {
-          "name": "pl-large",
+          "name": "ps-large",
           "section": "RESPONSIVE SPACING UTILITIES",
-          "declares": "padding-left: var(--margin-large)",
+          "declares": "padding-inline-start: var(--margin-large)",
           "tokens": [
             "--margin-large"
           ],
           "alsoStyledIn": []
         },
         {
-          "name": "pr-large",
+          "name": "pe-large",
           "section": "RESPONSIVE SPACING UTILITIES",
-          "declares": "padding-right: var(--margin-large)",
+          "declares": "padding-inline-end: var(--margin-large)",
           "tokens": [
             "--margin-large"
           ],
@@ -8343,7 +8199,7 @@
         {
           "name": "mx-landing",
           "section": "RESPONSIVE SPACING UTILITIES",
-          "declares": "margin-left: var(--margin-landing); margin-right: var(--margin-landing)",
+          "declares": "margin-inline-start: var(--margin-landing); margin-inline-end: var(--margin-landing)",
           "tokens": [
             "--margin-landing"
           ],
@@ -8377,18 +8233,18 @@
           "alsoStyledIn": []
         },
         {
-          "name": "ml-landing",
+          "name": "ms-landing",
           "section": "RESPONSIVE SPACING UTILITIES",
-          "declares": "margin-left: var(--margin-landing)",
+          "declares": "margin-inline-start: var(--margin-landing)",
           "tokens": [
             "--margin-landing"
           ],
           "alsoStyledIn": []
         },
         {
-          "name": "mr-landing",
+          "name": "me-landing",
           "section": "RESPONSIVE SPACING UTILITIES",
-          "declares": "margin-right: var(--margin-landing)",
+          "declares": "margin-inline-end: var(--margin-landing)",
           "tokens": [
             "--margin-landing"
           ],
@@ -8397,7 +8253,7 @@
         {
           "name": "px-landing",
           "section": "RESPONSIVE SPACING UTILITIES",
-          "declares": "padding-left: var(--margin-landing); padding-right: var(--margin-landing)",
+          "declares": "padding-inline-start: var(--margin-landing); padding-inline-end: var(--margin-landing)",
           "tokens": [
             "--margin-landing"
           ],
@@ -8431,18 +8287,18 @@
           "alsoStyledIn": []
         },
         {
-          "name": "pl-landing",
+          "name": "ps-landing",
           "section": "RESPONSIVE SPACING UTILITIES",
-          "declares": "padding-left: var(--margin-landing)",
+          "declares": "padding-inline-start: var(--margin-landing)",
           "tokens": [
             "--margin-landing"
           ],
           "alsoStyledIn": []
         },
         {
-          "name": "pr-landing",
+          "name": "pe-landing",
           "section": "RESPONSIVE SPACING UTILITIES",
-          "declares": "padding-right: var(--margin-landing)",
+          "declares": "padding-inline-end: var(--margin-landing)",
           "tokens": [
             "--margin-landing"
           ],
@@ -8563,6 +8419,202 @@
           "declares": null,
           "tokens": [],
           "alsoStyledIn": []
+        },
+        {
+          "name": "text-primary",
+          "section": "TEXT COLOUR UTILITIES",
+          "declares": "color: var(--neutral-1000)",
+          "tokens": [
+            "--neutral-1000"
+          ],
+          "alsoStyledIn": []
+        },
+        {
+          "name": "text-secondary",
+          "section": "TEXT COLOUR UTILITIES",
+          "declares": "color: var(--text-secondary)",
+          "tokens": [
+            "--text-secondary"
+          ],
+          "alsoStyledIn": []
+        },
+        {
+          "name": "text-disabled",
+          "section": "TEXT COLOUR UTILITIES",
+          "declares": "color: var(--neutral-300)",
+          "tokens": [
+            "--neutral-300"
+          ],
+          "alsoStyledIn": []
+        },
+        {
+          "name": "text-placeholder",
+          "section": "TEXT COLOUR UTILITIES",
+          "declares": "color: var(--neutral-500)",
+          "tokens": [
+            "--neutral-500"
+          ],
+          "alsoStyledIn": []
+        },
+        {
+          "name": "text-brand-core",
+          "section": "TEXT COLOUR UTILITIES",
+          "declares": "color: var(--brand-core)",
+          "tokens": [
+            "--brand-core"
+          ],
+          "alsoStyledIn": []
+        },
+        {
+          "name": "text-brand-light",
+          "section": "TEXT COLOUR UTILITIES",
+          "declares": "color: var(--brand-light)",
+          "tokens": [
+            "--brand-light"
+          ],
+          "alsoStyledIn": []
+        },
+        {
+          "name": "text-brand-interactive",
+          "section": "TEXT COLOUR UTILITIES",
+          "declares": "color: var(--color-interactive)",
+          "tokens": [
+            "--color-interactive"
+          ],
+          "alsoStyledIn": []
+        },
+        {
+          "name": "text-brand-inverted",
+          "section": "TEXT COLOUR UTILITIES",
+          "declares": "color: var(--color-inverted)",
+          "tokens": [
+            "--color-inverted"
+          ],
+          "alsoStyledIn": []
+        },
+        {
+          "name": "text-interactive-tertiary",
+          "section": "TEXT COLOUR UTILITIES",
+          "declares": "color: var(--interactive-tertiary-text)",
+          "tokens": [
+            "--interactive-tertiary-text"
+          ],
+          "alsoStyledIn": []
+        },
+        {
+          "name": "text-inverted",
+          "section": "TEXT COLOUR UTILITIES",
+          "declares": "color: var(--inverted-1000)",
+          "tokens": [
+            "--inverted-1000"
+          ],
+          "alsoStyledIn": []
+        },
+        {
+          "name": "text-success",
+          "section": "TEXT COLOUR UTILITIES",
+          "declares": "color: var(--status-success)",
+          "tokens": [
+            "--status-success"
+          ],
+          "alsoStyledIn": []
+        },
+        {
+          "name": "text-warning",
+          "section": "TEXT COLOUR UTILITIES",
+          "declares": "color: var(--status-warning)",
+          "tokens": [
+            "--status-warning"
+          ],
+          "alsoStyledIn": []
+        },
+        {
+          "name": "text-error",
+          "section": "TEXT COLOUR UTILITIES",
+          "declares": "color: var(--status-error)",
+          "tokens": [
+            "--status-error"
+          ],
+          "alsoStyledIn": []
+        },
+        {
+          "name": "text-info",
+          "section": "TEXT COLOUR UTILITIES",
+          "declares": "color: var(--status-info)",
+          "tokens": [
+            "--status-info"
+          ],
+          "alsoStyledIn": []
+        },
+        {
+          "name": "text-start",
+          "section": "TEXT UTILITIES — alignment, decoration, truncation",
+          "declares": "text-align: start",
+          "tokens": [],
+          "alsoStyledIn": []
+        },
+        {
+          "name": "text-center",
+          "section": "TEXT UTILITIES — alignment, decoration, truncation",
+          "declares": "text-align: center",
+          "tokens": [],
+          "alsoStyledIn": []
+        },
+        {
+          "name": "text-end",
+          "section": "TEXT UTILITIES — alignment, decoration, truncation",
+          "declares": "text-align: end",
+          "tokens": [],
+          "alsoStyledIn": []
+        },
+        {
+          "name": "text-justify",
+          "section": "TEXT UTILITIES — alignment, decoration, truncation",
+          "declares": "text-align: justify",
+          "tokens": [],
+          "alsoStyledIn": []
+        },
+        {
+          "name": "text-underline",
+          "section": "TEXT DECORATION UTILITIES",
+          "declares": "text-decoration: underline",
+          "tokens": [],
+          "alsoStyledIn": []
+        },
+        {
+          "name": "text-line-through",
+          "section": "TEXT DECORATION UTILITIES",
+          "declares": "text-decoration: line-through",
+          "tokens": [],
+          "alsoStyledIn": []
+        },
+        {
+          "name": "text-no-underline",
+          "section": "TEXT DECORATION UTILITIES",
+          "declares": "text-decoration: none",
+          "tokens": [],
+          "alsoStyledIn": []
+        },
+        {
+          "name": "text-truncate",
+          "section": "TRUNCATION UTILITIES",
+          "declares": "overflow: hidden; text-overflow: ellipsis; white-space: nowrap",
+          "tokens": [],
+          "alsoStyledIn": []
+        },
+        {
+          "name": "text-truncate-2",
+          "section": "TRUNCATION UTILITIES",
+          "declares": "display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden",
+          "tokens": [],
+          "alsoStyledIn": []
+        },
+        {
+          "name": "text-truncate-3",
+          "section": "TRUNCATION UTILITIES",
+          "declares": "display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden",
+          "tokens": [],
+          "alsoStyledIn": []
         }
       ],
       "tokens": []
@@ -8627,7 +8679,7 @@
         {
           "name": "template-fab",
           "section": "PROTOTYPE REVIEW CHROME",
-          "declares": "position: fixed; bottom: var(--spacing-300); right: var(--spacing-300); z-index: 99999",
+          "declares": "position: fixed; bottom: var(--spacing-300); inset-inline-end: var(--spacing-300); z-index: 99999",
           "tokens": [
             "--spacing-300"
           ],
@@ -8741,6 +8793,12 @@
           "example": "0px"
         }
       ]
+    },
+    {
+      "file": "crnl-layers.css",
+      "covers": "The stylesheets, each imported into its cascade layer. Import this from",
+      "classes": [],
+      "tokens": []
     }
   ]
 }

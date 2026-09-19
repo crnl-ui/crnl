@@ -1,0 +1,132 @@
+/* ============================================================
+   reset.css
+   ============================================================
+   The element layer: the box-sizing reset, the document defaults, and the
+   browser's own controls brought to a neutral starting point.
+
+   This used to live inside boilerplate.css, at two separate places in a file
+   that is otherwise 300-odd utility classes. Load order made that work — the
+   sheet loaded last, and specificity decided every conflict, so a class-based
+   component rule beat an element-based reset rule without anyone having to
+   think about it.
+
+   Cascade layers removed that arbitration. A later layer beats an earlier one
+   whatever the specificity, so `* { padding: 0 }` in the utilities layer
+   silently zeroed the padding of every card section, and `button { font-size:
+   inherit }` overrode every .btn size. The two halves of the file want
+   opposite ends of the cascade, which is why they are now two files: a reset
+   has to come before the components, and a utility has to come after them.
+
+   Layer: crnl.reset — the FIRST layer, before even the tokens. Not because
+   the reset needs the tokens (custom properties resolve independently of
+   layer order), but because three of the token sheets also ship classes —
+   .container-*, the spacing utilities, the radius and border scales, 81 of
+   them. `* { padding: 0 }` in a layer after those zeroed every container's
+   page padding. A reset belongs before everything that draws, and "everything"
+   includes the sheets whose names suggest they only declare values.
+   ============================================================ */
+
+/* ============================================================
+   CSS RESET & BASE STYLES
+   ============================================================ */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background-color: var(--bg-base);
+  color: var(--text-primary);
+  min-height: 100vh;
+  line-height: 1.5;
+}
+
+
+/* ============================================================
+   COMMON ELEMENT STYLES
+   ============================================================ */
+
+/* --color-interactive is the mode-aware interactive colour; --brand-interactive
+   is one value per theme in both modes and renders dark-on-dark. See RULES §2. */
+a {
+  color: var(--color-interactive);
+  text-decoration: none;
+  transition: opacity 0.2s ease;
+}
+
+a:hover {
+  opacity: 0.8;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* The reset has to go far enough that a <button> can carry a design system
+   surface and lay out exactly as the <div> it replaces. That is what makes
+   RULES §3 #14 followable: a tappable card should be a real button, and it
+   will only get written that way if doing so costs nothing.
+
+   padding, text-align and color are the three that bite — a UA button centres
+   its text, insets it, and paints its own colour. The .btn size classes set
+   their own padding, and .btn centres by flexbox, so zeroing them here is
+   invisible to buttons that are buttons. */
+button {
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+  cursor: pointer;
+  border: none;
+  background: none;
+  padding: 0;
+  margin: 0;
+  color: inherit;
+  text-align: inherit;
+}
+
+input,
+textarea,
+select {
+  font-family: inherit;
+  color: var(--text-primary);
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-default);
+  border-radius: 8px;
+  padding: 12px;
+  width: 100%;
+  transition: border-color 0.2s ease;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  border-color: var(--border-active);
+}
+
+/* Keyboard focus gets a ring on top of the border shift. The border alone is a
+   colour-only signal, which is not a sufficient focus indicator on its own —
+   so the outline is the indicator and the border is reinforcement. Scoped to
+   :focus-visible so a pointer click does not draw it. */
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: var(--border-weight-200) solid var(--color-interactive);
+  outline-offset: var(--spacing-25);
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: var(--text-placeholder);
+}

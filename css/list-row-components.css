@@ -1,7 +1,7 @@
 /* ============================================================
    list-row-components.css
    ============================================================
-   The list row and everything built on it: its slots and subcomponents, the selector wrapper, and the event row.
+   The list row and everything built on it: its slots and subcomponents, the selector wrapper, and the split row.
 
    What's inside
    - .list-row (+ .list-row-content, .list-row-text-pair, .not-tappable, .disabled)
@@ -14,8 +14,8 @@
    - .list-divided — rows inside a card, hairline-separated, dividers bleeding
      to both edges and padding square
    - .selector (+ .is-selected, .is-disabled) — wraps a row to make it selectable
-   - .event-row (+ -top/-bottom/-logo/-label/-sublabel/-coming-soon), .event-row-list
-     — the buy-flow event card
+   - .split-row (+ -top/-bottom/-logo/-note), .split-row-list — a card of two
+     independently tappable bands, the shipped example of .surface-section
 
    Notes
    - .tag itself lives in tag-chip-components.css; only .tag-brand-color is here.
@@ -163,6 +163,8 @@
      disabled  → Muted (neutral-100 track, faded knob)
    
    Usage:
+     <!-- The <label> is the track and is empty, so the input needs its own
+          aria-label or it has no accessible name (npm run check:a11y). -->
      <div class="switch">
        <input type="checkbox" id="switch-1">
        <label for="switch-1"></label>
@@ -208,13 +210,13 @@
   content: '';
   position: absolute;
   top: 2px;
-  left: 2px;
+  inset-inline-start: 2px;
   width: 27px;
   height: 27px;
   border-radius: 100px;
   background: var(--white-1000);
-  box-shadow: 0 0 0 0 rgba(0,0,0,0.04),
-              0 3px 8px 0 rgba(0,0,0,0.15),
+  box-shadow: 0 0 0 0 var(--black-100),
+              0 3px 8px 0 var(--black-300),
               0 3px 1px 0 rgba(0,0,0,0.06);
   transition: left 200ms ease;
 }
@@ -225,7 +227,7 @@
 }
 
 .switch input:checked + label::after {
-  left: 22px; /* 51 - 27 - 2 */
+  inset-inline-start: 22px; /* 51 - 27 - 2 */
 }
 
 /* Disabled */
@@ -267,10 +269,10 @@
   flex-shrink: 0;
 }
 
-.leading-gap-sm  { padding-right: 8px; }
-.leading-gap-md  { padding-right: 12px; }
-.leading-gap-lg  { padding-right: 16px; }
-.leading-gap-xl  { padding-right: 24px; }
+.leading-gap-sm  { padding-inline-end: 8px; }
+.leading-gap-md  { padding-inline-end: 12px; }
+.leading-gap-lg  { padding-inline-end: 16px; }
+.leading-gap-xl  { padding-inline-end: 24px; }
 
 
 /* ============================================================
@@ -445,10 +447,10 @@
   flex-shrink: 0;
 }
 
-.trailing-gap-xs  { padding-left: 2px; }
-.trailing-gap-sm  { padding-left: 4px; }
-.trailing-gap-md  { padding-left: 8px; }
-.trailing-gap-lg  { padding-left: 12px; }
+.trailing-gap-xs  { padding-inline-start: 2px; }
+.trailing-gap-sm  { padding-inline-start: 4px; }
+.trailing-gap-md  { padding-inline-start: 8px; }
+.trailing-gap-lg  { padding-inline-start: 12px; }
 
 
 /* ============================================================
@@ -495,7 +497,7 @@
   flex-direction: column;
   align-items: flex-end;
   gap: 1px;
-  text-align: right;
+  text-align: end;
   white-space: nowrap;
 }
 
@@ -764,6 +766,12 @@
   border-radius: var(--border-radius-200);   /* 16px */
   padding: var(--spacing-200);               /* 16px all sides */
   box-sizing: border-box;
+  /* display and width so the class behaves the same on a <button> as on a
+     <div>. A selector is a tap target and should be a real button
+     (RULES §3 #14); a UA button is inline-block and shrinks to its content,
+     which collapsed a full-width row to the width of its longest word. */
+  display: block;
+  width: 100%;
 }
 
 /* Selected — overrides surface hover/press backgrounds (works with washNeutral and card) */
@@ -772,16 +780,19 @@
 .selector.is-selected:active {
   background: var(--neutral-1000);
   color: var(--inverted-1000);
+  /* Redefine the token in scope rather than re-declaring .text-secondary.
+     The class reads --text-secondary, so everything inside a selected row
+     picks this up by inheritance — which no cascade layer can reorder,
+     because custom properties resolve independently of layer precedence.
+     This used to be an !important racing the one in text-styles-system.css,
+     and it won on specificity until layers made important run earliest-first
+     and the row went dark-on-dark. */
+  --text-secondary: var(--inverted-700);
 }
 
 /* All children inherit the inverted color (overrides .labelBold30, etc.) */
 .selector.is-selected * {
   color: inherit;
-}
-
-/* .text-secondary uses !important in text-styles-system.css — must match to override */
-.selector.is-selected .text-secondary {
-  color: var(--inverted-700) !important;
 }
 
 /* Cancel the text opacity dim that surface:active applies (both washNeutral and card set opacity: 0.6) */
@@ -798,16 +809,16 @@
 
 
 /* ============================================================
-   EVENT ROW LOGO
+   SPLIT ROW LOGO
    ============================================================
-   48×48 mark for an event row. Logos are usually SVGs with internal padding —
-   always use object-fit: contain, never cover.
+   48×48 mark in the leading slot of a split row. Marks are usually SVGs with
+   internal padding — always object-fit: contain, never cover.
 
    Usage:
-     <img class="event-row-logo" src="{item.logoUrl}" alt="{item.name}">
+     <img class="split-row-logo" src="{item.markUrl}" alt="{item.name}">
    ============================================================ */
 
-.event-row-logo {
+.split-row-logo {
   width: 48px;
   height: 48px;
   object-fit: contain;
@@ -816,79 +827,71 @@
 
 
 /* ============================================================
-   EVENT ROW
+   SPLIT ROW
    ============================================================
-   Buy-flow card for a single game event.
-   Opposing team logo + event info + offer state.
+   A card divided into two horizontal bands by a hairline, where the bands are
+   independently tappable. Use it when one record carries two separate actions —
+   a primary action on the subject, and a secondary action that opens more about
+   it — and a single row cannot hold both without becoming a target inside a
+   target (RULES §2).
+
+   It is the shipped example of .surface-section: which band takes the surface
+   changes with the record's state, and a band with no surface is inert.
 
    Structure:
-     .event-row                     → structural wrapper only (16px radius, no background)
-     .event-row-top                 → always present; logo, text, trailing action
-     .event-row-bottom (optional)   → offer summary link; include when offers exist
+     .split-row                     → the card: radius, background, clipping
+     .split-row-top                 → always present; a .list-row
+     .split-row-bottom (optional)   → the second band; include when the record
+                                      has a secondary action
 
    Interactive surface:
-     .event-row has background built in (--org-surface). No surface class needed on wrapper.
-     Add surface-section to any section that is interactive. Non-interactive sections get none.
-     No scale — only one section of the card unit is interactive at a time.
+     .split-row carries --org-surface itself. Never add a surface class to the
+     wrapper. Add .surface-section to each band that is interactive, and nothing
+     to the bands that are not. Never add a .scale-* — scaling one band detaches
+     it from the card (RULES §3 #14).
 
-     Featured Only:       .event-row-top surface-section   ← tappable (buy)
-     Featured + Others:   .event-row-top surface-section   ← tappable (buy)
-                          .event-row-bottom surface-section ← tappable (more offers)
-     No Featured Offers:  .event-row-top                   ← NOT interactive
-                          .event-row-bottom surface-section ← tappable (offers)
-     Sold Out / Coming Soon: no surface-section anywhere
+     Both actions available   → .surface-section on top and bottom
+     Primary action only      → .surface-section on top, no bottom band
+     Secondary action only    → top band inert, .surface-section on bottom
+     No action available      → no .surface-section anywhere
 
-   Offer states (trailing content varies):
-     Featured Only       → .btn.btn-primary.btn-100 trailing (one offer price)
-     Featured + Others   → button top + .event-row-bottom with offer count
-     No Featured Offers  → no trailing top + .event-row-bottom with offer count
-     Sold Out            → "Sold Out" text trailing (.text-secondary)
-     Coming Soon         → "Coming Soon" text trailing (.event-row-coming-soon)
-
-   Label/sublabel scale up at ≥500px:
-     Mobile:   event-row-label = labelBold30 (16px/600)
-     Tablet+:  event-row-label = title50 (20px/700)
+   Type in the bands is a text class, not a split-row class. The pair steps down
+   on mobile through the -r responsive pairs (RULES §5):
+     title, both lines      → .title50-r + .labelRegular20-r
+     trailing status text   → .labelBold30.text-secondary
+     trailing note, wraps   → .labelBold20 + .split-row-note
 
    Padding:
-     Mobile:   top p-16px, bottom px-16px py-12px
-     Tablet+:  both px-24px py-16px
+     Mobile:   top 16px, bottom 16px/12px
+     Tablet+:  both 24px/16px
 
-   Data binding (content/opponents.json):
-     logo  → opposingTeam.logo.asset->url
-     label → opposingTeam.name (or shortName)
-     date  → event.date formatted as "Day, Mon D · H PM"
+   Content comes from a record (RULES §6) — the mark, the two text lines and the
+   trailing state are all resolved, never typed.
 
    Usage:
-     <!-- Featured Only — nothing on the wrapper, surface-section on the interactive section -->
-     <div class="event-row">
-       <div class="event-row-top surface-section">
+     <!-- Both bands interactive -->
+     <div class="split-row">
+       <div class="split-row-top surface-section">
          <div class="list-row">
            <div class="leading leading-gap-sm">
-             <img class="event-row-logo" src="{logoUrl}" alt="{name}">
+             <img class="split-row-logo" src="{markUrl}" alt="{name}">
            </div>
            <div class="list-row-content">
              <div class="list-row-text-pair">
-               <span class="event-row-label">Portland Marmots</span>
-               <span class="event-row-sublabel text-secondary">Tuesday, Oct 8 · 7 PM</span>
+               <span class="title50-r">{name}</span>
+               <span class="labelRegular20-r text-secondary">{subtitle}</span>
              </div>
            </div>
            <div class="trailing trailing-gap-lg">
-             <button class="btn btn-primary btn-100">$19+</button>
+             <button class="btn btn-primary btn-100">{price}</button>
            </div>
          </div>
        </div>
-     </div>
-
-     <!-- Featured and Others — surface-section on each interactive section -->
-     <div class="event-row">
-       <div class="event-row-top surface-section">
-         <div class="list-row">...logo + text + button...</div>
-       </div>
-       <div class="event-row-bottom surface-section">
+       <div class="split-row-bottom surface-section">
          <div class="list-row">
            <div class="list-row-content">
              <div class="list-row-text-pair">
-               <span class="labelBold30 text-interactive-tertiary">3 Additional Offers</span>
+               <span class="labelBold30 text-interactive-tertiary">{count} More</span>
              </div>
            </div>
            <div class="trailing trailing-gap-xs">
@@ -898,27 +901,25 @@
        </div>
      </div>
 
-     <!-- No Featured Offers — top NOT interactive (no surface class), bottom has surface-section -->
-     <div class="event-row">
-       <div class="event-row-top">
-         <div class="list-row not-tappable">...logo + text...</div>
+     <!-- Top band inert: no surface class, and .not-tappable on the row -->
+     <div class="split-row">
+       <div class="split-row-top">
+         <div class="list-row not-tappable">...</div>
        </div>
-       <div class="event-row-bottom surface-section">
-         <div class="list-row">...<span>3 Offers Available</span>...</div>
-       </div>
+       <div class="split-row-bottom surface-section">...</div>
      </div>
 
-     <!-- Sold Out / Coming Soon — no interactive sections, no surface class anywhere -->
-     <!-- Trailing: <span class="labelBold30 text-secondary">Sold Out</span> -->
-     <!-- Trailing: <span class="labelBold20 text-interactive-tertiary event-row-coming-soon">Coming Soon</span> -->
-     <div class="event-row">
-       <div class="event-row-top">
+     <!-- Nothing interactive: no surface class anywhere -->
+     <!-- Trailing: <span class="labelBold30 text-secondary">{state}</span> -->
+     <!-- Trailing: <span class="labelBold20 text-interactive-tertiary split-row-note">{state}</span> -->
+     <div class="split-row">
+       <div class="split-row-top">
          <div class="list-row not-tappable">...</div>
        </div>
      </div>
    ============================================================ */
 
-.event-row {
+.split-row {
   background: var(--org-surface); /* card background — intrinsic, not a modifier */
   border-radius: var(--border-radius-200); /* 16px */
   overflow: hidden;
@@ -927,80 +928,47 @@
   width: 100%;
 }
 
-.event-row-top {
+.split-row-top {
   padding: var(--spacing-200); /* 16px */
 }
 
-.event-row-bottom {
+.split-row-bottom {
   padding: var(--spacing-150) var(--spacing-200); /* 12px 16px */
   border-top: 0.33px solid var(--border-default);
 }
 
 @media (min-width: 500px) {
-  .event-row-top,
-  .event-row-bottom {
+  .split-row-top,
+  .split-row-bottom {
     padding: var(--spacing-200) var(--spacing-300); /* 16px 24px */
   }
 }
 
-/* Responsive label: labelBold30 (mobile) → title50 (tablet/desktop) */
-.event-row-label {
-  font-family: 'Inter', sans-serif;
-  font-size: 16px;
-  font-weight: 600;
-  line-height: 1.21;
-  letter-spacing: -0.02em;
-  color: var(--text-primary);
-}
-
-@media (min-width: 500px) {
-  .event-row-label {
-    font-size: 20px;
-    font-weight: 700;
-    letter-spacing: -0.03em;
-  }
-}
-
-/* Responsive sublabel: labelRegular10 (mobile) → labelRegular20 (tablet/desktop) */
-.event-row-sublabel {
-  font-family: 'Inter', sans-serif;
-  font-size: 12px;
-  font-weight: 400;
-  line-height: 1.21;
-  letter-spacing: -0.02em;
-}
-
-@media (min-width: 500px) {
-  .event-row-sublabel {
-    font-size: 14px;
-  }
-}
-
 /* Coming Soon — right-aligned, wraps to two lines on narrow screens */
-.event-row-coming-soon {
-  text-align: right;
+.split-row-note {
+  text-align: end;
   white-space: normal;
   max-width: var(--spacing-800); /* 64px */
 }
 
 
 /* ============================================================
-   EVENT ROW LIST
+   SPLIT ROW LIST
    ============================================================
-   Container that stacks event rows with 8px gap
+   Container that stacks split rows with 8px gap
    and responsive max-width constraints.
 
    Phone (<500px):  max-width 499px, 16px padding
    Tablet/Desktop:  max-width 672px, 16px padding
 
    Usage:
-     <div class="event-row-list">
-       <div class="event-row">...</div>
-       <div class="event-row">...</div>
+     <div class="split-row-list">
+       <div class="split-row">...</div>
+       <div class="split-row">...</div>
      </div>
    ============================================================ */
 
-.event-row-list {
+.split-row-list {
   display: flex;
   flex-direction: column;
   gap: var(--spacing-100); /* 8px */
@@ -1011,7 +979,7 @@
 }
 
 @media (min-width: 500px) {
-  .event-row-list {
+  .split-row-list {
     max-width: 672px;
   }
 }

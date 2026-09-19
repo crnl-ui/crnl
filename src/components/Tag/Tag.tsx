@@ -27,14 +27,14 @@ export function Tag({ children, brandColor = false, icon, iconPosition = 'leadin
 
 export function Chip({
   children,
-  surface = 'bordered',
+  surface = 'borderNeutral',
   brandColor = false,
   icon,
   iconPosition = 'leading',
   disabled = false,
   onClick
 }: ChipProps) {
-  const surfaceClass = surface === 'bordered' ? 'surface-borderNeutral' : 'surface-ghost'
+  const surfaceClass = `surface-${surface}`
 
   const classes = [
     'chip',

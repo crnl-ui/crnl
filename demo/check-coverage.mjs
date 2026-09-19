@@ -37,7 +37,7 @@ const SCAFFOLDING = new Set([
   'token-list', 'token-row', 'token-chip', 'token-chip-fill', 'token-value', 'no-chip', 'swatch', 'ruler',
   'demo-box', 'demo-fill', 'demo-image',
   'is-active', 'is-center', 'is-plain', 'is-base', 'is-sheet', 'is-brand',
-  'is-block', 'is-tight', 'is-warn',
+  'is-block', 'is-tight',
   // page-level classes the design guide says to define yourself
   'row-wrap', 'inventory-card', 'inventory-list', 'form-stack', 'filter-bar',
   'section-header', 'ios-nav-maintab-row',

@@ -7,7 +7,18 @@ wrong. Written for agents and humans alike; AI design tools read it too.
 This file states no rules. **`RULES.md`** is the rules, numbered and stable —
 every rule mentioned here is cited by section (`RULES §3`), never restated.
 **`css-api.md`** is the complete surface, generated from the CSS: every class
-and token that exists. If a class is not in `css-api.md`, it does not exist.
+and token that exists. If a class is not in `css-api.md`, it does not exist,
+and `npm run lint` will say so by name.
+
+Two shorter files answer most questions before this one is needed:
+**`inventory.md`** is what exists by layer, including what the React library
+covers; **`roadmap.md`** is what the system cannot yet do. Every code example
+below passes the linter.
+
+**On the examples.** Names, prices, dates and marks in the markup below are
+placeholders in `{braces}` or obviously synthetic strings. They are never
+literals to copy — `RULES §6` is the rule, and a screen that hardcodes one
+renders correctly exactly once and then lies.
 
 ## Contents
 
@@ -46,7 +57,7 @@ composing anything from primitives. Rebuilding something the system already has
 is the most common failure mode (`RULES §2`).
 
 When copying from a sheet: keep the composite class structure
-(`.event-row-top`, `.surface-section`, the `.list-row` three slots,
+(`.split-row-top`, `.surface-section`, the `.list-row` three slots,
 `.card-text-pair`, `.card-media`, `.tile-info`, `.leading-logo`); swap only
 content; keep `data-theme` / `data-mode` / `data-platform` on `<html>` and the
 `../css/` loader path. When nothing in the system covers the pattern, build it
@@ -93,7 +104,7 @@ line boxes of the display styles, so no margin class is needed in practice.
 
 <!-- Section header (7000) -->
 <div class="card-text-pair">
-  <h2 class="display400">Upcoming Games</h2>
+  <h2 class="display400">Upcoming</h2>
   <p class="labelRegular30 text-secondary">Next 7 days</p>
 </div>
 
@@ -143,7 +154,7 @@ Compose `.btn` + type + size (`RULES §4`).
 
 <button class="btn btn-transactional btn-700 btn-icon-leading btn-fill">
   <span class="btn-icon material-symbols-rounded">confirmation_number</span>
-  <span>Buy Tickets</span>
+  <span>Buy Now</span>
 </button>
 
 <button class="btn btn-primary btn-300 btn-icon-trailing">
@@ -159,7 +170,7 @@ Compose `.btn` + type + size (`RULES §4`).
 </div>
 
 <div class="btn-group-stack">
-  <button class="btn btn-transactional btn-700">Buy Tickets</button>
+  <button class="btn btn-transactional btn-700">Buy Now</button>
   <button class="btn btn-secondary btn-700">Learn More</button>
 </div>
 ```
@@ -287,7 +298,7 @@ Structure: `.list-row` > optional `.leading` + `.list-row-content` + optional
     <div class="info-item"><span class="icon icon-200">event_seat</span></div>
     <div class="info-item has-label">
       <span class="icon icon-200">confirmation_number</span>
-      <span class="labelRegular10">2 tickets</span>
+      <span class="labelRegular10">2 items</span>
     </div>
   </div>
 </div>
@@ -310,11 +321,13 @@ Structure: `.list-row` > optional `.leading` + `.list-row-content` + optional
 <div class="trailing trailing-gap-sm">
   <div class="trailing-text-pair">
     <span class="labelBold20">$42.00</span>
-    <span class="labelRegular10 text-secondary">Per ticket</span>
+    <span class="labelRegular10 text-secondary">Per item</span>
   </div>
 </div>
 
-<!-- Switch — input id must match label for -->
+<!-- Switch — the input id must match the label for, AND the input carries its
+     own aria-label: the <label> is the track and is deliberately empty, so
+     without one the control has no accessible name at all. -->
 <div class="trailing trailing-gap-md">
   <div class="switch">
     <input type="checkbox" id="switch-1">
@@ -357,7 +370,7 @@ containers, both correct — pick by whether the rows are bands of one card or
 separate objects:
 
 - **Divided** — `.list-divided`, for rows inside a card (settings, order
-  details, seat inventory). It puts the padding on the row and the hairline
+  details, an inventory list). It puts the padding on the row and the hairline
   under it, so the divider reaches both edges of the card. Padding is square.
 - **Spaced** — `.list-gap-tight` (8px, compact lists like schedules) or
   `.list-gap` (16px, airier content lists) on a flex column. No wrapper needed.
@@ -493,19 +506,19 @@ helpers keep in sync.
 ```html
 <div class="input-field input-select" id="select-1">
   <div class="input-label-row">
-    <label class="input-label" for="sel-1">Sport</label>
+    <label class="input-label" for="sel-1">Category</label>
   </div>
   <div class="input-and-message">
     <div class="input-control">
-      <span class="input-select-display is-placeholder" id="sel-1-display">Choose a sport</span>
+      <span class="input-select-display is-placeholder" id="sel-1-display">Choose a category</span>
       <span class="input-select-chevron material-symbols-rounded">arrow_drop_down</span>
       <select id="sel-1"
         onchange="syncSelect('select-1', 'sel-1-display', this)"
         onfocus="openSelect('select-1')"
         onblur="closeSelect('select-1')">
-        <option value="" disabled selected>Choose a sport</option>
-        <option value="basketball">Basketball</option>
-        <option value="soccer">Soccer</option>
+        <option value="" disabled selected>Choose a category</option>
+        <option value="a">First option</option>
+        <option value="b">Second option</option>
       </select>
     </div>
   </div>
@@ -602,7 +615,7 @@ at all.
   <div class="card-closed-header">
     <div class="card-text-pair">
       <h3 class="title50">Section 114, Row C</h3>
-      <p class="labelRegular20 text-secondary">4 tickets</p>
+      <p class="labelRegular20 text-secondary">4 items</p>
     </div>
   </div>
   <div class="card-closed-body surface-section">
@@ -621,9 +634,9 @@ at all.
 ```
 
 Two shipped patterns are worth reading before you build one:
-[Event row](#event-row-buy-flow-single-game), where *which* bands are
+[Split row](#split-row-two-independently-tappable-bands), where *which* bands are
 interactive changes with the offer state, and
-[Inventory list row](#inventory-list-row-vfs-image--price), where every row is a
+[Inventory list row](#inventory-list-row-preview-image--price), where every row is a
 section of one card and the rows carry the padding so their dividers bleed full
 width.
 
@@ -659,37 +672,37 @@ sub-sections inside a `.card-open`.
 | a button | the button | none |
 
 ```html
-<!-- Tile is the tap target -->
-<div class="tile surface-card scale-700">
-  <div class="tile-visual">           <!-- your fixed-height block; the tile does not size it -->
-    <img class="card-media" src="{item.image}" alt="">
-  </div>
-  <div class="tile-tag">Home</div>    <!-- optional frosted label, top-left -->
+<!-- Tile is the tap target: a real button, so a keyboard can reach it (RULES §3 #14) -->
+<button type="button" class="tile surface-card scale-700">
+  <img class="card-media" src="{item.image}" alt="{item.imageAlt}">
+  <div class="tile-tag">{item.badge}</div>    <!-- optional frosted label, top-left -->
   <div class="tile-info">
     <div class="card-text-pair">
       <span class="labelBold30">{item.title}</span>
-      <span class="labelRegular10 text-secondary">{item.date, formatted}</span>
+      <span class="labelRegular10 text-secondary">{item.subtitle}</span>
     </div>
-    <span class="labelBold20 text-success">From $45</span>   <!-- optional -->
+    <span class="labelBold20 text-success">{item.price}</span>   <!-- optional -->
   </div>
-</div>
+</button>
 
-<!-- Button is the CTA -->
+<!-- Button is the CTA: no surface and no scale on the tile, so it stays a <div> -->
 <div class="tile">
-  <div class="tile-visual">…</div>
+  <img class="card-media" src="{item.image}" alt="{item.imageAlt}">
   <div class="tile-info">
     <div class="card-text-pair">…</div>
-    <span class="labelBold20 text-success">From $45</span>
-    <button class="btn btn-primary btn-100">Buy Tickets</button>
+    <span class="labelBold20 text-success">{item.price}</span>
+    <button class="btn btn-primary btn-100">Buy Now</button>
   </div>
 </div>
 ```
 
-`.tile-info` owns its spacing — 16px padding, 8px gap, an extra 8px above a
-button — do not override it. The visual header (`.tile-visual` above is your
-own class) is the only dimension the tile leaves to you. Opponent names, logos
-and colours are data, not literals (`RULES §6`); `--badge-bg` falls back to
-`--brand-core` when unset.
+The media band goes in directly — `.card-media` and its ratio variants
+(`-tall`, `-square`) size it, and the tile clips it to the corner radius, so it
+needs no wrapper and must never take a fixed height or its own radius
+(`RULES §2`). `.tile-info` owns its spacing — 16px padding, 8px gap, an extra
+8px above a button — do not override it. Record names, marks and colours are
+data, not literals (`RULES §6`); `--badge-bg` falls back to `--brand-core` when
+unset.
 
 For a carousel, a scroll container with `scroll-snap` and
 `scroll-padding-inline` matching its leading padding, and every tile with the
@@ -914,8 +927,8 @@ before calling anything done (`RULES §10`).
 This repository ships no content layer — a project supplies its own (`RULES §6`).
 What the components expect of it is worth stating, because the shapes recur:
 
-- **Entities are referenced by id, resolved once.** A row renders an opponent,
-  a venue or a plan from a resolved record, never from fields copied into the
+- **Entities are referenced by id, resolved once.** A row renders a person, a
+  place or a plan from a resolved record, never from fields copied into the
   markup. Resolution is also where derived fields are computed — an abbreviation
   derived at resolution time is absent if you hydrate a record by hand, and every
   three-letter slot on the screen quietly falls back to the full name.
@@ -980,24 +993,22 @@ Placeholders in braces (`{item.logo}`) are data a project's content layer
 supplies (`RULES §6`); the shapes are described under
 [Data in Prototypes](#data-in-prototypes). A `date` is an ISO string, so a
 rendered date is formatted at render rather than stored as a field of its own.
-Prices and seat blocks are fixtures.
+Prices and quantities are fixtures.
 
 ### Tile grid (3-up, tile is the tap target)
 
 ```html
 <div class="card-grid grid-cols-3-desktop grid-cols-2-tablet grid-cols-1-mobile">
-  <div class="tile surface-card scale-700">
-    <div class="tile-visual">
-      <img class="card-media" src="{item.image}" alt="">
-    </div>
+  <button type="button" class="tile surface-card scale-700">
+    <img class="card-media" src="{item.image}" alt="{item.imageAlt}">
     <div class="tile-info">
       <div class="card-text-pair">
         <span class="labelBold30">{item.title}</span>
-        <span class="labelRegular10 text-secondary">{item.date, formatted}</span>
+        <span class="labelRegular10 text-secondary">{item.subtitle}</span>
       </div>
-      <span class="labelBold20 text-success">From $19</span>
+      <span class="labelBold20 text-success">{item.price}</span>
     </div>
-  </div>
+  </button>
   <!-- repeat per record from the project's data source -->
 </div>
 ```
@@ -1013,7 +1024,7 @@ Prices and seat blocks are fixtures.
     <div class="list-row-content">
       <div class="list-row-text-pair">
         <span class="labelBold30">Push Notifications</span>
-        <span class="labelRegular10 text-secondary">Alerts for tickets and offers</span>
+        <span class="labelRegular10 text-secondary">Alerts for offers and updates</span>
       </div>
     </div>
     <div class="trailing trailing-gap-md">
@@ -1042,7 +1053,7 @@ Prices and seat blocks are fixtures.
 </div>
 ```
 
-### Ticket list row (image + tags + price)
+### Media list row (image + tags + price)
 
 ```html
 <div class="row-wrap">
@@ -1063,7 +1074,7 @@ Prices and seat blocks are fixtures.
         <div class="info-item"><span class="icon icon-200">event_seat</span></div>
         <div class="info-item has-label">
           <span class="icon icon-200">confirmation_number</span>
-          <span class="labelRegular10">2 tickets</span>
+          <span class="labelRegular10">2 items</span>
         </div>
       </div>
     </div>
@@ -1077,33 +1088,32 @@ Prices and seat blocks are fixtures.
 </div>
 ```
 
-### Inventory list row (VFS image + price)
+### Inventory list row (preview image + price)
 
-A **usage pattern**, not a component: a seat-inventory row with a View From
-Seat image, section / row / seats, and a trailing price. Built entirely from
-list-row parts — no new CSS. The image class and its gap step together by
-breakpoint:
+A **usage pattern**, not a component: an inventory row with a wide preview
+image, two lines of detail, and a trailing price. Built entirely from list-row
+parts — no new CSS. The image class and its gap step together by breakpoint:
 
 | Breakpoint | Row width | Image class | Image size | Leading gap |
 |---|---|---|---|---|
 | Mobile | 329px | `.leading-image-small` | 136×80 | `.leading-gap-lg` (16px) |
 | Desktop | 592px | `.leading-image-large` | 244×124 | `.leading-gap-xl` (24px) |
 
-Seat-view imagery is project data, not system data (`RULES §6`). **Far** is the wide view
-(upper bowl); **close** is courtside or pitch-side (lower bowl, premium). The
-perspective changes only the image requested — the markup is identical. Tag the
-row with `data-vfs="far|close"` and `data-vfs-index` so a loader can fill it.
+Preview imagery is project data, not system data (`RULES §6`). Where a record
+has more than one vantage on the same thing — a wide view and a close one — the
+perspective changes only the image requested; the markup is identical. Tag the
+row with a `data-preview` attribute and an index so a loader can fill it.
 
 ```html
 <!-- Mobile -->
-<div class="list-row surface-section" data-vfs="far" data-vfs-index="0">
+<div class="list-row surface-section" data-preview="wide" data-preview-index="0">
   <div class="leading leading-gap-lg">
-    <img class="leading-image-small" src="{vfs.far[0]}" alt="View from Section 313, Row F">
+    <img class="leading-image-small" src="{preview.wide[0]}" alt="{preview.description}">
   </div>
   <div class="list-row-content">
     <div class="list-row-text-pair">
       <span class="labelBold30">Section 313</span>
-      <span class="labelRegular10 text-secondary">Row F (Seats 9–14)</span>
+      <span class="labelRegular10 text-secondary">Detail line, secondary</span>
     </div>
   </div>
   <div class="trailing trailing-gap-sm">
@@ -1115,9 +1125,9 @@ row with `data-vfs="far|close"` and `data-vfs-index` so a loader can fill it.
 </div>
 
 <!-- Desktop — same structure, larger image and gap -->
-<div class="list-row surface-section" data-vfs="far" data-vfs-index="0">
+<div class="list-row surface-section" data-preview="wide" data-preview-index="0">
   <div class="leading leading-gap-xl">
-    <img class="leading-image-large" src="{vfs.far[0]}" alt="View from Section 313, Row F">
+    <img class="leading-image-large" src="{preview.wide[0]}" alt="{preview.description}">
   </div>
   …
 </div>
@@ -1126,25 +1136,29 @@ row with `data-vfs="far|close"` and `data-vfs-index` so a loader can fill it.
 **Container.** A card with no border; the rows carry the horizontal padding so
 dividers bleed full width. `surface-section` on each row gives hover/press
 without `scale-*` (scale on one row of a stack looks wrong). The page-level
-wrapper (`.inventory-card`, `.inventory-list`) is the page's own CSS, not the
-system's — `walkthrough.css` holds the reference implementation.
+wrapper below is the page's own CSS, not the system's — which is why
+`npm run lint` needs to be told, and why the escape carries a reason. Any page
+that uses classes of its own declares them in its own stylesheet; the demo
+sheets declare theirs in `demo/sheet.css`.
 
 ```html
+<!-- crnl-lint-disable-next-line unknown-class -- page-level wrapper, not system surface -->
 <div class="inventory-card">
+  <!-- crnl-lint-disable-next-line unknown-class -- page-level wrapper, not system surface -->
   <div class="inventory-list">
-    <div class="list-row surface-section" data-vfs="far" data-vfs-index="0">…</div>
-    <div class="list-row surface-section" data-vfs="far" data-vfs-index="1">…</div>
-    <div class="list-row surface-section" data-vfs="far" data-vfs-index="2">…</div>
+    <div class="list-row surface-section" data-preview="wide" data-preview-index="0">…</div>
+    <div class="list-row surface-section" data-preview="wide" data-preview-index="1">…</div>
+    <div class="list-row surface-section" data-preview="wide" data-preview-index="2">…</div>
   </div>
 </div>
 ```
 
-**Type:** `.labelBold30` section name · `.labelRegular10.text-secondary` row /
-seats and the "Avg. Price" sublabel · `.labelBold20` price.
+**Type:** `.labelBold30` primary name · `.labelRegular10.text-secondary` for
+both detail lines · `.labelBold20` price.
 
 **Checklist:** image class and gap class from the same row of the table above ·
 `.list-row-text-pair`, not `.card-text-pair` · every sublabel `.text-secondary`
-· `alt` describes the actual view · VFS `src` comes from the loader, never a
+· `alt` describes the actual image · the `src` comes from the loader, never a
 static asset.
 
 **Figma:** `Inventory - List Row` · variants `Entity ID`, `Option`
@@ -1159,7 +1173,7 @@ the logo, name and short name come from the resolved reference.
 <div class="row-wrap">
   <div class="list-row">
     <div class="leading leading-gap-md">
-      <img class="event-row-logo" src="{item.logo}" alt="{item.name}">
+      <img class="split-row-logo" src="{item.logo}" alt="{item.name}">
     </div>
     <div class="list-row-content">
       <div class="list-row-text-pair">
@@ -1177,11 +1191,11 @@ the logo, name and short name come from the resolved reference.
 </div>
 ```
 
-- Away game → the tag reads `Away`
-- No logo → omit `.leading`; `.list-row-content` becomes the first child
-- Crests are SVG; `.event-row-logo` already applies `object-fit: contain`
+- A state that qualifies the record → a `.tag` in the trailing slot
+- No mark → omit `.leading`; `.list-row-content` becomes the first child
+- Marks are usually SVG; `.split-row-logo` already applies `object-fit: contain`
 
-### Event row (buy flow, single event)
+### Split row (two independently tappable bands)
 
 Buy-flow card for one event: mark, event info, offer state. Background
 is `--bg-surface` with a 16px radius; padding and text scale are responsive.
@@ -1192,35 +1206,35 @@ is `--bg-surface` with a 16px radius; padding and text scale are responsive.
 | Featured and Others | `btn btn-primary btn-100` "$N+" | "X Additional Offers" + `arrow_drop_down` |
 | No Featured Offers | none | "X Offers Available" + `arrow_drop_down` |
 | Sold Out | `labelBold30 text-secondary` "Sold Out" | — |
-| Coming Soon | `labelBold20 text-interactive-tertiary event-row-coming-soon` "Coming Soon" | — |
+| Coming Soon | `labelBold20 text-interactive-tertiary split-row-note` "Coming Soon" | — |
 
-`.event-row-label` / `.event-row-sublabel` step from 16/12px on mobile to
+`.split-row-label` / `.split-row-sublabel` step from 16/12px on mobile to
 20/14px from 500px — it is a `-r`-style pair baked into the component, not a
 media query in the template (`RULES §5`).
 
-**Surfaces.** The card background is built into `.event-row`; the wrapper takes
+**Surfaces.** The card background is built into `.split-row`; the wrapper takes
 no surface token and no `scale-*`. `surface-section` goes on each **interactive
 section** only:
 
 | State | `surface-section` on |
 |---|---|
-| Featured Only | `.event-row-top` |
-| Featured and Others | `.event-row-top` + `.event-row-bottom` |
-| No Featured Offers | `.event-row-bottom` only |
+| Featured Only | `.split-row-top` |
+| Featured and Others | `.split-row-top` + `.split-row-bottom` |
+| No Featured Offers | `.split-row-bottom` only |
 | Sold Out / Coming Soon | neither |
 
 ```html
 <!-- Featured Only -->
-<div class="event-row">
-  <div class="event-row-top surface-section">
+<div class="split-row">
+  <div class="split-row-top surface-section">
     <div class="list-row">
       <div class="leading leading-gap-sm">
-        <img class="event-row-logo" src="{item.logo}" alt="{item.name}">
+        <img class="split-row-logo" src="{item.logo}" alt="{item.name}">
       </div>
       <div class="list-row-content">
         <div class="list-row-text-pair">
-          <span class="event-row-label">{item.name}</span>
-          <span class="event-row-sublabel text-secondary">{item.date, formatted}</span>
+          <span class="title50-r">{item.name}</span>
+          <span class="labelRegular20-r text-secondary">{item.date, formatted}</span>
         </div>
       </div>
       <div class="trailing trailing-gap-lg">
@@ -1231,11 +1245,11 @@ section** only:
 </div>
 
 <!-- Featured and Others -->
-<div class="event-row">
-  <div class="event-row-top surface-section">
+<div class="split-row">
+  <div class="split-row-top surface-section">
     <div class="list-row">…same as above…</div>
   </div>
-  <div class="event-row-bottom surface-section">
+  <div class="split-row-bottom surface-section">
     <div class="list-row">
       <div class="list-row-content">
         <div class="list-row-text-pair">
@@ -1250,21 +1264,21 @@ section** only:
 </div>
 
 <!-- No Featured Offers — top is not interactive -->
-<div class="event-row">
-  <div class="event-row-top">
+<div class="split-row">
+  <div class="split-row-top">
     <div class="list-row not-tappable">
       <div class="leading leading-gap-sm">
-        <img class="event-row-logo" src="{item.logo}" alt="{item.name}">
+        <img class="split-row-logo" src="{item.logo}" alt="{item.name}">
       </div>
       <div class="list-row-content">
         <div class="list-row-text-pair">
-          <span class="event-row-label">{item.name}</span>
-          <span class="event-row-sublabel text-secondary">{item.date, formatted}</span>
+          <span class="title50-r">{item.name}</span>
+          <span class="labelRegular20-r text-secondary">{item.date, formatted}</span>
         </div>
       </div>
     </div>
   </div>
-  <div class="event-row-bottom surface-section">
+  <div class="split-row-bottom surface-section">
     <div class="list-row">
       <div class="list-row-content">
         <div class="list-row-text-pair">
@@ -1279,16 +1293,16 @@ section** only:
 </div>
 
 <!-- Sold Out -->
-<div class="event-row">
-  <div class="event-row-top">
+<div class="split-row">
+  <div class="split-row-top">
     <div class="list-row not-tappable">
       <div class="leading leading-gap-sm">
-        <img class="event-row-logo" src="{item.logo}" alt="{item.name}">
+        <img class="split-row-logo" src="{item.logo}" alt="{item.name}">
       </div>
       <div class="list-row-content">
         <div class="list-row-text-pair">
-          <span class="event-row-label">{item.name}</span>
-          <span class="event-row-sublabel text-secondary">{item.date, formatted}</span>
+          <span class="title50-r">{item.name}</span>
+          <span class="labelRegular20-r text-secondary">{item.date, formatted}</span>
         </div>
       </div>
       <div class="trailing trailing-gap-sm">
@@ -1299,25 +1313,25 @@ section** only:
 </div>
 
 <!-- Coming Soon -->
-<div class="event-row">
-  <div class="event-row-top">
+<div class="split-row">
+  <div class="split-row-top">
     <div class="list-row not-tappable">
       …
       <div class="trailing trailing-gap-sm">
-        <span class="labelBold20 text-interactive-tertiary event-row-coming-soon">Coming Soon</span>
+        <span class="labelBold20 text-interactive-tertiary split-row-note">Coming Soon</span>
       </div>
     </div>
   </div>
 </div>
 ```
 
-**List container** — `.event-row-list` stacks rows with an 8px gap, constrained
+**List container** — `.split-row-list` stacks rows with an 8px gap, constrained
 to 499px on phone and 672px from tablet up:
 
 ```html
-<div class="event-row-list">
-  <div class="event-row">…</div>
-  <div class="event-row">…</div>
+<div class="split-row-list">
+  <div class="split-row">…</div>
+  <div class="split-row">…</div>
 </div>
 ```
 
@@ -1340,7 +1354,7 @@ rather than fight.
 <div class="card-closed">
   <div class="card-closed-header">
     <div class="card-text-pair">
-      <h3 class="title50">Season Tickets</h3>
+      <h3 class="title50">Annual Membership</h3>
       <p class="labelRegular20 text-secondary">2024-25 Season</p>
     </div>
     <button class="btn-circle btn-circle-300 btn-circle-neutral-tertiary" aria-label="More">
@@ -1365,12 +1379,12 @@ rather than fight.
 <section class="py-large text-center">
   <div class="container-compact">
     <div class="card-text-pair mb-500">
-      <h1 class="display500">Game Day Is Here</h1>
-      <p class="labelRegular40 text-secondary">Get your tickets before they're gone</p>
+      <h1 class="display500">Your Next Visit</h1>
+      <p class="labelRegular40 text-secondary">Book before it sells out</p>
     </div>
     <div class="btn-group-stack">
       <button class="btn btn-transactional btn-700 btn-fill btn-icon-trailing">
-        <span>Buy Tickets</span>
+        <span>Buy Now</span>
         <span class="btn-icon material-symbols-rounded">arrow_forward</span>
       </button>
       <button class="btn btn-secondary btn-700 btn-fill">View Schedule</button>
@@ -1384,7 +1398,7 @@ rather than fight.
 ```html
 <div class="section-header">
   <div class="card-text-pair">
-    <h2 class="display300">Upcoming Games</h2>
+    <h2 class="display300">Upcoming</h2>
     <p class="labelRegular20 text-secondary">Next 7 days</p>
   </div>
   <a class="link labelBold20" href="#">View All</a>
@@ -1447,18 +1461,18 @@ rather than fight.
 
 ```html
 <div class="filter-bar">
-  <div class="input-field input-select" id="filter-sport">
+  <div class="input-field input-select" id="filter-category">
     <div class="input-and-message">
       <div class="input-control">
-        <span class="input-select-display is-placeholder" id="filter-sport-display">Sport</span>
+        <span class="input-select-display is-placeholder" id="filter-category-display">Category</span>
         <span class="input-select-chevron material-symbols-rounded">arrow_drop_down</span>
-        <select id="sel-sport"
-          onchange="syncSelect('filter-sport', 'filter-sport-display', this)"
-          onfocus="openSelect('filter-sport')"
-          onblur="closeSelect('filter-sport')">
-          <option value="" disabled selected>Sport</option>
-          <option value="basketball">Basketball</option>
-          <option value="soccer">Soccer</option>
+        <select id="sel-category"
+          onchange="syncSelect('filter-category', 'filter-category-display', this)"
+          onfocus="openSelect('filter-category')"
+          onblur="closeSelect('filter-category')">
+          <option value="" disabled selected>Category</option>
+          <option value="a">First option</option>
+          <option value="b">Second option</option>
         </select>
       </div>
     </div>
@@ -1498,7 +1512,7 @@ rather than fight.
     <div class="list-row-content">
       <div class="list-row-text-pair">
         <span class="labelBold30">Adult</span>
-        <span class="labelRegular10 text-secondary">$42.00 per ticket</span>
+        <span class="labelRegular10 text-secondary">$42.00 each</span>
       </div>
     </div>
     <div class="trailing trailing-gap-lg">
@@ -1523,37 +1537,50 @@ radius and padding, and the surface class supplies every interactive state
 | Wash | `surface-washNeutral` | inside a card, on `--bg-surface` — near transparent at rest |
 | Card | `surface-card` | on the page background, `--bg-base` — reads as a card at rest |
 
+A selector is a tap target, so it is a `<button>` — `.selector` sets its own
+`display` and `width`, so it lays out identically either way and a keyboard
+can reach it (`RULES §3 #14`). Use `aria-pressed` to carry the selected state;
+`.is-selected` is the paint, not the semantics.
+
 ```html
 <!-- Wash -->
-<div class="selector surface-washNeutral scale-500">
+<button type="button" class="selector surface-washNeutral scale-500" aria-pressed="false">
   <div class="list-row">
     <div class="list-row-content">
       <div class="list-row-text-pair">
-        <span class="labelBold30">Section 313 — Row F</span>
-        <span class="labelRegular10 text-secondary">Seats 9–14</span>
+        <span class="labelBold30">{option.title}</span>
+        <span class="labelRegular10 text-secondary">{option.detail}</span>
       </div>
     </div>
     <div class="trailing trailing-gap-sm">
       <div class="trailing-text-pair">
-        <span class="labelBold20">$148</span>
+        <span class="labelBold20">{option.price}</span>
         <span class="labelRegular10 text-secondary">each</span>
       </div>
     </div>
   </div>
-</div>
+</button>
 
 <!-- Card -->
-<div class="selector surface-card scale-500"><div class="list-row">…</div></div>
+<button type="button" class="selector surface-card scale-500" aria-pressed="false">
+  <div class="list-row">…</div>
+</button>
 
 <!-- Selected — either variant -->
-<div class="selector surface-washNeutral scale-500 is-selected"><div class="list-row">…</div></div>
+<button type="button" class="selector surface-washNeutral scale-500 is-selected" aria-pressed="true">
+  <div class="list-row">…</div>
+</button>
 
-<!-- Disabled — drop scale-500 -->
-<div class="selector surface-washNeutral is-disabled"><div class="list-row">…</div></div>
+<!-- Disabled — drop scale-500, and use the real attribute, not only the class -->
+<button type="button" class="selector surface-washNeutral is-disabled" disabled>
+  <div class="list-row">…</div>
+</button>
 ```
 
 `is-selected` inverts to `--neutral-1000` with inverted text and beats both
-surfaces; `is-disabled` is 25% opacity with no pointer events.
+surfaces; `is-disabled` is 25% opacity with no pointer events. `is-disabled`
+styles it — `disabled` is what stops it being focused and announces it, so a
+disabled selector carries both.
 
 ---
 
@@ -1811,14 +1838,14 @@ content scrolls behind.
     <button class="ios-tab" data-tab="brand">
       <span class="ios-tab-brand-icon"></span><span class="ios-tab-label">Brand</span>
     </button>
-    <button class="ios-tab" data-tab="gameday">
-      <span class="icon">stadium</span><span class="ios-tab-label">Gameday</span>
+    <button class="ios-tab" data-tab="home">
+      <span class="icon">home</span><span class="ios-tab-label">Home</span>
     </button>
     <button class="ios-tab" data-tab="buy">
       <span class="icon">sell</span><span class="ios-tab-label">Buy</span>
     </button>
-    <button class="ios-tab" data-tab="tickets">
-      <span class="icon">confirmation_number</span><span class="ios-tab-label">Tickets</span>
+    <button class="ios-tab" data-tab="saved">
+      <span class="icon">confirmation_number</span><span class="ios-tab-label">Saved</span>
     </button>
   </div>
 </nav>
@@ -1887,8 +1914,7 @@ the template) because the chrome height changes when subtabs are present.
 </html>
 ```
 
-`demo/11-ios.html` is the reference implementation
-of the full stack; `buy-tab-single-game/index.native.html` adds detail push/pop.
+`demo/11-ios.html` is the reference implementation of the full stack.
 
 ---
 
@@ -1913,7 +1939,7 @@ Typed components in `src/`, exported from `src/index.ts`, built on the same CSS.
 Variants only — no `className` or `style` on a design system component.
 
 <!-- gen:react-exports -->
-`Icon` · `Button` · `CircleButton` · `Tag` · `Chip` · `CardClosed` · `CardOpen` · `CardSection` · `ListRow` · `TextPair` · `TrailingText` · `LeadingImage` · `LeadingLogo` · `CircleContainer` · `Input` · `Select` · `Selector` · `Tile` · `TopBar` · `Tabs` · `Steps` · `PageHeader` · `EventRow` · `IOSNavButton` · `IOSHomeNav` · `IOSPageNav` · `IOSModal` · `IOSTabBar`
+`Icon` · `Button` · `CircleButton` · `Tag` · `Chip` · `CardClosed` · `CardOpen` · `CardSection` · `ListRow` · `TextPair` · `TrailingText` · `LeadingImage` · `LeadingLogo` · `CircleContainer` · `Input` · `Select` · `Selector` · `Tile` · `TopBar` · `Tabs` · `Steps` · `PageHeader` · `SplitRow` · `IOSNavButton` · `IOSHomeNav` · `IOSPageNav` · `IOSModal` · `IOSTabBar`
 <!-- /gen:react-exports -->
 
 ```tsx
@@ -1938,7 +1964,7 @@ and fixture data follow `RULES §6`.
 | Prop | Type | Default |
 |---|---|---|
 | `variant` | `'primary' \| 'secondary' \| 'tertiary' \| 'transactional' \| 'neutral' \| 'destructive' \| 'white' \| 'white-tertiary' \| 'black'` | required |
-| `size` | `'large' \| 'small' \| 'xsmall'` | `'large'` |
+| `size` | `700 \| 300 \| 100` — the CSS number | `700` |
 | `icon` / `iconPosition` | `string` / `'leading' \| 'trailing'` | — / `'leading'` |
 | `fill` · `disabled` | `boolean` | `false` |
 | `type` | `'button' \| 'submit' \| 'reset'` | `'button'` |
@@ -1949,7 +1975,7 @@ and fixture data follow `RULES §6`.
 | Prop | Type | Default |
 |---|---|---|
 | `variant` | as Button | required |
-| `size` | `'large' \| 'small'` | `'large'` |
+| `size` | `700 \| 300` — the CSS number | `700` |
 | `icon` | `string` | required |
 | `aria-label` | `string` | required |
 | `disabled` · `onClick` · `type` | as Button | |
@@ -1959,7 +1985,7 @@ and fixture data follow `RULES §6`.
 | Prop | Type |
 |---|---|
 | `children` | `ReactNode` |
-| `teamColor` | `boolean` |
+| `brandColor` | `boolean` |
 | `icon` / `iconPosition` | `string` / `'leading' \| 'trailing'` |
 
 ### Chip
@@ -1967,8 +1993,8 @@ and fixture data follow `RULES §6`.
 | Prop | Type | Default |
 |---|---|---|
 | `children` | `ReactNode` | |
-| `surface` | `'bordered' \| 'ghost'` | `'bordered'` |
-| `teamColor` · `disabled` | `boolean` | `false` |
+| `surface` | `'borderNeutral' \| 'ghost'` — the class, minus `surface-` | `'borderNeutral'` |
+| `brandColor` · `disabled` | `boolean` | `false` |
 | `icon` / `iconPosition` | as Tag | |
 | `onClick` | `() => void` | |
 
@@ -2003,7 +2029,7 @@ and fixture data follow `RULES §6`.
 | Prop | Type | Default |
 |---|---|---|
 | `children` | `ReactNode` (a `ListRow`) | |
-| `surface` | `'wash' \| 'card'` | `'wash'` — `'card'` on the page background |
+| `surface` | `'washNeutral' \| 'card'` — the class, minus `surface-` | `'washNeutral'`; `'card'` on the page background |
 | `selected` · `disabled` | `boolean` | `false` |
 | `onClick` | `() => void` | |
 
@@ -2021,7 +2047,7 @@ and fixture data follow `RULES §6`.
 
 | Prop | Type |
 |---|---|
-| `logoSrc?` · `teamName?` · `shortName?` (mobile) · `fullName?` (tablet+) · `href?` | `string` |
+| `logoSrc?` · `brandName?` · `shortName?` (mobile) · `fullName?` (tablet+) · `href?` | `string` |
 | `actions?` | `ReactNode` |
 
 The Top Bar alone steps at 768px and 1280px (`nav-components.css`), not at the
@@ -2052,15 +2078,22 @@ system's 500/1100 breakpoints.
 | `tabs?` | `ReactNode` (a `Tabs`) — suppresses the header's bottom border; the tabs draw it |
 | `steps?` | `ReactNode` (a `Steps`) — header keeps its border |
 
-### EventRow
+### SplitRow
+
+Structure only. Every string on screen is a prop resolved from a record
+(`RULES §6`), and which band is interactive is the caller's decision — a band
+with no flag is inert and paints nothing at rest.
 
 | Prop | Type |
 |---|---|
-| `opponentLogo` · `opponentName` · `date` | `string` |
-| `state` | `'featured-only' \| 'featured-and-others' \| 'no-featured-offers' \| 'sold-out' \| 'coming-soon'` |
-| `featuredPrice?` | `string` |
-| `offerCount?` | `number` |
+| `title` | `string` |
+| `subtitle?` · `markUrl?` · `markAlt?` | `string` |
+| `trailing?` | `ReactNode` — the end of the top band: a button, a price, a state label |
+| `bottom?` | `ReactNode` — the second band. Omit it and no band is rendered |
+| `topInteractive?` · `bottomInteractive?` | `boolean` — adds `.surface-section` |
 | `onTopClick?` · `onBottomClick?` | `() => void` |
+
+`SplitRowList` stacks them at the system gap and max-width.
 
 ### IOSNavButton
 

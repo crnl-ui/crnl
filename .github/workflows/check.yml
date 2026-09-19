@@ -35,8 +35,15 @@ jobs:
 
       - run: npm ci
 
+      # lint (including that the baseline is tight in both directions),
       # themes, assets, icons, exports, demo coverage
       - run: npm run check
+
+      # axe-core needs a browser, but unlike check:visual its results are rule
+      # ids and node targets rather than pixels — identical on any machine — so
+      # this one belongs in CI. The browser install is the only cost.
+      - run: npx playwright install --with-deps chromium
+      - run: npm run check:a11y
 
       # The generated docs are committed, so they can go stale against the CSS.
       # Regenerate and fail if anything moved — a drifted css-api.md is the one
@@ -44,8 +51,10 @@ jobs:
       - name: docs are current
         run: |
           npm run build:css-api
-          if ! git diff --quiet -- docs/css-api.md docs/css-api.json; then
-            echo "::error::docs/css-api.* is stale — run 'npm run build:docs' and commit the result."
-            git diff --stat -- docs/css-api.md docs/css-api.json
+          npm run build:inventory
+          if ! git diff --quiet -- docs/css-api.md docs/css-api.json docs/inventory.md docs/inventory.json; then
+            echo "::error::a generated doc is stale — run 'npm run build:docs' and commit the result."
+            git diff --stat -- docs/css-api.md docs/css-api.json docs/inventory.md docs/inventory.json
             exit 1
           fi
+

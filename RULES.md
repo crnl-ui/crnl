@@ -3,17 +3,19 @@
 Absolute constraints for building on this design system. Short by design: keep
 this loaded, and reach for the deeper files only when you need them.
 
-Two things in this system are normative, and they do different jobs:
+Three things in this system are normative, and they do different jobs:
 
 | Source | Authority over | How it binds you |
 |---|---|---|
 | `RULES.md` | what to do and not do | you read it |
 | `css/*.css` (indexed in `docs/css-api.md`) | what exists at all | a class you invent doesn't work |
+| `npm run lint` | the rules below that can be checked statically | the build fails |
 
 This file is the prose layer, and the **only** place a prose rule is written —
 every other document cites a section here (`RULES §3`) instead of restating it.
 But the CSS is a rule too: the class surface is the boundary of what you may
-use.
+use. And eighteen checks below are executable (`node scripts/lint.mjs --rules`),
+which is the only form a rule reliably survives in.
 
 **Where this file and the CSS disagree, the CSS wins** — it is what ships.
 Report the discrepancy; don't code around it.
@@ -22,13 +24,16 @@ Section numbers are stable — add to a section, never renumber.
 
 | Need | File |
 |---|---|
+| What exists, by layer, and what React covers | `docs/inventory.md` — generated |
 | Every class and token the system ships | `docs/css-api.md` — generated, complete |
 | How a component composes, worked examples | `docs/design-guide.md` |
 | How parts assemble into a screen | `demo/` — thirteen live sheets of every class |
 | Authoring a theme | `docs/theming.md` |
-| Check your work | `npm run check` |
+| What the system cannot yet do | `docs/roadmap.md` |
+| Check your work | `npm run lint`, then `npm run check` |
 
 If a class is not in `css-api.md`, **it does not exist**. Do not invent one.
+`npm run lint` is what catches you: an unknown class is an error, by name.
 
 ---
 
@@ -116,7 +121,7 @@ re-cuts the font.
 
   **This applies to the classes, not just the tokens**, and that is how the
   rule is usually broken: `.surface-card`, `.card-closed`, `.tile`,
-  `.event-row` and `.event-card` all paint `--bg-surface` at rest, so putting
+  `.split-row` and `.row-card` all paint `--bg-surface` at rest, so putting
   any of them inside any other one is the same mistake written a different
   way. So is putting one inside a container whose own CSS sets
   `background: var(--bg-surface)` — which is the version that slips through,
@@ -125,9 +130,10 @@ re-cuts the font.
   It fails in a particular way that makes it easy to miss while building: the
   inner element is **invisible at rest** and only appears when you hover or
   press it. The author, who is interacting with it, sees a working component.
-  Everyone else sees a blank box. Two things check this for you — the linter
-  rule `surface-on-surface`, and the harness, which compares what the browser
-  actually painted and warns in the console on every prototype
+  Everyone else sees a blank box. Two things check this for you — the lint rule
+  `surface-on-surface`, which reads the markup and knows which classes paint a
+  surface because it derives that from the CSS, and the harness, which compares
+  what the browser actually painted and warns in the console on every prototype
   (`?surfaces=show` outlines the offenders).
 - **Never use a bare `<button>`, `<select>` or `<input>`** without its design
   system wrapper. Demos and utility controls are not exempt. Every `<button>`
@@ -184,8 +190,12 @@ re-cuts the font.
   Known offenders — no exception, the system already serves the need:
   - a partial or accent border down one side of a card, callout or quote
 
-- **Never use `!important`.** If you need it, you are fighting an inline style —
-  remove the inline style instead.
+- **Never use `!important`.** The system ships in cascade layers, so anything
+  you write outside them already beats all of it — a rule in a later layer
+  wins whatever the specificity. That leaves exactly one thing `!important`
+  can still beat: an inline style. If that is not what you are fighting,
+  remove it; and if it is, remove the inline style instead where you can.
+  Six remain in the whole system, each with a written reason.
 
 ---
 
@@ -203,7 +213,7 @@ Before writing any CSS, walk this list. Stop at the first match.
 8. Switch → `.switch > input + label`
 9. Card → `.card-closed`, or a surface token
 10. Recurring product layout → `product-patterns.css` (`.context-header`,
-    `.event-card`, `.action-row`, `.action-tile`, `.heading-select`,
+    `.row-card`, `.action-row`, `.action-tile`, `.heading-select`,
     `.disclosure-toggle`, `.section-heading`, `.link`, `.circle-icon`)
 11. Reproducing OS chrome (Apple Wallet, store badges) → `system-ui.css`
 12. Type → a text class
@@ -211,14 +221,27 @@ Before writing any CSS, walk this list. Stop at the first match.
 14. Anything tappable → `.surface-*` + `.scale-*`. Two things take a surface
     and **no** scale: a row on its own, because scaling one row of a stack
     looks wrong, and one band of a card divided by hairlines, which takes
-    `.surface-section` — scaling it would detach it from the card it is part of
+    `.surface-section` — scaling it would detach it from the card it is part of.
+
+    **The pair goes on a `<button>` or an `<a>`.** A `<div>` with a surface is
+    not focusable, not announced and not operable by keyboard, so a tappable
+    `<div>` is a target nobody can reach — and it fails silently, because the
+    page looks correct in every screenshot. Where the element genuinely cannot
+    be either, it carries both a `role` and `tabindex="0"`.
+
+    Every surface in the ladder draws a focus ring on `:focus-visible`, and the
+    component classes set their own `display` and `width`, so a `<button>` lays
+    out identically to the `<div>` it replaces. There is no cost to getting
+    this right. `npm run lint` fails a surface + scale pair on anything a
+    keyboard cannot reach (`unreachable-target`).
 15. None of the above → minimal custom CSS, tokens only
 
 ---
 
 ## 4. Canonical forms
 
-One correct way to write each of these. The linter checks all of them.
+One correct way to write each of these. `npm run lint` checks the icon forms
+and the button's scale tier; the rest are conventions it cannot yet see.
 
 | Thing | Form |
 |---|---|
@@ -350,7 +373,8 @@ App mode gives `--safe-area-top` (59px) and `--safe-area-bottom` (34px), both
 
 ## 10. Before you finish
 
-- [ ] `npm run check` passes
+- [ ] `npm run lint` passes — it names the section for every finding
+- [ ] `npm run check` passes (it runs the linter first)
 - [ ] Works in light **and** dark
 - [ ] Works on at least two themes — check one on a caps display face and one
       on a face that renders as drawn

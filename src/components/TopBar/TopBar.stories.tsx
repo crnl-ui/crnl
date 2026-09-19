@@ -28,8 +28,8 @@ export const WithActions: Story = {
       href="/"
       actions={
         <>
-          <Button variant="secondary" size="small">Log in</Button>
-          <Button variant="primary" size="small">Sign up</Button>
+          <Button variant="secondary" size={300}>Log in</Button>
+          <Button variant="primary" size={300}>Sign up</Button>
         </>
       }
     />
@@ -44,8 +44,8 @@ export const WithIconActions: Story = {
       href="/"
       actions={
         <>
-          <CircleButton variant="neutral" size="small" icon="search" aria-label="Search" />
-          <CircleButton variant="neutral" size="small" icon="account_circle" aria-label="Account" />
+          <CircleButton variant="neutral" size={300} icon="search" aria-label="Search" />
+          <CircleButton variant="neutral" size={300} icon="account_circle" aria-label="Account" />
         </>
       }
     />

@@ -146,15 +146,15 @@
       <div class="spec">
         <div class="spec-stage is-block">
           <div class="input-field input-select" id="s-sport">
-            <div class="input-label-row"><label class="input-label" for="sel-sport">Sport</label></div>
+            <div class="input-label-row"><label class="input-label" for="sel-category">Category</label></div>
             <div class="input-and-message">
               <div class="input-control">
                 <span class="input-select-display is-placeholder" id="s-sport-display">Choose a sport</span>
                 <span class="input-select-chevron material-symbols-rounded">arrow_drop_down</span>
-                <select id="sel-sport" onchange="syncSelect('s-sport','s-sport-display',this)" onfocus="openSelect('s-sport')" onblur="closeSelect('s-sport')">
+                <select id="sel-category" onchange="syncSelect('s-sport','s-sport-display',this)" onfocus="openSelect('s-sport')" onblur="closeSelect('s-sport')">
                   <option value="" disabled selected>Choose a sport</option>
-                  <option value="basketball">Basketball</option>
-                  <option value="soccer">Soccer</option>
+                  <option value="a">First option</option>
+                  <option value="b">Second option</option>
                   <option value="hockey">Hockey</option>
                 </select>
               </div>
@@ -169,10 +169,10 @@
           <div class="filter-bar">
             <div class="input-field input-select" id="s-a">
               <div class="input-and-message"><div class="input-control">
-                <span class="input-select-display is-placeholder" id="s-a-display">Sport</span>
+                <span class="input-select-display is-placeholder" id="s-a-display">Category</span>
                 <span class="input-select-chevron material-symbols-rounded">arrow_drop_down</span>
-                <select id="sel-a" onchange="syncSelect('s-a','s-a-display',this)" onfocus="openSelect('s-a')" onblur="closeSelect('s-a')">
-                  <option value="" disabled selected>Sport</option><option value="b">Basketball</option><option value="s">Soccer</option>
+                <select id="sel-a" aria-label="Category" onchange="syncSelect('s-a','s-a-display',this)" onfocus="openSelect('s-a')" onblur="closeSelect('s-a')">
+                  <option value="" disabled selected>Category</option><option value="a">First option</option><option value="b">Second option</option>
                 </select>
               </div></div>
             </div>
@@ -180,7 +180,7 @@
               <div class="input-and-message"><div class="input-control">
                 <span class="input-select-display is-placeholder" id="s-b-display">Date</span>
                 <span class="input-select-chevron material-symbols-rounded">arrow_drop_down</span>
-                <select id="sel-b" onchange="syncSelect('s-b','s-b-display',this)" onfocus="openSelect('s-b')" onblur="closeSelect('s-b')">
+                <select id="sel-b" aria-label="Date range" onchange="syncSelect('s-b','s-b-display',this)" onfocus="openSelect('s-b')" onblur="closeSelect('s-b')">
                   <option value="" disabled selected>Date</option><option value="w">This Week</option><option value="m">This Month</option>
                 </select>
               </div></div>

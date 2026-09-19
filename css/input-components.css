@@ -71,7 +71,7 @@
   align-items: center;
   justify-content: space-between;
   gap: var(--spacing-100);            /* 8px */
-  padding-left: var(--spacing-100);   /* 8px */
+  padding-inline-start: var(--spacing-100);   /* 8px */
   padding-bottom: var(--spacing-100); /* 8px */
 }
 
@@ -149,8 +149,8 @@
   align-items: center;
   gap: var(--spacing-150);            /* 12px */
   height: 56px;
-  padding-left: var(--spacing-200);   /* 16px */
-  padding-right: var(--spacing-200);  /* 8px */
+  padding-inline-start: var(--spacing-200);   /* 16px */
+  padding-inline-end: var(--spacing-200);  /* 8px */
   border-radius: var(--border-radius-100); /* 8px */
   border: var(--border-weight-50) solid var(--neutral-300);
   background-color: var(--bg-input);
@@ -328,8 +328,8 @@
    ============================================================ */
 
 .input-message {
-  padding-left: var(--spacing-100);   /* 8px */
-  padding-right: var(--spacing-100);  /* 8px */
+  padding-inline-start: var(--spacing-100);   /* 8px */
+  padding-inline-end: var(--spacing-100);  /* 8px */
   font-family: 'Inter', system-ui, -apple-system, sans-serif;
   font-size: 14px;
   font-weight: 400;

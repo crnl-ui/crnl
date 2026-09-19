@@ -1,10 +1,8 @@
 import type { ButtonProps, CircleButtonProps } from './Button.types'
 
-const sizeClass: Record<NonNullable<ButtonProps['size']>, string> = {
-  large: 'btn-700',
-  small: 'btn-300',
-  xsmall: 'btn-100'
-}
+/* The size prop is the CSS number, so the class is the number. No table:
+   a lookup that only renames things is a second vocabulary to keep in step. */
+const sizeClass = (size: NonNullable<ButtonProps['size']>) => `btn-${size}`
 
 const variantClass: Record<NonNullable<ButtonProps['variant']>, string> = {
   primary: 'btn-primary',
@@ -18,14 +16,12 @@ const variantClass: Record<NonNullable<ButtonProps['variant']>, string> = {
   black: 'btn-black'
 }
 
-const circleSizeClass: Record<NonNullable<CircleButtonProps['size']>, string> = {
-  large: 'btn-circle-700',
-  small: 'btn-circle-300'
-}
+const circleSizeClass = (size: NonNullable<CircleButtonProps['size']>) =>
+  `btn-circle-${size}`
 
 export function Button({
   variant,
-  size = 'large',
+  size = 700,
   icon,
   iconPosition = 'leading',
   fill = false,
@@ -40,7 +36,7 @@ export function Button({
   const classes = [
     'btn',
     variantClass[variant],
-    sizeClass[size],
+    sizeClass(size),
     hasIcon && iconPosition === 'leading' && !iconOnly ? 'btn-icon-leading' : '',
     hasIcon && iconPosition === 'trailing' && !iconOnly ? 'btn-icon-trailing' : '',
     iconOnly ? 'btn-icon-only' : '',
@@ -71,7 +67,7 @@ export function Button({
 
 export function CircleButton({
   variant,
-  size = 'large',
+  size = 700,
   icon,
   disabled = false,
   onClick,
@@ -82,7 +78,7 @@ export function CircleButton({
     'btn',
     'btn-circle',
     variantClass[variant],
-    circleSizeClass[size]
+    circleSizeClass(size)
   ].join(' ')
 
   return (

@@ -15,7 +15,7 @@ const meta: Meta<typeof Button> = {
         'neutral', 'destructive', 'white', 'white-tertiary', 'black'
       ]
     },
-    size: { control: 'select', options: ['large', 'small', 'xsmall'] },
+    size: { control: 'select', options: [700, 300, 100] },
     iconPosition: { control: 'select', options: ['leading', 'trailing'] },
     fill: { control: 'boolean' },
     disabled: { control: 'boolean' }
@@ -28,7 +28,7 @@ type Story = StoryObj<typeof Button>
 export const Primary: Story = {
   args: {
     variant: 'primary',
-    size: 'large',
+    size: 700,
     children: 'Save changes'
   }
 }
@@ -36,7 +36,7 @@ export const Primary: Story = {
 export const Transactional: Story = {
   args: {
     variant: 'transactional',
-    size: 'large',
+    size: 700,
     children: 'Buy tickets'
   }
 }
@@ -44,7 +44,7 @@ export const Transactional: Story = {
 export const WithLeadingIcon: Story = {
   args: {
     variant: 'primary',
-    size: 'large',
+    size: 700,
     icon: 'add',
     iconPosition: 'leading',
     children: 'Add item'
@@ -54,7 +54,7 @@ export const WithLeadingIcon: Story = {
 export const WithTrailingIcon: Story = {
   args: {
     variant: 'secondary',
-    size: 'large',
+    size: 700,
     icon: 'arrow_forward',
     iconPosition: 'trailing',
     children: 'Continue'
@@ -64,7 +64,7 @@ export const WithTrailingIcon: Story = {
 export const IconOnly: Story = {
   args: {
     variant: 'primary',
-    size: 'large',
+    size: 700,
     icon: 'search'
   }
 }
@@ -90,9 +90,9 @@ export const AllVariants: Story = {
 export const AllSizes: Story = {
   render: () => (
     <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-      <Button variant="primary" size="large">Large</Button>
-      <Button variant="primary" size="small">Small</Button>
-      <Button variant="primary" size="xsmall">X-Small</Button>
+      <Button variant="primary" size={700}>btn-700</Button>
+      <Button variant="primary" size={300}>btn-300</Button>
+      <Button variant="primary" size={100}>btn-100</Button>
     </div>
   )
 }
@@ -100,7 +100,7 @@ export const AllSizes: Story = {
 export const Disabled: Story = {
   args: {
     variant: 'primary',
-    size: 'large',
+    size: 700,
     disabled: true,
     children: 'Disabled'
   }
@@ -109,7 +109,7 @@ export const Disabled: Story = {
 export const Fill: Story = {
   render: () => (
     <div style={{ width: '320px' }}>
-      <Button variant="primary" size="large" fill>Fill width</Button>
+      <Button variant="primary" size={700} fill>Fill width</Button>
     </div>
   )
 }
@@ -117,9 +117,9 @@ export const Fill: Story = {
 export const Circle: Story = {
   render: () => (
     <div style={{ display: 'flex', gap: '12px', alignItems: 'center' }}>
-      <CircleButton variant="neutral" size="large" icon="close" aria-label="Close" />
-      <CircleButton variant="neutral" size="small" icon="close" aria-label="Close small" />
-      <CircleButton variant="primary" size="large" icon="add" aria-label="Add" />
+      <CircleButton variant="neutral" size={700} icon="close" aria-label="Close" />
+      <CircleButton variant="neutral" size={300} icon="close" aria-label="Close small" />
+      <CircleButton variant="primary" size={700} icon="add" aria-label="Add" />
     </div>
   )
 }

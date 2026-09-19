@@ -29,10 +29,10 @@ export const WithTrailingIcon: Story = {
 export const ChipBordered: Story = {
   render: () => (
     <div style={{ display: 'flex', gap: '8px' }}>
-      <Chip surface="bordered">All</Chip>
-      <Chip surface="bordered" brandColor>Home</Chip>
-      <Chip surface="bordered" icon="close" iconPosition="trailing">Filter</Chip>
-      <Chip surface="bordered" disabled>Disabled</Chip>
+      <Chip surface="borderNeutral">All</Chip>
+      <Chip surface="borderNeutral" brandColor>Home</Chip>
+      <Chip surface="borderNeutral" icon="close" iconPosition="trailing">Filter</Chip>
+      <Chip surface="borderNeutral" disabled>Disabled</Chip>
     </div>
   )
 }
