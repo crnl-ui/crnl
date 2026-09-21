@@ -405,9 +405,11 @@ whether the surface has settled, not a task.
 
 ---
 
-### 8. 103 contrast failures, and `check:themes` checks three pairs
+### 8. 123 contrast failures, and `check:themes` checks three pairs
 
-`npm run check:a11y` reports 103 WCAG AA contrast violations across the sheets.
+`npm run check:a11y` reports 123 WCAG AA contrast violations across the sheets
+(103 across the thirteen topic sheets, and 20 more that only `demo/qa.html`
+renders — see `.tile-tag` below).
 They are not all equal, and the split is the useful part:
 
 | | Count | What it is |
@@ -424,6 +426,19 @@ That last row is the one to act on:
   what went wrong.
 - **The stat table's header fails at 2.84.**
 - `.text-inverted` and `.surface-borderWhite` label at 3.12.
+- **`.tile-tag` fails at 1.21**, and it is the worst of them. The scrim is
+  `--black-100`, which is `rgba(0,0,0,0.04)` — four percent — so white text on
+  it is readable only over an already-dark image. The CSS calls it a frosted
+  label and pairs it with `backdrop-filter: blur(25px)`, which blurs but does
+  not darken. Over a light image, or over `--image-placeholder-bg`, it is white
+  on near-white. It wants a scrim token in the 50–60% range, not 4%.
+
+  This one had gone unseen because **no demo sheet rendered it**. `check:demo`
+  passed on it the whole time, because a class counts as covered when its name
+  appears in the page copy, and `.tile-tag` was named in a usage comment. That
+  is a real hole in the check, not a one-off: the same is true of any class
+  whose only appearance is a mention. `demo/qa.html` renders it, which is how
+  it surfaced.
 
 **`check:themes` did not catch any of this, and the docs overstated what it
 does.** It checks exactly three pairs — the primary button, the transactional

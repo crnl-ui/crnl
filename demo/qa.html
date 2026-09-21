@@ -24,7 +24,7 @@
 :root {
   --qa-ink: #0f1115;
   --qa-muted: #5b6270;
-  --qa-faint: #8b929e;
+  --qa-faint: #68707d;
   --qa-rule: #dfe2e8;
   --qa-ground: #f6f7f9;
   --qa-panel: #ffffff;
@@ -35,13 +35,13 @@
 }
 @media (prefers-color-scheme: dark) {
   :root:not([data-qa-chrome="light"]) {
-    --qa-ink: #e8eaee; --qa-muted: #9aa2b1; --qa-faint: #6d7585;
+    --qa-ink: #e8eaee; --qa-muted: #9aa2b1; --qa-faint: #8a92a1;
     --qa-rule: #2a2f39; --qa-ground: #14171d; --qa-panel: #1a1e26;
     --qa-flag: #ff8d6b; --qa-flag-bg: #2c1a14;
   }
 }
 :root[data-qa-chrome="dark"] {
-  --qa-ink: #e8eaee; --qa-muted: #9aa2b1; --qa-faint: #6d7585;
+  --qa-ink: #e8eaee; --qa-muted: #9aa2b1; --qa-faint: #8a92a1;
   --qa-rule: #2a2f39; --qa-ground: #14171d; --qa-panel: #1a1e26;
   --qa-flag: #ff8d6b; --qa-flag-bg: #2c1a14;
 }
@@ -101,6 +101,20 @@
 .qa-grid.is-wide { grid-template-columns: repeat(auto-fit, minmax(380px, 1fr)); }
 .qa-grid.is-one { grid-template-columns: 1fr; }
 .qa-row { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
+/* A permanently-dark box for the specimens that are meant to sit on one —
+   .btn-white and friends. It sets the text tokens with the background,
+   because that is the pair: --brand-dark-surface is dark in BOTH modes, so
+   --text-primary (which flips with mode) lands black on it half the time,
+   and --inverted-* is wrong for the same reason. The mode-independent white
+   scale is the one that matches a mode-independent surface. Setting the
+   token rather than the colour is also what keeps this out of the cascade
+   fight — custom properties resolve independently of layer order. */
+.qa-on-dark {
+  background: var(--brand-dark-surface);
+  padding: 14px; border-radius: 12px;
+  --text-primary: var(--white-1000);
+  --text-secondary: var(--white-700);
+}
 .qa-col { display: flex; flex-direction: column; gap: 12px; }
 .qa-cap { font-family: var(--qa-mono); font-size: 10.5px; color: var(--qa-faint); margin-block-start: 8px; display: flex; flex-wrap: wrap; gap: 4px 10px; }
 .qa-cap b { font-weight: 500; color: var(--qa-muted); }
@@ -129,6 +143,20 @@
 .qa-scale-val { font-family: var(--qa-mono); font-size: 10.5px; color: var(--qa-faint); margin-inline-start: auto; flex-shrink: 0; }
 
 .qa-ruler { display: flex; align-items: center; gap: 12px; padding-block: 5px; }
+
+/* Chrome text that sits *inside* a stage is on a system surface, not on the
+   chrome ground — .qa-stage paints var(--bg-base) so the specimen stands on
+   the real thing. Painting chrome slate there is a colour pair nobody chose,
+   and it moves with every theme and mode, so it fails contrast somewhere by
+   construction. Anything inside a stage therefore takes the system's own text
+   tokens. It stays legible as scaffolding by being mono and small, which is
+   what actually distinguishes it — the grey was never doing that work. */
+.qa-stage .qa-cap,
+.qa-stage .qa-scale-key,
+.qa-stage .qa-scale-val,
+.qa-stage [data-qa-metric] { color: var(--text-secondary); }
+.qa-stage .qa-cap b,
+.qa-stage .qa-cap code { color: var(--text-primary); }
 .qa-ruler-bar { height: 14px; background: var(--color-interactive); border-radius: 3px; }
 
 /* ---- screens (the "in use" section) ---------------------------------- */
@@ -742,7 +770,7 @@
         fixing first: a destructive action is the button that most needs reading
         correctly. Needs <code>--status-error</code> decided, so it waits on a
         design call.</div>
-      <div class="qa-row" style="margin-block-start:14px;background:var(--brand-dark-surface);padding:14px;border-radius:12px">
+      <div class="qa-row qa-on-dark" style="margin-block-start:14px">
         <button type="button" class="btn btn-white btn-700">White</button>
         <button type="button" class="btn btn-white-tertiary btn-700">White tertiary</button>
         <span class="qa-cap" style="margin:0"><b>on --brand-dark-surface, where they are meant to sit</b></span>
@@ -1368,7 +1396,7 @@
           </div>
           <div>
             <div class="qa-cap" style="margin:0 0 8px"><b>Glass buttons</b></div>
-            <div class="qa-row" style="background:var(--brand-dark-surface);padding:16px;border-radius:12px">
+            <div class="qa-row qa-on-dark">
               <button type="button" class="ios-nav-btn ios-glass" aria-label="Back"><span class="icon icon-300">arrow_back</span></button>
               <button type="button" class="ios-nav-btn ios-glass" aria-label="Share"><span class="icon icon-300">ios_share</span></button>
               <button type="button" class="ios-nav-btn ios-nav-btn-brand" aria-label="Account">A</button>
@@ -1389,12 +1417,18 @@
       split by what they actually are. Turn on <b>Known issues</b> above to see
       each one marked where it renders.</p>
 
+    <p class="qa-note">This page contributes 20 of its own, all of them the same
+      system pairs re-exhibited — except one, which nothing had caught before,
+      because building a page that renders <em>every</em> class is how you find
+      the class no sheet was rendering.</p>
+
     <div class="qa-stage">
       <div class="qa-scale">
         <div class="qa-scale-row"><span class="qa-scale-key">32 · components</span><span class="bodyRegular30">Unambiguously wrong. <code class="qa-mono">.btn-destructive</code> 4.17, <code class="qa-mono">.input-message</code> on error 4.00, stat-table headers 2.84.</span></div>
         <div class="qa-scale-row"><span class="qa-scale-key">28 · disabled</span><span class="bodyRegular30">WCAG 1.4.3 exempts disabled controls, so these are conformance-neutral. axe flags them anyway.</span></div>
         <div class="qa-scale-row"><span class="qa-scale-key">22 · brand as text</span><span class="bodyRegular30">1.07–2.50. A brand colour is picked to be a brand, not body copy.</span></div>
         <div class="qa-scale-row"><span class="qa-scale-key">21 · status as text</span><span class="bodyRegular30"><code class="qa-mono">.text-warning</code> 2.76, <code class="qa-mono">.text-info</code> 4.23 — the second is one nudge from passing.</span></div>
+        <div class="qa-scale-row"><span class="qa-scale-key">1 · found here</span><span class="bodyRegular30"><code class="qa-mono">.tile-tag</code> at <b>1.21</b>, the worst in the system. Its scrim is <code class="qa-mono">--black-100</code> — four percent black — so white text on it only reads over an already-dark image. <code class="qa-mono">backdrop-filter</code> blurs, it does not darken. No demo sheet rendered this class, so nothing had measured it.</span></div>
       </div>
     </div>
 
