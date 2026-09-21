@@ -188,14 +188,33 @@ function loadSurface() {
   return { classes, tokens, paintsSurface, tokenForValue }
 }
 
+/** Every class selector declared in a chunk of CSS. */
+function declaredIn(css) {
+  const found = new Set()
+  const src = css.replace(/\/\*[\s\S]*?\*\//g, '')
+  for (const m of src.matchAll(/\.(-?[_a-zA-Z][\w-]*)/g)) found.add(m[1])
+  return found
+}
+
 /** Classes a local stylesheet defines — a page's own scaffolding is not the
     system's, but it is not invented either. */
 function localClasses(cssPaths) {
   const found = new Set()
   for (const p of cssPaths) {
     if (!existsSync(p)) continue
-    const src = readFileSync(p, 'utf8').replace(/\/\*[\s\S]*?\*\//g, '')
-    for (const m of src.matchAll(/\.(-?[_a-zA-Z][\w-]*)/g)) found.add(m[1])
+    for (const c of declaredIn(readFileSync(p, 'utf8'))) found.add(c)
+  }
+  return found
+}
+
+/** The same, for a page that declares its scaffolding in its own <style>.
+    A self-contained page is a legitimate shape — the rule is that a class has
+    to be declared somewhere the reader can find, not that it has to live in a
+    separate file. */
+function inlineStyleClasses(src) {
+  const found = new Set()
+  for (const m of src.matchAll(/<style\b[^>]*>([\s\S]*?)<\/style>/gi)) {
+    for (const c of declaredIn(m[1])) found.add(c)
   }
   return found
 }
@@ -407,10 +426,24 @@ function classAttrs(src, jsx) {
   return out
 }
 
+/** Blank out <script> bodies, keeping offsets so line numbers stay true.
+
+    A script that builds markup writes `class="' + name + '"`, and reading that
+    as a class attribute yields findings for `.'`, `.+` and whatever the
+    variable is called. demo/check-coverage.mjs has skipped script blocks for
+    the same reason since it was written; this had not. */
+function blankScripts(src) {
+  return src.replace(/(<script\b[^>]*>)([\s\S]*?)(<\/script>)/gi,
+    (m, open, body, close) => open + body.replace(/[^\n]/g, ' ') + close)
+}
+
 function lintMarkup(file, src, surface, extra) {
   const jsx = /\.[jt]sx$/.test(file)
   const escapes = readEscapes(src, file)
-  const known = new Set([...surface.classes, ...extra])
+  /* A page's own <style> is read before the scripts are blanked, because the
+     style block is markup the author wrote, not markup a script emits. */
+  const known = new Set([...surface.classes, ...extra, ...(jsx ? [] : inlineStyleClasses(src))])
+  if (!jsx) src = blankScripts(src)
 
   for (const { index, raw } of classAttrs(src, jsx)) {
     const line = lineOf(src, index)

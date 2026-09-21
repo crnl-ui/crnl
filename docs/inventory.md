@@ -8,7 +8,7 @@
 > thing. Read `docs/inventory.json` instead of this file if you are an agent —
 > same content, nothing to parse.
 
-**737 classes and 227 tokens across 26 stylesheets, shown live on 13 demo sheets, with 18 React components over the top.**
+**737 classes and 227 tokens across 26 stylesheets, shown live on 14 demo sheets, with 18 React components over the top.**
 
 ## The two layers
 
@@ -104,15 +104,16 @@ Every class rendered live, in the real CSS. Open `demo/index.html`.
 | [`11-ios-frame.html`](../demo/11-ios-frame.html) | iOS Chrome |
 | [`11-ios.html`](../demo/11-ios.html) | iOS / App |
 | [`index.html`](../demo/index.html) | Overview |
+| [`qa.html`](../demo/qa.html) | Crnl QA Bench |
 
 ## What has no live specimen
 
-329 class(es) appear by name on a sheet but have no live specimen —
+321 class(es) appear by name on a sheet but have no live specimen —
 legitimate for a utility scale, where 300 identical boxes would show less
 than one listing. `npm run check:demo` is what holds the line.
 
-- `boilerplate.css` — 283: `.flex-center` `.flex-center-viewport` `.flex-column` `.gap-xs` `.gap-sm` `.gap-md` `.gap-lg` `.gap-xl` `.m-25` `.m-50` `.m-100` `.m-150` …
-- `border-effects-tokens.css` — 33: `.rounded-t-50` `.rounded-t-100` `.rounded-b-50` `.rounded-b-100` `.rounded-l-50` `.rounded-l-100` `.rounded-r-50` `.rounded-r-100` `.rounded-ss-50` `.rounded-ss-100` `.rounded-se-50` `.rounded-se-100` …
+- `boilerplate.css` — 282: `.flex-center` `.flex-center-viewport` `.flex-column` `.gap-xs` `.gap-sm` `.gap-md` `.gap-lg` `.gap-xl` `.m-25` `.m-50` `.m-100` `.m-150` …
+- `border-effects-tokens.css` — 28: `.rounded-t-50` `.rounded-t-100` `.rounded-b-50` `.rounded-b-100` `.rounded-l-50` `.rounded-l-100` `.rounded-r-50` `.rounded-r-100` `.rounded-ss-50` `.rounded-ss-100` `.rounded-se-50` `.rounded-se-100` …
 - `input-components.css` — 1: `.is-open`
-- `ios-nav-components.css` — 3: `.ios-status-bar-modal` `.ios-content` `.has-ios-tab-bar`
+- `ios-nav-components.css` — 1: `.ios-status-bar-modal`
 - `platform-tokens.css` — 9: `.app-device-controls` `.device-control-label` `.mode-toggle` `.template-fab` `.template-fab-trigger` `.template-fab-panel` `.open` `.template-fab-link` `.template-platform-link`
