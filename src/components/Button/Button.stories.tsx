@@ -37,7 +37,7 @@ export const Transactional: Story = {
   args: {
     variant: 'transactional',
     size: 700,
-    children: 'Buy tickets'
+    children: 'Check out'
   }
 }
 

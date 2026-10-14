@@ -241,7 +241,7 @@
    Pressed:  black-300 overlay, 60% text opacity
    Disabled: 40% opacity, no interaction
    
-   Use for: Buy tickets, Purchase, Add to cart
+   Use for: Check out, Purchase, Add to cart
    ============================================================ */
 
 .btn-transactional {
@@ -809,7 +809,7 @@
    
    COMPOSITION:
    <button class="btn btn-transactional btn-700">
-     Buy Tickets
+     Check out
    </button>
    
    <button class="btn btn-primary btn-300 btn-icon-leading">
