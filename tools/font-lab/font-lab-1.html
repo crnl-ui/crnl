@@ -555,7 +555,7 @@ const DEFAULTS = {
   axes: {}, css: '',
   sample: 'Up Next — Acme 112, Northside 98',
 };
-const DEFAULT_FAVSAMPLE = 'Buy Tickets — Section 114, Row C';
+const DEFAULT_FAVSAMPLE = 'Check out — Order 114, 2 items';
 // Default ramp = no team preset, so each step's size falls back to its fixed line height
 // weight + letter-spacing live on S.wb (shared with the workbench); the ramp only owns the size scale
 const rampDefaults = () => ({ team: '', caps: 'none', sizes: {}, linked: true });
@@ -1174,7 +1174,7 @@ segWire('c-italic', v => { S.wb.italic = +v; clearCustomProp('font-style'); load
 /* Sample presets */
 const PRESETS = {
   'Scoreboard': 'Acme 112 — Northside 98',
-  'Buy CTA': 'Buy Tickets · Section 114 · $89',
+  'Buy CTA': 'Check out · 2 items · $89',
   'Up Next': 'Up Next — Saturday, Nov 8 · 7 PM',
   'Alphabet': 'ABCDEFGHIJKLM abcdefghijklm 0123456789',
   'Numerals': '0123456789 · $%#&@',

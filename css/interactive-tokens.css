@@ -14,7 +14,7 @@
    Notes
    - A surface token gives themed default/hover/pressed fill and border; a scale
      token adds the transform. They compose freely — any surface with any scale:
-       <div class="surface-fillColor scale-500">Buy Tickets</div>
+       <div class="surface-fillColor scale-500">Check out</div>
        <div class="surface-borderNeutral scale-700">Card</div>
    - Anything tappable takes a surface + scale pair instead of a hand-written
      :hover / :active. See RULES §2 and §3.

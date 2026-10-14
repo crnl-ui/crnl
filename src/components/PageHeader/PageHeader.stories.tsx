@@ -47,7 +47,7 @@ export const WithTabs: Story = {
 export const WithSteps: Story = {
   render: () => (
     <PageHeader
-      title="Buy Tickets"
+      title="Check out"
       subtitle="Acme Athletic Club"
       steps={
         <Steps
