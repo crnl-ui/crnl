@@ -1,0 +1,328 @@
+/* Ussher — Office reader, direction A: "Prayer book".  NOT part of Crnl.
+   Unlayered, so it beats every crnl.* layer without !important.
+   Every class here is a flagged new pattern (prefix ra-): Crnl has no serif
+   reading surface, rubric, versicle, verse or page-mark pattern.
+   Type sizes are all em, so everything scales from --ussher-reading-size,
+   which .ra-page takes as its font-size. */
+
+/* ===========================================================================
+   PALETTE TOKENS — the only colour literals in this file.
+   Paper and ink are warmed a few points off Crnl ink so the page reads as a
+   page; the chrome follows because --org-base / --org-sheet feed --bg-base.
+   Contrast (WCAG) measured against --org-base in the same mode:
+     light  ink 16.3:1   ink-soft 6.7:1   rubric 6.9:1
+     dark   ink 14.4:1   ink-soft 7.0:1   rubric 7.4:1
+   =========================================================================== */
+[data-theme="ink"][data-mode="light"] {
+  --org-base: #FBF8F2;                    /* paper */
+  --org-sheet: #FBF8F2;
+  --org-surface: #F3EEE4;                 /* a card on paper */
+  --org-nav: rgba(251, 248, 242, 0.8);
+  --ra-ink: #1E1A15;                      /* reading text */
+  --ra-ink-soft: #5F574C;                 /* verse numbers, citations, date line */
+  --ra-rubric: #A3261B;                   /* rubrics, roles, alternatives */
+  --ra-flash: rgba(163, 38, 27, 0.10);    /* a changed choice, fading out */
+}
+[data-theme="ink"][data-mode="dark"] {
+  --org-base: #14120F;
+  --org-sheet: #1B1915;
+  --org-surface: #1F1C18;
+  --org-nav: rgba(20, 18, 15, 0.8);
+  --ra-ink: #E8E1D3;
+  --ra-ink-soft: #A69D8F;
+  --ra-rubric: #E88A76;
+  --ra-flash: rgba(232, 138, 118, 0.14);
+}
+
+/* ===========================================================================
+   THE PAGE
+   =========================================================================== */
+.ra-page {
+  font-family: var(--ussher-reading-font);
+  font-size: var(--ussher-reading-size);
+  line-height: 1.5;
+  color: var(--ra-ink);
+  font-optical-sizing: auto;
+  font-variant-numeric: oldstyle-nums proportional-nums;
+  font-kerning: normal;
+  text-wrap: pretty;
+  max-inline-size: 34em;                  /* a typographic measure, not a layout cap */
+  margin-inline: auto;
+  padding-inline: var(--spacing-300);
+  padding-block-end: var(--spacing-1000);
+}
+.ra-page p { margin: 0; }
+
+/* Day header and office title ------------------------------------------- */
+.ra-head {
+  text-align: center;
+  padding-block: var(--spacing-300) 0;
+}
+.ra-date {
+  font-size: 0.82em;
+  line-height: 1.4;
+  letter-spacing: 0.06em;
+  font-variant-caps: small-caps;
+  color: var(--ra-ink-soft);
+}
+.ra-holy {
+  margin-block-start: 0.55em;
+  font-size: 1.06em;
+  line-height: 1.3;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  font-variant-caps: small-caps;
+  color: var(--ra-rubric);
+  text-wrap: balance;
+}
+.ra-temporal {
+  margin-block-start: 0.3em;
+  font-style: italic;
+  line-height: 1.35;
+  text-wrap: balance;
+}
+.ra-holy + .ra-temporal { font-size: 0.88em; color: var(--ra-ink-soft); }
+.ra-title {
+  margin-block-start: 1.4em;
+  font-size: 1.65em;
+  line-height: 1.16;
+  font-weight: 430;
+  letter-spacing: -0.008em;
+  text-wrap: balance;
+}
+
+/* Sections ---------------------------------------------------------------- */
+.ra-sec { margin-block-start: 2.75em; }
+.ra-sec-h {
+  position: relative;
+  margin: 0 0 0.9em;
+  text-align: center;
+  font-size: 1em;
+  line-height: 1.3;
+  font-weight: 600;
+  letter-spacing: 0.075em;
+  font-variant-caps: small-caps;
+  text-wrap: balance;
+}
+
+/* A block is the unit a page mark attaches to. */
+.ra-blk { position: relative; margin-block-start: 0.9em; }
+.ra-sec-h + .ra-blk { margin-block-start: 0; }
+
+/* Rubric — red italic, a step down, full measure. Never read aloud. */
+.ra-rubric {
+  font-size: 0.88em;
+  line-height: 1.45;
+  font-style: italic;
+  color: var(--ra-rubric);
+}
+
+/* Opening sentence — the text, then its citation set right. */
+.ra-cite {
+  margin-block-start: 0.2em;
+  text-align: end;
+  font-size: 0.86em;
+  letter-spacing: 0.04em;
+  font-variant-caps: small-caps;
+  color: var(--ra-ink-soft);
+}
+
+/* Prayer ------------------------------------------------------------------ */
+.ra-ptitle {
+  margin-block-end: 0.35em;
+  font-weight: 400;
+  text-align: center;
+  font-style: italic;
+  line-height: 1.35;
+  text-wrap: balance;
+}
+.ra-blk-titled { margin-block-start: 1.6em; }
+.ra-amen { font-weight: 600; }
+.ra-form {                                  /* which officiant form is shown */
+  display: flex;
+  justify-content: center;
+  margin-block-end: var(--spacing-100);
+}
+
+/* Versicles and responses — role on the left in red, people in semibold. */
+.ra-vr {
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  column-gap: 0.7em;
+  row-gap: 0.3em;
+  align-items: baseline;
+}
+.ra-vr-who {
+  font-size: 0.78em;
+  font-style: italic;
+  color: var(--ra-rubric);
+}
+.ra-vr-people { font-weight: 600; }
+.ra-vr-next { margin-block-start: 0.5em; }   /* a little air between pairs */
+
+/* Canticle and psalm verses ---------------------------------------------- */
+.ra-ctitle {
+  margin-block-end: 0.45em;
+  font-weight: 400;
+  text-align: center;
+  font-style: italic;
+  font-size: 1.06em;
+  line-height: 1.35;
+}
+.ra-verse + .ra-verse { margin-block-start: 0.5em; }
+/* Each half is its own line: the first starts flush, the second one em in,
+   and a turnover of either sits two em in — so a wrapped first half can
+   never be mistaken for the start of the second. */
+.ra-half { display: block; padding-inline-start: 2em; text-indent: -2em; }
+.ra-half-b { text-indent: -1em; }
+
+/* Psalms: the column steps in so the verse number can hang left of it, the
+   number's right edge 0.45em off the text and its baseline the line's own. */
+.ra-psalm { padding-inline-start: 1.2em; }
+.ra-psalm + .ra-psalm { margin-block-start: 1.6em; }
+.ra-psalm-h {
+  margin-block-end: 0.5em;
+  font-weight: 400;
+  margin-inline-start: -1.2em;              /* centre on the full measure */
+  text-align: center;
+  line-height: 1.35;
+}
+.ra-psalm-no { font-weight: 600; letter-spacing: 0.06em; font-variant-caps: small-caps; }
+.ra-psalm-inc { font-style: italic; color: var(--ra-ink-soft); }
+.ra-vn {
+  display: inline-block;
+  inline-size: calc(var(--ussher-reading-size) * 1.5);
+  margin-inline-start: calc(var(--ussher-reading-size) * -1.95);
+  margin-inline-end: calc(var(--ussher-reading-size) * 0.45);
+  text-indent: 0;
+  text-align: end;
+  font-size: 0.74em;
+  font-variant-numeric: oldstyle-nums tabular-nums;
+  color: var(--ra-ink-soft);
+}
+.ra-appointed {
+  display: flex;
+  justify-content: center;
+  margin-block: calc(-1 * var(--spacing-100)) var(--spacing-200);
+}
+
+/* Lessons ----------------------------------------------------------------- */
+.ra-lesson-cite {
+  text-align: center;
+  font-size: 1.06em;
+  letter-spacing: 0.05em;
+  font-variant-caps: small-caps;
+}
+.ra-meta {                                   /* the app speaking, in Inter */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-75);
+  margin-block: var(--spacing-100) var(--spacing-300);
+  text-align: center;
+}
+.ra-note { display: flex; align-items: flex-start; gap: var(--spacing-75); max-inline-size: 32ch; text-align: start; }
+.ra-note .icon { flex-shrink: 0; }
+.ra-lesson p + p { text-indent: 1.25em; }
+.ra-sv {
+  font-variant-position: super;
+  font-variant-numeric: lining-nums;
+  color: var(--ra-ink-soft);
+  margin-inline-end: 0.12em;
+}
+
+/* Collect of the day — the day's proper, titled in the rubric's red. */
+.ra-proper-t {
+  margin-block-end: 0.35em;
+  text-align: center;
+  font-size: 0.9em;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  font-variant-caps: small-caps;
+  color: var(--ra-rubric);
+}
+
+/* Choice — alternatives offered the way the book offers them: "or …",
+   in the rubric's voice, under the current choice's title. */
+.ra-or-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0 var(--spacing-50);
+  margin-block: calc(-1 * var(--spacing-50)) var(--spacing-150);
+}
+.ra-or {
+  font-family: inherit;
+  font-size: 0.86em;
+  line-height: 1.3;
+  font-style: italic;
+  color: var(--ra-rubric);
+  text-decoration-line: underline;
+  text-decoration-style: dotted;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.24em;
+  padding: var(--spacing-100) var(--spacing-100);
+  border-radius: var(--border-radius-50);
+}
+.ra-choice-sentence .ra-or-row { margin-block: 0 var(--spacing-50); }
+.ra-flash { animation: ra-flash 1.6s ease-out; border-radius: var(--border-radius-50); }
+.ra-fade { animation: ra-fade 360ms ease-out; }
+@keyframes ra-flash { from { background: var(--ra-flash); } to { background: transparent; } }
+@keyframes ra-fade { from { opacity: 0; } to { opacity: 1; } }
+@media (prefers-reduced-motion: reduce) { .ra-flash, .ra-fade { animation: none; } }
+
+/* Source page mark — a small figure in the right margin where the printed
+   page turns. Off unless the reader asks for it. */
+.ra-pg {
+  display: none;
+  position: absolute;
+  inset-block-start: 0.35em;
+  inset-inline-end: calc(-1 * var(--spacing-300));
+  inline-size: var(--spacing-300);
+  text-align: center;
+  font-family: var(--ussher-reading-font);
+  font-size: 0.74em;
+  font-style: italic;
+  font-variant-numeric: oldstyle-nums;
+  color: var(--ra-ink-soft);
+}
+.ra-show-pages .ra-pg { display: block; }
+
+/* End of the office ------------------------------------------------------- */
+.ra-end {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-200);
+  margin-block-start: var(--spacing-800);
+}
+.ra-end-mark {
+  font-size: 0.82em;
+  letter-spacing: 0.06em;
+  font-variant-caps: small-caps;
+  color: var(--ra-ink-soft);
+}
+
+/* Running head — the nav title, set as a book sets the section name at the
+   top of its page. Sits inside .ios-nav-page-title, which keeps the layout. */
+.ra-running {
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding-inline: var(--spacing-300);     /* the title's own 48px does not clear a 44px button at 16px */
+  font-family: var(--ussher-reading-font);
+  font-size: min(calc(var(--ussher-reading-size) * 0.84), 16px);
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  font-variant-caps: small-caps;
+  font-variant-numeric: oldstyle-nums;
+  color: var(--ra-ink);
+}
+.ra-nowrap { white-space: nowrap; }
+
+/* Contents sheet: section rows carry the book's page in old-style figures. */
+.ra-toc-pg { font-variant-numeric: oldstyle-nums; }
+.ra-hide { display: none; }
+.ra-sheet-pad { padding: var(--spacing-300) var(--margin-large) var(--spacing-600); display: flex; flex-direction: column; gap: var(--spacing-300); }
+.ra-sheet-label { padding-inline: var(--spacing-200); margin-block-end: var(--spacing-100); }
+.ra-size-sample { font-family: var(--ussher-reading-font); }
