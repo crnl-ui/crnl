@@ -70,7 +70,7 @@ INTER_UNICODES = (
 )
 
 # Where icon names can appear. Kept in step with scripts/check-icons.mjs.
-SCAN_DIRS = ('demo', 'tools', 'css', 'src')
+SCAN_DIRS = ('demo', 'tools', 'css', 'src', 'prototypes')
 SCAN_EXT  = ('.html', '.js', '.mjs', '.tsx', '.ts')
 SKIP_DIRS = {'node_modules', 'built-fonts', '_build', 'licenses'}
 

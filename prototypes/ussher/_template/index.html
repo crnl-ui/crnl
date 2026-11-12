@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="ink" data-mode="light" data-platform="app">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Ussher — Template</title>
+  <script src="../../../css/crnl-loader.js"></script>
+  <script src="../../../css/prototype-harness.js"></script>
+  <link rel="stylesheet" href="../shared/sheet.css">
+  <link rel="stylesheet" href="sheet.css">
+</head>
+<body>
+<div class="ios-status-bar" id="status-bar"></div>
+<div class="ios-chrome-top" id="chrome-top">
+  <div class="ios-safe-area-top"></div>
+  <header class="ios-nav-page">
+    <div class="ios-nav-page-row">
+      <button class="ios-nav-btn ios-glass ios-nav-page-left" aria-label="Back"><span class="icon">arrow_back</span></button>
+      <span class="ios-nav-page-title" id="t"></span>
+      <button class="ios-nav-btn ios-glass ios-nav-page-right" aria-label="Sections"><span class="icon">toc</span></button>
+    </div>
+  </header>
+</div>
+<div class="ios-chrome-bottom" id="chrome-bottom">
+  <nav class="ios-tab-bar"><div class="ios-tab-bar-inner ios-glass">
+    <button class="ios-tab is-active"><span class="icon">menu_book</span><span class="ios-tab-label">Today</span></button>
+    <button class="ios-tab"><span class="icon">calendar_month</span><span class="ios-tab-label">Calendar</span></button>
+    <button class="ios-tab"><span class="icon">settings</span><span class="ios-tab-label">Settings</span></button>
+  </div></nav>
+  <div class="ios-home-indicator"></div>
+</div>
+<div class="ios-scroll"><div class="ios-scroll-inner" id="scroll-inner"><div class="px-large" id="c"></div></div></div>
+<script src="../data/calendar.js"></script>
+<script src="../data/office.js"></script>
+<script src="../shared/shell.js"></script>
+<script>
+  var d = USSHER.today();
+  document.getElementById('t').textContent = USSHER.formatDate(d.date);
+  var c = document.getElementById('c');
+  function el(tag, cls, text) { var e = document.createElement(tag); e.className = cls; e.textContent = text; return e; }
+  c.appendChild(el('p', 'labelRegular20 text-secondary', d.temporalTitle));
+  USSHER.office.sections.slice(1, 3).forEach(function (s) {
+    c.appendChild(el('h2', 'title50 mt-300', s.title));
+    s.blocks.forEach(function (b) {
+      var p = el('p', 'tpl-read', b.text || b.type);
+      if (b.type === 'rubric') p.classList.add('tpl-rubric');
+      c.appendChild(p);
+    });
+  });
+</script>
+</body>
+</html>
