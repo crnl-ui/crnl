@@ -1,0 +1,400 @@
+/* Ussher reader, direction B — "Modern editorial". NOT part of Crnl.
+   Unlayered page scaffolding: it beats every crnl.* layer without !important.
+   Every class here is prefixed ussb- and is a flagged new pattern (see NOTES.md):
+   Crnl has no serif reading surface, rubric, versicle, verse or page-mark pattern.
+
+   Type sizes and leading below are the acknowledged gap (README § Rules that bite):
+   they exist only on reading-surface classes and every size derives from
+   --ussher-reading-size, so the Settings text size scales the whole page. */
+
+/* ============================================================
+   PALETTE TOKENS — the only colour literals in this file.
+   Warm greys only; no red, no accent. Contrast on the ink theme's
+   --org-base (#FFFFFF light / #0E0E0E dark):
+     --ussb-ink     17.2:1 light · 15.4:1 dark   prayed text
+     --ussb-rubric   5.7:1 light ·  7.3:1 dark   rubrics, roles, citations
+                     5.0:1 on --org-surface light, 6.5:1 dark
+     --ussb-rule     hairlines only (not text)
+   ============================================================ */
+:root[data-mode="light"], :root:not([data-mode]) {
+  --ussb-ink: #1C1B19;
+  --ussb-rubric: #6B665E;
+  --ussb-rule: #E4E1DA;
+}
+:root[data-mode="dark"] {
+  --ussb-ink: #E8E5DF;
+  --ussb-rubric: #A39E95;
+  --ussb-rule: #2E2D2A;
+}
+
+/* Scale. r = the reading size (17px default). */
+:root {
+  --ussb-r: var(--ussher-reading-size);
+  --ussb-sans: 'Inter', system-ui, sans-serif;
+  --ussb-gutter: var(--spacing-300);   /* 24px side margins: a 345px measure at 393 */
+  --ussb-hang: var(--spacing-300);     /* psalm number column */
+  --ussb-step: var(--spacing-300);     /* second-half indent in a verse */
+}
+
+/* ---------- page ---------- */
+.ussb-page {
+  padding-inline: var(--ussb-gutter);
+  padding-block-start: var(--spacing-200);
+  color: var(--ussb-ink);
+  font-family: var(--ussher-reading-font);
+  font-optical-sizing: auto;
+  font-variant-numeric: oldstyle-nums proportional-nums;
+  -webkit-font-smoothing: antialiased;
+}
+:where(.ussb-page) :where(p) { margin: 0; }
+
+/* Flow: the container decides the space between blocks. */
+.ussb-flow > * + * { margin-block-start: var(--spacing-300); }
+.ussb-flow > .ussb-rubric + * { margin-block-start: var(--spacing-150); }
+.ussb-flow > .ussb-pagemark + * { margin-block-start: var(--spacing-200); }
+
+/* ---------- masthead: office title + day header ---------- */
+.ussb-mast { padding-block-end: var(--spacing-400); }
+.ussb-dateline {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--spacing-100);
+}
+.ussb-date {
+  font-family: var(--ussb-sans);
+  font-size: calc(var(--ussb-r) * 0.82);
+  line-height: 1.3;
+  font-weight: 600;
+  letter-spacing: 0;
+  color: var(--ussb-ink);
+}
+.ussb-office-title {
+  margin: var(--spacing-200) 0 0;
+  font-family: var(--ussher-reading-font);
+  font-size: calc(var(--ussb-r) * 2.35);
+  line-height: 1.04;
+  font-weight: 600;
+  letter-spacing: -0.022em;
+  color: var(--ussb-ink);
+  text-wrap: balance;
+}
+.ussb-day {
+  margin-block-start: var(--spacing-200);
+  font-size: calc(var(--ussb-r) * 1.18);
+  line-height: 1.3;
+  font-style: italic;
+  font-weight: 400;
+  color: var(--ussb-ink);
+  hyphens: manual;
+  text-wrap: pretty;
+}
+.ussb-feast {
+  margin-block-start: var(--spacing-200);
+  padding-block-start: var(--spacing-150);
+  border-block-start: var(--border-weight-100) solid var(--ussb-rule);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-50);
+}
+.ussb-feast-rank {
+  font-family: var(--ussb-sans);
+  font-size: calc(var(--ussb-r) * 0.7);
+  line-height: 1.3;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--ussb-rubric);
+}
+.ussb-feast-title {
+  font-size: calc(var(--ussb-r) * 1.41);
+  line-height: 1.15;
+  font-weight: 600;
+  letter-spacing: -0.012em;
+}
+
+/* ---------- section heading ---------- */
+.ussb-section { padding-block-start: var(--spacing-800); }
+.ussb-section:first-of-type { padding-block-start: var(--spacing-200); }
+.ussb-sec-head {
+  border-block-start: var(--border-weight-100) solid var(--ussb-ink);
+  padding-block-start: var(--spacing-150);
+  margin-block-end: var(--spacing-300);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-100);
+}
+.ussb-sec-num {
+  font-family: var(--ussb-sans);
+  font-size: calc(var(--ussb-r) * 0.7);
+  line-height: 1.3;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  font-variant-numeric: tabular-nums lining-nums;
+  color: var(--ussb-rubric);
+}
+.ussb-sec-title {
+  margin: 0;
+  font-family: var(--ussher-reading-font);
+  font-size: calc(var(--ussb-r) * 1.65);
+  line-height: 1.1;
+  font-weight: 600;
+  letter-spacing: -0.016em;
+  color: var(--ussb-ink);
+  text-wrap: balance;
+}
+
+/* ---------- prose shared by prayed text ---------- */
+.ussb-text {
+  font-size: var(--ussb-r);
+  line-height: 1.55;
+  font-weight: 400;
+  color: var(--ussb-ink);
+  hyphens: auto;
+  -webkit-hyphens: auto;
+  hyphenate-limit-chars: 8 4 3;
+  text-wrap: pretty;
+}
+
+/* ---------- rubric: small upright sans, muted, never prayed ---------- */
+.ussb-rubric {
+  font-family: var(--ussb-sans);
+  font-size: calc(var(--ussb-r) * 0.8);
+  line-height: 1.5;
+  font-weight: 400;
+  letter-spacing: 0;
+  color: var(--ussb-rubric);
+  text-wrap: pretty;
+}
+
+/* ---------- small sans labels on the reading surface ---------- */
+.ussb-label {
+  font-family: var(--ussb-sans);
+  font-size: calc(var(--ussb-r) * 0.7);
+  line-height: 1.3;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--ussb-rubric);
+}
+
+/* ---------- opening sentence: a pull quote ---------- */
+.ussb-sentence { margin: 0; display: flex; flex-direction: column; gap: var(--spacing-150); }
+.ussb-sentence-text {
+  margin: 0;
+  font-size: calc(var(--ussb-r) * 1.35);
+  line-height: 1.34;
+  font-weight: 400;
+  letter-spacing: -0.008em;
+  color: var(--ussb-ink);
+  text-wrap: pretty;
+}
+.ussb-cite {
+  font-family: var(--ussb-sans);
+  font-size: calc(var(--ussb-r) * 0.76);
+  line-height: 1.3;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  color: var(--ussb-rubric);
+}
+
+/* ---------- prayer ---------- */
+.ussb-prayer { display: flex; flex-direction: column; gap: var(--spacing-100); }
+.ussb-prayer-title {
+  font-family: var(--ussb-sans);
+  font-size: calc(var(--ussb-r) * 0.76);
+  line-height: 1.3;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  color: var(--ussb-ink);
+}
+/* Bold serif means the people say it: Amen and every people's line. */
+.ussb-amen { font-weight: 650; }
+
+/* ---------- versicles and responses ---------- */
+.ussb-vr {
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  column-gap: var(--spacing-200);
+  row-gap: var(--spacing-150);
+  align-items: baseline;
+}
+.ussb-vr-line { display: contents; }
+.ussb-vr-role {
+  font-family: var(--ussb-sans);
+  font-size: calc(var(--ussb-r) * 0.66);
+  line-height: 1.3;
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  color: var(--ussb-rubric);
+}
+.ussb-vr-line.is-people .ussb-vr-role { font-weight: 700; color: var(--ussb-ink); }
+.ussb-vr-line.is-people .ussb-text { font-weight: 650; }
+
+/* ---------- canticle and psalm verses ---------- */
+.ussb-cant-title,
+.ussb-psalm-title {
+  margin: 0;
+  font-family: var(--ussher-reading-font);
+  font-size: calc(var(--ussb-r) * 1.24);
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  color: var(--ussb-ink);
+}
+.ussb-cant-title { font-style: italic; font-weight: 500; }
+.ussb-psalm-title { font-weight: 600; }
+.ussb-verses { display: flex; flex-direction: column; gap: var(--spacing-150); }
+.ussb-cant .ussb-verses { margin-block-start: var(--spacing-200); }
+.ussb-verse { display: block; }
+/* Two levels only: the first half flush, the second half (with its turnovers) one step in. */
+.ussb-half-a,
+.ussb-half-b { display: block; }
+.ussb-half-b { padding-inline-start: var(--ussb-step); }
+
+/* Psalm: number in a hanging column, set in the sans so it never reads as text. */
+.ussb-psalms { display: flex; flex-direction: column; gap: var(--spacing-300); }
+.ussb-psalm { display: flex; flex-direction: column; }
+.ussb-psalm + .ussb-psalm { margin-block-start: var(--spacing-400); }
+.ussb-psalm-head {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  column-gap: var(--spacing-150);
+  margin-block-end: var(--spacing-200);
+}
+.ussb-incipit {
+  font-size: calc(var(--ussb-r) * 0.94);
+  line-height: 1.3;
+  font-style: italic;
+  color: var(--ussb-rubric);
+}
+.ussb-psalm .ussb-verse {
+  display: grid;
+  grid-template-columns: var(--ussb-hang) 1fr;
+  align-items: baseline;
+}
+.ussb-vno {
+  font-family: var(--ussb-sans);
+  font-size: calc(var(--ussb-r) * 0.66);
+  line-height: 1;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums lining-nums;
+  color: var(--ussb-rubric);
+}
+.ussb-appointed {
+  display: flex;
+  gap: var(--spacing-100);
+  align-items: baseline;
+}
+
+/* ---------- lessons ---------- */
+.ussb-lesson-head { display: flex; flex-direction: column; gap: var(--spacing-100); }
+.ussb-lesson-cite {
+  margin: 0;
+  font-family: var(--ussher-reading-font);
+  font-size: calc(var(--ussb-r) * 1.41);
+  line-height: 1.15;
+  font-weight: 600;
+  letter-spacing: -0.012em;
+  font-variant-numeric: lining-nums;
+  color: var(--ussb-ink);
+}
+.ussb-lesson-tr { display: flex; align-items: center; gap: var(--spacing-100); }
+.ussb-tr-name {
+  font-family: var(--ussb-sans);
+  font-size: calc(var(--ussb-r) * 0.76);
+  line-height: 1.3;
+  color: var(--ussb-rubric);
+}
+.ussb-note {
+  display: flex;
+  gap: var(--spacing-100);
+  align-items: flex-start;
+  padding: var(--spacing-150);
+  background: var(--bg-surface);
+  border-radius: var(--border-radius-100);
+  color: var(--ussb-rubric);
+}
+.ussb-note-text {
+  font-family: var(--ussb-sans);
+  font-size: calc(var(--ussb-r) * 0.76);
+  line-height: 1.45;
+  color: var(--ussb-rubric);
+}
+.ussb-note .icon { color: var(--ussb-rubric); }
+.ussb-prose p + p { text-indent: var(--spacing-300); }
+.ussb-vsup {
+  font-family: var(--ussb-sans);
+  font-size: calc(var(--ussb-r) * 0.58);
+  line-height: 0;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums lining-nums;
+  vertical-align: 0.55em;
+  color: var(--ussb-rubric);
+  padding-inline-end: var(--spacing-25);
+  letter-spacing: 0;
+}
+
+/* ---------- collect of the day: the day's proper, on its own surface ---------- */
+.ussb-proper {
+  background: var(--bg-surface);
+  border-radius: var(--border-radius-100);
+  padding: var(--spacing-250);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-100);
+}
+.ussb-proper-of {
+  font-size: calc(var(--ussb-r) * 0.94);
+  line-height: 1.35;
+  font-style: italic;
+  color: var(--ussb-rubric);
+  margin-block-end: var(--spacing-100);
+}
+
+/* ---------- choice: alternatives picked in place ---------- */
+.ussb-choice { display: flex; flex-direction: column; gap: var(--spacing-200); }
+.ussb-choice-bar { display: flex; flex-direction: column; gap: var(--spacing-100); }
+.ussb-chips { display: flex; flex-wrap: wrap; gap: var(--spacing-50); }
+.ussb-choice-body { animation: ussb-in 240ms ease-out; }
+@keyframes ussb-in { from { opacity: 0; transform: translateY(var(--spacing-50)); } to { opacity: 1; transform: none; } }
+
+/* ---------- source page marks (Settings: show source pages) ---------- */
+.ussb-pagemark {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-100);
+}
+.ussb-pagemark::before {
+  content: '';
+  flex: 1;
+  border-block-start: var(--border-weight-100) dashed var(--ussb-rule);
+}
+
+/* ---------- end mark ---------- */
+.ussb-end {
+  margin-block-start: var(--spacing-800);
+  padding-block-start: var(--spacing-150);
+  border-block-start: var(--border-weight-100) solid var(--ussb-rule);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--spacing-200);
+}
+
+/* ---------- chrome additions ---------- */
+/* Nav title: the current section and "n of 15" once the masthead has scrolled away.
+   This is the whole position indicator: no progress bar, no tab bar. */
+.ussb-navtitle {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-25);
+  opacity: 0;
+  transition: opacity 160ms ease;
+}
+.ussb-navtitle > span { max-width: 100%; overflow: hidden; text-overflow: ellipsis; }
+.ussb-navtitle.is-shown { opacity: 1; }
+
+/* Sections sheet */
+.ussb-toc-num { font-variant-numeric: tabular-nums; min-width: var(--spacing-300); }
+.ussb-sheet-list { padding-block-start: var(--spacing-200); }
+.ussb-sheet-group { padding: var(--spacing-300) var(--spacing-200) var(--spacing-100); }
