@@ -22,7 +22,7 @@ import { fileURLToPath } from 'node:url'
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..')
 
 /* Kept in step with SCAN_DIRS / ICON_PATTERNS in scripts/build-ui-fonts.py. */
-const SCAN_DIRS = ['demo', 'tools', 'css', 'src']
+const SCAN_DIRS = ['demo', 'tools', 'css', 'src', 'prototypes']
 const SCAN_EXT  = ['.html', '.js', '.mjs', '.tsx', '.ts']
 const SKIP_DIRS = new Set(['node_modules', 'built-fonts', '_build', 'licenses'])
 

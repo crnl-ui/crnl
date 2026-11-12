@@ -1,0 +1,3 @@
+/* Page scaffolding for this prototype only. Name it sheet.css so the linter knows its classes. */
+.tpl-read { font-family: var(--ussher-reading-font); font-size: var(--ussher-reading-size); line-height: 1.5; margin-block-start: var(--spacing-200); }
+.tpl-rubric { font-style: italic; color: var(--text-secondary); }

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="ink" data-mode="light" data-platform="app">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Ussher — Reader A: Prayer book</title>
+  <script src="../../../css/crnl-loader.js"></script>
+  <script src="../../../css/prototype-harness.js"></script>
+  <link rel="stylesheet" href="../shared/sheet.css">
+  <link rel="stylesheet" href="sheet.css">
+</head>
+<body>
+<div class="ios-status-bar" id="status-bar"></div>
+
+<!-- Top chrome: back, the current section's name, contents. No tab bar while reading. -->
+<div class="ios-chrome-top" id="chrome-top">
+  <div class="ios-safe-area-top"></div>
+  <header class="ios-nav-page">
+    <div class="ios-nav-page-row">
+      <button class="ios-nav-btn ios-glass ios-nav-page-left" aria-label="Back to Today"><span class="icon">arrow_back</span></button>
+      <span class="ios-nav-page-title" id="nav-title" aria-live="polite"></span>
+      <button class="ios-nav-btn ios-glass ios-nav-page-right" id="open-contents" aria-label="Contents and text size"><span class="icon">toc</span></button>
+    </div>
+  </header>
+</div>
+<div class="ios-chrome-bottom" id="chrome-bottom">
+  <div class="ios-home-indicator"></div>
+</div>
+
+<div class="ios-scroll" id="scroll">
+  <div class="ios-scroll-inner" id="scroll-inner">
+    <article class="ra-page" id="page"></article>
+  </div>
+</div>
+
+<!-- Contents sheet -->
+<div class="ios-modal-backdrop" id="contents">
+  <div class="ios-modal-stack"></div>
+  <div class="ios-modal-sheet">
+    <header class="ios-nav-modal">
+      <div class="ios-nav-modal-row">
+        <button class="ios-nav-btn ios-nav-page-left" id="close-contents" aria-label="Close"><span class="icon">close</span></button>
+        <span class="ios-nav-page-title" id="sheet-title"></span>
+        <span class="ios-nav-btn ios-nav-page-right" aria-hidden="true"></span>
+      </div>
+    </header>
+    <div class="ios-modal-content">
+      <div class="ra-sheet-pad">
+        <div>
+          <div class="card-closed"><div class="list-divided" id="toc"></div></div>
+        </div>
+        <div>
+          <p class="ra-sheet-label labelBold20 text-secondary" id="reading-label"></p>
+          <div class="card-closed"><div class="list-divided">
+            <div class="list-row not-tappable">
+              <div class="list-row-content"><div class="list-row-text-pair">
+                <span class="labelBold30" id="size-label"></span>
+                <span class="labelRegular10 text-secondary" id="size-value"></span>
+              </div></div>
+              <div class="trailing trailing-gap-lg">
+                <div class="stepper">
+                  <button class="stepper-btn" id="size-down" aria-label="Smaller text"><span class="icon icon-200">text_decrease</span></button>
+                  <button class="stepper-btn" id="size-up" aria-label="Larger text"><span class="icon icon-200">text_increase</span></button>
+                </div>
+              </div>
+            </div>
+            <div class="list-row not-tappable">
+              <div class="list-row-content"><div class="list-row-text-pair">
+                <span class="labelBold30" id="pages-label"></span>
+                <span class="labelRegular10 text-secondary" id="pages-book"></span>
+              </div></div>
+              <div class="trailing trailing-gap-md">
+                <div class="switch"><input type="checkbox" id="pages-switch" aria-labelledby="pages-label"><label for="pages-switch"></label></div>
+              </div>
+            </div>
+          </div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="../data/calendar.js"></script>
+<script src="../data/office.js"></script>
+<script src="../data/settings.js"></script>
+<script src="../shared/shell.js"></script>
+<script src="reader.js"></script>
+</body>
+</html>
