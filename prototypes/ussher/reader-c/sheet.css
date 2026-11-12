@@ -1,0 +1,209 @@
+/* Ussher — reader, direction C ("Utilitarian"). Page scaffolding only; NOT part of Crnl.
+   Unlayered, so it beats every crnl.* layer without !important.
+   Prefix: ucr-  (Ussher reader C). Every class here is a flagged new pattern — see NOTES.md.
+
+   Principle: serif = words said aloud (prayed or read). Inter = everything that is not said:
+   headings, rubrics, role labels, verse numbers, citations, controls. */
+
+/* ============================================================
+   PALETTE — the only literal colours on this page.
+   Contrast measured against ink's --org-base / --org-surface / --org-sheet.
+   ============================================================ */
+:root[data-mode="light"] {
+  --ucr-ink: #1A1A1A;      /* reading text   17.4:1 on #FFFFFF */
+  --ucr-rubric: #A8261C;   /* rubric red      7.0:1 on #FFFFFF · 6.1:1 on #F2EFE9 */
+}
+:root[data-mode="dark"] {
+  --ucr-ink: #E8E5DF;      /* reading text   15.6:1 on #0E0E0E */
+  --ucr-rubric: #EE8E7E;   /* rubric salmon   8.2:1 on #0E0E0E · 6.6:1 on #242424 */
+}
+
+/* ============================================================
+   READING SCALE — every size derives from --ussher-reading-size (R, 17px default).
+   ============================================================ */
+:root {
+  --ucr-r: var(--ussher-reading-size);
+  --ucr-lead: 1.45;                       /* prose leading: 24.65px at 17px */
+}
+
+/* ---------- page column ---------- */
+.ucr-page { padding-inline: var(--margin-large); }
+
+/* ---------- office header ---------- */
+.ucr-head { display: flex; flex-direction: column; gap: var(--spacing-100); padding-block-start: var(--spacing-100); }
+.ucr-day { padding: var(--spacing-200); display: flex; flex-direction: column; gap: var(--spacing-150); margin-block-start: var(--spacing-100); }
+.ucr-day-tags { display: flex; flex-wrap: wrap; gap: var(--spacing-100); }
+.ucr-feast { display: flex; align-items: center; gap: var(--spacing-150); padding-block-start: var(--spacing-150); border-block-start: var(--border-weight-100) solid var(--border-default); }
+
+/* ---------- sections ---------- */
+.ucr-sec { margin-block-start: var(--spacing-500); }
+.ucr-sec-head {
+  display: flex; align-items: baseline; gap: var(--spacing-150);
+  padding-block-start: var(--spacing-150);
+  border-block-start: var(--border-weight-100) solid var(--border-default);
+  margin-block-end: var(--spacing-200);
+  font-family: 'Inter', sans-serif;
+}
+.ucr-sec-num {
+  font-size: calc(var(--ucr-r) * 0.82); font-weight: 600; line-height: 1;
+  font-variant-numeric: tabular-nums; color: var(--text-secondary); min-width: 1.6em;
+}
+.ucr-sec-title {
+  font-size: calc(var(--ucr-r) * 1.18); font-weight: 700; line-height: 1.2;
+  letter-spacing: -0.02em; color: var(--text-primary);
+}
+.ucr-sec-body { display: flex; flex-direction: column; gap: var(--spacing-250); }
+
+/* ---------- block label (prayer title, canticle name, psalm title) ---------- */
+.ucr-label {
+  display: flex; align-items: baseline; gap: var(--spacing-100);
+  margin-block-end: var(--spacing-75);
+  font-family: 'Inter', sans-serif;
+  font-size: calc(var(--ucr-r) * 0.76); font-weight: 600; line-height: 1.25;
+  color: var(--text-secondary);
+}
+.ucr-label-main { flex: 1; }
+.ucr-label-strong {
+  font-size: calc(var(--ucr-r) * 1.0); font-weight: 700; color: var(--text-primary);
+  letter-spacing: -0.01em;
+}
+/* source page marker — hidden unless the reader turns pages on */
+.ucr-pg {
+  display: none;
+  font-family: 'Inter', sans-serif; font-size: calc(var(--ucr-r) * 0.7); font-weight: 400;
+  line-height: 1.25; color: var(--text-secondary); font-variant-numeric: tabular-nums;
+  margin-inline-start: auto; white-space: nowrap;
+}
+.ucr-show-pages .ucr-pg { display: inline; }
+.ucr-show-pages .ucr-pg-float { display: block; float: inline-end; margin-inline-start: var(--spacing-150); padding-block-start: var(--spacing-50); }
+.ucr-block { display: flow-root; }
+
+/* ---------- said text: the only serif on the page ---------- */
+.ucr-said {
+  font-family: var(--ussher-reading-font);
+  font-size: var(--ucr-r); line-height: var(--ucr-lead); font-weight: 400;
+  font-variant-numeric: oldstyle-nums;
+  color: var(--ucr-ink);
+  hyphens: manual; -webkit-hyphens: manual;   /* read aloud: never break a word */
+}
+.ucr-said + .ucr-said { margin-block-start: var(--spacing-150); }
+.ucr-amen { font-weight: 650; }
+
+/* ---------- rubric: an instruction, not said — sans, rubric red ---------- */
+.ucr-rubric {
+  font-family: 'Inter', sans-serif;
+  font-size: calc(var(--ucr-r) * 0.82); line-height: 1.42; font-weight: 400;
+  letter-spacing: -0.005em;
+  color: var(--ucr-rubric);
+}
+
+/* ---------- opening sentence ---------- */
+.ucr-cite {
+  display: block; text-align: end; margin-block-start: var(--spacing-75);
+  font-family: 'Inter', sans-serif; font-size: calc(var(--ucr-r) * 0.76); font-weight: 600;
+  line-height: 1.25; color: var(--text-secondary);
+}
+
+/* ---------- versicles & responses: explicit role column ---------- */
+.ucr-vr {
+  display: grid; grid-template-columns: max-content 1fr;
+  column-gap: var(--spacing-150); row-gap: var(--spacing-100);
+  align-items: baseline;
+}
+.ucr-role {
+  font-family: 'Inter', sans-serif; font-size: calc(var(--ucr-r) * 0.7); font-weight: 600;
+  line-height: 1.2; letter-spacing: 0.01em; color: var(--text-secondary);
+}
+.ucr-role-people { color: var(--text-primary); font-weight: 700; }
+.ucr-vr .ucr-said { line-height: 1.38; }
+.ucr-vr .ucr-said + .ucr-said { margin-block-start: 0; }
+.ucr-people { font-weight: 650; }
+
+/* ---------- verse blocks (psalms, canticles): number gutter + half-verse indent ---------- */
+.ucr-verses {
+  display: grid; grid-template-columns: 1.5em 1fr;
+  column-gap: var(--spacing-100); row-gap: calc(var(--ucr-r) * 0.4);
+  align-items: baseline;
+  font-size: var(--ucr-r);
+}
+.ucr-vn {
+  font-family: 'Inter', sans-serif; font-size: calc(var(--ucr-r) * 0.68); font-weight: 600;
+  line-height: 1; font-variant-numeric: tabular-nums; text-align: end; color: var(--text-secondary);
+}
+.ucr-verses .ucr-said { line-height: 1.38; }
+.ucr-verses .ucr-said + .ucr-said { margin-block-start: 0; }
+.ucr-vb { display: block; padding-inline-start: 1.25em; }
+
+.ucr-psalm + .ucr-psalm { margin-block-start: var(--spacing-400); }
+.ucr-incipit { font-family: var(--ussher-reading-font); font-style: italic; font-weight: 400; color: var(--text-secondary); }
+
+/* ---------- lessons ---------- */
+.ucr-lesson-head { display: flex; align-items: center; gap: var(--spacing-150); margin-block-end: var(--spacing-150); }
+.ucr-lesson-cite {
+  flex: 1; font-family: 'Inter', sans-serif; font-size: calc(var(--ucr-r) * 1.06); font-weight: 700;
+  line-height: 1.2; letter-spacing: -0.01em; color: var(--text-primary);
+}
+.ucr-note {
+  display: flex; align-items: flex-start; gap: var(--spacing-100);
+  padding: var(--spacing-150);
+  background: var(--bg-surface); border-radius: var(--border-radius-100);
+  margin-block-end: var(--spacing-200);
+}
+.ucr-note .icon { color: var(--text-secondary); }
+.ucr-vsup {
+  font-family: 'Inter', sans-serif; font-size: calc(var(--ucr-r) * 0.6); font-weight: 700;
+  line-height: 1; vertical-align: 0.42em; font-variant-numeric: tabular-nums;
+  color: var(--text-secondary); padding-inline-end: var(--spacing-25);
+}
+
+/* ---------- choices: chips in place ---------- */
+.ucr-choice-bar { display: flex; flex-wrap: wrap; align-items: center; gap: var(--spacing-100); margin-block-end: var(--spacing-200); }
+.ucr-choice-lead { display: inline-flex; align-items: center; gap: var(--spacing-50); margin-inline-end: var(--spacing-50); }
+.ucr-choice-bar .icon { color: inherit; }
+/* Fill surfaces set their own colour; let the label follow it (design-guide § Colour inheritance). */
+.surface-fillNeutral * { color: inherit; }
+
+/* ---------- end of office ---------- */
+.ucr-end { margin-block-start: var(--spacing-600); padding-block-start: var(--spacing-300); border-block-start: var(--border-weight-100) solid var(--border-default); display: flex; flex-direction: column; align-items: center; gap: var(--spacing-150); text-align: center; }
+
+/* ============================================================
+   CHROME — position strip (top) and reading toolbar (bottom)
+   ============================================================ */
+/* Nav bar colour layer at full strength: dense text behind a translucent title is noise. */
+.ucr-nav::after { opacity: 1; }
+
+/* Position strip: one segment per section, width proportional to the section's length. */
+.ucr-progress { position: relative; display: flex; align-items: center; padding: var(--spacing-150) var(--spacing-200) var(--spacing-100); background: var(--bg-base); }
+/* The nav bar's own fade is still translucent at this height; the strip gets a solid band and its own short fade. */
+.ucr-progress::after { content: ''; position: absolute; inset-inline: 0; top: 100%; height: var(--spacing-200); background: linear-gradient(var(--bg-base), transparent); pointer-events: none; }
+.ucr-track { flex: 1; display: flex; gap: var(--spacing-25); height: var(--spacing-50); }
+.ucr-seg { position: relative; flex: 1 1 0; min-width: var(--spacing-25); border-radius: var(--spacing-25); background: var(--neutral-200); overflow: hidden; }
+.ucr-seg-fill { position: absolute; inset: 0; background: var(--color-interactive); transform-origin: left center; transform: scaleX(0); }
+[dir="rtl"] .ucr-seg-fill { transform-origin: right center; }
+.ucr-seg-current { background: var(--neutral-500); }
+/* Two-line nav title: section + position. Wider inset than Crnl's 48px, which the 44px buttons overlap. */
+.ucr-nav-title { display: flex; flex-direction: column; align-items: center; gap: var(--spacing-25); padding-inline: var(--spacing-800); }
+.ucr-nav-line { display: block; max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-variant-numeric: tabular-nums; }
+
+/* Reading toolbar: replaces the tab bar while an office is open. */
+.ucr-toolbar { align-items: center; gap: var(--spacing-50); padding-inline-end: var(--spacing-50); }
+.ucr-toolbar .ios-nav-btn { margin-inline-start: var(--spacing-25); }
+.ucr-toolbar-sep { width: var(--border-weight-100); height: var(--spacing-300); background: var(--border-default); flex-shrink: 0; }
+.ucr-next {
+  flex: 1; min-width: 0; display: flex; align-items: center; gap: var(--spacing-100);
+  min-height: var(--spacing-600); padding: var(--spacing-50) var(--spacing-150) var(--spacing-50) var(--spacing-200);
+  border: none; border-radius: 100px; text-align: start; font-family: inherit; cursor: pointer;
+}
+.ucr-next-pair { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: var(--spacing-25); }
+.ucr-next-pair > * { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+/* ---------- jump sheet ---------- */
+.ucr-sheet-body { padding: var(--spacing-300) var(--margin-large) var(--spacing-600); display: flex; flex-direction: column; gap: var(--spacing-200); }
+.ucr-jump-row { text-align: start; font-family: inherit; border: 0 solid var(--neutral-200); border-block-end-width: var(--border-weight-100); }
+.ucr-jump-row:last-child { border-block-end-width: 0; }
+/* Current section: the number sits in a filled disc. */
+.ucr-jump-here { display: inline-flex; align-items: center; justify-content: center; width: var(--spacing-300); height: var(--spacing-300); border-radius: 50%; background: var(--color-interactive); color: var(--color-inverted); }
+.ucr-jump-num { width: var(--spacing-300); font-variant-numeric: tabular-nums; }
+.ucr-jump-row .list-row-text-pair > * { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.ucr-jump-row .list-row-content { min-width: 0; }
+.ucr-preview { padding: var(--spacing-200); }

@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="ink" data-mode="light" data-platform="app">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Ussher — Reader C (Utilitarian)</title>
+  <script src="../../../css/crnl-loader.js"></script>
+  <script src="../../../css/prototype-harness.js"></script>
+  <link rel="stylesheet" href="../shared/sheet.css">
+  <link rel="stylesheet" href="sheet.css">
+</head>
+<body>
+<div class="ios-status-bar" id="status-bar"></div>
+
+<!-- Layer 1: nav bar + position strip -->
+<div class="ios-chrome-top" id="chrome-top">
+  <div class="ios-safe-area-top"></div>
+  <header class="ios-nav-page ucr-nav">
+    <div class="ios-nav-page-row">
+      <button class="ios-nav-btn ios-glass ios-nav-page-left" id="btn-close" aria-label="Close office"><span class="icon">close</span></button>
+      <span class="ios-nav-page-title ucr-nav-title" aria-live="polite">
+        <span class="labelBold30 ucr-nav-line" id="nav-title"></span>
+        <span class="labelRegular10 text-secondary ucr-nav-line" id="count"></span>
+      </span>
+      <button class="ios-nav-btn ios-glass ios-nav-page-right" id="btn-sections" aria-label="Sections"><span class="icon">toc</span></button>
+    </div>
+    <div class="ucr-progress" id="progress">
+      <div class="ucr-track" id="track" aria-hidden="true"></div>
+    </div>
+  </header>
+</div>
+
+<!-- Layer 3: reading toolbar (the tab bar is hidden while an office is open) -->
+<div class="ios-chrome-bottom" id="chrome-bottom">
+  <nav class="ios-tab-bar" aria-label="Reader">
+    <div class="ios-tab-bar-inner ios-glass ucr-toolbar">
+      <button class="ios-nav-btn" id="btn-text" aria-label="Text settings"><span class="icon">format_size</span></button>
+      <span class="ucr-toolbar-sep" aria-hidden="true"></span>
+      <button class="ucr-next surface-ghost scale-500" id="btn-next">
+        <span class="ucr-next-pair">
+          <span class="labelRegular10 text-secondary" id="next-kicker"></span>
+          <span class="labelBold30" id="next-title"></span>
+        </span>
+        <span class="icon icon-200" id="next-icon">arrow_downward</span>
+      </button>
+    </div>
+  </nav>
+  <div class="ios-home-indicator"></div>
+</div>
+
+<!-- Layer 2: the office -->
+<div class="ios-scroll" id="scroller">
+  <div class="ios-scroll-inner" id="scroll-inner">
+    <div class="ucr-page" id="office"></div>
+  </div>
+</div>
+
+<!-- Section jump sheet -->
+<div class="ios-modal-backdrop" id="jump-modal">
+  <div class="ios-modal-stack"></div>
+  <div class="ios-modal-sheet">
+    <header class="ios-nav-modal">
+      <div class="ios-nav-modal-row">
+        <button class="ios-nav-btn ios-nav-page-left" id="jump-close" aria-label="Close"><span class="icon">close</span></button>
+        <span class="ios-nav-page-title" id="jump-title"></span>
+        <button class="ios-nav-btn ios-nav-page-right" id="jump-top" aria-label="Back to top"><span class="icon">vertical_align_top</span></button>
+      </div>
+    </header>
+    <div class="ios-modal-content">
+      <div class="ucr-sheet-body">
+        <p class="labelRegular20 text-secondary" id="jump-sub"></p>
+        <div class="card-closed"><div class="list-divided" id="jump-list"></div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Text settings sheet -->
+<div class="ios-modal-backdrop" id="text-modal">
+  <div class="ios-modal-stack"></div>
+  <div class="ios-modal-sheet">
+    <header class="ios-nav-modal">
+      <div class="ios-nav-modal-row">
+        <button class="ios-nav-btn ios-nav-page-left" id="text-close" aria-label="Close"><span class="icon">close</span></button>
+        <span class="ios-nav-page-title">Text</span>
+        <button class="ios-nav-btn ios-nav-page-right" id="text-done" aria-label="Done"><span class="icon">check</span></button>
+      </div>
+    </header>
+    <div class="ios-modal-content">
+      <div class="ucr-sheet-body">
+        <div class="card-closed"><div class="ucr-preview" id="text-preview"></div></div>
+        <div class="card-closed"><div class="list-divided">
+          <div class="list-row not-tappable">
+            <div class="list-row-content"><div class="list-row-text-pair">
+              <span class="labelBold30">Text size</span>
+              <span class="labelRegular10 text-secondary" id="size-range"></span>
+            </div></div>
+            <div class="trailing trailing-gap-lg">
+              <div class="stepper">
+                <button class="stepper-btn" id="size-down" aria-label="Smaller"><span class="icon icon-200">remove</span></button>
+                <span class="stepper-count labelBold30" id="size-count"></span>
+                <button class="stepper-btn" id="size-up" aria-label="Larger"><span class="icon icon-200">add</span></button>
+              </div>
+            </div>
+          </div>
+          <div class="list-row not-tappable">
+            <div class="list-row-content"><div class="list-row-text-pair">
+              <span class="labelBold30">Prayer book pages</span>
+              <span class="labelRegular10 text-secondary">Show the source page beside each part</span>
+            </div></div>
+            <div class="trailing trailing-gap-md">
+              <div class="switch"><input type="checkbox" id="pages-switch" aria-label="Show prayer book pages"><label for="pages-switch"></label></div>
+            </div>
+          </div>
+        </div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="../data/calendar.js"></script>
+<script src="../data/settings.js"></script>
+<script src="../data/office.js"></script>
+<script src="../shared/shell.js"></script>
+<script src="reader.js"></script>
+</body>
+</html>
